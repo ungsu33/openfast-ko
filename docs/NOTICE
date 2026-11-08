@@ -1,0 +1,9 @@
+
+
+Korean localization notice (2026-11-08)
+Unofficial machine translation and review derived from OpenFAST v5.0.0 documentation.
+Original: https://openfast.readthedocs.io/en/main/
+Upstream commit: 2895884d2be01862173c88d70f86b358d2f1a50a
+Modified HTML files carry a translation notice. Code, equations, original figures, attachments and upstream copyright notices are retained.
+Sphinx Read the Docs theme (MIT); Font Awesome 4.7 fonts (SIL OFL 1.1), CSS (MIT); Lato fonts (SIL OFL 1.1); bundled Roboto Slab fonts (Apache License 2.0).
+No endorsement by OpenFAST, NLR, NREL or Read the Docs is implied.

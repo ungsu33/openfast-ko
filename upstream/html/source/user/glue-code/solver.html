@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.2.4. Solver &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.2.5. Linearization" href="linearization.html" />
+    <link rel="prev" title="4.2.3. ModGlue – Combining Modules into Global Arrays" href="modglue.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/glue-code/solver.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.2. Glue Code</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="overview.html">4.2.1. Glue Code Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modvar.html">4.2.2. Module Variables (<code class="docutils literal notranslate"><span class="pre">ModVar</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modglue.html">4.2.3. ModGlue – Combining Modules into Global Arrays</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.2.4. Solver</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#user-input-parameters">4.2.4.1. User input parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generalized-alpha-integration">4.2.4.2. Generalized-alpha integration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-ordering">4.2.4.3. Module ordering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#jacobian-construction">4.2.4.4. Jacobian construction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#output-channels-from-the-solver">4.2.4.5. Output channels from the solver</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="linearization.html">4.2.5. Linearization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.2. </span>Glue Code</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.2.4. </span>Solver</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/glue-code/solver.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="solver">
+<span id="glue-code-solver"></span><h1><span class="section-number">4.2.4. </span>Solver<a class="headerlink" href="#solver" title="Permalink to this heading"></a></h1>
+<p>The OpenFAST tight-coupling solver is implemented in
+<code class="docutils literal notranslate"><span class="pre">modules/openfast-library/src/FAST_Solver.f90</span></code>.  It integrates the continuous
+states and resolves the input-output coupling between modules using a
+generalized-alpha scheme with Newton-Raphson convergence iterations.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#user-input-parameters" id="id1">User input parameters</a></p></li>
+<li><p><a class="reference internal" href="#generalized-alpha-integration" id="id2">Generalized-alpha integration</a></p></li>
+<li><p><a class="reference internal" href="#module-ordering" id="id3">Module ordering</a></p></li>
+<li><p><a class="reference internal" href="#jacobian-construction" id="id4">Jacobian construction</a></p>
+<ul>
+<li><p><a class="reference internal" href="#variable-selection-vf-solve-flag" id="id5">Variable selection (<code class="docutils literal notranslate"><span class="pre">VF_Solve</span></code> flag)</a></p></li>
+<li><p><a class="reference internal" href="#jacobian-structure-tc-jacobian" id="id6">Jacobian structure (TC Jacobian)</a></p></li>
+<li><p><a class="reference internal" href="#jacobian-update-strategy" id="id7">Jacobian update strategy</a></p></li>
+<li><p><a class="reference internal" href="#per-module-jacobian-contributions" id="id8">Per-module Jacobian contributions</a></p></li>
+<li><p><a class="reference internal" href="#linear-solve" id="id9">Linear solve</a></p></li>
+<li><p><a class="reference internal" href="#convergence-check" id="id10">Convergence check</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#output-channels-from-the-solver" id="id11">Output channels from the solver</a></p></li>
+</ul>
+</div>
+<div class="section" id="user-input-parameters">
+<span id="glue-code-solver-inputs"></span><h2><a class="toc-backref" href="#id1"><span class="section-number">4.2.4.1. </span>User input parameters</a><a class="headerlink" href="#user-input-parameters" title="Permalink to this heading"></a></h2>
+<p>All solver parameters are set in the main OpenFAST input file
+(<code class="docutils literal notranslate"><span class="pre">*.fst</span></code>) under the <strong>Feature Switches and Flags</strong> and
+<strong>Tight-Coupling / Solver</strong> sections.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 22%" />
+<col style="width: 12%" />
+<col style="width: 66%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DT</span></code></p></td>
+<td><p>real</p></td>
+<td><p>Global (solver) time step in seconds.  All module time steps must be
+equal to or an integer sub-divisor of <code class="docutils literal notranslate"><span class="pre">DT</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ModCoupling</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>Coupling method.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> – Loose coupling: structural modules (ED/BD/SD) are treated as
+Option 1 and do <strong>not</strong> participate in the tight Newton loop.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> – Tight coupling with fixed Jacobian updates (<code class="docutils literal notranslate"><span class="pre">DT_UJac</span></code>
+controls update frequency).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">3</span></code> – Tight coupling with adaptive Jacobian updates (the Jacobian is
+rebuilt whenever the Newton loop fails to converge within the
+iteration budget).</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RhoInf</span></code></p></td>
+<td><p>real</p></td>
+<td><p>Numerical damping parameter ρ∞ for the generalized-alpha integrator.
+Range [0, 1]; 1 = no numerical damping (second-order accurate), 0 =
+maximum damping (first-order accurate).  Typical value: <strong>0.9</strong>.
+Reducing <code class="docutils literal notranslate"><span class="pre">RhoInf</span></code> below 1 damps high-frequency numerical noise at the
+cost of slightly reduced accuracy.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MaxConvIter</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>Maximum number of Newton convergence iterations per time step before the
+solver declares convergence failure.  Typical value: <strong>20</strong>.
+With <code class="docutils literal notranslate"><span class="pre">ModCoupling=2</span></code> or <code class="docutils literal notranslate"><span class="pre">1</span></code>, a fatal error is issued on failure;
+with <code class="docutils literal notranslate"><span class="pre">ModCoupling=3</span></code> the Jacobian is rebuilt first and the step is
+retried before a warning is emitted.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ConvTol</span></code></p></td>
+<td><p>real</p></td>
+<td><p>Convergence tolerance.  The iteration stops when the average
+<cite>L2</cite>-norm of the Newton update vector falls below this value.
+Typical value: <code class="docutils literal notranslate"><span class="pre">1.0e-4</span></code>.  Tighter tolerances increase
+computational cost but may be needed for stiff problems.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DT_UJac</span></code></p></td>
+<td><p>real</p></td>
+<td><p>Time interval (seconds) between Jacobian rebuilds when
+<code class="docutils literal notranslate"><span class="pre">ModCoupling=2</span></code>.</p>
+<ul class="simple">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">DT_UJac</span> <span class="pre">&lt;</span> <span class="pre">DT</span></code>: the Jacobian is rebuilt at a fraction of the
+convergence-iteration budget.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">DT_UJac</span> <span class="pre">≥</span> <span class="pre">DT</span></code>: the Jacobian is rebuilt every
+<code class="docutils literal notranslate"><span class="pre">CEILING(DT_UJac/DT)</span></code> time steps.</p></li>
+<li><p>Setting <code class="docutils literal notranslate"><span class="pre">DT_UJac</span></code> very large (e.g. <code class="docutils literal notranslate"><span class="pre">9999</span></code>) freezes the Jacobian
+for the entire simulation; useful for profiling or when the system
+is nearly linear and the Jacobian is expensive.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">UJacSclFact</span></code></p></td>
+<td><p>real</p></td>
+<td><p>Conditioning scale factor applied to load rows and columns of the
+Jacobian.  Force and moment variables are divided by this factor before
+the linear solve and multiplied back afterwards, equalising the magnitude
+of load entries relative to displacement/velocity entries.  Typical
+value: <strong>1.0e5</strong> for offshore systems; may need adjustment for very
+large or very small turbines.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CompElast</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>Select the structural dynamics module: <code class="docutils literal notranslate"><span class="pre">1</span></code> = ElastoDyn,
+<code class="docutils literal notranslate"><span class="pre">2</span></code> = BeamDyn (blades only, ElastoDyn still handles the tower/platform),
+<code class="docutils literal notranslate"><span class="pre">3</span></code> = Simplified ElastoDyn.  The chosen modules become TC members when
+<code class="docutils literal notranslate"><span class="pre">ModCoupling</span> <span class="pre">≥</span> <span class="pre">2</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CompSub</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>Sub-structural module: <code class="docutils literal notranslate"><span class="pre">0</span></code> = none, <code class="docutils literal notranslate"><span class="pre">1</span></code> = SubDyn, <code class="docutils literal notranslate"><span class="pre">2</span></code> = ExtPtfm,
+<code class="docutils literal notranslate"><span class="pre">3</span></code> = SlD (SoilDyn).  SubDyn joins the TC set when
+<code class="docutils literal notranslate"><span class="pre">ModCoupling</span> <span class="pre">≥</span> <span class="pre">2</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CompHydro</span></code></p></td>
+<td><p>integer</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code> = none, <code class="docutils literal notranslate"><span class="pre">1</span></code> = HydroDyn.  HydroDyn is always Option 1.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CompMooring</span></code></p></td>
+<td><p>integer</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code> = none, <code class="docutils literal notranslate"><span class="pre">1</span></code> = MAP++, <code class="docutils literal notranslate"><span class="pre">2</span></code> = FEAMooring, <code class="docutils literal notranslate"><span class="pre">3</span></code> = MoorDyn,
+<code class="docutils literal notranslate"><span class="pre">4</span></code> = OrcaFlex.  Mooring modules are always Option 1.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CompAero</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>Aerodynamics module: <code class="docutils literal notranslate"><span class="pre">0</span></code> = none, <code class="docutils literal notranslate"><span class="pre">1</span></code> = AeroDisk, <code class="docutils literal notranslate"><span class="pre">2</span></code> = AeroDyn.
+AeroDyn is Option 2 for land-based turbines and Option 1 for MHK.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CompServo</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>Controller module: <code class="docutils literal notranslate"><span class="pre">0</span></code> = none, <code class="docutils literal notranslate"><span class="pre">1</span></code> = ServoDyn.  ServoDyn is
+Post-solve by default but becomes Option 1 when structural controllers
+(tower, blade, nacelle StC) are active.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="generalized-alpha-integration">
+<h2><a class="toc-backref" href="#id2"><span class="section-number">4.2.4.2. </span>Generalized-alpha integration</a><a class="headerlink" href="#generalized-alpha-integration" title="Permalink to this heading"></a></h2>
+<p>The tight-coupling solver integrates second-order ODEs of the form</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{M}\,\ddot{\mathbf{q}} + \mathbf{f}(\mathbf{q}, \dot{\mathbf{q}}, t) = 0\]</div>
+<p>using the <strong>generalized-alpha method</strong> (Chung &amp; Hulbert, 1993).  Given the
+spectral radius ρ∞ specified by <code class="docutils literal notranslate"><span class="pre">RhoInf</span></code>, the method parameters are:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\alpha_m &amp;= \frac{2\rho_\infty - 1}{\rho_\infty + 1} \\
+\alpha_f &amp;= \frac{\rho_\infty}{\rho_\infty + 1} \\
+\gamma   &amp;= \tfrac{1}{2} - \alpha_m + \alpha_f \\
+\beta    &amp;= \tfrac{1}{4}(1 - \alpha_m + \alpha_f)^2\end{split}\]</div>
+<p>Two derived coefficients used throughout the convergence loop are:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\beta'   &amp;= h^2 \beta \frac{1 - \alpha_f}{1 - \alpha_m} \\
+\gamma'  &amp;= h \gamma  \frac{1 - \alpha_f}{1 - \alpha_m}\end{split}\]</div>
+<p>where <em>h</em> = <code class="docutils literal notranslate"><span class="pre">DT</span></code>.</p>
+<p><strong>State vector layout</strong> – the solver maintains a per-module <em>generalized
+coordinate</em> (q) vector with four columns:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 85%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Column</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">q</span></code></p></td>
+<td><p>Displacement / orientation states (<code class="docutils literal notranslate"><span class="pre">DerivOrder</span> <span class="pre">=</span> <span class="pre">0</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">v</span></code></p></td>
+<td><p>Velocity states (<code class="docutils literal notranslate"><span class="pre">DerivOrder</span> <span class="pre">=</span> <span class="pre">1</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">vd</span></code></p></td>
+<td><p>Acceleration (physical, from module <code class="docutils literal notranslate"><span class="pre">CalcContStateDeriv</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">a</span></code></p></td>
+<td><p>Algorithmic acceleration (generalized-alpha internal variable)</p></td>
+</tr>
+</tbody>
+</table>
+<p>State prediction at the start of each step:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}q_{n+1}^{\rm pred}  &amp;= q_n + h v_n + h^2[(\tfrac{1}{2} - \beta)a_n + \beta\, a_{n+1}] \\
+v_{n+1}^{\rm pred}  &amp;= v_n + h[(1-\gamma)a_n + \gamma\, a_{n+1}]\end{split}\]</div>
+</div>
+<div class="section" id="module-ordering">
+<h2><a class="toc-backref" href="#id3"><span class="section-number">4.2.4.3. </span>Module ordering</a><a class="headerlink" href="#module-ordering" title="Permalink to this heading"></a></h2>
+<p>During <code class="docutils literal notranslate"><span class="pre">FAST_SolverInit</span></code> each module is categorised based on <code class="docutils literal notranslate"><span class="pre">ModCoupling</span></code>
+and its own physics type, and assigned to one of the ordered index arrays
+in the <code class="docutils literal notranslate"><span class="pre">Glue_TCParam</span></code> structure:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Array</p></th>
+<th class="head"><p>Modules (in order)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">iModTC</span></code></p></td>
+<td><p>ElastoDyn, BeamDyn, SubDyn (when <code class="docutils literal notranslate"><span class="pre">ModCoupling</span> <span class="pre">≥</span> <span class="pre">2</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">iModOpt1</span></code></p></td>
+<td><p>ServoDyn (when StC active), SED, AD (MHK), ExtPtfm, HydroDyn, OrcaFlex,
+MoorDyn; ED/BD/SD also appear here when <code class="docutils literal notranslate"><span class="pre">ModCoupling</span> <span class="pre">=</span> <span class="pre">1</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">iModOpt2</span></code></p></td>
+<td><p>ServoDyn, SED, ED, BD, SD, InflowWind, SeaState, AeroDyn (land),
+AeroDisk, ExtLoads, MAP++, FEAMooring, IceDyn, IceFloe, SoilDyn</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">iModPost</span></code></p></td>
+<td><p>ServoDyn, ExternalInflow</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">iModInit</span></code></p></td>
+<td><p>SED, ED, BD, SD, InflowWind, ExtLoads (Step 0 initialisation only)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="jacobian-construction">
+<h2><a class="toc-backref" href="#id4"><span class="section-number">4.2.4.4. </span>Jacobian construction</a><a class="headerlink" href="#jacobian-construction" title="Permalink to this heading"></a></h2>
+<p>Two separate Jacobians are assembled:</p>
+<ol class="arabic simple">
+<li><p><strong>TC/Option-1 Jacobian</strong> (<code class="docutils literal notranslate"><span class="pre">BuildJacobianTC</span></code>) — for the main time-stepping
+convergence loop.</p></li>
+<li><p><strong>IO Jacobian</strong> (<code class="docutils literal notranslate"><span class="pre">BuildJacobianIO</span></code>) — for the initial and linearization
+input-output solve.</p></li>
+</ol>
+<div class="section" id="variable-selection-vf-solve-flag">
+<h3><a class="toc-backref" href="#id5"><span class="section-number">4.2.4.4.1. </span>Variable selection (<code class="docutils literal notranslate"><span class="pre">VF_Solve</span></code> flag)</a><a class="headerlink" href="#variable-selection-vf-solve-flag" title="Permalink to this heading"></a></h3>
+<p>During <code class="docutils literal notranslate"><span class="pre">FAST_SolverInit</span> <span class="pre">→</span> <span class="pre">SetVarSolveFlags</span></code>, the <code class="docutils literal notranslate"><span class="pre">VF_Solve</span></code> flag is set on
+the variables that must appear in the Jacobian:</p>
+<ul class="simple">
+<li><p><strong>Continuous states</strong> of all TC modules (automatically).</p></li>
+<li><p><strong>Motion mesh</strong> inputs/outputs of TC-to-TC mappings (all fields).</p></li>
+<li><p><strong>Motion mesh</strong> input accelerations of TC-to-Option1 or
+Option1-to-TC mappings.</p></li>
+<li><p><strong>Load mesh</strong> inputs and outputs involved in any TC/Option1 mapping.</p></li>
+<li><p><strong>Load mesh</strong> displacement outputs of the destination module when the mapping
+carries moments (needed for moment-arm Jacobian terms).</p></li>
+<li><p><strong>Variable-to-variable</strong> mapped inputs/outputs of TC/Option1 modules.</p></li>
+<li><p>Any variable with <code class="docutils literal notranslate"><span class="pre">VF_NoLin</span></code> is excluded from <code class="docutils literal notranslate"><span class="pre">VF_Solve</span></code>.</p></li>
+</ul>
+</div>
+<div class="section" id="jacobian-structure-tc-jacobian">
+<h3><a class="toc-backref" href="#id6"><span class="section-number">4.2.4.4.2. </span>Jacobian structure (TC Jacobian)</a><a class="headerlink" href="#jacobian-structure-tc-jacobian" title="Permalink to this heading"></a></h3>
+<p>The assembled TC Jacobian <strong>J</strong> has size <code class="docutils literal notranslate"><span class="pre">NumJ</span> <span class="pre">×</span> <span class="pre">NumJ</span></code>, where:</p>
+<div class="math notranslate nohighlight">
+\[N_J = \underbrace{N_Q}_{\text{TC states}} +
+      \underbrace{N_{U_T}}_{\text{TC inputs}} +
+      \underbrace{N_{U_1}}_{\text{Option-1 inputs}}\]</div>
+<p>The columns and rows are partitioned as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{J} = \begin{bmatrix}
+  J_{11} &amp; J_{12} \\
+  J_{21} &amp; J_{22}
+\end{bmatrix}\end{split}\]</div>
+<p>where</p>
+<ul class="simple">
+<li><p><strong>J₁₁</strong> (<code class="docutils literal notranslate"><span class="pre">NumQ</span> <span class="pre">×</span> <span class="pre">NumQ</span></code>) — derivative of the acceleration residual with
+respect to TC displacement/velocity states (formed from the module
+<code class="docutils literal notranslate"><span class="pre">dXdx</span></code> sub-Jacobians plus the generalized-alpha tangent).</p></li>
+<li><p><strong>J₁₂</strong> (<code class="docutils literal notranslate"><span class="pre">NumQ</span> <span class="pre">×</span> <span class="pre">NumU_T</span></code>) — derivative of the acceleration residual with
+respect to TC inputs (from <code class="docutils literal notranslate"><span class="pre">dXdu</span></code>).</p></li>
+<li><p><strong>J₂₁</strong> (<code class="docutils literal notranslate"><span class="pre">NumU_T</span> <span class="pre">×</span> <span class="pre">NumQ</span></code>) — derivative of the input residual with
+respect to TC states (from <code class="docutils literal notranslate"><span class="pre">dUdx</span> <span class="pre">=</span> <span class="pre">dUdy</span> <span class="pre">·</span> <span class="pre">dydx</span></code>).</p></li>
+<li><p><strong>J₂₂</strong> (<code class="docutils literal notranslate"><span class="pre">NumU</span> <span class="pre">×</span> <span class="pre">NumU</span></code>) — derivative of the input residual with
+respect to inputs, including load conditioning rows/columns.</p></li>
+</ul>
+<p>The right-hand side (XB) contains the residuals:</p>
+<ul class="simple">
+<li><p><strong>State residual</strong> (rows <code class="docutils literal notranslate"><span class="pre">iJX</span></code>): difference between the predicted
+velocity derivative and the module-computed accelerations.</p></li>
+<li><p><strong>Input residual</strong> (rows <code class="docutils literal notranslate"><span class="pre">iJU</span></code>): difference between the inputs computed
+from mesh mappings (<code class="docutils literal notranslate"><span class="pre">FAST_InputSolve</span></code>) and the current iterate.</p></li>
+</ul>
+<p>The loads portion (rows <code class="docutils literal notranslate"><span class="pre">iJL</span></code>) is pre-divided by <code class="docutils literal notranslate"><span class="pre">UJacSclFact</span></code> before the
+factorisation to improve conditioning.</p>
+</div>
+<div class="section" id="jacobian-update-strategy">
+<h3><a class="toc-backref" href="#id7"><span class="section-number">4.2.4.4.3. </span>Jacobian update strategy</a><a class="headerlink" href="#jacobian-update-strategy" title="Permalink to this heading"></a></h3>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">ModCoupling</span> <span class="pre">=</span> <span class="pre">2</span></code> (fixed updates)</dt><dd><p>The Jacobian is rebuilt if either of these counters reaches zero:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">UJacStepsRemain</span></code> — steps remaining; initialised to
+<code class="docutils literal notranslate"><span class="pre">CEILING(DT_UJac/DT)</span></code> each time the Jacobian is rebuilt.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UJacIterRemain</span></code> — iteration budget; initialised to
+<code class="docutils literal notranslate"><span class="pre">CEILING(DT_UJac/DT</span> <span class="pre">·</span> <span class="pre">MaxConvIter)</span></code> when <code class="docutils literal notranslate"><span class="pre">DT_UJac</span> <span class="pre">&lt;</span> <span class="pre">DT</span></code>.</p></li>
+</ul>
+<p>On convergence failure the solver returns a fatal error immediately.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ModCoupling</span> <span class="pre">=</span> <span class="pre">3</span></code> (adaptive updates)</dt><dd><p>The Jacobian is rebuilt the first time the convergence loop fails.  If the
+step still does not converge after the forced rebuild, a non-fatal warning
+is issued and the simulation proceeds.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="per-module-jacobian-contributions">
+<h3><a class="toc-backref" href="#id8"><span class="section-number">4.2.4.4.4. </span>Per-module Jacobian contributions</a><a class="headerlink" href="#per-module-jacobian-contributions" title="Permalink to this heading"></a></h3>
+<p>The module-level Jacobian sub-matrices are computed by finite differencing
+inside <code class="docutils literal notranslate"><span class="pre">BuildJacobianTC</span></code> and <code class="docutils literal notranslate"><span class="pre">BuildJacobianIO</span></code> using the <code class="docutils literal notranslate"><span class="pre">MV_Perturb</span></code> /
+<code class="docutils literal notranslate"><span class="pre">MV_ComputeDiff</span></code> / <code class="docutils literal notranslate"><span class="pre">MV_ComputeCentralDiff</span></code> utilities from <code class="docutils literal notranslate"><span class="pre">ModVar</span></code>.  For
+each variable flagged <code class="docutils literal notranslate"><span class="pre">VF_Solve</span></code>:</p>
+<ol class="arabic simple">
+<li><p>Apply a positive perturbation of magnitude <code class="docutils literal notranslate"><span class="pre">Var%Perturb</span></code> to the working
+state/input array.</p></li>
+<li><p>Call <code class="docutils literal notranslate"><span class="pre">FAST_CalcOutput</span></code> (or <code class="docutils literal notranslate"><span class="pre">FAST_GetContStateDeriv</span></code>).</p></li>
+<li><p>Apply an equal negative perturbation.</p></li>
+<li><p>Call again.</p></li>
+<li><p>Compute the central difference: <code class="docutils literal notranslate"><span class="pre">(y_plus</span> <span class="pre">-</span> <span class="pre">y_minus)</span> <span class="pre">/</span> <span class="pre">(2·Perturb)</span></code>.</p></li>
+</ol>
+<p>For orientation variables (<code class="docutils literal notranslate"><span class="pre">FieldOrientation</span></code>), perturbations are applied by
+quaternion composition rather than direct addition (<code class="docutils literal notranslate"><span class="pre">MV_Perturb</span></code>), and
+differences are extracted as rotation vectors (<code class="docutils literal notranslate"><span class="pre">MV_ComputeDiff</span></code>).</p>
+</div>
+<div class="section" id="linear-solve">
+<h3><a class="toc-backref" href="#id9"><span class="section-number">4.2.4.4.5. </span>Linear solve</a><a class="headerlink" href="#linear-solve" title="Permalink to this heading"></a></h3>
+<p>The LU factorisation of <strong>J</strong> is computed with <code class="docutils literal notranslate"><span class="pre">LAPACK_getrf</span></code> and the system
+is solved with <code class="docutils literal notranslate"><span class="pre">LAPACK_getrs</span></code> (packed in <code class="docutils literal notranslate"><span class="pre">NWTC_LAPACK</span></code>).  The same
+factored matrix is reused across convergence iterations until the update
+strategy triggers a rebuild.</p>
+</div>
+<div class="section" id="convergence-check">
+<h3><a class="toc-backref" href="#id10"><span class="section-number">4.2.4.4.6. </span>Convergence check</a><a class="headerlink" href="#convergence-check" title="Permalink to this heading"></a></h3>
+<p>After each Newton step the convergence error is the average <cite>L2</cite>-norm of the
+update vector:</p>
+<div class="math notranslate nohighlight">
+\[e = \frac{\|\Delta \mathbf{z}\|_2}{N_J}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Delta \mathbf{z}\)</span> combines state and input updates.  The loop
+exits if <code class="docutils literal notranslate"><span class="pre">e</span> <span class="pre">&lt;</span> <span class="pre">ConvTol</span></code> (<code class="docutils literal notranslate"><span class="pre">ErrID_None</span></code>) or the iteration count reaches
+<code class="docutils literal notranslate"><span class="pre">MaxConvIter</span></code> (<code class="docutils literal notranslate"><span class="pre">ErrID_Fatal</span></code> or <code class="docutils literal notranslate"><span class="pre">ErrID_Warn</span></code> depending on
+<code class="docutils literal notranslate"><span class="pre">ModCoupling</span></code>).</p>
+</div>
+</div>
+<div class="section" id="output-channels-from-the-solver">
+<h2><a class="toc-backref" href="#id11"><span class="section-number">4.2.4.5. </span>Output channels from the solver</a><a class="headerlink" href="#output-channels-from-the-solver" title="Permalink to this heading"></a></h2>
+<p>Three output channels are written to <code class="docutils literal notranslate"><span class="pre">DriverWriteOutput</span></code> each step and
+appear in the output file when enabled:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Index</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Total convergence iterations in the step (<code class="docutils literal notranslate"><span class="pre">TotalIter</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>Final convergence error (<code class="docutils literal notranslate"><span class="pre">ConvError</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>Number of Jacobian rebuilds in the step (<code class="docutils literal notranslate"><span class="pre">NumUJac</span></code>)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modglue.html" class="btn btn-neutral float-left" title="4.2.3. ModGlue – Combining Modules into Global Arrays" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="linearization.html" class="btn btn-neutral float-right" title="4.2.5. Linearization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

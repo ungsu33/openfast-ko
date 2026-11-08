@@ -1,0 +1,909 @@
+<!DOCTYPE html><html class="writer-html5" lang="ko"><head><!-- Modified 2026-11-08: unofficial Korean machine translation of OpenFAST 5.0.0. Equations, code, figures, input values and attribution retained. -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.17.3. TLCD: 운동 방정식 유도 — OpenFAST v5.0.0 문서</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../../../genindex.html">
+    <link rel="search" title="검색" href="../../../search.html">
+    <link rel="next" title="4.17.4. 참고문헌" href="zrefs.html">
+    <link rel="prev" title="4.17.2. OpenFAST의 Tuned Mass Damper 모듈에 대한 이론 매뉴얼" href="StC_Theory.html"> 
+<link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/servodyn-stc/StC_TLCD_Theory.html"></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+          </a>
+              <div class="version">5.0 · 한국어</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="문서 검색" aria-label="문서 검색">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. 단순화 ElastoDyn</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="StC_index.html">4.17. 구조 제어</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="StC_input.html">4.17.1. 입력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="StC_Theory.html">4.17.2. OpenFAST의 Tuned Mass Damper 모듈에 대한 이론 매뉴얼</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.17.3. TLCD: 운동 방정식의 유도</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#definitions">4.17.3.1. 정의:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#right-vertical-liquid-column">4.17.3.2. 오른쪽 수직 액체 기둥</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#left-vertical-liquid-column">4.17.3.3. 왼쪽 수직 액체 기둥</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#horizontal-liquid-column">4.17.3.4. 수평 액체 기둥</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#orthogonal-tlcd">4.17.3.5. 직교 TLCD</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.17.4. 참고문헌</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. 추가 모듈 문서</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC 서브루틴 라이브러리</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+</ul>
+
+        <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="페이지 탐색">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
+          <li class="breadcrumb-item"><a href="StC_index.html"><span class="section-number">4.17. </span>구조 제어(SrvD)</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.17.3. </span>TLCD: 운동 방정식의 유도</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/servodyn-stc/StC_TLCD_Theory.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+      </li>
+  </ul>
+  <hr>
+</div><aside class="ko-notice" aria-label="한국어 번역 안내"><strong>한국어 자동번역</strong> · OpenFAST v5.0.0 · 2026-11-08 기준<br>비공식 번역본입니다. 수식·명령어·입력 변수와 첨부자료는 원문을 보존합니다. <a href="https://openfast.readthedocs.io/en/main/source/user/servodyn-stc/StC_TLCD_Theory.html" target="_blank" rel="noopener noreferrer" lang="en">영문 원문 대조 ↗</a></aside>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="tlcd-derivations-of-equation-of-motion">
+<span id="tlcd-theory"></span><h1><span class="section-number">4.17.3. </span>TLCD: 운동 방정식의 유도<a class="headerlink" href="#tlcd-derivations-of-equation-of-motion" title="이 제목의 고유 링크"></a></h1>
+<div class="figure align-center" id="id1">
+<span id="tlcdfig"></span><a class="reference internal image-reference" href="../../../_images/TLCD_Diagram.png"><img alt="TLCD 회로도" src="../../../_images/TLCD_Diagram.png" style="width: 100%;"></a>
+<p class="caption"><span class="caption-number">그림 4.54 </span><span class="caption-text">TLCD 설계 회로도.</span><a class="headerlink" href="#id1" title="이 이미지에 대한 영구 링크"></a></p>
+</div>
+<div class="section" id="definitions">
+<h2><span class="section-number">4.17.3.1. </span>정의:<a class="headerlink" href="#definitions" title="이 제목의 고유 링크"></a></h2>
+<div class="docutils container" id="tab-tlcddefs">
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-number">표 4.13 </span><span class="caption-text">TLCD 정의</span><a class="headerlink" href="#id2" title="이 테이블에 대한 영구 링크"></a></caption>
+<colgroup>
+<col style="width: 47%">
+<col style="width: 53%">
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>변수</p></th>
+<th class="head"><p>설명</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(O\)</span></p></td>
+<td><p>전역 관성 기준계의 원점, 정지 터빈 베이스 중앙에 위치</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(P\)</span></p></td>
+<td><p>로컬 기준 프레임(_예: 나셀에 고정)의 원점, 수평 액체 기둥의 중심
+오른쪽 액체 기둥 상단 중앙에 부착된</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(W_R\)</span></p></td>
+<td><p>포인트(이동)
+왼쪽 액체 기둥 상단 중앙에</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(W_L\)</span></p></td>
+<td><p>포인트 부착(이동)
+관성 참조 프레임의</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
+<td><p>축 방향(전역)
+로컬 참조 프레임의</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(l\)</span></p></td>
+<td><p>축 방향
+그림에 정의된 액체 수주의</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(w\)</span></p></td>
+<td><p>위치
+관성 기준계의 <a class="reference internal" href="#tlcdfig"><span class="std std-numref">그림 4.54</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(g\)</span></p></td>
+<td><p>중력 벡터(전역)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="right-vertical-liquid-column">
+<h2><span class="section-number">4.17.3.2. </span>오른쪽 수직 액체 컬럼<a class="headerlink" href="#right-vertical-liquid-column" title="이 제목의 고유 링크"></a></h2>
+<p>오른쪽 수직 열부터 시작하여 다음 벡터 표현식을 정의합니다.</p>
+<div class="docutils container" id="tab-tlcd-r-vectors">
+<blockquote>
+<div><table class="docutils align-default">
+<colgroup>
+<col style="width: 47%">
+<col style="width: 53%">
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>변수</p></th>
+<th class="head"><p>설명</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\vec{r}_{i}^{O \rightarrow P} = \left[ \begin{array}{c} x \\ y \\ z \end{array} \right]_{i} ^{O \rightarrow P}\)</span></p></td>
+<td><p>점으로부터의 위치 벡터 <span class="math notranslate nohighlight">\(O\)</span> 투 포인트
+관성 좌표계의 <span class="math notranslate nohighlight">\(P\)</span> 로컬 좌표계의</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\vec{r}_{l}^{P \rightarrow W_R} = \left[ \begin{array}{c} x \\ y \\ z \end{array} \right]_{l} ^{P \rightarrow W_R}\)</span></p></td>
+<td><p>점으로부터의 위치 벡터 <span class="math notranslate nohighlight">\(P\)</span> 투 포인트
+관성 좌표계의 <span class="math notranslate nohighlight">\(W_R\)</span> 국부 좌표계에서</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\vec{\omega}_{i}^{l} = \left[ \begin{array}{c} \theta \\ \phi \\ \psi \end{array} \right]_{i} ^{l}\)</span></p></td>
+<td><p>각속도 프레임
+관성 기준 프레임에 대한 <span class="math notranslate nohighlight">\(l\)</span> 관성 기준 좌표계에 대해 <span class="math notranslate nohighlight">\(i\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\vec{r}_{i}^{O \rightarrow W_R} = \vec{r}_{i}^{O \rightarrow P} + \vec{r}_{l}^{P \rightarrow W_R} = \left[ \begin{array}{c} x \\ y \\ z \end{array} \right]_{i} ^{O \rightarrow W_R}\)</span></p></td>
+<td><p>점으로부터의 위치 벡터 <span class="math notranslate nohighlight">\(P\)</span> 투 포인트
+관성 좌표계의 <span class="math notranslate nohighlight">\(W_R\)</span> 국부 좌표계에서</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<p>마지막 표현식의 미분을 취하면 다음과 같습니다. <span class="math notranslate nohighlight">\(\vec{r}_{i}^{O
+\rightarrow W_R}\)</span> 는 점의 속도를 산출합니다.
+전역 참조 프레임의 <span class="math notranslate nohighlight">\(W_R\)</span> :</p>
+<div class="math notranslate nohighlight">
+\[\dot{\vec{r}}_{i}^{W_R}
+      =  \dot{\vec{r}}_{i}^{P}
+      +  \dot{\vec{r}}_{l}^{W_R}
+      +  \vec{\omega}_{i}^{l} \times \vec{r}_{l}^{P \rightarrow W_R}.\]</div>
+<p>이 단계를 한 번 더 반복하면 가속이 발생합니다.</p>
+<div class="math notranslate nohighlight">
+\[\ddot{\vec{r}}_{i}^{W_R}
+      =  \dot{\vec{r}}_{i}^{P}
+      +  \ddot{\vec{r}}_{l}^{W_R}
+      +  2 \vec{\omega}_{i}^{l} \times \dot{\vec{r}}_{l}^{W_R}
+      +  \vec{\alpha}_{i}^{l} \times \vec{r}_{i}^{P \rightarrow W_R}
+      +  \vec{\omega}_{i}^{l} \times \left( \vec{\omega}_{i}^{l} \times \vec{r}_{l}^{P \rightarrow W_R}\right)\]</div>
+<p>뉴턴의 제2법칙에 따라 이 식의 왼쪽 부분은 힘 균형으로 대체될 수 있습니다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\ddot{\vec{r}}_{i}^{W_R}
+      = \frac{1}{m_R}
+         \left[\begin{array}{c}
+            \sum{F_x}\\
+            \sum{F_y}\\
+            \sum{F_z}
+         \end{array}\right] ^ {W_R}
+      = \frac{1}{m_R}
+         \left[\begin{array}{c}
+            F_x^{W_R/S} + m_R g_{x} \\
+            F_y^{W_R/S} + m_R g_{y} \\
+            m_R g_{z}
+         \end{array}\right] ^ {W_R}\end{split}\]</div>
+<p>여기서 <span class="math notranslate nohighlight">\(g\)</span> 는 관성계의 중력 벡터입니다. 로컬 참조 프레임에서 오른쪽 열의 위치를 설명하는 벡터(<span class="math notranslate nohighlight">\(i\)</span>)는 다음과 같이 작성할 수 있습니다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{r}_{l}^{P \rightarrow W_R}
+      = \left[ \begin{array}{c}
+         B/2   \\
+         0     \\
+         \frac{L-B}{2} + w
+      \end{array}\right]_{l} ^{P \rightarrow W_R}.\end{split}\]</div>
+<p>수직 기둥에 있는 액체의 이동은 기준 프레임 N에서 z 방향으로 제한되므로 오른쪽 액체 기둥의 가속도에 대한 표현식은 다음과 같습니다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\frac{1}{m_R}
+      \left[\begin{array}{c}
+         F_x^{W_R/S} + m_R g_{x} \\
+         F_y^{W_R/S} + m_R g_{y} \\
+         m_R g_{z}
+      \end{array}\right] ^{W_R}
+&amp;  =  \quad\left[\begin{array}{c}
+         \ddot{x} \\
+         \ddot{y} \\
+         \ddot{z}
+      \end{array}\right]_{i}^{P}
+   +  \left[\begin{array}{c}
+         0     \\
+         0     \\
+         \ddot{\omega}
+      \end{array}\right]_{l}^{W_R}  \\
+&amp;  \quad
+   + 2\left[\begin{array}{c}
+         \dot{\theta}   \\
+         \dot{\phi}     \\
+         \dot{\psi}
+      \end{array}\right]_{i}^{l}
+   \times
+      \left[\begin{array}{c}
+         0        \\
+         0        \\
+         \dot{\omega}
+      \end{array}\right]_{l}^{W_R}  \\
+&amp;  \quad
+   +  \left[\begin{array}{c}
+         \ddot{\theta}  \\
+         \ddot{\phi}    \\
+         \ddot{\psi}
+      \end{array}\right]_{i}^{l}
+   \times
+      \left[\begin{array}{c}
+         B/2   \\
+         0     \\
+         \frac{L-B}{2} + w
+      \end{array}\right]_{l}^{P \rightarrow W_R}  \\
+&amp;  \quad
+   +  \left[\begin{array}{c}
+         \dot{\theta}   \\
+         \dot{\phi}     \\
+         \dot{\psi}
+      \end{array}\right]_{i}^{l}
+   \times\left(
+      \left[\begin{array}{c}
+         \dot{\theta}   \\
+         \dot{\phi}     \\
+         \dot{\psi}
+      \end{array}\right]_{i}^{l}
+      \times
+      \left[\begin{array}{c}
+         B/2   \\
+         0     \\
+         \frac{L-B}{2} + w
+      \end{array}\right]_{l}^{P \rightarrow W_R}
+   \right)\end{split}\]</div>
+<p>모든 교차곱을 계산하면 x, y 및 z 차원에서 세 가지 고유한 표현식이 생성됩니다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}x: &amp;  \quad
+      \frac{1}{m_R} \left( F_x^{W_R/S} + m_R g_{x} \right)
+   &amp;=&amp;
+      \ddot{x}_{i}^{P}
+   + 2\dot{\phi}\dot{w}
+   +  \ddot{\phi} \left(\frac{L-B}{2} + w \right)
+   -  \dot{\phi}^2 \frac{B}{2}
+   -  \dot{\psi}^2 \frac{B}{2}
+   +  \dot{\psi}\dot{\theta}  \left(\frac{L-B}{2} + w \right)   \\
+y: &amp;  \quad
+      \frac{1}{m_R}           \left( F_y^{W_R/S} + m_R g_{y} \right)
+   &amp;=&amp;
+      \ddot{y}_{i}^{P}
+   - 2\dot{\theta}\dot{w}
+   +  \ddot{\psi} \frac{B}{2}
+   -  \ddot{\theta}           \left(\frac{L-B}{2} + w \right)
+   +  \dot{\psi}\dot{\phi}    \left(\frac{L-B}{2} + w \right)
+   +  \dot{\theta}\dot{\phi}\frac{B}{2} \\
+z: &amp;  \quad
+      g_z
+   &amp;=&amp;
+      \ddot{z}_{i}^{P}
+   +  \ddot{w}
+   -  \ddot{\phi} \frac{B}{2}
+   +  \dot{\theta}\dot{\psi} \frac{B}{2}
+   -  \dot{\theta}^2          \left(\frac{L-B}{2} + w \right)
+   -  \dot{\phi}^2            \left(\frac{L-B}{2} + w \right)   \\\end{split}\]</div>
+</div>
+<div class="section" id="left-vertical-liquid-column">
+<h2><span class="section-number">4.17.3.3. </span>왼쪽 수직 액체 컬럼<a class="headerlink" href="#left-vertical-liquid-column" title="이 제목의 고유 링크"></a></h2>
+<p>위와 동일한 방법론에 따라 왼쪽 수직 액체 기둥의 움직임을 설명하는 방정식을 결정할 수 있습니다.</p>
+<p>마찬가지로 왼쪽 액체 기둥의 가속도는 힘 균형으로 대체될 수 있습니다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\ddot{\vec{r}}_{i}^{W_L}
+      = \frac{1}{m_L}
+         \left[\begin{array}{c}
+            \sum{F_x}\\
+            \sum{F_y}\\
+            \sum{F_z}
+         \end{array}\right] ^ {W_L}
+      = \frac{1}{m_L}
+         \left[\begin{array}{c}
+            F_x^{W_L/S} + m_L g_{x} \\
+            F_y^{W_L/S} + m_L g_{y} \\
+            m_L g_{z}
+         \end{array}\right] ^ {W_L}\end{split}\]</div>
+<p>여기서 <span class="math notranslate nohighlight">\(g\)</span> 는 관성계의 중력 벡터입니다. 로컬 참조 프레임에서 왼쪽 열의 위치를 설명하는 벡터(<span class="math notranslate nohighlight">\(i\)</span>)는 다음과 같이 작성할 수 있습니다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{r}_{l}^{P \rightarrow W_L}
+      = \left[ \begin{array}{c}
+        -B/2   \\
+         0     \\
+         \frac{L-B}{2} - w
+      \end{array}\right]_{l} ^{P \rightarrow W_L}.\end{split}\]</div>
+<p>왼쪽 액체 기둥의 가속도에 대한 최종 방정식은 다음과 같습니다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\frac{1}{m_L}
+      \left[\begin{array}{c}
+         F_x^{W_L/S} + m_L g_{x} \\
+         F_y^{W_L/S} + m_L g_{y} \\
+         m_L g_{z}
+      \end{array}\right] ^{W_L}
+&amp;  =  \quad\left[\begin{array}{c}
+         \ddot{x} \\
+         \ddot{y} \\
+         \ddot{z}
+      \end{array}\right]_{i}^{P}
+   +  \left[\begin{array}{c}
+         0     \\
+         0     \\
+         - \ddot{w}
+      \end{array}\right]_{l}^{W_L}  \\
+&amp;  \quad
+   + 2\left[\begin{array}{c}
+         \dot{\theta}   \\
+         \dot{\phi}     \\
+         \dot{\psi}
+      \end{array}\right]_{i}^{l}
+   \times
+      \left[\begin{array}{c}
+         0        \\
+         0        \\
+         - \dot{w}
+      \end{array}\right]_{l}^{W_L}  \\
+&amp;  \quad
+   +  \left[\begin{array}{c}
+         \ddot{\theta}  \\
+         \ddot{\phi}    \\
+         \ddot{\psi}
+      \end{array}\right]_{i}^{l}
+   \times
+      \left[\begin{array}{c}
+         -B/2  \\
+         0     \\
+         \frac{L-B}{2} - w
+      \end{array}\right]_{l}^{P \rightarrow W_L}  \\
+&amp;  \quad
+   +  \left[\begin{array}{c}
+         \dot{\theta}   \\
+         \dot{\phi}     \\
+         \dot{\psi}
+      \end{array}\right]_{i}^{l}
+   \times\left(
+      \left[\begin{array}{c}
+         \dot{\theta}   \\
+         \dot{\phi}     \\
+         \dot{\psi}
+      \end{array}\right]_{i}^{l}
+      \times
+      \left[\begin{array}{c}
+         -B/2  \\
+         0     \\
+         \frac{L-B}{2} - w
+      \end{array}\right]_{l}^{P \rightarrow W_L}
+   \right)\end{split}\]</div>
+<p>x, y 및 z 방정식은 다음과 같습니다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}x: &amp;  \quad
+      \frac{1}{m_L} \left( F_x^{W_L/S} + m_L g_{x} \right)
+   &amp;=&amp;
+      \ddot{x}_{i}^{P}
+   - 2\dot{\phi}\dot{w}
+   +  \ddot{\phi} \left(\frac{L-B}{2} - w \right)
+   +  \dot{\phi}^2 \frac{B}{2}
+   +  \dot{\psi}^2 \frac{B}{2}
+   +  \dot{\psi}\dot{\theta}  \left(\frac{L-B}{2} - w \right)   \\
+y: &amp;  \quad
+      \frac{1}{m_L}           \left( F_y^{W_L/S} + m_L g_{y} \right)
+   &amp;=&amp;
+      \ddot{y}_{i}^{P}
+   + 2\dot{\theta}\dot{w}
+   -  \ddot{\psi} \frac{B}{2}
+   -  \ddot{\theta}           \left(\frac{L-B}{2} - w \right)
+   +  \dot{\psi}\dot{\phi}    \left(\frac{L-B}{2} - w \right)
+   -  \dot{\theta}\dot{\phi}\frac{B}{2} \\
+z: &amp;  \quad
+      g_z
+   &amp;=&amp;
+      \ddot{z}_{i}^{P}
+   -  \ddot{w}
+   +  \ddot{\phi} \frac{B}{2}
+   -  \dot{\theta}\dot{\psi} \frac{B}{2}
+   -  \dot{\theta}^2          \left(\frac{L-B}{2} - w \right)
+   -  \dot{\phi}^2            \left(\frac{L-B}{2} - w \right)   \\\end{split}\]</div>
+</div>
+<div class="section" id="horizontal-liquid-column">
+<h2><span class="section-number">4.17.3.4. </span>수평 액체 컬럼<a class="headerlink" href="#horizontal-liquid-column" title="이 제목의 고유 링크"></a></h2>
+<p>수평 기둥에서 액체의 움직임으로 (<span class="math notranslate nohighlight">\(H\)</span>)는 로컬 참조 프레임의 x 차원으로 제한됩니다. <span class="math notranslate nohighlight">\(l\)</span>, 위치 벡터는 다음과 같이 표현될 수 있습니다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{r}_{l}^{P \rightarrow W_H}
+      = \left[ \begin{array}{c}
+         w     \\
+         0     \\
+         0
+      \end{array}\right]_{l} ^{P \rightarrow W_H}.\end{split}\]</div>
+<p>게다가 수평 액체 기둥의 힘 균형은…</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\ddot{\vec{r}}_{i}^{W_H}
+      = \frac{1}{m_H}
+         \left[\begin{array}{c}
+            \sum{F_x}\\
+            \sum{F_y}\\
+            \sum{F_z}
+         \end{array}\right] ^ {W_H}
+      = \frac{1}{m_H}
+         \left[\begin{array}{c}
+            m_H g_{x} - \frac{1}{2} \rho A \xi \left|\dot{w}\right| \dot{w} \\
+            F_y^{W_H/S} + m_H g_{y} \\
+            F_z^{W_H/S} + m_H g_{z}
+         \end{array}\right] ^ {W_H}\end{split}\]</div>
+<p>여기서 <span class="math notranslate nohighlight">\(\rho\)</span> 항은 액체가 제한된 오리피스를 통과할 때 액체에 적용되는 감쇠력을 나타내며, <span class="math notranslate nohighlight">\(g\)</span> 는 관성계의 중력 벡터입니다.</p>
+<p>수평 기둥을 통과하는 물의 가속도에 대한 최종 표현식은 다음과 같습니다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\frac{1}{m_H}
+      \left[\begin{array}{c}
+         m_H g_{x} - \frac{1}{2} \rho A \xi \left|\dot{w}\right| \dot{w} \\
+         F_y^{W_H/S} + m_H g_{y} \\
+         F_z^{W_H/S} + m_H g_{z}
+      \end{array}\right] ^ {W_H}
+&amp;  =  \quad\left[\begin{array}{c}
+         \ddot{x} \\
+         \ddot{y} \\
+         \ddot{z}
+      \end{array}\right]_{i}^{P}
+   +  \left[\begin{array}{c}
+         \ddot{w} \\
+         0        \\
+         0
+      \end{array}\right]_{l}^{W_H}  \\
+&amp;  \quad
+   + 2\left[\begin{array}{c}
+         \dot{\theta}   \\
+         \dot{\phi}     \\
+         \dot{\psi}
+      \end{array}\right]_{i}^{l}
+   \times
+      \left[\begin{array}{c}
+         \dot{w}  \\
+         0        \\
+         0
+      \end{array}\right]_{l}^{W_H}  \\
+&amp;  \quad
+   +  \left[\begin{array}{c}
+         \ddot{\theta}  \\
+         \ddot{\phi}    \\
+         \ddot{\psi}
+      \end{array}\right]_{i}^{l}
+   \times
+      \left[\begin{array}{c}
+         w     \\
+         0     \\
+         0
+      \end{array}\right]_{l}^{P \rightarrow W_H}  \\
+&amp;  \quad
+   +  \left[\begin{array}{c}
+         \dot{\theta}   \\
+         \dot{\phi}     \\
+         \dot{\psi}
+      \end{array}\right]_{i}^{l}
+   \times\left(
+      \left[\begin{array}{c}
+         \dot{\theta}   \\
+         \dot{\phi}     \\
+         \dot{\psi}
+      \end{array}\right]_{i}^{l}
+      \times
+      \left[\begin{array}{c}
+         w     \\
+         0     \\
+         0
+      \end{array}\right]_{l}^{P \rightarrow W_H}
+   \right)\end{split}\]</div>
+<p>따라서 x, y 및 z 방정식은 다음과 같습니다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}x: &amp;  \quad
+      g_{x} - \frac{1}{m_H} \left( \frac{1}{2} \rho A \xi \left|\dot{w}\right| \dot{w} \right)
+   &amp;=&amp;
+      \ddot{x}_{i}^{P} + \ddot{w} - \dot{\phi}^2 w - \dot{\psi}^2 w \\
+y: &amp;  \quad
+      \frac{1}{m_H} \left( F_y^{W_H/S} + m_H g_{y} \right)
+   &amp;=&amp;
+      \ddot{y}_{i}^{P} + 2 \dot{\psi} \dot{w} + \ddot{\psi} w + \dot{\theta} \dot{\phi} w  \\
+z: &amp;  \quad
+      \frac{1}{m_H} \left( F_z^{W_H/S} + m_H g_{z} \right)
+   &amp;=&amp;
+      \ddot{z}_{i}^{P} - \dot{\phi}\dot{w} -\ddot{\phi} w + \dot{\theta} \dot{\psi} w  \\\end{split}\]</div>
+<p>수평 기둥에서 액체의 변위를 상기하면,
+<span class="math notranslate nohighlight">\(w\)</span> 는 0입니다. 수평 기둥에 있는 액체의 질량 중심은 항상 한 점에 유지되기 때문입니다. <span class="math notranslate nohighlight">\(l\)</span> 액체가 파이프를 통해 가속되는 경우에도 마찬가지입니다. 결과적으로 제거
+이 방정식의 <span class="math notranslate nohighlight">\(w\)</span> 항은 다음 표현식을 제공합니다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}x: &amp;  \quad
+      g_{x} - \frac{1}{m_H} \left( \frac{1}{2} \rho A \xi \left|\dot{w}\right| \dot{w} \right)
+   &amp;=&amp;
+      \ddot{x}_{i}^{P} + \ddot{w}   \\
+y: &amp;  \quad
+      \frac{1}{m_H} \left( F_y^{W_H/S} + m_H g_{y} \right)
+   &amp;=&amp;
+      \ddot{x}_{i}^{P} + 2 \dot{\psi} \dot{w}   \\
+z: &amp;  \quad
+      \frac{1}{m_H} \left( F_z^{W_H/S} + m_H g_{z} \right)
+   &amp;=&amp;
+      \ddot{z}_{i}^{P} - \dot{\phi}\dot{w}   \\\end{split}\]</div>
+<p>이제 세 개의 액체 기둥의 가속도가 개별적으로 결정되었으므로 관성력을 추출하고 기둥 내 액체의 가속도를 설명하는 단일 방정식을 도출할 수 있습니다.</p>
+<p>관성력은 다음과 같이 작성됩니다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}F_{x}^{W_{R}/S}
+   &amp;  = m_{R} \left(
+         \ddot{x}_{i}^{P}
+      + 2 \dot{\phi} \dot{w}
+      +  \ddot{\phi}          \left( \frac{L-B}{2} + w \right)
+      -  \dot{\phi}^2 \frac{B}{2}
+      -  \dot{\psi}^2 \frac{B}{2}
+      +  \dot{\psi}\dot{\phi} \left( \frac{L-B}{2} + w \right)
+      -  g_{x} \right)\\
+F_{y}^{W_{R}/S}
+   &amp;  = m_{R} \left(
+         \ddot{y}_{i}^{P}
+      - 2 \dot{\theta} \dot{w}
+      +  \ddot{\psi} \frac{B}{2}
+      -  \ddot{\theta}        \left( \frac{L-B}{2} + w \right)
+      +  \dot{\psi}\dot{\phi} \left( \frac{L-B}{2} + w \right)
+      +  \dot{\theta}\dot{\phi} \frac{B}{2}
+      -  g_{y} \right)\\
+F_{x}^{W_{L}/S}
+   &amp;  = m_{L} \left(
+         \ddot{x}_{i}^{P}
+      -  2\dot{\phi}\dot{w}
+      +  \ddot{\phi}          \left( \frac{L-B}{2} - w \right)
+      +  \dot{\phi}^2 \frac{B}{2}
+      +  \dot{\psi}^2 \frac{B}{2}
+      +  \dot{\psi}\dot{\phi} \left( \frac{L-B}{2} - w \right)
+     -  g_{x} \right)\\
+F_{y}^{W_{L}/S}
+   &amp;  = m_{L} \left(
+         \ddot{y}_{i}^{P}
+      + 2 \dot{\theta} \dot{w}
+      -  \ddot{\psi} \frac{B}{2}
+      -  \ddot{\theta}        \left( \frac{L-B}{2} - w \right)
+      +  \dot{\psi}\dot{\phi} \left( \frac{L-B}{2} - w \right)
+      -  \dot{\theta}\dot{\phi} \frac{B}{2}
+      -  g_{y} \right)\\
+F_{y}^{W_{H}/S}
+   &amp;  = m_{H} \left(
+         \ddot{y}_{i}^{P}
+      + 2\dot{\psi}\dot{w}
+      -  g_{y} \right)\\
+F_{z}^{W_{H}/S}
+   &amp;  = m_{H} \left(
+         \ddot{z}_{i}^{P}
+      -  \dot{\phi}\dot{w}
+      -  g_{z} \right)\end{split}\]</div>
+<p>방정식
+오른쪽 액체 기둥의 <span class="math notranslate nohighlight">\(\ddot{w}\)</span> (z 치수):
+왼쪽 액체 기둥의</p>
+<div class="math notranslate nohighlight">
+\[\ddot{w} =
+      -  \ddot{z}_{i}^{P}
+      +  \ddot{\phi} \frac{B}{2}
+      -  \dot{\theta}{\psi} \frac{B}{2}
+      +  \dot{\theta}^2 \left( \frac{L-B}{2} + w \right)
+      +  \dot{\phi}^2   \left( \frac{L-B}{2} + w \right)
+      +  g_{z}\]</div>
+<p>방정식
+오른쪽 액체 기둥의 <span class="math notranslate nohighlight">\(\ddot{w}\)</span> (z 차원):
+수평 액체 기둥의</p>
+<div class="math notranslate nohighlight">
+\[\ddot{w} =
+         \ddot{z}_{i}^{P}
+      +  \ddot{\phi} \frac{B}{2}
+      -  \dot{\theta}{\psi} \frac{B}{2}
+      -  \dot{\theta}^2 \left( \frac{L-B}{2} - w \right)
+      -  \dot{\phi}^2   \left( \frac{L-B}{2} - w \right)
+      -  g_{z}\]</div>
+<p>방정식
+오른쪽 액체 기둥의 <span class="math notranslate nohighlight">\(\ddot{w}\)</span> (x 차원):</p>
+<div class="math notranslate nohighlight">
+\[\ddot{w} =
+      -  \ddot{x}_{i}^{P}
+      +  g_{x}
+      - \frac{1}{m_H} \left( \frac{1}{2} \rho A \xi \left|\dot{w}\right| \dot{w} \right)\]</div>
+<p>뉴턴의 제2법칙을 통해 우리는 총 액체 질량의 가속도가 그에 따라 설명될 수 있음을 알고 있습니다.</p>
+<div class="math notranslate nohighlight">
+\[m_{T} \ddot{w} =
+      m_{R}\left( \ddot{w} \right)
+      m_{L}\left( \ddot{w} \right)
+      m_{H}\left( \ddot{w} \right)\]</div>
+<p>어디에</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}m_{T} &amp;= \rho A L \\
+m_{R} &amp;= \rho A \left( \frac{L-B}{2} + w \right)   \\
+m_{R} &amp;= \rho A \left( \frac{L-B}{2} - w \right)   \\
+m_{H} &amp;= \rho A B\end{split}\]</div>
+<p>위의 방정식을 결합하면 다음과 같은 표현식이 제공됩니다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\rho A L \ddot{w}
+   &amp;  = \rho A \left( \frac{L-B}{2} + w \right)
+    \left[ -  \ddot{z}_{i}^{P}
+         +  \ddot{\phi} \frac{B}{2}
+         - \dot{\theta} \dot{\psi} \frac{B}{2}  \right.\\
+   &amp;  \qquad\qquad\qquad\qquad\qquad \left.
+         +  \dot{\theta}^2 \left( \frac{L-B}{2} + w \right)
+         +  \dot{\phi}^2   \left( \frac{L-B}{2} + w \right)
+         +  g_{z} \right]\\
+   &amp; \quad + \rho A B \left(
+         -  \ddot{x}_{i}^{P}
+         +  g_{x}
+         -  \frac{1}{m_{H}} \left(
+            \frac{1}{2} \rho A \xi \left|\dot{w}\right|\dot{w}
+            \right)
+         \right)\end{split}\]</div>
+<p>마지막으로 이 식을 단순화하면 TLCD를 통한 액체의 움직임을 설명하는 최종 방정식이 제공됩니다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\rho A L \ddot{w}
+   &amp;   =  - 2\rho A w \ddot{z}_{i}^{P}
+         +  \rho A B \ddot{\phi} \left( \frac{L-B}{2} \right)
+         -  \rho A B \dot{\theta}\dot{\psi} \left( \frac{L-B}{2} \right)\\
+   &amp; \qquad \qquad
+         + 2\rho A w \dot{\theta}^2 \left( L - B \right)
+         + 2\rho A w \dot{\phi}^2   \left( L - B \right)\\
+   &amp; \qquad \qquad
+         + 2\rho A w g_{z}
+         -  \rho A B \ddot{x}_{i}^{P}
+         +  \rho A B g_{x}\\
+   &amp; \qquad \qquad
+         -  \frac{1}{2} \rho A B \xi \left|\dot{w}\right|\dot{w}\end{split}\]</div>
+</div>
+<div class="section" id="orthogonal-tlcd">
+<h2><span class="section-number">4.17.3.5. </span>직교 TLCD<a class="headerlink" href="#orthogonal-tlcd" title="이 제목의 고유 링크"></a></h2>
+<p>측면 방향(전후방과 반대)에서 위와 동일한 방법론을 따르면 전면, 후면 및 수평 직교 기둥에 대해 다음 방정식이 생성됩니다.</p>
+<div class="section" id="back-vertical-orthogonal-liquid-column">
+<h3><span class="section-number">4.17.3.5.1. </span>후면 수직 직교 액체 컬럼<a class="headerlink" href="#back-vertical-orthogonal-liquid-column" title="이 제목의 고유 링크"></a></h3>
+<div class="math notranslate nohighlight">
+\[\begin{split}x: &amp;  \quad
+      \frac{1}{m_B} \left( F_x^{W_B/S} + m_B g_{x} \right)
+   &amp;=&amp;
+      \ddot{x}_{i}^{P}
+   + 2\dot{\phi}\dot{w_o}
+   +  \ddot{\phi} \left(\frac{L-B}{2} + w_o \right)
+   +  \dot{\psi}^2            \frac{B}{2}
+   -  \dot{\phi}\dot{\theta}  \frac{B}{2}
+   +  \dot{\psi}\dot{\theta}  \left(\frac{L-B}{2} + w_o \right)   \\
+y: &amp;  \quad
+      \frac{1}{m_B}           \left( F_y^{W_B/S} + m_B g_{y} \right)
+   &amp;=&amp;
+      \ddot{y}_{i}^{P}
+   - 2\dot{\theta}\dot{w_o}
+   -  \ddot{\theta}           \left(\frac{L-B}{2} + w_o \right)
+   +  \dot{\psi}\dot{\phi}    \left(\frac{L-B}{2} + w_o \right)
+   +  \dot{\psi}^2   \frac{B}{2}
+   +  \dot{\theta}^2 \frac{B}{2} \\
+z: &amp;  \quad
+      g_z
+   &amp;=&amp;
+      \ddot{z}_{i}^{P}
+   +  \ddot{w_o}
+   -  \ddot{\theta} \frac{B}{2}
+   -  \dot{\theta}^2          \left(\frac{L-B}{2} + w_o \right)
+   -  \dot{\phi}^2            \left(\frac{L-B}{2} + w_o \right)
+   -  \dot{\phi}\dot{\psi} \frac{B}{2}\end{split}\]</div>
+</div>
+<div class="section" id="front-vertical-orthogonal-liquid-column">
+<h3><span class="section-number">4.17.3.5.2. </span>전면 수직 직교 액체 컬럼<a class="headerlink" href="#front-vertical-orthogonal-liquid-column" title="이 제목의 고유 링크"></a></h3>
+<div class="math notranslate nohighlight">
+\[\begin{split}x: &amp;  \quad
+      \frac{1}{m_F} \left( F_x^{W_F/S} + m_F g_{x} \right)
+   &amp;=&amp;
+      \ddot{x}_{i}^{P}
+   - 2\dot{\phi}\dot{w_o}
+   +  \ddot{\phi} \left(\frac{L-B}{2} - w_o \right)
+   -  \dot{\psi}^2            \frac{B}{2}
+   +  \dot{\phi}\dot{\theta}  \frac{B}{2}
+   +  \dot{\psi}\dot{\theta}  \left(\frac{L-B}{2} - w_o \right)   \\
+y: &amp;  \quad
+      \frac{1}{m_F}           \left( F_y^{W_F/S} + m_F g_{y} \right)
+   &amp;=&amp;
+      \ddot{y}_{i}^{P}
+   + 2\dot{\theta}\dot{w_o}
+   -  \ddot{\theta}           \left(\frac{L-B}{2} - w_o \right)
+   +  \dot{\psi}\dot{\phi}    \left(\frac{L-B}{2} - w_o \right)
+   -  \dot{\psi}^2   \frac{B}{2}
+   -  \dot{\theta}^2 \frac{B}{2} \\
+z: &amp;  \quad
+      g_z
+   &amp;=&amp;
+      \ddot{z}_{i}^{P}
+   -  \ddot{w_o}
+   +  \ddot{\theta} \frac{B}{2}
+   -  \dot{\theta}^2          \left(\frac{L-B}{2} - w_o \right)
+   -  \dot{\phi}^2            \left(\frac{L-B}{2} - w_o \right)
+   +  \dot{\phi}\dot{\psi} \frac{B}{2}\end{split}\]</div>
+</div>
+<div class="section" id="horizontal-orthogonal-liquid-column">
+<h3><span class="section-number">4.17.3.5.3. </span>수평 직교 액체 컬럼<a class="headerlink" href="#horizontal-orthogonal-liquid-column" title="이 제목의 고유 링크"></a></h3>
+<div class="math notranslate nohighlight">
+\[\begin{split}x: &amp;  \quad
+      \frac{1}{m_H} \left( F_x^{W_H/S} + m_H g_{x} \right)
+   &amp;=&amp;
+      \ddot{x}_{i}^{P} - 2 \dot{\psi}\dot{w_o}  \\
+y: &amp;  \quad
+      \frac{1}{m_H} \left( m_H g_{y} - \frac{1}{2} \rho A \xi \left|\dot{w_o}\right| \dot{w_o} \right)
+   &amp;=&amp;
+      \ddot{y}_{i}^{P} + \ddot{w_o} \\
+z: &amp;  \quad
+      \frac{1}{m_H} \left( F_z^{W_H/S} + m_H g_{z} \right)
+   &amp;=&amp;
+      \ddot{z}_{i}^{P} + 2 \dot{\theta}\dot{w_o}\end{split}\]</div>
+<p>이러한 방정식에서 관성력을 추출하면 다음과 같은 결과가 나옵니다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}F_{x}^{W_{B}/S}
+   &amp;  = m_{B} \left(
+         \ddot{x}_{i}^{P}
+      + 2 \dot{\phi} \dot{w_o}
+      +  \ddot{\phi}             \left( \frac{L-B}{2} + w_o \right)
+      +  \ddot{\psi}             \frac{B}{2}
+      -  \dot{\phi}\dot{\theta}  \frac{B}{2}
+      +  \dot{\psi}\dot{\theta}  \left( \frac{L-B}{2} + w_o \right)
+      -  g_{x} \right)\\
+F_{y}^{W_{B}/S}
+   &amp;  = m_{B} \left(
+         \ddot{y}_{i}^{P}
+      - 2\dot{\theta} \dot{w_o}
+      -  \ddot{\theta}           \left( \frac{L-B}{2} + w_o \right)
+      +  \dot{\psi}\dot{\phi}    \left( \frac{L-B}{2} + w_o \right)
+      +  \dot{\psi}^2            \frac{B}{2}
+      +  \dot{\theta}^2          \frac{B}{2}
+      -  g_{y} \right)\\
+F_{x}^{W_{F}/S}
+   &amp;  = m_{F} \left(
+         \ddot{x}_{i}^{P}
+      -  2\dot{\phi}\dot{w_o}
+      +  \ddot{\phi}             \left( \frac{L-B}{2} - w_o \right)
+      -  \ddot{\psi}             \frac{B}{2}
+      +  \dot{\phi}\dot{\theta}  \frac{B}{2}
+      +  \dot{\psi}\dot{\theta}  \left( \frac{L-B}{2} - w_o \right)
+     -  g_{x} \right)\\
+F_{y}^{W_{F}/S}
+   &amp;  = m_{F} \left(
+         \ddot{y}_{i}^{P}
+      + 2 \dot{\theta} \dot{w_o}
+      -  \ddot{\theta}        \left( \frac{L-B}{2} - w_o \right)
+      +  \dot{\psi}\dot{\phi} \left( \frac{L-B}{2} - w_o \right)
+      -  \dot{\psi}^2   \frac{B}{2}
+      -  \dot{\theta}^2 \frac{B}{2}
+      -  g_{y} \right)\\
+F_{x}^{W_{H}/S}
+   &amp;  = m_{H} \left(
+         \ddot{x}_{i}^{P}
+      - 2\dot{\psi}\dot{w_o}
+      -  g_{x} \right)\\
+F_{z}^{W_{H}/S}
+   &amp;  = m_{H} \left(
+         \ddot{z}_{i}^{P}
+      + 2\dot{\theta}\dot{w_o}
+      -  g_{z} \right)\end{split}\]</div>
+<p>나머지 방정식을 결합하면 최종 방정식이 생성됩니다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\rho A L \ddot{w}
+   &amp;  = \rho A \left( \frac{L-B}{2} + w_o \right)
+    \left[ -  \ddot{z}_{i}^{P}
+         +  \ddot{\theta} \frac{B}{2}
+         +  \dot{\theta}^2 \left( \frac{L-B}{2} + w_o \right) \right.\\
+   &amp;  \qquad\qquad\qquad\qquad\qquad \left.
+         +  \dot{\phi}^2   \left( \frac{L-B}{2} + w_o \right)
+         +  \dot{\phi}\dot{\psi} \frac{B}{2}
+         +  g_{z} \right]\\
+   &amp;  + \rho A \left( \frac{L-B}{2} - w_o \right)
+    \left[  \ddot{z}_{i}^{P}
+         +  \ddot{\theta} \frac{B}{2}
+         -  \dot{\theta}^2 \left( \frac{L-B}{2} - w_o \right) \right.\\
+   &amp;  \qquad\qquad\qquad\qquad\qquad \left.
+         -  \dot{\phi}^2   \left( \frac{L-B}{2} - w_o \right)
+         +  \dot{\phi}\dot{\psi} \frac{B}{2}
+         -  g_{z} \right]\\
+   &amp; \quad + \rho A B \left(
+         -  \ddot{y}_{i}^{P}
+         +  g_{y} \right)
+         -  \frac{1}{2} \rho A \xi \left|\dot{w_o}\right|\dot{w_o}\end{split}\]</div>
+<p>다음과 같이 단순화할 수 있습니다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\rho A L \ddot{w_o}
+   &amp;   = - 2\rho A w_o \ddot{z}_{i}^{P}
+         +  \rho A B \ddot{\theta} \left( \frac{L-B}{2} \right)
+         -  \rho A B \dot{\phi}\dot{\psi} \left( \frac{L-B}{2} \right)\\
+   &amp; \qquad \qquad
+         + 2\rho A w_o \dot{\theta}^2  \left( L - B \right)
+         + 2\rho A w_o \dot{\phi}^2    \left( L - B \right) \\
+   &amp; \qquad \qquad
+         + 2\rho A w_o g_{z}
+         -  \rho A B \ddot{y}_{i}^{P}
+         +  \rho A B g_{y}\\
+   &amp; \qquad \qquad
+         -  \frac{1}{2} \rho A B \xi \left|\dot{w_o}\right|\dot{w_o}\end{split}\]</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="StC_Theory.html" class="btn btn-neutral float-left" title="4.17.2. OpenFAST의 Tuned Mass Damper 모듈에 대한 이론 매뉴얼" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+        <a href="zrefs.html" class="btn btn-neutral float-right" title="4.17.4. 참고문헌" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>© Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    
+     
+
+
+</body></html>

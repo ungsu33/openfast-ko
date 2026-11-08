@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>6.1.6.2. Code Style &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="6.1.6.3. Developing Documentation" href="build_doc.html" />
+    <link rel="prev" title="6.1.6.1. Working with OpenFAST on GitHub" href="github_workflow.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/dev/code_style.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">4. User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">6. Developer Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#development-philosophy-and-guidelines">6.1. Development Philosophy and Guidelines</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html#engagement-with-nlr">6.1.1. Engagement with NLR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#development-plan-implementation-plan">6.1.2. Development Plan / Implementation Plan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#qualities-of-a-good-submission">6.1.3. Qualities of a good submission</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#submit-for-review-and-nlr-feedback">6.1.4. Submit for review and NLR feedback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#bug-fixes">6.1.5. Bug fixes</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#additional-guidance">6.1.6. Additional guidance</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="github_workflow.html">6.1.6.1. Working with OpenFAST on GitHub</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">6.1.6.2. Code Style</a></li>
+<li class="toctree-l4"><a class="reference internal" href="build_doc.html">6.1.6.3. Developing Documentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="types_files.html">6.1.6.4. Types Files and the OpenFAST Registry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="debugging.html">6.1.6.5. Debugging OpenFAST</a></li>
+<li class="toctree-l4"><a class="reference internal" href="performance.html">6.1.6.6. Performance Profiling and Tuning</a></li>
+<li class="toctree-l4"><a class="reference internal" href="versioning.html">6.1.6.7. Versioning</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#api-reference">6.2. API Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#c-api-reference">6.3. C++ API Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#other-documentation">6.4. Other Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">6. </span>Developer Documentation</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">6.1.6.2. </span>Code Style</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/source/dev/code_style.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="code-style">
+<span id="id1"></span><h1><span class="section-number">6.1.6.2. </span>Code Style<a class="headerlink" href="#code-style" title="Permalink to this heading"></a></h1>
+<p>OpenFAST and its underlying modules are mostly written in Fortran adhering to
+the 2003 standard, but modules can be written in C or C++. The
+<a class="reference download internal" download="" href="../../_downloads/2a9110b5e2a2b531c7dc05ea1fc86b89/NWTC_Programmers_Handbook.pdf"><code class="xref download docutils literal notranslate"><span class="pre">NWTC</span> <span class="pre">Programmer's</span> <span class="pre">Handbook</span></code></a>
+is the definitive reference for all questions related to working with the
+FAST Framework and adding code to OpenFAST.</p>
+<p>Generally, code should be written such that it is straightforward to read.
+Syntactic sugar or brevity should not detract from readability. The exception
+to this is in situations where performance requires poorly readable code.
+Here, comment blocks should be used to describe what is not readily apparent
+in the code. Indentation is typically three spaces and no tabs.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="github_workflow.html" class="btn btn-neutral float-left" title="6.1.6.1. Working with OpenFAST on GitHub" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="build_doc.html" class="btn btn-neutral float-right" title="6.1.6.3. Developing Documentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

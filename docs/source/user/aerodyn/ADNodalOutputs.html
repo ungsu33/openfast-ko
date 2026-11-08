@@ -1,0 +1,198 @@
+<!DOCTYPE html><html class="writer-html5" lang="ko"><head><!-- Modified 2026-11-08: unofficial Korean machine translation of OpenFAST 5.0.0. Equations, code, figures, input values and attribution retained. -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>노드 출력 — OpenFAST v5.0.0 문서</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../../../genindex.html">
+    <link rel="search" title="검색" href="../../../search.html"> 
+<link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/aerodyn/ADNodalOutputs.html"></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+          </a>
+              <div class="version">5.0 · 한국어</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="문서 검색" aria-label="문서 검색">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">4. 사용자 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+</ul>
+
+        <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="페이지 탐색">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+      <li class="breadcrumb-item active">노드 출력</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/aerodyn/ADNodalOutputs.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+      </li>
+  </ul>
+  <hr>
+</div><aside class="ko-notice" aria-label="한국어 번역 안내"><strong>한국어 자동번역</strong> · OpenFAST v5.0.0 · 2026-11-08 기준<br>비공식 번역본입니다. 수식·명령어·입력 변수와 첨부자료는 원문을 보존합니다. <a href="https://openfast.readthedocs.io/en/main/source/user/aerodyn/ADNodalOutputs.html" target="_blank" rel="noopener noreferrer" lang="en">영문 원문 대조 ↗</a></aside>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="nodal-outputs">
+<h1>노드 출력<a class="headerlink" href="#nodal-outputs" title="이 제목의 고유 링크"></a></h1>
+<p>의 명명된 출력 외에도 <a class="reference internal" href="input.html#ad-outputs"><span class="std std-numref">섹션 4.3.3.17
+위의</span></a> 에서는 AeroDyn을 사용하여 전체 세트 블레이드 노드 동작 및 부하를 출력할 수 있습니다(타워 노드는 현재 사용할 수 없음). Excel 파일의 AeroDyn_Nodes 탭을 참고하세요.
+가능한 출력 매개변수의 전체 목록은 <a class="reference download internal" download="" href="../../../_downloads/3f19498a5dc774461e022b671ff01ec6/OutListParameters.xlsx"><code class="xref download docutils literal notranslate"><span class="pre">OutListParameters.xlsx</span></code></a>
+를 참조하세요.</p>
+<p>이 섹션은 다음과 같습니다. <cite>END</cite> 문에는 구분 기호 설명 줄과 다음 옵션이 포함됩니다.</p>
+<p><strong>BldNd_BladesOut</strong> 는 출력할 블레이드 수를 지정합니다. 가능한 값은 0부터 AeroDyn이 모델링하는 블레이드 수까지입니다. 값이 1로 설정되면 블레이드 1만 출력되고, 값이 2로 설정되면 블레이드 1과 2가 출력됩니다.</p>
+<p><strong>BldNd_BlOutNd</strong> 는 출력할 노드를 지정합니다(출력용으로 선택한 모든 블레이드에서). 유효한 항목은 "ALL"(모든 블레이드 노드), "TIP"(마지막 블레이드 노드만), "ROOT"(첫 번째 블레이드 노드만) 또는 출력할 노드에 해당하는 숫자 목록입니다. 유효한 숫자는 1부터 AeroDyn이 각 블레이드에 대해 모델링하는 블레이드 노드 수까지입니다.</p>
+<p>해당 <strong>OutList</strong> 섹션은 AeroDyn에서 생성된 노드 출력 수량을 제어합니다. 이 섹션에서 사용자는 출력할 채널 계열의 이름을 지정합니다. 그런 다음 각 채널의 출력 이름은 블레이드 번호, 노드 번호 및 채널 제품군 이름을 결합하여 AeroDyn에서 내부적으로 생성됩니다. 예를 들어, 사용자가 지정하는 경우 <strong>AxInd</strong> 를 사용하는 경우 출력 채널은 다음 규칙에 따라 이름이 지정됩니다. <strong>B</strong><span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span><strong>N###AxInd</strong> 여기서 <span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span> 는 블레이드 번호이고, <strong>###</strong> 는 세 자리 노드 번호입니다.</p>
+<p><strong>샘플 노드 출력 섹션</strong></p>
+<p>이 샘플에는
+일반 출력 섹션의 <code class="docutils literal notranslate"><span class="pre">END</span></code> 문.</p>
+<div class="docutils container" id="file-adnodaloutputs">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>END of input file (the word "END" must appear in the first 3 columns of this last OutList line)
+<span class="linenos"> 2</span>---------------------- NODE OUTPUTS --------------------------------------------
+<span class="linenos"> 3</span>          3   BldNd_BladesOut  - Number of blades to output all node information at.  Up to number of blades on turbine. (-)
+<span class="linenos"> 4</span>      "ALL"   BldNd_BlOutNd   - Specify a portion of the nodes to output. {"ALL", "Tip", "Root", or a list of node numbers} (-)
+<span class="linenos"> 5</span>              OutList     - The next line(s) contains a list of output parameters.  See OutListParameters.xlsx, AeroDyn_Nodes tab for a listing of available output channels, (-)
+<span class="linenos"> 6</span>"VUndx"     - x-component of undisturbed wind velocity at each node
+<span class="linenos"> 7</span>"VUndy"     - y-component of undisturbed wind velocity at each node
+<span class="linenos"> 8</span>"VUndz"     - z-component of undisturbed wind velocity at each node
+<span class="linenos"> 9</span>"VDisx"     - x-component of disturbed wind velocity at each node
+<span class="linenos">10</span>"VDisy"     - y-component of disturbed wind velocity at each node
+<span class="linenos">11</span>"VDisz"     - z-component of disturbed wind velocity at each node
+<span class="linenos">12</span>"STVx"      - x-component of structural translational velocity at each node
+<span class="linenos">13</span>"STVy"      - y-component of structural translational velocity at each node
+<span class="linenos">14</span>"STVz"      - z-component of structural translational velocity at each node
+<span class="linenos">15</span>"VRel"      - Relvative wind speed at each node
+<span class="linenos">16</span>"DynP"      - Dynamic pressure at each node
+<span class="linenos">17</span>"Re"        - Reynolds number (in millions) at each node
+<span class="linenos">18</span>"M"         - Mach number at each node
+<span class="linenos">19</span>"Vindx"     - Axial induced wind velocity at each node
+<span class="linenos">20</span>"Vindy"     - Tangential induced wind velocity at each node
+<span class="linenos">21</span>"AxInd"     - Axial induction factor at each node
+<span class="linenos">22</span>"TnInd"     - Tangential induction factor at each node
+<span class="linenos">23</span>"Alpha"     - Angle of attack at each node
+<span class="linenos">24</span>"Theta"     - Pitch+Twist angle at each node
+<span class="linenos">25</span>"Phi"       - Inflow angle at each node
+<span class="linenos">26</span>"Curve"     - Curvature angle at each node
+<span class="linenos">27</span>"Cl"        - Lift force coefficient at each node
+<span class="linenos">28</span>"Cd"        - Drag force coefficient at each node
+<span class="linenos">29</span>"Cm"        - Pitching moment coefficient at each node
+<span class="linenos">30</span>"Cx"        - Normal force (to plane) coefficient at each node
+<span class="linenos">31</span>"Cy"        - Tangential force (to plane) coefficient at each node
+<span class="linenos">32</span>"Cn"        - Normal force (to chord) coefficient at each node
+<span class="linenos">33</span>"Ct"        - Tangential force (to chord) coefficient at each node
+<span class="linenos">34</span>"Fl"        - Lift force per unit length at each node
+<span class="linenos">35</span>"Fd"        - Drag force per unit length at each node
+<span class="linenos">36</span>"Mm"        - Pitching moment per unit length at each node
+<span class="linenos">37</span>"Fx"        - Normal force (to plane) per unit length at each node
+<span class="linenos">38</span>"Fy"        - Tangential force (to plane) per unit length at each node
+<span class="linenos">39</span>"Fn"        - Normal force (to chord) per unit length at each node
+<span class="linenos">40</span>"Ft"        - Tangential force (to chord) per unit length at each node
+<span class="linenos">41</span>"Clrnc"     - Tower clearance at each node (based on the absolute distance to the nearest point in the tower from blade node B#N# minus the local tower radius, in the deflected configuration); please note that this clearance is only approximate because the calculation assumes that the blade is a line with no volume (however, the calculation does use the local tower radius); when blade node B#N# is above the tower top (or below the tower base), the absolute distance to the tower top (or base) minus the local tower radius, in the deflected configuration, is output
+<span class="linenos">42</span>"Vx"        - Local axial velocity
+<span class="linenos">43</span>"Vy"        - Local tangential velocity
+<span class="linenos">44</span>"GeomPhi"   - Geometric phi? If phi was solved using normal BEMT equations, GeomPhi = 1; otherwise, if it was solved geometrically, GeomPhi = 0.
+<span class="linenos">45</span>"Chi"       - Skew angle (used in skewed wake correction) -- not available for OLAF
+<span class="linenos">46</span>"UA_Flag"   - Flag indicating if UA is turned on for this node. -- not available for OLAF
+<span class="linenos">47</span>"CpMin"     - Pressure coefficient
+<span class="linenos">48</span>"SgCav"     - Cavitation number
+<span class="linenos">49</span>"SigCr"     - Critical cavitation number
+<span class="linenos">50</span>"Gam"       - Gamma -- circulation on blade
+<span class="linenos">51</span>"Cl_Static" - Static portion of lift force coefficient at each node, without  unsteady effects -- not available for BEMT/DBEMT
+<span class="linenos">52</span>"Cd_Static" - Static portion of drag force coefficient at each node, without unsteady effects -- not available for BEMT/DBEMT
+<span class="linenos">53</span>"Cm_Static" - Static portion of pitching moment coefficient at each node, without unsteady effects -- not available for BEMT/DBEMT
+<span class="linenos">54</span>"Uin"       - Axial induced velocity in rotating hub coordinates. Axial aligned with hub axis.     rotor plane polar hub rotating coordinates
+<span class="linenos">55</span>"Uit"       - Tangential induced velocity in rotating hub coordinates. Tangential to the rotation plane. Perpendicular to blade aziumth.     rotor plane polar hub rotating coordinates
+<span class="linenos">56</span>"Uir"       - Radial induced velocity in rotating hub coordinates. Radial outwards in rotation plane. Aligned with blade azimuth.     rotor plane polar hub rotating coordinates
+<span class="linenos">57</span>"Fbn"       - Buoyant force normal to chord per unit length at each node
+<span class="linenos">58</span>"Fbt"       - Buoyant force tangential to chord per unit length at each node
+<span class="linenos">59</span>"Fbs"       - Buoyant spanwise force per unit length at each node
+<span class="linenos">60</span>"Mbn"       - Buoyant moment normal to chord per unit length at each node
+<span class="linenos">61</span>"Mbt"       - Buoyant moment tangential to chord per unit length at each node
+<span class="linenos">62</span>"Mbs"       - Buoyant spanwise moment per unit length at each node
+<span class="linenos">63</span>END of input file (the word "END" must appear in the first 3 columns of this last OutList line)
+<span class="linenos">64</span>---------------------------------------------------------------------------------------
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>© Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    
+     
+
+
+</body></html>

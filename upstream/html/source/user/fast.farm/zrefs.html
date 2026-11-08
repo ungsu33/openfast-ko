@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.19.9. References &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.19.10. FAST.Farm Primary Input File" href="AppendixA.html" />
+    <link rel="prev" title="4.19.8. Future Work" href="FutureWork.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/fast.farm/zrefs.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.19. FAST.Farm</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Nomenclature.html">4.19.1. Nomenclature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Introduction.html">4.19.2. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RunningFFarm.html">4.19.3. Running FAST.Farm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="InputFiles.html">4.19.4. Input Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="OutputFiles.html">4.19.5. Output Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ModelGuidance.html">4.19.6. Modeling Guidance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FFarmTheory.html">4.19.7. FAST.Farm Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FutureWork.html">4.19.8. Future Work</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.19.9. References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixA.html">4.19.10. FAST.Farm Primary Input File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixB.html">4.19.11. Ambient Wind File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixC.html">4.19.12. List of Output Channels</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.19. </span>FAST.Farm User’s Guide and Theory Manual</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.19.9. </span>References</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/fast.farm/zrefs.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="references">
+<h1><span class="section-number">4.19.9. </span>References<a class="headerlink" href="#references" title="Permalink to this heading"></a></h1>
+</div>
+<div class="docutils container" id="id1">
+<dl class="citation">
+<dt class="label" id="id12"><span class="brackets">ff-Ain88</span></dt>
+<dd><p>J. F. Ainslie. Calculating the flowfield in the wake of wind turbines. <em>Journal of Wind Engineering and Industrial Aerodynamics</em>, 27:213–224, 1988. <a class="reference external" href="https://doi.org/https://doi.org/10.1016/0167-6105(88)90037-2">doi:https://doi.org/10.1016/0167-6105(88)90037-2</a>.</p>
+</dd>
+<dt class="label" id="id2"><span class="brackets">ff-BJP+24</span></dt>
+<dd><p>E. Branlard, J. Jonkman, A. Platt, R. Thedin, L. A. Martinez-Tossas, and M. Kretschmer. Development and verification of an improved wake-added turbulence model in fast.farm. In TORQUE 2024. Florence, Italy, May 2024. EAWE.</p>
+</dd>
+<dt class="label" id="id28"><span class="brackets">ff-Ceal15</span></dt>
+<dd><p>M. J. Churchfield and et al. A comparison of the dynamic wake meandering model, large-eddy simulations, and field data at the egmond aan zee offshore wind plant. In 33rd Wind Energy Symposium. Kissimmee, FL, 2015. AIAA. <a class="reference external" href="https://doi.org/http://dx.doi.org/10.2514/6.2015-0724">doi:http://dx.doi.org/10.2514/6.2015-0724</a>.</p>
+</dd>
+<dt class="label" id="id13"><span class="brackets">ff-CN96</span></dt>
+<dd><p>J. Crank and P. Nicolson. A practical method for numerical evaluation of solutions of partial differencial equations of the heat-conduction type. <em>Advances in Computaional Mathematics</em>, 6:207–226, 1996.</p>
+</dd>
+<dt class="label" id="id19"><span class="brackets">ff-Deal18</span></dt>
+<dd><p>P. Doubrawa and et al. Optimization-based calibration of fast.farm parameters against sowfa. In 36th Wind Energy Symposium. Kissimmee, FL, January 2018. AIAA. <a class="reference external" href="https://doi.org/https://arc.aiaa.org/doi/pdf/10.2514/6.2018-0512">doi:https://arc.aiaa.org/doi/pdf/10.2514/6.2018-0512</a>.</p>
+</dd>
+<dt class="label" id="id11"><span class="brackets">ff-Hao16</span></dt>
+<dd><p>Y. Hao. <em>Wind Farm Wake Modeling and Analysis of Wake Impacts in a Wind Farm</em>. Phd thesis, University of Massachusetts, Amherst, Massachusetts, 2016.</p>
+</dd>
+<dt class="label" id="id29"><span class="brackets">ff-Heal14</span></dt>
+<dd><p>Y. Hao and et al. Implementing the dynamic wake meandering model in the nwtc design codes. In 32nd Wind Energy Symposium. National Harbor, MD, January 2014. AIAA. <a class="reference external" href="https://doi.org/http://dx.doi.org/10.2514/6.2014-1089">doi:http://dx.doi.org/10.2514/6.2014-1089</a>.</p>
+</dd>
+<dt class="label" id="id33"><span class="brackets">ff-Jon14</span></dt>
+<dd><p>B. Jonkman. Turbsim user's guide v2.00.00. Technical Report NREL/TP-xxxx-xxxxx, National Renewable Energy Laboratory, Golden, CO, October 2014.</p>
+</dd>
+<dt class="label" id="id22"><span class="brackets">ff-Jon13</span></dt>
+<dd><p>J. Jonkman. The new modularization framework for the fast wind turbine cae tool. In 51st AIAA Aerospace Sciences Meeting. Dallas, TX, 2013. AIAA.</p>
+</dd>
+<dt class="label" id="id31"><span class="brackets">ff-Jeal09</span></dt>
+<dd><p>J. Jonkman and et al. Definition of a 5-mw reference wind turbine for offshore system development. Technical Report NREL/TP-500-38060, National Renewable Energy Laboratory, Golden, CO, February 2009.</p>
+</dd>
+<dt class="label" id="id27"><span class="brackets">ff-Katiceal86</span></dt>
+<dd><p>I. Kati\`c and et al. A simple model for cluster efficiency. In European Wind Energy Association Conference and Exhibition. Rome, Italy, 1986.</p>
+</dd>
+<dt class="label" id="id10"><span class="brackets">ff-Keal13</span></dt>
+<dd><p>R.-E. Keck and et al. <em>A Consistent Turbulence Formulation for the Dynamic Wake Meandering Model in the Atmospheric Boundary Layer</em>. Phd thesis, DTU, Denmark, 2013.</p>
+</dd>
+<dt class="label" id="id4"><span class="brackets">ff-Leal08</span></dt>
+<dd><p>G. C. Larsen and et al. Wake meander: a pragmatic approach. <em>Wind Energy</em>, 11:337–95, 2008. <a class="reference external" href="https://doi.org/http://onlinelibrary.wiley.com/doi/10.1002/we.267/epdf">doi:http://onlinelibrary.wiley.com/doi/10.1002/we.267/epdf</a>.</p>
+</dd>
+<dt class="label" id="id15"><span class="brackets">ff-Meal10</span></dt>
+<dd><p>H. A. Madsen and et al. Calibration and validation of the dynamic wake meandering model for implementation in an aeroelastic code. <em>Journal of Solar Energy Engineering</em>, November 2010. <a class="reference external" href="https://doi.org/https://doi.org/10.1115/1.4002555">doi:https://doi.org/10.1115/1.4002555</a>.</p>
+</dd>
+<dt class="label" id="id20"><span class="brackets">ff-Meal16</span></dt>
+<dd><p>H. A. Madsen and et al. Wake flow characteristics at high wind speed. In 34th Wind Energy Symposium. San Diego, CA, 2016. AIAA. <a class="reference external" href="https://doi.org/http://dx.doi.org/10.2514/6.2016-1522.">doi:http://dx.doi.org/10.2514/6.2016-1522.</a></p>
+</dd>
+<dt class="label" id="id3"><span class="brackets">ff-Man94</span></dt>
+<dd><p>J. Mann. The spatial structure of neutral atmospheric surface-layer turbulence. <em>Journal of Fluid Mechanics</em>, 273:p141–168, 1994.</p>
+</dd>
+<dt class="label" id="id6"><span class="brackets">ff-MT21</span></dt>
+<dd><p>L. A. Martinez-Tossas. Wind turbine wakes: high-thrust coefficient. <em>Wind Energy</em>, 2021. Publication pending.</p>
+</dd>
+<dt class="label" id="id16"><span class="brackets">ff-Seal19a</span></dt>
+<dd><p>K. Shaler and et al. Effects of inflow spatiotemporal discretization on wake meandering and turbine structural response using fast.farm. <em>Journal of Physics: Conference Series</em>, May 2019. <a class="reference external" href="https://doi.org/10.1088/1742-6596/1256/1/012023">doi:10.1088/1742-6596/1256/1/012023</a>.</p>
+</dd>
+<dt class="label" id="id25"><span class="brackets">ff-Seal19b</span></dt>
+<dd><p>K. Shaler and et al. Fast.farm response of varying wind inflow techniques. In 37th Wind Energy Symposium. San Diego, CA, 2019. AIAA. <a class="reference external" href="https://doi.org/https://arc.aiaa.org/doi/pdf/10.2514/6.2019-2086">doi:https://arc.aiaa.org/doi/pdf/10.2514/6.2019-2086</a>.</p>
+</dd>
+<dt class="label" id="id39"><span class="brackets">ff-Smi06</span></dt>
+<dd><p>S. W. Smith. <em>The Scientist and Engineer's Guide to Digital Signal Processing</em>. Californial Technical Publishing, 2006. ISBN 978-0966017632.</p>
+</dd>
+<dt class="label" id="id23"><span class="brackets">ff-Seal14</span></dt>
+<dd><p>M. A. Sprague and et al. Fast modular wind turbine cae tool: nonmatching spatial and temporal meshes. In 50th AIAA Aerospace Sciences Meeting. National Harbor, MD, January 2014. AIAA. <a class="reference external" href="https://doi.org/http://arc.aiaa.org/doi/pdf/10.2514/6.2014-0520">doi:http://arc.aiaa.org/doi/pdf/10.2514/6.2014-0520</a>.</p>
+</dd>
+<dt class="label" id="id24"><span class="brackets">ff-Seal15</span></dt>
+<dd><p>M. A. Sprague and et al. Fast modular framework for wind turbine simulation: new algorithms and numerical examples. In 51th AIAA Aerospace Sciences Meeting. Kissimmee, FL, 2015. AIAA. <a class="reference external" href="https://doi.org/http://arc.aiaa.org/doi/pdf/10.2514/6.2014-0520">doi:http://arc.aiaa.org/doi/pdf/10.2514/6.2014-0520</a>.</p>
+</dd>
+<dt class="label" id="id14"><span class="brackets">ff-Tho49</span></dt>
+<dd><p>L. H. Thomas. Elliptic problems in linear difference equations over a network. Technical Report, Watson Science Computer Laboratory, New York, NY, 1949.</p>
+</dd>
+</dl>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="FutureWork.html" class="btn btn-neutral float-left" title="4.19.8. Future Work" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="AppendixA.html" class="btn btn-neutral float-right" title="4.19.10. FAST.Farm Primary Input File" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

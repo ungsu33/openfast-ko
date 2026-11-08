@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.19.5. Output Files &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.19.6. Modeling Guidance" href="ModelGuidance.html" />
+    <link rel="prev" title="4.19.4. Input Files" href="InputFiles.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/fast.farm/OutputFiles.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.19. FAST.Farm</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Nomenclature.html">4.19.1. Nomenclature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Introduction.html">4.19.2. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RunningFFarm.html">4.19.3. Running FAST.Farm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="InputFiles.html">4.19.4. Input Files</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.19.5. Output Files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#echo-file">4.19.5.1. Echo File</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#summary-file">4.19.5.2. Summary File</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#visualization-output-files">4.19.5.3. Visualization Output Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#wake-dynamics-plane-files">4.19.5.4. Wake dynamics Plane Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#time-series-results-file">4.19.5.5. Time-Series Results File</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#openfast-output-files">4.19.5.6. OpenFAST Output Files</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ModelGuidance.html">4.19.6. Modeling Guidance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FFarmTheory.html">4.19.7. FAST.Farm Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FutureWork.html">4.19.8. Future Work</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.19.9. References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixA.html">4.19.10. FAST.Farm Primary Input File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixB.html">4.19.11. Ambient Wind File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixC.html">4.19.12. List of Output Channels</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.19. </span>FAST.Farm User’s Guide and Theory Manual</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.19.5. </span>Output Files</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/fast.farm/OutputFiles.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="output-files">
+<span id="ff-output"></span><h1><span class="section-number">4.19.5. </span>Output Files<a class="headerlink" href="#output-files" title="Permalink to this heading"></a></h1>
+<p>FAST.Farm produces five types of output files: an echo file, a summary
+file, visualization output files, a time-series results file, and
+OpenFAST-related files. The following sections detail the purpose and
+contents of these files.</p>
+<div class="section" id="echo-file">
+<h2><span class="section-number">4.19.5.1. </span>Echo File<a class="headerlink" href="#echo-file" title="Permalink to this heading"></a></h2>
+<p>If <strong>Echo</strong> = TRUE in the FAST.Farm primary input file, the contents of
+the file will be echoed to a file with the naming convention
+&lt;<em>RootName.ech</em>, where &lt;<em>RootName</em>&gt; is as defined in
+<a class="reference internal" href="InputFiles.html#ff-ambwindvtk"><span class="std std-numref">Section 4.19.4.3</span></a>. The echo file is helpful for
+debugging the primary input file. The contents of an echo file will be
+truncated if FAST.Farm encounters an error while parsing the primary
+input file. The error usually corresponds to the line after the last
+successfully echoed line.</p>
+</div>
+<div class="section" id="summary-file">
+<span id="ff-output-sum"></span><h2><span class="section-number">4.19.5.2. </span>Summary File<a class="headerlink" href="#summary-file" title="Permalink to this heading"></a></h2>
+<p>If <strong>SumPrint</strong> = TRUE in the FAST.Farm primary input file, FAST.Farm
+will generate a summary file with the naming convention of
+&lt;<em>RootName.sum</em>&gt;. This file summarizes key information about the wind
+farm model, including the wind turbine locations and OpenFAST primary
+input files; wake dynamics finite-difference grid and parameters; time
+steps of the various model components; and the name units and order of
+the outputs that have been selected.</p>
+</div>
+<div class="section" id="visualization-output-files">
+<span id="ff-output-vis"></span><h2><span class="section-number">4.19.5.3. </span>Visualization Output Files<a class="headerlink" href="#visualization-output-files" title="Permalink to this heading"></a></h2>
+<p>If <strong>WrDisWind</strong> = TRUE in the FAST.Farm primary input file, FAST.Farm
+will generate full 3D low- and high-resolution disturbed wind data
+output files, i.e., the ambient wind and wake interactions across the
+wind farm for visualization. The VTK data format and spatial resolutions
+(number of grid points, origin, and spacing) of these output files
+matches those of the corresponding low- and high-resolution ambient wind
+data used by the FAST.Farm simulation. The VTK files are written to a
+directory named <em>vtk_ff</em> where the FAST.Farm primary file is stored. The
+naming conventions of these output files are
+<em>&lt;RootName&gt;.Low.Dis.&lt;n</em><sub>low</sub><em>&gt;.vtk</em> and
+<em>&lt;RootName&gt;.HighT&lt;n</em><sub>t</sub><em>&gt;.Dis.&lt;n</em><sub>high</sub><em>&gt;.vtk</em> for
+the low- and high-resolution disturbed wind data files, respectively,
+where <em>&lt;n</em><sub>t</sub><em>&gt;</em>, <em>&lt;n</em><sub>low</sub><em>&gt;</em>, and
+<em>&lt;n</em><sub>high</sub> are as defined in
+<a class="reference internal" href="InputFiles.html#ff-ambwindvtk"><span class="std std-numref">Section 4.19.4.3</span></a>, but with leading zeros.</p>
+<ul class="simple">
+<li><p>Likewise, if <strong>NOutDisWindXY</strong>, <strong>NOutDisWindYZ</strong>, or
+<strong>NOutDisWindXZ</strong> are set to be greater than zero in the FAST.Farm
+primary input file, FAST.Farm will generate low-resolution disturbed
+wind data (including wakes) output files that are 2D slices of the
+full low-resolution domain. The 2D slices are parallel to the <em>X-Y</em>,
+<em>Y-Z</em>, and/or <em>X-Z</em> planes of the global inertial-frame coordinate
+system, respectively. The VTK files are written to a directory named
+<em>vtk_ff</em> where the FAST.Farm primary file is stored. The naming
+conventions of these output files are
+<em>&lt;RootName&gt;.Low.DisXY&lt;n</em><sub>Out</sub><em>&gt;.&lt;n</em><sub>low</sub><em>&gt;.vtk</em>,
+<em>&lt;RootName&gt;.Low.DisYZ&lt;n</em><sub>Out</sub><em>&gt;.&lt;n</em><sub>low</sub><em>&gt;.vtk</em>,
+and</p></li>
+<li><p><em>&lt;RootName&gt;.Low.DisXZ&lt;n</em><sub>Out</sub><em>&gt;.&lt;n</em><sub>low</sub><em>&gt;.vtk</em>
+for the <em>X-Y</em>, <em>Y-Z</em>, and <em>X-Z</em> slices, respectively, where
+<em>&lt;n</em><sub>Out</sub><em>&gt;</em> is as defined in
+<a class="reference internal" href="InputFiles.html#ff-ambwindvtk"><span class="std std-numref">Section 4.19.4.3</span></a>, but with leading zeros.</p></li>
+</ul>
+<p>The time step (inverse of the frame rate) of all disturbed wind data
+files is set by input parameter <strong>WrDisDT</strong> in the FAST.Farm primary
+input file. Note that the full high-resolution disturbed wind data
+output files are not output at a frame rate of <span class="math notranslate nohighlight">\(1/\)</span><strong>DT_High</strong>,
+but are only output every <strong>WrDisDT</strong> seconds.</p>
+<p>Each visualization output file follows the same VTK format used for the
+ambient wind data files for the high-fidelity precursor simulations. See
+<a class="reference internal" href="InputFiles.html#ff-ambwindifw"><span class="std std-numref">Section 4.19.4.4</span></a> for details on the file format.</p>
+<p>Visualizing the ambient wind and wake interactions can be useful for
+interpreting results and debugging problems. However, FAST.Farm will
+generate many files per output option when <strong>WrDisWind</strong> = TRUE and/or
+when <strong>NOutDisWindXY</strong>, <strong>NOutDisWindYZ</strong>, and/or <strong>NOutDisWindXZ</strong> are
+set greater than zero. This file generation will slow down FAST.Farm and
+take up a lot of disk space, especially when generating full low- and
+high-resolution disturbed wind data files. Therefore, disabling
+visualization is recommended when running many FAST.Farm simulations.</p>
+</div>
+<div class="section" id="wake-dynamics-plane-files">
+<span id="ff-output-planes"></span><h2><span class="section-number">4.19.5.4. </span>Wake dynamics Plane Files<a class="headerlink" href="#wake-dynamics-plane-files" title="Permalink to this heading"></a></h2>
+<p>Setting the option <strong>OutAllPlanes</strong> to true in the main FAST.Farm input file
+will result in the wake planes of the Wake Dynamics module to be written.
+This option requires intensive writing to disk and will drastically slow down the simulation.
+The wake planes are written in VTK format, in the folder <cite>vtk_ff_planes</cite> at the root
+of the simulation directory.
+A VTK file is written for each plane, time step and turbine.
+The number of planes written will increase with each <strong>DT_Low</strong> time step, until
+the full number of planes <strong>Num_Planes</strong> is reached.
+The coordinates of the planes are in the meandering frame of reference (not global coordinates)
+and using Cartesian coordinates.
+The following field are always written:
+x,y,z components of the wake deficit velocity (in the meandering frame),
+ambient, shear, and  total eddy viscosity.
+When <strong>Mod_Wake=1`</strong> (polar wake), the fields are converted from polar to Cartesian.
+Additional velocity gradients are provided in the VTK file when <strong>Mod_Wake/=1`</strong>.</p>
+</div>
+<div class="section" id="time-series-results-file">
+<span id="ff-output-time"></span><h2><span class="section-number">4.19.5.5. </span>Time-Series Results File<a class="headerlink" href="#time-series-results-file" title="Permalink to this heading"></a></h2>
+<p>The FAST.Farm time-series results are written to an ASCII text-based
+file with the naming convention &lt;<em>RootName.out</em>. The results are in
+table format, where each column is a data channel with the first column
+always being the simulation time; each row corresponds to a simulation
+output time step. The data channels are specified in the <strong>OutList</strong>
+section of the <em>OUTPUT</em> section of the FAST.Farm primary input file. The
+column format of the FAST.Farm-generated file is specified using the
+<strong>OutFmt</strong> parameter of the FAST.Farm primary input file.</p>
+</div>
+<div class="section" id="openfast-output-files">
+<h2><span class="section-number">4.19.5.6. </span>OpenFAST Output Files<a class="headerlink" href="#openfast-output-files" title="Permalink to this heading"></a></h2>
+<p>In addition to the FAST.Farm-generated output files, the OpenFAST model
+of each wind turbine may also generate output files. The various output
+files that OpenFAST may generate (at both the driver/glue code and
+module levels, as specified within the OpenFAST input files) are
+described in the OpenFAST documentation and include summary (<em>.sum</em>)
+files, time-series results (ASCI <em>.out</em> or binary <em>.outb</em>) files,
+visualization (<em>.vtk</em>) files, etc. FAST.Farm simulations will generate
+these same files, but with the path/rootname changed to <em>&lt;RootName
+of WT_FASTInFile&gt;.T&lt;n</em><sub>t</sub><em>&gt;</em>.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="InputFiles.html" class="btn btn-neutral float-left" title="4.19.4. Input Files" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ModelGuidance.html" class="btn btn-neutral float-right" title="4.19.6. Modeling Guidance" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

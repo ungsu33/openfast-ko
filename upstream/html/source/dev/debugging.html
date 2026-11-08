@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>6.1.6.5. Debugging OpenFAST &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="6.1.6.6. Performance Profiling and Tuning" href="performance.html" />
+    <link rel="prev" title="6.1.6.4. Types Files and the OpenFAST Registry" href="types_files.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/dev/debugging.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">4. User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">6. Developer Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#development-philosophy-and-guidelines">6.1. Development Philosophy and Guidelines</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html#engagement-with-nlr">6.1.1. Engagement with NLR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#development-plan-implementation-plan">6.1.2. Development Plan / Implementation Plan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#qualities-of-a-good-submission">6.1.3. Qualities of a good submission</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#submit-for-review-and-nlr-feedback">6.1.4. Submit for review and NLR feedback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#bug-fixes">6.1.5. Bug fixes</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#additional-guidance">6.1.6. Additional guidance</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="github_workflow.html">6.1.6.1. Working with OpenFAST on GitHub</a></li>
+<li class="toctree-l4"><a class="reference internal" href="code_style.html">6.1.6.2. Code Style</a></li>
+<li class="toctree-l4"><a class="reference internal" href="build_doc.html">6.1.6.3. Developing Documentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="types_files.html">6.1.6.4. Types Files and the OpenFAST Registry</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">6.1.6.5. Debugging OpenFAST</a></li>
+<li class="toctree-l4"><a class="reference internal" href="performance.html">6.1.6.6. Performance Profiling and Tuning</a></li>
+<li class="toctree-l4"><a class="reference internal" href="versioning.html">6.1.6.7. Versioning</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#api-reference">6.2. API Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#c-api-reference">6.3. C++ API Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#other-documentation">6.4. Other Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">6. </span>Developer Documentation</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">6.1.6.5. </span>Debugging OpenFAST</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/source/dev/debugging.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="debugging-openfast">
+<span id="debugging"></span><h1><span class="section-number">6.1.6.5. </span>Debugging OpenFAST<a class="headerlink" href="#debugging-openfast" title="Permalink to this heading"></a></h1>
+<p>Being a Fortran project, OpenFAST can be challenging to debug and the process
+is unique for each system and environment. Keep in mind that some OpenFAST
+cases can be quite large in their memory footprint and may take a long time
+to reach the point of interest in the code. Choosing a test case carefully
+could save a significant amount time.</p>
+<p>It may by helpful to write a small fortran program to verify that all
+debugging tools are set up properly before diving in to OpenFAST. Be sure to
+simulate a bug by doing something like accessing an array element that is not
+allocated and verify that you can catch the bug with a given set of tools.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A requirement for all systems is to compile OpenFAST in <strong>debug</strong> mode.</p>
+</div>
+<div class="section" id="debugging-on-windows">
+<span id="debugging-windows"></span><h2><span class="section-number">6.1.6.5.1. </span>Debugging on Windows<a class="headerlink" href="#debugging-on-windows" title="Permalink to this heading"></a></h2>
+<p>Windows developers using Intel tools can use Visual Studio solution included in
+the OpenFAST repository for debugging. This is a straightforward process with
+lots of support from Intel.</p>
+<p>Otherwise, Windows developers compiling in Unix-style environments should
+proceed to <a class="reference internal" href="#debugging-linux"><span class="std std-ref">Debugging on Linux and macOS</span></a>.</p>
+</div>
+<div class="section" id="debugging-on-linux-and-macos">
+<span id="debugging-linux"></span><h2><span class="section-number">6.1.6.5.2. </span>Debugging on Linux and macOS<a class="headerlink" href="#debugging-on-linux-and-macos" title="Permalink to this heading"></a></h2>
+<p>First, compile OpenFAST in debug mode by setting <code class="docutils literal notranslate"><span class="pre">CMAKE_BUILD_TYPE</span></code> to
+“Debug”. This can be done on the command line with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>..<span class="w"> </span>-D<span class="w"> </span><span class="nv">CMAKE_BUILD_TYPE</span><span class="o">=</span>Debug
+</pre></div>
+</div>
+<p>or by using <code class="docutils literal notranslate"><span class="pre">ccmake</span></code> to open the command line cmake gui to change it.</p>
+<p>The GNU debugger, <code class="docutils literal notranslate"><span class="pre">gdb</span></code>, works well for debugging compiled code. It has a
+comprehensive command line interface which enables developers to add
+breakpoints and inspect variables.</p>
+<p>Driving the debugger through an IDE can make inspecting the code much more
+efficient. One IDE known to work well is <a class="reference external" href="https://code.visualstudio.com">Visual Studio Code</a>
+with the <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=webfreak.debug">Native Debug</a>
+extension. You can set up a <a class="reference external" href="https://code.visualstudio.com/docs/editor/debugging#_launch-configurations">launch configuration</a>
+so that you can debug a particular OpenFAST case through the IDE. To do this,
+open the launch configuration and add a block similar to this:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AOC_WSt&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gdb&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;request&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;launch&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;printCalls&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;showDevDebugOutput&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;valuesFormatting&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;prettyPrinters&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;gdbpath&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gdb&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;target&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${workspaceRoot}/build/glue-codes/openfast/openfast&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;cwd&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${workspaceRoot}/build/reg_tests/glue-codes/openfast/AOC_WSt/&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${workspaceRoot}/build/reg_tests/glue-codes/openfast/AOC_WSt/AOC_WSt.fst&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="macos-specific-configuration">
+<h3><span class="section-number">6.1.6.5.2.1. </span>macOS-specific configuration<a class="headerlink" href="#macos-specific-configuration" title="Permalink to this heading"></a></h3>
+<p>GDB on macOS needs some configuration before the system allows it to take
+over a process. It is recommended that <code class="docutils literal notranslate"><span class="pre">gdb</span></code> be installed with homebrew</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>brew<span class="w"> </span>info<span class="w"> </span>gdb
+brew<span class="w"> </span>install<span class="w"> </span>gdb
+</pre></div>
+</div>
+<p>After that completes, be sure to follow the caveats to finish the installation.
+For <code class="docutils literal notranslate"><span class="pre">gdb</span> <span class="pre">8.2.1</span></code>, it looks like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">==</span>&gt;<span class="w"> </span>Caveats
+gdb<span class="w"> </span>requires<span class="w"> </span>special<span class="w"> </span>privileges<span class="w"> </span>to<span class="w"> </span>access<span class="w"> </span>Mach<span class="w"> </span>ports.
+You<span class="w"> </span>will<span class="w"> </span>need<span class="w"> </span>to<span class="w"> </span>codesign<span class="w"> </span>the<span class="w"> </span>binary.<span class="w"> </span>For<span class="w"> </span>instructions,<span class="w"> </span>see:
+
+https://sourceware.org/gdb/wiki/BuildingOnDarwin
+
+On<span class="w"> </span><span class="m">10</span>.12<span class="w"> </span><span class="o">(</span>Sierra<span class="o">)</span><span class="w"> </span>or<span class="w"> </span>later<span class="w"> </span>with<span class="w"> </span>SIP,<span class="w"> </span>you<span class="w"> </span>need<span class="w"> </span>to<span class="w"> </span>run<span class="w"> </span>this:
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;set startup-with-shell off&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.gdbinit
+</pre></div>
+</div>
+<p>For Native Debug on macOS, you have to sort of hack the extension to allow
+breakpoints in fortran files by adding this line to <code class="docutils literal notranslate"><span class="pre">.vscode/settings.json</span></code>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;debug.allowBreakpointsEverywhere&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="types_files.html" class="btn btn-neutral float-left" title="6.1.6.4. Types Files and the OpenFAST Registry" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="performance.html" class="btn btn-neutral float-right" title="6.1.6.6. Performance Profiling and Tuning" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

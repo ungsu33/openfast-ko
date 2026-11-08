@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.19.6. Modeling Guidance &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.19.7. FAST.Farm Theory" href="FFarmTheory.html" />
+    <link rel="prev" title="4.19.5. Output Files" href="OutputFiles.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/fast.farm/ModelGuidance.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.19. FAST.Farm</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Nomenclature.html">4.19.1. Nomenclature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Introduction.html">4.19.2. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RunningFFarm.html">4.19.3. Running FAST.Farm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="InputFiles.html">4.19.4. Input Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="OutputFiles.html">4.19.5. Output Files</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.19.6. Modeling Guidance</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#fast-farm-setup-overview">4.19.6.1. FAST.Farm Setup Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#inflow-wind-generation">4.19.6.2. Inflow Wind Generation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#low-and-high-resolution-domain-discretization">4.19.6.3. Low- and High-Resolution Domain Discretization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#parameter-selection">4.19.6.4. Parameter Selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#commonly-encountered-errors">4.19.6.5. Commonly Encountered Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="FFarmTheory.html">4.19.7. FAST.Farm Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FutureWork.html">4.19.8. Future Work</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.19.9. References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixA.html">4.19.10. FAST.Farm Primary Input File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixB.html">4.19.11. Ambient Wind File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixC.html">4.19.12. List of Output Channels</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.19. </span>FAST.Farm User’s Guide and Theory Manual</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.19.6. </span>Modeling Guidance</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/fast.farm/ModelGuidance.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="modeling-guidance">
+<span id="ff-modguidance"></span><h1><span class="section-number">4.19.6. </span>Modeling Guidance<a class="headerlink" href="#modeling-guidance" title="Permalink to this heading"></a></h1>
+<p>This chapter includes modeling guidance for setting up and running a
+FAST.Farm simulation. This includes guidance on inflow wind generation;
+low- and high-resolution grid discretization; parameter selection;
+and solutions for commonly encountered errors.</p>
+<div class="section" id="fast-farm-setup-overview">
+<span id="ff-sec-setup"></span><h2><span class="section-number">4.19.6.1. </span>FAST.Farm Setup Overview<a class="headerlink" href="#fast-farm-setup-overview" title="Permalink to this heading"></a></h2>
+<p>This section includes a high-level overview of how to set up ambient
+inflow and FAST.Farm simulations in particular, the information needed
+to calculate various parameters, as shown in
+<a class="reference internal" href="#ff-ffarmsetup"><span class="std std-numref">Fig. 4.64</span></a>.</p>
+<div class="figure align-center" id="ff-ffarmsetup">
+<a class="reference internal image-reference" href="../../../_images/FFarmFlowChart.png"><img alt="Information flowchart for setting up inflow generation and FAST.Farm simulations. Here, *S*\ =\ *X*, *Y*, or *Z*." src="../../../_images/FFarmFlowChart.png" style="width: 100%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.64 </span><span class="caption-text">Information flowchart for setting up inflow generation and FAST.Farm
+simulations. Here, <em>S</em> = <em>X</em>, <em>Y</em>, or <em>Z</em>.</span><a class="headerlink" href="#ff-ffarmsetup" title="Permalink to this image"></a></p>
+</div>
+<p>Note that this schematic only includes information relevant to FAST.Farm
+simulations. Typically, additional inflow information is required to
+generate inflow and the OpenFAST models. The specific equations that
+should be used to compute the input parameters are discussed in
+<a class="reference internal" href="#ff-sec-paramselect"><span class="std std-numref">Section 4.19.6.4</span></a>. It is highly recommended that the
+Python notebooks provided in the FAST.Farm <a class="reference external" href="https://github.com/OpenFAST/python-toolbox/tree/main/pyFAST/fastfarm">tools repository</a> be
+used when setting up new inflow or a FAST.Farm case. Improperly setting these
+parameters can lead to common errors and/or excessive interpolation, which
+should be avoided. Note that this chapter assumes a wind direction of
+<span class="math notranslate nohighlight">\(0^\circ\)</span>– i.e., ambient wind that propagates along the <em>+X</em> axis of
+the global inertial frame coordinate system.</p>
+<p>When generating a FAST.Farm simulation setup and corresponding inflow, planning
+is important. Improper planning could results in FAST.Farm errors and/or needing
+to regenerate the inflow. Values that should be known <em>a priori</em> are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>wind turbine rotor diameter (<span class="math notranslate nohighlight">\(D^\text{Rotor}\)</span>);</p></li>
+<li><p>wind turbine hub height;</p></li>
+<li><p>maximum turbine chord length (<span class="math notranslate nohighlight">\(c_\text{max}\)</span>);</p></li>
+<li><p>maximum turbine natural frequency (<span class="math notranslate nohighlight">\(f_\text{max}\)</span>);</p></li>
+<li><p><em>X</em>, <em>Y</em>, and <em>Z</em> locations of all turbines in the wind farm;</p></li>
+<li><p>desired mean inflow hub-height wind velocity; and</p></li>
+<li><p>mean inflow wind direction.</p></li>
+</ul>
+</div></blockquote>
+<p>The values that must be computed using this information are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>inflow and FAST.Farm domain size (height, width, and length);</p></li>
+<li><p>FAST.Farm high- and low-resolution domain origin locations (<strong>S0_High</strong> and
+<strong>S0_Low</strong>, where <em>S</em> = <em>X</em>, <em>Y</em>, or <em>Z</em>);</p></li>
+<li><p>high- and low-resolution temporal discretization values (<strong>DT_High</strong> and
+<strong>DT_Low</strong>);</p></li>
+<li><p>high- and low-resolution spatial discretization values (<strong>DS_High</strong> and <strong>DS_Low</strong>);</p></li>
+<li><p>number of grid points in the high- and low-resolution domains (<strong>NS_High</strong> and <strong>NS_Low</strong>);</p></li>
+<li><p>actual mean inflow hub-height wind velocity (<span class="math notranslate nohighlight">\(V_\text{hub}\)</span>);</p></li>
+<li><p>additional wake dynamics properties (<strong>dr</strong>, <strong>NumRadii</strong>, and
+<strong>NumPlanes</strong>).</p></li>
+</ul>
+</div></blockquote>
+<p>With this information, inflow generation can begin. Though not required, it is
+recommended to complete inflow generation before setting up the FAST.Farm
+simulation.  This is because the realized spatial discretization values and/or
+mean hub height velocity can differ from what is desired. Having the correct
+values of these parameters leads to less interpolation of the wind data in
+FAST.Farm simulations, which would otherwise reduce the ambient turbulence.</p>
+<p>When setting up the inflow generation, the recommended spatial and
+temporal discretizations should be used, as discussed in
+<a class="reference internal" href="#ff-sec-discrecs"><span class="std std-numref">Section 4.19.6.3</span></a>. If using:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Mod_AmbWind</strong> = 1, a high-fidelity must be generated and all
+discretization values can be specified as the exact desired value.</p></li>
+<li><p><strong>Mod_AmbWind</strong> = 2, a single synthetic inflow (TurbSim or Mann) must be
+generated using the high-resolution discretization values recommended
+herein.</p></li>
+<li><p><strong>Mod_AmbWind</strong> = 3, multiple synthetic inflows must be generated. In
+this case, the recommended high-resolution discretizations should be used
+for all high-resolution inflows generated. For the low-resolution inflow
+generation, the recommended high-resolution temporal discretization and
+low-resolution spatial discretization should be used.</p></li>
+</ul>
+</div></blockquote>
+<p>If using synthetic inflow (TurbSim or Mann), the inflow streamwise spatial
+discretization, <strong>DX_Inflow</strong>, is not specified by the user, but is instead
+based on Taylor’s frozen-turbulence assumption. Because the streamwise
+discretization of the FAST.Farm domain should be based on the inflow streamwise
+discretization, the user should compute this value using the inflow time step
+(<strong>DT_High</strong>) and the advection speed of the synthetic wind data,
+<span class="math notranslate nohighlight">\(V_\text{Advect}\)</span>. The <span class="math notranslate nohighlight">\(V_\text{Advect}\)</span> may differ from the actual
+wind speed at hub height, <span class="math notranslate nohighlight">\(V_\text{Hub}\)</span>, as discussed in
+<a class="reference internal" href="#ff-sec-synthetic"><span class="std std-numref">Section 4.19.6.2.3</span></a>, and should be computed directly from the generated
+synthetic inflow.  Therefore, the exact resulting <strong>DX_Inflow</strong> will not be
+known until after the inflow has been generated.  Additionally, <strong>DX_Inflow</strong>
+will likely be much smaller than the desired values of <strong>DX_Low</strong> and
+<strong>DX_High</strong>.</p>
+<p>When setting up the FAST.Farm simulation itself, many of the values that were
+used for inflow generation will be used again here to specify the FAST.Farm
+domain. Note that this domain specification in FAST.Farm is only needed when
+using synthetic turbulence inflow. The origin of the low-resolution domain
+(<strong>X0_Low</strong>, <strong>Y0_Low</strong>, and <strong>Z0_Low</strong>) should be determined based on:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>the minimum turbine <em>X</em>- and <em>Y</em>-locations;</p></li>
+<li><p>turbine yaw misalignment;</p></li>
+<li><p>inflow wind direction; and</p></li>
+<li><p>the expected range of wake meandering.</p></li>
+</ul>
+</div></blockquote>
+<p>Specifically, <strong>X0_Low</strong> must accommodate all turbine
+locations as well as allow enough room to analyze the undisturbed inflow
+upstream of the wind farm, if desired. <strong>Y0_Low</strong> must accommodate all
+turbine locations as well as the horizontal wake meandering. When using
+TurbSim, which cannot generate wind at ground level, <strong>Z0_Low</strong> should
+be close to but above ground level.</p>
+<p>The FAST.Farm domain width and height are then computed using:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>the turbine locations;</p></li>
+<li><p>the calculated <strong>Y0_Low</strong> and <strong>Z0_Low</strong> values;</p></li>
+<li><p>the horizontal and vertical meandering distance requirements;</p></li>
+<li><p>turbine yaw misalignment; and</p></li>
+<li><p>the inflow wind direction.</p></li>
+</ul>
+</div></blockquote>
+<p>The domain length should be based on the streamwise extent of the wind farm and,
+if desired, allow enough room to analyze the waked outflow downstream of the
+wind farm.</p>
+<p>The low-resolution domain in FAST.Farm (<strong>DY_Low</strong> and <strong>DZ_Low</strong>) and number of
+grid points (<strong>NY_Low</strong> and <strong>NZ_Low</strong>) can then be computed using:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>the domain width and height;</p></li>
+<li><p>the lateral and vertical spacing of the generated inflow; and</p></li>
+<li><p>DY_Inflow and DZ_Inflow.</p></li>
+</ul>
+</div></blockquote>
+<p>The low-resolution temporal discretization (<strong>DT_Low</strong>)
+should be computed using:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>the turbine diameter;</p></li>
+<li><p>inflow hub-height velocity; and</p></li>
+<li><p>the inflow temporal discretization.</p></li>
+</ul>
+</div></blockquote>
+<p>The streamwise spacing and number of grid points (<strong>DX_Low</strong> and <strong>NX_Low</strong>)
+should also be based on <strong>DT_Low</strong> and the mean wind speed.</p>
+<p>The final domain parameters to calculate are the
+locations of the high-resolution domains (<strong>X0_High</strong>, <strong>Y0_High</strong>, and
+<strong>Z0_High</strong>) and the number of grid points required to make up the
+domains (<strong>NX_High</strong>, <strong>NY_High</strong>, and <strong>NZ_High</strong>). These quantities
+should be determined from:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>DS_High</strong> values;</p></li>
+<li><p>turbine locations; and</p></li>
+<li><p>the size of the high-resolution domains.</p></li>
+</ul>
+</div></blockquote>
+<p>The <strong>DS_High</strong> values should be selected based on recommended high-resolution
+domain discretization criteria, discussed in <a class="reference internal" href="#ff-sec-discrecs"><span class="std std-numref">Section 4.19.6.3</span></a>.</p>
+<p>Additional wake dynamics quantities are needed when specifying the FAST.Farm
+input file, as discussed further in <a class="reference internal" href="#ff-wake-dynamics-parameters"><span class="std std-numref">Section 4.19.6.4.2</span></a>.
+It is recommended to set <strong>dr</strong> to <span class="math notranslate nohighlight">\(\le D^\text{Rotor} / 15\)</span>;
+<strong>NumRadii</strong> on wake diameter and <strong>dr</strong>; and <strong>NumPlanes</strong> on <strong>DT_Low</strong>,
+inflow hub-height velocity, and the distance between turbine locations.</p>
+<p>A sample turbine layout and domain locations are shown in
+<a class="reference internal" href="#ff-ffarmlayout"><span class="std std-numref">Fig. 4.65</span></a>.</p>
+<div class="figure align-center" id="ff-ffarmlayout">
+<a class="reference internal image-reference" href="../../../_images/FFarmLayout.png"><img alt="Schematic of example 9-turbine wind farm layout, including low- and high-resolution domains and turbine locations." src="../../../_images/FFarmLayout.png" style="width: 100%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.65 </span><span class="caption-text">Schematic of example 9-turbine wind farm layout, including low- and
+high-resolution domains and turbine locations.</span><a class="headerlink" href="#ff-ffarmlayout" title="Permalink to this image"></a></p>
+</div>
+</div>
+<div class="section" id="inflow-wind-generation">
+<h2><span class="section-number">4.19.6.2. </span>Inflow Wind Generation<a class="headerlink" href="#inflow-wind-generation" title="Permalink to this heading"></a></h2>
+<p>This section includes guidelines by which turbulent inflow should be
+generated for use with FAST.Farm.</p>
+<div class="section" id="high-fidelity-precursor-ambient-inflow">
+<h3><span class="section-number">4.19.6.2.1. </span>High-Fidelity Precursor Ambient Inflow<a class="headerlink" href="#high-fidelity-precursor-ambient-inflow" title="Permalink to this heading"></a></h3>
+<p>There are many different methods by which high-fidelity precursor
+ambient inflow can be generated. This section focuses on generating such
+inflow using
+<a class="reference external" href="https://github.com/NatLabRockies/SOWFA-6/blob/ee5b13875ea8f1088f4ca79ba41ff8be34870761/SOWFA_Training.NAWEA.2017_web.pdf">SOWFA</a>.</p>
+<p>When using SOWFA to generate FAST.Farm precursor inflow, the <em>ABLSolver</em>
+preprocessor is used. It is important to note the baseline high-fidelity
+solution is not directly used as inflow for FAST.Farm, but is instead
+sampled within a specified domain and discretization. This sampling is
+done through SOWFA and specified in a SOWFA input file. The inflow data
+are written out in 3D volume VTK-formatted files, as described in
+<a class="reference internal" href="InputFiles.html#ff-ambwindvtk"><span class="std std-numref">Section 4.19.4.3</span></a>. These are large ASCII-formatted
+files; as such, decreasing the precision to, e.g., 3 digits is
+recommended. The domain size and low-resolution domain discretization
+used for SOWFA simulations is much larger than what is required for
+FAST.Farm simulations. Therefore, sampling files must be set up to
+generate boundary conditions for use with FAST.Farm, based on FAST.Farm
+discretization suggestions detailed in <a class="reference internal" href="#ff-sec-discrecs"><span class="std std-numref">Section 4.19.6.3</span></a>.
+Two sampling files are needed: one for the low-resolution sampling for
+the farm-scale domain and one for the high-resolution sampling for the
+turbine-scale domains. Each sampling file defines the spatial and
+temporal discretization that will be used in the FAST.Farm simulations.
+The low-resolution domain file defines a single low-resolution domain
+that will be used for the FAST.Farm simulations; the high-resolution
+domain file defines each high-resolution domain that will be used for
+the FAST.Farm simulations. Thus, it is important to know exactly where
+all turbines will be located in the FAST.Farm simulation before
+generating the inflow. Note that this FAST.Farm sampling step can be
+computationally expensive. Therefore, it is recommended that users make
+sure all inputs are correct before executing SOWFA, including turbine
+locations and discretization levels.</p>
+<p>An example Python notebook is provided in the FAST.Farm <a class="reference external" href="https://github.com/OpenFAST/python-toolbox/tree/main/pyFAST/fastfarm">tools repository</a> to
+assist in setting up these files for a given FAST.Farm simulation.</p>
+</div>
+<div class="section" id="complex-terrain">
+<h3><span class="section-number">4.19.6.2.2. </span>Complex Terrain<a class="headerlink" href="#complex-terrain" title="Permalink to this heading"></a></h3>
+<p>Complex terrain, or a time-varying sea-surface elevation for offshore
+systems, can be modeled in FAST.Farm by providing ambient inflow data
+that are terrain following, e.g., by modeling the surface boundary
+condition in an LES precursor. The VTK format used by FAST.Farm is
+spatially uniform. To accommodate complex terrain or waves with a
+uniform grid, the wind speed for points below the terrain surface should
+be set to NaN. Any NaN value will be trapped by FAST.Farm and marked as
+outside of the domain, and so, unused by calculations within the AWAE
+module. When the ambient wind inflow is terrain following, the wakes
+will naturally follow the terrain as well, even though FAST.Farm does
+not include any explicit models for complex terrain, flow recirculation
+or separation, or local pressure gradients.</p>
+<p>If using a SOWFA inflow precursor, the complex terrain is accounted for
+in the SOWFA inflow precursor generation, and so, no modification to the
+<em>vtk</em> files is required to account for complex terrain when sampling for
+a FAST.Farm simulation.</p>
+</div>
+<div class="section" id="synthetic-turbulence-ambient-inflow">
+<span id="ff-sec-synthetic"></span><h3><span class="section-number">4.19.6.2.3. </span>Synthetic Turbulence Ambient Inflow<a class="headerlink" href="#synthetic-turbulence-ambient-inflow" title="Permalink to this heading"></a></h3>
+<p>Synthetically generated turbulent inflow can be used in FAST.Farm to
+accurately predict turbine response and wake dynamics across different
+atmospheric conditions. There are several ways to achieve this; any
+method can be used as long as it produces an output file in a format
+supported by <em>InflowWind</em>. Modeling guidance for TurbSim and the Mann
+model are discussed next.</p>
+<div class="section" id="turbsim">
+<h4><span class="section-number">4.19.6.2.3.1. </span>TurbSim<a class="headerlink" href="#turbsim" title="Permalink to this heading"></a></h4>
+<p>When using the NREL tool <a class="reference external" href="https://github.com/OpenFAST/openfast/tree/master/modules/turbsim">TurbSim
+v2</a>,
+different options are available to drive the synthetic turbulence
+towards specific desired outcomes, e.g.;</p>
+<ol class="arabic simple">
+<li><p>standard or user-defined time-averaged wind profile (shear, veer);</p></li>
+<li><p>standard or user-defined velocity spectra in three directions (along
+the wind, u, and transverse, v and w);</p></li>
+<li><p>standard or user-defined spatial point-to-point coherence; and</p></li>
+<li><p>standard or user-defined component-to-component correlations
+(Reynolds stresses).</p></li>
+</ol>
+<p>Additionally, TurbSim v2 allows the user to generate turbulent wind that
+is consistent with user-defined three-component wind time series at one
+or more points (i.e., constrained wind). These options can be used
+separately or in some combination (though user-defined spectra and
+user-defined time series can not be used together). When defined
+appropriately, all these methods can result in good statistical
+comparison of turbine response and wake dynamics between FAST.Farm
+results and a reference data set, e.g., compared with an LES precursor
+or physically measured inflow. However, attention must be paid when
+generating these inflows to ensure atmospheric conditions are modeled
+properly.</p>
+<p>In particular, TurbSim generates wind velocities transversely throughout
+the domain using u-, v-, and w-spatial-coherence models based on a
+selection of coherence model equations and their associated parameters.
+These models and parameters can either be specified explicitly or left
+as <em>default</em> values in TurbSim. When the IEC spatial-coherence model is
+selected, spatial coherence is computed using
+Eq. <a class="reference internal" href="#equation-eq-ieccoh">(4.221)</a> (<span id="id1">[<a class="reference internal" href="zrefs.html#id33" title="B. Jonkman. Turbsim user's guide v2.00.00. Technical Report NREL/TP-xxxx-xxxxx, National Renewable Energy Laboratory, Golden, CO, October 2014.">ff-Jon14</a>]</span>).</p>
+<div class="math notranslate nohighlight" id="equation-eq-ieccoh">
+<span class="eqno">(4.221)<a class="headerlink" href="#equation-eq-ieccoh" title="Permalink to this equation"></a></span>\[Coh_{i,j_K}(f)=exp\left(-a_K\sqrt{\left(\frac{fr}{V_\text{Advect}}\right)^2+(rb_K)^2}~\right)\]</div>
+<p>where <span class="math notranslate nohighlight">\(V_\text{Advect}\)</span> is the average wind speed at the hub height
+specified in TurbSim, which is also the advection speed in <em>InflowWind</em>;
+<span class="math notranslate nohighlight">\(Coh_{i,j_K}\)</span> is the spatial coherence between points <span class="math notranslate nohighlight">\(i\)</span>
+and <span class="math notranslate nohighlight">\(j\)</span> for the velocity components <span class="math notranslate nohighlight">\(K=u,v,w\)</span>; <span class="math notranslate nohighlight">\(r\)</span> is
+the distance between points <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>; <span class="math notranslate nohighlight">\(a_K\)</span> is the
+coherence decrement parameter; and <span class="math notranslate nohighlight">\(b_K\)</span> is the coherence offset
+parameter. It was discovered in <span id="id2">[<a class="reference internal" href="zrefs.html#id25" title="K. Shaler and et al. Fast.farm response of varying wind inflow techniques. In 37th Wind Energy Symposium. San Diego, CA, 2019. AIAA. doi:https://arc.aiaa.org/doi/pdf/10.2514/6.2019-2086.">ff-Seal19b</a>]</span> that the
+use of the IEC coherence model with default coherence parameters
+together with the IEC Kaimal spectra results in negligible wake
+meandering. This is because the default v- and w-coherence parameters in
+TurbSim are set such that <span class="math notranslate nohighlight">\(a_K\)</span> are very large numbers and
+<span class="math notranslate nohighlight">\(b_K=0\)</span>, effectively resulting in no coherence
+(<span class="math notranslate nohighlight">\(Coh_{i,j_K}(f)=0\)</span>) (<span id="id3">[<a class="reference internal" href="zrefs.html#id33" title="B. Jonkman. Turbsim user's guide v2.00.00. Technical Report NREL/TP-xxxx-xxxxx, National Renewable Energy Laboratory, Golden, CO, October 2014.">ff-Jon14</a>]</span>).  <a class="footnote-reference brackets" href="#id14" id="id4">1</a> This
+lack of meandering is nonphysical and will have a nonphysical impact on
+the response of downstream turbines. Instead of using the default
+values, the v- and w-coherence parameters were specified
+in <span id="id5">[<a class="reference internal" href="zrefs.html#id25" title="K. Shaler and et al. Fast.farm response of varying wind inflow techniques. In 37th Wind Energy Symposium. San Diego, CA, 2019. AIAA. doi:https://arc.aiaa.org/doi/pdf/10.2514/6.2019-2086.">ff-Seal19b</a>]</span> to identically equal the u-coherence
+parameters specified in the IEC standard, such that:
+<span class="math notranslate nohighlight">\(SCMod2=SCMod3=IEC\)</span>; <span class="math notranslate nohighlight">\(a_K=12.0\)</span> and <span class="math notranslate nohighlight">\(b_K=0.00035273\)</span>
+m<span class="math notranslate nohighlight">\(^{-1}\)</span>; and
+<span class="math notranslate nohighlight">\(CohExp=0.0\)</span>. (<span id="id6">[<a class="reference internal" href="zrefs.html#id33" title="B. Jonkman. Turbsim user's guide v2.00.00. Technical Report NREL/TP-xxxx-xxxxx, National Renewable Energy Laboratory, Golden, CO, October 2014.">ff-Jon14</a>]</span>). Properly setting
+spatial coherence parameters for the transverse wind velocity components
+is necessary to accurately predict wake meandering. It is also important
+to note that, in TurbSim, the <span class="math notranslate nohighlight">\(a_K\)</span> and <span class="math notranslate nohighlight">\(b_K\)</span> values must be
+specified within quotation marks (e.g., <code class="docutils literal notranslate"><span class="pre">&quot;12.0</span> <span class="pre">0.00035273&quot;</span></code>) or, at
+present, the values are set to <span class="math notranslate nohighlight">\(0\)</span>.</p>
+<p>When using TurbSim to generate the full-field turbulent wind data for
+FAST.Farm, one often wants the TurbSim grid to extend well above the hub
+height to capture vertical wake meandering due to the <span class="math notranslate nohighlight">\(w\)</span>
+component of turbulence. Because TurbSim requires that
+<strong>HubHt</strong><span class="math notranslate nohighlight">\(&gt; 0.5*\)</span><strong>GridHeight</strong>, it is often necessary to
+specify an artificially high <strong>HubHt</strong> in TurbSim. To properly set the
+<strong>HubHt</strong> parameter, the following equation is suggested:</p>
+<div class="math notranslate nohighlight">
+\[\textbf{HubHt} = z_\text{bot}+\textbf{GridHeight}-0.5D_\text{grid}\]</div>
+<p>where <span class="math notranslate nohighlight">\(z_\text{bot}\)</span> is the desired bottom vertical location of
+the grid (just above ground level) and
+<span class="math notranslate nohighlight">\(D_\text{grid}=MIN\left( \textbf{GridWidth}, \textbf{GridHeight}\right)\)</span>.
+Note that the <strong>HubHt</strong> parameter is used by TurbSim as the reference
+height for the wind speed used (<span class="math notranslate nohighlight">\(V_\text{Advect}\)</span>) to define the
+wind-speed standard deviations and spatial coherence in the IEC turbulence
+models, as well as the advection speed (in <em>InflowWind</em>) for all models. Thus,
+the resulting wind-speed standard deviations and spatial coherence in the IEC
+turbulence models will not be what is expected without explicit consideration of
+the difference in wind speeds between the <strong>HubHt</strong> used by TurbSim and the
+actual turbine hub height. The advection speed (in <em>InflowWind</em>) will likely
+also be faster than it would be when the actual hub height speed is used. A
+separate reference height (<strong>RefHt</strong>) is specified in TurbSim, which is the
+height at which, e.g., the reference wind speed is enforced. This value is also
+used to properly set the power law velocity profile. Future work is needed to
+<a class="reference external" href="https://github.com/OpenFAST/openfast/issues/199">decouple the HubHt parameter from the TurbSim grid generation</a>.</p>
+<p>It is generally recommended that the full-field wind data files be
+generated periodically. This effectively extends the wind domain forever
+along the wind propagation direction.</p>
+<p>When using ambient wind through multiple instances of the <em>InflowWind</em>
+module, i.e, when <strong>Mod_AmbWind</strong> = 3, only one <em>InflowWind</em> input file
+is specified. However, multiple wind data files are used, each with a
+different name. Specifically, the file name in the <em>InflowWind</em> input
+file in this case refers only to the directory path of the wind files.
+The wind file root names are required to be <em>Low</em> for the low-resolution
+domain and <em>HighT&lt;n:math:`_text{t}`&gt;</em> for the high-resolution domain
+associated with turbine <span class="math notranslate nohighlight">\(n_\text{t}\)</span>.  <a class="footnote-reference brackets" href="#id15" id="id7">2</a> When steady inflow in
+<em>InflowWind</em> is used (<strong>WindType</strong> = 1), setting <strong>Mod_AmbWind</strong> to 2 or
+3 produces identical results. When using full-field turbulent wind data
+in <em>InflowWind</em> with <strong>Mod_AmbWind</strong> = 3, it is required that:</p>
+<ul class="simple">
+<li><p>The full-field wind data files be generated periodically. This
+effectively extends the wind domain forever along the wind
+propagation direction.</p></li>
+<li><p>The input parameter <strong>PropagationDir</strong> in the <em>InflowWind</em> input file
+be set to <span class="math notranslate nohighlight">\(0\)</span> degrees so that the wind propagates along the <em>X</em>
+axis of the FAST.Farm inertial-frame coordinate system.</p></li>
+<li><p>The wind data files associated with the high-resolution ambient wind
+be spatially and temporally synchronized with the low-resolution wind
+data file. The spatial synchronization must be based on the global
+<em>X-Y-Z</em> offsets of each turbine origin relative to the origin of the
+inertial frame coordinate system. For each wind turbine, the velocity
+time series at the turbine location should be extracted from the
+low-resolution TurbSim domain. To account for turbine downstream
+distance, each time series should then be offset in time based on the
+freestream velocity and turbine location. This time series should
+then be used to generate the high-resolution TurbSim inflow for each
+turbine. The TurbSim user’s manual contains details on how to
+generate a TurbSim inflow using a specified time
+series <span id="id8">[<a class="reference internal" href="zrefs.html#id33" title="B. Jonkman. Turbsim user's guide v2.00.00. Technical Report NREL/TP-xxxx-xxxxx, National Renewable Energy Laboratory, Golden, CO, October 2014.">ff-Jon14</a>]</span>.</p></li>
+</ul>
+</div>
+<div class="section" id="mann-model">
+<h4><span class="section-number">4.19.6.2.3.2. </span>Mann Model<a class="headerlink" href="#mann-model" title="Permalink to this heading"></a></h4>
+<p>When generating stochastic turbulence with the Mann model, <span class="math notranslate nohighlight">\(11\)</span>
+user-defined inputs are required: <strong>prefix</strong>, <strong>alpha_epsilon</strong>, <strong>L</strong>,
+<strong>gamma</strong>, <strong>seed</strong>, <strong>nx</strong>, <strong>ny</strong>, <strong>nz</strong>, <strong>dx</strong>, <strong>dy</strong>, and <strong>dz</strong>.
+The parameters that should be selected in conjunction with FAST.Farm
+parameters are discussed here.</p>
+<p><strong>dx</strong>, <strong>dy</strong>, and <strong>dz</strong> – These parameters should be selected based on
+the high-resolution spatial discretization recommendations discussed
+below in <a class="reference internal" href="#ff-sec-discrecs"><span class="std std-numref">Section 4.19.6.3</span></a>.</p>
+<p><strong>nx</strong> – This value is required to be a power of <span class="math notranslate nohighlight">\(2\)</span>. To ensure no
+repetition of the turbulence box for the duration of the simulation, the
+following equation is recommended:</p>
+<div class="math notranslate nohighlight">
+\[\textbf{nx} = 2^{CEILING\big[log_2
+   \left(\frac{V_\text{Advect}\textbf{T_Max}}
+      {\textbf{dx}}\right)\big]}\]</div>
+<p>where <span class="math notranslate nohighlight">\(V_\text{Advect}\)</span> is the advection speed of the Mann box and
+<span class="math notranslate nohighlight">\(CEILING\big[x\big]\)</span> rounds <span class="math notranslate nohighlight">\(x\)</span> to the next highest integer. This
+equation ensures that the turbulence box will not repeat during the simulation
+and also that the power of two criteria is satisfied.</p>
+<p><strong>ny</strong> and <strong>nz</strong> – These values are also required to be powers of
+<span class="math notranslate nohighlight">\(2\)</span>. With this requirement in mind, these values should be
+selected to ensure the entire desired domain width (<em>Y</em>) and height
+(<em>Z</em>) are captured, as discussed below in
+<a class="reference internal" href="#ff-sec-lowres"><span class="std std-numref">Section 4.19.6.4.1.1</span></a>.</p>
+<p>The <em>InflowWind</em> input file has a specific section for using a Mann turbulence
+box. This section requires the input of <strong>nx</strong>, <strong>ny</strong>, <strong>nz</strong>, <strong>dx</strong>, <strong>dy</strong>,
+<strong>dz</strong>, <strong>RefHt</strong>, and <strong>URef</strong>. These values should be specified exactly as
+those used to generate the inflow. Note that <strong>dx</strong>, <strong>dy</strong>, and <strong>dz</strong>
+specified in <em>InflowWind</em> should be the same as <strong>dX_High</strong>, <strong>dY_High</strong>, and
+<strong>dZ_High</strong> in FAST.Farm, respectively.  <strong>RefHt</strong> should be defined as follows:</p>
+<div class="math notranslate nohighlight">
+\[\textbf{RefHt} = 0.5\textbf{dz}(\textbf{nz} - 1)+z_\text{bot}\]</div>
+<p>where <strong>URef</strong> is the mean wind speed at the reference height, and dictates the
+advection speed of the Mann box, identified here as <span class="math notranslate nohighlight">\(V_\text{Advect}\)</span>.</p>
+<p>When using a Mann box, it is important to know that <strong>the x-axis
+direction is opposite the convention used by InflowWind. Although the
+interpretation in InflowWind (including OpenFAST and FAST.Farm) is
+consistent with how Mann boxes are used in other aeroelastic software,
+the interpretation is nonphysical</strong>. If desired, the user can adjust the
+FAST.Farm source code to read the x-axis in reverse. Correcting this
+error universally across all aeroelastic software that use Mann boxes is
+needed <a class="reference external" href="https://github.com/OpenFAST/openfast/issues/256">future
+work</a>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="low-and-high-resolution-domain-discretization">
+<span id="ff-sec-discrecs"></span><h2><span class="section-number">4.19.6.3. </span>Low- and High-Resolution Domain Discretization<a class="headerlink" href="#low-and-high-resolution-domain-discretization" title="Permalink to this heading"></a></h2>
+<p>Spatial and temporal discretization can affect wake meandering, turbine
+structural response, and resulting wake and load calculations. This
+section summarizes recommendations for discretization values in terms of
+geometry and wind speed that will ensure a converged solution, while
+maximizing computational efficiency. For details on how these
+recommendations were formed, see <span id="id9">[<a class="reference internal" href="zrefs.html#id16" title="K. Shaler and et al. Effects of inflow spatiotemporal discretization on wake meandering and turbine structural response using fast.farm. Journal of Physics: Conference Series, May 2019. doi:10.1088/1742-6596/1256/1/012023.">ff-Seal19a</a>]</span>. Though
+developed for FAST.Farm use, these guidelines are likely applicable to
+any DWM-type model or aeroelastic analysis.</p>
+<div class="section" id="low-resolution-domain">
+<h3><span class="section-number">4.19.6.3.1. </span>Low-Resolution Domain<a class="headerlink" href="#low-resolution-domain" title="Permalink to this heading"></a></h3>
+<p>The low-resolution domain in FAST.Farm is primarily responsible for wake
+meandering and merging. As such, convergence was assessed by comparing
+trends in standard deviation of horizontal and vertical meandering wake
+center positions for the wakes behind each turbine at various distances
+downstream. It was found that the mean horizontal and vertical wake
+trajectories have negligible dependence of <strong>DT_Low</strong> or <strong>DS_Low</strong>. The
+following equation can be used to ensure convergence of wake meandering
+in the low-resolution domain:</p>
+<div class="math notranslate nohighlight">
+\[\textbf{DT_Low} \le
+   \frac{C_\text{Meander}D^\text{Wake}}{10V_\text{Hub}}\]</div>
+<p>This equation is based on the low-pass cutoff frequency for wake
+meandering
+<span class="math notranslate nohighlight">\(\left(\frac{V_\text{Hub}}{C_\text{Meander}D^\text{Wake}}\right)\)</span>
+from <span id="id10">[<a class="reference internal" href="zrefs.html#id4" title="G. C. Larsen and et al. Wake meander: a pragmatic approach. Wind Energy, 11:337-95, 2008. doi:http://onlinelibrary.wiley.com/doi/10.1002/we.267/epdf.">ff-Leal08</a>]</span> (in which
+<span class="math notranslate nohighlight">\(C_\text{Meander}=2\)</span>, but <span class="math notranslate nohighlight">\(C_\text{Meander}\)</span> defaults to
+<span class="math notranslate nohighlight">\(1.9\)</span> in FAST.Farm) and effectively specifies that the highest
+frequency of wake meandering should be resolved by at least <span class="math notranslate nohighlight">\(10\)</span>
+time steps. Note that <span class="math notranslate nohighlight">\(D^\text{Wake}\)</span> can be approximated as
+<span class="math notranslate nohighlight">\(D^\text{Rotor}\)</span> in this calculation.</p>
+<p>When <strong>Wake_Mod=2,3</strong>, for numerical stability, it is recommended to set the time step with a value that (approximately) satisfies the following guideline (see Equation 20 of the following <a class="reference external" href="https://doi.org/10.5194/wes-6-555-2021">paper</a>):</p>
+<div class="math notranslate nohighlight">
+\[\textbf{DT_Low}  \lessapprox \frac{dr}{2 V_\text{Hub}}\]</div>
+<p>Spatial discretization convergence was assessed in the same manner as
+temporal discretization. Minimal sensitivity to spatial discretization
+was found for the low-resolution domain in the range of spatial
+discretizations considered. Nonetheless, the following equation is
+recommended for identifying the maximum suggested <strong>DS_Low</strong>, where
+<span class="math notranslate nohighlight">\(S\)</span> refers to <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(Y\)</span>, or <span class="math notranslate nohighlight">\(Z\)</span> and the
+denominator has the units [m/s]:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\textbf{DS_Low} \le
+   \frac{C_\text{Meander}D^\text{Wake}V_\text{Hub}}{150~\text{m/s}} =
+   \begin{cases}
+      \frac{\textbf{DT_Low}V_\text{Hub}^2}{15~\text{m/s}}
+         &amp; \qquad \text{for polar wake model} \\[0.5em]
+      \frac{C_\text{Meander}\textbf{DT_Low}V_\text{Hub}^2}{5~\text{m/s}}
+         &amp; \qquad \text{for curled wake model}
+   \end{cases}\end{split}\]</div>
+<p>For all synthetic turbulence methods, it is recommended that
+<strong>DX_Low</strong><span class="math notranslate nohighlight">\(= V_\text{Advect}\)</span><strong>DT_Low</strong> to avoid interpolating in
+X-direction. Note the use of the advection speed, <span class="math notranslate nohighlight">\(V_\text{Advect}\)</span>, to
+calculate <strong>DX_Low</strong>, rather than the actual hub-height wind speed,
+<span class="math notranslate nohighlight">\(V_\text{Hub}\)</span>. Additionally, <strong>X0_Low</strong> should be an integer multiple of
+<strong>DX_Low</strong>.</p>
+</div>
+<div class="section" id="high-resolution-domain">
+<h3><span class="section-number">4.19.6.3.2. </span>High-Resolution Domain<a class="headerlink" href="#high-resolution-domain" title="Permalink to this heading"></a></h3>
+<p>The high-resolution wind domain in FAST.Farm is primarily responsible
+for ambient and waked inflow local to a turbine. As such, convergence
+was assessed by comparing trends in mean and standard deviation of
+turbine structural motions and loads for each turbine.</p>
+<p>Required discretization levels vary depending on the quantity of
+interest. Thus, it is important to decide what structural components
+will be considered when selecting a high-resolution discretization
+level. Most notably, tower-base moments are the most sensitive to
+<strong>DT_High</strong>, whereas generator power and blade deflections and moments
+show little dependence on this value. To capture the full structural
+response, <strong>DT_High</strong> should be selected based on the highest
+frequencies influencing the structural excitation, including rotational
+sampling of turbulence and response, i.e., natural frequencies, of the
+pertinent structural components, <span class="math notranslate nohighlight">\(f_\text{max}\)</span> (in Hz), as in
+Equation <a class="reference internal" href="#equation-eq-dthigh-a">(4.222)</a>, where the factor of <span class="math notranslate nohighlight">\(2\)</span> is taken
+from the Nyquist sampling theorem. This is a frequently used rule of
+thumb in wind turbine aeroelastic analysis under excitation from
+turbulent inflow.</p>
+<div class="math notranslate nohighlight" id="equation-eq-dthigh-a">
+<span class="eqno">(4.222)<a class="headerlink" href="#equation-eq-dthigh-a" title="Permalink to this equation"></a></span>\[\textbf{DT_High} \le \frac{1}{2f_\text{max}}\]</div>
+<p>The required <strong>DS_High</strong> approximately corresponds to the maximum blade
+chord length of the turbine, <span class="math notranslate nohighlight">\(c_\text{max}\)</span>, as in
+Equation <a class="reference internal" href="#equation-eq-dshigh-a">(4.223)</a>. Selecting a <strong>DS_High</strong> equivalent to
+this value has long been a rule-of-thumb in wind turbine aeroelastic
+analysis under excitation from turbulent inflow.</p>
+<div class="math notranslate nohighlight" id="equation-eq-dshigh-a">
+<span class="eqno">(4.223)<a class="headerlink" href="#equation-eq-dshigh-a" title="Permalink to this equation"></a></span>\[\textbf{DS_High} \le c_\text{max}\]</div>
+</div>
+</div>
+<div class="section" id="parameter-selection">
+<span id="ff-sec-paramselect"></span><h2><span class="section-number">4.19.6.4. </span>Parameter Selection<a class="headerlink" href="#parameter-selection" title="Permalink to this heading"></a></h2>
+<p>Setting up a FAST.Farm simulation can involve specifying a large number
+of parameters, especially if the <em>InflowWind</em> module is used for the
+ambient wind. This section summarizes best practices for selecting some
+of these parameters. References are made to desired versus realized
+values. The discrepancies between these values are discussed in
+<a class="reference internal" href="#ff-sec-setup"><span class="std std-numref">Section 4.19.6.1</span></a>.</p>
+<div class="section" id="inflowwind-domain-parameters">
+<h3><span class="section-number">4.19.6.4.1. </span>InflowWind Domain Parameters<a class="headerlink" href="#inflowwind-domain-parameters" title="Permalink to this heading"></a></h3>
+<p>Care must be taken when setting up a FAST.Farm simulation using the <em>InflowWind</em>
+ambient wind inflow option. It is highly recommended that the distributed
+<a class="reference external" href="https://github.com/OpenFAST/python-toolbox/tree/main/pyFAST/fastfarm">Python notebooks</a> be
+used when setting up a new case. Improperly setting these parameters can lead to
+common errors and/or excessive interpolation, which should be avoided.  The
+methods and rules of thumb that are used in those Python notebooks are also
+discussed here.</p>
+<div class="section" id="ff-sec-lowres">
+<span id="id11"></span><h4><span class="section-number">4.19.6.4.1.1. </span>Low-Resolution Domain<a class="headerlink" href="#ff-sec-lowres" title="Permalink to this heading"></a></h4>
+<p><strong>NX_Low</strong>, <strong>NY_Low</strong>, <strong>NZ_Low</strong> – These quantities should be based on
+<strong>DS_Low</strong> and the desired domain size (<em>Sdist_Low</em>), where <em>S</em>=<em>X</em>,
+<em>Y</em> or <em>Z</em>. This integer quantity should be computed as:</p>
+<div class="math notranslate nohighlight">
+\[\textbf{NS_Low} = CEILING\left(
+   \frac{{Sdist\_Low}}{\textbf{DS_Low}}\right)+1\]</div>
+<p><strong>X0_Low</strong> – This quantity must be less than the <em>X</em> location of the
+furthest upstream turbine. It is recommended to set this value further
+upstream to allow for analysis of the ambient inflow. If using a Mann
+box, this value should be 0.</p>
+<p><strong>Y0_Low</strong> – This quantity must be less than the lowest <em>Y</em> location of
+any turbine (<strong>WT_Y_</strong>). Additional clearance is required to
+accommodate wake meandering, wake deflection, and spatial averaging used
+in the <em>AWAE</em> module. This value may be computed as:</p>
+<div class="math notranslate nohighlight">
+\[\textbf{Y0_Low} \le \textbf{WT_Y_min}-3D^\text{Rotor}\]</div>
+<p>Additional clearance should be allowed for appreciable wake meandering
+and/or yaw. For <strong>Mod_AmbWind</strong> = 2, the synthetic inflow data are
+centered around Y=0. Because of this, <strong>Y0_Low</strong> should equal
+-<em>Ydist_Low</em>/2. This is the same for the low-resolution domain with
+<strong>Mod_AmbWind</strong> = 3.</p>
+<p><strong>Z0_Low</strong> – It is recommended that this value be set close to but above
+ground level. When using TurbSim, this value can not be at or below
+ground level because TurbSim cannot generate wind at these locations.</p>
+<p><strong>DX_Low</strong>, <strong>DY_Low</strong>, <strong>DZ_Low</strong> – Desired spatial values are not
+discussed here, as they are covered in detail in
+<a class="reference internal" href="#ff-sec-discrecs"><span class="std std-numref">Section 4.19.6.3</span></a>. However, the actual quantities used
+might differ from the desired values when using synthetic inflow, as
+discussed in <a class="reference internal" href="#ff-sec-synthetic"><span class="std std-numref">Section 4.19.6.2.3</span></a>. To determine the actual
+quantity, the following equation is suggested when using synthetic
+inflow:</p>
+<div class="math notranslate nohighlight">
+\[\textbf{DS_Low} = FLOOR\left( \frac{{DS\_Low\_Desired}}
+   {\textbf{DS_High}} \right)*\textbf{DS_High}\]</div>
+<p>Use of this equation is the best way to ensure that <strong>DS_Low</strong> will be a
+multiple integer of <strong>DS_High</strong>, reducing interpolation smoothing.</p>
+</div>
+<div class="section" id="ff-high-resolution-domain-1">
+<span id="id12"></span><h4><span class="section-number">4.19.6.4.1.2. </span>High-Resolution Domain<a class="headerlink" href="#ff-high-resolution-domain-1" title="Permalink to this heading"></a></h4>
+<p><em>Xdist_High</em>, <em>Ydist_High</em>, <em>Zdist_High</em> – Though not direct inputs, these
+lengths, widths, and heights of the high-resolution domains should be
+selected based on the size and location of the turbines. The following
+values are recommended:</p>
+<div class="math notranslate nohighlight">
+\[\textbf{Xdist_High} = \textbf{Ydist_High}
+   = \textbf{Zdist_High} \ge 1.1 D^\text{Rotor}\]</div>
+<p>If tower aerodynamic loads are desired, the high-resolution domain
+should span the entire tower and rotor:</p>
+<div class="math notranslate nohighlight">
+\[\textbf{Zdist_High} = \textbf{HubHt}
+   + \frac{1.1\ D^\text{Rotor}}{2}\]</div>
+<p>These parameters might need to be increased to account for large
+structural motion, such as for floating offshore wind applications.</p>
+<p><strong>NX_High</strong>, <strong>NY_High</strong>, <strong>NZ_High</strong> – These quantities should be based
+on <strong>DS_High</strong> and the desired domain size (<em>Sdist_High</em>), where
+<em>S</em>=<em>X</em>, <em>Y</em>, or <em>Z</em>. This integer quantity should be computed as:</p>
+<div class="math notranslate nohighlight">
+\[\textbf{NS_High} = \text{CEILING}\left(
+   \frac{{Sdist\_High}}{\textbf{DS_High}}\right)+1\]</div>
+<p><strong>X0_High</strong>, <strong>Y0_High</strong>, <strong>Z0_High</strong> – These quantities are set for each
+turbine. They should be based on turbine location and set so that the
+turbine is contained inside the high-resolution domain. It is
+recommended that <strong>X0_High</strong> and <strong>Y0_High</strong> are set approximately
+<span class="math notranslate nohighlight">\(1.1D^\text{Rotor}/2\)</span> lower than the turbine location. For the
+high-resolution domains with <strong>Mod_AmbWind</strong> = 3, the synthetic inflow
+data are centered around each turbine, based on <strong>WT_X/Y/Z</strong>.</p>
+<p><strong>DX_High</strong>, <strong>DY_High</strong>, <strong>DZ_High</strong> – Desired spatial values are not
+discussed here, as they are covered in detail in
+<a class="reference internal" href="#ff-sec-discrecs"><span class="std std-numref">Section 4.19.6.3</span></a>.</p>
+</div>
+</div>
+<div class="section" id="wake-dynamics-parameters">
+<span id="ff-wake-dynamics-parameters"></span><h3><span class="section-number">4.19.6.4.2. </span>Wake Dynamics Parameters<a class="headerlink" href="#wake-dynamics-parameters" title="Permalink to this heading"></a></h3>
+<p>Wake dynamics parameters define the axisymmetric finite-difference grid
+used for each wake plane. These planes are defined by the following
+parameters:</p>
+<ul>
+<li><p><strong>dr</strong> – This value should be set so that FAST.Farm sufficiently
+resolves the wake deficit within each plane. The following value is
+suggested:</p>
+<div class="math notranslate nohighlight">
+\[\textbf{dr} \le D^\text{Rotor} / 15\]</div>
+</li>
+</ul>
+<p>When <strong>Wake_Mod=2,3</strong>, for numerical stability, it is recommended to set the
+spacing with a value that (approximately) satisfies the following guideline (see
+Equation 20 of the following <a class="reference external" href="https://doi.org/10.5194/wes-6-555-2021">paper</a>):</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\textbf{dr} \le D^\text{Rotor} / 15\]</div>
+</div></blockquote>
+<ul>
+<li><p><strong>NumRadii</strong> – To ensure the wake deficits are accurately computed by
+FAST.Farm, <strong>NumRadii</strong> should be set so that the diameter of each
+wake plane, 2(<strong>NumRadii</strong>-1)<strong>dr</strong>, is large relative to the rotor
+diameter. The following value is suggested:</p>
+<div class="math notranslate nohighlight">
+\[\textbf{NumRadii} \ge \frac{3D^{Rotor}}{2\ \textbf{dr}}+1\]</div>
+</li>
+<li><p><strong>NumPlanes</strong> – To ensure the wake deficits are accurately captured by
+FAST.Farm, <strong>NumPlanes</strong> should be set so that the wake planes
+propagate a sufficient distance downstream, preferably until the wake
+deficit decays away (<span class="math notranslate nohighlight">\(x_\text{dist}\)</span>), with typical values
+between <span class="math notranslate nohighlight">\(10-20\times D^{Rotor}\)</span>. The following value is
+suggested:</p>
+<div class="math notranslate nohighlight">
+\[\textbf{NumPlanes} \ge \frac{x_\text{dist}}
+   {\textbf{DT_Low}\overline{V}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\overline{V}\)</span> is the average convection speed of the
+wake, which can be approximated as</p>
+<div class="math notranslate nohighlight">
+\[\overline{V} = V_\text{Hub}\left( 1-\frac{\overline{a}}{2}\right)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\overline{a}\)</span> is the time- and spatial-temporal-average
+of the axial induction at the rotor disk. <span class="math notranslate nohighlight">\(\overline{a}\)</span> is
+expected to be around <span class="math notranslate nohighlight">\(1/3\)</span> below rated wind speed (for optimal
+aerodynamic efficiency) and decreases above rated wind speed to near
+zero before the cut-out wind speed.</p>
+</li>
+</ul>
+<p>Note that because new wake planes are added each time step as the
+simulation begins, increasing <strong>NumPlanes</strong> will also increase the
+initial transient time of the simulation. The start-up transient time is
+estimated by Equation <a class="reference internal" href="#equation-eq-startup-a">(4.226)</a>.</p>
+<div class="math notranslate nohighlight" id="equation-eq-startup-a">
+<span class="eqno">(4.226)<a class="headerlink" href="#equation-eq-startup-a" title="Permalink to this equation"></a></span>\[t_\text{startup}=\textbf{DT_Low}(\textbf{NumPlanes}-2)\]</div>
+<ul class="simple">
+<li><p><strong>Mod_WakeDiam</strong> – A value of <strong>1</strong> is recommended. For further details
+on the options for this parameter, see Equation <a class="reference internal" href="FFarmTheory.html#equation-eq-dwake">(4.247)</a>.</p></li>
+<li><p><strong>Mod_Meander</strong> – A value of <strong>3</strong> is recommended. For further details
+on the options for this parameter, see Equation <a class="reference internal" href="FFarmTheory.html#equation-eq-wn">(4.256)</a>.</p></li>
+</ul>
+<p>The remaining <span class="math notranslate nohighlight">\(20\)</span> inputs are user-specified calibration
+parameters and options that influence the wake-dynamics calculations.
+The parameters may depend, e.g., on turbine operation or atmospheric
+conditions that can be calibrated to better match experimental data or
+by using an HFM benchmark. Default values have been derived for each
+calibrated parameter based on <a class="reference external" href="https://nwtc.nrel.gov/SOWFA">SOWFA</a>
+simulations for the NREL 5MW turbine
+( <span id="id13">[<a class="reference internal" href="zrefs.html#id19" title="P. Doubrawa and et al. Optimization-based calibration of fast.farm parameters against sowfa. In 36th Wind Energy Symposium. Kissimmee, FL, January 2018. AIAA. doi:https://arc.aiaa.org/doi/pdf/10.2514/6.2018-0512.">ff-Deal18</a>]</span>), but these can be overwritten by the
+user.</p>
+</div>
+</div>
+<div class="section" id="commonly-encountered-errors">
+<h2><span class="section-number">4.19.6.5. </span>Commonly Encountered Errors<a class="headerlink" href="#commonly-encountered-errors" title="Permalink to this heading"></a></h2>
+<p>This section covers errors that have been commonly encountered by users
+during the development, verification, and use of FAST.Farm. Submit any
+additional errors or questions to the <a class="reference external" href="https://wind.nrel.gov/forum/wind/">NWTC
+forum</a>.</p>
+<div class="section" id="inflowwind-errors">
+<h3><span class="section-number">4.19.6.5.1. </span>InflowWind Errors<a class="headerlink" href="#inflowwind-errors" title="Permalink to this heading"></a></h3>
+<p><em>InflowWind</em> errors tend to be related to improperly setting the high-
+or low-resolution domain sizes. Two such common errors are detailed
+here.</p>
+<div class="section" id="turbine-leaving-the-domain">
+<h4><span class="section-number">4.19.6.5.1.1. </span>Turbine Leaving the Domain<a class="headerlink" href="#turbine-leaving-the-domain" title="Permalink to this heading"></a></h4>
+<p>The following error is commonly encountered:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">T</span><span class="o">&lt;</span><span class="n">n_t</span><span class="o">&gt;</span><span class="p">:</span><span class="o">&lt;</span><span class="n">routine</span> <span class="n">name</span><span class="o">&gt;</span><span class="p">:</span><span class="n">FAST_Solution0</span><span class="p">:</span><span class="n">CalcOutputs_And_SolveForInputs</span><span class="p">:</span>
+<span class="n">SolveOption2</span><span class="p">:</span><span class="n">InflowWind_CalcOutput</span><span class="p">:</span><span class="n">CalcOutput</span><span class="p">:</span><span class="n">IfW_4Dext_CalcOutput</span>
+<span class="p">[</span><span class="n">position</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">1.8753</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">32.183</span><span class="p">)</span> <span class="ow">in</span> <span class="n">wind</span><span class="o">-</span><span class="n">file</span> <span class="n">coordinates</span><span class="p">]:</span><span class="n">Interp4D</span><span class="p">:</span><span class="n">Outside</span>
+<span class="n">the</span> <span class="n">grid</span> <span class="n">bounds</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>This error occurs when a turbine leaves the specified high-resolution
+domain. This typically happens through improper domain specification or
+large blade deflections/structural motions. Note that coordinates in
+this error are in the local frame of reference of the turbine and are
+case dependent.</p>
+<p>If the cause is improper domain specification, the error will trigger in
+the initialization stage of the simulation (<em>&lt;routine
+name&gt;=FARM_InitialCO:FWrap_t0</em>). In this case, a review of the primary
+FAST.Farm input file is suggested. In particular, the values of
+<strong>NX_High</strong>, <strong>NY_High</strong>, <strong>NZ_High</strong>, <strong>X0_High</strong>, <strong>Y0_High</strong>,
+<strong>Z0_High</strong>, <strong>dX_High</strong>, <strong>dY_High</strong>, and <strong>dZ_High</strong>, as these
+parameters define the size and location of the high-resolution domain.
+Note that the error specifies which turbine (T&lt;<em>n</em><span class="math notranslate nohighlight">\(_t\)</span>&gt;) the
+error has occurred for, which will aid in debugging where the error is.</p>
+<p>If the cause is large blade deflection or structural motion, the error
+will trigger at some point during the simulation (<em>&lt;routine
+name&gt;=FARM_UpdateStates:FWrap_t0</em>). In this case, increasing the overall
+size of the high-resolution domain could alleviate this problem.
+However, the user should first confirm that such large
+deflections/motions are expected and realistic and not due to a turbine
+modeling error.</p>
+</div>
+<div class="section" id="undefined-location">
+<h4><span class="section-number">4.19.6.5.1.2. </span>Undefined Location<a class="headerlink" href="#undefined-location" title="Permalink to this heading"></a></h4>
+<p>The following error is commonly encountered:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Farm_Initialize</span><span class="p">:</span><span class="n">InflowWind_CalcOutput</span><span class="p">:</span><span class="n">CalcOutput</span><span class="p">:</span><span class="n">IfW_TSFFWind_CalcOutput</span>
+<span class="p">[</span><span class="n">position</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">565</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="ow">in</span> <span class="n">wind</span><span class="o">-</span><span class="n">file</span> <span class="n">coordinates</span><span class="p">]:</span> <span class="n">FF</span> <span class="n">wind</span> <span class="n">array</span> <span class="n">boundaries</span>
+<span class="n">violated</span><span class="p">:</span> <span class="n">Grid</span> <span class="n">too</span> <span class="n">small</span> <span class="ow">in</span> <span class="n">Y</span> <span class="n">direction</span><span class="o">.</span> <span class="n">Y</span><span class="o">=</span><span class="mi">565</span><span class="p">;</span> <span class="n">Y</span> <span class="n">boundaries</span> <span class="o">=</span>
+<span class="p">[</span><span class="o">-</span><span class="mi">555</span><span class="p">,</span> <span class="mi">555</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>This error occurs when FAST.Farm tries to access a point in the
+low-resolution domain that is not contained in the ambient wind file.
+Note that coordinates in this error are in the global frame of reference
+and are case dependent. For this error, a review of the primary
+FAST.Farm input file is suggested. In particular, the values of
+<strong>NX_Low</strong>, <strong>NY_Low</strong>, <strong>NZ_Low</strong>, <strong>X0_Low</strong>, <strong>Y0_Low</strong>, <strong>Z0_Low</strong>,
+<strong>dX_Low</strong>, <strong>dY_Low</strong>, and <strong>dZ_Low</strong>, as these parameters define the
+size and location of the low-resolution domain. The error specifies
+along which axis the error has occurred, aiding in debugging.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id14"><span class="brackets"><a class="fn-backref" href="#id4">1</a></span></dt>
+<dd><p>TurbSim effectively neglects the spatial v- and w-coherence in the
+default IEC case because these are not prescribed by the IEC design
+standards.</p>
+</dd>
+<dt class="label" id="id15"><span class="brackets"><a class="fn-backref" href="#id7">2</a></span></dt>
+<dd><p>When HAWC format is used (<strong>WindType</strong> = 5), <cite>_u</cite>,
+<cite>_v</cite>, <cite>_w</cite> must be appended to the file names.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="OutputFiles.html" class="btn btn-neutral float-left" title="4.19.5. Output Files" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="FFarmTheory.html" class="btn btn-neutral float-right" title="4.19.7. FAST.Farm Theory" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

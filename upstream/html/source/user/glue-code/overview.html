@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.2.1. Glue Code Overview &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.2.2. Module Variables (ModVar)" href="modvar.html" />
+    <link rel="prev" title="4.2. Glue Code" href="index.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/glue-code/overview.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.2. Glue Code</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.2.1. Glue Code Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#source-files">4.2.1.1. Source files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-coupling-categories">4.2.1.2. Module coupling categories</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#time-stepping-loop-overview">4.2.1.3. Time-stepping loop (overview)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="modvar.html">4.2.2. Module Variables (<code class="docutils literal notranslate"><span class="pre">ModVar</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modglue.html">4.2.3. ModGlue – Combining Modules into Global Arrays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solver.html">4.2.4. Solver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linearization.html">4.2.5. Linearization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.2. </span>Glue Code</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.2.1. </span>Glue Code Overview</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/glue-code/overview.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="glue-code-overview">
+<span id="id1"></span><h1><span class="section-number">4.2.1. </span>Glue Code Overview<a class="headerlink" href="#glue-code-overview" title="Permalink to this heading"></a></h1>
+<p>The OpenFAST glue code is the software layer that connects individual physics modules
+(ElastoDyn, AeroDyn, HydroDyn, ServoDyn, etc.) into a coupled simulation.  It lives
+primarily in <code class="docutils literal notranslate"><span class="pre">modules/openfast-library/src/</span></code> and relies on the <code class="docutils literal notranslate"><span class="pre">ModVar</span></code> module in
+<code class="docutils literal notranslate"><span class="pre">modules/nwtc-library/src/ModVar.f90</span></code> for an abstract description of every
+variable exchanged between modules.</p>
+<p>High-level responsibilities include:</p>
+<ul class="simple">
+<li><p>Initialising each module and registering its variables with the glue code</p></li>
+<li><p>Managing multi-rate sub-stepping (modules whose time step is a divisor of the
+global time step)</p></li>
+<li><p>Mapping outputs of one module to inputs of another (motion meshes, load meshes,
+and scalar variables)</p></li>
+<li><p>Running the time-stepping loop under either loose coupling or tight
+generalized-alpha coupling</p></li>
+<li><p>Linearising the assembled system to produce state-space matrices</p></li>
+</ul>
+<div class="section" id="source-files">
+<h2><span class="section-number">4.2.1.1. </span>Source files<a class="headerlink" href="#source-files" title="Permalink to this heading"></a></h2>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>File</p></th>
+<th class="head"><p>Purpose</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">FAST_Subs.f90</span></code></p></td>
+<td><p>Top-level initialisation: reads input file, calls each module’s <code class="docutils literal notranslate"><span class="pre">_Init</span></code>,
+and calls <code class="docutils literal notranslate"><span class="pre">MV_AddModule</span></code> to register every module with the glue code.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">FAST_ModGlue.f90</span></code></p></td>
+<td><p>Combines per-module variable descriptions into a monolithic <code class="docutils literal notranslate"><span class="pre">ModGlueType</span></code>
+structure via <code class="docutils literal notranslate"><span class="pre">ModGlue_CombineModules</span></code>; performs linearization
+(<code class="docutils literal notranslate"><span class="pre">ModGlue_Linearize_OP</span></code>) and steady-state trimming
+(<code class="docutils literal notranslate"><span class="pre">ModGlue_CalcSteady</span></code>).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">FAST_Solver.f90</span></code></p></td>
+<td><p>Implements the generalized-alpha tight-coupling solver
+(<code class="docutils literal notranslate"><span class="pre">FAST_SolverStep</span></code>), the input-output convergence loop
+(<code class="docutils literal notranslate"><span class="pre">FAST_CalcOutputsAndSolveForInputs</span></code>), and Jacobian assembly.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">FAST_Mapping.f90</span></code></p></td>
+<td><p>Mesh-to-mesh and variable-to-variable transfer mappings.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">FAST_Funcs.f90</span></code></p></td>
+<td><p>Wrappers around module-level <code class="docutils literal notranslate"><span class="pre">CalcOutput</span></code>, <code class="docutils literal notranslate"><span class="pre">UpdateStates</span></code>,
+<code class="docutils literal notranslate"><span class="pre">CalcContStateDeriv</span></code>, <code class="docutils literal notranslate"><span class="pre">GetOperatingPoint</span></code>, and <code class="docutils literal notranslate"><span class="pre">SetOperatingPoint</span></code>
+that dispatch to the correct module instance.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ModVar.f90</span></code> (nwtc-library)</p></td>
+<td><p>The <code class="docutils literal notranslate"><span class="pre">ModVar</span></code> module: data structures (<code class="docutils literal notranslate"><span class="pre">ModVarType</span></code>, <code class="docutils literal notranslate"><span class="pre">ModVarsType</span></code>,
+<code class="docutils literal notranslate"><span class="pre">ModDataType</span></code>, <code class="docutils literal notranslate"><span class="pre">DatLoc</span></code>) and all <code class="docutils literal notranslate"><span class="pre">MV_*</span></code> subroutines.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="module-coupling-categories">
+<h2><span class="section-number">4.2.1.2. </span>Module coupling categories<a class="headerlink" href="#module-coupling-categories" title="Permalink to this heading"></a></h2>
+<p>Each module is assigned to exactly one coupling category during initialisation in
+<code class="docutils literal notranslate"><span class="pre">FAST_SolverInit</span></code>:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 15%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Category</p></th>
+<th class="head"><p>Flag</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Tight Coupling (TC)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MC_Tight</span></code></p></td>
+<td><p>States and accelerations are solved simultaneously via the generalized-alpha
+Newton iteration.  ElastoDyn, BeamDyn, and SubDyn are tight-coupling modules
+when <code class="docutils literal notranslate"><span class="pre">ModCoupling</span></code> ≥ 2.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Option 1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MC_Option1</span></code></p></td>
+<td><p>Modules whose inputs depend on TC outputs and are converged in the same
+Newton loop (e.g. HydroDyn, MoorDyn, ServoDyn with structural controllers).</p></td>
+</tr>
+<tr class="row-even"><td><p>Option 2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MC_Option2</span></code></p></td>
+<td><p>Loosely coupled modules that are called once per step before the convergence
+loop (InflowWind, SeaState, AeroDyn, etc.).</p></td>
+</tr>
+<tr class="row-odd"><td><p>Post</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MC_Post</span></code></p></td>
+<td><p>Modules whose input solve is deferred until after the convergence loop
+(ServoDyn, ExternalInflow).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="time-stepping-loop-overview">
+<h2><span class="section-number">4.2.1.3. </span>Time-stepping loop (overview)<a class="headerlink" href="#time-stepping-loop-overview" title="Permalink to this heading"></a></h2>
+<p>Each call to <code class="docutils literal notranslate"><span class="pre">FAST_SolverStep</span></code> follows this sequence:</p>
+<ol class="arabic simple">
+<li><p><strong>Correction iterations</strong> (outer loop) – at most <code class="docutils literal notranslate"><span class="pre">p%MaxConvIter</span></code> iterations.</p></li>
+<li><p><strong>Option 2</strong> – input solve + state update + <code class="docutils literal notranslate"><span class="pre">CalcOutput</span></code> for loosely coupled modules.</p></li>
+<li><p><strong>Option 1</strong> – input solve + state update for semi-implicit modules.</p></li>
+<li><p><strong>TC input solve</strong> – gather inputs for the tight-coupling modules.</p></li>
+<li><p><strong>Convergence iterations</strong> (inner loop) – Newton-Raphson updates of TC
+states and inputs until the update norm falls below <code class="docutils literal notranslate"><span class="pre">ConvTol</span></code> or the
+iteration limit is reached.</p></li>
+<li><p><strong>Post-solve input solves</strong> – ServoDyn, ExternalInflow.</p></li>
+</ol>
+<p>Module registration and variable ordering are described in detail in
+<a class="reference internal" href="modvar.html#glue-code-modvar"><span class="std std-ref">Module Variables (ModVar)</span></a>.  How the per-module variables are assembled into
+global arrays and Jacobian matrices is covered in <a class="reference internal" href="modglue.html#glue-code-modglue"><span class="std std-ref">ModGlue – Combining Modules into Global Arrays</span></a>.
+The solver algorithm and Jacobian construction are covered in
+<a class="reference internal" href="solver.html#glue-code-solver"><span class="std std-ref">Solver</span></a>.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="4.2. Glue Code" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="modvar.html" class="btn btn-neutral float-right" title="4.2.2. Module Variables (ModVar)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

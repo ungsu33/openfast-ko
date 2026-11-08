@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.4.6. OLAF Theory &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.4.7. State-Space Representation and Integration with OpenFAST" href="StateSpace.html" />
+    <link rel="prev" title="4.4.5. Output Files" href="OutputFiles.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/aerodyn-olaf/OLAFTheory.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.4. OLAF</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Introduction.html">4.4.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Acronyms.html">4.4.2. List of Symbols</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RunningOLAF.html">4.4.3. Working with OLAF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="InputFiles.html">4.4.4. Input Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="OutputFiles.html">4.4.5. Output Files</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.4.6. OLAF Theory</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#introduction-vorticity-formulation">4.4.6.1. Introduction - Vorticity Formulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#discretization-projection">4.4.6.2. Discretization - Projection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lifting-line-representation">4.4.6.3. Lifting-Line Representation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#free-vorticity-convection">4.4.6.4. Free Vorticity Convection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#free-vorticity-convection-in-polar-coordinates">4.4.6.5. Free Vorticity Convection in Polar Coordinates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#frozen-vorticity-convection">4.4.6.6. Frozen Vorticity Convection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#induced-velocity-and-velocity-field">4.4.6.7. Induced Velocity and Velocity Field</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#regularization">4.4.6.8. Regularization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#diffusion">4.4.6.9. Diffusion</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="StateSpace.html">4.4.7. State-Space Representation and Integration with OpenFAST</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FutureWork.html">4.4.8. Future Work</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.4.9. References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixA.html">4.4.10. Appendix A: OLAF Primary Input File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixB.html">4.4.11. Appendix B: Prescribed Circulation Input File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixC.html">4.4.12. Appendix C: OLAF List of Output Channels</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.4. </span>OLAF User’s Guide and Theory Manual (Free Vortex Wake in AeroDyn)</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.4.6. </span>OLAF Theory</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/aerodyn-olaf/OLAFTheory.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="olaf-theory">
+<span id="id1"></span><h1><span class="section-number">4.4.6. </span>OLAF Theory<a class="headerlink" href="#olaf-theory" title="Permalink to this heading"></a></h1>
+<p>This section details the OLAF method and provides an overview of the
+computational method, followed by a brief explanation of its integration
+with OpenFAST.</p>
+<div class="section" id="introduction-vorticity-formulation">
+<span id="sec-vorticityformulation"></span><h2><span class="section-number">4.4.6.1. </span>Introduction - Vorticity Formulation<a class="headerlink" href="#introduction-vorticity-formulation" title="Permalink to this heading"></a></h2>
+<p>The vorticity equation for incompressible homogeneous flows in the
+absence of non-conservative force is given by
+Eq. <a class="reference internal" href="#equation-eq-vorticityconservationincompr">(4.13)</a></p>
+<div class="math notranslate nohighlight" id="equation-eq-vorticityconservationincompr">
+<span class="eqno">(4.13)<a class="headerlink" href="#equation-eq-vorticityconservationincompr" title="Permalink to this equation"></a></span>\[\begin{aligned}
+\frac{d\vec{\omega}}{dt} = \frac{\partial\vec{\omega}}{\partial{t}} + \underbrace{(\vec{u} \cdot \nabla)}_{\text{convection}}\vec{\omega} = \underbrace{(\vec{\omega}\cdot\nabla)\vec{u}}_{\text{strain}} +\underbrace{\nu\Delta\vec{\omega}}_{\text{diffusion}}
+\end{aligned}\]</div>
+<p>Here, <span class="math notranslate nohighlight">\(\vec{\omega}\)</span> is the vorticity, <span class="math notranslate nohighlight">\(\vec{u}\)</span> is the
+velocity, and <span class="math notranslate nohighlight">\(\nu\)</span> is the viscosity. In free vortex wake methods,
+the vorticity equation is used to describe the evolution of the wake
+vorticity. Different approximations are introduced to ease its
+resolution, such as projecting the vorticity onto a discrete number of
+vortex elements (here vortex filaments), and separately treating the
+convection and diffusion steps, known as viscous-splitting. Several
+complications arise from the method; in particular, the discretization
+requires a regularization of the vorticity field (or velocity field) to
+ensure a smooth approximation.</p>
+<p>The forces exerted by the blades onto the flow are expressed in
+vorticity formulation as well. This vorticity is bound to the blade and
+has a circulation associated with the lift force. A lifting-line
+formulation is used here to model the bound vorticity.</p>
+<p>The different models of the implemented free vortex code are described
+in the following sections.</p>
+</div>
+<div class="section" id="discretization-projection">
+<span id="sec-discretization"></span><h2><span class="section-number">4.4.6.2. </span>Discretization - Projection<a class="headerlink" href="#discretization-projection" title="Permalink to this heading"></a></h2>
+<p>The numerical method uses a finite number of states to model the
+continuous vorticity distribution. To achieve this, the vorticity
+distribution is projected onto basis function which is referred to
+as vortex elements. Vortex filaments are here used as elements that
+represents the vorticity field. A vortex filament is delimited by two
+points and hence assumes a direction formed by these two points. A
+vorticity tube is oriented along the unit vector <span class="math notranslate nohighlight">\(\vec{e}_x\)</span> of
+cross section <span class="math notranslate nohighlight">\(dS\)</span> and length <span class="math notranslate nohighlight">\(l\)</span>. It can then be
+approximated by a vortex filament of length <span class="math notranslate nohighlight">\(l\)</span> oriented along the
+same direction. The total vorticity of the tube and the vortex filaments
+are the same and related by:</p>
+<div class="math notranslate nohighlight" id="equation-omegagamma">
+<span class="eqno">(4.14)<a class="headerlink" href="#equation-omegagamma" title="Permalink to this equation"></a></span>\[\begin{aligned}
+    \vec{\omega} \,  dS  = \vec{\Gamma}
+\end{aligned}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\vec{\Gamma}\)</span> is the circulation intensity of the vortex
+filament. If the vorticity tubes are complex and occupy a large volume,
+the projection onto vortex filaments is difficult and the projection
+onto vortex particle is more appropriate. Assuming the wake is confined
+to a thin vorticity layer which defines a velocity jump of know
+direction, it is possible to approximate the wake vorticity sheet as a
+mesh of vortex filaments. This is the basis of vortex filament wake
+methods. Vortex filaments are a singular representation of the vorticity
+field, as they occupy a line instead of a volume. To better represent
+the vorticity field, the filaments are “inflated”, a process referred to
+as regularization (see <a class="reference internal" href="#sec-regularization"><span class="std std-numref">Section 4.4.6.8</span></a>). The
+regularization of the vorticity field also regularizes the velocity
+field and avoids the singularities that would otherwise occur.</p>
+</div>
+<div class="section" id="lifting-line-representation">
+<span id="sec-circ"></span><h2><span class="section-number">4.4.6.3. </span>Lifting-Line Representation<a class="headerlink" href="#lifting-line-representation" title="Permalink to this heading"></a></h2>
+<p>The code relies on a lifting-line formulation. Lifting-line methods effectively
+lump the loads at each cross-section of the blade onto the mean line of the
+blade and do not account directly for the geometry of each cross-section. In the
+vorticity-based version of the lifting-line method, the blade is represented by
+a line of varying circulation. The line follows the motion of the blade and is
+referred to as “bound” circulation. The bound circulation does not follow the
+same dynamic equation as the free vorticity of the wake. Instead, the intensity
+is linked to airfoil lift via the Kutta-Joukowski theorem. Spanwise variation of
+the bound circulation results in vorticity being emitted into the wake. This
+is referred to as “trailed vorticity”. Time changes of the bound circulation are
+also emitted in the wake, referred to as “shed” vorticity. The subsequent
+paragraphs describe the representation of the bound vorticity.</p>
+<div class="section" id="lifting-line-panels-and-emitted-wake-panels">
+<h3><span class="section-number">4.4.6.3.1. </span>Lifting-Line Panels and Emitted Wake Panels<a class="headerlink" href="#lifting-line-panels-and-emitted-wake-panels" title="Permalink to this heading"></a></h3>
+<p>The lifting-line and wake representation is illustrated in
+<a class="reference internal" href="#fig-vortexlatticemethod"><span class="std std-numref">Fig. 4.15</span></a>. The blade lifting-line is discretized into a
+finite number of panels, each of them forming a four sided vortex rings. The
+spanwise discretization follows the discretization of the AeroDyn blade input
+file. The number of spanwise panels, <span class="math notranslate nohighlight">\(n_\text{LL}\)</span>, is one less than the
+total number of AeroDyn nodes, <strong>NumBlNds</strong>. The sides of the panels coincide
+with the lifting-line and the trailing edge of the blade. The lifting-line is
+currently defined as the 1/4 chord location from the leading edge (LE). More
+details on the panelling is provided in <a class="reference internal" href="#sec-panelling"><span class="std std-numref">Section 4.4.6.3.2</span></a>. At a given time
+step, the circulation of each lifting-line panel is determined according to one
+of the three methods developed in <a class="reference internal" href="#sec-circulationmethods"><span class="std std-numref">Section 4.4.6.3.3</span></a>. At the end
+of the time step, the circulation of each lifting-line panel is emitted into the
+wake, forming free vorticity panels. To satisfy the Kutta condition, the
+circulation of the first near wake panel and the bound circulation are
+equivalent (see <a class="reference internal" href="#fig-vortexlatticemethod"><span class="std std-numref">Fig. 4.15</span></a> b). The wake panels model the
+thin shear layer resulting from the continuation of the blade boundary layer.
+This shear layer can be modelled using a continuous distribution of vortex
+doublets. A constant doublet strength is assumed on each panel, which in turn is
+equivalent to a vortex ring of constant circulation.</p>
+<div class="figure align-default" id="fig-vortexlatticemethod">
+<a class="reference internal image-reference" href="../../../_images/VortexLatticeMethod.png"><img alt="Wake and lifting-line vorticity discretized into vortex ring panels." src="../../../_images/VortexLatticeMethod.png" style="width: 100.0%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.15 </span><span class="caption-text">Wake and lifting-line vorticity discretized into vortex ring panels.
+(a) Overview. (b) Cross-sectional view, defining the leading-edge,
+trailing edge, and lifting-line. (c) Circulation of panels and
+corresponding circulation for vorticity segments between panels. (d)
+Geometrical quantities for a lifting-line panel.</span><a class="headerlink" href="#fig-vortexlatticemethod" title="Permalink to this image"></a></p>
+</div>
+<p>The current implementation stores the positions and circulations of the panel
+corner points. In the vortex ring formulation, the boundary between two panels
+corresponds to a vortex segment of intensity equal to the difference of
+circulation between the two panels. The convention used to define the segment
+intensity based on the panels intensity is shown in
+<a class="reference internal" href="#fig-vortexlatticemethod"><span class="std std-numref">Fig. 4.15</span></a> c. Since the circulation of the bound panels
+and the first row of near wake panels are equal, the vortex segments located on
+the trailing edge have no circulation.</p>
+</div>
+<div class="section" id="panelling">
+<span id="sec-panelling"></span><h3><span class="section-number">4.4.6.3.2. </span>Panelling<a class="headerlink" href="#panelling" title="Permalink to this heading"></a></h3>
+<p>The definitions used for the panelling of the blade are given in
+<a class="reference internal" href="#fig-vortexlatticemethod"><span class="std std-numref">Fig. 4.15</span></a> d, following the notations of van
+Garrel (<span id="id2">[<a class="reference internal" href="zrefs.html#id47" title="A. van Garrel. Development of a wind turbine aerodynamics simulation module. Technical Report ECN-C–03-079, ECN, 2003.">olaf-vG03</a>]</span>). The leading edge and
+trailing edge (TE) locations are directly obtained from the AeroDyn
+mesh. At two spanwise locations, the LE and TE define the corner points:
+<span class="math notranslate nohighlight">\(\vec{x}_1\)</span>, <span class="math notranslate nohighlight">\(\vec{x}_2\)</span>, <span class="math notranslate nohighlight">\(\vec{x}_3\)</span>, and
+<span class="math notranslate nohighlight">\(\vec{x}_4\)</span>. The current implementation assumes that the
+aerodynamic center, the lifting-line, and the 1/4 chord location all
+coincide. For a given panel, the lifting-line is then delimited by the
+points <span class="math notranslate nohighlight">\(\vec{x}_9= 3/4\,\vec{x}_1 + 1/4\, \vec{x}_2\)</span> and
+<span class="math notranslate nohighlight">\(\vec{x}_{10}=3/4\,\vec{x}_4 + 1/4\, \vec{x}_3\)</span>. The mid points of
+the four panel sides are noted <span class="math notranslate nohighlight">\(\vec{x}_5\)</span>, <span class="math notranslate nohighlight">\(\vec{x}_6\)</span>,
+<span class="math notranslate nohighlight">\(\vec{x}_7\)</span>, and <span class="math notranslate nohighlight">\(\vec{x}_8\)</span>. The lifting-line vector
+(<span class="math notranslate nohighlight">\(\vec{dl}\)</span>) as well as the vectors tangential (<span class="math notranslate nohighlight">\(\vec{T}\)</span>)
+and normal (<span class="math notranslate nohighlight">\(\vec{N}\)</span>) to the panel are defined as:</p>
+<div class="math notranslate nohighlight" id="equation-eq-geometricdefinitions">
+<span class="eqno">(4.15)<a class="headerlink" href="#equation-eq-geometricdefinitions" title="Permalink to this equation"></a></span>\[\begin{aligned}
+    \vec{dl} = \vec{x}_{10}-\vec{x}_9
+   ,\qquad
+   \vec{T}  = \frac{\vec{x}_6-\vec{x}_8}{|\vec{x}_6-\vec{x}_8|}
+   ,\qquad
+   \vec{N}  = \frac{\vec{T}\times\vec{dl}}{|\vec{T}\times\vec{dl}|}
+\end{aligned}\]</div>
+<p>The area of the panel is obtained as <span class="math notranslate nohighlight">\(dA =
+|(\vec{x}_6-\vec{x}_8)\times(\vec{x}_{7}-\vec{x}_5)|\)</span>. For
+<strong>CircSolvMethod=[1]</strong>, the control points are located on the lifting-line at
+the location <span class="math notranslate nohighlight">\(\vec{x}_9+\eta_j \vec{dl}\)</span>. The factor <span class="math notranslate nohighlight">\(\eta_j\)</span> is
+determined based on the full-cosine approximation of van Garrel. This is based
+on the spanwise widths of the current panel, <span class="math notranslate nohighlight">\(w_j\)</span>, and the neighboring
+panels <span class="math notranslate nohighlight">\(w_{j-1}\)</span> and <span class="math notranslate nohighlight">\(w_{j+1}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+   \eta_1 &amp;= \frac{w_1}{w_1+w_2},\\
+   \eta_j &amp;= \frac{1}{4}\left[\frac{w_{j-1}}{w_{j-1}+w_j} + \frac{w_j}{w_j+w_{j+1}} +1 \right]
+   ,\ j=2..n-1,\\
+   \eta_{n} &amp;= \frac{w_{n-1}}{w_{n-1}+w_{n}}
+\end{aligned}\end{split}\]</div>
+<p>For an equidistant spacing, this discretization places the control points at the
+middle of the lifting-line (<span class="math notranslate nohighlight">\(\eta=0.5\)</span>). Theoretical circulation results
+for an elliptic wing with a cosine spacing are retrieved with such
+discretization since it places the control points closer to stronger trailing
+segments at the wing extremities (see e.g. <span id="id3">[<a class="reference internal" href="zrefs.html#id48" title="J. Kerwin. Lecture notes hydrofoil and propellers. Technical Report, M.I.T., 2000.">olaf-Ker00</a>]</span>).</p>
+</div>
+<div class="section" id="circulation-solving-methods">
+<span id="sec-circulationmethods"></span><h3><span class="section-number">4.4.6.3.3. </span>Circulation Solving Methods<a class="headerlink" href="#circulation-solving-methods" title="Permalink to this heading"></a></h3>
+<p>Three methods are implemented to determine the bound circulation strength. They
+are selected using the input <strong>CircSolvMethod</strong>, and are presented in the
+following sections.</p>
+<div class="section" id="cl-based-iterative-method">
+<h4><span class="section-number">4.4.6.3.3.1. </span>Cl-Based Iterative Method<a class="headerlink" href="#cl-based-iterative-method" title="Permalink to this heading"></a></h4>
+<p>The Cl-based iterative method determines the circulation within a
+nonlinear iterative solver that makes use of the polar data at each
+control point located on the lifting line. The algorithm ensures that
+the lift obtained using the angle of attack and the polar data matches
+the lift obtained with the Kutta-Joukowski theorem. At present, it is
+the preferred method to compute the circulation along the blade span. It is
+selected with <strong>CircSolvMethod=[1]</strong>. The method is described in the work from
+van Garrel (<span id="id4">[<a class="reference internal" href="zrefs.html#id47" title="A. van Garrel. Development of a wind turbine aerodynamics simulation module. Technical Report ECN-C–03-079, ECN, 2003.">olaf-vG03</a>]</span>). The algorithm is implemented in at iterative
+approach using the following steps:</p>
+<ol class="arabic">
+<li><p>The circulation distribution from the previous time step is used as a
+guessed circulation, <span class="math notranslate nohighlight">\(\Gamma_\text{prev}\)</span>.</p></li>
+<li><p>The velocity at each control points <span class="math notranslate nohighlight">\(j\)</span> is computed as the sum
+of the wind velocity, the structural velocity, and the velocity
+induced by all the vorticity in the domain, evaluated at the control
+point location.</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    \vec{v}_j = \vec{V}_0 - \vec{V}_\text{elast} + \vec{v}_{\omega,\text{free}} + \vec{v}_{\Gamma_{ll}}
+\end{aligned}\]</div>
+<p><span class="math notranslate nohighlight">\(\vec{v}_{\omega,\text{free}}\)</span> is the velocity induced by all free
+vortex filaments, as introduced in Eq. <a class="reference internal" href="#equation-eq-eq510">(4.22)</a> . The contribution
+of <span class="math notranslate nohighlight">\(\vec{v}_{\Gamma_{ll}}\)</span> comes from the lifting-line panels and
+the first row of near wake panels, for which the circulation is set to
+<span class="math notranslate nohighlight">\(\Gamma_\text{prev}\)</span></p>
+</li>
+<li><p>The circulation for all lifting-line panels <span class="math notranslate nohighlight">\(j\)</span> is obtained as
+follows.</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+   \Gamma_{ll,j} =\frac{1}{2} C_{l,j}(\alpha_j) \frac{\left[ (\vec{v}_j  \cdot \vec{N})^2 +  (\vec{v}_j  \cdot \vec{T})^2\right]\,dA}{
+   \sqrt{\left[(\vec{v}_j\times \vec{dl})\cdot\vec{N}\right]^2 + \left[(\vec{v}_j\times \vec{dl})\cdot\vec{T}\right]^2}
+   }   %\label{eq:}
+,\quad\text{with}
+\quad
+\alpha_j = \operatorname{atan}\left(\frac{\vec{v}_j\cdot\vec{N}}{\vec{v}_j \cdot \vec{T}} \right)
+\end{aligned}\]</div>
+<p>The function <span class="math notranslate nohighlight">\(C_{l,j}\)</span> is the lift coefficient obtained from
+the polar data of blade section <span class="math notranslate nohighlight">\(j\)</span> and <span class="math notranslate nohighlight">\(\alpha_j\)</span> is the
+angle of attack at the control point.</p>
+</li>
+<li><p>The new circulation is set using the relaxation factor
+<span class="math notranslate nohighlight">\(k_\text{relax}\)</span> (<strong>CircSolvRelaxation</strong>):</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+  \Gamma_\text{new}= \Gamma_\text{prev} + k_\text{relax} \Delta \Gamma
+      ,\qquad
+   \Delta \Gamma = \Gamma_{ll} - \Gamma_\text{prev}   %\label{eq:}
+\end{aligned}\]</div>
+</li>
+<li><p>Convergence is checked using the criterion <span class="math notranslate nohighlight">\(k_\text{crit}\)</span>
+(<strong>CircSolvConvCrit</strong>):</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+       \frac{ \operatorname{max}(|\Delta \Gamma|}{\operatorname{mean}(|\Gamma_\text{new}|)} &lt;  k_\text{crit}
+ \end{aligned}\]</div>
+<p>If convergence is not reached, steps 2-5 are repeated using
+<span class="math notranslate nohighlight">\(\Gamma_\text{new}\)</span> as the guessed circulation
+<span class="math notranslate nohighlight">\(\Gamma_\text{prev}\)</span>.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="no-flow-through-method">
+<h4><span class="section-number">4.4.6.3.3.2. </span>No-flow-through Method<a class="headerlink" href="#no-flow-through-method" title="Permalink to this heading"></a></h4>
+<p>A no-flow-through circulation solving method
+(sometimes called Weissinger-L-based method)
+might be implemented in the future
+(<span id="id5">[<a class="reference internal" href="zrefs.html#id3" title="A. Bagai and J. G. Leishman. Rotor free-wake modeling using a pseudo-implicit technique including comparisons with experimental data. In 50th Annual Forum of the American Helicopter Society. Washington, D.C., 1994.">olaf-BL94</a>, <a class="reference internal" href="zrefs.html#id13" title="S. Gupta. Development of a Time-Accurate Viscous Lagrangian Vortex Wake Model for Wind Turbine Applications. PhD thesis, Univeristy of Maryland, College Park, MD, 2006.">olaf-Gup06</a>, <a class="reference internal" href="zrefs.html#id15" title="M. Ribera. Helicopter Flight Dynamics Simulation with a Time-Accurate Free-Vortex Wake Model. PhD thesis, University of Maryland, College Park, MD, 2007.">olaf-Rib07</a>, <a class="reference internal" href="zrefs.html#id10" title="J. Weissinger. The lift distribution of swept-back wings. Technical report TM 1120, NACA, 1947.">olaf-Wei47</a>]</span>).
+In this method, the circulation is solved by satisfying a no-flow through
+condition at the 1/4-chord points.
+It would be selected with <strong>CircSolvMethod=[2]</strong> but is currently no implemented.</p>
+</div>
+<div class="section" id="prescribed-circulation">
+<h4><span class="section-number">4.4.6.3.3.3. </span>Prescribed Circulation<a class="headerlink" href="#prescribed-circulation" title="Permalink to this heading"></a></h4>
+<p>The final available method prescribes a constant circulation. A user
+specified spanwise distribution of circulation is prescribed onto the
+blades. It is selected with <strong>CircSolvMethod=[3]</strong>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="free-vorticity-convection">
+<span id="sec-vortconv"></span><h2><span class="section-number">4.4.6.4. </span>Free Vorticity Convection<a class="headerlink" href="#free-vorticity-convection" title="Permalink to this heading"></a></h2>
+<p>The governing equation of motion for a vortex filament is given by the
+convection equation of a Lagrangian marker:</p>
+<div class="math notranslate nohighlight" id="equation-vortfilcart">
+<span class="eqno">(4.16)<a class="headerlink" href="#equation-vortfilcart" title="Permalink to this equation"></a></span>\[\frac{d\vec{r}}{dt}=\vec{V}(\vec{r},t)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\vec{r}\)</span> is the position of a Lagrangian marker. The Lagrangian
+markers are the end points of the vortex filaments. The Lagrangian convection of
+the filaments stretches the filaments and thus automatically accounts for strain
+in the vorticity equation.</p>
+<p>At present, the Runge-Kutta 4th order (<strong>IntMethod=[1]</strong>) or first order forward Euler
+(<strong>IntMethod=[5]</strong>) methods are implemented to numerically solve the
+left-hand side of Eq. <a class="reference internal" href="#equation-vortfilcart">(4.16)</a> for the vortex filament location.
+In the case of the first order Euler method, the convection is then simply:
+Eq. <a class="reference internal" href="#equation-eq-euler">(4.17)</a>.</p>
+<div class="math notranslate nohighlight" id="equation-eq-euler">
+<span class="eqno">(4.17)<a class="headerlink" href="#equation-eq-euler" title="Permalink to this equation"></a></span>\[\vec{r}  = \vec{r} + \vec{V} \Delta t\]</div>
+</div>
+<div class="section" id="free-vorticity-convection-in-polar-coordinates">
+<span id="sec-vortconvpolar"></span><h2><span class="section-number">4.4.6.5. </span>Free Vorticity Convection in Polar Coordinates<a class="headerlink" href="#free-vorticity-convection-in-polar-coordinates" title="Permalink to this heading"></a></h2>
+<p>The governing equation of motion for a vortex filament is given by:</p>
+<div class="math notranslate nohighlight" id="equation-vortfil">
+<span class="eqno">(4.18)<a class="headerlink" href="#equation-vortfil" title="Permalink to this equation"></a></span>\[\frac{d\vec{r}(\psi,\zeta)}{dt}=\vec{V}[\vec{r}(\psi,\zeta),t]\]</div>
+<p>Using the chain rule, Eq. <a class="reference internal" href="#equation-vortfil">(4.18)</a> is rewritten as:</p>
+<div class="math notranslate nohighlight" id="equation-vortfil-expanded">
+<span class="eqno">(4.19)<a class="headerlink" href="#equation-vortfil-expanded" title="Permalink to this equation"></a></span>\[\frac{\partial\vec{r}(\psi,\zeta)}{\partial\psi}+\frac{\partial\vec{r}(\psi,\zeta)}{\partial\zeta}=\frac{\vec{V}[\vec{r}(\psi,\zeta),t]}{\Omega}\]</div>
+<p>where <span class="math notranslate nohighlight">\(d\psi/dt=\Omega\)</span> and
+<span class="math notranslate nohighlight">\(d\psi=d\zeta\)</span> (<span id="id6">[<a class="reference internal" href="zrefs.html#id31" title="J. G. Leishman, M. J. Bhagwat, and A. Bagai. Free-vortex filament methods for the analysis of helicopter rotor wakes. Journal of Aircraft, 39(5):759-775, 2002.">olaf-LBB02</a>]</span>). Here,
+<span class="math notranslate nohighlight">\(\vec{r}(\psi,\zeta)\)</span> is the position vector of a Lagrangian
+marker, and <span class="math notranslate nohighlight">\(\vec{V}[\vec{r}(\psi,\zeta)]\)</span> is the velocity.</p>
+</div>
+<div class="section" id="frozen-vorticity-convection">
+<span id="sec-vortconvfrozen"></span><h2><span class="section-number">4.4.6.6. </span>Frozen Vorticity Convection<a class="headerlink" href="#frozen-vorticity-convection" title="Permalink to this heading"></a></h2>
+<p>For computational efficiency, the user can define “frozen” near wake and far wake zones.
+In these zones, the Lagrangian markers are convected using an common induced velocity
+which is independent of the radial location of the marker, and potentially a function of the wake age.
+The convection equation of the Lagrangian markers in the frozen zone is:</p>
+<div class="math notranslate nohighlight">
+\[\frac{d\vec{r}_\zeta}{dt}=\vec{V}_0(\vec{r}_\zeta,t) + \vec{V}_\text{avg}(t)*k(\zeta)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\vec{V}_\text{avg}(t)\)</span> is an average induced velocity computed based on the convection velocity of a subset of the “free” markers.
+<span class="math notranslate nohighlight">\(k(\zeta)\)</span> is a decay factor between 1 and 0 based on the wake age <span class="math notranslate nohighlight">\(\zeta\)</span>.
+A constant decay factor of 1 would result in a uniform convection velocity across the frozen wake.
+This is what is used for the far-wake.
+For the near-wake, typical values are such that the decay factor is 1 at the beginning of the frozen wake, and
+0.5 at the end of the frozen wake.
+In fact, current verification indicated that starting at <span class="math notranslate nohighlight">\(k(0)=0.75\)</span> was better, as otherwise the
+average convection velocity (computed over a subset of the free markers) ended up too low, and the
+frozen wake would be more condensed, leading to higher inductions at the rotor.
+Clearly, the choice of the average velocity and its decay are tuning parameters that might change in future releases.
+These parameters are currently not directly exposed in the input file.</p>
+<p>In general, convecting the whole “frozen” wake with a unique induced velocity introduces some error, but greatly reduces the computational time.
+The advantage of having a “frozen” far-wake region, is that it mitigates the impact of wake truncation which is an erroneous boundary condition (vortex lines cannot end in the fluid). If the wake is truncated while still being “free”, then the vorticity will rollup on itself in this region.
+Another advantage is that in the absence of diffusion, the wake tends to become excessively distorted downstream, reaching limit on the validity of the vortex filament representation.</p>
+</div>
+<div class="section" id="induced-velocity-and-velocity-field">
+<h2><span class="section-number">4.4.6.7. </span>Induced Velocity and Velocity Field<a class="headerlink" href="#induced-velocity-and-velocity-field" title="Permalink to this heading"></a></h2>
+<p>The velocity term on the right-hand side of
+Eq. <a class="reference internal" href="#equation-vortfilcart">(4.16)</a> is a nonlinear function of the
+vortex position, representing a combination of the freestream and
+induced velocities (<span id="id7">[<a class="reference internal" href="zrefs.html#id9" title="M. O. L. Hansen. Aerodynamics of Wind Turbines. Earthscan, London; Sterling, VA, 2008.">olaf-Han08</a>]</span>). The induced
+velocities at point <span class="math notranslate nohighlight">\(\vec{x}\)</span>, caused by each straight-line
+filament, are computed using the Biot-Savart law, which considers the
+locations of the Lagrangian markers and the intensity of the vortex
+elements (<span id="id8">[<a class="reference internal" href="zrefs.html#id31" title="J. G. Leishman, M. J. Bhagwat, and A. Bagai. Free-vortex filament methods for the analysis of helicopter rotor wakes. Journal of Aircraft, 39(5):759-775, 2002.">olaf-LBB02</a>]</span>):</p>
+<div class="math notranslate nohighlight" id="equation-biotsavart">
+<span class="eqno">(4.20)<a class="headerlink" href="#equation-biotsavart" title="Permalink to this equation"></a></span>\[d\vec{v}(\vec{x})=\frac{\Gamma}{4\pi}\frac{d\vec{l}\times\vec{r}}{r^3}\]</div>
+<p>Here, <span class="math notranslate nohighlight">\(\Gamma\)</span> is the circulation strength of the filament,
+<span class="math notranslate nohighlight">\(\vec{dl}\)</span> is an elementary length along the filament, <span class="math notranslate nohighlight">\(\vec{r}\)</span> is
+the vector between a point on the filament and the control point
+<span class="math notranslate nohighlight">\(\vec{x}\)</span>, and <span class="math notranslate nohighlight">\(r=|\vec{r}|\)</span> is the norm of the vector. The
+integration of the Biot-Savart law along the filament length, delimited by the
+points <span class="math notranslate nohighlight">\(\vec{x}_1\)</span> and <span class="math notranslate nohighlight">\(\vec{x}_2\)</span> leads to:</p>
+<div class="math notranslate nohighlight" id="equation-eq-biotsavartsegment">
+<span class="eqno">(4.21)<a class="headerlink" href="#equation-eq-biotsavartsegment" title="Permalink to this equation"></a></span>\[\begin{aligned}
+  \vec{v}(\vec{x})
+  =  F_\nu \frac{\Gamma}{4\pi} \frac{(r_1+r_2)}{r_1r_2(r_1r_2+\vec{r}_1\cdot\vec{r}_2)  }\vec{r}_1\times\vec{r}_2
+\end{aligned}\]</div>
+<p>with <span class="math notranslate nohighlight">\(\vec{r}_1= \vec{x}-\vec{x}_1\)</span> and <span class="math notranslate nohighlight">\(\vec{r}_2=
+\vec{x}-\vec{x}_2\)</span>. The factor <span class="math notranslate nohighlight">\(F_\nu\)</span> is a regularization parameter,
+discussed in <a class="reference internal" href="#sec-regularizationfunction"><span class="std std-numref">Section 4.4.6.8.3</span></a>.  <span class="math notranslate nohighlight">\(r_0\)</span> is the filament
+length, where <span class="math notranslate nohighlight">\(\vec{r}_0= \vec{x}_2-\vec{x}_1\)</span>. The distance orthogonal to
+the filament is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+   \rho = \frac{|\vec{r}_1\times\vec{r}_2|}{r_0}
+\end{aligned}\]</div>
+<p>The velocity at any point of the domain is obtained by superposition of
+the velocity induced by all vortex filaments, and by superposition of
+the primary flow, <span class="math notranslate nohighlight">\(\vec{V}_0\)</span>, (here assumed divergence free):</p>
+<div class="math notranslate nohighlight" id="equation-eq-eq510">
+<span class="eqno">(4.22)<a class="headerlink" href="#equation-eq-eq510" title="Permalink to this equation"></a></span>\[\begin{aligned}
+ \vec{V}(\vec{x}) = \vec{V}_0(\vec{x}) + \vec{v}_\omega(\vec{x}), \quad\text{with}\quad \vec{v}_\omega(\vec{x}) = \sum_{k} \vec{v}_k(\vec{x})
+\end{aligned}\]</div>
+<p>where the sum is over all the vortex filaments, each of intensity
+<span class="math notranslate nohighlight">\(\Gamma_k\)</span>. The intensity of each filament is determined by spanwise and
+time changes of the bound circulation, as discussed in <a class="reference internal" href="#sec-circ"><span class="std std-numref">Section 4.4.6.3</span></a>. In
+tree-based methods, the sum over all vortex elements is reduced by lumping
+together the elements that are far away from the control points.</p>
+</div>
+<div class="section" id="regularization">
+<span id="sec-regularization"></span><h2><span class="section-number">4.4.6.8. </span>Regularization<a class="headerlink" href="#regularization" title="Permalink to this heading"></a></h2>
+<div class="section" id="regularization-and-viscous-diffusion">
+<h3><span class="section-number">4.4.6.8.1. </span>Regularization and viscous diffusion<a class="headerlink" href="#regularization-and-viscous-diffusion" title="Permalink to this heading"></a></h3>
+<p>The singularity that occurs in Eq. <a class="reference internal" href="#equation-biotsavart">(4.20)</a> greatly affects the
+numerical accuracy of vortex methods. By regularizing the “1-over-r” kernel of
+the Biot-Savart law, it is possible to obtain a numerical method that converges
+to the Navier-Stokes equations. The regularization is used to improve the
+regularity of the discrete vorticity field, as compared to the “true” continuous
+vorticity field. This regularization is usually obtained by convolution with a
+smooth function. In this case, the regularization of the vorticity field and the
+velocity field are the same. Some engineering models also perform regularization
+by directly introducing additional terms in the denominator of the Biot-Savart
+velocity kernel.  The factor, <span class="math notranslate nohighlight">\(F_\nu\)</span>, was introduced in
+Eq. <a class="reference internal" href="#equation-eq-biotsavartsegment">(4.21)</a> to account for this regularization.</p>
+<p>In the convergence proofs of vortex methods, regularization and viscous
+diffusion are two distinct aspects. It is common practice in vortex filament
+methods to blur the notion of regularization with the notion of viscous
+diffusion. Indeed, for a physical vortex filament, viscous effects prevent the
+singularity from occurring and diffuse the vortex strength with time. The
+circular zone where the velocity drops to zero around the vortex is referred to
+as the vortex core. A length increase of the vortex segment will result in a
+vortex core radius decrease, and vice versa. Diffusion, on the other hand,
+continually spreads the vortex radially.</p>
+<p>Because of the previously mentioned analogy, practitioners of vortex filament
+methods often refer to regularization as “viscous-core” models and
+regularization parameters as “core-radii.” Additionally, viscous diffusion is
+often introduced by modifying the regularization parameter in space and time
+instead of solving the diffusion from the vorticity equation. The distinction is
+made explicit in this document when clarification is required, but a loose
+terminology is used when the context is clear.</p>
+</div>
+<div class="section" id="determination-of-the-regularization-parameter">
+<h3><span class="section-number">4.4.6.8.2. </span>Determination of the regularization parameter<a class="headerlink" href="#determination-of-the-regularization-parameter" title="Permalink to this heading"></a></h3>
+<p>The regularization parameter is both a function of the physics being modeled
+(blade boundary layer and wake) and the choice of discretization. Contributing
+factors are the chord length, the boundary layer height, and the volume that
+each vortex filament is approximating.  Currently the choice is left to the user
+(<strong>RegDeterMethod=[0]</strong>).  Empirical results for a rotating blade are found in the
+work of Gupta (<span id="id9">[<a class="reference internal" href="zrefs.html#id13" title="S. Gupta. Development of a Time-Accurate Viscous Lagrangian Vortex Wake Model for Wind Turbine Applications. PhD thesis, Univeristy of Maryland, College Park, MD, 2006.">olaf-Gup06</a>]</span>). As a guideline, the regularization parameter
+may be chosen as twice the average spanwise discretization of the blade. This
+guideline is implemented when the user chooses <strong>RegDeterMethod=[1]</strong>. Further
+refinement of this option will be considered in the future.</p>
+</div>
+<div class="section" id="implemented-regularization-functions">
+<span id="sec-regularizationfunction"></span><h3><span class="section-number">4.4.6.8.3. </span>Implemented regularization functions<a class="headerlink" href="#implemented-regularization-functions" title="Permalink to this heading"></a></h3>
+<p>Several regularization functions have been
+developed (<span id="id10">[<a class="reference internal" href="zrefs.html#id30" title="W. J. M. Rankine. Manual of Applied Mechanics. Griffen Co., London, 1858.">olaf-Ran58</a>, <a class="reference internal" href="zrefs.html#id14" title="M. P. Scully. Computation of Helicopter Rotor Wake Geometry and Its Influence on Rotor Harmonic Airloads. PhD thesis, Massachusetts Institute of Technology, Cambridga, MA, 1975.">olaf-Scu75</a>, <a class="reference internal" href="zrefs.html#id6" title="G. H. Vatistas, V. Koezel, and W. C. Mih. A simpler model for concentrated vortices. Experiments in Fluids, 11(1):73-76, 1991.">olaf-VKM91</a>]</span>).  At present, five
+options are available: 1) No correction, 2) the Rankine method, 3) the
+Lamb-Oseen method, 4) the Vatistas method, or 5) the denominator offset method.
+If no correction method is used, (<strong>RegFunction=[0]</strong>), <span class="math notranslate nohighlight">\(F_\nu=1\)</span>. The
+remaining methods are detailed in the following sections.  Here, <span class="math notranslate nohighlight">\(r_c\)</span> is
+the regularization parameter (<strong>WakeRegParam</strong>) and <span class="math notranslate nohighlight">\(\rho\)</span> is the distance
+to the filament. Both variables are expressed in meters.</p>
+<div class="section" id="rankine">
+<h4><span class="section-number">4.4.6.8.3.1. </span>Rankine<a class="headerlink" href="#rankine" title="Permalink to this heading"></a></h4>
+<p>The Rankine method (<span id="id11">[<a class="reference internal" href="zrefs.html#id30" title="W. J. M. Rankine. Manual of Applied Mechanics. Griffen Co., London, 1858.">olaf-Ran58</a>]</span>) is the simplest
+regularization model. With this method, the Rankine vortex has a finite
+core with a solid body rotation near the vortex center and a potential
+vortex away from the center. If this method is used
+(<strong>RegFunction=[1]</strong>), the viscous core correction is given by
+Eq. <a class="reference internal" href="#equation-rankine">(4.23)</a>.</p>
+<div class="math notranslate nohighlight" id="equation-rankine">
+<span class="eqno">(4.23)<a class="headerlink" href="#equation-rankine" title="Permalink to this equation"></a></span>\[\begin{split}F_\nu= \begin{cases} \rho^2/r_c^2 &amp; 0 &lt; \rho &lt; 1 \\
+    1 &amp; \rho &gt; 1 \end{cases}\end{split}\]</div>
+<p>Here, <span class="math notranslate nohighlight">\(r_c\)</span> is the viscous core radius of a vortex filament,
+detailed in <a class="reference internal" href="#sec-corerad"><span class="std std-numref">Section 4.4.6.8.4</span></a>.</p>
+</div>
+<div class="section" id="lamb-oseen">
+<h4><span class="section-number">4.4.6.8.3.2. </span>Lamb-Oseen<a class="headerlink" href="#lamb-oseen" title="Permalink to this heading"></a></h4>
+<p>If the Lamb-Oseen method is used [<strong>RegFunction=[2]</strong>], the viscous core
+correction is given by Eq. <a class="reference internal" href="#equation-lamboseen">(4.24)</a>.</p>
+<div class="math notranslate nohighlight" id="equation-lamboseen">
+<span class="eqno">(4.24)<a class="headerlink" href="#equation-lamboseen" title="Permalink to this equation"></a></span>\[F_\nu= \bigg[1-\text{exp}(-\frac{\rho^2}{r_c^2})\bigg]\]</div>
+</div>
+<div class="section" id="vatistas">
+<h4><span class="section-number">4.4.6.8.3.3. </span>Vatistas<a class="headerlink" href="#vatistas" title="Permalink to this heading"></a></h4>
+<p>If the Vatistas method is used [<strong>RegFunction=[3]</strong>], the viscous core
+correction is given by Eq. <a class="reference internal" href="#equation-vatistas">(4.25)</a>.</p>
+<div class="math notranslate nohighlight" id="equation-vatistas">
+<span class="eqno">(4.25)<a class="headerlink" href="#equation-vatistas" title="Permalink to this equation"></a></span>\[F_\nu
+= \frac{\rho^2}{(\rho^{2n}+r_c^{2n})^{1/n}}
+= \frac{(\rho/r_c)^2}{(1 + (\rho/r_c)^{2n})^{1/n}}\]</div>
+<p>Here, <span class="math notranslate nohighlight">\(\rho\)</span> is the distance from a vortex segment to an arbitrary
+point (<span id="id12">[<a class="reference internal" href="zrefs.html#id36" title="H. Abedi. Development of Vortex Filament Method for Wind Power Aerodynamics. PhD thesis, Chalmers University of Technology, Gothenburg, Sweden, 2016.">olaf-Abe16</a>]</span>). Research from rotorcraft applications suggests a
+value of <span class="math notranslate nohighlight">\(n=2\)</span>, which is used in this work (<span id="id13">[<a class="reference internal" href="zrefs.html#id40" title="A. Bagai and J. G. Leishman. Flow visualization of compressible vortex structures using density gradient techniques. Experiments in Fluids, 15(6):431-442, 1993.">olaf-BL93</a>]</span>).</p>
+</div>
+<div class="section" id="denominator-offset-cut-off">
+<h4><span class="section-number">4.4.6.8.3.4. </span>Denominator Offset/Cut-Off<a class="headerlink" href="#denominator-offset-cut-off" title="Permalink to this heading"></a></h4>
+<p>If the denominator offfset method is used [<strong>RegFunction=[4]</strong>], the viscous
+core correction is given by Eq. <a class="reference internal" href="#equation-denom">(4.26)</a></p>
+<div class="math notranslate nohighlight" id="equation-denom">
+<span class="eqno">(4.26)<a class="headerlink" href="#equation-denom" title="Permalink to this equation"></a></span>\[\begin{aligned}
+  \vec{v}(\vec{x})
+  =   \frac{\Gamma}{4\pi} \frac{(r_1+r_2)}{r_1r_2(r_1r_2+\vec{r}_1\cdot\vec{r}_2) + r_c^2  r_0^2} \vec{r}_1\times\vec{r}_2
+\end{aligned}\]</div>
+<p>Here, the singularity is removed by introducing an additive factor in the
+denominator of Eq. <a class="reference internal" href="#equation-eq-biotsavartsegment">(4.21)</a>, proportional to the filament
+length <span class="math notranslate nohighlight">\(r_0\)</span>. In this case, <span class="math notranslate nohighlight">\(F_\nu=1\)</span>. This method is found in the
+work of van Garrel (<span id="id14">[<a class="reference internal" href="zrefs.html#id47" title="A. van Garrel. Development of a wind turbine aerodynamics simulation module. Technical Report ECN-C–03-079, ECN, 2003.">olaf-vG03</a>]</span>).</p>
+</div>
+</div>
+<div class="section" id="time-evolution-of-the-regularization-parametercore-spreading-method">
+<span id="sec-corerad"></span><h3><span class="section-number">4.4.6.8.4. </span>Time Evolution of the Regularization Parameter–Core Spreading Method<a class="headerlink" href="#time-evolution-of-the-regularization-parametercore-spreading-method" title="Permalink to this heading"></a></h3>
+<p>There are four available methods by which the regularization parameter may
+evolve with time: 1) constant value, 2) stretching, 3) wake age, or 4)
+stretching and wake age. The three latter methods blend the notions of viscous
+diffusion and regularization. The notation <span class="math notranslate nohighlight">\(r_{c0}\)</span> used in this section
+corresponds to input file parameter value <strong>WakeRegParam</strong>.</p>
+<div class="section" id="constant">
+<h4><span class="section-number">4.4.6.8.4.1. </span>Constant<a class="headerlink" href="#constant" title="Permalink to this heading"></a></h4>
+<p>If a constant value is selected, (<strong>WakeRegMethod=[1]</strong>), the value of
+<span class="math notranslate nohighlight">\(r_c\)</span> remains unchanged for all Lagrangian markers throughout the
+simulation and is taken as the value given with the parameter <strong>WakeRegParam</strong>
+in meters.</p>
+<div class="math notranslate nohighlight" id="equation-cst">
+<span class="eqno">(4.27)<a class="headerlink" href="#equation-cst" title="Permalink to this equation"></a></span>\[r_c(\zeta) = r_{c0}\]</div>
+<p>Here, <span class="math notranslate nohighlight">\(\zeta\)</span> is the vortex wake age, measured from its emission time.</p>
+</div>
+<div class="section" id="stretching">
+<h4><span class="section-number">4.4.6.8.4.2. </span>Stretching<a class="headerlink" href="#stretching" title="Permalink to this heading"></a></h4>
+<p>If the stretching method is selected, (<strong>WakeRegMethod=[2]</strong>), the viscous core
+radius is modeled by Eq. <a class="reference internal" href="#equation-stretch">(4.28)</a>.</p>
+<div class="math notranslate nohighlight" id="equation-stretch">
+<span class="eqno">(4.28)<a class="headerlink" href="#equation-stretch" title="Permalink to this equation"></a></span>\[r_c(\zeta,\epsilon) = r_{c0} (1+\epsilon)^{-1}\]</div>
+<div class="math notranslate nohighlight">
+\[\epsilon = \frac{\Delta l}{l}\]</div>
+<p>Here, <span class="math notranslate nohighlight">\(\epsilon\)</span> is the vortex-filament strain, <span class="math notranslate nohighlight">\(l\)</span> is the filament
+length, and <span class="math notranslate nohighlight">\(\Delta l\)</span> is the change of length between two time steps. The
+integral in Eq. <a class="reference internal" href="#equation-stretch">(4.28)</a> represents strain effects.</p>
+<p>This option is not yet implemented.</p>
+</div>
+<div class="section" id="wake-age-core-spreading">
+<h4><span class="section-number">4.4.6.8.4.3. </span>Wake Age / Core-Spreading<a class="headerlink" href="#wake-age-core-spreading" title="Permalink to this heading"></a></h4>
+<p>If the wake age method is selected, (<strong>WakeRegMethod=[3]</strong>), the viscous core
+radius is modeled by Eq. <a class="reference internal" href="#equation-age">(4.29)</a>.</p>
+<div class="math notranslate nohighlight" id="equation-age">
+<span class="eqno">(4.29)<a class="headerlink" href="#equation-age" title="Permalink to this equation"></a></span>\[r_c(\zeta) = \sqrt{r_{c0}^2+4\alpha\delta\nu \zeta}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\alpha=1.25643\)</span>, <span class="math notranslate nohighlight">\(\nu\)</span> is kinematic viscosity, and
+<span class="math notranslate nohighlight">\(\delta\)</span> is a viscous diffusion parameter (typically between <span class="math notranslate nohighlight">\(1\)</span> and
+<span class="math notranslate nohighlight">\(1,000\)</span>). The parameter <span class="math notranslate nohighlight">\(\delta\)</span> is provided in the input file as
+<strong>CoreSpreadEddyVisc</strong>. Here, the term <span class="math notranslate nohighlight">\(4\alpha\delta\nu \zeta\)</span>, accounts
+for viscous effects as the wake propagates downstream. The higher the background
+turbulence, the more diffusion of the vorticity with time, and the higher the
+value of <span class="math notranslate nohighlight">\(\delta\)</span> should be. This method partially accounts for viscous
+diffusion of the vorticity while neglecting the interaction between the wake
+vorticity itself or between the wake vorticity and the background flow. It is
+often referred to as the core-spreading method. Setting <strong>DiffusionMethod=[1]</strong>
+is the same as using the wake age method (<strong>WakeRegMethod=[3]</strong>).</p>
+<p>The time evolution of the core radius is implemented as:</p>
+<div class="math notranslate nohighlight">
+\[\frac{d r_c}{dt} = \frac{2\alpha\delta\nu}{r_c(t)}\]</div>
+<p>and <span class="math notranslate nohighlight">\(\frac{d r_c}{dt}=0\)</span> on the blades.</p>
+</div>
+<div class="section" id="stretching-and-wake-age">
+<h4><span class="section-number">4.4.6.8.4.4. </span>Stretching and Wake Age<a class="headerlink" href="#stretching-and-wake-age" title="Permalink to this heading"></a></h4>
+<p>If the stretching and wake-age method is selected (<strong>WakeRegMethod=[4]</strong>),
+the viscous core radius is modeled by
+Eq. <a class="reference internal" href="#equation-stretchandage">(4.30)</a>.</p>
+<div class="math notranslate nohighlight" id="equation-stretchandage">
+<span class="eqno">(4.30)<a class="headerlink" href="#equation-stretchandage" title="Permalink to this equation"></a></span>\[r_c(\zeta,\epsilon) = \sqrt{r_{c0}^2 + 4\alpha\delta\nu \zeta  \big(1+\epsilon\big)^{-1} }\]</div>
+<p>This option is not yet implemented.</p>
+</div>
+</div>
+</div>
+<div class="section" id="diffusion">
+<span id="sec-diffusion"></span><h2><span class="section-number">4.4.6.9. </span>Diffusion<a class="headerlink" href="#diffusion" title="Permalink to this heading"></a></h2>
+<p>The viscous-splitting assumption is used to solve for the convection and
+diffusion of the vorticity separately. The diffusion term <span class="math notranslate nohighlight">\(\nu \Delta
+\vec{\omega}\)</span> represents molecular diffusion. This term allows for viscous
+connection of vorticity lines. Also, turbulent flows will diffuse the vorticity
+in a similar manner based on a turbulent eddy viscosity.</p>
+<p>The parameter <strong>DiffusionMethod</strong> is used to switch between viscous diffusion
+methods.  Currently, only the core-spreading method is implemented. The method
+is described in <a class="reference internal" href="#sec-corerad"><span class="std std-numref">Section 4.4.6.8.4</span></a> since it is equivalent to the increase of
+the regularization parameter with the wake age.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="OutputFiles.html" class="btn btn-neutral float-left" title="4.4.5. Output Files" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="StateSpace.html" class="btn btn-neutral float-right" title="4.4.7. State-Space Representation and Integration with OpenFAST" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

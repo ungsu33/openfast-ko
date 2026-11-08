@@ -1,0 +1,174 @@
+<!DOCTYPE html><html class="writer-html5" lang="ko"><head><!-- Modified 2026-11-08: unofficial Korean machine translation of OpenFAST 5.0.0. Equations, code, figures, input values and attribution retained. -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.11.6. 참고 자료 — OpenFAST v5.0.0 문서</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../../../genindex.html">
+    <link rel="search" title="검색" href="../../../search.html">
+    <link rel="next" title="4.11.7. 부록 A: OC4 반잠수식 입력 파일" href="appendix.html">
+    <link rel="prev" title="4.11.5. 향후 개발 계획" href="future_work.html"> 
+<link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/hydrodyn/zrefs.html"></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+          </a>
+              <div class="version">5.0 · 한국어</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="문서 검색" aria-label="문서 검색">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.11. HydroDyn</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html">4.11.1. 설치 및 시작하기</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input_files.html">4.11.2. 입력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="output_files.html">4.11.3. 출력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modeling_considerations.html">4.11.4. 모델링 시 고려사항</a></li>
+<li class="toctree-l3"><a class="reference internal" href="future_work.html">4.11.5. 향후 개발 계획</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.11.6. 참고문헌</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.11.7. 부록 A: OC4 반잠수식 입력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html#appendix-b-oc4-semi-submersible-input-file">4.11.8. 부록 B: OC4 반잠수식 입력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html#appendix-c-list-of-output-channels">4.11.9. 부록 C. 출력 채널 목록</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. 단순화 ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. 구조 제어</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. 추가 모듈 문서</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC 서브루틴 라이브러리</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+</ul>
+
+        <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="페이지 탐색">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.11. </span>HydroDyn 사용자 가이드 및 이론 설명서</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.11.6. </span>참고문헌</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/hydrodyn/zrefs.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+      </li>
+  </ul>
+  <hr>
+</div><aside class="ko-notice" aria-label="한국어 번역 안내"><strong>한국어 자동번역</strong> · OpenFAST v5.0.0 · 2026-11-08 기준<br>비공식 번역본입니다. 수식·명령어·입력 변수와 첨부자료는 원문을 보존합니다. <a href="https://openfast.readthedocs.io/en/main/source/user/hydrodyn/zrefs.html" target="_blank" rel="noopener noreferrer" lang="en">영문 원문 대조 ↗</a></aside>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="references">
+<h1><span class="section-number">4.11.6. </span>참고문헌<a class="headerlink" href="#references" title="이 제목의 고유 링크"></a></h1>
+</div>
+<div class="docutils container" id="id1">
+<dl class="citation">
+<dt class="label" id="id4"><span class="brackets">LN06</span></dt>
+<dd><p>C. H. Lee 및 J. N. Newman. <em>WAMIT 사용자 매뉴얼</em>. WAMIT, Inc, Chestnut Hill, MA, 6.3, 6.3pc, 6.3s, 6.3s-pc 에디션, 2006.</p>
+</dd>
+<dt class="label" id="id6"><span class="brackets">RGSW87</span></dt>
+<dd><p>W. J. 브렌딩 R. G. 스탠딩과 D. 윌슨. <em>파도 표류력, 저주파 감쇠 및 응답 분석의 최근 개발</em>. 79차 연례 OTC 절차, 1987년.</p>
+</dd>
+<dt class="label" id="id2"><span class="brackets">SD81</span></dt>
+<dd><p>N. Sharma 및 R. Dean. 2차 방향성 바다 및 관련 파력. <em>석유공학회 저널</em>, 4:129–140, 1981.</p>
+</dd>
+</dl>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="future_work.html" class="btn btn-neutral float-left" title="4.11.5. 향후 개발 계획" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+        <a href="appendix.html" class="btn btn-neutral float-right" title="4.11.7. 부록 A: OC4 반잠수식 입력 파일" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>© Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    
+     
+
+
+</body></html>

@@ -1,0 +1,600 @@
+<!DOCTYPE html><html class="writer-html5" lang="ko"><head><!-- Modified 2026-11-08: unofficial Korean machine translation of OpenFAST 5.0.0. Equations, code, figures, input values and attribution retained. -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.10.2. 입력 파일 - OpenFAST v5.0.0 문서</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../../../genindex.html">
+    <link rel="search" title="검색" href="../../../search.html">
+    <link rel="next" title="4.10.3. ElastoDyn 이론" href="theory.html">
+    <link rel="prev" title="4.10.1. 좌표계" href="coordsys.html"> 
+<link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/elastodyn/input.html"></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+          </a>
+              <div class="version">5.0 · 한국어</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="문서 검색" aria-label="문서 검색">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.10. ElastoDyn</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="coordsys.html">4.10.1. 좌표계</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.10.2. 입력 파일</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#units">4.10.2.1. 단위</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#elastodyn-primary-input-file">4.10.2.2. ElastoDyn 기본 입력 파일</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#elastodyn-furl-input-file">4.10.2.3. ElastoDyn furl 입력 파일</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="theory.html">4.10.3. ElastoDyn 이론</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory.html#developer-notes">4.10.4. 개발자 노트</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.10.5. 참고문헌</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. 단순화 ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. 구조 제어</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. 추가 모듈 문서</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC 서브루틴 라이브러리</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+</ul>
+
+        <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="페이지 탐색">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.10. </span>ElastoDyn 사용자 가이드 및 이론 설명서</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.10.2. </span>입력 파일</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/elastodyn/input.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+      </li>
+  </ul>
+  <hr>
+</div><aside class="ko-notice" aria-label="한국어 번역 안내"><strong>한국어 자동번역</strong> · OpenFAST v5.0.0 · 2026-11-08 기준<br>비공식 번역본입니다. 수식·명령어·입력 변수와 첨부자료는 원문을 보존합니다. <a href="https://openfast.readthedocs.io/en/main/source/user/elastodyn/input.html" target="_blank" rel="noopener noreferrer" lang="en">영문 원문 대조 ↗</a></aside>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="input-files">
+<span id="ed-input"></span><h1><span class="section-number">4.10.2. </span>입력 파일<a class="headerlink" href="#input-files" title="이 제목의 고유 링크"></a></h1>
+<p>사용자는 기본 ElastoDyn 입력 파일뿐만 아니라 타워 및 타워에 대한 별도의 입력 파일을 통해 구조 모델 매개변수를 구성합니다. <em>다른 내용은 나중에 여기에 문서화될 것입니다.</em></p>
+<p>입력 파일에 줄을 추가하거나 제거해서는 안 됩니다.</p>
+<div class="section" id="units">
+<h2><span class="section-number">4.10.2.1. </span>장치<a class="headerlink" href="#units" title="이 제목의 고유 링크"></a></h2>
+<p>ElastoDyn은 SI 시스템(kg, m, s, N)을 사용합니다. 별도로 지정하지 않는 한 각도는 라디안 단위로 간주됩니다.</p>
+</div>
+<div class="section" id="elastodyn-primary-input-file">
+<h2><span class="section-number">4.10.2.2. </span>ElastoDyn 기본 입력 파일<a class="headerlink" href="#elastodyn-primary-input-file" title="이 제목의 고유 링크"></a></h2>
+<p>기본 ElastoDyn 입력 파일은 타워, 나셀, 드라이브트레인 및 블레이드(BeamDyn을 사용하지 않는 경우)를 포함하여 OpenFAST 구조에 대한 모델링 옵션 및 형상을 정의합니다. 또한 구조의 초기 조건을 설정합니다.
+ElastoDyn이 ElastoDyn 기본, 에어포일 및 블레이드 입력 파일의 내용을 에코하도록 하려면</p>
+<div class="section" id="simulation-control">
+<h3><span class="section-number">4.10.2.2.1. </span>시뮬레이션 제어<a class="headerlink" href="#simulation-control" title="이 제목의 고유 링크"></a></h3>
+<p>설정
+AeroDyn이 AeroDyn 기본, 에어포일 및 블레이드 입력 파일의 내용을 에코하도록 하려면 <strong>에코</strong> 플래그를 TRUE로 설정합니다(입력 파일의 오류를 디버깅하는 데 유용함). 에코 파일의 명명 규칙은 다음과 같습니다. <em>OutRootFile.ED.ech</em>. <strong>OutRootFile</strong> 는 ElastoDyn 독립 실행형을 실행할 때 드라이버 입력 파일의 I/O SETTINGS 섹션에 지정되거나 결합 시뮬레이션을 실행할 때 OpenFAST 프로그램에 의해 지정됩니다.</p>
+<p><strong>방법</strong></p>
+<p><strong>dT</strong></p>
+</div>
+<div class="section" id="degrees-of-freedom">
+<h3><span class="section-number">4.10.2.2.2. </span>자유도<a class="headerlink" href="#degrees-of-freedom" title="이 제목의 고유 링크"></a></h3>
+<p><strong>FlapDOF1</strong>    - 첫 번째 플랩 방향 블레이드 모드 DOF(플래그)</p>
+<p><strong>FlapDOF2</strong>    - 두 번째 플랩 방향 블레이드 모드 DOF(플래그)</p>
+<p><strong>EdgeDOF</strong>     - 첫 번째 가장자리 방향 블레이드 모드 DOF(플래그)</p>
+<p><strong>PitchDOF</strong>    - 블레이드 피치 DOF(플래그)</p>
+<p><strong>TeetDOF</strong>     - 로터 티터 DOF(플래그) [3개 블레이드에 사용되지 않음]</p>
+<p><strong>DrTrDOF</strong>     - 드라이브트레인 회전 유연성 DOF(플래그)</p>
+<p><strong>GenDOF</strong>      - 생성기 DOF(플래그)</p>
+<p><strong>YawDOF</strong>      - 요 DOF(플래그)</p>
+<p><strong>TwFADOF1</strong>    - 최초의 앞뒤 타워 벤딩 모드 DOF(플래그)</p>
+<p><strong>TwFADOF2</strong>    - 두 번째 앞뒤 타워 벤딩 모드 DOF(플래그)</p>
+<p><strong>TwSSDOF1</strong>    - 최초의 좌우 타워 벤딩 모드 DOF(플래그)</p>
+<p><strong>TwSSDOF2</strong>    - 두 번째 측면 타워 벤딩 모드 DOF(플래그)</p>
+<p><strong>PtfmSgDOF</strong>   - 플랫폼 수평 서지 변환 DOF(플래그)</p>
+<p><strong>PtfmSwDOF</strong>   - 플랫폼 수평 흔들림 변환 DOF(플래그)</p>
+<p><strong>PtfmHvDOF</strong>   - 플랫폼 수직 히브 변환 DOF(플래그)</p>
+<p><strong>PtfmRDOF</strong>    - 플랫폼 롤 틸트 회전 DOF(플래그)</p>
+<p><strong>PtfmPDOF</strong>    - 플랫폼 피치 틸트 회전 DOF(플래그)</p>
+<p><strong>PtfmYDOF</strong>    - 플랫폼 요 회전 DOF(플래그)</p>
+</div>
+<div class="section" id="initial-conditions">
+<h3><span class="section-number">4.10.2.2.3. </span>초기 조건<a class="headerlink" href="#initial-conditions" title="이 제목의 고유 링크"></a></h3>
+<p><strong>OoPDefl</strong>     - 평면 외 블레이드 팁의 초기 변위(미터)</p>
+<p><strong>IPDefl</strong>      - 초기 평면 내 블레이드 팁 편향(미터)</p>
+<p><strong>BlPitch(1)</strong>  - 블레이드 1 초기 피치(도)</p>
+<p><strong>BlPitch(2)</strong>  - 블레이드 2 초기 피치(도)</p>
+<p><strong>BlPitch(3)</strong>  - 블레이드 3 초기 피치(도) [2 블레이드에는 사용되지 않음]</p>
+<p><strong>TeetDefl</strong>    - 초기 또는 고정 티터 각도(도) [3개 블레이드에는 사용되지 않음]</p>
+<p><strong>방위각</strong>     - 블레이드 1의 초기 방위각(도)</p>
+<p><strong>RotSpeed</strong>    - 초기 또는 고정 로터 속도(rpm)</p>
+<p><strong>NacYaw</strong>      - 초기 또는 고정 나셀 요 각도(도)</p>
+<p><strong>TTDspFA</strong>     - 초기 앞뒤 타워 상단 변위(미터)</p>
+<p><strong>TTDspSS</strong>     - 초기 좌우 타워 상단 변위(미터)</p>
+<p><strong>PtfmSurge</strong>   - 플랫폼의 초기 또는 고정 수평 서지 병진 변위(미터)</p>
+<p><strong>PtfmSway</strong>    - 플랫폼의 초기 또는 고정 수평 흔들림 병진 변위(미터)</p>
+<p><strong>PtfmHeave</strong>   - 플랫폼의 초기 또는 고정 수직 히브 병진 변위(미터)</p>
+<p><strong>PtfmRoll</strong>    - 플랫폼의 초기 또는 고정 롤 틸트 회전 변위(도)</p>
+<p><strong>PtfmPitch</strong>   - 플랫폼의 초기 또는 고정 피치 틸트 회전 변위(도)</p>
+<p><strong>PtfmYaw</strong>     - 플랫폼의 초기 또는 고정 요 회전 변위(도)</p>
+</div>
+<div class="section" id="turbine-configuration">
+<h3><span class="section-number">4.10.2.2.4. </span>터빈 구성<a class="headerlink" href="#turbine-configuration" title="이 제목의 고유 링크"></a></h3>
+<p><strong>NumBl</strong>       - 블레이드 수(-)</p>
+<p><strong>TipRad</strong>      - 로터 정점에서 블레이드 팁까지의 거리(미터)</p>
+<p><strong>HubRad</strong>      - 로터 정점에서 블레이드 루트까지의 거리(미터)</p>
+<p><strong>PreCone(1)</strong>  - 블레이드 1 콘 각도(도)</p>
+<p><strong>PreCone(2)</strong>  - 블레이드 2 콘 각도(도)</p>
+<p><strong>PreCone(3)</strong>  - 블레이드 3 콘 각도(도) [2 블레이드에는 사용되지 않음]</p>
+<p><strong>HubCM</strong>       - 로터 정점에서 허브 질량까지의 거리[양의 풍하향](미터)</p>
+<p><strong>UndSling</strong>    - 언더슬링 길이[티터 핀에서 로터 정점까지의 거리](미터) [3개 블레이드에는 사용되지 않음]</p>
+<p><strong>델타3</strong>      - 티터링 로터에 대한 Delta-3 각도(도) [3개 블레이드에는 사용되지 않음]</p>
+<p><strong>AzimB1Up</strong>    - 블레이드 1이 위를 향할 때(도) I/O에 사용할 방위각 값입니다. 부유식 MHK 터빈의 경우 블레이드 1은 다음과 같은 경우에 위를 향하게 됩니다(중력 반대). <cite>AzimB1Up</cite> = 0; 사용자가 설정할 수 있습니다 <cite>AzimB1Up</cite> 를 180도까지 조정하여 고정식 MHK 터빈과 마찬가지로 부유형 MHK 터빈용 타워에 대해 동일한 방위각 규칙을 제공합니다.</p>
+<p><strong>OverHang</strong>    - 요 축에서 로터 정점[3개 블레이드] 또는 티터 핀[2개 블레이드]까지의 거리(미터)</p>
+<p><strong>ShftGagL</strong>    - 로터 정점[3개 블레이드] 또는 티터 핀[2개 블레이드]에서 샤프트 스트레인 게이지까지의 거리[바람이 불어오는 로터에 대해 포지티브](미터)</p>
+<p><strong>ShftTilt</strong>    - 로터 샤프트 틸트 각도(도)</p>
+<p><strong>NacCMxn</strong>     - 타워 상단에서 나셀 CM까지 풍하방향 거리(미터)</p>
+<p><strong>NacCMyn</strong>     - 타워 상단에서 나셀 CM까지의 측면 거리(미터)</p>
+<p><strong>NacCMzn</strong>     - 타워 상단에서 나셀 CM까지의 수직 거리, 일반적으로 플로팅 MHK 터빈의 경우 음수(미터)</p>
+<p><strong>NcIMUxn</strong>     - 타워 상단에서 나셀 IMU까지 풍하방향 거리(미터)</p>
+<p><strong>NcIMUyn</strong>     - 타워 상단에서 나셀 IMU까지의 측면 거리(미터)</p>
+<p><strong>NcIMUzn</strong>     - 타워 상단에서 나셀 IMU까지의 수직 거리, 일반적으로 플로팅 MHK 터빈의 경우 음수(미터)</p>
+<p><strong>Twr2Shft</strong>    - 타워 상단에서 로터 샤프트까지의 수직 거리, 일반적으로 플로팅 MHK 터빈의 경우 음수(미터)</p>
+<p><strong>TowerHt</strong>     - 지면 기준 타워 높이[육상], MSL[해상 풍력 또는 부유식 MHK] 또는 해저[고정 MHK](미터)</p>
+<p><strong>TowerBsHt</strong>   - 지면 대비 타워 베이스의 높이[육상], MSL[해상 풍력 또는 부유식 MHK] 또는 해저[고정 MHK](미터)</p>
+<p><strong>PtfmCMxt</strong>    - 지상 [육상], MSL [해상 풍력 또는 부유식 MHK] 또는 해저 [고정 MHK]에서 플랫폼 CM까지 풍하 방향 거리(미터)</p>
+<p><strong>PtfmCMyt</strong>    - 지상 [육상], MSL [해상 풍력 또는 부유식 MHK] 또는 해저 [고정 MHK]에서 플랫폼 CM까지의 측면 거리(미터)</p>
+<p><strong>PtfmCMzt</strong>    - 지상 [육상], MSL [해상 풍력 또는 부유식 MHK] 또는 해저 [고정 MHK]에서 플랫폼 CM까지의 수직 거리(미터)</p>
+<p><strong>PtfmRefzt</strong>   - 지상 [육상], MSL [해상 풍력 또는 부유식 MHK] 또는 해저 [고정 MHK]에서 플랫폼 기준점까지의 수직 거리(미터)</p>
+</div>
+<div class="section" id="mass-and-inertia">
+<h3><span class="section-number">4.10.2.2.5. </span>질량 및 관성<a class="headerlink" href="#mass-and-inertia" title="이 제목의 고유 링크"></a></h3>
+<p><strong>TipMass(1)</strong>  - 팁 브레이크 질량, 블레이드 1(kg)</p>
+<p><strong>TipMass(2)</strong>  - 팁 브레이크 질량, 블레이드 2(kg)</p>
+<p><strong>TipMass(3)</strong>  - 팁 브레이크 질량, 블레이드 3(kg) [2 블레이드에는 사용되지 않음]</p>
+<p><strong>PBrIner(1)</strong>  - 피치 베어링/액추에이터 관성, 블레이드 1(kg·m^2)</p>
+<p><strong>PBrIner(2)</strong>  - 피치 베어링/액추에이터 관성, 블레이드 2(kg m^2)</p>
+<p><strong>PBrIner(3)</strong>  - 피치 베어링/액추에이터 관성, 블레이드 3(kg m^2) [2개 블레이드에는 사용되지 않음]</p>
+<p><strong>BlPIner(1)</strong>  - 편향되지 않은 블레이드의 피치 관성, 블레이드 1(kg·m^2)</p>
+<p><strong>BlPIner(2)</strong>  - 편향되지 않은 블레이드의 피치 관성, 블레이드 2(kg·m^2)</p>
+<p><strong>BlPIner(3)</strong>  - 편향되지 않은 블레이드의 피치 관성, 블레이드 3(kg·m^2) [2개 블레이드에는 사용되지 않음]</p>
+<p><strong>HubMass</strong>     - 허브 질량(kg)</p>
+<p><strong>HubIner</strong>     - 로터 축에 대한 허브 관성(2개 또는 3개 블레이드)(kg·m^2)</p>
+<p><strong>HubIner_Teeter</strong>     - 티터 축(2-블레이드)에 대한 허브 관성(kg·m^2)</p>
+<p><strong>GenIner</strong>     - HSS에 대한 발전기 관성(kg·m^2)</p>
+<p><strong>NacMass</strong>     - 나셀 질량(kg)</p>
+<p><strong>NacYIner</strong>    - 요 축에 대한 나셀 관성(kg·m^2)</p>
+<p><strong>YawBrMass</strong>   - 요 베어링 질량(kg)</p>
+<p><strong>PtfmMass</strong>    - 플랫폼 질량(kg)</p>
+<p><strong>PtfmRIner</strong>   - 플랫폼 CM에 대한 롤 틸트 회전을 위한 플랫폼 관성(kg m^2)</p>
+<p><strong>PtfmPIner</strong>   - 플랫폼 CM에 대한 피치 틸트 회전을 위한 플랫폼 관성(kg m^2)</p>
+<p><strong>PtfmYIner</strong>   - 플랫폼 CM에 대한 요 회전을 위한 플랫폼 관성(kg m^2)</p>
+<p><strong>PtfmXYIner</strong>  - 플랫폼 롤 피치 관성 모멘트(<em>Ixy=-∫xydm</em>) 플랫폼 CM에 대한 정보(kg·m^2)</p>
+<p><strong>PtfmYZIner</strong>  - 플랫폼 피치 요 관성 모멘트(<em>Iyz=-∫yzdm</em>) 플랫폼 CM에 대한 정보(kg·m^2)</p>
+<p><strong>PtfmXZIner</strong>  - 플랫폼 롤요 관성 모멘트(<em>Ixz=-∫xzdm</em>) 플랫폼 CM에 대한 정보(kg·m^2)</p>
+</div>
+<div class="section" id="blade">
+<h3><span class="section-number">4.10.2.2.6. </span>블레이드<a class="headerlink" href="#blade" title="이 제목의 고유 링크"></a></h3>
+<p><strong>BldNodes</strong>    - 분석에 사용되는 블레이드 노드 수(블레이드당)(-)</p>
+<p><strong>BldFile(1)</strong>  - 블레이드 1의 속성을 포함하는 파일 이름(인용 문자열)</p>
+<p><strong>BldFile(2)</strong>  - 블레이드 2의 속성을 포함하는 파일 이름(인용 문자열)</p>
+<p><strong>BldFile(3)</strong>  - 블레이드 3에 대한 속성을 포함하는 파일 이름(인용 문자열) [2개의 블레이드에는 사용되지 않음]</p>
+</div>
+<div class="section" id="rotor-teeter">
+<h3><span class="section-number">4.10.2.2.7. </span>로터 티터<a class="headerlink" href="#rotor-teeter" title="이 제목의 고유 링크"></a></h3>
+<p><strong>TeetMod</strong>     - 로터-티터 스프링/댐퍼 모델 {0: 없음, 1: 표준, 2: 루틴 UserTeet에서 사용자 정의}(스위치) [3개 블레이드에 사용되지 않음]</p>
+<p><strong>TeetDmpP</strong>    - 로터-티터 댐퍼 위치(도) [2개의 블레이드와 TeetMod=1인 경우에만 사용됨]</p>
+<p><strong>TeetDmp</strong>     - 로터-티터 감쇠 상수(N-m/(rad/s)) [2개의 블레이드와 TeetMod=1인 경우에만 사용됨]</p>
+<p><strong>TeetSStP</strong>    - 로터-티터 소프트 스톱 위치(도) [2개의 블레이드와 TeetMod=1인 경우에만 사용됨]</p>
+<p><strong>TeetHStP</strong>    - 로터-티터 하드 스톱 위치(도) [2개의 블레이드와 TeetMod=1인 경우에만 사용됨]</p>
+<p><strong>TeetSSSp</strong>    - 로터-티터 소프트 스톱 선형 스프링 상수(N-m/rad) [2개의 블레이드와 TeetMod=1인 경우에만 사용됨]</p>
+<p><strong>TeetHSSp</strong>    - 로터-티터 하드 스톱 선형 스프링 상수(N-m/rad) [2개의 블레이드와 TeetMod=1인 경우에만 사용됨]</p>
+</div>
+<div class="section" id="yaw-friction">
+<h3><span class="section-number">4.10.2.2.8. </span>요 마찰<a class="headerlink" href="#yaw-friction" title="이 제목의 고유 링크"></a></h3>
+<p><strong>YawFrctMod</strong>  - 요 마찰 모델 {0: 없음, 1: 요 베어링 힘 및 굽힘 모멘트와 무관한 마찰, 2: 요 베어링 힘 및 굽힘 모멘트에 따른 쿨롱 항을 사용한 마찰, 3: 사용자 정의 모델}</p>
+<p><strong>M_CSmax</strong>     - 최대 정적 쿨롱 마찰 토크(N-m) [YawFrctMod=1일 때 M_CSmax; -min(0,Fz)*M_CSmax, YawFrctMod=2일 때]</p>
+<p><strong>M_FCSmax</strong>    - 요 베어링 전단력(N-m)에 비례하는 최대 정적 쿨롱 마찰 토크 [sqrt(Fx^2+Fy^2)*M_FCSmax; YawFrctMod=2인 경우에만 사용됨]</p>
+<p><strong>M_MCSmax</strong>    - 요 베어링 굽힘 모멘트(N-m)에 비례하는 최대 정적 쿨롱 마찰 토크 [sqrt(Mx^2+My^2)*M_MCSmax; YawFrctMod=2인 경우에만 사용됨]</p>
+<p><strong>M_CD</strong>        - 동적 쿨롱 마찰 모멘트(N-m) [YawFrctMod=1일 때 M_CD; -min(0,Fz)*M_CD, YawFrctMod=2일 때]</p>
+<p><strong>M_FCD</strong>       - 요 베어링 전단력(N-m)에 비례하는 동적 쿨롱 마찰 모멘트 [sqrt(Fx^2+Fy^2)*M_FCD; YawFrctMod=2인 경우에만 사용됨]</p>
+<p><strong>M_MCD</strong>       - 요 베어링 굽힘 모멘트에 비례하는 동적 쿨롱 마찰 모멘트(N-m) [sqrt(Mx^2+My^2)*M_MCD; YawFrctMod=2인 경우에만 사용됨]</p>
+<p><strong>sig_v</strong>       - 선형 점성 마찰 계수(N-m/(rad/s))</p>
+<p><strong>sig_v2</strong>      - 2차 점성 마찰 계수(N-m/(rad/s)^2)</p>
+<p><strong>OmgCut</strong>      - 점성 마찰이 선형화되는 요 각속도 컷오프(rad/s)</p>
+</div>
+<div class="section" id="drivetrain">
+<h3><span class="section-number">4.10.2.2.9. </span>구동계<a class="headerlink" href="#drivetrain" title="이 제목의 고유 링크"></a></h3>
+<p><strong>GBoxEff</strong>     - 기어박스 효율(%)</p>
+<p><strong>GBRatio</strong>     - 기어박스 비율(-)</p>
+<p><strong>DTTorSpr</strong>    - 구동계 토셔널 스프링(N-m/rad)</p>
+<p><strong>DTTorDmp</strong>    - 구동계 비틀림 댐퍼(N-m/(rad/s))</p>
+</div>
+<div class="section" id="furling">
+<h3><span class="section-number">4.10.2.2.10. </span>펄링<a class="headerlink" href="#furling" title="이 제목의 고유 링크"></a></h3>
+<p><strong>펄링</strong>     - 펄링 터빈(플래그)에 대한 추가 모델 속성 읽기 [현재 FALSE여야 함)</p>
+<p><strong>FurlFile</strong>    - Furling 속성을 포함하는 파일 이름(인용 문자열) [Furling=False인 경우 사용되지 않음] Furling 입력 파일의 예는 다음과 같습니다. <a class="reference internal" href="#tf-ed-input-file"><span class="std std-numref">섹션 4.10.2.3</span></a>.</p>
+</div>
+<div class="section" id="tower">
+<h3><span class="section-number">4.10.2.2.11. </span>타워<a class="headerlink" href="#tower" title="이 제목의 고유 링크"></a></h3>
+<p><strong>TwrNodes</strong>    - 분석에 사용된 타워 노드 수(-)</p>
+<p><strong>TwrFile</strong>     - 타워 속성이 포함된 파일 이름(인용 문자열)</p>
+</div>
+<div class="section" id="outputs">
+<span id="ed-outputs"></span><h3><span class="section-number">4.10.2.2.12. </span>출력<a class="headerlink" href="#outputs" title="이 제목의 고유 링크"></a></h3>
+<p><strong>SumPrint</strong> [플래그] ElastoDyn이 다음 이름의 요약 파일을 생성하도록 하려면 이 값을 TRUE로 설정하십시오. <strong>OutFileRoot</strong>.ED.sum*. <strong>OutFileRoot</strong> 는 결합 시뮬레이션을 실행할 때 OpenFAST 프로그램에 의해 지정됩니다.</p>
+<p><strong>OutFile</strong> [스위치]는 현재 사용되지 않습니다. 최종 목적은 ElastoDyn의 출력이 모듈 출력 파일(옵션 1)이나 기본 OpenFAST 출력 파일(옵션 2) 또는 둘 다에 기록되도록 허용하는 것입니다. 현재 이 스위치는 무시됩니다.</p>
+<p><strong>TabDelim</strong> [플래그]는 현재 사용되지 않습니다. 이것을 True로 설정하면 텍스트 파일의 구분 기호가 ElastoDyn 모듈의 탭 문자로 설정됩니다.
+<strong>OutFile</strong>.</p>
+<p><strong>OutFmt</strong> [인용 문자열]은 현재 사용되지 않습니다. ElastoDyn은 다음과 같이 지정된 로컬 출력의 부동 소수점 값 출력을 위한 숫자 형식 지정자로 이 문자열을 사용합니다. <strong>OutFile</strong>. 이 문자열의 길이는 20자를 초과할 수 없으며 아포스트로피나 ​​큰따옴표로 묶어야 합니다. 빈 문자열을 지정할 수 없습니다. 고정 너비 열 데이터가 열 제목과 올바르게 정렬되도록 하려면 필드 너비가 10자인지 확인해야 합니다. E, EN 또는 ES 지정자를 사용하면 숫자가 너무 커서 필드를 오버플로하는 일이 발생하지 않지만 이러한 숫자는 읽기가 더 어렵습니다. F 지정자를 사용하면 읽기 쉬운 숫자가 제공되지만 필드가 오버플로될 수 있습니다. 형식 지정자에 대한 자세한 내용은 Fortran 설명서를 참조하세요.</p>
+<p><strong>T시작</strong> [s]는 시작 시간을 설정합니다. <strong>OutFile</strong>. 현재 미사용 제품입니다.</p>
+<p><strong>DecFact</strong> [-] 이 매개변수는 출력에 대한 데시메이션 계수를 설정합니다. ElastoDyn은 데이터를 다음으로 출력합니다. <strong>OutFile</strong> 는 각 DecFact 통합 시간 단계에 한 번만 적용됩니다. 예를 들어, 값이 5이면 ElastoDyn은 5번째 시간 단계마다 출력을 생성합니다. 이 값은 0보다 큰 정수여야 합니다.</p>
+<p><strong>NTwGages</strong> [-] 타워를 따라 있는 스트레인 게이지 위치 수는 다음 라인의 입력 값 수를 나타냅니다. 유효한 값은 0에서 5(포함) 사이의 정수입니다.</p>
+<p><strong>TwrGagNd</strong> [-] 타워를 따라 가상 스트레인 게이지 위치는 이 라인에 지정된 타워 분석 노드에 할당됩니다. 가능한 값은 1부터 TwrNodes까지(포함)입니다. 여기서 1은 타워 베이스에 가장 가까운 노드(베이스는 아님)에 해당하고 TwrNodes 값은 타워 상단에 가장 가까운 노드에 해당합니다. 타워 베이스를 기준으로 편향되지 않은 타워의 각 해석 노드의 정확한 높이는 다음과 같이 결정됩니다.</p>
+<blockquote>
+<div><dl class="simple">
+<dt>고도 노드 J = TwrRBHt + ( J – 1⁄2 ) • [ ( TowerHt + TwrDraft – TwrRBHt ) / TwrNodes ]</dt><dd><p>(J = 1,2,…,TwrNodes의 경우)</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>이 줄에는 최소한 NTwGages 값을 입력해야 합니다. NTwGages가 0이면 이 줄을 건너뛰지만 입력 파일에서 공간을 차지하는 줄이 있어야 합니다. 탭, 공백, 쉼표의 조합으로 값을 구분할 수 있지만, 숫자 사이에는 쉼표를 하나만 사용할 수 있습니다.</p>
+<p><strong>NBlGages</strong> [-]는 블레이드를 따라 스트레인 게이지 위치 수를 지정하고 예상되는 입력 값 수를 나타냅니다. <strong>BldGagNd</strong>. 이는 블레이드 구조가 ElastoDyn에서 모델링될 때만 사용됩니다.</p>
+<p><strong>BldGagNd</strong> [-]는 출력되어야 하는 블레이드를 따라 가상 스트레인 게이지 위치를 지정합니다. 가능한 값은 1부터 <strong>BldNodes</strong> (포함), 여기서 1은 블레이드 루트에 가장 가까운 노드(루트가 아님)에 해당하고 BldNodes 값은 블레이드 팁에 가장 가까운 노드에 해당합니다. 노드 위치는 ElastoDyn 블레이드 입력 파일에 의해 지정됩니다. 이 줄에는 최소한 NBlGages 값을 입력해야 합니다. NBlGages가 0이면 이 줄을 건너뛰지만 입력 파일에서 공간을 차지하는 줄이 있어야 합니다. 탭, 공백, 쉼표의 조합으로 값을 구분할 수 있지만, 숫자 사이에는 쉼표를 하나만 사용할 수 있습니다. 이는 블레이드 구조가 ElastoDyn에서 모델링될 때만 사용됩니다.</p>
+<p>해당 <strong>OutList</strong> 섹션은 ElastoDyn에서 생성된 출력 수량을 제어합니다. 하나 이상의 출력 매개변수 이름을 포함하는 따옴표 붙은 문자열을 포함하는 하나 이상의 행을 입력하십시오. 쉼표, 세미콜론, 공백 및/또는 탭의 조합으로 출력 매개변수 이름을 구분합니다. 매개변수 이름 앞에 빼기 기호, "-", 밑줄, "_" 또는 "m" 또는 "M" 문자를 붙인 경우 ElastoDyn은 데이터를 쓰기 전에 해당 채널의 값에 -1을 곱합니다. 매개변수는 입력 파일에 나열된 순서대로 작성됩니다. ElastoDyn을 사용하면 여러 줄을 사용하여 목록을 의미 있는 그룹으로 나누고 줄을 더 짧게 만들 수 있습니다. 모든 행에서 닫는 따옴표 뒤에 설명을 입력할 수 있습니다. 줄의 시작 부분이나 줄의 시작 부분에 있는 따옴표 붙은 문자열의 시작 부분에 "END"라는 문자열이 있는 줄을 입력하면 ElastoDyn이 더 많은 채널 이름 줄에 대한 검색을 중단하게 됩니다. 블레이드 및 타워 노드 관련 수량은 식별된 요청 노드에 대해 생성됩니다.
+<strong>BldGagNd</strong> 및 <strong>TwrGagNd</strong> 는 위에 나열되어 있습니다. ElastoDyn이 알 수 없거나 유효하지 않은 채널 이름을 발견하면 사용자에게 경고하지만 의심스러운 채널을 출력 파일에서 제거합니다. 엑셀 파일의 ElastoDyn 탭을 참고하세요. <a class="reference download internal" download="" href="../../../_downloads/3f19498a5dc774461e022b671ff01ec6/OutListParameters.xlsx"><code class="xref download docutils literal notranslate"><span class="pre">OutListParameters.xlsx</span></code></a>
+를 참조하세요.</p>
+</div>
+<div class="section" id="nodal-outputs">
+<span id="ed-nodal-outputs"></span><h3><span class="section-number">4.10.2.2.13. </span>노드 출력<a class="headerlink" href="#nodal-outputs" title="이 제목의 고유 링크"></a></h3>
+<p>의 명명된 출력 외에도 <a class="reference internal" href="#ed-outputs"><span class="std std-numref">섹션 4.10.2.2.12
+위의</span></a> , ElastoDyn은 전체 세트 블레이드 노드 동작 및 하중을 출력할 수 있습니다(타워 노드는 현재 사용할 수 없음). Excel 파일의 ElastoDyn_Nodes 탭을 참조하십시오. <a class="reference download internal" download="" href="../../../_downloads/3f19498a5dc774461e022b671ff01ec6/OutListParameters.xlsx"><code class="xref download docutils literal notranslate"><span class="pre">OutListParameters.xlsx</span></code></a>
+를 참조하세요.</p>
+<p>이 섹션은 다음과 같습니다. <cite>END</cite> 문에는 구분 기호 설명 줄과 다음 optino가 포함됩니다.</p>
+<p><strong>BldNd_BladesOut</strong> 는 출력할 블레이드 수를 지정합니다. 가능한 값은 ElastoDyn이 모델링하는 블레이드 수까지 0입니다. 값이 1로 설정되면 블레이드 1만 출력되고, 값이 2로 설정되면 블레이드 1과 2가 출력됩니다.</p>
+<p><strong>BldNd_BlOutNd</strong> 는 출력할 노드를 지정합니다. 현재는 사용되지 않습니다.</p>
+<p>해당 <strong>OutList</strong> 섹션은 ElastoDyn에 의해 생성된 노드 출력 수량을 제어합니다. 이 섹션에서 사용자는 출력할 채널 계열의 이름을 지정합니다. 그런 다음 각 채널의 출력 이름은 블레이드 번호, 노드 번호 및 채널 제품군 이름을 결합하여 ElastoDyn에서 내부적으로 생성됩니다. 예를 들어, 사용자가 지정하는 경우 <strong>TDx</strong> 를 사용하는 경우 출력 채널은 다음 규칙에 따라 이름이 지정됩니다. <strong>B</strong><span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span><strong>N###TDx</strong> 여기서 <span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span> 는 블레이드 번호이고, <strong>###</strong> 는 세 자리 노드 번호입니다.</p>
+<div class="section" id="sample-nodal-outputs-section">
+<h4><span class="section-number">4.10.2.2.13.1. </span>샘플 노드 출력 섹션<a class="headerlink" href="#sample-nodal-outputs-section" title="이 제목의 고유 링크"></a></h4>
+<p>이 샘플에는
+일반 출력 섹션의 <code class="docutils literal notranslate"><span class="pre">END</span></code> 문.</p>
+<div class="docutils container" id="file-ednodaloutputs">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">END</span> <span class="n">of</span> <span class="nb">input</span> <span class="n">file</span> <span class="p">(</span><span class="n">the</span> <span class="n">word</span> <span class="s2">"END"</span> <span class="n">must</span> <span class="n">appear</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">first</span> <span class="mi">3</span> <span class="n">columns</span> <span class="n">of</span> <span class="n">this</span> <span class="n">last</span> <span class="n">OutList</span> <span class="n">line</span><span class="p">)</span>
+<span class="linenos"> 2</span><span class="o">----------------------</span> <span class="n">NODE</span> <span class="n">OUTPUTS</span> <span class="o">--------------------------------------------</span>
+<span class="linenos"> 3</span>          <span class="mi">3</span>   <span class="n">BldNd_BladesOut</span>  <span class="o">-</span> <span class="n">Blades</span> <span class="n">to</span> <span class="n">output</span>
+<span class="linenos"> 4</span>         <span class="mi">99</span>   <span class="n">BldNd_BlOutNd</span>   <span class="o">-</span> <span class="n">Blade</span> <span class="n">nodes</span> <span class="n">on</span> <span class="n">each</span> <span class="n">blade</span> <span class="p">(</span><span class="n">currently</span> <span class="n">unused</span><span class="p">)</span>
+<span class="linenos"> 5</span>              <span class="n">OutList</span>     <span class="o">-</span> <span class="n">The</span> <span class="nb">next</span> <span class="n">line</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="n">contains</span> <span class="n">a</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">output</span> <span class="n">parameters</span><span class="o">.</span>  <span class="n">See</span> <span class="n">OutListParameters</span><span class="o">.</span><span class="n">xlsx</span><span class="p">,</span> <span class="n">ElastoDyn_Nodes</span> <span class="n">tab</span> <span class="k">for</span> <span class="n">a</span> <span class="n">listing</span> <span class="n">of</span> <span class="n">available</span> <span class="n">output</span> <span class="n">channels</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="p">)</span>
+<span class="linenos"> 6</span><span class="s2">"ALx"</span>    <span class="o">-</span>  <span class="n">local</span> <span class="n">flapwise</span> <span class="n">acceleration</span> <span class="p">(</span><span class="n">absolute</span><span class="p">)</span> <span class="n">of</span> <span class="n">node</span>
+<span class="linenos"> 7</span><span class="s2">"ALy"</span>    <span class="o">-</span> <span class="n">local</span> <span class="n">flapwise</span> <span class="n">acceleration</span> <span class="p">(</span><span class="n">absolute</span><span class="p">)</span> <span class="n">of</span> <span class="n">node</span>
+<span class="linenos"> 8</span><span class="s2">"ALz"</span>    <span class="o">-</span> <span class="n">local</span> <span class="n">flapwise</span> <span class="n">acceleration</span> <span class="p">(</span><span class="n">absolute</span><span class="p">)</span> <span class="n">of</span> <span class="n">node</span>
+<span class="linenos"> 9</span><span class="s2">"TDx"</span>    <span class="o">-</span> <span class="n">local</span> <span class="n">flapwise</span> <span class="p">(</span><span class="n">translational</span><span class="p">)</span> <span class="n">deflection</span> <span class="p">(</span><span class="n">relative</span> <span class="n">to</span> <span class="n">the</span> <span class="n">undeflected</span> <span class="n">position</span><span class="p">)</span> <span class="n">of</span> <span class="n">node</span>
+<span class="linenos">10</span><span class="s2">"TDy"</span>    <span class="o">-</span> <span class="n">local</span> <span class="n">edgewise</span> <span class="p">(</span><span class="n">translational</span><span class="p">)</span> <span class="n">deflection</span> <span class="p">(</span><span class="n">relative</span> <span class="n">to</span> <span class="n">the</span> <span class="n">undeflected</span> <span class="n">position</span><span class="p">)</span> <span class="n">of</span> <span class="n">node</span>
+<span class="linenos">11</span><span class="s2">"TDz"</span>    <span class="o">-</span> <span class="n">local</span> <span class="n">axial</span> <span class="p">(</span><span class="n">translational</span><span class="p">)</span> <span class="n">deflection</span> <span class="p">(</span><span class="n">relative</span> <span class="n">to</span> <span class="n">the</span> <span class="n">undeflected</span> <span class="n">position</span><span class="p">)</span> <span class="n">of</span> <span class="n">node</span>
+<span class="linenos">12</span><span class="s2">"RDx"</span>    <span class="o">-</span> <span class="n">Local</span> <span class="n">rotational</span> <span class="n">displacement</span> <span class="n">about</span> <span class="n">x</span><span class="o">-</span><span class="n">axis</span> <span class="p">(</span><span class="n">relative</span> <span class="n">to</span> <span class="n">undeflected</span><span class="p">)</span>
+<span class="linenos">13</span><span class="s2">"RDy"</span>    <span class="o">-</span> <span class="n">Local</span> <span class="n">rotational</span> <span class="n">displacement</span> <span class="n">about</span> <span class="n">y</span><span class="o">-</span><span class="n">axis</span> <span class="p">(</span><span class="n">relative</span> <span class="n">to</span> <span class="n">undeflected</span><span class="p">)</span>
+<span class="linenos">14</span><span class="s2">"RDz"</span>    <span class="o">-</span> <span class="n">Local</span> <span class="n">rotational</span> <span class="n">displacement</span> <span class="n">about</span> <span class="n">z</span><span class="o">-</span><span class="n">axis</span> <span class="p">(</span><span class="n">relative</span> <span class="n">to</span> <span class="n">undeflected</span><span class="p">)</span>
+<span class="linenos">15</span><span class="s2">"MLx"</span>    <span class="o">-</span> <span class="n">local</span> <span class="n">edgewise</span> <span class="n">moment</span> <span class="n">at</span> <span class="n">node</span>
+<span class="linenos">16</span><span class="s2">"MLy"</span>    <span class="o">-</span> <span class="n">local</span> <span class="n">flapwise</span> <span class="n">moment</span> <span class="n">at</span> <span class="n">node</span>
+<span class="linenos">17</span><span class="s2">"MLz"</span>    <span class="o">-</span> <span class="n">local</span> <span class="n">pitching</span> <span class="n">moment</span> <span class="n">at</span> <span class="n">node</span>
+<span class="linenos">18</span><span class="s2">"FLx"</span>    <span class="o">-</span> <span class="n">local</span> <span class="n">flapwise</span> <span class="n">shear</span> <span class="n">force</span> <span class="n">at</span> <span class="n">node</span>
+<span class="linenos">19</span><span class="s2">"FLy"</span>    <span class="o">-</span> <span class="n">local</span> <span class="n">edgewise</span> <span class="n">shear</span> <span class="n">force</span> <span class="n">at</span> <span class="n">node</span>
+<span class="linenos">20</span><span class="s2">"FLz"</span>    <span class="o">-</span> <span class="n">local</span> <span class="n">axial</span> <span class="n">force</span> <span class="n">at</span> <span class="n">node</span>
+<span class="linenos">21</span><span class="s2">"MLxNT"</span>  <span class="o">-</span> <span class="n">Edgewise</span> <span class="n">moment</span> <span class="ow">in</span> <span class="n">local</span> <span class="n">coordinate</span> <span class="n">system</span> <span class="p">(</span><span class="n">initial</span> <span class="n">structural</span> <span class="n">twist</span> <span class="n">removed</span><span class="p">)</span>
+<span class="linenos">22</span><span class="s2">"MlyNT"</span>  <span class="o">-</span> <span class="n">Flapwise</span> <span class="n">shear</span> <span class="n">moment</span> <span class="ow">in</span> <span class="n">local</span> <span class="n">coordinate</span> <span class="n">system</span> <span class="p">(</span><span class="n">initial</span> <span class="n">structural</span> <span class="n">twist</span> <span class="n">removed</span><span class="p">)</span>
+<span class="linenos">23</span><span class="s2">"FLxNT"</span>  <span class="o">-</span> <span class="n">Flapwise</span> <span class="n">shear</span> <span class="n">force</span> <span class="ow">in</span> <span class="n">local</span> <span class="n">coordinate</span> <span class="n">system</span> <span class="p">(</span><span class="n">initial</span> <span class="n">structural</span> <span class="n">twist</span> <span class="n">removed</span><span class="p">)</span>
+<span class="linenos">24</span><span class="s2">"FlyNT"</span>  <span class="o">-</span> <span class="n">Edgewise</span> <span class="n">shear</span> <span class="n">force</span> <span class="ow">in</span> <span class="n">local</span> <span class="n">coordinate</span> <span class="n">system</span> <span class="p">(</span><span class="n">initial</span> <span class="n">structural</span> <span class="n">twist</span> <span class="n">removed</span><span class="p">)</span>
+<span class="linenos">25</span><span class="n">END</span> <span class="n">of</span> <span class="nb">input</span> <span class="n">file</span> <span class="p">(</span><span class="n">the</span> <span class="n">word</span> <span class="s2">"END"</span> <span class="n">must</span> <span class="n">appear</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">first</span> <span class="mi">3</span> <span class="n">columns</span> <span class="n">of</span> <span class="n">this</span> <span class="n">last</span> <span class="n">OutList</span> <span class="n">line</span><span class="p">)</span>
+<span class="linenos">26</span><span class="o">---------------------------------------------------------------------------------------</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="elastodyn-furl-input-file">
+<span id="tf-ed-input-file"></span><h2><span class="section-number">4.10.2.3. </span>ElastoDyn furl 입력 파일<a class="headerlink" href="#elastodyn-furl-input-file" title="이 제목의 고유 링크"></a></h2>
+<p>이 섹션에서는 입력으로 표시되는 furl 입력 파일에 대해 설명합니다.
+ElastoDyn 입력 파일의 <code class="docutils literal notranslate"><span class="pre">FurlFile</span></code> . OpenFAST는 모델이 Furling 기계로 지정된 경우에만 이 파일을 읽습니다(기본 입력 파일의 Furling이 True로 설정된 경우). 입력 파일은 로터 퍼럴(rotor-furl) 및 테일 퍼럴(tail-furl)의 형상 및 구조적 특성을 정의합니다.</p>
+<p>Rotor-Furl 및 Tail-Turl 좌표계와 기하학적 입력은 다음과 같습니다.
+<a class="reference internal" href="coordsys.html#ed-rfrl-coordsys"><span class="std std-numref">섹션 4.10.1.1</span></a> 및
+<a class="reference internal" href="coordsys.html#ed-tfrl-coordsys"><span class="std std-numref">섹션 4.10.1.2</span></a>각각.</p>
+<p>ElastoDyn furl 입력 파일의 예가 아래에 제공됩니다.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">----------------------</span> <span class="n">FAST</span> <span class="n">FURLING</span> <span class="n">FILE</span> <span class="o">---------------------------------------</span>
+<span class="n">Comment</span>
+<span class="o">----------------------</span> <span class="n">FEATURE</span> <span class="n">FLAGS</span> <span class="p">(</span><span class="n">CONT</span><span class="p">)</span> <span class="o">------------------------------------</span>
+<span class="kc">False</span>       <span class="n">RFrlDOF</span>     <span class="o">-</span> <span class="n">Rotor</span><span class="o">-</span><span class="n">furl</span> <span class="n">DOF</span> <span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+<span class="kc">True</span>        <span class="n">TFrlDOF</span>     <span class="o">-</span> <span class="n">Tail</span><span class="o">-</span><span class="n">furl</span> <span class="n">DOF</span> <span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+<span class="o">----------------------</span> <span class="n">INITIAL</span> <span class="n">CONDITIONS</span> <span class="p">(</span><span class="n">CONT</span><span class="p">)</span> <span class="o">-------------------------------</span>
+   <span class="mf">0.0</span>      <span class="n">RotFurl</span>     <span class="o">-</span> <span class="n">Initial</span> <span class="ow">or</span> <span class="n">fixed</span> <span class="n">rotor</span><span class="o">-</span><span class="n">furl</span> <span class="n">angle</span> <span class="p">(</span><span class="n">deg</span><span class="p">)</span>
+   <span class="mf">0.0</span>      <span class="n">TailFurl</span>    <span class="o">-</span> <span class="n">Initial</span> <span class="ow">or</span> <span class="n">fixed</span> <span class="n">tail</span><span class="o">-</span><span class="n">furl</span> <span class="n">angle</span> <span class="p">(</span><span class="n">deg</span><span class="p">)</span>
+<span class="o">----------------------</span> <span class="n">TURBINE</span> <span class="n">CONFIGURATION</span> <span class="p">(</span><span class="n">CONT</span><span class="p">)</span> <span class="o">----------------------------</span>
+   <span class="mf">0.1</span>      <span class="n">Yaw2Shft</span>    <span class="o">-</span> <span class="n">Lateral</span> <span class="n">distance</span> <span class="kn">from</span><span class="w"> </span><span class="nn">the</span> <span class="n">yaw</span> <span class="n">axis</span> <span class="n">to</span> <span class="n">the</span> <span class="n">rotor</span> <span class="n">shaft</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span>
+   <span class="mf">0.0</span>      <span class="n">ShftSkew</span>    <span class="o">-</span> <span class="n">Rotor</span> <span class="n">shaft</span> <span class="n">skew</span> <span class="n">angle</span> <span class="p">(</span><span class="n">deg</span><span class="p">)</span>
+<span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span>  <span class="n">RFrlCM_n</span>    <span class="o">-</span> <span class="n">Position</span> <span class="n">of</span> <span class="n">the</span> <span class="n">CM</span> <span class="n">of</span> <span class="n">the</span> <span class="n">structure</span> <span class="n">that</span> <span class="n">furls</span> <span class="k">with</span> <span class="n">the</span> <span class="n">rotor</span> <span class="p">[</span><span class="ow">not</span> <span class="n">including</span> <span class="n">rotor</span><span class="p">]</span> <span class="kn">from</span><span class="w"> </span><span class="nn">the</span> <span class="n">tower</span><span class="o">-</span><span class="n">top</span><span class="p">,</span> <span class="ow">in</span> <span class="n">nacelle</span> <span class="n">coordinates</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="mf">1.7</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.</span>  <span class="n">BoomCM_n</span>    <span class="o">-</span> <span class="n">Postion</span> <span class="n">of</span> <span class="n">the</span> <span class="n">tail</span> <span class="n">boom</span> <span class="n">CM</span> <span class="kn">from</span><span class="w"> </span><span class="nn">the</span> <span class="n">tower</span> <span class="n">top</span><span class="p">,</span> <span class="ow">in</span> <span class="n">nacelle</span> <span class="n">coordinates</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span>  <span class="n">TFinCM_n</span>    <span class="o">-</span> <span class="n">Position</span> <span class="n">of</span> <span class="n">tail</span> <span class="n">fin</span> <span class="n">CM</span> <span class="kn">from</span><span class="w"> </span><span class="nn">the</span> <span class="n">tower</span> <span class="n">top</span><span class="p">,</span> <span class="ow">in</span> <span class="n">nacelle</span> <span class="n">coordinates</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span>  <span class="n">RFrlPnt_n</span>   <span class="o">-</span> <span class="n">Position</span> <span class="n">of</span> <span class="n">an</span> <span class="n">arbitrary</span> <span class="n">point</span> <span class="n">on</span> <span class="n">the</span> <span class="n">rotor</span><span class="o">-</span><span class="n">furl</span> <span class="n">axis</span> <span class="kn">from</span><span class="w"> </span><span class="nn">the</span> <span class="n">tower</span> <span class="n">top</span><span class="p">,</span> <span class="ow">in</span> <span class="n">nacelle</span> <span class="n">coordinates</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span>
+   <span class="mf">0.0</span>      <span class="n">RFrlSkew</span>    <span class="o">-</span> <span class="n">Rotor</span><span class="o">-</span><span class="n">furl</span> <span class="n">axis</span> <span class="n">skew</span> <span class="n">angle</span> <span class="p">(</span><span class="n">deg</span><span class="p">)</span>
+   <span class="mf">0.0</span>      <span class="n">RFrlTilt</span>    <span class="o">-</span> <span class="n">Rotor</span><span class="o">-</span><span class="n">furl</span> <span class="n">axis</span> <span class="n">tilt</span> <span class="n">angle</span> <span class="p">(</span><span class="n">deg</span><span class="p">)</span>
+<span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span> <span class="n">TFrlPnt_n</span>   <span class="o">-</span> <span class="n">Position</span> <span class="n">of</span> <span class="n">an</span> <span class="n">arbitrary</span> <span class="n">point</span> <span class="n">on</span> <span class="n">the</span> <span class="n">tail</span><span class="o">-</span><span class="n">furl</span> <span class="n">axis</span> <span class="kn">from</span><span class="w"> </span><span class="nn">the</span> <span class="n">tower</span> <span class="n">top</span><span class="p">,</span> <span class="ow">in</span> <span class="n">nacelle</span> <span class="n">coordinates</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span>
+ <span class="o">-</span><span class="mf">45.2</span>      <span class="n">TFrlSkew</span>    <span class="o">-</span> <span class="n">Tail</span><span class="o">-</span><span class="n">furl</span> <span class="n">axis</span> <span class="n">skew</span> <span class="n">angle</span> <span class="p">(</span><span class="n">deg</span><span class="p">)</span>
+  <span class="mf">78.7</span>      <span class="n">TFrlTilt</span>    <span class="o">-</span> <span class="n">Tail</span><span class="o">-</span><span class="n">furl</span> <span class="n">axis</span> <span class="n">tilt</span> <span class="n">angle</span> <span class="p">(</span><span class="n">deg</span><span class="p">)</span>
+<span class="o">----------------------</span> <span class="n">MASS</span> <span class="n">AND</span> <span class="n">INERTIA</span> <span class="p">(</span><span class="n">CONT</span><span class="p">)</span> <span class="o">---------------------------------</span>
+   <span class="mf">0.0</span>      <span class="n">RFrlMass</span>    <span class="o">-</span> <span class="n">Mass</span> <span class="n">of</span> <span class="n">structure</span> <span class="n">that</span> <span class="n">furls</span> <span class="k">with</span> <span class="n">the</span> <span class="n">rotor</span> <span class="p">[</span><span class="ow">not</span> <span class="n">including</span> <span class="n">rotor</span><span class="p">]</span> <span class="p">(</span><span class="n">kg</span><span class="p">)</span>
+  <span class="mf">86.8</span>      <span class="n">BoomMass</span>    <span class="o">-</span> <span class="n">Tail</span> <span class="n">boom</span> <span class="n">mass</span> <span class="p">(</span><span class="n">kg</span><span class="p">)</span>
+   <span class="mf">0.0</span>      <span class="n">TFinMass</span>    <span class="o">-</span> <span class="n">Tail</span> <span class="n">fin</span> <span class="n">mass</span> <span class="p">(</span><span class="n">kg</span><span class="p">)</span>
+   <span class="mf">0.0</span>      <span class="n">RFrlIner</span>    <span class="o">-</span> <span class="n">Inertia</span> <span class="n">of</span> <span class="n">the</span> <span class="n">structure</span> <span class="n">that</span> <span class="n">furls</span> <span class="k">with</span> <span class="n">the</span> <span class="n">rotor</span> <span class="n">about</span> <span class="n">the</span> <span class="n">rotor</span><span class="o">-</span><span class="n">furl</span> <span class="n">axis</span> <span class="p">(</span><span class="n">kg</span> <span class="n">m</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span> <span class="p">[</span><span class="ow">not</span> <span class="n">including</span> <span class="n">rotor</span><span class="p">]</span>
+ <span class="mf">264.7</span>      <span class="n">TFrlIner</span>    <span class="o">-</span> <span class="n">Tail</span> <span class="n">boom</span> <span class="n">inertia</span> <span class="n">about</span> <span class="n">tail</span><span class="o">-</span><span class="n">furl</span> <span class="n">axis</span> <span class="p">(</span><span class="n">kg</span> <span class="n">m</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span>
+<span class="o">----------------------</span> <span class="n">ROTOR</span><span class="o">-</span><span class="n">FURL</span> <span class="o">----------------------------------------------</span>
+   <span class="mi">0</span>        <span class="n">RFrlMod</span>     <span class="o">-</span> <span class="n">Rotor</span><span class="o">-</span><span class="n">furl</span> <span class="n">spring</span><span class="o">/</span><span class="n">damper</span> <span class="n">model</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="n">none</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="n">standard</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="n">user</span><span class="o">-</span><span class="n">defined</span> <span class="n">routine</span><span class="p">}</span> <span class="p">(</span><span class="n">switch</span><span class="p">)</span>
+   <span class="mf">0.0</span>      <span class="n">RFrlSpr</span>     <span class="o">-</span> <span class="n">Rotor</span><span class="o">-</span><span class="n">furl</span> <span class="n">spring</span> <span class="n">constant</span> <span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="n">m</span><span class="o">/</span><span class="n">rad</span><span class="p">)</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">RFrlMod</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>
+   <span class="mf">0.0</span>      <span class="n">RFrlDmp</span>     <span class="o">-</span> <span class="n">Rotor</span><span class="o">-</span><span class="n">furl</span> <span class="n">damping</span> <span class="n">constant</span> <span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="n">m</span><span class="o">/</span><span class="p">(</span><span class="n">rad</span><span class="o">/</span><span class="n">s</span><span class="p">))</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">RFrlMod</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>
+   <span class="mf">0.0</span>      <span class="n">RFrlUSSP</span>    <span class="o">-</span> <span class="n">Rotor</span><span class="o">-</span><span class="n">furl</span> <span class="n">up</span><span class="o">-</span><span class="n">stop</span> <span class="n">spring</span> <span class="n">position</span> <span class="p">(</span><span class="n">deg</span><span class="p">)</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">RFrlMod</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>
+   <span class="mf">0.0</span>      <span class="n">RFrlDSSP</span>    <span class="o">-</span> <span class="n">Rotor</span><span class="o">-</span><span class="n">furl</span> <span class="n">down</span><span class="o">-</span><span class="n">stop</span> <span class="n">spring</span> <span class="n">position</span> <span class="p">(</span><span class="n">deg</span><span class="p">)</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">RFrlMod</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>
+   <span class="mf">0.0</span>      <span class="n">RFrlUSSpr</span>   <span class="o">-</span> <span class="n">Rotor</span><span class="o">-</span><span class="n">furl</span> <span class="n">up</span><span class="o">-</span><span class="n">stop</span> <span class="n">spring</span> <span class="n">constant</span> <span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="n">m</span><span class="o">/</span><span class="n">rad</span><span class="p">)</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">RFrlMod</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>
+   <span class="mf">0.0</span>      <span class="n">RFrlDSSpr</span>   <span class="o">-</span> <span class="n">Rotor</span><span class="o">-</span><span class="n">furl</span> <span class="n">down</span><span class="o">-</span><span class="n">stop</span> <span class="n">spring</span> <span class="n">constant</span> <span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="n">m</span><span class="o">/</span><span class="n">rad</span><span class="p">)</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">RFrlMod</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>
+   <span class="mf">0.0</span>      <span class="n">RFrlUSDP</span>    <span class="o">-</span> <span class="n">Rotor</span><span class="o">-</span><span class="n">furl</span> <span class="n">up</span><span class="o">-</span><span class="n">stop</span> <span class="n">damper</span> <span class="n">position</span> <span class="p">(</span><span class="n">deg</span><span class="p">)</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">RFrlMod</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>
+   <span class="mf">0.0</span>      <span class="n">RFrlDSDP</span>    <span class="o">-</span> <span class="n">Rotor</span><span class="o">-</span><span class="n">furl</span> <span class="n">down</span><span class="o">-</span><span class="n">stop</span> <span class="n">damper</span> <span class="n">position</span> <span class="p">(</span><span class="n">deg</span><span class="p">)</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">RFrlMod</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>
+   <span class="mf">0.0</span>      <span class="n">RFrlUSDmp</span>   <span class="o">-</span> <span class="n">Rotor</span><span class="o">-</span><span class="n">furl</span> <span class="n">up</span><span class="o">-</span><span class="n">stop</span> <span class="n">damping</span> <span class="n">constant</span> <span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="n">m</span><span class="o">/</span><span class="p">(</span><span class="n">rad</span><span class="o">/</span><span class="n">s</span><span class="p">))</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">RFrlMod</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>
+   <span class="mf">0.0</span>      <span class="n">RFrlDSDmp</span>   <span class="o">-</span> <span class="n">Rotor</span><span class="o">-</span><span class="n">furl</span> <span class="n">down</span><span class="o">-</span><span class="n">stop</span> <span class="n">damping</span> <span class="n">constant</span> <span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="n">m</span><span class="o">/</span><span class="p">(</span><span class="n">rad</span><span class="o">/</span><span class="n">s</span><span class="p">))</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">RFrlMod</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>
+<span class="o">----------------------</span> <span class="n">TAIL</span><span class="o">-</span><span class="n">FURL</span> <span class="o">-----------------------------------------------</span>
+   <span class="mi">1</span>        <span class="n">TFrlMod</span>     <span class="o">-</span> <span class="n">Tail</span><span class="o">-</span><span class="n">furl</span> <span class="n">spring</span><span class="o">/</span><span class="n">damper</span> <span class="n">model</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="n">none</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="n">standard</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="n">user</span><span class="o">-</span><span class="n">defined</span> <span class="n">routine</span><span class="p">}</span> <span class="p">(</span><span class="n">switch</span><span class="p">)</span>
+   <span class="mf">0.0</span>      <span class="n">TFrlSpr</span>     <span class="o">-</span> <span class="n">Tail</span><span class="o">-</span><span class="n">furl</span> <span class="n">spring</span> <span class="n">constant</span> <span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="n">m</span><span class="o">/</span><span class="n">rad</span><span class="p">)</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">TFrlMod</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>
+  <span class="mf">10.0</span>      <span class="n">TFrlDmp</span>     <span class="o">-</span> <span class="n">Tail</span><span class="o">-</span><span class="n">furl</span> <span class="n">damping</span> <span class="n">constant</span> <span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="n">m</span><span class="o">/</span><span class="p">(</span><span class="n">rad</span><span class="o">/</span><span class="n">s</span><span class="p">))</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">TFrlMod</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>
+  <span class="mf">85.0</span>      <span class="n">TFrlUSSP</span>    <span class="o">-</span> <span class="n">Tail</span><span class="o">-</span><span class="n">furl</span> <span class="n">up</span><span class="o">-</span><span class="n">stop</span> <span class="n">spring</span> <span class="n">position</span> <span class="p">(</span><span class="n">deg</span><span class="p">)</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">TFrlMod</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>
+   <span class="mf">3.0</span>      <span class="n">TFrlDSSP</span>    <span class="o">-</span> <span class="n">Tail</span><span class="o">-</span><span class="n">furl</span> <span class="n">down</span><span class="o">-</span><span class="n">stop</span> <span class="n">spring</span> <span class="n">position</span> <span class="p">(</span><span class="n">deg</span><span class="p">)</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">TFrlMod</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>
+   <span class="mf">1.0E3</span>    <span class="n">TFrlUSSpr</span>   <span class="o">-</span> <span class="n">Tail</span><span class="o">-</span><span class="n">furl</span> <span class="n">up</span><span class="o">-</span><span class="n">stop</span> <span class="n">spring</span> <span class="n">constant</span> <span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="n">m</span><span class="o">/</span><span class="n">rad</span><span class="p">)</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">TFrlMod</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>
+   <span class="mf">1.7E4</span>    <span class="n">TFrlDSSpr</span>   <span class="o">-</span> <span class="n">Tail</span><span class="o">-</span><span class="n">furl</span> <span class="n">down</span><span class="o">-</span><span class="n">stop</span> <span class="n">spring</span> <span class="n">constant</span> <span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="n">m</span><span class="o">/</span><span class="n">rad</span><span class="p">)</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">TFrlMod</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>
+  <span class="mf">85.0</span>      <span class="n">TFrlUSDP</span>    <span class="o">-</span> <span class="n">Tail</span><span class="o">-</span><span class="n">furl</span> <span class="n">up</span><span class="o">-</span><span class="n">stop</span> <span class="n">damper</span> <span class="n">position</span> <span class="p">(</span><span class="n">deg</span><span class="p">)</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">TFrlMod</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>
+   <span class="mf">0.0</span>      <span class="n">TFrlDSDP</span>    <span class="o">-</span> <span class="n">Tail</span><span class="o">-</span><span class="n">furl</span> <span class="n">down</span><span class="o">-</span><span class="n">stop</span> <span class="n">damper</span> <span class="n">position</span> <span class="p">(</span><span class="n">deg</span><span class="p">)</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">TFrlMod</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>
+   <span class="mf">1.0E3</span>    <span class="n">TFrlUSDmp</span>   <span class="o">-</span> <span class="n">Tail</span><span class="o">-</span><span class="n">furl</span> <span class="n">up</span><span class="o">-</span><span class="n">stop</span> <span class="n">damping</span> <span class="n">constant</span> <span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="n">m</span><span class="o">/</span><span class="p">(</span><span class="n">rad</span><span class="o">/</span><span class="n">s</span><span class="p">))</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">TFrlMod</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>
+ <span class="mf">137.0</span>      <span class="n">TFrlDSDmp</span>   <span class="o">-</span> <span class="n">Tail</span><span class="o">-</span><span class="n">furl</span> <span class="n">down</span><span class="o">-</span><span class="n">stop</span> <span class="n">damping</span> <span class="n">constant</span> <span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="n">m</span><span class="o">/</span><span class="p">(</span><span class="n">rad</span><span class="o">/</span><span class="n">s</span><span class="p">))</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">TFrlMod</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><em>기능 플래그</em></p>
+<p><strong>RFrlDOF</strong>
+이것이 True일 때 로터-펄 DOF가 활성화됩니다. 초기 로터-펄 각도는 RotFurl로 지정됩니다. RFrlDOF가 비활성화된 경우 로터-펄 각도는 RotFurl로 고정됩니다. (플래그)</p>
+<p><strong>TFrlDOF</strong>
+이것이 True일 때 tail-furl DOF가 활성화됩니다. 초기 tail-furl 각도는 TailFurl로 지정됩니다. TFrlDOF가 비활성화된 경우 tail-furl 각도는 TailFurl로 고정됩니다. (플래그)</p>
+<p><em>초기 조건</em></p>
+<p><strong>RotFurl</strong>
+이는 고정 또는 초기 로터-펄 각도입니다. 그림과 같이 로터-펄 축에 대해 양수입니다.
+<a class="reference internal" href="coordsys.html#figtfaxes"><span class="std std-numref">그림 4.46
+회로도용</span></a>. 로터-펄 축은 입력을 통해 정의됩니다. <code class="docutils literal notranslate"><span class="pre">RFrlPnt_n</span></code>
+RFrlSkew 및 RFrlTilt는 아래에 있습니다. 이 값은 -180보다 크고 180도 이하여야 합니다. (도)</p>
+<p><strong>TailFurl</strong>
+이는 고정 또는 초기 꼬리-털 각도입니다. 그림과 같이 tail-furl 축에 대해 양수입니다. <a class="reference internal" href="coordsys.html#figtfaxes"><span class="std std-numref">그림 4.46
+회로도용</span></a>. tail-furl 축은 입력을 통해 정의됩니다.
+아래 <code class="docutils literal notranslate"><span class="pre">TFrlPnt_n</span></code>, <code class="docutils literal notranslate"><span class="pre">TFrlSkew</span></code>및
+이 플래그 값 아래에 <code class="docutils literal notranslate"><span class="pre">TFrlTilt</span></code> . 이 값은 -180보다 크고 180도 이하여야 합니다. (도)</p>
+<p><em>터빈 구성</em></p>
+<p>입력 <code class="docutils literal notranslate"><span class="pre">RFrlPnt_n</span></code>, <code class="docutils literal notranslate"><span class="pre">RFrlSkew</span></code>및
+이 플래그 값 아래에 <code class="docutils literal notranslate"><span class="pre">RFrlTilt</span></code> 는 로터-펄 축의 방향과 관련 DOF를 정의합니다. <code class="docutils literal notranslate"><span class="pre">RFrlDOF</span></code>. 입력 <code class="docutils literal notranslate"><span class="pre">TFrlPnt_n</span></code>, <code class="docutils literal notranslate"><span class="pre">TFrlSkew</span></code>및
+이 플래그 값 아래에 <code class="docutils literal notranslate"><span class="pre">TFrlTilt</span></code> 는 꼬리-털 축의 방향과 관련 DOF를 정의합니다. <code class="docutils literal notranslate"><span class="pre">TFrlDOF</span></code>. 참조 <a class="reference internal" href="coordsys.html#figtfaxes"><span class="std std-numref">그림 4.46
+회로도용</span></a>.</p>
+<p><strong>Yaw2Shft</strong>
+이는 요축에서 로터 샤프트 축과 yn-/zn-평면의 교차점까지의 측면 오프셋 거리입니다. 거리는 yn축에 평행하게 측정됩니다. 그림과 같이 바람이 부는 방향을 바라볼 때 왼쪽에 양의 값이 있습니다. <a class="reference internal" href="coordsys.html#figtffurl"><span class="std std-numref">그림 4.47</span></a>. 로터 펄이 있는 터빈의 경우 이 거리는 펄 각도 0의 구성을 정의합니다. (m)</p>
+<p><strong>ShftSkew</strong>
+이는 명목상 수평면에서 로터 샤프트의 스큐 각도입니다. 양의 스큐는 그림과 같이 양의 나셀 요처럼 작용합니다. <a class="reference internal" href="coordsys.html#figtffurl"><span class="std std-numref">그림 4.47</span></a>; 그러나, <code class="docutils literal notranslate"><span class="pre">ShftSkew</span></code> 는 샤프트를 제로 요 위치에서 몇도 정도 기울이는 데에만 사용해야 하며 요 각도를 대체하는 용도로 사용해서는 안 됩니다. 이 값은 -15도에서 15도(포함) 사이여야 합니다. 로터 펄이 있는 터빈의 경우 이 각도는 펄 각도 0의 구성을 정의합니다. (도)</p>
+<p><strong>RFrlCM_n</strong>
+로터와 접히는 구조물의 질량 중심 위치(로터 기준 입력 제외) <code class="docutils literal notranslate"><span class="pre">RFrlMass</span></code>)는 타워 상단에서 측정되었으며 나셀 좌표계로 표현되었습니다. 참조 <a class="reference internal" href="coordsys.html#figtffurl"><span class="std std-numref">그림 4.47</span></a>. 로터 펄이 있는 터빈의 경우 이 위치는 펄 각도 0의 구성을 정의합니다. (m)</p>
+<p><strong>BoomCM_n</strong>
+테일 붐 질량 중심 위치(기준 입력) <code class="docutils literal notranslate"><span class="pre">BoomMass</span></code>)는 타워 상단에 대해 나셀 좌표계로 표현됩니다. 참조 <a class="reference internal" href="coordsys.html#figtfgeom"><span class="std std-numref">그림 4.48</span></a>. tail-furl이 있는 터빈의 경우 이 거리는 펄 각도 0의 구성을 정의합니다. (m)</p>
+<p><strong>TFinCM_n</strong>
+꼬리날개 질량 중심 위치(기준 입력) <code class="docutils literal notranslate"><span class="pre">TFinMass</span></code>)는 나셀 좌표계로 표현된 상단을 기준으로 합니다. 참조 <a class="reference internal" href="coordsys.html#figtfgeom"><span class="std std-numref">그림 4.48</span></a>. tail-furl이 있는 터빈의 경우 이 거리는 펄 각도 0의 구성을 정의합니다. (m)</p>
+<p><strong>RFrlPnt_n</strong>
+타워 상단과 나셀 좌표계에서 표현된 로터-펄 축의 임의 지점 위치입니다. 참조 <a class="reference internal" href="coordsys.html#figtfaxes"><span class="std std-numref">그림 4.46
+회로도용</span></a>. (m)</p>
+<p><strong>RFrlSkew</strong>
+이는 명목상 수평면에서 로터-펄 축의 스큐 각도입니다. 양의 스큐는 zn축을 기준으로 로터-펄 축의 공칭 수평 투영 방향을 지정합니다. 보다 <a class="reference internal" href="coordsys.html#figtfaxes"><span class="std std-numref">그림 4.46
+회로도용</span></a>. 이 값은 -180보다 크고 180도 이하여야 합니다. (도)</p>
+<p><strong>RFrlTilt</strong>
+이는 명목상 수평면에서 로터-펄 축의 경사 각도입니다. 이 값은 -90도에서 90도(포함) 사이여야 합니다. 참조 <a class="reference internal" href="coordsys.html#figtfaxes"><span class="std std-numref">그림 4.46
+회로도용</span></a>. (도)</p>
+<p><strong>TFrlPnt_n</strong>
+타워 상단에서 꼬리-털 축의 임의 지점까지의 위치(나셀 좌표)입니다. 참조 <a class="reference internal" href="coordsys.html#figtfaxes"><span class="std std-numref">그림 4.46
+회로도용</span></a>. (m)</p>
+<p><strong>TFrlSkew</strong>
+이는 명목상 수평면에서 꼬리털 축의 기울어짐 각도입니다. 양의 스큐는 zn축에 대한 꼬리-털 축의 공칭 수평 투영 방향을 지정합니다. 참조 <a class="reference internal" href="coordsys.html#figtfaxes"><span class="std std-numref">그림 4.46
+회로도용</span></a>. 이 값은 -180보다 크고 180도 이하여야 합니다. (도)</p>
+<p><strong>TFrlTilt</strong>
+이는 명목상 수평면에서 꼬리털 축의 기울기 각도입니다. 참조 <a class="reference internal" href="coordsys.html#figtfaxes"><span class="std std-numref">그림 4.46
+회로도용</span></a>. 이 값은 -90도에서 90도(포함) 사이여야 합니다. (도)</p>
+<p><em>질량 및 관성</em></p>
+<p><strong>RFrlMass</strong>
+로터(로터를 포함하지 않음)와 접히는 구조의 질량입니다. 이 질량의 중심은 입력으로 지정된 지점에 위치합니다.
+로터 퍼럴 각도 0에서 타워 상단에 대한 <code class="docutils literal notranslate"><span class="pre">RFrlCM_n</span></code>
+. 여기에는 로터(블레이드, 허브 및 팁 브레이크)를 제외하고 로터와 함께 접히는 모든 것이 포함됩니다. 이 값은 음수일 수 없습니다. (kg)</p>
+<p><strong>BoomMass</strong>
+이것은 테일 붐의 질량입니다. 테일 붐 질량의 중심은 입력으로 지정한 지점에 위치합니다. <code class="docutils literal notranslate"><span class="pre">BoomCM_n</span></code> 는 꼬리털 각도 0에서 타워 상단을 기준으로 합니다. 여기에는 꼬리 지느러미를 제외한 꼬리와 함께 휘어지는 모든 것이 포함됩니다(다음 입력 참조). 이 값은 음수일 수 없습니다. (kg)</p>
+<p><strong>TFinMass</strong>
+꼬리지느러미의 질량입니다. 꼬리지느러미 질량의 중심은 입력으로 지정한 지점에 위치합니다. <code class="docutils literal notranslate"><span class="pre">TFinCM_n</span></code> 는 꼬리털 각도 0에서 타워 상단을 기준으로 합니다. TFinMass와 BoomMass를 결합하면 꼬리와 함께 접히는 모든 것이 포함되어야 합니다. 이 값은 음수일 수 없습니다. (kg)</p>
+<p><strong>RFrlIner</strong>
+로터-펄축을 중심으로 로터(로터를 포함하지 않음)와 펄럭이는 구조의 관성모멘트입니다. 여기에는 포함된 모든 질량이 포함됩니다. <code class="docutils literal notranslate"><span class="pre">RFrlMass</span></code>. 이 값은 다음보다 커야 합니다. <code class="docutils literal notranslate"><span class="pre">RFrlMass*d^2</span></code> 여기서 d는 로터-펄 축과 C.M. 사이의 수직 거리입니다. 로터[로터를 포함하지 않음]와 함께 휘어지는 구조. (kg·m2)</p>
+<p><strong>TFrlIner</strong>
+이것은 테일 퍼럴 축에 대한 테일 붐 관성 모멘트입니다. BoomMass에 포함된 모든 질량을 포함합니다. 이 값은 다음보다 커야 합니다. <code class="docutils literal notranslate"><span class="pre">BoomMass*d^2</span></code> 여기서 d는 테일 퍼럴 축과 테일 붐 C.M. 사이의 수직 거리입니다. (kg·m2)</p>
+<p><em>로터 퍼럴</em></p>
+<p>로터 퍼럴 베어링은 다음과 같은 설정으로 마찰이 없는 이상적인 베어링이 될 수 있습니다. <code class="docutils literal notranslate"><span class="pre">RFrlMod</span></code> 를 0으로; 설정으로
+<code class="docutils literal notranslate"><span class="pre">RFrlMod</span></code> ~ 1에는 선형 스프링과 선형 댐퍼는 물론 상하 정지 스프링, 상하 정지 댐퍼를 포함하는 표준 모델도 있습니다. 공식은 다음과 같습니다. <a class="reference internal" href="theory.html#ed-rtfrl-theory"><span class="std std-numref">섹션 4.10.3.3</span></a>. ElastoDyn은 로터-펄 편향의 선형 함수를 사용하여 스톱 스프링을 모델링합니다. 로터 퍼럴 스톱은 지정된 각도에서 시작하여 스톱 각도를 지나는 편향을 기반으로 선형 스프링으로 작동합니다. 로터-펄 댐퍼는 펄 속도의 선형 함수이며 지정된 업스톱 및 다운스톱 각도에서 시작됩니다. 이 댐퍼는 양방향이며 정지 각도를 지나면 양방향으로 동일하게 동작에 저항합니다.</p>
+<p>사용자 정의 로터 퍼럴 스프링 및 댐퍼 모델도 사용할 수 있습니다. 사용하려면 다음을 설정하세요. <cite>RFrlMod</cite> 를 2로 바꾸고 제목이 붙은 서브루틴을 생성합니다. <cite>UserRFrl()</cite> 다음 매개변수를 사용하여 <code class="docutils literal notranslate"><span class="pre">RFrlDef</span></code>, <code class="docutils literal notranslate"><span class="pre">RFrlRate</span></code>, <code class="docutils literal notranslate"><span class="pre">DirRoot</span></code>, <code class="docutils literal notranslate"><span class="pre">ZTime</span></code>및
+이 플래그 값 아래에
+<code class="docutils literal notranslate"><span class="pre">RFrlMom</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">RFrlDef</span></code>: 현재 로터 퍼럴 각도 편향(라디안 단위)(입력)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RFrlRate</span></code>: 현재 로터-펄 각속도(rad/sec)(입력)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ZTime</span></code>: 현재 시뮬레이션 시간(초)(입력)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DirRoot</span></code>: 현재 작업 디렉터에 대한 전체 경로를 포함한 시뮬레이션 루트 이름(입력)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RFrlMom</span></code>: 로터펄 모멘트(N·m)(출력)</p></li>
+</ul>
+<p>소스 파일 <code class="docutils literal notranslate"><span class="pre">ED_UserSubs.f90</span></code> 에는 더미가 포함되어 있습니다.
+<code class="docutils literal notranslate"><span class="pre">UserRFrl()</span></code> 루틴; 이를 자신의 것으로 교체하고 ElastoDyn을 다시 빌드하십시오.</p>
+<p><strong>RFrlMod</strong>
+로터퍼 스프링과 댐퍼는 세 가지 방법으로 모델링할 수 있습니다. 값이 0인 경우 <code class="docutils literal notranslate"><span class="pre">RFrlMod</span></code>의 경우 로터 퍼럴 스프링이나 댐퍼가 없으며 일반적으로 생성되는 모멘트는 0으로 설정됩니다. 에이 <code class="docutils literal notranslate"><span class="pre">RFrlMod</span></code> of 1은 아래 제공된 입력을 적절한 계수로 사용하여 간단한 스프링 및 댐퍼 모델을 호출합니다. 만약에 <code class="docutils literal notranslate"><span class="pre">RFrlMod</span></code> 가 2로 설정되면 ElastoDyn이 루틴을 호출합니다. <code class="docutils literal notranslate"><span class="pre">UserRFrl()</span></code>
+는 로터-펄 스프링과 댐퍼 모멘트를 계산합니다. 코드와 함께 제공된 더미 루틴을 자신의 것으로 교체해야 하며, 이는 ElastoDyn의 나머지 부분과 연결되어야 합니다. 0, 1, 2 이외의 값을 사용하면 ElastoDyn이 중단됩니다. (스위치)</p>
+<p><strong>RFrlSpr</strong>
+선형 로터-펄 스프링 복원 모멘트는 이 상수를 통해 로터-펄 편향에 비례합니다. 이 값은 음수일 수 없으며 다음 경우에만 사용됩니다. <code class="docutils literal notranslate"><span class="pre">RFrlMod</span></code> 는 1로 설정됩니다. (N·m/rad)</p>
+<p><strong>RFrlDmp</strong>
+선형 로터 펄 감쇠 모멘트는 이 상수를 통해 로터 펄 비율에 비례합니다. 이 값은 음수일 수 없으며 다음 경우에만 사용됩니다. <code class="docutils literal notranslate"><span class="pre">RFrlMod</span></code> 는 1로 설정됩니다. (N·m/(rad/s))</p>
+<p><strong>RFrlCDmp</strong>
+이 쿨롱 마찰 감쇠 모멘트는 로터 펄 운동에 저항하지만 로터 펄 비율에 비례하지 않는 상수입니다. 그러나 로터 퍼럴 비율이 0이면 감쇠도 0입니다. 이 값은 음수일 수 없으며 다음 경우에만 사용됩니다. <code class="docutils literal notranslate"><span class="pre">RFrlMod</span></code> 는 1로 설정됩니다. (N·m)</p>
+<p><strong>RFrlUSSP</strong>
+로터펄 업스톱 스프링은 로터펄 편향이 이 값을 초과할 때 효과적입니다. 이 값은 -180보다 크고 180도 이하여야 하며 다음과 같은 경우에만 사용됩니다.
+<code class="docutils literal notranslate"><span class="pre">RFrlMod</span></code> 는 1로 설정됩니다. (deg)</p>
+<p><strong>RFrlDSSP</strong>
+로터 펄 하향 정지 스프링은 로터 펄 편향이 이 값을 초과할 때 효과적입니다. 이 값은 -180보다 크고 다음보다 작거나 같아야 합니다. <code class="docutils literal notranslate"><span class="pre">RFrlUSSP</span></code> 도는 다음과 같은 경우에만 사용됩니다. <code class="docutils literal notranslate"><span class="pre">RFrlMod</span></code> 는 1로 설정됩니다. (deg)</p>
+<p><strong>RFrlUSSpr</strong>
+선형 로터-펄 업스톱 스프링 복원 모멘트는 이 상수에 의해 로터-펄 업스톱 편향에 비례하며 로터-펄 편향이 초과할 때 유효합니다. <code class="docutils literal notranslate"><span class="pre">RFrlUSSP</span></code>. 이 값은 음수일 수 없으며 다음 경우에만 사용됩니다. <code class="docutils literal notranslate"><span class="pre">RFrlMod</span></code> 는 1로 설정됩니다. (N·m/rad)</p>
+<p><strong>RFrlDSSpr</strong>
+선형 로터 펄 다운 스톱 스프링 복원 모멘트는 이 상수에 의해 로터 펄 다운 스톱 편향에 비례하며 로터 펄 편향이 초과할 때 유효합니다. <code class="docutils literal notranslate"><span class="pre">RFrlDSSP</span></code>. 이 값은 음수일 수 없으며 다음 경우에만 사용됩니다. <code class="docutils literal notranslate"><span class="pre">RFrlMod</span></code> 는 1로 설정됩니다. (N·m/rad)</p>
+<p><strong>RFrlUSDP</strong>
+로터-펄 업스톱 댐퍼는 로터-펄 편향이 이 값을 초과할 때 효과적입니다. 이 값은 -180보다 크고 180도 이하여야 하며 다음과 같은 경우에만 사용됩니다.
+<code class="docutils literal notranslate"><span class="pre">RFrlMod</span></code> 는 1로 설정됩니다. (deg)</p>
+<p><strong>RFrlDSDP</strong>
+로터 펄 다운 스톱 댐퍼는 로터 펄 편향이 이 값을 초과할 때 효과적입니다. 이 값은 -180보다 크고 다음보다 작거나 같아야 합니다. <code class="docutils literal notranslate"><span class="pre">RFrlUSDP</span></code> 도는 다음과 같은 경우에만 사용됩니다. <code class="docutils literal notranslate"><span class="pre">RFrlMod</span></code> 는 1로 설정됩니다. (deg)</p>
+<p><strong>RFrlUSDmp</strong>
+선형 로터 펄 업스톱 감쇠 모멘트는 이 상수에 의해 로터 펄 비율에 비례하며 로터 펄 편향이 초과할 때 유효합니다. <code class="docutils literal notranslate"><span class="pre">RFrlUSDP</span></code>. 이 값은 음수일 수 없으며 다음 경우에만 사용됩니다. <code class="docutils literal notranslate"><span class="pre">RFrlMod</span></code> 는 1로 설정됩니다. (N·m/(rad/s))</p>
+<p><strong>RFrlDSDmp</strong>
+선형 로터 펄 다운 스톱 감쇠 복원 모멘트는 이 상수에 의해 로터 펄 비율에 비례하며 로터 펄 편향이 초과할 때 유효합니다. <code class="docutils literal notranslate"><span class="pre">RFrlDSDP</span></code>. 이 값은 음수일 수 없으며 다음 경우에만 사용됩니다. <code class="docutils literal notranslate"><span class="pre">RFrlMod</span></code> 는 1로 설정됩니다. (N·m/(rad/s))</p>
+<p><em>테일 퍼럴</em></p>
+<p>tail-furl 베어링은 다음과 같이 설정하면 마찰이 없는 이상적인 베어링이 될 수 있습니다. <code class="docutils literal notranslate"><span class="pre">TFrlMod</span></code> 를 0으로; 설정으로
+<code class="docutils literal notranslate"><span class="pre">TFrlMod</span></code> ~ 1에는 선형 스프링과 댐퍼, 상하 정지 스프링, 상하 정지 댐퍼를 포함하는 표준 모델도 있습니다. 공식은 다음과 같습니다. <a class="reference internal" href="theory.html#ed-rtfrl-theory"><span class="std std-numref">섹션 4.10.3.3</span></a>. ElastoDyn은 꼬리털 편향의 선형 함수를 사용하여 스톱 스프링을 모델링합니다. 테일 퍼럴 스톱은 지정된 각도에서 시작하여 스톱 각도를 지나는 편향을 기반으로 선형 스프링으로 작동합니다. tail-furl 댐퍼는 furl 속도의 선형 함수이며 지정된 up-stop 및 down-stop 각도에서 시작됩니다. 이 댐퍼는 양방향이며 정지 각도를 지나면 양방향으로 동일하게 동작에 저항합니다.</p>
+<p>사용자 정의 테일퍼 스프링 및 댐퍼 모델도 사용할 수 있습니다. 사용하려면 다음을 설정하세요.
+인수가 있는 <code class="docutils literal notranslate"><span class="pre">TFrlMod</span></code> 를 2로 바꾸고 제목이 붙은 서브루틴을 생성합니다. <code class="docutils literal notranslate"><span class="pre">UserTFrl()</span></code> 다음 인수를 사용하여 <code class="docutils literal notranslate"><span class="pre">TFrlDef</span></code>, <code class="docutils literal notranslate"><span class="pre">TFrlRate</span></code>, <code class="docutils literal notranslate"><span class="pre">ZTime</span></code>, <code class="docutils literal notranslate"><span class="pre">DirRoot</span></code>및
+이 플래그 값 아래에
+<code class="docutils literal notranslate"><span class="pre">TFrlMom</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">TFrlDef</span></code>: 현재 꼬리털 각도 편향(라디안 단위)(입력)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TFrlRate</span></code>: 현재 tail-furl 각속도(rad/sec)(입력)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ZTime</span></code>: 현재 시뮬레이션 시간(초)(입력)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DirRoot</span></code>: 현재 작업 디렉터리(입력)에 대한 전체 경로를 포함한 시뮬레이션 루트 이름</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TFrlMom</span></code>: N.m 단위의 테일 퍼럴 모멘트(출력)</p></li>
+</ul>
+<p>소스 파일 <code class="docutils literal notranslate"><span class="pre">ED_UserSubs.f90</span></code> 에는 더미가 포함되어 있습니다.
+<code class="docutils literal notranslate"><span class="pre">UserTFrl()</span></code> 루틴; 이를 자신의 것으로 교체하고 ElastoDyn을 다시 빌드하십시오.</p>
+<p><strong>TFrlMod</strong>
+테일퍼 스프링과 댐퍼는 세 가지 방법으로 모델링할 수 있습니다. 값이 0인 경우 <code class="docutils literal notranslate"><span class="pre">TFrlMod</span></code>의 경우, 테일퍼 스프링이나 댐퍼가 없으며 일반적으로 생성되는 모멘트는 0으로 설정됩니다. 에이
+<code class="docutils literal notranslate"><span class="pre">TFrlMod</span></code> of 1은 아래 제공된 입력을 적절한 계수로 사용하여 간단한 스프링 및 댐퍼 모델을 호출합니다. 설정하면 <code class="docutils literal notranslate"><span class="pre">TFrlMod</span></code> 를 2로 설정하면 ElastoDyn이 루틴을 호출합니다. <code class="docutils literal notranslate"><span class="pre">UserTFrl()</span></code> 는 tail-furl 스프링과 댐퍼 모멘트를 계산합니다. 코드와 함께 제공된 더미 루틴을 자신의 것으로 교체해야 하며, 이는 ElastoDyn의 나머지 부분과 연결되어야 합니다. 0, 1, 2 이외의 값을 사용하면 ElastoDyn이 중단됩니다. (스위치)</p>
+<p><strong>TFrlSpr</strong>
+선형 테일펄 스프링 복원 모멘트는 이 상수를 통해 테일펄 편향에 비례합니다. 이 값은 음수일 수 없으며 다음 경우에만 사용됩니다. <code class="docutils literal notranslate"><span class="pre">TFrlMod</span></code> 는 1로 설정됩니다. (N·m/rad)</p>
+<p><strong>TFrlDmp</strong>
+선형 테일펄 감쇠 모멘트는 이 상수를 통해 테일펄 비율에 비례합니다. 이 값은 음수일 수 없으며 다음 경우에만 사용됩니다. <code class="docutils literal notranslate"><span class="pre">TFrlMod</span></code> 는 1로 설정됩니다. (N·m/(rad/s))</p>
+<p><strong>TFrlCDmp</strong>
+이 쿨롱 마찰 감쇠 모멘트는 테일 퍼럴 운동에 저항하지만 테일 퍼럴 속도에 비례하지 않는 상수입니다. 그러나 tail-furl rate가 0이면 감쇠도 0입니다. 이 값은 음수일 수 없으며 다음 경우에만 사용됩니다. <code class="docutils literal notranslate"><span class="pre">TFrlMod</span></code> 는 1로 설정됩니다. (N·m)</p>
+<p><strong>TFrlUSSP</strong>
+테일펄 업스톱 스프링은 테일펄 편향이 이 값을 초과할 때 효과적입니다. 이 값은 -180보다 크고 180도 이하여야 하며 다음과 같은 경우에만 사용됩니다. <code class="docutils literal notranslate"><span class="pre">TFrlMod</span></code> 는 1로 설정됩니다. (deg)</p>
+<p><strong>TFrlDSSP</strong>
+테일펄 하향 정지 스프링은 테일펄 편향이 이 값을 초과할 때 효과적입니다. 이 값은 -180보다 크고 다음보다 작거나 같아야 합니다. <code class="docutils literal notranslate"><span class="pre">TFrlUSSP</span></code> 도는 다음과 같은 경우에만 사용됩니다. <code class="docutils literal notranslate"><span class="pre">TFrlMod</span></code> 는 1로 설정됩니다. (deg)</p>
+<p><strong>TFrlUSSpr</strong>
+선형 테일펄 업스톱 스프링 복원 모멘트는 이 상수에 의해 테일펄 업스톱 편향에 비례하며 테일펄 편향이 초과할 때 유효합니다. <code class="docutils literal notranslate"><span class="pre">TFrlUSSP</span></code>. 이 값은 음수일 수 없으며 다음 경우에만 사용됩니다. <code class="docutils literal notranslate"><span class="pre">TFrlMod</span></code> 는 1로 설정됩니다. (N·m/rad)</p>
+<p><strong>TFrlDSSpr</strong>
+선형 테일펄 다운스톱 스프링 복원 모멘트는 이 상수에 의한 테일펄 다운스톱 편향에 비례하며 테일펄 편향이 초과할 때 유효합니다. <code class="docutils literal notranslate"><span class="pre">TFrlDSSP</span></code>. 이 값은 음수일 수 없으며 다음 경우에만 사용됩니다. <code class="docutils literal notranslate"><span class="pre">TFrlMod</span></code> 는 1로 설정됩니다. (N·m/rad)</p>
+<p><strong>TFrlUSDP</strong>
+테일펄 업스톱 댐퍼는 테일펄 편향이 이 값을 초과할 때 효과적입니다. 이 값은 -180보다 크고 180도 이하여야 하며 다음과 같은 경우에만 사용됩니다.
+<code class="docutils literal notranslate"><span class="pre">TFrlMod</span></code> 는 1로 설정됩니다. (deg)</p>
+<p><strong>TFrlDSDP</strong>
+테일펄 다운 스톱 댐퍼는 테일펄 편향이 이 값을 초과할 때 효과적입니다. 이 값은 -180보다 크고 다음보다 작거나 같아야 합니다. <code class="docutils literal notranslate"><span class="pre">TFrlUSDP</span></code> 도는 다음과 같은 경우에만 사용됩니다. <code class="docutils literal notranslate"><span class="pre">TFrlMod</span></code> 는 1로 설정됩니다. (deg)</p>
+<p><strong>TFrlUSDmp</strong>
+선형 테일펄 업스톱 감쇠 모멘트는 이 상수에 의해 테일펄 속도에 비례하며 테일펄 편향이 초과할 때 유효합니다. <code class="docutils literal notranslate"><span class="pre">TFrlUSDP</span></code>. 이 값은 음수일 수 없으며 다음 경우에만 사용됩니다. <code class="docutils literal notranslate"><span class="pre">TFrlMod</span></code> 는 1로 설정됩니다. (N·m/(rad/s))</p>
+<p><strong>TFrlDSDmp</strong>
+선형 테일펄 다운 스톱 감쇠 복원 모멘트는 이 상수에 의해 테일펄 속도에 비례하며 테일펄 편향이 초과할 때 유효합니다. <code class="docutils literal notranslate"><span class="pre">TFrlDSDP</span></code>. 이 값은 음수일 수 없으며 다음 경우에만 사용됩니다. <code class="docutils literal notranslate"><span class="pre">TFrlMod</span></code> 는 1로 설정됩니다. (N·m/(rad/s))</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="coordsys.html" class="btn btn-neutral float-left" title="4.10.1. 좌표계" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+        <a href="theory.html" class="btn btn-neutral float-right" title="4.10.3. ElastoDyn 이론" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>© Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    
+     
+
+
+</body></html>

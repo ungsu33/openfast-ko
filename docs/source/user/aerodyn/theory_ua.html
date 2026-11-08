@@ -1,0 +1,568 @@
+<!DOCTYPE html><html class="writer-html5" lang="ko"><head><!-- Modified 2026-11-08: unofficial Korean machine translation of OpenFAST 5.0.0. Equations, code, figures, input values and attribution retained. -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.3.8. 불안정한 공기역학 — OpenFAST v5.0.0 문서</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../../../genindex.html">
+    <link rel="search" title="검색" href="../../../search.html">
+    <link rel="next" title="4.3.9. 꼬리지느러미 공기역학 이론" href="theory_tailfin.html">
+    <link rel="prev" title="4.3.7. AeroDyn 이론" href="theory.html"> 
+<link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/aerodyn/theory_ua.html"></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+          </a>
+              <div class="version">5.0 · 한국어</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="문서 검색" aria-label="문서 검색">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.3. AeroDyn</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">4.3.1. 소개</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coordsys.html">4.3.2. 좌표계</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input.html">4.3.3. 입력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="output.html">4.3.4. 출력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modeling.html">4.3.5. 모델링 시 고려사항</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver.html">4.3.6. AeroDyn 드라이버</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory.html">4.3.7. AeroDyn 이론</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.3.8. 불안정한 공기 역학</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#theory">4.3.8.1. 이론</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#inputs">4.3.8.2. 입력</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#calculating-default-airfoil-coefficients">4.3.8.3. 기본 에어포일 계수 계산</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#outputs">4.3.8.4. 출력</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#aeroelastic-simulation-of-a-2d-section">4.3.8.5. 2D 단면의 공탄성 시뮬레이션</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#driver">4.3.8.6. 드라이버</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="theory_tailfin.html">4.3.9. 꼬리지느러미 공기역학 이론</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.3.10. 참고문헌</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.3.11. 부록</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. 단순화 ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. 구조 제어</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. 추가 모듈 문서</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC 서브루틴 라이브러리</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+</ul>
+
+        <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="페이지 탐색">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.3. </span>AeroDyn 사용자 가이드 및 이론 설명서</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.3.8. </span>불안정한 공기 역학</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/aerodyn/theory_ua.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+      </li>
+  </ul>
+  <hr>
+</div><aside class="ko-notice" aria-label="한국어 번역 안내"><strong>한국어 자동번역</strong> · OpenFAST v5.0.0 · 2026-11-08 기준<br>비공식 번역본입니다. 수식·명령어·입력 변수와 첨부자료는 원문을 보존합니다. <a href="https://openfast.readthedocs.io/en/main/source/user/aerodyn/theory_ua.html" target="_blank" rel="noopener noreferrer" lang="en">영문 원문 대조 ↗</a></aside>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="unsteady-aerodynamics">
+<span id="ad-ua"></span><h1><span class="section-number">4.3.8. </span>불안정한 공기 역학<a class="headerlink" href="#unsteady-aerodynamics" title="이 제목의 고유 링크"></a></h1>
+<p>비정상 공기 역학(UA) 모델은 비정상 부착 흐름, 뒷전 흐름 분리, 동적 실속 및 흐름 재부착을 포함한 흐름 히스테리시스를 설명합니다.
+<em>동적 스톨</em> 는 실속 현상을 유발하거나 지연시킬 수 있는 급격한 공기 역학적 변화를 나타냅니다. <span id="id1">[<a class="reference internal" href="zrefs.html#id5" title="E. 브란라드. 풍력터빈 공기역학 및 와도 기반 방법: 기초 및 최근 응용. 스프링거 국제 출판, 2017. ISBN 978-3-319-55163-0. 도이:10.1007/978-3-319-55164-7.">광고-Bra17</a>]</span>. 풍속의 급격한 변화(예: 블레이드가 타워 그림자를 통과할 때)는 에어포일을 따라 공기 흐름이 갑자기 분리되었다가 다시 부착되는 원인이 됩니다. 블레이드 표면에서의 이러한 효과는 정상 상태 공기 역학으로는 예측할 수 없지만 블레이드가 타워 그림자를 만날 때뿐만 아니라 기울어진 흐름 및 난류 조건에서 작동하는 동안에도 터빈 작동에 영향을 미칠 수 있습니다. 동적 실속 효과는 블레이드의 상대풍이 블레이드 코드를 가로지르는 시간 순서의 시간 척도에서 발생합니다.
+<span class="math notranslate nohighlight">\(c/\Omega r\)</span>. 대형 풍력터빈의 경우 이는 다음과 같을 수 있습니다.
+블레이드 루트에서 <span class="math notranslate nohighlight">\(0.5\)</span> 초
+블레이드 팁의 <span class="math notranslate nohighlight">\(0.001\)</span> 초. 동적 실속은 풍속이 증가함에 따라 높은 과도 힘을 초래할 수 있지만 실속은 지연됩니다.</p>
+<div class="section" id="theory">
+<span id="ua-theory"></span><h2><span class="section-number">4.3.8.1. </span>이론<a class="headerlink" href="#theory" title="이 제목의 고유 링크"></a></h2>
+<p>AeroDyn에서 구현된 다양한 동적 실속 모델이 아래에 나와 있습니다.</p>
+<div class="section" id="notations-and-definitions">
+<span id="ua-notations"></span><h3><span class="section-number">4.3.8.1.1. </span>표기법 및 정의
+프로필 입력 파일에 있는 모든 입력에 대한 포괄적인 설명을 보려면<a class="headerlink" href="#notations-and-definitions" title="이 제목의 고유 링크"></a></h3>
+<p>참조
+자세한 내용은 <a class="reference internal" href="input.html#airfoil-data-input-file"><span class="std std-numref">섹션 4.3.3.19.1</span></a> 를 참조하세요(아래에서 반복되는 항목 중 일부 포함).</p>
+<p>익형 단면 좌표계와 주요 변수는 다음과 같습니다. <a class="reference internal" href="#fig-uaairfoilsystem"><span class="std std-numref">그림 4.9</span></a> 및 자세한 내용은 아래에 설명되어 있습니다.</p>
+<div class="figure align-default" id="fig-uaairfoilsystem">
+<a class="reference internal image-reference" href="../../../_images/UAAirfoilSystem.svg"><img alt="../../../_images/UAAirfoilSystem.svg" src="../../../_images/UAAirfoilSystem.svg" width="70%"></a>
+<p class="caption"><span class="caption-number">그림 4.9 </span><span class="caption-text">비정상 공기역학 모듈에 사용되는 익포일 단면 좌표계 정의</span><a class="headerlink" href="#fig-uaairfoilsystem" title="이 이미지에 대한 영구 링크"></a></p>
+</div>
+<ul class="simple">
+<li><p>공기역학적 중심(AC): 공기역학적 힘과 모멘트가 작용한다고 가정되는 익형 단면의 지점입니다. 일반적으로 일반 에어포일의 경우 1/4 현 지점에 가깝고 원형 단면의 경우 중앙에 가깝습니다.</p></li>
+<li><p>"3/4" 현 지점: 원래 공식에서 이 지점은 리딩 에지 뒤에 3/4 현 뒤에 위치한 현 축의 지점을 나타냅니다. 이 개념은 여기서 1/4 현 지점과 크게 다른 공기 역학적 중심 위치를 설명하기 위해 공기 역학적 중심과 뒷전 사이의 중간에 위치한 지점으로 일반화되었습니다. 표기법 <span class="math notranslate nohighlight">\(3/4\)</span> 는 이 문서에 보관되어 있습니다.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\omega\)</span>: z 주변에서 양의 에어포일 섹션의 회전 속도(피칭/비틀림 비율).</p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{v}_{ac}\)</span>: 공기역학적 중심의 속도 벡터
+<span class="math notranslate nohighlight">\(\boldsymbol{v}_{ac}=[v_{x,ac}, v_{y,ac}]\)</span>
+(익형 단면 좌표계로 표현된다고 가정한 좌표)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{v}_{34}\)</span>: 3/4 코드 지점의 속도 벡터
+<span class="math notranslate nohighlight">\(\boldsymbol{v}_{34}=[v_{x,34}, v_{y,34}]\)</span>(익형 단면 좌표계로 표현되는 좌표로 가정) 속도는 1/4 현 지점의 속도와 단면의 회전 속도로부터 얻습니다.
+<span class="math notranslate nohighlight">\(\boldsymbol{v}_{34}=\boldsymbol{v}_{ac}+\omega d_{34} \hat{\boldsymbol{x}}_s\)</span>
+여기서 <span class="math notranslate nohighlight">\(d_{34}\)</span> 는 공기역학적 중심과 3/4 코드 지점 사이의 거리입니다.</p></li>
+<li><p><span class="math notranslate nohighlight">\(U_{ac}\)</span>: 공기역학적 중심의 속도 표준.
+<span class="math notranslate nohighlight">\(U_{ac}=\lVert\boldsymbol{v}_{ac}\rVert=\sqrt{v_{x,ac}^2 + v_{y,ac}^2}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha_{ac}\)</span>: 공기역학적 중심의 받음각
+<span class="math notranslate nohighlight">\(\alpha_{ac}=\operatorname{atan2}(v_{x,ac},v_{y,ac})\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha_{34}\)</span>: 3/4 코드 지점에서의 공격 각도
+<span class="math notranslate nohighlight">\(\alpha_{34}=\operatorname{atan2}(v_{x,34},v_{y,34})\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span>: 연속 공식에 사용되는 상태 벡터</p></li>
+<li><p><span class="math notranslate nohighlight">\(c\)</span>: 에어포일 코드</p></li>
+<li><p><span class="math notranslate nohighlight">\(C_l^{st}, C_d^{st}, C_m^{st}\)</span>: 정적 익형 계수</p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha_0\)</span>: 제로 리프트에서의 받음각, <span class="math notranslate nohighlight">\(C_l^{st}(\alpha_0)=0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha_1\)</span>: 포지티브 실속에 가까운 공격 각도.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha_2\)</span>: 네거티브 실속에 가까운 받음각.</p></li>
+<li><p><span class="math notranslate nohighlight">\(C_{l,\alpha}\)</span>: 정상 양력 곡선의 기울기 <span class="math notranslate nohighlight">\(\alpha_0\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(f^{st}_s(\alpha)\)</span>: 양력 곡선으로부터 결정되는 정상 분리 함수입니다. <span class="math notranslate nohighlight">\(C_l^{st}(\alpha)\)</span> (아래 참조, 예: <span id="id2">[<a class="reference internal" href="zrefs.html#id9" title="M.H. Hansen, Mac Gaunaa, Helge Aagaard Madsen. 상태 공간 및 지표 공식의 beddoes-leishman 유형 동적 실속 모델. 기술 보고서, Risø National Laboratory, Roskilde, 덴마크, 2004.">ad-HGAM04</a>]</span>)</p></li>
+<li><p><span class="math notranslate nohighlight">\(A_1\)</span>, <span class="math notranslate nohighlight">\(A_2\)</span>, <span class="math notranslate nohighlight">\(b_1\)</span>, <span class="math notranslate nohighlight">\(b_2\)</span>: 후류 와도의 전파 특성을 나타내는 4개의 상수입니다(Wagner 상수).</p></li>
+</ul>
+<p><strong>시간 상수:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(T_u(t) = \frac{c}{2U_{ac}(t)} \in [0.001, 50]\)</span>: 흐름이 익형 단면의 절반을 넘는 시간입니다. 비물리적 값을 피하기 위해 값은 정체됩니다.</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_{f,0}\)</span>: 앞쪽 가장자리 분리와 관련된 무차원 시상수. 기본값은 3입니다.</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_{p,0}\)</span>: 경계층의 앞 가장자리 압력 구배에 대한 무차원 시상수. 기본값은 1.7입니다.</p></li>
+</ul>
+</div></blockquote>
+<p><strong>분리 기능:</strong></p>
+<p>꾸준한 분리 기능, <span class="math notranslate nohighlight">\(f_s^{st}\)</span>는 잠재적인 키르히호프 흐름에 대한 평판의 분리점으로 정의됩니다.&nbsp;<span id="id3">[<a class="reference internal" href="zrefs.html#id9" title="M.H. Hansen, Mac Gaunaa, Helge Aagaard Madsen. 상태 공간 및 지표 공식의 beddoes-leishman 유형 동적 실속 모델. 기술 보고서, Risø National Laboratory, Roskilde, 덴마크, 2004.">ad-HGAM04</a>]</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+\text{Close to $\alpha_0$},
+f_s^{st}(\alpha) &amp;= \operatorname{min}\left\{\left[2 \sqrt{ \frac{C_l^{st}(\alpha)}{C_{l,\alpha}(\alpha-\alpha_0) } } -1 \right]^2 , 1 \right\}
+,\quad
+\text{away from $\alpha_0$},
+f_s^{st}(\alpha)=0
+\end{aligned}\]</div>
+<p>언제 <span class="math notranslate nohighlight">\(\alpha=\alpha_0\)</span>, <span class="math notranslate nohighlight">\(f_s^{st}(\alpha_0)=1\)</span>. 멀리
+<span class="math notranslate nohighlight">\(\alpha_0\)</span>, 함수는 점진적으로 다음으로 떨어집니다. <span class="math notranslate nohighlight">\(0\)</span>. 함수에 도달하자마자
+양쪽에 <span class="math notranslate nohighlight">\(0\)</span> 다음의 양쪽에 <span class="math notranslate nohighlight">\(\alpha_0\)</span>그러면 <span class="math notranslate nohighlight">\(f_s^{st}\)</span> 는 일정한 값으로 유지됩니다. <span class="math notranslate nohighlight">\(0\)</span>.</p>
+<p><strong>UAMod=5의 경우 다른 분리 기능이 형성됩니다.</strong>
+우리는 오프셋을 정의합니다 <span class="math notranslate nohighlight">\(C_n\)</span> 기능, <code class="docutils literal notranslate"><span class="pre">cn_offset</span></code>, 여기서
+<span class="math notranslate nohighlight">\(C_{n,offset}=\frac{C_n\left(\alpha^{Lower}\right)+C_n\left(\alpha^{Upper}\right)}{2}\)</span>. 그러면 분리 함수는 다음 방정식으로 주어진 0과 1 사이의 값입니다.
+완전 부착형</p>
+<div class="math notranslate nohighlight">
+\[f_s^{st}(\alpha) = \left[ 2 \max\left\{\frac{1}{4} , \sqrt{\frac{C_n^{st}(\alpha) - C_{n,offset}}{C_n^{fullyAttached}(\alpha)-C_{n,offset}}} \right\} -1 \right]^2\]</div>
+<p>완전 부착된 <span class="math notranslate nohighlight">\(C_n\)</span> 곡선은 다음과 같이 정의됩니다. <span class="math notranslate nohighlight">\(C_n\)</span> 사이 <span class="math notranslate nohighlight">\(alpha^{Lower}\)</span> 및 <span class="math notranslate nohighlight">\(alpha^{Upper}\)</span> 및 해당 범위 밖의 선형 함수:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}C_n^{fullyAttached}(\alpha) =  \begin{cases} C_n\left(\alpha^{Upper}\right) + C_n^{slope}\left(\alpha^{Upper}\right) \cdot \left(\alpha-\alpha^{Upper}\right)          &amp; \alpha&gt;\alpha^{Upper} \\
+                                                     C_n(\alpha)                                                                                                       &amp; \alpha^{Lower}&lt;=\alpha&lt;=\alpha^{Upper} \\
+                                                     C_n\left(\alpha^{Lower}\right) + C_n^{slope}\left(\alpha^{Lower}\right) \cdot  \left(\alpha-\alpha^{Lower}\right) &amp; \alpha&lt;\alpha^{Lower} \end{cases}\end{split}\]</div>
+<p>수치 문제를 방지하려면 <span class="math notranslate nohighlight">\(\pm180\)</span> 각도 경계, 이 기능은 분리 함수가 0 이상일 때 기울기를 변경합니다. <span class="math notranslate nohighlight">\(alpha^{Upper}\)</span> 이하 <span class="math notranslate nohighlight">\(alpha^{Lower}\)</span>. 이를 통해 완전히 부착된 선형 섹션이 주기적이 되고 큰 크기의 받음각으로 인한 수치 문제를 피할 수 있습니다.</p>
+<p><strong>비점성 및 완전히 분리된 양력 계수:</strong></p>
+<p>비점성 양력계수는
+<span class="math notranslate nohighlight">\(C_{l,\text{inv}}= C_{l,\alpha} (\alpha-\alpha_0)\)</span>. 완전히 분리된 양력 계수는 다양한 방식으로 모델링될 수 있습니다(<span id="id4">[<a class="reference internal" href="zrefs.html#id5" title="E. 브란라드. 풍력터빈 공기역학 및 와도 기반 방법: 기초 및 최근 응용. 스프링거 국제 출판, 2017. ISBN 978-3-319-55163-0. 도이:10.1007/978-3-319-55164-7.">광고-Bra17</a>]</span>). 대부분의 엔지니어링 모델에서 완전히 분리된 양력 계수의 기울기는 <span class="math notranslate nohighlight">\(\alpha_0\)</span> 는
+<span class="math notranslate nohighlight">\(C_{l,\alpha}/2\)</span>. Unsteady AeroDynamics 하위 모듈에서 완전히 분리된 양력 계수는 다음과 같이 정상 분리 함수에서 파생됩니다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+   C_{l,\text{fs}}(\alpha) = \frac{C_l^{st}(\alpha) - C_{l,\alpha}(\alpha-\alpha_0)f_s^{st}(\alpha)}{1-f_s^{st}(\alpha)}
+  \text{when $f_s^{st}\neq 1$}
+   , \qquad
+   C_{l,\text{fs}}(\alpha) =\frac{C_l^{st}(\alpha)}{2}
+ \text{when $f_s^{st}=1$}\end{aligned}\]</div>
+</div>
+<div class="section" id="beddoes-leishman-type-models-uamod-2-3">
+<h3><span class="section-number">4.3.8.1.2. </span>Beddoes-Leishman 유형 모델(UAMod=2,3)<a class="headerlink" href="#beddoes-leishman-type-models-uamod-2-3" title="이 제목의 고유 링크"></a></h3>
+<p>Beddoes-Leishman 모델은 부착된 흐름과 후행 실속을 설명합니다. <span id="id5">[<a class="reference internal" href="zrefs.html#id11" title="J. G. Leishman 및 T.S. 침대. 동적 실속에 대한 반경험적 모델. 미국 헬리콥터 학회지, 34(3):p3-17, 1989.">광고-LB89</a>]</span>.</p>
+<p>Unsteady Aerodynamic 모듈에는 두 가지 변형이 구현됩니다. 이 두 가지(압축 가능) 모델은 현재 다음 참조 자료에 설명되어 있습니다. <span id="id6">[<a class="reference internal" href="zrefs.html#id3" title="R. 다미아니와 G. 헤이먼. 빠른 속도를 위한 비정상 공기역학 모듈 8. 기술 보고서, 국립 재생 에너지 연구소, 2019. NREL/TP-5000-66347.">광고-DH19</a>]</span>. 모델이 사용하는 <span class="math notranslate nohighlight">\(C_n\)</span> 및 <span class="math notranslate nohighlight">\(C_c\)</span> 를 주요 물리량으로 사용합니다. 모델은 이산 상태를 사용하며 선형화와 함께 사용할 수 없습니다.</p>
+</div>
+<div class="section" id="beddoes-leishman-4-states-model-uamod-4">
+<h3><span class="section-number">4.3.8.1.3. </span>Beddoes-Leishman 4개 상태 모델(UAMod=4)<a class="headerlink" href="#beddoes-leishman-4-states-model-uamod-4" title="이 제목의 고유 링크"></a></h3>
+<p>OpenFAST에서 구현된 4가지 상태(비압축성) 동적 스톨 모델은 다음에서 설명됩니다. <span id="id7">[<a class="reference internal" href="zrefs.html#id6" title="E Branlard, B Jonkman, G R Pirrung, K Dixon 및 J Jonkman. OpenFAST의 모달 및 안정성 분석을 위한 동적 유입 및 비정상 공기역학 모델. 물리학 저널: 컨퍼런스 시리즈, 2265(3):032044, 2022. doi:10.1088/1742-6596/2265/3/032044.">광고-BJP+22</a>]</span> (모델은 Hansen-Gaunaa-Madsen(HGM)의 원래 공식과 약간 다릅니다. <span id="id8">[<a class="reference internal" href="zrefs.html#id9" title="M.H. Hansen, Mac Gaunaa, Helge Aagaard Madsen. 상태 공간 및 지표 공식의 beddoes-leishman 유형 동적 실속 모델. 기술 보고서, Risø National Laboratory, Roskilde, 덴마크, 2004.">ad-HGAM04</a>]</span>). 모델은 다음을 사용하여 활성화됩니다. <code class="docutils literal notranslate"><span class="pre">UAMod=4</span></code>. 모델이 사용하는 <span class="math notranslate nohighlight">\(C_l\)</span> 를 주요 물리량으로 사용합니다. 모델의 선형화가 가능합니다.</p>
+<p>참고: 이 모델은 AeroDyn-UA에서 견고한 적분기가 구현될 때까지 더 작은 시간 단계가 필요할 수 있습니다.</p>
+<p><strong>상태 방정식:</strong>
+모델의 상태 방정식은 다음과 같습니다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \dot{x}_1 &amp;= - T_u^{-1}  b_1\, x_1  +  T_u^{-1} b_1 A_1  \alpha_{34}\nonumber \\
+    \dot{x}_2 &amp;= - T_u^{-1}  b_2\, x_2  +  T_u^{-1} b_2 A_2  \alpha_{34}\nonumber \\
+    \dot{x}_3 &amp;= - T_p^{-1} x_3  +  T_p^{-1} C_l^p                \nonumber \\
+    \dot{x}_4 &amp;= - T_f^{-1} x_4  +  T_f^{-1} f_s^{st}(\alpha_F)      ,\qquad x_4 \in[0,1]
+    \nonumber
+\end{aligned}\end{split}\]</div>
+<p>포함</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+ \alpha_E(t) &amp; =\alpha_{34}(t)(1-A_1-A_2)+ x_1(t) + x_2(t)                                      \nonumber \\
+ C_{L}^p(t)  &amp; =C_{l,\alpha} \, \left(\alpha_E(t)-\alpha_0\right) + \pi T_u(t) \omega(t) \nonumber \\
+ \alpha_F(t) &amp; =\frac{x_3(t)}{C_{l,\alpha}}+\alpha_0                                     \nonumber
+ \end{aligned}\end{split}\]</div>
+<p><strong>출력 방정식:</strong>
+불안정한 익형 계수
+<span class="math notranslate nohighlight">\(C_{l,\text{dyn}}\)</span>, <span class="math notranslate nohighlight">\(C_{d,\text{dyn}}\)</span>,
+<span class="math notranslate nohighlight">\(C_{m,\text{dyn}}\)</span> 는 다음과 같이 주에서 얻습니다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    C_{l,\text{dyn}}(t) &amp;= C_{l,\text{circ}} + \pi T_u \omega   \\
+%   C_{d,\text{dyn}}(t) &amp;=  C_d(\alpha_E) + (\alpha_{ac}-\alpha_E) C_{l,\text{dyn}} + \left[ C_d(\alpha_E)-C_d(\alpha_0)\right ] \Delta C_{d,f}'' \\
+   C_{d,\text{dyn}}(t)  &amp;=  C_d(\alpha_E) + \left[(\alpha_{ac}-\alpha_E) +T_u \omega \right]C_{l,\text{circ}} + \left[ C_d(\alpha_E)-C_d(\alpha_0)\right ] \Delta C_{d,f}'' \\
+%     C_{m,\text{dyn}}(t) &amp;=  C_m(\alpha_E) + C_{l,\text{dyn}} \Delta C_{m,f}'' - \frac{\pi}{2} T_u \omega\\
+    C_{m,\text{dyn}}(t) &amp;=  C_m(\alpha_E) - \frac{\pi}{2} T_u \omega\\
+\end{aligned}\end{split}\]</div>
+<p>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \Delta C_{d,f}'' &amp;= \frac{\sqrt{f_s^{st}(\alpha_E)}-\sqrt{x_4}}{2} - \frac{f_s^{st}(\alpha_E)-x_4}{4}
+,\qquad
+    x_4\ge 0  \\
+ C_{l,\text{circ}}&amp;= x_4 (\alpha_E-\alpha_0) C_{l,\alpha} +  (1-x_4) C_{l,{\text{fs}}}(\alpha_E)
+\end{aligned}\end{split}\]</div>
+</div>
+<div class="section" id="beddoes-leishman-5-states-model-uamod-5">
+<h3><span class="section-number">4.3.8.1.4. </span>Beddoes-Leishman 5개 상태 모델(UAMod=5)<a class="headerlink" href="#beddoes-leishman-5-states-model-uamod-5" title="이 제목의 고유 링크"></a></h3>
+<p>5개 상태(비압축성) 동적 실속 모델은 Beddoes-Leishman 4개 상태 모델(UAMod=4)과 유사하지만 소용돌이 생성을 나타내기 위해 5번째 상태를 추가합니다. 다음을 사용하여 활성화됩니다. <code class="docutils literal notranslate"><span class="pre">UAMod=5</span></code>. 모델이 사용하는 <span class="math notranslate nohighlight">\(C_n\)</span> 및 <span class="math notranslate nohighlight">\(C_c\)</span> 를 주요 물리량으로 사용합니다. 모델의 선형화가 가능합니다.</p>
+</div>
+<div class="section" id="oye-model-uamod-6">
+<span id="ua-oye"></span><h3><span class="section-number">4.3.8.1.5. </span>Oye 모델(UAMod=6)<a class="headerlink" href="#oye-model-uamod-6" title="이 제목의 고유 링크"></a></h3>
+<p>Oye의 동적 실속 모델은 다음과 같이 공식화된 단일 상태(연속) 모델입니다. <span id="id9">[<a class="reference internal" href="zrefs.html#id10" title="S. Øye. 분리 시간 지연으로 시뮬레이션된 동적 실속. 풍력터빈의 공기 역학에 관한 제4차 IEA 심포지엄 간행물, 1991.">광고-Oye91</a>]</span> 이며 예를 들어 설명됩니다. 안으로 <span id="id10">[<a class="reference internal" href="zrefs.html#id5" title="E. 브란라드. 풍력터빈 공기역학 및 와도 기반 방법: 기초 및 최근 응용. 스프링거 국제 출판, 2017. ISBN 978-3-319-55163-0. 도이:10.1007/978-3-319-55164-7.">광고-Bra17</a>]</span>. 모델은 후연 실속을 포착하려고 시도합니다. 모델의 선형화가 가능합니다.</p>
+<p><strong>상태 방정식:</strong>
+Oye의 동적 실속 모델은 하나의 상태를 사용합니다. <span class="math notranslate nohighlight">\(\boldsymbol{x}=[f_s]\)</span>
+여기서 <span class="math notranslate nohighlight">\(f_s\)</span> 는 비정상 분리 기능입니다. 상태 방정식은 1차 미분 방정식입니다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+  \frac{df_s(t)}{dt} =- \frac{1}{T_f} f_s(t)  + \frac{1}{T_f} f_s^{st}(\alpha_{34}(t))
+ \end{aligned}\]</div>
+<p>여기서 <span class="math notranslate nohighlight">\(T_f=T_{f,0} T_u\)</span> 는 흐름 박리의 시상수이고 <span class="math notranslate nohighlight">\(f_s^{st}\)</span> 는 다음에 설명된 정상 상태 분리 기능입니다. <a class="reference internal" href="#ua-notations"><span class="std std-numref">섹션 4.3.8.1.1</span></a>. 가치 <span class="math notranslate nohighlight">\(T_{f,0}\)</span> 는 일반적으로 6 정도에서 선택됩니다(기본값과 다름). 쉽게 알 수 있는 것은 <span class="math notranslate nohighlight">\(f_s\)</span>
+가 값에 도달함 <span class="math notranslate nohighlight">\(f_s^{st}\)</span> 시스템이 안정된 상태에 있을 때(예: <span class="math notranslate nohighlight">\(\frac{df_s(t)}{dt}=0\)</span>).</p>
+<p><strong>출력 방정식:</strong>
+불안정 양력계수는 비점성양력계수의 선형조합으로 계산되며, <span class="math notranslate nohighlight">\(C_{l, \text{inv}}\)</span>및 완전히 분리된 양력 계수 <span class="math notranslate nohighlight">\(C_{l,\text{fs}}\)</span>. 이 두 양력 계수는 일반적으로 표로 작성된 데이터로 제공되는 정상 양력 계수로부터 결정됩니다. <span class="math notranslate nohighlight">\(C_l^{st}(\alpha)\)</span>, 여기서 위 첨자는
+<span class="math notranslate nohighlight">\(st\)</span> 는 "안정"을 의미합니다. 불안정한 양력 계수는 다음과 같이 모델링됩니다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    C_{l,\text{dyn}}(\alpha_{34} ,t) = f_s(t)\; C_{l,\text{inv}}(\alpha_{34}) + (1-f_s(t))\; C_{l,\text{fs}}(\alpha_{34})
+    \end{aligned}\]</div>
+<p>여기서 <span class="math notranslate nohighlight">\(\alpha_{34}\)</span> 는 3/4 코드의 순간적인 받음각입니다.
+<span class="math notranslate nohighlight">\(f_s\)</span> 는 두 흐름 상황 사이에서 완화 요인으로 작용하는 것으로 보입니다.</p>
+</div>
+<div class="section" id="boeing-vertol-model-uamod-7">
+<h3><span class="section-number">4.3.8.1.6. </span>Boeing-Vertol 모델(UAMod=7)<a class="headerlink" href="#boeing-vertol-model-uamod-7" title="이 제목의 고유 링크"></a></h3>
+<p>Boeing-Vertol은 다음 논문에서 언급됩니다. <span id="id11">[<a class="reference internal" href="zrefs.html#id12" title="J. 머레이와 M. 바론. 선인장: 풍력 및 해상 터빈 성능 시뮬레이션 코드 개발. 기술 보고서, 제49차 AIAA 항공우주 과학 회의, 플로리다 주 올랜도, 2011.">광고-MB11</a>]</span>. 모델의 세부 사항은 이 참조에서 생략되었으므로 여기에 제시된 문서는 AeroDyn에서 유사 동일성으로 재현된 소용돌이 코드 CACTUS에서 수행된 구현에서 영감을 얻었습니다. 이 모델에서는 선형화가 불가능합니다.</p>
+<p>에 제시된 모델 <span id="id12">[<a class="reference internal" href="zrefs.html#id12" title="J. 머레이와 M. 바론. 선인장: 풍력 및 해상 터빈 성능 시뮬레이션 코드 개발. 기술 보고서, 제49차 AIAA 항공우주 과학 회의, 플로리다 주 올랜도, 2011.">광고-MB11</a>]</span> 는 준정상 받음각과 받음각의 변화율을 사용하여 동적 받음각이 결정되는 출력 전용 모델입니다.</p>
+<div class="math notranslate nohighlight">
+\[\alpha_{dyn} = \alpha_{34} - k_1 \gamma \sqrt{\left| \dot{\alpha} T_u\right|}\]</div>
+<p>여기서 <span class="math notranslate nohighlight">\(k_1\)</span> 및 <span class="math notranslate nohighlight">\(\gamma\)</span> 는 모델의 상수입니다. 실제로 구현은 양력 및 항력 계수, 음수 및 양수 실속에 따라 다릅니다. 모델에는 받음각의 변화율을 계산하기 위한 이산 상태가 필요하고, 모델이 활성화되었는지 여부를 추적하기 위해 두 가지 이산 상태가 필요합니다.</p>
+<p><strong>에어포일 상수:</strong></p>
+<p>상수 <span class="math notranslate nohighlight">\(k_1\)</span>는 양수 및 음수 받음각 비율에 대해 다음과 같이 설정됩니다.</p>
+<div class="math notranslate nohighlight">
+\[k_{1,p}= 1 ,\quad k_{1,n} = 1/2\]</div>
+<p>전환 영역의 범위는 다음과 같이 계산됩니다.</p>
+<div class="math notranslate nohighlight">
+\[\Delta \alpha_\text{max} = \frac{0.9 \operatorname{min}\left(|\alpha_1-\alpha_0|, |\alpha_2-\alpha_0|\right)}{\operatorname{max}(k_{1,p},k_{1,n})}\]</div>
+<p>여기서 <span class="math notranslate nohighlight">\(\alpha_1\)</span> 및 <span class="math notranslate nohighlight">\(\alpha_2\)</span> 는 각각 포지티브 실속과 네거티브 실속에서의 받음각입니다(익형 입력 파일의 값으로 가져옴). 계수 0.9는 유효 공격 각도가 도달하는 것을 방지하는 여유입니다.
+실속 중 <span class="math notranslate nohighlight">\(\alpha_0\)</span> .</p>
+<p><strong>중간 변수:</strong></p>
+<p>변수
+양력과 항력에 대한 <span class="math notranslate nohighlight">\(\gamma\)</span> 는 익형의 두께 대 현 비율의 함수로 계산됩니다. <span class="math notranslate nohighlight">\(t_c\)</span> 와 마하수 <span class="math notranslate nohighlight">\(M_a\)</span> (현재 구현에서는 0으로 가정):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+  \gamma_L &amp;= (1.4-6\delta)\left[1-\frac{\text{Ma}-(0.4+5\delta)}{0.9+2.5\delta-(0.4+5\delta)}\right] &amp;&amp;\\
+  \gamma_D &amp;= (1-2.5\delta) ,&amp;&amp;\text{if}\ \text{Ma} &lt; 0.2  \\
+  \gamma_D &amp;= (1-2.5\delta)\left[1-\frac{\text{Ma}-0.2}{(0.7+2.5\delta-0.2)}\right] ,&amp;&amp; \text{otherwise}
+\end{aligned}\end{split}\]</div>
+<p>여기서 <span class="math notranslate nohighlight">\(\delta = 0.06-t_c\)</span>.</p>
+<p><strong>이산 상태(및 중간 변수) 업데이트:</strong></p>
+<p>공격 각도의 변화율은 다음과 같이 계산됩니다.</p>
+<div class="math notranslate nohighlight">
+\[\dot{\alpha} = \frac{\alpha_{34}(t+\Delta t) - \alpha_{34}(t)}{\Delta t}\]</div>
+<p>갑작스러운 점프를 방지하기 위해 추가 상태가 도입되었습니다. <span class="math notranslate nohighlight">\(\dot{\alpha}\)</span>, 해당 값을 저장합니다. 의 분수를 넘어서는 요금 <span class="math notranslate nohighlight">\(\pi \Delta t\)</span> 는 이전 시간 단계의 값으로 대체됩니다. 이 기능은 CACTUS 구현에는 없습니다.</p>
+<p>양력 및 항력에 대한 동적 받음각 오프셋(지연)은 다음과 같이 계산됩니다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \Delta \alpha_L &amp;= k_1 \operatorname{min} \left(\gamma_L \sqrt{\dot{|\alpha}T_u|} , \Delta \alpha_\text{max}\right)\\
+    \Delta \alpha_D &amp;= k_1 \operatorname{min}\left(\gamma_D \sqrt{\dot{|\alpha}T_u|}, \Delta \alpha_\text{max} \right)
+\end{aligned}\end{split}\]</div>
+<p>의 가치 <span class="math notranslate nohighlight">\(k_1\)</span> 는 다음과 같이 사용됩니다. <span class="math notranslate nohighlight">\(k_{1,n}\)</span> 경우 <span class="math notranslate nohighlight">\(\dot{\alpha}(\alpha_{34}-\alpha_0)&lt;0\)</span>, 다음과 같이 사용됩니다.
+그렇지 않으면 <span class="math notranslate nohighlight">\(k_{1,p}\)</span> . 리프트 앤 드래그의 공격 지연 각도는 다음과 같습니다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \alpha_{\text{Lag},L} &amp;= \alpha_{34} - \Delta \alpha_L\operatorname{sign}(\dot{\alpha}) \\
+    \alpha_{\text{Lag},D} &amp;= \alpha_{34} - \Delta \alpha_D\operatorname{sign}(\dot{\alpha})
+\end{aligned}\end{split}\]</div>
+<p>포지티브 및 네거티브 실속까지의 거리는 다음과 같이 계산됩니다. 만약에 <span class="math notranslate nohighlight">\(\dot{\alpha}(\alpha_{34}-\alpha_0)&lt;0\)</span> 및 동적 실속이 활성화되었습니다.</p>
+<div class="math notranslate nohighlight">
+\[\Delta_n = \alpha_2  - \alpha_{\text{Lag},D} , \quad \Delta_p = \alpha_{\text{Lag},D} - \alpha_1\]</div>
+<p>경우 <span class="math notranslate nohighlight">\(\dot{\alpha}(\alpha_{34}-\alpha_0)&lt;0\)</span> 및 동적 실속이 활성화되지 않습니다.</p>
+<div class="math notranslate nohighlight">
+\[\Delta_n = 0 , \quad \Delta_p = 0\]</div>
+<p>경우 <span class="math notranslate nohighlight">\(\dot{\alpha}(\alpha_{34}-\alpha_0)\ge0\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\Delta_n = \alpha_2 - \alpha_{34}, \qquad
+\Delta_p = \alpha_{34} - \alpha_1\]</div>
+<p>양력 계수에 대한 유효 받음각은 지연 받음각으로 간주됩니다.</p>
+<div class="math notranslate nohighlight">
+\[ \begin{aligned}
+    \alpha_{e,L}  &amp;= \alpha_{\text{Lag},L}
+\end{aligned}\]</div>
+<p>항력 계수에 대한 유효 받음각은 지연 받음각과 실속 델타로부터 얻습니다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{aligned}
+    \alpha_{e,D}  &amp;= \alpha_{\text{Lag},D},                                                &amp;&amp;\text{if}\ \Delta_n&gt;T \ \text{or} \  \Delta_p &gt; T \\
+    \alpha_{e,D}  &amp;= \alpha_{34}+(\alpha_{\text{Lag},D}-\alpha_{34}) \frac{\Delta_n}{T}  , &amp;&amp;\text{if}\ \Delta_n&gt;0 \ \text{and}\  \Delta_n &lt; T \\
+    \alpha_{e,D}  &amp;= \alpha_{34}+(\alpha_{\text{Lag},D}-\alpha_{34}) \frac{\Delta_p}{T}  , &amp;&amp;\text{if}\ \Delta_p&gt;0 \ \text{and}\  \Delta_p &lt; T \\
+    \alpha_{e,D}  &amp;= \alpha_{34} ,                                                         &amp;&amp;\text{otherwise}
+\end{aligned}\end{split}\]</div>
+<p>여기서 <span class="math notranslate nohighlight">\(T=2\Delta\alpha_\text{max}\)</span> 는 "전환" 영역의 범위입니다.</p>
+<p>다음과 같은 경우 리프트 동적 실속 상태가 활성화됩니다. <span class="math notranslate nohighlight">\(\dot{\alpha}(\alpha_{34}-\alpha_0) \ge 0\)</span>
+및 공격 각도가 위인 경우 <span class="math notranslate nohighlight">\(\alpha_1\)</span> 이하 <span class="math notranslate nohighlight">\(\alpha_2\)</span>. 다음과 같은 경우 상태가 꺼집니다. <span class="math notranslate nohighlight">\(\dot{\alpha}(\alpha_{34}-\alpha_0) &lt; 0\)</span>
+및 유효 공격 각도는 다음과 같습니다. <span class="math notranslate nohighlight">\(\alpha_1\)</span> 이상 <span class="math notranslate nohighlight">\(\alpha_2\)</span>.</p>
+<p>아래 조건 중 하나라도 해당되면 드래그 동적 실속 상태가 활성화됩니다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    &amp;\Delta_n &gt; T \  \text{or }\  \Delta_p &gt; T \\
+    &amp;\Delta_n &gt; 0 \  \text{and}\  \Delta_n &lt; T \\
+    &amp;\Delta_p &gt; 0 \  \text{and}\  \Delta_p &lt; T
+\end{aligned}\end{split}\]</div>
+<p>그렇지 않으면 상태가 꺼집니다.</p>
+<p><strong>출력 계산:</strong>
+동적 양력 및 항력 계수의 계산은 다음과 같이 수행됩니다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    C_{l,\text{dyn}}&amp;=\frac{C_l^{st}(\alpha_{e,L})}{\alpha_{e,L}-\alpha_0} ,\quad  \text{if dynamic stall active for $C_l$}\  \\
+    C_{l,\text{dyn}}&amp;=C_l^{st}(\alpha_{34}) ,\quad\quad  \text{otherwise} \\
+    C_{d,\text{dyn}}&amp;=C_d^{st}(\alpha_{e,D})
+\end{aligned}\end{split}\]</div>
+<p>다음을 얻으려면 중간 변수의 재계산이 필요합니다. <span class="math notranslate nohighlight">\(\alpha_{e,L}\)</span> 및 <span class="math notranslate nohighlight">\(\alpha_{e,D}\)</span>. 모멘트 계수는 공기역학적 중심과 현 중간("50")의 값을 기준으로 계산됩니다.</p>
+<div class="math notranslate nohighlight">
+\[C_{m,\text{dyn}} = C_m^{st}(\alpha_{ac}) + \cos\alpha_{50}  \left[C_l^{st}(\alpha_{34}) - C_l^{st}(\alpha_{50})\right]/4\]</div>
+<p>여기서 <span class="math notranslate nohighlight">\(\alpha_{50}\)</span> 는 다음과 같은 방식으로 계산됩니다. <span class="math notranslate nohighlight">\(\alpha_{34}\)</span> (공기역학적 중심의 속도와 익형의 회전율 사용) 그러나 공기역학적 중심에서 현 중앙까지의 거리를 사용합니다(참조: <a class="reference internal" href="#ua-notations"><span class="std std-numref">섹션 4.3.8.1.1</span></a>).</p>
+</div>
+</div>
+<div class="section" id="inputs">
+<span id="ua-inputs"></span><h2><span class="section-number">4.3.8.2. </span>입력<a class="headerlink" href="#inputs" title="이 제목의 고유 링크"></a></h2>
+<p>참조
+자세한 내용은 <a class="reference internal" href="input.html#ad-ua-inputs"><span class="std std-numref">섹션 4.3.3.10
+AeroDyn 기본 파일에 필요한 입력에 대한 설명은</span></a> (예:
+프로필 입력 파일에 있는 모든 입력에 대한 보다 포괄적인 설명은 <code class="docutils literal notranslate"><span class="pre">UAMod</span></code>)</p>
+<p>참조
+자세한 내용은 <a class="reference internal" href="input.html#airfoil-data-input-file"><span class="std std-numref">섹션 4.3.3.19.1</span></a> 를 참조하세요. 기본값은 다음에 설명되어 있습니다. <a class="reference internal" href="#ua-afi-defaults"><span class="std std-numref">섹션 4.3.8.3
+불안정한 공기역학적 입력과 관련된 표기법 및 정의 목록은</span></a></p>
+<p>참조
+자세한 내용은 <a class="reference internal" href="#ua-notations"><span class="std std-numref">섹션 4.3.8.1.1</span></a> 를 참조하세요.</p>
+<p>프로필 데이터(일부 비정상 공기역학적 매개변수 포함)의 예는 여기에서 확인할 수 있습니다.
+<a class="reference download internal" download="" href="../../../_downloads/5ba9cfc7b0b53c6530f7032f44cb4874/ad_polar_example.dat"><code class="xref download docutils literal notranslate"><span class="pre">(here)</span></code></a>.</p>
+<p>불안정한 공기 역학적 드라이버 입력은 다음 문서에 문서화되어 있습니다. <a class="reference internal" href="#ua-driver"><span class="std std-numref">섹션 4.3.8.6</span></a>.</p>
+</div>
+<div class="section" id="calculating-default-airfoil-coefficients">
+<span id="ua-afi-defaults"></span><h2><span class="section-number">4.3.8.3. </span>기본 에어포일 계수 계산<a class="headerlink" href="#calculating-default-airfoil-coefficients" title="이 제목의 고유 링크"></a></h2>
+<p>기본값은 <code class="docutils literal notranslate"><span class="pre">cd0</span></code> 는 최소값입니다. <span class="math notranslate nohighlight">\(C_d\)</span> 곡선 사이 <span class="math notranslate nohighlight">\(\pm20\)</span> 각도의 공격 각도.
+<span class="math notranslate nohighlight">\(\alpha_{c_{d0}}\)</span> 는 공격 각도로 정의됩니다. <code class="docutils literal notranslate"><span class="pre">cd0</span></code> 가 발생합니다.</p>
+<p>컴퓨팅 후 <code class="docutils literal notranslate"><span class="pre">cd0</span></code>, <span class="math notranslate nohighlight">\(C_n\)</span> 곡선은 다음과 같이 계산됩니다.</p>
+<div class="math notranslate nohighlight">
+\[C_{n}(\alpha) = C_l(\alpha) \cos\alpha + \left(C_d(\alpha) - c_{d0}\right) \sin\alpha\]</div>
+<p>의 경사 <span class="math notranslate nohighlight">\(C_n\)</span> 곡선은 다음과 같이 계산됩니다.</p>
+<div class="math notranslate nohighlight">
+\[C_{n}^{Slope}\left(\frac{\alpha_{i+1} + \alpha_i}{2}\right) = \frac{C_n(\alpha_{i+1}) - C_n(\alpha_i)}{\alpha_{i+1} - \alpha_i}\]</div>
+<p><span class="math notranslate nohighlight">\(C_{n,smooth}^{Slope}\)</span> 는 다음의 부드러운 버전입니다. <span class="math notranslate nohighlight">\(C_{n}^{Slope}\)</span>, 2도 창의 삼중 커널을 사용하여 계산됩니다.</p>
+<div class="math notranslate nohighlight">
+\[C_{l}^{Slope}\left(\frac{\alpha_{i+1} + \alpha_i}{2}\right) = \frac{C_l(\alpha_{i+1}) - C_l(\alpha_i)}{\alpha_{i+1} - \alpha_i}\]</div>
+<p>사용 <span class="math notranslate nohighlight">\(C_{n,smooth}^{Slope}\)</span>, <code class="docutils literal notranslate"><span class="pre">alphaUpper</span></code> 및 <code class="docutils literal notranslate"><span class="pre">alphaLower</span></code> 는 다음과 같이 계산됩니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">alphaUpper</span></code> 는 사이의 가장 작은 공격 각도 값입니다. <span class="math notranslate nohighlight">\(\alpha_{c_{d0}}\)</span> 및 20도 <span class="math notranslate nohighlight">\(C_{n,smooth}^{Slope}\)</span> 곡선이 최대 기울기의 90%까지 감소하기 시작했습니다.</p>
+<div class="math notranslate nohighlight">
+\[C_{n,smooth}^{Slope}\left(\alpha^{Upper}\right) &lt; 0.9 \max_{\alpha \in \left[\alpha_{c_{d0}}, \alpha^{Upper}\right]}  C_{n,smooth}^{Slope}\left( \alpha \right)\]</div>
+<p><code class="docutils literal notranslate"><span class="pre">alphaLower</span></code> 는 -20도에서 최대 사이의 공격 각도 값입니다. <span class="math notranslate nohighlight">\(\alpha_{c_{d0}}\)</span> 여기서 <span class="math notranslate nohighlight">\(C_{n,smooth}^{Slope}\)</span> 곡선이 최대 기울기의 90%까지 감소하기 시작했습니다.</p>
+<div class="math notranslate nohighlight">
+\[C_{n,smooth}^{Slope}\left(\alpha^{Lower}\right) &lt; 0.9 \max_{\alpha \in \left[\alpha^{Lower}, \alpha_{c_{d0}}\right]}  C_{n,smooth}^{Slope}\left( \alpha \right)\]</div>
+<p><code class="docutils literal notranslate"><span class="pre">Cn1</span></code> 의 값은 다음과 같습니다.
+가장 작은 값에서 <span class="math notranslate nohighlight">\(C_n(\alpha)\)</span> 다음의 최솟값에서 <span class="math notranslate nohighlight">\(\alpha\)</span> 여기서 <span class="math notranslate nohighlight">\(\alpha &gt;= \alpha^{Upper}\)</span> 및 분리 기능, <span class="math notranslate nohighlight">\(f_{st}(\alpha)\)</span> = 0.7.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Cn2</span></code> 의 값은 다음과 같습니다.
+가장 작은 값에서 <span class="math notranslate nohighlight">\(C_n(\alpha)\)</span> 의 가장 큰 값 <span class="math notranslate nohighlight">\(\alpha\)</span> 여기서 <span class="math notranslate nohighlight">\(\alpha &lt;= \alpha^{Lower}\)</span> 및 분리 기능, <span class="math notranslate nohighlight">\(f_{st}(\alpha)\)</span>  = 0.7.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Cn_offset</span></code> 는 평균값입니다. <span class="math notranslate nohighlight">\(C_n\)</span> 곡선 <code class="docutils literal notranslate"><span class="pre">alphaUpper</span></code> 및 <code class="docutils literal notranslate"><span class="pre">alphaLower</span></code>:</p>
+<div class="math notranslate nohighlight">
+\[C_{n}^{offset} = \frac{C_n\left(\alpha^{Lower}\right) + C_n\left(\alpha^{Upper}\right)}{2}\]</div>
+<p><code class="docutils literal notranslate"><span class="pre">C_nalpha</span></code> 는 평활화의 최대 기울기로 정의됩니다. <span class="math notranslate nohighlight">\(C_n\)</span> 곡선, <span class="math notranslate nohighlight">\(C_{n,smooth}^{Slope}\)</span> 사이 <span class="math notranslate nohighlight">\(\pm20\)</span> 각도의 공격 각도.</p>
+<p><code class="docutils literal notranslate"><span class="pre">C_lalpha</span></code> 는 (평탄화되지 않은)의 최대 기울기로 정의됩니다. <span class="math notranslate nohighlight">\(C_l\)</span> 곡선, <span class="math notranslate nohighlight">\(C_{l}^{Slope}\)</span> 사이 <span class="math notranslate nohighlight">\(\pm20\)</span> 각도의 공격 각도.</p>
+<p>기본값 <code class="docutils literal notranslate"><span class="pre">alpha0</span></code> 는 다음과 같은 기울기를 갖는 선의 영점 교차로 계산됩니다.
+통과하는 <code class="docutils literal notranslate"><span class="pre">C_lalpha</span></code> 다음을 통과하는 <span class="math notranslate nohighlight">\(C_l\)</span> 곡선 <span class="math notranslate nohighlight">\(\alpha = \frac{\alpha^{Upper} + \alpha^{Lower}}{2}\)</span></p>
+<div class="math notranslate nohighlight">
+\[\alpha_0 = \frac{\alpha^{Upper} + \alpha^{Lower}}{2} - \frac{C_l\left(\frac{\alpha^{Upper} + \alpha^{Lower}}{2}\right) }{C_{l,\alpha}}\]</div>
+<p><code class="docutils literal notranslate"><span class="pre">Cm0</span></code> 는 <span class="math notranslate nohighlight">\(C_m\)</span> 곡선 <code class="docutils literal notranslate"><span class="pre">alpha0</span></code>: <span class="math notranslate nohighlight">\(C_{m,0} = C_m\left(\alpha_0\right)\)</span>. 만약 <span class="math notranslate nohighlight">\(C_m\)</span> 극값은 포함되지 않았습니다. <span class="math notranslate nohighlight">\(C_{m,0} =0\)</span>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">alpha1</span></code> 는 위의 공격 각도입니다.
+분리 기능이 있는 <code class="docutils literal notranslate"><span class="pre">alphaUpper</span></code> , <span class="math notranslate nohighlight">\(f_s^{st}\)</span> 는 0.7입니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">alpha2</span></code> 는 아래 공격 각도입니다. <code class="docutils literal notranslate"><span class="pre">alphaLower</span></code> , <span class="math notranslate nohighlight">\(f_s^{st}\)</span> 는 0.7입니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Cn1</span></code> 는 <span class="math notranslate nohighlight">\(C_n\)</span> 곡선 <code class="docutils literal notranslate"><span class="pre">alpha1</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Cn2</span></code> 는 <span class="math notranslate nohighlight">\(C_n\)</span> 곡선 <code class="docutils literal notranslate"><span class="pre">alpha2</span></code>.</p>
+</div>
+<div class="section" id="outputs">
+<h2><span class="section-number">4.3.8.4. </span>출력<a class="headerlink" href="#outputs" title="이 제목의 고유 링크"></a></h2>
+<p>동적 스톨 모델의 변수 출력이 가능하지만 전처리기 변수 설정이 필요합니다. <code class="docutils literal notranslate"><span class="pre">UA_OUTS</span></code> 를 실행하고 프로그램(OpenFAST, AeroDyn 드라이버 또는 Unsteady Aero 드라이버)을 다시 컴파일하십시오. 출력은 확장자를 가진 출력 파일에 기록됩니다. <cite>*.UA.out</cite>. 다음을 사용하여 이러한 출력을 활성화하려면 <cite>cmake</cite>, 다음을 사용하여 컴파일 <code class="docutils literal notranslate"><span class="pre">-DCMAKE_Fortran_FLAGS="-DUA_OUTS=ON"</span></code></p>
+<p>드라이버를 사용할 때 이 전처리기 변수를 사용할 필요가 없습니다.</p>
+</div>
+<div class="section" id="aeroelastic-simulation-of-a-2d-section">
+<span id="ua-aeroelasttheory"></span><h2><span class="section-number">4.3.8.5. </span>2D 단면의 공탄성 시뮬레이션<a class="headerlink" href="#aeroelastic-simulation-of-a-2d-section" title="이 제목의 고유 링크"></a></h2>
+<p>단순화된 맥락에서 비정상 공기 역학 모델을 사용하기 위해 드라이버를 사용하여 격리된 2D 단면의 공탄성 시뮬레이션이 가능합니다. 참조 <a class="reference internal" href="#ua-driver"><span class="std std-numref">섹션 4.3.8.6</span></a>. 공탄성 시뮬레이션에 대한 이론과 설명은 다음에서 찾을 수 있습니다.
+<span id="id13">[<a class="reference internal" href="zrefs.html#id4" title="E. Branlard, J.Jonkman, B. Jonkman, M. Singh, E. Mayda, K.Dixon, J H. Porter 및 G. Vijayakumar. 불안정한 익형 공기역학적 및 동적 유입을 포함한 일반화된 풍력터빈 단면의 공탄성 안정성. 물리학 저널: 컨퍼런스 시리즈, 2024.">ad-BJJonkmanJ+24</a>]</span>.</p>
+</div>
+<div class="section" id="driver">
+<span id="ua-driver"></span><h2><span class="section-number">4.3.8.6. </span>드라이버<a class="headerlink" href="#driver" title="이 제목의 고유 링크"></a></h2>
+<p>단일 익형에 대한 시뮬레이션을 실행하는 데 드라이버를 사용할 수 있습니다.</p>
+<p>다양한 종류의 시뮬레이션이 가능합니다.
+공격 각도의 정현파 변화를 사용하는</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>,</p></li>
+<li><p>사용자는 받음각, 상대 풍속 및 피치 속도의 시계열을 정의했습니다.</p></li>
+<li><p>2D 평면(플랩, 모서리 및 비틀림)에서 단면의 탄성 운동에 대해 3 자유도를 갖춘 공기 탄성 시뮬레이션으로 풍속의 시계열을 규정하거나 단면의 움직임을 규정할 수 있습니다.</p></li>
+</ul>
+</div></blockquote>
+<p>공탄성 시뮬레이션에 대한 이론과 설명은 다음에서 찾을 수 있습니다. <span id="id14">[<a class="reference internal" href="zrefs.html#id4" title="E. Branlard, J.Jonkman, B. Jonkman, M. Singh, E. Mayda, K.Dixon, J H. Porter 및 G. Vijayakumar. 불안정한 익형 공기역학적 및 동적 유입을 포함한 일반화된 풍력터빈 단면의 공탄성 안정성. 물리학 저널: 컨퍼런스 시리즈, 2024.">ad-BJJonkmanJ+24</a>]</span>.</p>
+<div class="section" id="compilation">
+<h3><span class="section-number">4.3.8.6.1. </span>편집<a class="headerlink" href="#compilation" title="이 제목의 고유 링크"></a></h3>
+<p>사용 <cite>cmake</cite>, 드라이버는 다음을 사용하여 컴파일됩니다. <cite>는 unsteadyaero_driver를 만듭니다.</cite>, 결과적으로 실행 파일로 생성됨 <cite>에어로딘</cite> 폴더.</p>
+</div>
+<div class="section" id="driver-inputs">
+<h3><span class="section-number">4.3.8.6.2. </span>드라이버 입력<a class="headerlink" href="#driver-inputs" title="이 제목의 고유 링크"></a></h3>
+<p>비정상 공기역학적 드라이버에 대한 입력 파일의 예는 다음에서 찾을 수 있습니다. <a class="reference external" href="https://github.com/OpenFAST/r-test/blob/main/modules/unsteadyaero/ua_redfreq/UA2.dvr" target="_blank" rel="noopener noreferrer">r-테스트 저장소</a>.</p>
+<p>다양한 입력은 아래에 설명되어 있습니다.</p>
+<p><strong>환경 조건</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">FldDens</span></code>: 작동유체의 밀도(kg/m^3)</p>
+<p><code class="docutils literal notranslate"><span class="pre">KinVisc</span></code>: 작동유체의 동점도(m^2/s)</p>
+<p><code class="docutils literal notranslate"><span class="pre">SpdSound</span></code>: 작동유체의 음속(m/s)</p>
+<p><strong>불안정한 공기역학 옵션</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">UAMod</span></code>     : 비정상 에어로 모델 스위치(스위치) {2=B-L Gonzalez, 3=B-L Minnema/Pierce, 4=B-L HGM 4-states, 5=B-L 5-states, 6=Oye, 7=Boeing-Vertol} [AFeroMod=2인 경우에만 사용됨]</p>
+<p><code class="docutils literal notranslate"><span class="pre">FLookup</span></code>   : f'에 대한 조회를 계산할지(TRUE) 또는 가장 적합한 지수 방정식을 사용할지(FALSE) 여부를 나타내는 플래그입니다. FALSE인 경우 S1-S4가 에어포일 입력 파일(플래그)에 제공되어야 합니다. [AFAeroMod=2인 경우에만 사용됨]</p>
+<p><strong>에어포일 특성</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">AirFoil</span></code>: 에어포일 테이블(열 1: 받음각(AoA), 열 2: 양력 계수, 열 3: 항력 계수).</p>
+<p><code class="docutils literal notranslate"><span class="pre">Chord</span></code> : 코드 길이(m)</p>
+<p><code class="docutils literal notranslate"><span class="pre">Vec_AQ</span></code> : 에어포일 좌표와 코드 길이에서 참조점 "A"에서 공기역학적 중심(~쿼드 코드) "Q"까지의 벡터입니다. "A"가 중간 코드에 있는 경우 값은 (0, -0.25) (-)일 가능성이 높습니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Vec_AT</span></code> : 에어포일 좌표 및 코드 길이에서 참조점 "A"부터 3/4 코드 지점 "T"까지의 벡터입니다. "A"가 중간 코드 값인 경우 (0, 0.25) (-)</p>
+<p><code class="docutils literal notranslate"><span class="pre">UseCm</span></code> : 익형 테이블의 Cm(모멘트 계수) 데이터 사용 {true/false}</p>
+<p><strong>시뮬레이션 제어</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">SimMod</span></code>: 시뮬레이션 모델 {1=주파수 감소 모델, 2=규정된 항공 시계열, 3=탄성 단면}</p>
+<p><strong>감소된 주파수 시뮬레이션</strong> (<code class="docutils literal notranslate"><span class="pre">SimMod=1</span></code>)</p>
+<p><code class="docutils literal notranslate"><span class="pre">InflowVel</span></code>      : 유입 속도(m/s)</p>
+<p><code class="docutils literal notranslate"><span class="pre">NCycles</span></code>        : 시뮬레이션 길이에 따른 받음각 진동 수(-)</p>
+<p><code class="docutils literal notranslate"><span class="pre">StepsPerCycle</span></code>  : 사이클당 시간 단계 수(-)</p>
+<p><code class="docutils literal notranslate"><span class="pre">Frequency</span></code>      : 익형 진동의 주파수(Hz)</p>
+<p><code class="docutils literal notranslate"><span class="pre">Amplitude</span></code>      : 받음 진동 각도의 진폭(deg)</p>
+<p><code class="docutils literal notranslate"><span class="pre">Mean</span></code>           : 주기 평균(deg)</p>
+<p><code class="docutils literal notranslate"><span class="pre">Phase</span></code>          : 초기 단계(num 단계).</p>
+<p><strong>규정된 공기역학적 시뮬레이션 입력</strong>  (<code class="docutils literal notranslate"><span class="pre">SimMod=2</span></code>)</p>
+<p><code class="docutils literal notranslate"><span class="pre">TMax_PA</span></code>   : 총 실행 시간(초)</p>
+<p><code class="docutils literal notranslate"><span class="pre">DT_PA</span></code>     : 권장 모듈 시간 간격(초)</p>
+<p><code class="docutils literal notranslate"><span class="pre">AeroTSFile</span></code>: 헤더 라인 1개, 열 4개(시간(s), 받음각(deg), InflowVel(m/s), 피치 속도(rad/s))가 있는 구분된 입력 파일(예: csv)의 시계열 데이터</p>
+<p><strong>공탄성 시뮬레이션</strong> (<code class="docutils literal notranslate"><span class="pre">SimMod=3</span></code>)</p>
+<p>공탄성 시뮬레이션에 대한 이론은 다음에서 찾을 수 있습니다. <a class="reference internal" href="#ua-aeroelasttheory"><span class="std std-numref">섹션 4.3.8.5</span></a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">TMax</span></code>        : 총 실행 시간(초)</p>
+<p><code class="docutils literal notranslate"><span class="pre">DT</span></code>          : 시간 단계.</p>
+<p><code class="docutils literal notranslate"><span class="pre">ActiveDOF</span></code>   : 활성 자유도 목록(참 또는 거짓)</p>
+<p><code class="docutils literal notranslate"><span class="pre">InitPos</span></code>     : 탄성 자유도(m, m 및 rad)에 대한 초기 위치 목록</p>
+<p><code class="docutils literal notranslate"><span class="pre">InitVel</span></code>     : 탄성 자유도(m/s, m/s, rad/s)에 대한 초기 속도 목록</p>
+<p><code class="docutils literal notranslate"><span class="pre">GFScalingL1</span></code> : 단면 하중을 일반 하중(3x3)으로 변환하기 위한 일반 힘 배율 계수. 한 줄에 세 개의 값이 있습니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">MassMatrixL1</span></code> : 질량 행렬(3x3). 한 줄에 세 개의 값이 있습니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">DampMatrixL1</span></code> : 감쇠 매트릭스(3x3). 한 줄에 세 개의 값이 있습니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">StifMatrixL1</span></code> : 강성 매트릭스(3x3). 한 줄에 세 개의 값이 있습니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Twist</span></code>        : 비틀림 자유도가 0(deg)일 때 단면의 비틀림 고정</p>
+<p><code class="docutils literal notranslate"><span class="pre">InflowMod</span></code>    : 유입 속도에 대한 모델입니다. {1: 등속, 2: 시계열}</p>
+<p><code class="docutils literal notranslate"><span class="pre">Inflow</span></code>      : x 및 y 방향의 유입 속도 [InflowMod=1인 경우에만 사용됨]</p>
+<p><code class="docutils literal notranslate"><span class="pre">InflowTSFile</span></code> : 유입 속도에 대한 입력 파일입니다. 헤더 줄 1개, 열 3개(시간(초), Ux(m/s), Uy(m/s))가 있는 구분된 파일(예: csv)입니다. [InflowMod=2인 경우에만 사용됨]</p>
+<p><code class="docutils literal notranslate"><span class="pre">MotionMod</span></code>    : 자유도 운동에 대한 모델 {1: 동적, 2: 규정}</p>
+<p><code class="docutils literal notranslate"><span class="pre">MotionTSFile</span></code> : 규정된 모션에 대한 입력 파일입니다. 헤더 줄 1개, 열 10개(시간(s), x(m), y(m), th(rad), 속도, 가속도)가 포함된 구분된 파일(예: csv)입니다. [InflowMod=2인 경우에만 사용됨]</p>
+<p><strong>출력 제어</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">SumPrint</span></code> : 비정상 공기역학 요약 파일 작성(플래그)</p>
+<p><code class="docutils literal notranslate"><span class="pre">WrAFITables</span></code> : 내부적으로 사용되는 공기역학적 계수를 다시 작성합니다(플래그).</p>
+<p><strong>예제 CSV 입력 파일</strong></p>
+<p>불안정한 aerodyn 드라이버는 이제 입력 시계열에 대해 CSV 파일을 사용합니다. 시간 열은 일정한 시간 단계에 있을 필요는 없지만 단조롭게 증가해야 합니다.</p>
+<p>규정된 에어로 입력(<code class="docutils literal notranslate"><span class="pre">SimMod=2</span></code>):</p>
+<p>유입 파일 입력(<code class="docutils literal notranslate"><span class="pre">SimMod=3</span></code>, <code class="docutils literal notranslate"><span class="pre">InflowMod=2</span></code>):</p>
+<p>모션 파일 입력(<code class="docutils literal notranslate"><span class="pre">SimMod=3</span></code>, <code class="docutils literal notranslate"><span class="pre">MotionMod=2</span></code>) (이 더미 예제에서는 속도와 가속도가 제공되지 않지만 가급적 제공되어야 합니다):</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="theory.html" class="btn btn-neutral float-left" title="4.3.7. AeroDyn 이론" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+        <a href="theory_tailfin.html" class="btn btn-neutral float-right" title="4.3.9. 꼬리지느러미 공기역학 이론" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>© Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    
+     
+
+
+</body></html>

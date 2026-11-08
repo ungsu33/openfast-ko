@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.17.1. Input Files &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.17.2. Theory Manual for the Tuned Mass Damper Module in OpenFAST" href="StC_Theory.html" />
+    <link rel="prev" title="4.17. Structural Control (SrvD)" href="StC_index.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/servodyn-stc/StC_input.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="StC_index.html">4.17. Structural Control</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.17.1. Input Files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#units">4.17.1.1. Units</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structural-control-locations">4.17.1.2. Structural Control Locations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structural-control-input-file">4.17.1.3. Structural Control Input File</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#stc-degrees-of-freedom">4.17.1.4. StC Degrees of Freedom</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#stc-location">4.17.1.5. StC Location</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#stc-initial-conditions">4.17.1.6. StC Initial Conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#stc-configuration">4.17.1.7. StC Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#stc-mass-stiffness-damping">4.17.1.8. StC Mass, Stiffness, &amp; Damping</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#stc-user-defined-spring-forces">4.17.1.9. StC User-Defined Spring Forces</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structctrl-control">4.17.1.10. StructCtrl Control</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tlcd-tuned-liquid-column-damper">4.17.1.11. TLCD – Tuned Liquid Column Damper</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prescribed-time-series">4.17.1.12. Prescribed Time Series</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="StC_Theory.html">4.17.2. Theory Manual for the Tuned Mass Damper Module in OpenFAST</a></li>
+<li class="toctree-l3"><a class="reference internal" href="StC_TLCD_Theory.html">4.17.3. TLCD: Derivations of Equation of Motion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.17.4. References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="StC_index.html"><span class="section-number">4.17. </span>Structural Control (SrvD)</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.17.1. </span>Input Files</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/servodyn-stc/StC_input.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="input-files">
+<span id="stc-input"></span><h1><span class="section-number">4.17.1. </span>Input Files<a class="headerlink" href="#input-files" title="Permalink to this heading"></a></h1>
+<p>The user configures each StC instance with a separate input file. This input
+file defines the location of the StC relative to its mounting location, and
+defines the properties.  It can also be used with an external forces file to
+apply a timeseries load at the location (primarily used for diagnostic
+purposes).</p>
+<div class="section" id="units">
+<h2><span class="section-number">4.17.1.1. </span>Units<a class="headerlink" href="#units" title="Permalink to this heading"></a></h2>
+<p>Structural Control uses the SI system (kg, m, s, N). Angles are assumed to be in
+radians unless otherwise specified.</p>
+<hr></div>
+<div class="section" id="structural-control-locations">
+<span id="stc-locations"></span><h2><span class="section-number">4.17.1.2. </span>Structural Control Locations<a class="headerlink" href="#structural-control-locations" title="Permalink to this heading"></a></h2>
+<p>The Structural Control input file defines the location and properties of the StC
+instance.  The location is relative to the type of StC given in the main
+ServoDyn input file (see <a class="reference internal" href="../servodyn/input.html#srvd-stc-inputs"><span class="std std-numref">Section 4.15.1.2.11</span></a>).  The four location types
+are Nacelle, Tower, Blade, and Platform.</p>
+<p>The mapping information for the StC will be given in the main OpenFAST summary
+file.</p>
+<div class="section" id="nacelle-stc">
+<h3><span class="section-number">4.17.1.2.1. </span>Nacelle StC<a class="headerlink" href="#nacelle-stc" title="Permalink to this heading"></a></h3>
+<p>This StC mounting location is attached relative to the nacelle reference point.
+It will track with all nacelle motions (including motions due to yaw, tower
+flex, and platform motions).</p>
+</div>
+<div class="section" id="tower-stc">
+<h3><span class="section-number">4.17.1.2.2. </span>Tower StC<a class="headerlink" href="#tower-stc" title="Permalink to this heading"></a></h3>
+<p>This StC mounting location is attached to the tower mesh at the height specified
+above the tower base.  This StC attachment will move with the line mesh at that
+height. For example, an StC mounted at 85 m on a 90 m tower will move with the
+mesh line corresponding to the 85 m height position on the tower center line.</p>
+</div>
+<div class="section" id="blade-stc">
+<h3><span class="section-number">4.17.1.2.3. </span>Blade StC<a class="headerlink" href="#blade-stc" title="Permalink to this heading"></a></h3>
+<p>This StC mounting location is attached to the blade structural center at the
+specified distance from the blade root along the z-axis of the blade (IEC
+blade coordinate system).  This location will follow all blade deformations and
+motions (including blade twist when used with BeamDyn).  This option is
+available with both the BeamDyn and ElastoDyn blade representations.</p>
+<p>When this option is used, identical StCs will be attached at each of the blades.
+The response if each blade mounted StC is tracked separately and is available in
+the output channels given in the ServoDyn tab of the
+<a class="reference download internal" download="" href="../../../_downloads/3f19498a5dc774461e022b671ff01ec6/OutListParameters.xlsx"><code class="xref download docutils literal notranslate"><span class="pre">OutListParameters.xlsx</span></code></a>.</p>
+</div>
+<div class="section" id="platform-stc">
+<h3><span class="section-number">4.17.1.2.4. </span>Platform StC<a class="headerlink" href="#platform-stc" title="Permalink to this heading"></a></h3>
+<p>This StC mounting location is located relative to the platform reference point.
+When a rigid body platform is modeled (such as a rigid semi-submersible), it is
+attached to the platform reference point.  When a flexible floating body is
+modeled, the StC is attached to the SubDyn mesh.</p>
+<hr></div>
+</div>
+<div class="section" id="structural-control-input-file">
+<span id="stc-input-file"></span><h2><span class="section-number">4.17.1.3. </span>Structural Control Input File<a class="headerlink" href="#structural-control-input-file" title="Permalink to this heading"></a></h2>
+<p>The input file may have an arbitrary number of commented header lines, and
+commented lines at any location in the input file.
+<a class="reference download internal" download="" href="../../../_downloads/fe83ade92c9ec1626b16a08db2708da4/NRELOffshrBsline5MW_StC.dat"><code class="xref download docutils literal notranslate"><span class="pre">(Example</span> <span class="pre">Structural</span> <span class="pre">Control</span> <span class="pre">input</span> <span class="pre">file</span> <span class="pre">for</span> <span class="pre">tuned</span> <span class="pre">mass</span> <span class="pre">damper</span> <span class="pre">on</span>
+<span class="pre">tower</span> <span class="pre">for</span> <span class="pre">NREL</span> <span class="pre">5</span> <span class="pre">MW</span> <span class="pre">TLP)</span></code></a>:</p>
+<div class="section" id="simulation-control">
+<h3><span class="section-number">4.17.1.3.1. </span>Simulation Control<a class="headerlink" href="#simulation-control" title="Permalink to this heading"></a></h3>
+<p><strong>Echo</strong> [flag]</p>
+<blockquote>
+<div><p>Echo input data to &lt;RootName&gt;.ech</p>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="stc-degrees-of-freedom">
+<h2><span class="section-number">4.17.1.4. </span>StC Degrees of Freedom<a class="headerlink" href="#stc-degrees-of-freedom" title="Permalink to this heading"></a></h2>
+<p><strong>StC_DOF_MODE</strong> [switch]</p>
+<blockquote>
+<div><p>DOF mode   {0: No StC or TLCD DOF; 1: StC_X_DOF, StC_Y_DOF, and/or StC_Z_DOF
+(three independent StC DOFs); 2: StC_XY_DOF (2DOF Omni-Directional StC); 3:
+StC_XYZ_DOF (3DOF Omni-Directional StC); 5: TLCD; 6: Prescribed force/moment
+time series; 7: Force determined by external DLL}</p>
+</div></blockquote>
+<p><strong>StC_X_DOF</strong> [flag]</p>
+<blockquote>
+<div><p>DOF on or off for StC X   <em>[Used only when</em> <strong>StC_DOF_MODE==1</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>StC_Y_DOF</strong> [flag]</p>
+<blockquote>
+<div><p>DOF on or off for StC Y   <em>[Used only when</em> <strong>StC_DOF_MODE==1</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>StC_Z_DOF</strong> [flag]</p>
+<blockquote>
+<div><p>DOF on or off for StC Z   <em>[Used only when</em> <strong>StC_DOF_MODE==1</strong> <em>]</em></p>
+</div></blockquote>
+</div>
+<div class="section" id="stc-location">
+<h2><span class="section-number">4.17.1.5. </span>StC Location<a class="headerlink" href="#stc-location" title="Permalink to this heading"></a></h2>
+<p>The location of the StC is relative to the component it is attached to.  This is
+specified in the main ServoDyn input file.  See description above.</p>
+<p><strong>StC_P_X</strong> [m]</p>
+<blockquote>
+<div><p>At rest X position of StC</p>
+</div></blockquote>
+<p><strong>StC_P_Y</strong> [m]</p>
+<blockquote>
+<div><p>At rest Y position of StC</p>
+</div></blockquote>
+<p><strong>StC_P_Z</strong> [m]</p>
+<blockquote>
+<div><p>At rest Z position of StC</p>
+</div></blockquote>
+</div>
+<div class="section" id="stc-initial-conditions">
+<h2><span class="section-number">4.17.1.6. </span>StC Initial Conditions<a class="headerlink" href="#stc-initial-conditions" title="Permalink to this heading"></a></h2>
+<p><em>used only when</em> <strong>StC_DOF_MODE==1, 2, or 3</strong></p>
+<p><strong>StC_X_DSP</strong> [m]</p>
+<blockquote>
+<div><p>StC X initial displacement   <em>[relative to at rest position]</em></p>
+</div></blockquote>
+<p><strong>StC_Y_DSP</strong> [m]</p>
+<blockquote>
+<div><p>StC Y initial displacement   <em>[relative to at rest position]</em></p>
+</div></blockquote>
+<p><strong>StC_Z_DSP</strong> [m]</p>
+<blockquote>
+<div><p>StC Z initial displacement   <em>[relative to at rest position; used only when</em>
+<strong>StC_DOF_MODE==1</strong> <em>and</em> <strong>StC_Z_DOF==TRUE</strong> <em>or when</em> <strong>StC_DOF_MODE==3</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>StC_Z_PreLd</strong> [N]</p>
+<blockquote>
+<div><p>StC Z spring preload. Either a direct value for the spring preload in
+Newtons,  or <strong>“gravity”</strong> for pre-loading spring to shift the at rest
+position of the StC Z mass when gravity is acting on it using
+<span class="math notranslate nohighlight">\(F_{Z_{PreLoad}} = M_Z * G\)</span>, or <strong>“none”</strong> to disable spring pre-load.
+See <a class="reference internal" href="StC_Theory.html#srvd-stcz-preload"><span class="std std-numref">Section 4.17.2.1.4.2</span></a> for details of implementation.
+<em>[used only when</em> <strong>StC_DOF_MODE==1</strong> <em>and</em> <strong>StC_Z_DOF==TRUE</strong> <em>or when</em>
+<strong>StC_DOF_MODE==3</strong> <em>]</em></p>
+</div></blockquote>
+</div>
+<div class="section" id="stc-configuration">
+<h2><span class="section-number">4.17.1.7. </span>StC Configuration<a class="headerlink" href="#stc-configuration" title="Permalink to this heading"></a></h2>
+<p><em>used only when</em> <strong>StC_DOF_MODE==1, 2, or 3</strong></p>
+<p><strong>StC_X_PSP</strong> [m]</p>
+<blockquote>
+<div><p>Positive stop position  – maximum X mass displacement</p>
+</div></blockquote>
+<p><strong>StC_X_NSP</strong> [m]</p>
+<blockquote>
+<div><p>Negative stop position  – minimum X mass displacement</p>
+</div></blockquote>
+<p><strong>StC_Y_PSP</strong> [m]</p>
+<blockquote>
+<div><p>Positive stop position  – maximum Y mass displacement</p>
+</div></blockquote>
+<p><strong>StC_Y_NSP</strong> [m]</p>
+<blockquote>
+<div><p>Negative stop position  – minimum Y mass displacement</p>
+</div></blockquote>
+<p><strong>StC_Z_PSP</strong> [m]</p>
+<blockquote>
+<div><p>Positive stop position  – maximum Z mass displacement <em>[used only when</em>
+<strong>StC_DOF_MODE==1</strong> <em>and</em> <strong>StC_Z_DOF==TRUE</strong> <em>or when</em> <strong>StC_DOF_MODE==3</strong>
+<em>]</em></p>
+</div></blockquote>
+<p><strong>StC_Z_NSP</strong> [m]</p>
+<blockquote>
+<div><p>Negative stop position – minimum Z mass displacement <em>[used only when</em>
+<strong>StC_DOF_MODE==1</strong> <em>and</em> <strong>StC_Z_DOF==TRUE</strong> <em>or when</em> <strong>StC_DOF_MODE==3</strong>
+<em>]</em></p>
+</div></blockquote>
+</div>
+<div class="section" id="stc-mass-stiffness-damping">
+<h2><span class="section-number">4.17.1.8. </span>StC Mass, Stiffness, &amp; Damping<a class="headerlink" href="#stc-mass-stiffness-damping" title="Permalink to this heading"></a></h2>
+<p><em>used only when</em> <strong>StC_DOF_MODE==1, 2, or 3</strong></p>
+<p><strong>StC_X_M</strong> [kg]</p>
+<blockquote>
+<div><p>StC X mass   <em>[used only when</em> <strong>StC_DOF_MODE==1</strong> <em>and</em> <strong>StC_X_DOF==TRUE</strong>
+<em>]</em></p>
+</div></blockquote>
+<p><strong>StC_Y_M</strong> [kg]</p>
+<blockquote>
+<div><p>StC Y mass   <em>[used only when</em> <strong>StC_DOF_MODE==1</strong> <em>and</em> <strong>StC_Y_DOF==TRUE</strong>
+<em>]</em></p>
+</div></blockquote>
+<p><strong>StC_Z_M</strong> [kg]</p>
+<blockquote>
+<div><p>StC Z mass   <em>[used only when</em> <strong>StC_DOF_MODE==1</strong> <em>and</em> <strong>StC_Z_DOF==TRUE</strong>
+<em>]</em></p>
+</div></blockquote>
+<p><strong>StC_Omni_M</strong> [kg]</p>
+<blockquote>
+<div><p>StC omni mass   <em>[used only when</em> <strong>StC_DOF_MODE==2 or 3</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>StC_X_K</strong> [N/m]</p>
+<blockquote>
+<div><p>StC X stiffness</p>
+</div></blockquote>
+<p><strong>StC_Y_K</strong> [N/m]</p>
+<blockquote>
+<div><p>StC Y stiffness</p>
+</div></blockquote>
+<p><strong>StC_Z_K</strong> [N/m]</p>
+<blockquote>
+<div><p>StC Z stiffness   <em>[used only when</em> <strong>StC_DOF_MODE==1</strong> <em>and</em>
+<strong>StC_Z_DOF==TRUE</strong> <em>or when</em> <strong>StC_DOF_MODE==3</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>StC_X_C</strong> [N/(m/s)]</p>
+<blockquote>
+<div><p>StC X damping</p>
+</div></blockquote>
+<p><strong>StC_Y_C</strong> [N/(m/s)]</p>
+<blockquote>
+<div><p>StC Y damping</p>
+</div></blockquote>
+<p><strong>StC_Z_C</strong> [N/(m/s)]</p>
+<blockquote>
+<div><p>StC Z damping   <em>[used only when</em> <strong>StC_DOF_MODE==1</strong> <em>and</em>
+<strong>StC_Z_DOF==TRUE</strong> <em>or when</em> <strong>StC_DOF_MODE==3</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>StC_X_KS</strong> [N/m]</p>
+<blockquote>
+<div><p>Stop spring X stiffness</p>
+</div></blockquote>
+<p><strong>StC_Y_KS</strong> [N/m]</p>
+<blockquote>
+<div><p>Stop spring Y stiffness</p>
+</div></blockquote>
+<p><strong>StC_Z_KS</strong> [N/m]</p>
+<blockquote>
+<div><p>Stop spring Z stiffness   <em>[used only when</em> <strong>StC_DOF_MODE==1</strong> <em>and</em>
+<strong>StC_Z_DOF==TRUE</strong> <em>or when</em> <strong>StC_DOF_MODE==3</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>StC_X_CS</strong> [N/(m/s)]</p>
+<blockquote>
+<div><p>Stop spring X damping</p>
+</div></blockquote>
+<p><strong>StC_Y_CS</strong> [N/(m/s)]</p>
+<blockquote>
+<div><p>Stop spring Y damping</p>
+</div></blockquote>
+<p><strong>StC_Z_CS</strong> [N/(m/s)]</p>
+<blockquote>
+<div><p>Stop spring Z damping   <em>[used only when</em> <strong>StC_DOF_MODE==1</strong> <em>and</em>
+<strong>StC_Z_DOF==TRUE</strong> <em>or when</em> <strong>StC_DOF_MODE==3</strong> <em>]</em></p>
+</div></blockquote>
+</div>
+<div class="section" id="stc-user-defined-spring-forces">
+<h2><span class="section-number">4.17.1.9. </span>StC User-Defined Spring Forces<a class="headerlink" href="#stc-user-defined-spring-forces" title="Permalink to this heading"></a></h2>
+<p><em>used only when</em> <strong>StC_DOF_MODE==1, 2, or 3</strong></p>
+<p><strong>Use_F_TBL</strong> [flag]</p>
+<blockquote>
+<div><p>Use spring force from user-defined table</p>
+</div></blockquote>
+<p><strong>NKInpSt</strong> [-]</p>
+<blockquote>
+<div><p>Number of spring force input stations</p>
+</div></blockquote>
+<p>The table is expected to contain 6 columns for displacements and equvalent
+sprint forces: <strong>X</strong>, <strong>F_X</strong>, <strong>Y</strong>, <strong>F_Y</strong>, <strong>Z</strong>, and <strong>F_Z</strong>.
+Displacements are in meters (m) and forces in Newtons (N).</p>
+<p>Example spring forces table:</p>
+<div class="docutils container" id="tab-springforce">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    X                F_X               Y              F_Y              Z              F_Z
+   (m)               (N)              (m)             (N)             (m)             (N)
+-6.0000000E+00  -4.8000000E+06  -6.0000000E+00  -4.8000000E+06  -6.0000000E+00  -4.8000000E+06
+-5.0000000E+00  -2.4000000E+06  -5.0000000E+00  -2.4000000E+06  -5.0000000E+00  -2.4000000E+06
+-4.5000000E+00  -1.2000000E+06  -4.5000000E+00  -1.2000000E+06  -4.5000000E+00  -1.2000000E+06
+-4.0000000E+00  -6.0000000E+05  -4.0000000E+00  -6.0000000E+05  -4.0000000E+00  -6.0000000E+05
+-3.5000000E+00  -3.0000000E+05  -3.5000000E+00  -3.0000000E+05  -3.5000000E+00  -3.0000000E+05
+-3.0000000E+00  -1.5000000E+05  -3.0000000E+00  -1.5000000E+05  -3.0000000E+00  -1.5000000E+05
+-2.5000000E+00  -1.0000000E+05  -2.5000000E+00  -1.0000000E+05  -2.5000000E+00  -1.0000000E+05
+-2.0000000E+00  -6.5000000E+04  -2.0000000E+00  -6.5000000E+04  -2.0000000E+00  -6.5000000E+04
+ 0.0000000E+00   0.0000000E+00   0.0000000E+00   0.0000000E+00   0.0000000E+00   0.0000000E+00
+ 2.0000000E+00   6.5000000E+04   2.0000000E+00   6.5000000E+04   2.0000000E+00   6.5000000E+04
+ 2.5000000E+00   1.0000000E+05   2.5000000E+00   1.0000000E+05   2.5000000E+00   1.0000000E+05
+ 3.0000000E+00   1.5000000E+05   3.0000000E+00   1.5000000E+05   3.0000000E+00   1.5000000E+05
+ 3.5000000E+00   3.0000000E+05   3.5000000E+00   3.0000000E+05   3.5000000E+00   3.0000000E+05
+ 4.0000000E+00   6.0000000E+05   4.0000000E+00   6.0000000E+05   4.0000000E+00   6.0000000E+05
+ 4.5000000E+00   1.2000000E+06   4.5000000E+00   1.2000000E+06   4.5000000E+00   1.2000000E+06
+ 5.0000000E+00   2.4000000E+06   5.0000000E+00   2.4000000E+06   5.0000000E+00   2.4000000E+06
+ 6.0000000E+00   4.8000000E+06   6.0000000E+00   4.8000000E+06   6.0000000E+00   4.8000000E+06
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="structctrl-control">
+<h2><span class="section-number">4.17.1.10. </span>StructCtrl Control<a class="headerlink" href="#structctrl-control" title="Permalink to this heading"></a></h2>
+<p><em>used only when</em> <strong>StC_DOF_MODE==1, 2, 3, or 7</strong></p>
+<p><strong>StC_CMODE</strong> [switch]</p>
+<blockquote>
+<div><p>Control mode   {0:none; 1: Semi-Active Control Mode; 3: Active Control
+Mode through user subroutine; 5: Active Control Mode through Bladed
+interface}. When using StC_DOF_MODE==7, StC_CMODE must be 3 or 5.</p>
+</div></blockquote>
+<p><strong>StC_CChan</strong> [-]</p>
+<blockquote>
+<div><p>Control channel group (1:10) for stiffness and damping <em>[used only when</em>
+<strong>StC_DOF_MODE=1, 2, 3, or 7</strong> <em>and</em> <strong>StC_CMODE=5</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>StC_SA_MODE</strong> [-]</p>
+<blockquote>
+<div><p>Semi-Active control mode {1: velocity-based ground hook control; 2: Inverse
+velocity-based ground hook control; 3: displacement-based ground hook control
+4: Phase difference Algorithm with Friction Force 5: Phase difference
+Algorithm with Damping Force}</p>
+</div></blockquote>
+<p><strong>StC_X_C_HIGH</strong> [-]</p>
+<blockquote>
+<div><p>StC X high damping for ground hook control</p>
+</div></blockquote>
+<p><strong>StC_X_C_LOW</strong> [-]</p>
+<blockquote>
+<div><p>StC X low damping for ground hook control</p>
+</div></blockquote>
+<p><strong>StC_Y_C_HIGH</strong> [-]</p>
+<blockquote>
+<div><p>StC Y high damping for ground hook control</p>
+</div></blockquote>
+<p><strong>StC_Y_C_LOW</strong> [-]</p>
+<blockquote>
+<div><p>StC Y low damping for ground hook control</p>
+</div></blockquote>
+<p><strong>StC_Z_C_HIGH</strong> [-]</p>
+<blockquote>
+<div><p>StC Z high damping for ground hook control <em>[used only when</em>
+<strong>StC_DOF_MODE==1</strong> <em>and</em> <strong>StC_Z_DOF==TRUE</strong> <em>or when</em> <strong>StC_DOF_MODE==3</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>StC_Z_C_LOW</strong> [-]</p>
+<blockquote>
+<div><p>StC Z low damping for ground hook control  <em>[used only when</em>
+<strong>StC_DOF_MODE==1</strong> <em>and</em> <strong>StC_Z_DOF==TRUE</strong> <em>or when</em> <strong>StC_DOF_MODE==3</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>StC_X_C_BRAKE</strong> [-]</p>
+<blockquote>
+<div><p>StC X high damping for braking the StC <em>[currently unused.  set to zero]</em></p>
+</div></blockquote>
+<p><strong>StC_Y_C_BRAKE</strong> [-]</p>
+<blockquote>
+<div><p>StC Y high damping for braking the StC <em>[currently unused.  set to zero]</em></p>
+</div></blockquote>
+<p><strong>StC_Z_C_BRAKE</strong> [-]</p>
+<blockquote>
+<div><p>StC Z high damping for braking the StC <em>[used only when</em> <strong>StC_DOF_MODE==1</strong>
+<em>and</em> <strong>StC_Z_DOF==TRUE</strong> <em>or when</em> <strong>StC_DOF_MODE==3</strong> <em>]</em> <em>[currently
+unused.  set to zero]</em></p>
+</div></blockquote>
+</div>
+<div class="section" id="tlcd-tuned-liquid-column-damper">
+<h2><span class="section-number">4.17.1.11. </span>TLCD – Tuned Liquid Column Damper<a class="headerlink" href="#tlcd-tuned-liquid-column-damper" title="Permalink to this heading"></a></h2>
+<p><em>used only when</em> <strong>StC_DOF_MODE==5</strong></p>
+<p><strong>L_X</strong> [m]</p>
+<blockquote>
+<div><p>X TLCD total length</p>
+</div></blockquote>
+<p><strong>B_X</strong> [m]</p>
+<blockquote>
+<div><p>X TLCD horizontal length</p>
+</div></blockquote>
+<p><strong>area_X</strong> [m^2]</p>
+<blockquote>
+<div><p>X TLCD cross-sectional area of vertical column</p>
+</div></blockquote>
+<p><strong>area_ratio_X</strong> [-]</p>
+<blockquote>
+<div><p>X TLCD cross-sectional area ratio  <em>[vertical column area divided by
+horizontal column area]</em></p>
+</div></blockquote>
+<p><strong>headLossCoeff_X</strong> [-]</p>
+<blockquote>
+<div><p>X TLCD head loss coeff</p>
+</div></blockquote>
+<p><strong>rho_X</strong> [kg/m^3]</p>
+<blockquote>
+<div><p>X TLCD liquid density</p>
+</div></blockquote>
+<p><strong>L_Y</strong> [m]</p>
+<blockquote>
+<div><p>Y TLCD total length</p>
+</div></blockquote>
+<p><strong>B_Y</strong> [m]</p>
+<blockquote>
+<div><p>Y TLCD horizontal length</p>
+</div></blockquote>
+<p><strong>area_Y</strong>        [m^2]</p>
+<blockquote>
+<div><p>Y TLCD cross-sectional area of vertical column</p>
+</div></blockquote>
+<p><strong>area_ratio_Y</strong>  [-]</p>
+<blockquote>
+<div><p>Y TLCD cross-sectional area ratio <em>[vertical column area divided by
+horizontal column area]</em></p>
+</div></blockquote>
+<p><strong>headLossCoeff_Y</strong> [-]</p>
+<blockquote>
+<div><p>Y TLCD head loss coeff</p>
+</div></blockquote>
+<p><strong>rho_Y</strong> [kg/m^3]</p>
+<blockquote>
+<div><p>Y TLCD liquid density</p>
+</div></blockquote>
+</div>
+<div class="section" id="prescribed-time-series">
+<h2><span class="section-number">4.17.1.12. </span>Prescribed Time Series<a class="headerlink" href="#prescribed-time-series" title="Permalink to this heading"></a></h2>
+<p>A prescribed time series of forces and moments may be applied in place of the
+StC damper.  The force and moment may be applied either in a global coordinate
+frame, or in a local (following) coordinate frame.  This feature is <em>used only
+when</em> <strong>StC_DOF_MODE==6</strong>.</p>
+<p><strong>PrescribedForcesCoord</strong> [switch]</p>
+<blockquote>
+<div><p>Prescribed forces are in global or local coordinates  {1: global; 2: local}.
+When using StC_DOF_MODE==7, PrescribedForcesCoord must be 1.</p>
+</div></blockquote>
+<p><strong>PrescribedForcesFile</strong> [-]</p>
+<blockquote>
+<div><p>Filename for the prescribed forces.  The format expected is 7 columns: time,
+FX, FY, FZ, MX, MY, MZ.  Values will be interpolated from the file between
+the given timestep and value sets.  The input file may have an arbitrary
+number of commented header lines, and commented lines at any location in the
+input file.</p>
+<p>For blade mounted StCs, a different time sereis input file can be given for
+each blade (add additional file names on new lines). If only one file is
+provided, it will be used for all blades.  See example in the regression
+test: <cite>StC_test_OC4Semi_blade2</cite> for an example setup.</p>
+</div></blockquote>
+<p>Example prescribed time series file <a class="reference download internal" download="" href="../../../_downloads/105e0c0af92d2357e643b6d04a3f67b5/PrescribedForce.txt"><code class="xref download docutils literal notranslate"><span class="pre">(example</span> <span class="pre">prescribed</span> <span class="pre">force</span>
+<span class="pre">timeseries)</span></code></a>:</p>
+<div class="docutils container" id="tab-prescribedforce">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># This is an input file for the tower top force time-series in the TMD module of ServoDyn
+#
+# it has an arbitrary number of header lines denoted with #!% characters
+!  Another comment line
+#
+# Time,     Fx,      Fy,      Fz,      Mx,      My,      Mz
+# (s)       (N)      (N)      (N)      (N-m)    (N-m)    (N-m)
+0.0         0.0      0.0      0.0      0.0      0.0      0.0
+4.0         1.0e5    0.0      0.0      0.0      0.0      0.0      # Start ramp -- this is a comment
+40.0        1.0e5    0.0      0.0      0.0      0.0      0.0
+# 40.0001     0.0      0.0      0.0      0.0      0.0      0.0    # This is a commented line
+90.         0.0      0.0      0.0      0.0      0.0      0.0
+
+
+
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="StC_index.html" class="btn btn-neutral float-left" title="4.17. Structural Control (SrvD)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="StC_Theory.html" class="btn btn-neutral float-right" title="4.17.2. Theory Manual for the Tuned Mass Damper Module in OpenFAST" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

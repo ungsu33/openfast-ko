@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.13.6. Appendix &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.14. MoorDyn Users Guide" href="../moordyn/index.html" />
+    <link rel="prev" title="4.13.5. User-Defined Wind Fields" href="user_defined.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/inflowwind/appendix.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.13. InflowWind</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="driver.html">4.13.1. InflowWind Driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input.html">4.13.2. InflowWind Input Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input.html#angles-specified-in-inflowwind">4.13.3. Angles Specified in InflowWind</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input.html#superposition-of-wave-and-current-inflow">4.13.4. Superposition of Wave and Current Inflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_defined.html">4.13.5. User-Defined Wind Fields</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.13.6. Appendix</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#inflowwind-input-files">4.13.6.1. InflowWind Input Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#inflowwind-list-of-output-channels">4.13.6.2. InflowWind List of Output Channels</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.13. </span>InflowWind Users Guide and Theory Manual</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.13.6. </span>Appendix</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/inflowwind/appendix.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="appendix">
+<span id="ifw-appendix"></span><h1><span class="section-number">4.13.6. </span>Appendix<a class="headerlink" href="#appendix" title="Permalink to this heading"></a></h1>
+<div class="section" id="inflowwind-input-files">
+<span id="ifw-input-files"></span><h2><span class="section-number">4.13.6.1. </span>InflowWind Input Files<a class="headerlink" href="#inflowwind-input-files" title="Permalink to this heading"></a></h2>
+<p>In this appendix we describe the InflowWind input-file structure and provide examples.</p>
+<p>1) InflowWind Driver Input File
+<a class="reference download internal" download="" href="../../../_downloads/35ea870b166448c31510b09f84542db2/inflowwind_driver_example.inp"><code class="xref download docutils literal notranslate"><span class="pre">(driver</span> <span class="pre">input</span> <span class="pre">file</span> <span class="pre">example)</span></code></a>:</p>
+<p>The driver input file is needed only for the standalone version of InflowWind. It contains inputs regarding the InflowWind file, interpolation parameters, and the desired output files.
+The InflowWind driver can also be run without this file by using command-line arguments instead.</p>
+<p>2) InflowWind Primary Input File
+<a class="reference download internal" download="" href="../../../_downloads/988301d51e1650de371b054aa5bcdc36/inflowwind_example.dat"><code class="xref download docutils literal notranslate"><span class="pre">(primary</span> <span class="pre">input</span> <span class="pre">file</span> <span class="pre">example)</span></code></a>:</p>
+<p>The primary InflowWind input file defines the inflow that is generated or read from other files. The InflowWind file contains sections for each type of wind-file format.</p>
+<p>3) Native Bladed Scaling File
+<a class="reference download internal" download="" href="../../../_downloads/36c7e31bf3e8fdbb3c43af7ed52c1a42/inflowwind_bladedscaling_example.dat"><code class="xref download docutils literal notranslate"><span class="pre">(primary</span> <span class="pre">input</span> <span class="pre">file</span> <span class="pre">example)</span></code></a>:</p>
+<p>This file includes lines that determine how to scale the non-dimensional full-field
+turbulence files from Bladed.</p>
+<p>4) Uniform Wind Data File
+<a class="reference download internal" download="" href="../../../_downloads/787fd5974fd568ad6afe49b733ef1945/inflowwind_uniform_example.dat"><code class="xref download docutils literal notranslate"><span class="pre">(uniform</span> <span class="pre">wind</span> <span class="pre">input</span> <span class="pre">file</span> <span class="pre">example)</span></code></a>:</p>
+<p>This file includes lines that define uniform (deterministic) wind data files.</p>
+</div>
+<div class="section" id="inflowwind-list-of-output-channels">
+<span id="ifw-output-channels"></span><h2><span class="section-number">4.13.6.2. </span>InflowWind List of Output Channels<a class="headerlink" href="#inflowwind-list-of-output-channels" title="Permalink to this heading"></a></h2>
+<p>This is a list of all possible output parameters for the InflowWind module.
+See the InflowWind tab of the
+<a class="reference download internal" download="" href="../../../_downloads/3f19498a5dc774461e022b671ff01ec6/OutListParameters.xlsx"><code class="xref download docutils literal notranslate"><span class="pre">(OutListParameters.xlsx</span> <span class="pre">file)</span></code></a>:</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="user_defined.html" class="btn btn-neutral float-left" title="4.13.5. User-Defined Wind Fields" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../moordyn/index.html" class="btn btn-neutral float-right" title="4.14. MoorDyn Users Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

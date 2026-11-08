@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.3. AeroDyn Users Guide and Theory Manual &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.3.1. Introduction" href="introduction.html" />
+    <link rel="prev" title="4.2.5. Linearization" href="../glue-code/linearization.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/aerodyn/index.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.3. AeroDyn</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">4.3.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coordsys.html">4.3.2. Coordinate systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input.html">4.3.3. Input Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="output.html">4.3.4. Output Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modeling.html">4.3.5. Modeling Considerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver.html">4.3.6. AeroDyn Driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory.html">4.3.7. AeroDyn Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory_ua.html">4.3.8. Unsteady Aerodynamics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory_tailfin.html">4.3.9. Tail fin Aerodynamics Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.3.10. References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.3.11. Appendix</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.3. </span>AeroDyn Users Guide and Theory Manual</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/aerodyn/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="aerodyn-users-guide-and-theory-manual">
+<span id="ad-user-guide"></span><h1><span class="section-number">4.3. </span>AeroDyn Users Guide and Theory Manual<a class="headerlink" href="#aerodyn-users-guide-and-theory-manual" title="Permalink to this heading"></a></h1>
+<p>This document offers a quick reference guide for the AeroDyn software
+program. It is intended to be used by the general user in combination
+with other OpenFAST manuals. The manual will be updated as new releases are
+issued and as needed to provide further information on advancements or
+modifications to the software. For reference, additional materials
+such as presentation slides, development plans, and publications
+can be downladed from the list below.</p>
+<ul class="simple">
+<li><p><a class="reference download external" download="" href="https://www.nrel.gov/docs/fy15osti/63217.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Development</span> <span class="pre">and</span> <span class="pre">Validation</span> <span class="pre">of</span> <span class="pre">a</span> <span class="pre">New</span> <span class="pre">Blade</span> <span class="pre">Element</span> <span class="pre">Momentum</span> <span class="pre">Skewed-Wake</span> <span class="pre">Model</span> <span class="pre">within</span> <span class="pre">AeroDyn</span></code></a></p></li>
+<li><p><a class="reference download external" download="" href="https://www.nrel.gov/docs/fy20osti/66347.pdf"><code class="xref download docutils literal notranslate"><span class="pre">The</span> <span class="pre">Unsteady</span> <span class="pre">Aerodynamics</span> <span class="pre">Module</span> <span class="pre">for</span> <span class="pre">FAST</span> <span class="pre">8</span></code></a></p></li>
+<li><p><a class="reference download external" download="" href="https://doi.org/10.1016/j.renene.2018.04.023"><code class="xref download docutils literal notranslate"><span class="pre">Added-Mass</span> <span class="pre">Effects</span> <span class="pre">on</span> <span class="pre">a</span> <span class="pre">Horizontal-Axis</span> <span class="pre">Tidal</span> <span class="pre">Turbine</span> <span class="pre">Using</span> <span class="pre">FAST</span> <span class="pre">v8</span></code></a></p></li>
+<li><p><a class="reference download external" download="" href="https://www.nrel.gov/docs/fy17osti/68398.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Predicting</span> <span class="pre">Cavitation</span> <span class="pre">on</span> <span class="pre">Marine</span> <span class="pre">and</span> <span class="pre">Hydrokinetic</span> <span class="pre">Turbine</span> <span class="pre">Blades</span> <span class="pre">with</span> <span class="pre">AeroDyn</span> <span class="pre">V15.04</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/ac04f454598248483d3a339d96dcd4fd/AeroLin_2019-12.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Development</span> <span class="pre">Plan</span> <span class="pre">for</span> <span class="pre">the</span> <span class="pre">Aerodynamic</span> <span class="pre">Linearization</span> <span class="pre">of</span> <span class="pre">OpenFAST</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/16e90183fbf96337d383d6bd287c9aca/AeroDynMesh_Rev4.docx"><code class="xref download docutils literal notranslate"><span class="pre">AeroDyn</span> <span class="pre">Meshes</span> <span class="pre">and</span> <span class="pre">Related</span> <span class="pre">Calculations</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/d94d39db8df849a36f52424c0e22bf37/Buoyancy_Implementation_Plan_Rev11.docx"><code class="xref download docutils literal notranslate"><span class="pre">Calculation</span> <span class="pre">of</span> <span class="pre">Buoyancy</span> <span class="pre">on</span> <span class="pre">a</span> <span class="pre">Marine</span> <span class="pre">Hydrokinetic</span> <span class="pre">Turbine</span> <span class="pre">in</span> <span class="pre">AeroDyn</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/993c27904dec34704905be693a368355/Fluid_Inertia_Added_Mass_Implementation_Plan.docx"><code class="xref download docutils literal notranslate"><span class="pre">Calculation</span> <span class="pre">of</span> <span class="pre">Fluid</span> <span class="pre">Inertia</span> <span class="pre">and</span> <span class="pre">Added</span> <span class="pre">Mass</span> <span class="pre">Loads</span> <span class="pre">on</span> <span class="pre">an</span> <span class="pre">MHK</span> <span class="pre">Turbine</span> <span class="pre">in</span> <span class="pre">AeroDyn</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/115704ea446572c2619c8a74bed4c7b5/UMERC24-Poster.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Determination</span> <span class="pre">of</span> <span class="pre">Added</span> <span class="pre">Mass</span> <span class="pre">Coefficients</span> <span class="pre">for</span> <span class="pre">Floating</span> <span class="pre">Hydrokinetic</span> <span class="pre">Turbine</span> <span class="pre">Blades</span> <span class="pre">using</span> <span class="pre">Computational</span> <span class="pre">Fluid</span> <span class="pre">Dynamics</span></code></a></p></li>
+</ul>
+<p>The documentation here was derived from AeroDyn Manual for AeroDyn version 15.04 by J.Jonkman et al.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">4.3.1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coordsys.html">4.3.2. Coordinate systems</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="coordsys.html#inertial-system-i">4.3.2.1. Inertial system (i)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coordsys.html#hub-system-h">4.3.2.2. Hub system (h)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coordsys.html#polar-system-p">4.3.2.3. Polar system (p)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coordsys.html#cone-system-c">4.3.2.4. Cone system (c)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coordsys.html#blade-system-b">4.3.2.5. Blade system (b)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coordsys.html#airfoil-system-a">4.3.2.6. Airfoil system (a)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coordsys.html#legacy-n-t-system">4.3.2.7. Legacy (n-t) system</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coordsys.html#local-polar-system-l">4.3.2.8. Local polar system (l)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coordsys.html#legacy-local-output-system-w">4.3.2.9. Legacy local output system (w)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coordsys.html#tower-system">4.3.2.10. Tower system</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="input.html">4.3.3. Input Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="input.html#important-changes-introduced-in-v4-0">4.3.3.1. Important changes introduced in v4.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html#introduction">4.3.3.2. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html#general-options">4.3.3.3. General Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html#environmental-conditions">4.3.3.4. Environmental Conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html#blade-element-momentum-theory-options">4.3.3.5. Blade-Element/Momentum Theory Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html#bem-algorithm-options">4.3.3.6. BEM Algorithm options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html#shear-corrections">4.3.3.7. Shear corrections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html#dynamic-wake-dynamic-inflow-model">4.3.3.8. Dynamic Wake / Dynamic inflow model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html#olaf-convecting-lagrangian-filaments-free-vortex-wake-theory-options">4.3.3.9. OLAF – cOnvecting LAgrangian Filaments (Free Vortex Wake) Theory Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html#unsteady-airfoil-aerodynamics-options">4.3.3.10. Unsteady Airfoil Aerodynamics Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html#airfoil-information">4.3.3.11. Airfoil Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html#rotor-blade-properties">4.3.3.12. Rotor/Blade Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html#hub-properties">4.3.3.13. Hub Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html#nacelle-properties">4.3.3.14. Nacelle Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html#tail-fin-aerodynamics">4.3.3.15. Tail fin AeroDynamics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html#tower-influence-and-aerodynamics">4.3.3.16. Tower Influence and Aerodynamics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html#outputs">4.3.3.17. Outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html#nodal-outputs">4.3.3.18. Nodal Outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html#tail-fin-outputs">4.3.3.19. Tail fin outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html#general-inputs">4.3.3.20. General inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html#polar-based-model-inputs">4.3.3.21. Polar-based model inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html#unsteady-slender-body-usb-model-inputs">4.3.3.22. Unsteady slender body (USB) model inputs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="output.html">4.3.4. Output Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="output.html#echo-files">4.3.4.1. Echo Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html#summary-file">4.3.4.2. Summary File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html#results-files">4.3.4.3. Results Files</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modeling.html">4.3.5. Modeling Considerations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modeling.html#environmental-conditions">4.3.5.1. Environmental Conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modeling.html#temporal-and-spatial-discretization">4.3.5.2. Temporal and Spatial Discretization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modeling.html#model-options-under-operational-and-parked-idling-conditions">4.3.5.3. Model Options Under Operational and Parked/Idling Conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modeling.html#linearization">4.3.5.4. Linearization</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="driver.html">4.3.6. AeroDyn Driver</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="driver.html#compiling-the-driver">4.3.6.1. Compiling the driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="driver.html#driver-inputs-and-options">4.3.6.2. Driver inputs and options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="driver.html#aerodyn-inputs-for-multiple-turbines">4.3.6.3. AeroDyn inputs for multiple turbines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="driver.html#examples-of-driver-input-files">4.3.6.4. Examples of driver input files</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="theory.html">4.3.7. AeroDyn Theory</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#steady-bem">4.3.7.1. Steady BEM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#dynamic-bem-theory-dbemt">4.3.7.2. Dynamic BEM Theory (DBEMT)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#tower-shadow-models">4.3.7.3. Tower shadow models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#buoyancy">4.3.7.4. Buoyancy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#added-mass-and-fluid-inertia">4.3.7.5. Added Mass and Fluid Inertia</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="theory_ua.html">4.3.8. Unsteady Aerodynamics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="theory_ua.html#theory">4.3.8.1. Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory_ua.html#inputs">4.3.8.2. Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory_ua.html#calculating-default-airfoil-coefficients">4.3.8.3. Calculating Default Airfoil Coefficients</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory_ua.html#outputs">4.3.8.4. Outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory_ua.html#aeroelastic-simulation-of-a-2d-section">4.3.8.5. Aeroelastic simulation of a 2D section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory_ua.html#driver">4.3.8.6. Driver</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="theory_tailfin.html">4.3.9. Tail fin Aerodynamics Theory</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="theory_tailfin.html#notations">4.3.9.1. Notations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory_tailfin.html#polar-based-model">4.3.9.2. Polar-based model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory_tailfin.html#unsteady-slender-body-model">4.3.9.3. Unsteady slender body model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="zrefs.html">4.3.10. References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">4.3.11. Appendix</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="appendix.html#aerodyn-input-files">4.3.11.1. AeroDyn Input Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appendix.html#aerodyn-list-of-output-channels">4.3.11.2. AeroDyn List of Output Channels</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../glue-code/linearization.html" class="btn btn-neutral float-left" title="4.2.5. Linearization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="introduction.html" class="btn btn-neutral float-right" title="4.3.1. Introduction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

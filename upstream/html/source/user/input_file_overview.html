@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.1.3. Input file formats &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="4.2. Glue Code" href="glue-code/index.html" />
+    <link rel="prev" title="4.1.2. API changes between versions" href="api_change.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/input_file_overview.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="general.html">4.1. General considerations</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="fast_to_openfast.html">4.1.1. FAST v8 and the transition to OpenFAST</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_change.html">4.1.2. API changes between versions</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.1.3. Input file formats</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#value-column-input-files">4.1.3.1. Value column input files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#key-value-input-files">4.1.3.2. Key + Value input files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#troubleshooting-input-files">4.1.3.3. Troubleshooting input files</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="general.html#modularization-framework">4.1.4. Modularization Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="general.html#glue-code-and-mesh-mapping">4.1.5. Glue Code and Mesh Mapping</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="general.html"><span class="section-number">4.1. </span>General</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.1.3. </span>Input file formats</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/source/user/input_file_overview.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="input-file-formats">
+<span id="input-file-overview"></span><h1><span class="section-number">4.1.3. </span>Input file formats<a class="headerlink" href="#input-file-formats" title="Permalink to this heading"></a></h1>
+<p>OpenFAST uses two primary input file formats: <em>value column</em> where the first
+value on the line is read, and <em>key+value</em> where a value and keyword pair are
+read. Both formats are line number based where a specific input is expected on a
+specific line, with some exceptions.</p>
+<div class="section" id="value-column-input-files">
+<span id="sec-value-column"></span><h2><span class="section-number">4.1.3.1. </span>Value column input files<a class="headerlink" href="#value-column-input-files" title="Permalink to this heading"></a></h2>
+<p>Only the first column in a <em>value column</em> based input file is read.  This is the
+historical format used by OpenFAST and its predecessors (the keyword was often
+referenced in the source code and documentation, but OpenFAST did not process
+the keyword or description). Everything after the
+first value read is simply ignored by the code.  This allowed the user to keep
+old values while modifying things.  So for example, and input line like</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span>       <span class="mi">20</span>   <span class="n">TMax</span>            <span class="o">-</span> <span class="n">Total</span> <span class="n">run</span> <span class="n">time</span> <span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>would be read as <cite>2</cite> and the <cite>20</cite> and everything after it ignored.</p>
+<p>This format and associated parsing methodology is somewhat limited in informing
+the user of errors in parsing, and limited the ability to pass entire inpute
+files as text strings from another code (such as a Python driver code).</p>
+</div>
+<div class="section" id="key-value-input-files">
+<span id="sec-format-key-value"></span><h2><span class="section-number">4.1.3.2. </span>Key + Value input files<a class="headerlink" href="#key-value-input-files" title="Permalink to this heading"></a></h2>
+<p>The first two columns are read in <em>key + value</em> input files.  One of these two
+columns must contain the <strong>exact</strong> keyword, and the other must contain the value
+that corresponds to it.  For example, an input line</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">20</span>   <span class="n">TMax</span>            <span class="o">-</span> <span class="n">Total</span> <span class="n">run</span> <span class="n">time</span> <span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>is equivalent to</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TMax</span>         <span class="mi">20</span>            <span class="o">-</span> <span class="n">Total</span> <span class="n">run</span> <span class="n">time</span> <span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>One additional feature of this input file format is the ability to add an
+arbitrary number of comment lines wherever the user wishes.  Any line starting
+with <cite>!</cite>, <cite>#</cite>, or <cite>%</cite> will be treated as a comment line and ignored.  For
+example,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>! This is a comment line that will be skipped
+        %  and this is also a comment line that will be skipped
+# as is this comment line
+       20   TMax            - Total run time (s)
+! the first two columns in the above line will be read as the value + key
+</pre></div>
+</div>
+<p>The parser for this format of input file also tracks which lines were comments,
+and which lines contained the value and key pair.  If a keyname is not found the
+parser will return an error with information about which line it was reading
+from.</p>
+<div class="section" id="modules-using-key-value-format">
+<h3><span class="section-number">4.1.3.2.1. </span>Modules using Key + Value Format<a class="headerlink" href="#modules-using-key-value-format" title="Permalink to this heading"></a></h3>
+<p>The following modules use the <em>key + value</em> format input files (all other
+modules use the <em>value column</em> format):</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 81%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Module</p></th>
+<th class="head"><p>Input file</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>AeroDyn</p></td>
+<td><p>Main AeroDyn input file</p></td>
+</tr>
+<tr class="row-odd"><td><p>AeroDyn</p></td>
+<td><p>Airfoil files</p></td>
+</tr>
+<tr class="row-even"><td><p>HydroDyn</p></td>
+<td><p>Main HD input file</p></td>
+</tr>
+<tr class="row-odd"><td><p>InflowWind</p></td>
+<td><p>Main IfW input file</p></td>
+</tr>
+<tr class="row-even"><td><p>InflowWind</p></td>
+<td><p>Uniform wind input file</p></td>
+</tr>
+<tr class="row-odd"><td><p>InflowWind</p></td>
+<td><p>Bladed wind summary file</p></td>
+</tr>
+<tr class="row-even"><td><p>ServoDyn</p></td>
+<td><p>Main ServoDyn input file</p></td>
+</tr>
+<tr class="row-odd"><td><p>ServoDyn</p></td>
+<td><p>Structural control submodule input file</p></td>
+</tr>
+<tr class="row-even"><td><p>ServoDyn</p></td>
+<td><p>Structural control sumbodule prescribed force input file</p></td>
+</tr>
+<tr class="row-odd"><td><p>SubDyn</p></td>
+<td><p>SubDyn SSI matrix input files</p></td>
+</tr>
+</tbody>
+</table>
+<p>Note that key + value format and value column input files can be identical
+if the value is stated before the key.</p>
+</div>
+<div class="section" id="reasons-for-change">
+<h3><span class="section-number">4.1.3.2.2. </span>Reasons for change<a class="headerlink" href="#reasons-for-change" title="Permalink to this heading"></a></h3>
+<p>The main reason for the change in the input file parsing was to allow for the
+passing of a complete input file in memory from a wrapper code into OpenFAST or
+a module.  For example, when including the AeroDyn module into a Python code,
+the input file can be passed in directly in memory without writing to disk
+first.  This helps reduce the IO overhead in optimization loops where the module
+might be called many times sequentially with very small changes to the input
+file.  <em>NOTE: this is still a work in progress, so not all modules can be linked
+this way yet</em>.</p>
+<p>To accomplish this, the file parser written by Marshall Buhl for parsing airfoil
+tables in AeroDyn 15 in FAST8 was used.  This parser included the more robust
+<em>key + value</em> input format.</p>
+</div>
+</div>
+<div class="section" id="troubleshooting-input-files">
+<span id="sec-troubleshoot-input-file"></span><h2><span class="section-number">4.1.3.3. </span>Troubleshooting input files<a class="headerlink" href="#troubleshooting-input-files" title="Permalink to this heading"></a></h2>
+<p>When troubleshooting an input file error, try the following procedure:</p>
+<ol class="arabic simple">
+<li><p>An error message containing a line number and variable name, the file format
+being parsed is a <em>key + value</em> format.  Check that the key is spelled
+exactly as the input file.  See <a class="reference internal" href="#sec-format-key-value"><span class="std std-numref">Section 4.1.3.2</span></a> below.</p></li>
+<li><p>An error message containing only the variable name but no line number is a
+<em>value column</em> input file format.  See <a class="reference internal" href="#sec-value-column"><span class="std std-numref">Section 4.1.3.1</span></a> below.</p></li>
+<li><p>Turn on <cite>echo</cite> option in the input file and check the resulting <cite>.ech</cite> for
+which line the file parsing stopped at. This may help isolate where the input
+file parsing failed when no line number is given in the error message.</p></li>
+<li><p>Compare the problematic input file with an input file of the same type from
+the regression test suite distributed with OpenFAST.  See section
+<a class="reference internal" href="../testing/index.html#testing"><span class="std std-numref">Section 5</span></a> for details on the regression tests, or check the
+repository at <a class="reference external" href="https://github.com/openfast/r-test">r-test</a> .</p></li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="api_change.html" class="btn btn-neutral float-left" title="4.1.2. API changes between versions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="glue-code/index.html" class="btn btn-neutral float-right" title="4.2. Glue Code" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

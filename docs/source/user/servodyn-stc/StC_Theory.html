@@ -1,0 +1,1014 @@
+<!DOCTYPE html><html class="writer-html5" lang="ko"><head><!-- Modified 2026-11-08: unofficial Korean machine translation of OpenFAST 5.0.0. Equations, code, figures, input values and attribution retained. -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.17.2. OpenFAST의 Tuned Mass Damper 모듈에 대한 이론 매뉴얼 — OpenFAST v5.0.0 문서</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../../../genindex.html">
+    <link rel="search" title="검색" href="../../../search.html">
+    <link rel="next" title="4.17.3. TLCD: 운동 방정식의 유도" href="StC_TLCD_Theory.html">
+    <link rel="prev" title="4.17.1. 입력 파일" href="StC_input.html"> 
+<link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/servodyn-stc/StC_Theory.html"></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+          </a>
+              <div class="version">5.0 · 한국어</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="문서 검색" aria-label="문서 검색">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. 단순화 ElastoDyn</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="StC_index.html">4.17. 구조 제어</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="StC_input.html">4.17.1. 입력 파일</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.17.2. OpenFAST의 Tuned Mass Damper 모듈에 대한 이론 매뉴얼</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#theoretical-background">4.17.2.1. 이론적 배경</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#code-modifications">4.17.2.2. 코드 수정
+OpenFAST의 튜닝된 질량 댐퍼 모듈에 대한</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#acknowledgements">4.17.2.3. 감사의 글</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="StC_TLCD_Theory.html">4.17.3. TLCD: 운동 방정식의 유도</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.17.4. 참고문헌</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. 추가 모듈 문서</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC 서브루틴 라이브러리</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+</ul>
+
+        <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="페이지 탐색">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
+          <li class="breadcrumb-item"><a href="StC_index.html"><span class="section-number">4.17. </span>구조 제어(SrvD)</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.17.2. </span>이론 매뉴얼</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/servodyn-stc/StC_Theory.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+      </li>
+  </ul>
+  <hr>
+</div><aside class="ko-notice" aria-label="한국어 번역 안내"><strong>한국어 자동번역</strong> · OpenFAST v5.0.0 · 2026-11-08 기준<br>비공식 번역본입니다. 수식·명령어·입력 변수와 첨부자료는 원문을 보존합니다. <a href="https://openfast.readthedocs.io/en/main/source/user/servodyn-stc/StC_Theory.html" target="_blank" rel="noopener noreferrer" lang="en">영문 원문 대조 ↗</a></aside>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="theory-manual-for-the-tuned-mass-damper-module-in-openfast">
+<span id="stc-theory"></span><h1><span class="section-number">4.17.2. </span>이론 매뉴얼<a class="headerlink" href="#theory-manual-for-the-tuned-mass-damper-module-in-openfast" title="이 제목의 고유 링크"></a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">작가</dt>
+<dd class="field-odd"><p>William La Cava &amp; Matthew A. Lackner 매사추세츠 대학교 기계 및 산업 공학과 Amherst Amherst, MA 01003
+<code class="docutils literal notranslate"><span class="pre">wlacava@umass.edu</span></code>, <code class="docutils literal notranslate"><span class="pre">lackner@ecs.umass.edu</span></code></p>
+</dd>
+</dl>
+<p>이 문서는 OpenFAST에 독립적인 수직 지향 TMD를 포함하기 위해 NREL의 Jason M. Jonkman이 편집했습니다.
+<code class="docutils literal notranslate"><span class="pre">jason.jonkman@nrel.gov</span></code></p>
+<p>이 매뉴얼에서는 구조 제어를 위해 TMD(튜닝 질량 댐퍼) 추가를 시뮬레이션하는 OpenFAST의 업데이트된 기능에 대해 설명합니다. 댐퍼는 블레이드, 나셀, 타워 또는 하부 구조에 추가될 수 있습니다. 이러한 시스템에 대한 응용 연구는 다음을 참조하십시오.
+<span id="id1">[<a class="reference internal" href="zrefs.html#id3" title="매튜 A. 래크너와 마리오 A. 로테아. 해상 풍력터빈의 수동적 구조 제어. 풍력 에너지, 14(3):373–388, 2011. URL: http://onlinelibrary.wiley.com/doi/10.1002/we.426/full.">stc-LR11a</a>, <a class="reference internal" href="zrefs.html#id7" title="매튜 A. 래크너와 마리오 A. 로테아. 부유식 풍력터빈의 구조적 제어. 메카트로닉스, 21(4):704–719, 2011. URL: http://www.sciencedirect.com/science/article/pii/S0957415810002072.">stc-LR11b</a>, <a class="reference internal" href="zrefs.html#id2" title="Hazim Namik, M. A. Rotea 및 Matthew Lackner. 부유식 풍력터빈의 액추에이터 동역학을 이용한 능동 구조 제어. 제51차 AIAA 항공우주과학 회의 진행, 7–10. 2013. URL: http://arc.aiaa.org/doi/pdf/10.2514/6.2013-455.">stc-NRL13</a>, <a class="reference internal" href="zrefs.html#id4" title="G. 스튜어트 및 M. A. Lackner. 해상 풍력터빈의 부하를 줄이기 위한 수동 동조 질량 댐퍼의 최적화. 제어 시스템 기술에 관한 IEEE 거래, 21(4):1090–1104, 2013.">stc-SL13</a>, <a class="reference internal" href="zrefs.html#id6" title="고든 M. 스튜어트와 매튜 A. 래크너. 해상 풍력터빈의 능동 구조 제어에 대한 액추에이터 동역학의 영향. 엔지니어링 구조, 33(5):1807–1816, 2011. URL: http://www.sciencedirect.com/science/article/pii/S0141029611000915.">stc-SL11</a>, <a class="reference internal" href="zrefs.html#id5" title="고든 M. 스튜어트와 매튜 A. 래크너. 수동으로 조정된 질량 댐퍼와 풍파 오정렬이 해상 풍력터빈 부하에 미치는 영향. 엔지니어링 구조, 73:54–61, 2014. URL: http://www.sciencedirect.com/science/article/pii/S0141029614002673.">stc-SL14</a>]</span>. TMD는 3개의 독립적인 1 DOF 선형 질량 스프링 감쇠 요소로, 국부적으로 작동합니다.
+각 구성 요소의 <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span>및
+이 플래그 값 아래에 <span class="math notranslate nohighlight">\(z\)</span>
+좌표계. 전방향 TMD 및 TLCD를 포함한 구조 제어(StC) 모듈의 다른 기능은 여기에 문서화되어 있지 않습니다. 먼저 이론적 배경을 제시하고 코드 변경 사항을 설명합니다.</p>
+<div class="section" id="theoretical-background">
+<h2><span class="section-number">4.17.2.1. </span>이론적 배경<a class="headerlink" href="#theoretical-background" title="이 제목의 고유 링크"></a></h2>
+<div class="section" id="definitions">
+<h3><span class="section-number">4.17.2.1.1. </span>정의<a class="headerlink" href="#definitions" title="이 제목의 고유 링크"></a></h3>
+<div class="docutils container" id="tab-defs">
+<table class="docutils align-default" id="id4">
+<caption><span class="caption-number">표 4.9 </span><span class="caption-text">정의</span><a class="headerlink" href="#id4" title="이 테이블에 대한 영구 링크"></a></caption>
+<colgroup>
+<col style="width: 46%">
+<col style="width: 54%">
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>변수</p></th>
+<th class="head"><p>설명</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(O\)</span></p></td>
+<td><p>전역 관성 참조 프레임의 원점</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(P\)</span></p></td>
+<td><p>TMD가 정지되어 있는 구성 요소(블레이드, 나셀, 타워, 하부 구조)에 고정된 비관성 기준 프레임의 원점
+TMD의</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(TMD\)</span></p></td>
+<td><p>위치 지점
+전역 참조 프레임의</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(G\)</span></p></td>
+<td><p>축 방향
+단위 벡터가 있는 로컬 구성 요소 참조 프레임의</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(N\)</span></p></td>
+<td><p>축 방향
+(w.r.t.)에 대한 TMD의 <span class="math notranslate nohighlight">\(\hat{\imath}, \hat{\jmath}, \hat{k}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\vec{r}_{_{_{TMD/O_G}}} = \left[ \begin{array}{c} x \\ y\\ z \end{array} \right]_{_{TMD/O_G}}\)</span></p></td>
+<td><p>위치
+방향이 있는 <span class="math notranslate nohighlight">\(O\)</span> TMD w.r.t의 <span class="math notranslate nohighlight">\(G\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\vec{r}_{_{_{TMD/P_N}}} = \left[ \begin{array}{c} x \\ y\\ z \end{array} \right]_{_{TMD/P_N}}\)</span></p></td>
+<td><p>위치 <span class="math notranslate nohighlight">\(P_N\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\vec{r}_{_{_{TMD_X}}}\)</span></p></td>
+<td><p>위치 벡터 <span class="math notranslate nohighlight">\(TMD_X\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\vec{r}_{_{_{TMD_Y}}}\)</span></p></td>
+<td><p>위치 벡터 <span class="math notranslate nohighlight">\(TMD_Y\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\vec{r}_{_{_{TMD_Z}}}\)</span></p></td>
+<td><p>위치 벡터 <span class="math notranslate nohighlight">\(TMD_Z\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\vec{r}_{_{P/O_G}} =\left[ \begin{array}{c} x \\ y\\ z \end{array} \right]_{_{P/O_G}}\)</span></p></td>
+<td><p>부품 w.r.t의 위치 벡터 <span class="math notranslate nohighlight">\(O_G\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(R_{_{N/G}}\)</span></p></td>
+<td><p>3 x 3 회전 매트릭스 변환 방향 <span class="math notranslate nohighlight">\(G\)</span> 에
+액추에이터 라인 애플리케이션용 <span class="math notranslate nohighlight">\(N\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(R_{_{G/N}} = R_{_{N/G}}^T\)</span></p></td>
+<td><p>변환 <span class="math notranslate nohighlight">\(N\)</span> 에
+액추에이터 라인 애플리케이션용 <span class="math notranslate nohighlight">\(G\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\vec{\omega}_{_{N/O_N}} = \dot{\left[ \begin{array}{c} \theta \\ \phi \\ \psi \end{array} \right]}_{_{N/O_N}}\)</span></p></td>
+<td><p>방향에 있는 부품의 각속도 <span class="math notranslate nohighlight">\(N\)</span>; 마찬가지로 정의됨
+부품의  <span class="math notranslate nohighlight">\(G\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\dot{\vec{\omega}}_{_{N/O_N}} = \vec{\alpha}_{_{N/O_N}}\)</span></p></td>
+<td><p>각가속도</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\vec{a}_{G/O_G} = \left[ \begin{array}{c}0 \\ 0\\ -g \end{array} \right]_{/O_G}\)</span></p></td>
+<td><p>전역 좌표계의 중력 가속도</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\vec{a}_{G/O_N} = R_{_{N/G}} \vec{a}_{G/O_G} = \left[ \begin{array}{c}a_{_{G_X}} \\ a_{_{G_Y}}\\ a_{_{G_Z}} \end{array} \right]_{/O_N}\)</span></p></td>
+<td><p>중력 w.r.t. <span class="math notranslate nohighlight">\(O_N\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="equations-of-motion">
+<h3><span class="section-number">4.17.2.1.2. </span>운동 방정식<a class="headerlink" href="#equations-of-motion" title="이 제목의 고유 링크"></a></h3>
+<p>두 참조 프레임에서 TMD의 위치 벡터 <span class="math notranslate nohighlight">\(O\)</span>
+및 <span class="math notranslate nohighlight">\(P\)</span> 는 다음과 관련이 있습니다.</p>
+<div class="math notranslate nohighlight">
+\[\vec{r}_{_{TMD/O_G}} =  \vec{r}_{_{P/O_G}} +  \vec{r}_{_{TMD/P_G}}\]</div>
+<p>방향으로 표현 <span class="math notranslate nohighlight">\(N\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\vec{r}_{_{TMD/O_N}} =  \vec{r}_{_{P/O_N}} +  \vec{r}_{_{TMD/P_N}}\]</div>
+<div class="math notranslate nohighlight">
+\[\Rightarrow \vec{r}_{_{TMD/P_N}} =  \vec{r}_{_{TMD/O_N}} -  \vec{r}_{_{P/O_N}}\]</div>
+<p>차별화, <a class="footnote-reference brackets" href="#id3" id="id2">1</a></p>
+<div class="math notranslate nohighlight">
+\[\dot{\vec{r}}_{_{TMD/P_N}}= \dot{\vec{r}}_{_{TMD/O_N}}
+   - \dot{\vec{r}}_{_{P/O_N}}
+   - \vec{\omega}_{_{N/O_N}} \times \vec{r}_{_{TMD/P_N}}\]</div>
+<p>를 다시 차별화하면 TMD w.r.t의 가속이 제공됩니다. <span class="math notranslate nohighlight">\(P\)</span>
+(나셀 위치), 방향 <span class="math notranslate nohighlight">\(N\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-accel">
+<span class="eqno">(4.207)<a class="headerlink" href="#equation-accel" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}\begin{array}{cc}
+   \ddot{\vec{r}}_{_{TMD/P_N}} =
+            &amp;  \ddot{\vec{r}}_{_{TMD/O_N}}
+               - \ddot{\vec{r}}_{_{P/O_N}} - \vec{\omega}_{_{N/O_N}}
+               \times (\vec{\omega}_{_{N/O_N}} \times \vec{r}_{_{TMD/P_N}}) \\[1.1em]
+            &amp;- \vec{\alpha}_{_{N/O_N}} \times \vec{r}_{_{TMD/P_N}}
+               - 2 \vec{\omega}_{_{N/O_N}} \times \dot{\vec{r}}_{_{TMD/P_N}}
+\end{array}\end{split}\]</div>
+<p>오른쪽에는 다음 용어가 포함됩니다.</p>
+<div class="docutils container" id="tab">
+<table class="docutils align-default" id="id5">
+<caption><span class="caption-number">표 4.10 </span><span class="caption-text">RHS 용어
+TMD의</span><a class="headerlink" href="#id5" title="이 테이블에 대한 영구 링크"></a></caption>
+<colgroup>
+<col style="width: 47%">
+<col style="width: 53%">
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\ddot{\vec{r}}_{_{TMD/O_N}}\)</span></p></td>
+<td><p>가속 <em>관성</em> 프레임
+Nacelle 원점의 <span class="math notranslate nohighlight">\(O_N\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\ddot{\vec{r}}_{_{P/O_N}} = R_{_{N/G}} \ddot{\vec{r}}_{_{P/O_G}}\)</span></p></td>
+<td><p>가속 <span class="math notranslate nohighlight">\(P\)</span> w.r.t. <span class="math notranslate nohighlight">\(O_N\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\vec{\omega}_{_{N/O_N}} = R_{_{N/G}} \vec{\omega}_{_{N/O_G}}\)</span></p></td>
+<td><p>나셀의 각속도 w.r.t. <span class="math notranslate nohighlight">\(O_N\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\vec{\omega}_{_{N/O_N}} \times (\vec{\omega}_{_{N/O_N}} \times \vec{r}_{_{TMD/P_N}})\)</span></p></td>
+<td><p>구심 가속도</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\vec{\alpha}_{_{N/O_N}} \times \vec{r}_{_{TMD/P_N}}\)</span></p></td>
+<td><p>접선 가속도</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(2\vec{\omega}_{_{N/O_N}} \times \dot{\vec{r}}_{_{TMD/P_N}}\)</span></p></td>
+<td><p>코리올리스 가속</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>관성계의 가속도
+<span class="math notranslate nohighlight">\(\ddot{\vec{r}}_{_{TMD/O_N}}\)</span> 는 힘 균형으로 교체 가능</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+   \ddot{\vec{r}}_{_{TMD/O_N}} = \left[
+      \begin{array}{c} \ddot{x} \\
+         \ddot{y} \\
+         \ddot{z}
+      \end{array}
+   \right]_{_{TMD/O_N}} = \frac{1}{m} \left[
+      \begin{array}{c}
+         \sum{F_X} \\
+         \sum{F_Y} \\
+         \sum{F_Z}
+      \end{array}
+   \right]_{_{TMD/O_N}} = \frac{1}{m} \vec{F}_{_{TMD/O_N}}
+ \end{aligned}\end{split}\]</div>
+<p>힘 균형을 방정식에 대입 <a class="reference internal" href="#equation-accel">(4.207)</a> 는 TMD의 일반적인 운동 방정식을 제공합니다.</p>
+<div class="math notranslate nohighlight" id="equation-eom">
+<span class="eqno">(4.208)<a class="headerlink" href="#equation-eom" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}\begin{array}{cc}
+   \ddot{\vec{r}}_{_{TMD/P_N}} = &amp; \frac{1}{m} \vec{F}_{_{TMD/O_N}}
+      - \ddot{\vec{r}}_{_{P/O_N}}
+      - \vec{\omega}_{_{N/O_N}} \times (\vec{\omega}_{_{N/O_N}}
+            \times \vec{r}_{_{TMD/P_N}}) \\[1.1em]
+   &amp; - \vec{\alpha}_{_{N/O_N}} \times \vec{r}_{_{TMD/P_N}}
+      - 2 \vec{\omega}_{_{N/O_N}} \times \dot{\vec{r}}_{_{TMD/P_N}}
+\end{array}\end{split}\]</div>
+<p>이제 운동 방정식을 풀겠습니다. <span class="math notranslate nohighlight">\(TMD_X\)</span>,
+<span class="math notranslate nohighlight">\(TMD_Y\)</span>및
+이 플래그 값 아래에 <span class="math notranslate nohighlight">\(TMD_Z\)</span>.</p>
+<div class="section" id="tmd-x">
+<h4><span class="section-number">4.17.2.1.2.1. </span>TMD_X :<a class="headerlink" href="#tmd-x" title="이 제목의 고유 링크"></a></h4>
+<p>외력 <span class="math notranslate nohighlight">\(\vec{F}_{_{TMD_X/O_N}}\)</span> 는 다음과 같이 주어진다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{F}_{_{TMD_X/O_N}} = \left[
+   \begin{array}{c}
+      - c_x \dot{x}_{_{TMD_X/P_N}}
+      - k_x x_{_{TMD_X/P_N}}
+      + m_x a_{_{G_X/O_N}}
+      + F_{ext_x}
+      + F_{StopFrc_{X}} \\
+      F_{Y_{_{TMD_X/O_N}}}
+      + m_x a_{_{G_Y/O_N}}  \\
+      F_{Z_{_{TMD_X/O_N}}}
+      + m_x a_{_{G_Z/O_N}}
+   \end{array}
+\right]\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(TMD_X\)</span> 는 프레임에 고정됩니다. <span class="math notranslate nohighlight">\(N\)</span> 의 <span class="math notranslate nohighlight">\(y\)</span> 및 <span class="math notranslate nohighlight">\(z\)</span>
+방향으로</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}{r}_{_{TMD_X/P_N}} = \left[
+   \begin{array}{c}
+      x_{_{TMD_X/P_N}} \\
+      0 \\
+      0
+   \end{array}
+\right]\end{split}\]</div>
+<p>Eqn의 다른 구성 요소. <a class="reference internal" href="#equation-eom">(4.208)</a> 는 다음과 같습니다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{\omega}_{_{N/O_N}} \times (\vec{\omega}_{_{N/O_N}} \times \vec{r}_{_{TMD_X/P_N}})
+      = x_{_{TMD_X/P_N}} \left[
+   \begin{array}{c}
+      - (\dot{\phi}_{_{N/O_N}}^2 + \dot{\psi}_{_{N/O_N}}^2) \\
+      \dot{\theta}_{_{N/O_N}}\dot{\phi}_{_{N/O_N}} \\
+      \dot{\theta}_{_{N/O_N}}\dot{\psi}_{_{N/O_N}}
+    \end{array}
+\right]\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}2\vec{\omega}_{_{N/O_N}} \times \dot{\vec{r}}_{_{TMD_X/P_N}}
+      = \dot{x}_{_{TMD_X/P_N}} \left[
+   \begin{array}{c} 0 \\
+      2\dot{\psi}_{_{N/O_N}} \\
+      -2\dot{\phi}_{_{N/O_N}}
+   \end{array}
+\right]\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{\alpha}_{_{N/O_N}} \times \vec{r}_{_{TMD_X/P_N}} = x_{_{TMD_X/P_N}} \left[ \begin{array}{c} 0 \\ \ddot{\psi}_{_{N/O_N}} \\ -\ddot{\phi}_{_{N/O_N}}\end{array} \right]\end{split}\]</div>
+<p>따라서 <span class="math notranslate nohighlight">\(\ddot{x}_{_{TMD_X/P_N}}\)</span> 는 방정식에 의해 지배됩니다</p>
+<div class="math notranslate nohighlight" id="equation-eom-xx">
+<span class="eqno">(4.209)<a class="headerlink" href="#equation-eom-xx" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}\begin{aligned}
+   \ddot{x}_{_{TMD_X/P_N}} =&amp; (\dot{\phi}_{_{N/O_N}}^2
+      + \dot{\psi}_{_{N/O_N}}^2-\frac{k_x}{m_x}) x_{_{TMD_X/P_N}}
+      - (\frac{c_x}{m_x}) \dot{x}_{_{TMD_X/P_N}}
+      -\ddot{x}_{_{P/O_N}}+a_{_{G_X/O_N}} \\
+   &amp;+ \frac{1}{m_x} ( F_{ext_X} + F_{StopFrc_{X}})
+\end{aligned}\end{split}\]</div>
+<p>세력 <span class="math notranslate nohighlight">\(F_{Y_{_{TMD_X/O_N}}}\)</span> 및 <span class="math notranslate nohighlight">\(F_{Z_{_{TMD_X/O_N}}}\)</span>
+가 해결되었습니다.
+<span class="math notranslate nohighlight">\(\ddot{y}_{_{TMD_X/P_N}} = \ddot{z}_{_{TMD_X/P_N}} = 0\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eom-xy">
+<span class="eqno">(4.210)<a class="headerlink" href="#equation-eom-xy" title="이 방정식에 대한 영구 링크"></a></span>\[F_{Y_{_{TMD_X/O_N}}} = m_x \left( - a_{_{G_Y/O_N}} +\ddot{y}_{_{P/O_N}}
+   + (\ddot{\psi}_{_{N/O_N}}
+   + \dot{\theta}_{_{N/O_N}}\dot{\phi}_{_{N/O_N}} ) x_{_{TMD_X/P_N}}
+   + 2\dot{\psi}_{_{N/O_N}} \dot{x}_{_{TMD_X/P_N}} \right)\]</div>
+<div class="math notranslate nohighlight" id="equation-eom-xz">
+<span class="eqno">(4.211)<a class="headerlink" href="#equation-eom-xz" title="이 방정식에 대한 영구 링크"></a></span>\[F_{Z_{_{TMD_X/O_N}}} = m_x \left( - a_{_{G_Z/O_N}} +\ddot{z}_{_{P/O_N}}
+   - (\ddot{\phi}_{_{N/O_N}}
+   - \dot{\theta}_{_{N/O_N}}\dot{\psi}_{_{N/O_N}} ) x_{_{TMD_X/P_N}}
+   - 2\dot{\phi}_{_{N/O_N}} \dot{x}_{_{TMD_X/P_N}} \right)\]</div>
+</div>
+<div class="section" id="tmd-y">
+<h4><span class="section-number">4.17.2.1.2.2. </span>TMD_Y:<a class="headerlink" href="#tmd-y" title="이 제목의 고유 링크"></a></h4>
+<p>외력 <span class="math notranslate nohighlight">\(\vec{F}_{_{TMD_Y/P_N}}\)</span> 켜짐 <span class="math notranslate nohighlight">\(TMD_Y\)</span> 는 다음과 같이 주어진다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{F}_{_{TMD_Y/P_N}} =  \left[
+   \begin{array}{c}
+      F_{X_{_{TMD_Y/O_N}}} + m_y a_{_{G_X/O_N}}\\
+      - c_y \dot{y}_{_{TMD_Y/P_N}} - k_y y_{_{TMD_Y/P_N}}
+      + m_y a_{_{G_Y/O_N}} + F_{ext_y} + F_{StopFrc_{Y}} \\
+      F_{Z_{_{TMD_Y/O_N}}}+ m_y a_{_{G_Z/O_N}}
+   \end{array}
+\right]\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(TMD_Y\)</span> 는 프레임에 고정됩니다. <span class="math notranslate nohighlight">\(N\)</span> 의 <span class="math notranslate nohighlight">\(x\)</span> 및 <span class="math notranslate nohighlight">\(z\)</span>
+방향으로</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}{r}_{_{TMDYX/P_N}} = \left[
+   \begin{array}{c}
+      0 \\
+      y_{_{TMD_Y/P_N}} \\
+      0
+   \end{array}
+\right]\end{split}\]</div>
+<p>Eqn의 다른 구성 요소. <a class="reference internal" href="#equation-eom">(4.208)</a> 는 다음과 같습니다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{\omega}_{_{N/O_N}} \times (\vec{\omega}_{_{N/O_N}}
+      \times \vec{r}_{_{TMD_Y/P_N}})
+   = y_{_{TMD_Y/P_N}}
+   \left[
+      \begin{array}{c}
+         \dot{\theta}_{_{N/O_N}}\dot{\phi}_{_{N/O_N}} \\
+         -(\dot{\theta}_{_{N/O_N}}^2 + \dot{\psi}_{_{N/O_N}}^2)  \\
+         \dot{\phi}_{_{N/O_N}}\dot{\psi}_{_{N/O_N}}
+      \end{array}
+   \right]\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}2\vec{\omega}_{_{N/O_N}} \times \dot{\vec{r}}_{_{TMD_Y/P_N}}
+   = \dot{y}_{_{TMD_Y/P_N}} \left[
+      \begin{array}{c}
+         - 2 \dot{\psi}_{_{N/O_N}} \\
+         0 \\
+         2 \dot{\theta}_{_{N/O_N}}
+      \end{array}
+   \right]\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{\alpha}_{_{N/O_N}} \times \vec{r}_{_{TMD_Y/P_N}}
+   = y_{_{TMD_Y/P_N}} \left[
+      \begin{array}{c}
+         - \ddot{\psi}_{_{N/O_N}} \\
+         0 \\
+         \ddot{\theta}_{_{N/O_N}}
+      \end{array}
+   \right]\end{split}\]</div>
+<p>따라서 <span class="math notranslate nohighlight">\(\ddot{y}_{_{TMD_Y/P_N}}\)</span> 는 방정식에 의해 지배됩니다</p>
+<div class="math notranslate nohighlight" id="equation-eom-yy">
+<span class="eqno">(4.212)<a class="headerlink" href="#equation-eom-yy" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}\begin{aligned}
+   \ddot{y}_{_{TMD_Y/P_N}}
+      = &amp; (\dot{\theta}_{_{N/O_N}}^2
+         + \dot{\psi}_{_{N/O_N}}^2-\frac{k_y}{m_y}) y_{_{TMD_Y/P_N}}
+         - (\frac{c_y}{m_y}) \dot{y}_{_{TMD_Y/P_N}}
+         -\ddot{y}_{_{P/O_N}} + a_{_{G_Y/O_N}}\\
+      &amp;+ \frac{1}{m_y} (F_{ext_Y} + F_{StopFrc_{Y}})
+\end{aligned}\end{split}\]</div>
+<p>세력 <span class="math notranslate nohighlight">\(F_{X_{_{TMD_Y/O_N}}}\)</span> 및 <span class="math notranslate nohighlight">\(F_{Z_{_{TMD_Y/O_N}}}\)</span>
+가 해결되었습니다.
+<span class="math notranslate nohighlight">\(\ddot{x}_{_{TMD_Y/P_N}} = \ddot{z}_{_{TMD_Y/P_N}} = 0\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eom-yx">
+<span class="eqno">(4.213)<a class="headerlink" href="#equation-eom-yx" title="이 방정식에 대한 영구 링크"></a></span>\[F_{X_{_{TMD_Y/O_N}}} = m_y \left( - a_{_{G_X/O_N}} + \ddot{x}_{_{P/O_N}}
+   - (\ddot{\psi}_{_{N/O_N}}
+   - \dot{\theta}_{_{N/O_N}}\dot{\phi}_{_{N/O_N}}) y_{_{TMD_Y/P_N}}
+   - 2\dot{\psi}_{_{N/O_N}} \dot{y}_{_{TMD_Y/P_N}} \right)\]</div>
+<div class="math notranslate nohighlight" id="equation-eom-yz">
+<span class="eqno">(4.214)<a class="headerlink" href="#equation-eom-yz" title="이 방정식에 대한 영구 링크"></a></span>\[F_{Z_{_{TMD_Y/O_N}}} = m_y \left( - a_{_{G_Z/O_N}} + \ddot{z}_{_{P/O_N}}
+   + (\ddot{\theta}_{_{N/O_N}}
+   + \dot{\phi}_{_{N/O_N}}\dot{\psi}_{_{N/O_N}}) y_{_{TMD_Y/P_N}}
+   + 2\dot{\theta}_{_{N/O_N}} \dot{y}_{_{TMD_Y/P_N}} \right)\]</div>
+</div>
+<div class="section" id="tmd-z">
+<h4><span class="section-number">4.17.2.1.2.3. </span>TMD_Z :<a class="headerlink" href="#tmd-z" title="이 제목의 고유 링크"></a></h4>
+<p>외력 <span class="math notranslate nohighlight">\(\vec{F}_{_{TMD_Z/O_N}}\)</span> 는 다음과 같이 주어진다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{F}_{_{TMD_Z/O_N}} = \left[
+   \begin{array}{c}
+      F_{X_{_{TMD_Z/O_N}}} + m_z a_{_{G_X/O_N}} \\
+      F_{Y_{_{TMD_Z/O_N}}} + m_z a_{_{G_Y/O_N}} \\
+      - c_z \dot{z}_{_{TMD_Z/P_N}} - k_z z_{_{TMD_Z/P_N}}
+      + m_z a_{_{G_Z/O_N}} + F_{ext_z} + F_{StopFrc_{Z}} + F_{Z_{PreLoad}}
+   \end{array}
+\right]\end{split}\]</div>
+<p>여기서 <span class="math notranslate nohighlight">\(F_{Z_{PreLoad}}\)</span> 는 중력이 질량에 작용할 때 중립 위치를 이동시키는 스프링 프리로드입니다. <span class="math notranslate nohighlight">\(TMD_Z\)</span>.
+<span class="math notranslate nohighlight">\(TMD_Z\)</span> 는 프레임에 고정됩니다. <span class="math notranslate nohighlight">\(N\)</span> 의 <span class="math notranslate nohighlight">\(x\)</span> 및 <span class="math notranslate nohighlight">\(y\)</span>
+방향으로</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}{r}_{_{TMD_Z/P_N}} = \left[
+   \begin{array}{c}
+      0 \\
+      0 \\
+      z_{_{TMD_Z/P_N}}
+   \end{array}
+\right]\end{split}\]</div>
+<p>Eqn의 다른 구성 요소. <a class="reference internal" href="#equation-eom">(4.208)</a> 는 다음과 같습니다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{\omega}_{_{N/O_N}} \times (\vec{\omega}_{_{N/O_N}} \times \vec{r}_{_{TMD_Z/P_N}})
+   = z_{_{TMD_Z/P_N}} \left[
+      \begin{array}{c}
+         \dot{\theta}_{_{N/O_N}}\dot{\psi}_{_{N/O_N}} \\
+         \dot{\phi}_{_{N/O_N}}\dot{\psi}_{_{N/O_N}} \\
+         -(\dot{\theta}_{_{N/O_N}}^2 + \dot{\phi}_{_{N/O_N}}^2)
+      \end{array}
+   \right]\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}2\vec{\omega}_{_{N/O_N}} \times \dot{\vec{r}}_{_{TMD_Z/P_N}}
+   = \dot{z}_{_{TMD_Z/P_N}} \left[
+      \begin{array}{c}
+         2\dot{\phi}_{_{N/O_N}} \\
+         -2\dot{\theta}_{_{N/O_N}} \\
+         0
+      \end{array}
+   \right]\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{\alpha}_{_{N/O_N}} \times \vec{r}_{_{TMD_Z/P_N}}
+   = z_{_{TMD_Z/P_N}} \left[
+      \begin{array}{c}
+         \ddot{\phi}_{_{N/O_N}} \\
+         -\ddot{\theta}_{_{N/O_N}} \\
+         0
+      \end{array}
+   \right]\end{split}\]</div>
+<p>따라서 <span class="math notranslate nohighlight">\(\ddot{z}_{_{TMD_Z/P_N}}\)</span> 는 방정식에 의해 지배됩니다</p>
+<div class="math notranslate nohighlight" id="equation-eom-zz">
+<span class="eqno">(4.215)<a class="headerlink" href="#equation-eom-zz" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}\begin{aligned}
+   \ddot{z}_{_{TMD_Z/P_N}}
+      = &amp; (\dot{\theta}_{_{N/O_N}}^2
+         + \dot{\phi}_{_{N/O_N}}^2-\frac{k_z}{m_z}) z_{_{TMD_Z/P_N}}
+         - (\frac{c_z}{m_z}) \dot{z}_{_{TMD_Z/P_N}}
+         -\ddot{z}_{_{P/O_N}} + a_{_{G_Z/O_N}}\\
+      &amp;+ \frac{1}{m_z} (F_{ext_Z} + F_{StopFrc_{Z}} + F_{Z_{PreLoad}})
+\end{aligned}\end{split}\]</div>
+<p>세력 <span class="math notranslate nohighlight">\(F_{X_{_{TMD_Z/O_N}}}\)</span> 및 <span class="math notranslate nohighlight">\(F_{Y_{_{TMD_Z/O_N}}}\)</span>
+가 해결되었습니다.
+<span class="math notranslate nohighlight">\(\ddot{x}_{_{TMD_Z/P_N}} = \ddot{y}_{_{TMD_Z/P_N}} = 0\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eom-zx">
+<span class="eqno">(4.216)<a class="headerlink" href="#equation-eom-zx" title="이 방정식에 대한 영구 링크"></a></span>\[F_{X_{_{TMD_Z/O_N}}} = m_z \left( - a_{_{G_X/O_N}} + \ddot{x}_{_{P/O_N}}
+   + (\ddot{\phi}_{_{N/O_N}}
+   + \dot{\theta}_{_{N/O_N}}\dot{\psi}_{_{N/O_N}}) z_{_{TMD_Z/P_N}}
+   + 2\dot{\phi}_{_{N/O_N}} \dot{z}_{_{TMD_Z/P_N}} \right)\]</div>
+<div class="math notranslate nohighlight" id="equation-eom-zy">
+<span class="eqno">(4.217)<a class="headerlink" href="#equation-eom-zy" title="이 방정식에 대한 영구 링크"></a></span>\[F_{Y_{_{TMD_Z/O_N}}} = m_z \left( - a_{_{G_Y/O_N}} + \ddot{y}_{_{P/O_N}}
+   - (\ddot{\theta}_{_{N/O_N}}
+   - \dot{\phi}_{_{N/O_N}}\dot{\psi}_{_{N/O_N}}) z_{_{TMD_Z/P_N}}
+   - 2\dot{\theta}_{_{N/O_N}} \dot{z}_{_{TMD_Z/P_N}} \right)\]</div>
+</div>
+</div>
+<div class="section" id="state-equations">
+<h3><span class="section-number">4.17.2.1.3. </span>상태 방정식<a class="headerlink" href="#state-equations" title="이 제목의 고유 링크"></a></h3>
+<div class="section" id="inputs">
+<h4><span class="section-number">4.17.2.1.3.1. </span>입력:<a class="headerlink" href="#inputs" title="이 제목의 고유 링크"></a></h4>
+<p>입력은 구성요소 선형 가속도 및 각위치, 속도 및 가속도입니다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{u} = \left[
+   \begin{array}{c}
+      \ddot{\vec{r}}_{_{P/O_G}} \\
+      \vec{R}_{_{N/G}} \\
+      \vec{\omega}_{_{N/O_G}} \\
+      \vec{\alpha}_{_{N/O_G}}
+   \end{array}
+\right]
+\Rightarrow \left[
+   \begin{array}{c}
+      \ddot{\vec{r}}_{_{P/O_N}} \\
+      \vec{\omega}_{_{N/O_N}} \\
+      \vec{\alpha}_{_{N/O_N}}
+   \end{array}
+ \right]
+ = \left[
+   \begin{array}{c}
+      \vec{R}_{_{N/G}} \ddot{\vec{r}}_{_{P/O_G}} \\
+      \vec{R}_{_{N/G}} \vec{\omega}_{_{N/O_G}} \\
+      \vec{R}_{_{N/G}} \vec{\alpha}_{_{N/O_G}
+   }\end{array}
+\right]\end{split}\]</div>
+</div>
+<div class="section" id="states">
+<h4><span class="section-number">4.17.2.1.3.2. </span>상태:<a class="headerlink" href="#states" title="이 제목의 고유 링크"></a></h4>
+<p>상태는 구성 요소 참조 프레임에서 해당 DOF를 따른 TMD의 위치와 속도입니다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{R}_{_{TMD/P_N}} = \left[
+   \begin{array}{c}
+      x \\
+      \dot{x} \\
+      y \\
+      \dot{y} \\
+      z \\
+      \dot{z}
+   \end{array}
+\right]_{_{TMD/P_N}}
+= \left[
+   \begin{array}{c}
+      {x}_{_{TMD_X/P_N}} \\
+      \dot{x}_{_{TMD_X/P_N}} \\
+      {y}_{_{TMD_Y/P_N}} \\
+      \dot{y}_{_{TMD_Y/P_N}} \\
+      {z}_{_{TMD_Z/P_N}} \\
+      \dot{z}_{_{TMD_Z/P_N}}
+   \end{array}
+\right]\end{split}\]</div>
+<p>운동 방정식은 다음 형식의 비선형 1계 방정식 시스템으로 다시 작성할 수 있습니다.</p>
+<div class="math notranslate nohighlight">
+\[\dot{\vec{R}}_{_{TMD}} = A \vec{R}_{_{TMD}} + B\]</div>
+<p>여기서</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A(\vec{u}) = \left[
+   \begin{array}{cccccc}
+   0&amp; 1 &amp;0&amp;0&amp;0&amp;0 \\
+   (\dot{\phi}_{_{N/O_N}}^2 + \dot{\psi}_{_{N/O_N}}^2-\frac{k_x}{m_x}) &amp; - (\frac{c_x}{m_x}) &amp;0&amp;0&amp;0&amp;0 \\
+   0&amp;0&amp;0&amp; 1 &amp;0&amp;0 \\
+   0&amp;0&amp; (\dot{\theta}_{_{N/O_N}}^2 + \dot{\psi}_{_{N/O_N}}^2-\frac{k_y}{m_y}) &amp; - (\frac{c_y}{m_y}) &amp;0&amp;0 \\
+   0&amp;0&amp;0&amp;0&amp;0&amp; 1 \\
+   0&amp;0&amp;0&amp;0&amp; (\dot{\theta}_{_{N/O_N}}^2 + \dot{\phi}_{_{N/O_N}}^2-\frac{k_z}{m_z}) &amp; - (\frac{c_z}{m_z}) \\
+\end{array} \right]\end{split}\]</div>
+<p>및</p>
+<div class="math notranslate nohighlight" id="equation-bu">
+<span class="eqno">(4.218)<a class="headerlink" href="#equation-bu" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}B(\vec{u}) = \left[
+   \begin{array}{l}
+      0 \\
+      -\ddot{x}_{_{P/O_N}}+a_{_{G_X/O_N}} + \frac{1}{m_x} ( F_{ext_X} + F_{StopFrc_{X}}) \\
+      0 \\
+      -\ddot{y}_{_{P/O_N}}+a_{_{G_Y/O_N}} + \frac{1}{m_y} (F_{ext_Y}+ F_{StopFrc_{Y}}) \\
+      0 \\
+      -\ddot{z}_{_{P/O_N}}+a_{_{G_Z/O_N}} + \frac{1}{m_z} (F_{ext_Z}+ F_{StopFrc_{Z}} + F_{Z_{PreLoad}})
+   \end{array}
+\right]\end{split}\]</div>
+<p>입력은 상태 변수에 결합되어 A와 B가 다음과 같이 됩니다.
+<span class="math notranslate nohighlight">\(f(\vec{u})\)</span>.</p>
+</div>
+</div>
+<div class="section" id="outputs">
+<h3><span class="section-number">4.17.2.1.4. </span>출력<a class="headerlink" href="#outputs" title="이 제목의 고유 링크"></a></h3>
+<p>출력 벡터 <span class="math notranslate nohighlight">\(\vec{Y}\)</span> 는</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{Y} = \left[
+   \begin{array}{c}
+      \vec{F}_{_{P_G}} \\
+      \vec{M}_{_{P_G}}
+   \end{array}
+\right]\end{split}\]</div>
+<p>출력에는 다음에 해당하는 반력이 포함됩니다.
+Eqns의
+<span class="math notranslate nohighlight">\(F_{Y_{_{TMD_X/O_N}}}\)</span>, <span class="math notranslate nohighlight">\(F_{Z_{_{TMD_X/O_N}}}\)</span>,
+<span class="math notranslate nohighlight">\(F_{X_{_{TMD_Y/O_N}}}\)</span>, <span class="math notranslate nohighlight">\(F_{Z_{_{TMD_Y/O_N}}}\)</span>,
+<span class="math notranslate nohighlight">\(F_{X_{_{TMD_Z/O_N}}}\)</span>및
+이 플래그 값 아래에 <span class="math notranslate nohighlight">\(F_{Y_{_{TMD_Z/O_N}}}\)</span> .
+<a class="reference internal" href="#equation-eom-xy">(4.210)</a>, <a class="reference internal" href="#equation-eom-xz">(4.211)</a>, <a class="reference internal" href="#equation-eom-yx">(4.213)</a>, <a class="reference internal" href="#equation-eom-yz">(4.214)</a>, <a class="reference internal" href="#equation-eom-zx">(4.216)</a>및
+이 플래그 값 아래에
+<a class="reference internal" href="#equation-eom-zy">(4.217)</a>. 결과적인 힘 <span class="math notranslate nohighlight">\(\vec{F}_{_{P_G}}\)</span> 와 순간들
+구성요소에 작용하는
+<span class="math notranslate nohighlight">\(\vec{M}_{_{P_G}}\)</span> 는 다음과 같습니다.</p>
+<div class="math notranslate nohighlight" id="equation-outputforces">
+<span class="eqno">(4.219)<a class="headerlink" href="#equation-outputforces" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}\begin{aligned}
+   \vec{F}_{_{P_G}} = R^T_{_{N/G}} &amp; \left[
+      \begin{array}{l}
+         k_x {x}_{_{TMD_X/P_N}} + c_x \dot{x}_{_{TMD_X/P_N}} - F_{StopFrc_{X}} - F_{ext_x} - F_{X_{_{TMD_Y/O_N}}} - F_{X_{_{TMD_Z/O_N}}} \\
+         k_y {y}_{_{TMD_Y/P_N}} + c_y \dot{y}_{_{TMD_Y/P_N}} - F_{StopFrc_{Y}} - F_{ext_y} - F_{Y_{_{TMD_X/O_N}}} - F_{Y_{_{TMD_Z/O_N}}} \\
+         k_z {z}_{_{TMD_Z/P_N}} + c_z \dot{z}_{_{TMD_Z/P_N}} - F_{StopFrc_{Z}} - F_{ext_z} - F_{Z_{_{TMD_X/O_N}}} - F_{Z_{_{TMD_Y/O_N}}} - F_{Z_{PreLoad}}
+      \end{array}
+   \right]
+\end{aligned}\end{split}\]</div>
+<p>및</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{M}_{_{P_G}} = R^T_{_{N/G}} \left[
+   \begin{array}{c}
+      M_{_X} \\
+      M_{_Y} \\
+      M_{_Z}
+   \end{array}
+\right]_{_{N/N}} = R^T_{_{N/G}} \left[
+   \begin{array}{c}
+      -(F_{Z_{_{TMD_Y/O_N}}}) y_{_{TMD/P_N}} + (F_{Y_{_{TMD_Z/O_N}}} ) z_{_{TMD/P_N}} \\
+       (F_{Z_{_{TMD_X/O_N}}}) x_{_{TMD/P_N}} - (F_{X_{_{TMD_Z/O_N}}} ) z_{_{TMD/P_N}} \\
+      -(F_{Y_{_{TMD_X/O_N}}}) x_{_{TMD/P_N}} + ( F_{X_{_{TMD_Y/O_N}}}) y_{_{TMD/P_N}}
+   \end{array}
+\right]\end{split}\]</div>
+<div class="section" id="stop-forces">
+<h4><span class="section-number">4.17.2.1.4.1. </span>정지력<a class="headerlink" href="#stop-forces" title="이 제목의 고유 링크"></a></h4>
+<p>추가 힘
+TMD_X, TMD_Y 또는 TMD_Z의 이동이 질량의 최대 트랙 길이를 초과하는 경우 출력 힘에 <span class="math notranslate nohighlight">\(F_{StopFrc_{X}}\)</span>, <span class="math notranslate nohighlight">\(F_{StopFrc_{Y}}\)</span>및
+이 플래그 값 아래에
+<span class="math notranslate nohighlight">\(F_{StopFrc_{Z}}\)</span> 가 추가됩니다. 그렇지 않으면 0과 같습니다. 트랙 길이에는 TMD 방향의 양수 및 음수 끝(X_PSP 및 X_NSP, Y_PSP 및 Y_NSP, Z_PSP 및 Z_NSP)에 대한 제한이 있습니다. 일반적인 최대 및 최소 변위를 다음과 같이 정의하면 <span class="math notranslate nohighlight">\(x_{max}\)</span> 및 <span class="math notranslate nohighlight">\(x_{min}\)</span>각각 정지력은 다음과 같은 형태를 갖습니다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}F_{StopFrc} = -\left\{
+   \begin{array}{lr}
+      \begin{aligned}
+         k_S \Delta x  &amp; \quad : ( x &gt; x_{max} \wedge \dot{x}&lt;=0) \vee ( x &lt; x_{min} \wedge \dot{x}&gt;=0)\\
+         k_S \Delta x + c_S \dot{x} &amp; \quad : ( x &gt; x_{max} \wedge \dot{x}&gt;0) \vee ( x &lt; x_{min} \wedge \dot{x}&lt;0)\\
+         0 &amp; \quad : \text{otherwise}
+      \end{aligned}
+   \end{array}
+\right.\end{split}\]</div>
+<p>여기서 <span class="math notranslate nohighlight">\(\Delta x\)</span> 는 질량이 정지 위치를 넘어 이동한 거리이며 <span class="math notranslate nohighlight">\(k_S\)</span> 및 <span class="math notranslate nohighlight">\(c_S\)</span> 는 큰 강성과 감쇠 상수입니다.</p>
+</div>
+<div class="section" id="pre-load-forces">
+<span id="srvd-stcz-preload"></span><h4><span class="section-number">4.17.2.1.4.2. </span>예압력<a class="headerlink" href="#pre-load-forces" title="이 제목의 고유 링크"></a></h4>
+<p>여분의 힘
+중력이 작용할 때 TMD_Z의 정지 위치를 이동하는 방법으로 <span class="math notranslate nohighlight">\(F_{Z_{PreLoad}}\)</span> 가 출력 힘에 추가됩니다. 이는 소프트 스프링 상수를 갖는 매우 큰 질량이 사용될 때 하부 구조에 장착된 StC에 특히 유용합니다. 이는 용어에 나타납니다.
+<span class="math notranslate nohighlight">\(\vec{F}_{_{TMD_Z/O_N}}\)</span> 및 방정식의 운동 방정식은 다음과 같습니다. <a class="reference internal" href="#equation-bu">(4.218)</a>
+및 그에 따른 힘 <a class="reference internal" href="#equation-outputforces">(4.219)</a>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="code-modifications">
+<h2><span class="section-number">4.17.2.2. </span>코드 수정<a class="headerlink" href="#code-modifications" title="이 제목의 고유 링크"></a></h2>
+<p>구조 제어(StC) 기능은 ServoDyn에 연결된 하위 모듈입니다. ServoDyn.f90 및 ServoDyn.txt의 참조 외에도 StC 모듈을 포함하는 새 파일이 아래에 나열되어 있습니다.</p>
+<div class="section" id="new-files">
+<h3><span class="section-number">4.17.2.2.1. </span>새 파일<a class="headerlink" href="#new-files" title="이 제목의 고유 링크"></a></h3>
+<ul class="simple">
+<li><p>StrucCtrl.f90 : 구조 제어 모듈</p></li>
+<li><p>StrucCtrl.txt : 레지스트리 파일에는 표에 표시된 파일, 입력, 상태, 매개변수 및 출력이 포함됩니다. <a class="reference external" href="#tbl2">1</a> 및 <a class="reference external" href="#tbl1">2</a></p></li>
+<li><p>StrucCtrl_Types.f90: 자동 생성</p></li>
+</ul>
+</div>
+<div class="section" id="variables">
+<h3><span class="section-number">4.17.2.2.2. </span>변수<a class="headerlink" href="#variables" title="이 제목의 고유 링크"></a></h3>
+<div class="docutils container" id="tbl2">
+<table class="docutils align-default" id="id6">
+<caption><span class="caption-number">표 4.11 </span><span class="caption-text">StC 레지스트리의 필드 정의 요약입니다. 상태 벡터에 주목하세요. <span class="math notranslate nohighlight">\(\vec{tmd_x}\)</span> 는 다음에 해당합니다. <span class="math notranslate nohighlight">\(\vec{R}_{_{TMD/P_N}}\)</span>, 그리고 그 출력 <span class="math notranslate nohighlight">\(\vec{F}_{_{P_G}}\)</span> 및 <span class="math notranslate nohighlight">\(\vec{M}_{_{P_G}}\)</span> 는 MeshType 개체(y.Mesh)에 포함되어 있습니다. <span class="math notranslate nohighlight">\(X_{DSP}\)</span>, <span class="math notranslate nohighlight">\(Y_{DSP}\)</span>및
+이 플래그 값 아래에 <span class="math notranslate nohighlight">\(Z_{DSP}\)</span> 는 TMD의 초기 변위입니다.</span><a class="headerlink" href="#id6" title="이 테이블에 대한 영구 링크"></a></caption>
+<colgroup>
+<col style="width: 22%">
+<col style="width: 78%">
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" rowspan="2"><p>DataType</p></th>
+<th class="head" rowspan="2"><p>변수 이름</p></th>
+</tr>
+<tr class="row-even"></tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p><strong>InitInput</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>InputFile</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>중력</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><span class="math notranslate nohighlight">\(\vec{r}_{_{N/O_G}}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>입력 u</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><span class="math notranslate nohighlight">\(\ddot{\vec{r}}_{_{P/O_G}}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><span class="math notranslate nohighlight">\(\vec{R}_{_{N/O_G}}\)</span></p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><span class="math notranslate nohighlight">\(\vec{\omega}_{_{N/O_G}}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><span class="math notranslate nohighlight">\(\vec{\alpha}_{_{N/O_G}}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>매개변수 p</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><span class="math notranslate nohighlight">\(m_x\)</span></p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><span class="math notranslate nohighlight">\(c_x\)</span></p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><span class="math notranslate nohighlight">\(k_x\)</span></p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><span class="math notranslate nohighlight">\(m_y\)</span></p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><span class="math notranslate nohighlight">\(c_y\)</span></p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><span class="math notranslate nohighlight">\(k_y\)</span></p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><span class="math notranslate nohighlight">\(m_z\)</span></p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><span class="math notranslate nohighlight">\(c_z\)</span></p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><span class="math notranslate nohighlight">\(k_z\)</span></p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><span class="math notranslate nohighlight">\(K_S = \left[ k_{SX}\hspace{1em}k_{SY}\hspace{1em}k_{SZ}\right]\)</span></p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><span class="math notranslate nohighlight">\(C_S = \left[c_{SX}\hspace{1em}c_{SY}\hspace{1em}c_{SZ}\right]\)</span></p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><span class="math notranslate nohighlight">\(P_{SP}=\left[X_{PSP}\hspace{1em}Y_{PSP}\hspace{1em}Z_{PSP}\right]\)</span></p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><span class="math notranslate nohighlight">\(P_{SP}=\left[X_{NSP}\hspace{1em}Y_{NSP}\hspace{1em}Z_{NSP}\right]\)</span></p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><span class="math notranslate nohighlight">\(F{ext}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><span class="math notranslate nohighlight">\(Gravity\)</span></p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>TMDX_DOF</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>TMDY_DOF</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>TMDZ_DOF</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><span class="math notranslate nohighlight">\(X_{DSP}\)</span></p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><span class="math notranslate nohighlight">\(Y_{DSP}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><span class="math notranslate nohighlight">\(Z_{DSP}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>상태 x</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><span class="math notranslate nohighlight">\(\vec{tmd_x}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>출력 y</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>메쉬</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>입력, 매개변수, 상태 및 출력 정의는 표에 요약되어 있습니다. <a class="reference external" href="#tbl2">1</a>. 파일의 입력은 표에 나열되어 있습니다.
+<a class="reference external" href="#tbl1">2</a>.</p>
+<div class="docutils container" id="tbl1">
+<table class="docutils align-default" id="id7">
+<caption><span class="caption-number">표 4.12 </span><span class="caption-text">TMDInputFile에서 읽은 데이터입니다.</span><a class="headerlink" href="#id7" title="이 테이블에 대한 영구 링크"></a></caption>
+<colgroup>
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 69%">
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>필드 이름</p></th>
+<th class="head"><p>필드 유형</p></th>
+<th class="head"><p>설명</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>TMD_CMODE</p></td>
+<td><p>정수</p></td>
+<td><p>제어 모드(1:수동, 2:활성)</p></td>
+</tr>
+<tr class="row-odd"><td><p>TMD_X_DOF</p></td>
+<td><p>논리</p></td>
+<td><p>DOF 켜기 또는 끄기</p></td>
+</tr>
+<tr class="row-even"><td><p>TMD_Y_DOF</p></td>
+<td><p>논리</p></td>
+<td><p>DOF 켜기 또는 끄기</p></td>
+</tr>
+<tr class="row-odd"><td><p>TMD_Z_DOF</p></td>
+<td><p>논리</p></td>
+<td><p>DOF 켜기 또는 끄기</p></td>
+</tr>
+<tr class="row-even"><td><p>TMD_X_DSP</p></td>
+<td><p>진짜</p></td>
+<td><p>TMD_X 초기 변위</p></td>
+</tr>
+<tr class="row-odd"><td><p>TMD_Y_DSP</p></td>
+<td><p>진짜</p></td>
+<td><p>TMD_Y 초기 변위</p></td>
+</tr>
+<tr class="row-even"><td><p>TMD_Z_DSP</p></td>
+<td><p>진짜</p></td>
+<td><p>TMD_Z 초기 변위</p></td>
+</tr>
+<tr class="row-odd"><td><p>TMD_X_M</p></td>
+<td><p>진짜</p></td>
+<td><p>TMD 질량</p></td>
+</tr>
+<tr class="row-even"><td><p>TMD_X_K</p></td>
+<td><p>진짜</p></td>
+<td><p>TMD 강성</p></td>
+</tr>
+<tr class="row-odd"><td><p>TMD_X_C</p></td>
+<td><p>진짜</p></td>
+<td><p>TMD 댐핑</p></td>
+</tr>
+<tr class="row-even"><td><p>TMD_Y_M</p></td>
+<td><p>진짜</p></td>
+<td><p>TMD 질량</p></td>
+</tr>
+<tr class="row-odd"><td><p>TMD_Y_K</p></td>
+<td><p>진짜</p></td>
+<td><p>TMD 강성</p></td>
+</tr>
+<tr class="row-even"><td><p>TMD_Y_C</p></td>
+<td><p>진짜</p></td>
+<td><p>TMD 댐핑</p></td>
+</tr>
+<tr class="row-odd"><td><p>TMD_Z_M</p></td>
+<td><p>진짜</p></td>
+<td><p>TMD 질량</p></td>
+</tr>
+<tr class="row-even"><td><p>TMD_Z_K</p></td>
+<td><p>진짜</p></td>
+<td><p>TMD 강성</p></td>
+</tr>
+<tr class="row-odd"><td><p>TMD_Z_C</p></td>
+<td><p>진짜</p></td>
+<td><p>TMD 댐핑</p></td>
+</tr>
+<tr class="row-even"><td><p>TMD_X_PSP</p></td>
+<td><p>진짜</p></td>
+<td><p>포지티브 정지 위치(최대 X 질량 변위)</p></td>
+</tr>
+<tr class="row-odd"><td><p>TMD_X_NSP</p></td>
+<td><p>진짜</p></td>
+<td><p>네거티브 정지 위치(최소 X 질량 변위)</p></td>
+</tr>
+<tr class="row-even"><td><p>TMD_X_K_SX</p></td>
+<td><p>진짜</p></td>
+<td><p>정지 스프링 강성</p></td>
+</tr>
+<tr class="row-odd"><td><p>TMD_X_C_SX</p></td>
+<td><p>진짜</p></td>
+<td><p>정지 스프링 댐핑</p></td>
+</tr>
+<tr class="row-even"><td><p>TMD_Y_PSP</p></td>
+<td><p>진짜</p></td>
+<td><p>포지티브 정지 위치(최대 Y 질량 변위)</p></td>
+</tr>
+<tr class="row-odd"><td><p>TMD_Y_NSP</p></td>
+<td><p>진짜</p></td>
+<td><p>네거티브 정지 위치(최소 Y 질량 변위)</p></td>
+</tr>
+<tr class="row-even"><td><p>TMD_Y_K_S</p></td>
+<td><p>진짜</p></td>
+<td><p>정지 스프링 강성</p></td>
+</tr>
+<tr class="row-odd"><td><p>TMD_Y_C_S</p></td>
+<td><p>진짜</p></td>
+<td><p>정지 스프링 댐핑</p></td>
+</tr>
+<tr class="row-even"><td><p>TMD_Z_PSP</p></td>
+<td><p>진짜</p></td>
+<td><p>포지티브 정지 위치(최대 Z 질량 변위)</p></td>
+</tr>
+<tr class="row-odd"><td><p>TMD_Z_NSP</p></td>
+<td><p>진짜</p></td>
+<td><p>네거티브 정지 위치(최소 Z 질량 변위)</p></td>
+</tr>
+<tr class="row-even"><td><p>TMD_Z_K_S</p></td>
+<td><p>진짜</p></td>
+<td><p>정지 스프링 강성</p></td>
+</tr>
+<tr class="row-odd"><td><p>TMD_Z_C_S</p></td>
+<td><p>진짜</p></td>
+<td><p>정지 스프링 댐핑</p></td>
+</tr>
+<tr class="row-even"><td><p>TMD_P_X</p></td>
+<td><p>진짜</p></td>
+<td><p>x 나셀 좌표계에서 P의 원점</p></td>
+</tr>
+<tr class="row-odd"><td><p>TMD_P_Y</p></td>
+<td><p>진짜</p></td>
+<td><p>y 원점</p></td>
+</tr>
+<tr class="row-even"><td><p>TMD_P_Z</p></td>
+<td><p>진짜</p></td>
+<td><p>나셀 좌표계에서 P의 z 원점</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="section" id="acknowledgements">
+<h2><span class="section-number">4.17.2.3. </span>감사의 글<a class="headerlink" href="#acknowledgements" title="이 제목의 고유 링크"></a></h2>
+<p>저자는 이 매뉴얼을 검토해준 Dr. Jason Jonkman에게 감사를 표하고 싶습니다.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
+<dd><p>참고 <span class="math notranslate nohighlight">\(( R a ) \times ( Rb ) = R( a \times b )\)</span>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="StC_input.html" class="btn btn-neutral float-left" title="4.17.1. 입력 파일" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+        <a href="StC_TLCD_Theory.html" class="btn btn-neutral float-right" title="4.17.3. TLCD: 운동 방정식의 유도" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>© Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    
+     
+
+
+</body></html>

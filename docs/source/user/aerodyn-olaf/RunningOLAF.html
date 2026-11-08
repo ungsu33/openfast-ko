@@ -1,0 +1,383 @@
+<!DOCTYPE html><html class="writer-html5" lang="ko"><head><!-- Modified 2026-11-08: unofficial Korean machine translation of OpenFAST 5.0.0. Equations, code, figures, input values and attribution retained. -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.4.3. OLAF 작업 — OpenFAST v5.0.0 문서</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../../../genindex.html">
+    <link rel="search" title="검색" href="../../../search.html">
+    <link rel="next" title="4.4.4. 입력 파일" href="InputFiles.html">
+    <link rel="prev" title="4.4.2. 기호 목록" href="Acronyms.html"> 
+<link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/aerodyn-olaf/RunningOLAF.html"></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+          </a>
+              <div class="version">5.0 · 한국어</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="문서 검색" aria-label="문서 검색">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.4. OLAF</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Introduction.html">4.4.1. 소개</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Acronyms.html">4.4.2. 기호 목록</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.4.3. OLAF와 협력하기</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#running-olaf">4.4.3.1. OLAF 실행 중</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#guidelines">4.4.3.2. 지침</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="InputFiles.html">4.4.4. 입력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="OutputFiles.html">4.4.5. 출력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="OLAFTheory.html">4.4.6. OLAF 이론</a></li>
+<li class="toctree-l3"><a class="reference internal" href="StateSpace.html">4.4.7. 상태공간 표현 및 OpenFAST와의 통합</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FutureWork.html">4.4.8. 향후 개발 계획</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.4.9. 참고문헌</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixA.html">4.4.10. 부록 A: OLAF 기본 입력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixB.html">4.4.11. 부록 B: 규정된 순환 입력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixC.html">4.4.12. 부록 C: 출력 채널의 OLAF 목록</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. 단순화 ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. 구조 제어</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. 추가 모듈 문서</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC 서브루틴 라이브러리</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+</ul>
+
+        <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="페이지 탐색">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.4. </span>OLAF 사용자 가이드 및 이론 설명서 (AeroDyn의 자유 와류 후류)</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.4.3. </span>OLAF 작업</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/aerodyn-olaf/RunningOLAF.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+      </li>
+  </ul>
+  <hr>
+</div><aside class="ko-notice" aria-label="한국어 번역 안내"><strong>한국어 자동번역</strong> · OpenFAST v5.0.0 · 2026-11-08 기준<br>비공식 번역본입니다. 수식·명령어·입력 변수와 첨부자료는 원문을 보존합니다. <a href="https://openfast.readthedocs.io/en/main/source/user/aerodyn-olaf/RunningOLAF.html" target="_blank" rel="noopener noreferrer" lang="en">영문 원문 대조 ↗</a></aside>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="working-with-olaf">
+<h1><span class="section-number">4.4.3. </span>OLAF 작업<a class="headerlink" href="#working-with-olaf" title="이 제목의 고유 링크"></a></h1>
+<div class="section" id="running-olaf">
+<span id="id1"></span><h2><span class="section-number">4.4.3.1. </span>OLAF 실행 중<a class="headerlink" href="#running-olaf" title="이 제목의 고유 링크"></a></h2>
+<p>OLAF는 OpenFAST의 모듈이므로 OLAF를 다운로드하고 컴파일하고 실행하는 과정은 OpenFAST와 동일합니다. 이러한 지침은 <a class="reference internal" href="../../install/index.html#installation"><span class="std std-ref">OpenFAST 설치</span></a> 문서.</p>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>FVW 모듈의 속도를 향상시키기 위해 사용자는 다음을 사용하여 컴파일할 수 있습니다.
+<cite>OpenMP</cite>. 이렇게 하려면 다음을 추가하세요. <cite>-DOPENMP=ON
+CMake를 사용한</cite> 옵션.</p>
+</div>
+</div>
+<div class="section" id="guidelines">
+<span id="guidelines-olaf"></span><h2><span class="section-number">4.4.3.2. </span>지침<a class="headerlink" href="#guidelines" title="이 제목의 고유 링크"></a></h2>
+<p>대부분의 OLAF 옵션은 기본값으로 둘 수 있습니다. 결과는 시간 이산화, 웨이크 길이 및 정규화 매개변수에 따라 달라집니다. 이 섹션에서는 이러한 매개변수를 계산하기 위한 간단한 Python 코드와 함께 이러한 매개변수에 대한 지침을 제공합니다. 시간이 지나면서 지침이 더욱 구체화될 수 있으므로 이 섹션을 다시 확인하시기 바랍니다.</p>
+<p>이 섹션의 끝 부분에 Python 스크립트를 제공하여 주요 매개변수를 프로그래밍 방식으로 설정합니다.</p>
+<p><strong>시간 단계</strong>
+OLAF의 시간 간격(<strong>DTfvw</strong>)에 해당합니다.
+로터 1회전의 <span class="math notranslate nohighlight">\(\Delta \psi = 6\)</span> 도:</p>
+<div class="math notranslate nohighlight">
+\[\Delta t_\text{FVW}
+= \frac{\Delta \psi_\text{rad}}{\Omega_\text{rad/s}}
+= \frac{\Delta \psi_\text{deg}}{6 \times \Omega_\text{RPM}}\]</div>
+<p>구조 솔버에 더 작은 시간 단계가 필요한 경우 글루 코드의 시간 단계를 다음과 다른 값으로 설정할 수 있습니다. <strong>DTfvw</strong> 만큼 <strong>DTfvw</strong> 는 글루 코드 시간 단계의 배수입니다.</p>
+<p><strong>웨이크 길이 및 패널 수</strong></p>
+<p>후류의 각 와류 요소는 로터의 리프팅 라인에서 유도된 속도에 기여합니다. 웨이크가 길어질수록 더 많은 기여가 제공됩니다. 후류 길이가 증가하면 더 많은 와류 요소가 발생하고 그에 따라 계산 시간이 길어지기 때문에 아직 도달해야 할 절충안이 있습니다.</p>
+<p>후류가 일정한 와도 분포를 갖는 와류 실린더로 구성된 경우, 후류 길이 4D, 5D 및 6D가 각각 유도 속도의 99.2%, 99.5% 및 99.7%를 제공한다는 것을 알 수 있습니다. 그러므로 우리는 적어도 4D와 동일한 총 후류 길이를 갖는 것을 권장합니다. 근사적으로 후류 길이에 의해 대류되는 거리는 평균 풍속의 함수입니다. <span class="math notranslate nohighlight">\(U_0\)</span> 및 후류 내에서 유도된 속도. 유도된 속도는 하류 거리에 따라 달라집니다.
+로터의 <span class="math notranslate nohighlight">\(-aU_0\)</span> , 여기서 <span class="math notranslate nohighlight">\(a\)</span> 는 회 전자의 평균 축 유도 계수입니다.
+후류가 평형에 도달하면 <span class="math notranslate nohighlight">\(-2aU_0\)</span> (운동량 이론에 따라). 근사치로서 대류 속도는 다음과 같다고 가정할 수 있습니다. <span class="math notranslate nohighlight">\(U_c = U_0(1-k_a a)\)</span>와 함께 <span class="math notranslate nohighlight">\(k_a\approx1.2\)</span>. 점성 확산은 고려되지 않았으므로 난류가 없는 시뮬레이션의 경우 후류 대류 속도는 자유류로 회복되지 않을 것으로 예상되며, <span class="math notranslate nohighlight">\(k_a\)</span> 를 사용해야 합니다(예: <span class="math notranslate nohighlight">\(k_a\approx1.5\)</span>) 난류가 있는 시뮬레이션의 경우, 사행은 후류를 확산시키고 <span class="math notranslate nohighlight">\(k_a\)</span>  를 사용해야 합니다(예: <span class="math notranslate nohighlight">\(k_a\approx1.0\)</span>). 축 유도 계수는 작동 조건과 회전자의 설계에 따라 달라집니다. 아래 견적에는 다음을 사용합니다. <span class="math notranslate nohighlight">\(a\approx1/3\)</span>. 후류가 원하는 하류 거리에 도달하는 데 필요한 대략적인 시간
+따라서 <span class="math notranslate nohighlight">\(d_\text{target}\)</span> 는 다음과 같습니다.</p>
+<div class="math notranslate nohighlight">
+\[T_\text{target} = \frac{d_\text{target}}{U_0(1-k_a a)}\]</div>
+<p>이 시간은 다음과 같은 시간 단계 수(즉, 전체 웨이크 패널 수)에 해당합니다.
+첫 번째 근사값이 사용되는</p>
+<div class="math notranslate nohighlight" id="equation-ntargetdist">
+<span class="eqno">(4.11)<a class="headerlink" href="#equation-ntargetdist" title="이 방정식에 대한 영구 링크"></a></span>\[n_\text{target,distance}
+   =  \frac{T_\text{target}}{\Delta t_\text{FVW}}
+   =  \frac{d_\text{target}}{U_0(1-k_a a) \Delta t_\text{FVW}}
+   \approx \frac{d_\text{target}}{0.5 U_0 \Delta t_\text{FVW}}
+   \approx \frac{12 D}{U_0 \Delta t_\text{FVW}}
+   \qquad \text{(integer)}\]</div>
+<p>첫 번째 근사에서는 다음을 사용하며 <span class="math notranslate nohighlight">\(k_a a\approx 0.5\)</span> 및 두 번째 근사치는 목표 거리가 6D라고 가정합니다. 총 회전수를 기준으로 Near-Wake 패널의 수를 정의하는 것도 가능합니다. <span class="math notranslate nohighlight">\(n_\text{rot}\)</span>, 다음으로 연결됩니다.</p>
+<div class="math notranslate nohighlight" id="equation-ntargetrot">
+<span class="eqno">(4.12)<a class="headerlink" href="#equation-ntargetrot" title="이 방정식에 대한 영구 링크"></a></span>\[n_\text{target, rotations}
+   = \frac{n_\text{rot} T_\text{rot}}{dt_\text{FVW}}
+   = \frac{n_\text{rot} 2 \pi }{\Omega dt_\text{FVW}}
+   = \frac{n_\text{rot} 60 }{\Omega_\text{RPM} dt_\text{FVW}}
+   \qquad \text{(integer)}\]</div>
+<p>OLAF의 후류는 "근거리 후류"(NW)와 "원거리 후류"(FW)로 정의된 두 영역으로 구성되며, 여기서 먼 부분은 말아올린 팁과 루트 소용돌이로 구성됩니다. 먼 후류의 정확도가 감소했기 때문에 먼 후류를 통과하는 속도 프로파일이 부정확할 가능성이 높습니다. 먼 항적의 역할은 계산 시간을 줄이는 것입니다. 정확도를 높이려면 더 긴 근거리 후류와 더 짧은 원거리 후류를 사용하는 것이 좋습니다. 먼 항적은 완전히 제거될 수 있습니다.</p>
+<p>가까운 후류와 먼 후류는 두 개의 영역, 즉 소용돌이 필라멘트가 자유롭게 대류하는 영역과 필라멘트가 동결된 평균 유도 속도로 대류하는 영역으로 추가로 분해됩니다. "동결된" 후류 영역을 갖는 장점은 잘못된 경계 조건인 후류 잘림의 영향을 완화한다는 것입니다(와류 선은 유체에서 끝날 수 없습니다). 후류가 여전히 "자유"인 동안 잘리면 소용돌이도가 이 영역에서 롤업됩니다. 또 다른 장점은 확산이 없으면 후류가 하류에서 과도하게 왜곡되어 와류 필라멘트 표현의 유효성이 한계에 도달하는 경향이 있다는 것입니다. 그러므로 얼어붙은 원거리 기상 지역을 갖는 것이 유용합니다. Wake 패널의 총 수는 사용 가능한 Near-Wake 패널, 고정된 Near-Wake 패널, 사용 가능한 Far-Wake 패널 및 고정된 Far-Wake 패널의 수와 같습니다.</p>
+<div class="math notranslate nohighlight">
+\[n_\text{target} = n_\text{NW} + n_\text{FW} = n_\text{NW,Free} + n_\text{NW,Frozen} + n_\text{FW,Free} + n_\text{FW,Frozen}\]</div>
+<p>OLAF 입력 파일은 다음을 정의합니다.
+<span class="math notranslate nohighlight">\(n_\text{NW}\)</span>      (<strong>nNWPanels</strong>),
+<span class="math notranslate nohighlight">\(n_\text{NW,Free}\)</span> (<strong>nNWPanelsFree</strong>),
+<span class="math notranslate nohighlight">\(n_\text{FW}\)</span>      (<strong>nFWPanels</strong>) 및
+<span class="math notranslate nohighlight">\(n_\text{FW,Free}\)</span> (<strong>nFWPanelsFree</strong>).</p>
+<p>"동결된" 근접 기상 영역이 사용되는 경우(<span class="math notranslate nohighlight">\(n_\text{NW,Free}&lt;n_\text{NW}\)</span>) 그러면 "자유" 원거리 후류 영역의 길이는 0이어야 합니다(<span class="math notranslate nohighlight">\(n_\text{FW,Free}=0\)</span>).</p>
+<p>현재 권장되는 사항은 다음과 같습니다.</p>
+<ul class="simple">
+<li><p>총 후류 길이는 최소 4D입니다(Eq. <a class="reference internal" href="#equation-ntargetdist">(4.11)</a>) 및</p></li>
+<li><p>최소 10회 로터 회전에 해당하는 총 후류 길이(Eq. <a class="reference internal" href="#equation-ntargetrot">(4.12)</a>)</p></li>
+<li><p>(작동 조건에 따라 위의 두 조건 중 하나가 지배적이며 둘 사이의 가장 큰 후류 길이가 사용됩니다).</p></li>
+<li><p>최소 8회전에 해당하는 거의 각성 범위</p></li>
+<li><p>최소 1D에 해당하는 무료 Near-Wake 범위</p></li>
+<li><p>제로 후류 범위 또는 2회전에 해당하는 동결 후류 범위</p></li>
+</ul>
+<p>이 섹션의 끝 부분에 제공된 Python 스크립트는 이러한 지침을 구현합니다.</p>
+<p>일반 고려 사항:</p>
+<ul class="simple">
+<li><p>Betz 한계를 초과하는 전력 계수를 얻은 경우 패널 수가 이 지침에 따라 올바르게 설정되지 않았을 가능성이 높습니다(패널 수가 너무 적음).</p></li>
+<li><p>파 웨이크를 사용하는 경우 길이의 절반 이상을 "무료"로 설정하지 마십시오(예: nFWPanelsFree =&lt; nFWPanels/2).</p></li>
+<li><p>Near Wake가 가장 정확합니다. 계산 시간이 그다지 중요하지 않은 경우에는 가까운 후류가 짧거나 먼 후류가 아닌 긴 후류가 선호됩니다.</p></li>
+<li><p>현재로서는 wake truncation으로 인해 발생하는 오류를 방지하기 위해 항상 wake 근처에 고정되거나 먼 웨이크를 고정하는 것이 좋습니다.</p></li>
+<li><p>후류 속도 프로파일은 원거리 후류 내에서 오류가 있을 수 있습니다.</p></li>
+<li><p>웨이크 쓰기(<strong>WrVTK=1 또는 2</strong>) 육안 검사를 위해 일정한 간격으로(예: 100 시간 간격마다)</p></li>
+</ul>
+<p><strong>정규화 매개변수</strong></p>
+<p>소용돌이 방법의 중요한 매개변수 중 하나는 코어 반경이라고도 하는 정규화 매개변수입니다. 현재 정규화 매개변수를 스팬별 이산화의 일부로 설정하는 것이 좋습니다(<span class="math notranslate nohighlight">\(\Delta r\)</span>), 즉: <strong>RegDeterMethod=3</strong> , <strong>WakeRegFactor=0.6</strong>, <strong>WingRegFactor=0.6</strong>. RegFactors가 범위별 이산화의 함수로 설정되면 요소가 0.25에서 3 사이에 있을 것으로 예상됩니다.</p>
+<p>또한 다운스트림 거리에 따라 정규화를 늘리는 것이 좋습니다.
+<strong>WakeReg방법=3</strong>. 하류 거리에 따라 정규화 매개변수가 증가하는 요소는 다음과 같이 설정할 수 있습니다. <strong>CoreSpreadEddyVisc=1000
+최신 다중 MW 터빈용</strong> . 항적을 그릴 때, (<strong>WrVTK</strong>), 항류가 정상 상태 시뮬레이션에 대해 "너무 왜곡된" 것으로 나타나면
+웨이크를 "부드럽게"하는 <strong>CoreSpreadEddyVisc</strong> 매개변수입니다.</p>
+<p><strong>Python 스크립트</strong></p>
+<p>다음 Python 스크립트는 이러한 지침에 따라 매개변수를 계산합니다. (업데이트를 보려면 여기를 확인하세요. <a class="reference external" href="https://github.com/ebranlard/welib/blob/dev/welib/fast/olaf.py" target="_blank" rel="noopener noreferrer">olaf.py</a>)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">OLAFParams</span><span class="p">(</span><span class="n">omega_rpm</span><span class="p">,</span> <span class="n">U0</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">aScale</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span>
+          <span class="n">deltaPsiDeg</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">nPerRot</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+          <span class="n">targetFreeWakeLengthD</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+          <span class="n">targetWakeLengthD</span><span class="o">=</span><span class="mf">4.</span><span class="p">,</span>
+          <span class="n">nNWrot</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">nFWrot</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">nFWrotFree</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+          <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dt_glue_code</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Computes recommended time step and wake length for OLAF based on:</span>
+
+<span class="sd">    INPUTS:</span>
+<span class="sd">     - omega_rpm: rotational speed [RPM]</span>
+<span class="sd">     - U0: mean wind speed [m/s]</span>
+<span class="sd">     - R: rotor radius [m]</span>
+
+<span class="sd">    OPTIONS FOR TIME STEP:</span>
+<span class="sd">      - either:</span>
+<span class="sd">         - deltaPsiDeg : target azimuthal discretization [deg]</span>
+<span class="sd">              or</span>
+<span class="sd">         - nPerRot     : number of time step per rotations.</span>
+<span class="sd">                deltaPsiDeg  -  nPerRot</span>
+<span class="sd">                     5            72</span>
+<span class="sd">                     6            60</span>
+<span class="sd">                     7            51.5</span>
+<span class="sd">                     8            45</span>
+<span class="sd">     - dt_glue_code: glue code time step. If provided, the time step of OLAF will be approximated</span>
+<span class="sd">                     such that it is a multiple of the glue-code time step.</span>
+
+<span class="sd">    OPTIONS FOR WAKE LENGTH:</span>
+<span class="sd">     - a: average axial induction factor at the rotor [-]</span>
+<span class="sd">     - aScale: scaling factor to estimate induction, such that the wake convection velocity is:</span>
+<span class="sd">               Uc=U0(1-aScale*a)</span>
+<span class="sd">     - targetWakeLengthD: target wake length in diameter [D]</span>
+<span class="sd">     - nNWrot     : minimum number of near wake rotations</span>
+<span class="sd">     - nFWrot     : minimum number of far wake rotations</span>
+<span class="sd">     - nFWrotFree : minimum number of far wake rotations (free panels)</span>
+
+<span class="sd">    """</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">myprint</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="c1"># Rotational period</span>
+    <span class="n">omega</span> <span class="o">=</span> <span class="n">omega_rpm</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">60</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">omega</span>
+    <span class="c1"># Convection velocity</span>
+    <span class="n">Uc</span> <span class="o">=</span> <span class="n">U0</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">aScale</span><span class="o">*</span><span class="n">a</span><span class="p">)</span>
+
+    <span class="c1"># Desired time step</span>
+    <span class="k">if</span> <span class="n">nPerRot</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">dt_wanted</span>    <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="n">nPerRot</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+        <span class="n">deltaPsiDeg</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">omega</span><span class="o">*</span><span class="n">dt_wanted</span><span class="o">*</span><span class="mi">180</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">dt_wanted</span>    <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">deltaPsiDeg</span><span class="o">/</span><span class="p">(</span><span class="mi">6</span><span class="o">*</span><span class="n">omega_rpm</span><span class="p">),</span><span class="mi">5</span><span class="p">)</span>
+        <span class="n">nPerRot</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span><span class="p">(</span><span class="n">deltaPsiDeg</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">))</span>
+
+    <span class="c1"># Adapting desired time step based on glue code time step</span>
+    <span class="k">if</span> <span class="n">dt_glue_code</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">dt_rounded</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">dt_wanted</span><span class="o">/</span><span class="n">dt_glue_code</span><span class="p">)</span><span class="o">*</span><span class="n">dt_glue_code</span>
+        <span class="n">deltaPsiDeg2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">omega</span><span class="o">*</span><span class="n">dt_rounded</span> <span class="o">*</span><span class="mi">180</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">myprint</span><span class="p">(</span><span class="s1">'&gt;&gt;&gt; To satisfy glue-code dt:'</span><span class="p">)</span>
+        <span class="n">myprint</span><span class="p">(</span><span class="s1">'    Rounding dt   from </span><span class="si">{}</span><span class="s1"> to </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dt_wanted</span><span class="p">,</span> <span class="n">dt_rounded</span>    <span class="p">))</span>
+        <span class="n">myprint</span><span class="p">(</span><span class="s1">'    Changing dpsi from </span><span class="si">{}</span><span class="s1"> to </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">deltaPsiDeg</span><span class="p">,</span> <span class="n">deltaPsiDeg2</span><span class="p">))</span>
+        <span class="n">dt_fvw</span>   <span class="o">=</span> <span class="n">dt_rounded</span>
+        <span class="n">deltaPsiDeg</span> <span class="o">=</span> <span class="n">deltaPsiDeg2</span>
+        <span class="n">nPerRot</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span><span class="p">(</span><span class="n">deltaPsiDeg</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">dt_fvw</span> <span class="o">=</span> <span class="n">dt_wanted</span>
+
+    <span class="c1"># Useful functions</span>
+    <span class="n">n2L</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="n">dt_fvw</span> <span class="o">*</span> <span class="n">Uc</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">R</span><span class="p">)</span>  <span class="c1"># convert number of panels to distance</span>
+    <span class="n">n2R</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span>  <span class="n">n</span> <span class="o">*</span> <span class="n">dt_fvw</span> <span class="o">/</span> <span class="n">T</span>          <span class="c1"># convert number of panels to number of rotations</span>
+
+    <span class="c1"># All Wake (AW) panels - Wake length from mean wind speed</span>
+    <span class="n">targetWakeLength</span> <span class="o">=</span> <span class="n">targetWakeLengthD</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">R</span>
+    <span class="n">nAWPanels_FromU0</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">targetWakeLength</span> <span class="o">/</span> <span class="p">(</span><span class="n">Uc</span><span class="o">*</span><span class="n">dt_fvw</span><span class="p">))</span>
+    <span class="c1"># Free near wake panels (based on distance)</span>
+    <span class="n">targetFreeWakeLength</span> <span class="o">=</span> <span class="n">targetFreeWakeLengthD</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">R</span>
+    <span class="n">nNWPanelsFree_FromU0</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">targetFreeWakeLength</span> <span class="o">/</span> <span class="p">(</span><span class="n">Uc</span><span class="o">*</span><span class="n">dt_fvw</span><span class="p">))</span>
+    <span class="c1"># Far wake (FW) panels, always from number of rotations</span>
+    <span class="n">nFWPanels</span>     <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">nFWrot</span><span class="o">*</span><span class="n">nPerRot</span><span class="p">)</span>
+    <span class="n">nFWPanelsFree</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">nFWrotFree</span><span class="o">*</span><span class="n">nPerRot</span><span class="p">)</span>
+    <span class="c1"># Wake length from rotational speed and number of rotations</span>
+    <span class="n">nAWPanels_FromRot</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">nNWrot</span><span class="o">*</span><span class="n">nPerRot</span><span class="p">)</span> <span class="c1"># Total number of panels NW+FW</span>
+
+    <span class="c1"># Below we chose between criteria on number of rotation or donwstream distance</span>
+    <span class="c1"># This can be adapted/improved</span>
+    <span class="n">myprint</span><span class="p">(</span><span class="s1">'Number of panels (NW free) from wind speed and distance:</span><span class="si">{:15d}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nNWPanelsFree_FromU0</span><span class="p">))</span>
+    <span class="n">myprint</span><span class="p">(</span><span class="s1">'Number of panels (NW+FW)   from wind speed and distance:</span><span class="si">{:15d}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nAWPanels_FromU0</span><span class="p">))</span>
+    <span class="n">myprint</span><span class="p">(</span><span class="s1">'Number of panels (NW+FW)   from number of rotations    :</span><span class="si">{:15d}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nAWPanels_FromRot</span><span class="p">))</span>
+    <span class="n">myprint</span><span class="p">(</span><span class="s1">'Number of panels (NW+FW)   from average between two    :</span><span class="si">{:15d}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">((</span><span class="n">nAWPanels_FromRot</span><span class="o">+</span><span class="n">nAWPanels_FromU0</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)))</span>
+    <span class="k">if</span> <span class="n">nAWPanels_FromRot</span><span class="o">&gt;</span><span class="n">nAWPanels_FromU0</span><span class="p">:</span>
+        <span class="c1"># Criteria based on rotation wins:</span>
+        <span class="n">myprint</span><span class="p">(</span><span class="s1">'[INFO] Using number of rotations to setup number of panels'</span><span class="p">)</span>
+        <span class="n">nAWPanels</span> <span class="o">=</span> <span class="n">nAWPanels_FromRot</span> <span class="c1"># Total number of panels NW+FW</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">myprint</span><span class="p">(</span><span class="s1">'[INFO] Using wind speed and distance to setup number of panels'</span><span class="p">)</span>
+        <span class="c1"># Wake distance wins, we keep the nFW from rot but increase nNW</span>
+        <span class="n">nAWPanels</span> <span class="o">=</span> <span class="n">nAWPanels_FromU0</span>  <span class="c1"># Total number of panels NW+FW</span>
+    <span class="n">nNWPanels</span> <span class="o">=</span> <span class="n">nAWPanels</span> <span class="o">-</span> <span class="n">nFWPanels</span> <span class="c1"># nNW = All-Far Wake</span>
+
+    <span class="c1"># See "free" near wake</span>
+    <span class="n">nNWPanelsFree</span> <span class="o">=</span> <span class="n">nNWPanelsFree_FromU0</span>
+    <span class="k">if</span> <span class="n">nNWPanelsFree</span><span class="o">&gt;</span><span class="n">nNWPanels</span><span class="p">:</span>
+        <span class="n">nNWPanelsFree</span><span class="o">=</span><span class="n">nNWPanels</span>
+        <span class="n">myprint</span><span class="p">(</span><span class="s1">'[INFO] Capping number of free NW panels to max.'</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">nNWPanelsFree</span><span class="o">&lt;</span><span class="n">nNWPanels</span> <span class="ow">and</span> <span class="n">nFWPanelsFree</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+        <span class="n">nFWPanelsFree</span><span class="o">=</span><span class="mi">0</span>
+        <span class="n">myprint</span><span class="p">(</span><span class="s1">'[INFO] Setting number of Free FW panels to zero because a frozen near wake is used'</span><span class="p">)</span>
+
+    <span class="c1"># Transient time (twice the time to develop the full wake extent)</span>
+    <span class="c1"># This is the minimum recommended time before convergence of the wake is expected</span>
+    <span class="c1"># (might be quite long)</span>
+    <span class="n">tMin</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">dt_fvw</span><span class="o">*</span><span class="n">nAWPanels</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="n">myprint</span><span class="p">(</span><span class="s1">''</span><span class="p">)</span>
+        <span class="n">myprint</span><span class="p">(</span><span class="s1">'</span><span class="si">{:15.2f}</span><span class="s1"> Transient time   (</span><span class="si">{:5.1f}</span><span class="s1"> rot)'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tMin</span><span class="p">,</span> <span class="n">tMin</span><span class="o">/</span><span class="n">T</span><span class="p">))</span>
+        <span class="n">myprint</span><span class="p">(</span><span class="s1">'</span><span class="si">{:15d}</span><span class="s1"> nAWPanels        (</span><span class="si">{:5.1f}</span><span class="s1"> rot, </span><span class="si">{:5.1f}</span><span class="s1">D)'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nAWPanels</span><span class="p">,</span> <span class="n">n2R</span><span class="p">(</span><span class="n">nAWPanels</span><span class="p">),</span> <span class="n">n2L</span><span class="p">(</span><span class="n">nAWPanels</span><span class="p">)))</span>
+        <span class="n">myprint</span><span class="p">(</span><span class="s1">''</span><span class="p">)</span>
+        <span class="n">myprint</span><span class="p">(</span><span class="s1">'OLAF INPUT FILE:'</span><span class="p">)</span>
+        <span class="n">myprint</span><span class="p">(</span><span class="s1">'----------------------- GENERAL OPTIONS ---------------------'</span><span class="p">)</span>
+        <span class="n">myprint</span><span class="p">(</span><span class="s1">'</span><span class="si">{:15.6f}</span><span class="s1"> DTFVW        (delta psi = </span><span class="si">{:5.1f}</span><span class="s1">deg)'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dt_fvw</span><span class="p">,</span> <span class="n">deltaPsiDeg</span><span class="p">))</span>
+        <span class="n">myprint</span><span class="p">(</span><span class="s1">'--------------- WAKE EXTENT AND DISCRETIZATION --------------'</span><span class="p">)</span>
+        <span class="n">myprint</span><span class="p">(</span><span class="s1">'</span><span class="si">{:15d}</span><span class="s1"> nNWPanels     (</span><span class="si">{:5.1f}</span><span class="s1"> rot, </span><span class="si">{:5.1f}</span><span class="s1">D)'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nNWPanels</span>    <span class="p">,</span> <span class="n">n2R</span><span class="p">(</span><span class="n">nNWPanels</span>    <span class="p">),</span> <span class="n">n2L</span><span class="p">(</span><span class="n">nNWPanels</span>    <span class="p">)))</span>
+        <span class="n">myprint</span><span class="p">(</span><span class="s1">'</span><span class="si">{:15d}</span><span class="s1"> nNWPanelsFree (</span><span class="si">{:5.1f}</span><span class="s1"> rot, </span><span class="si">{:5.1f}</span><span class="s1">D)'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nNWPanelsFree</span><span class="p">,</span> <span class="n">n2R</span><span class="p">(</span><span class="n">nNWPanelsFree</span><span class="p">),</span> <span class="n">n2L</span><span class="p">(</span><span class="n">nNWPanelsFree</span><span class="p">)))</span>
+        <span class="n">myprint</span><span class="p">(</span><span class="s1">'</span><span class="si">{:15d}</span><span class="s1"> nFWPanels     (</span><span class="si">{:5.1f}</span><span class="s1"> rot, </span><span class="si">{:5.1f}</span><span class="s1">D)'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nFWPanels</span>    <span class="p">,</span> <span class="n">n2R</span><span class="p">(</span><span class="n">nFWPanels</span>    <span class="p">),</span> <span class="n">n2L</span><span class="p">(</span><span class="n">nFWPanels</span>    <span class="p">)))</span>
+        <span class="n">myprint</span><span class="p">(</span><span class="s1">'</span><span class="si">{:15d}</span><span class="s1"> nFWPanelsFree (</span><span class="si">{:5.1f}</span><span class="s1"> rot, </span><span class="si">{:5.1f}</span><span class="s1">D)'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nFWPanelsFree</span><span class="p">,</span> <span class="n">n2R</span><span class="p">(</span><span class="n">nFWPanelsFree</span><span class="p">),</span> <span class="n">n2L</span><span class="p">(</span><span class="n">nFWPanelsFree</span><span class="p">)))</span>
+
+    <span class="k">return</span> <span class="n">dt_fvw</span><span class="p">,</span> <span class="n">tMin</span><span class="p">,</span> <span class="n">nNWPanels</span><span class="p">,</span> <span class="n">nNWPanelsFree</span><span class="p">,</span> <span class="n">nFWPanels</span><span class="p">,</span> <span class="n">nFWPanelsFree</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="Acronyms.html" class="btn btn-neutral float-left" title="4.4.2. 기호 목록" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+        <a href="InputFiles.html" class="btn btn-neutral float-right" title="4.4.4. 입력 파일" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>© Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    
+     
+
+
+</body></html>

@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5.2. Regression tests &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="5.2.5.4.1. Windows with Visual Studio regression test" href="regression_test_windows.html" />
+    <link rel="prev" title="5.1. Unit tests" href="unit_test.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/testing/regression_test.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">4. User Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">5. Testing OpenFAST</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="unit_test.html">5.1. Unit tests</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5.2. Regression tests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#testing-environment">5.2.1. Testing Environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dependencies">5.2.2. Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#executing-with-python-driver">5.2.3. Executing with Python driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#executing-with-ctest">5.2.4. Executing with CTest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#regression-test-examples">5.2.5. Regression test examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#compile-openfast-and-execute-with-ctest">5.2.5.1. Compile OpenFAST and execute with CTest</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configure-with-cmake-and-a-given-executable">5.2.5.2. Configure with CMake and a given executable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#python-driver-with-a-given-executable">5.2.5.3. Python driver with a given executable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#detailed-example-of-running-on-windows">5.2.5.4. Detailed example of running on Windows</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-test-cases">5.2.6. Adding test cases</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#obtaining-and-configuring-the-test-suite">5.3. Obtaining and configuring the test suite</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">5. </span>Testing OpenFAST</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">5.2. </span>Regression tests</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/source/testing/regression_test.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="regression-tests">
+<span id="regression-test"></span><h1><span class="section-number">5.2. </span>Regression tests<a class="headerlink" href="#regression-tests" title="Permalink to this heading"></a></h1>
+<p>The regression test executes a series of test cases which intend to fully
+describe OpenFAST and its module’s capabilities. Jump to one of the following
+sections for instructions on running the regression
+tests:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#python-driver"><span class="std std-ref">Executing with Python driver</span></a></p></li>
+<li><p><a class="reference internal" href="#ctest-driver"><span class="std std-ref">Executing with CTest</span></a></p></li>
+<li><p><a class="reference internal" href="#regression-test-example"><span class="std std-ref">Regression test examples</span></a></p></li>
+<li><p><a class="reference internal" href="regression_test_windows.html#regression-test-windows"><span class="std std-ref">Windows with Visual Studio regression test</span></a></p></li>
+</ul>
+<p>Each locally computed result is compared to a static set of baseline
+results. The results are computed using the following OS, compiler, and hardware
+combination:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 23%" />
+<col style="width: 47%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Operating System</p></th>
+<th class="head"><p>Compiler</p></th>
+<th class="head"><p>Hardware</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Ubuntu 22.04</p></td>
+<td><p>GNU 12.3.0</p></td>
+<td><p>GitHub actions</p></td>
+</tr>
+</tbody>
+</table>
+<p>Note that if you run the regression tests locally, there may small numerical
+differences due to your compiler and hardware combination that may cause a few
+tests to fail.  If you use the <code class="docutils literal notranslate"><span class="pre">bokeh</span></code> package while running the tests, you
+will see a resulting <em>html</em> file with plots showing the differences for any
+tests that fail (these differences should be small).</p>
+<p>The compiler versions, specific math libraries, and more info on hardware used
+to generate the baseline solutions are documented in the
+<a class="reference external" href="https://github.com/openFAST/r-test">r-test repository documentation</a>. Currently,
+the regression test supports only double precision builds.</p>
+<p>The regression test system can be executed with CMake (through its included
+test driver, CTest) or manually with
+a custom Python driver. Both systems provide similar functionality with
+respect to testing, but CTest integration provides access to multithreading,
+automation, and test reporting via CDash. Both modes of execution require some
+configuration as described in the following sections.</p>
+<p>In both modes of execution a directory is created in the build directory
+called <code class="docutils literal notranslate"><span class="pre">reg_tests</span></code> where all of the input files for the test cases are copied
+(but not overwritten)
+and all of the locally generated outputs are stored. Ultimately, both CTest and
+the manual execution program call a series of Python scripts and libraries in
+<code class="docutils literal notranslate"><span class="pre">reg_tests</span></code> and <code class="docutils literal notranslate"><span class="pre">reg_tests/lib</span></code>. One such script is <code class="docutils literal notranslate"><span class="pre">lib/pass_fail.py</span></code>
+which reads the output files and computes a norm on each channel reported. If
+the maximum norm is greater than the given tolerance, that particular test is
+reported as failed. The failure criteria is outlined below.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">difference</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">testData</span> <span class="o">-</span> <span class="n">baselineData</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">nChannels</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">channelRange</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">norm</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">MaxNorm</span><span class="p">(</span> <span class="n">difference</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span> <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">norm</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">MaxNorm</span><span class="p">(</span> <span class="n">difference</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span> <span class="p">)</span> <span class="o">/</span> <span class="n">channelRange</span>
+
+<span class="k">if</span> <span class="nb">max</span><span class="p">(</span><span class="n">norm</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">tolerance</span><span class="p">:</span>
+    <span class="k">pass</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">pass</span> <span class="o">=</span> <span class="kc">False</span>
+</pre></div>
+</div>
+<div class="section" id="testing-environment">
+<h2><span class="section-number">5.2.1. </span>Testing Environment<a class="headerlink" href="#testing-environment" title="Permalink to this heading"></a></h2>
+<p>We recommend using <code class="docutils literal notranslate"><span class="pre">conda</span></code> to create a local environment to install the
+required packages for <em>OpenFAST</em> testing. You can use the following process as a
+rough guide for setting up the necessary environment on Linux/MacOS based
+systems.</p>
+<ol class="arabic simple">
+<li><p>create a new <code class="docutils literal notranslate"><span class="pre">conda</span></code> environment for <em>OpenFAST</em> testing and install python:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">python</span></code></p></li>
+</ul>
+</li>
+</ol>
+<p>2. from the <code class="docutils literal notranslate"><span class="pre">&lt;openfast&gt;/build</span></code> directory, setup the environment with the
+following commands:</p>
+<blockquote>
+<div><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">../requirements.txt</span></code></p>
+<blockquote>
+<div><p>Installs basic dependencies for testing.</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">../glue-codes/python/.</span></code></p>
+<blockquote>
+<div><p>Installs the <code class="docutils literal notranslate"><span class="pre">pyOpenFAST</span></code> package from <em>OpenFAST</em> repository</p>
+</div></blockquote>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">../openfast_io/.</span></code></dt><dd><p>Installs the <code class="docutils literal notranslate"><span class="pre">openfast_io</span></code> package from <em>OpenFAST</em> repository</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="dependencies">
+<h2><span class="section-number">5.2.2. </span>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this heading"></a></h2>
+<p>The following packages are required for regression testing (see also the
+<code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file in the root directory for the python modules):</p>
+<ul class="simple">
+<li><p>CMake and CTest</p></li>
+<li><p>Python &gt;=3.7</p></li>
+<li><p>numpy</p></li>
+<li><p>vtk</p></li>
+<li><p>bokeh&gt;=2.4,!=3.0.0,!=3.0.1,!=3.0.2,!=3.0.3 (Optional)</p></li>
+</ul>
+<p>In addition to the above packages, two packages from the <em>OpenFAST</em> repository
+are required.  We recommend installing these in a <code class="docutils literal notranslate"><span class="pre">conda</span></code> enviroment as
+described in the above section so that it will not interfere with your system
+Python installation.  Using the <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span></code> command will install using
+the local directory instead placing them within the system Python directories.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pyOpenFAST</span></code> is a package for interfacing Python to the c-bindings libraries
+of <em>OpenFAST</em> modules.  This is used in some testing at the module level.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">openfast_io</span></code> is a package for reading and writing <em>OpenFAST</em> input files.
+This is used in some of the testing.</p></li>
+</ul>
+</div>
+<div class="section" id="executing-with-python-driver">
+<span id="python-driver"></span><h2><span class="section-number">5.2.3. </span>Executing with Python driver<a class="headerlink" href="#executing-with-python-driver" title="Permalink to this heading"></a></h2>
+<p>The regression test can be executed manually with the included driver at
+<code class="docutils literal notranslate"><span class="pre">openfast/reg_tests/manualRegressionTest.py</span></code>. This program reads a case list
+file at <code class="docutils literal notranslate"><span class="pre">openfast/reg_tests/r-test/glue-codes/openfast/CaseList.md</span></code>. Cases
+can be removed or ignored by starting that line with a <code class="docutils literal notranslate"><span class="pre">#</span></code>. The driver
+program includes multiple optional flags which can be obtained by
+executing with the help option:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;$ python manualRegressionTest.py -h</span>
+<span class="go">usage: manualRegressionTest.py [-h] [-p [Plotting-Flag]] [-n [No-Execution]]</span>
+<span class="go">                            [-v [Verbose-Flag]] [-case [Case-Name]] [-module [Module-Name]]</span>
+<span class="go">                            Executable-Name Relative-Tolerance Absolute-Tolerance</span>
+
+<span class="go">Executes OpenFAST or driver and a regression test for a single test case.</span>
+
+<span class="go">positional arguments:</span>
+<span class="go">Executable-Name       path to the executable</span>
+<span class="go">Relative-Tolerance    Relative tolerance to allow the solution to deviate; expressed as order of magnitudes less than baseline.</span>
+<span class="go">Absolute-Tolerance    Absolute tolerance to allow small values to pass; expressed as order of magnitudes less than baseline.</span>
+
+<span class="go">optional arguments:</span>
+<span class="go">-h, --help            show this help message and exit</span>
+<span class="go">-p [Plotting-Flag], -plot [Plotting-Flag]</span>
+<span class="go">                        bool to include plots in failed cases</span>
+<span class="go">-n [No-Execution], -no-exec [No-Execution]</span>
+<span class="go">                        bool to prevent execution of the test cases</span>
+<span class="go">-v [Verbose-Flag], -verbose [Verbose-Flag]</span>
+<span class="go">                        bool to include verbose system output</span>
+<span class="go">-case [Case-Name]     single case name to execute</span>
+<span class="go">-module [Module-Name], -mod [Module-Name]</span>
+<span class="go">                        name of module to execute</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For the Jonkman 5-MW (formerly called the NREL 5-MW) turbine test cases, an external ServoDyn controller must
+be compiled and included in the appropriate directory or all Jonkman 5-MW (formerly called the NREL 5-MW)
+cases will fail without starting. More information is available in the
+documentation for the <a class="reference external" href="https://github.com/openfast/r-test#note---servodyn-external-controllers-for-5mw_baseline-cases">r-test repository</a>,
+but be aware that these three DISCON controllers must exist</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openfast/build/reg_tests/glue-codes/openfast/5MW_Baseline/ServoData/DISCON.dll
+openfast/build/reg_tests/glue-codes/openfast/5MW_Baseline/ServoData/DISCON_ITIBarge.dll
+openfast/build/reg_tests/glue-codes/openfast/5MW_Baseline/ServoData/DISCON_OC3Hywind.dll
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="executing-with-ctest">
+<span id="ctest-driver"></span><h2><span class="section-number">5.2.4. </span>Executing with CTest<a class="headerlink" href="#executing-with-ctest" title="Permalink to this heading"></a></h2>
+<p>CTest is included with CMake and is primarily a set of preconfigured targets
+and commands. To use the CTest driver for the regression test, execute CMake as
+described in <a class="reference internal" href="../install/index.html#installation"><span class="std std-ref">Installing OpenFAST</span></a>, but with this additional flag:
+<code class="docutils literal notranslate"><span class="pre">-DBUILD_TESTING=ON</span></code>.</p>
+<p>The regression test specific CMake variables are</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BUILD_TESTING</span>
+<span class="n">CTEST_OPENFAST_EXECUTABLE</span>
+<span class="n">CTEST_</span><span class="p">[</span><span class="n">MODULE</span><span class="p">]</span><span class="n">_EXECUTABLE</span> <span class="n">where</span> <span class="p">[</span><span class="n">MODULE</span><span class="p">]</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">module</span> <span class="n">name</span>
+<span class="n">CTEST_PLOT_ERRORS</span>
+<span class="n">CTEST_REGRESSION_TOL</span>
+</pre></div>
+</div>
+<p>Some additional resources that are required for the full regression test suite
+are included in the CMake project. Specifically, external ServoDyn controllers
+must be compiled for a given system and placed in a particular location. Thus,
+be sure to execute the build command with the <code class="docutils literal notranslate"><span class="pre">install</span></code> target:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Configure CMake with testing enabled and accept the default</span>
+<span class="c1"># values for all other test-specific CMake variables</span>
+cmake<span class="w"> </span>..<span class="w"> </span>-DBUILD_TESTING<span class="o">=</span>ON
+
+<span class="c1"># Build and install</span>
+make<span class="w"> </span>install
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>REMINDER: For the 5MW turbine test cases, an external ServoDyn controller must
+be compiled and included in the appropriate directory or all 5MW
+cases will fail without starting. More information is available in the
+documentation for the <a class="reference external" href="https://github.com/openfast/r-test#note---servodyn-external-controllers-for-5mw_baseline-cases">r-test repository</a>,
+but be aware that these three DISCON controllers must exist</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openfast/build/reg_tests/glue-codes/openfast/5MW_Baseline/ServoData/DISCON.dll
+openfast/build/reg_tests/glue-codes/openfast/5MW_Baseline/ServoData/DISCON_ITIBarge.dll
+openfast/build/reg_tests/glue-codes/openfast/5MW_Baseline/ServoData/DISCON_OC3Hywind.dll
+</pre></div>
+</div>
+</div>
+<p>After CMake configuration and compiling, the automated regression test can be
+executed by running either of the commands <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">test</span></code> or <code class="docutils literal notranslate"><span class="pre">ctest</span></code> from the
+<code class="docutils literal notranslate"><span class="pre">build</span></code> directory. If the entire OpenFAST package is to be built, CMake will
+configure CTest to find the new binary at
+<code class="docutils literal notranslate"><span class="pre">openfast/build/glue-codes/openfast/openfast</span></code>. However, if the intention is
+to build only the test suite, the OpenFAST binary should be specified in the
+CMake configuration under the <code class="docutils literal notranslate"><span class="pre">CTEST_OPENFAST_EXECUTABLE</span></code> flag. There is
+also a corresponding <code class="docutils literal notranslate"><span class="pre">CTEST_[MODULE]_NAME</span></code> flag for each module included in
+the regression test.</p>
+<p>When driven by CTest, the regression test can be executed by running various
+forms of the command <code class="docutils literal notranslate"><span class="pre">ctest</span></code> from the build directory. The basic commands
+are:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the entire regression test</span>
+ctest
+
+<span class="c1"># Disable actual execution of tests;</span>
+<span class="c1"># this is helpful in formulating a particular ctest command</span>
+ctest<span class="w"> </span>-N
+
+<span class="c1"># Run the entire regression test with verbose output</span>
+ctest<span class="w"> </span>-V
+
+<span class="c1"># Run tests by name where TestName is a regular expression (regex)</span>
+ctest<span class="w"> </span>-R<span class="w"> </span><span class="o">[</span>TestName<span class="o">]</span>
+
+<span class="c1"># Run all tests with N tests executing in parallel</span>
+ctest<span class="w"> </span>-j<span class="w"> </span><span class="o">[</span>N<span class="o">]</span>
+</pre></div>
+</div>
+<p>Each regression test case contains a series of labels associating all of the
+modules used. The labeling can be seen in the test instantiation in
+<code class="docutils literal notranslate"><span class="pre">reg_tests/CTestList.cmake</span></code> or with the command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print all available test labels</span>
+ctest<span class="w"> </span>--print-labels
+</pre></div>
+</div>
+<p>The test cases corresponding to a particular label can be executed with this
+command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Filter the test cases corresponding to a particular label</span>
+ctest<span class="w"> </span>-L<span class="w"> </span><span class="o">[</span>Label<span class="o">]</span>
+</pre></div>
+</div>
+<p>Flags can be compounded making useful variations such as</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run all cases that use SubDyn with verbose output</span>
+ctest<span class="w"> </span>-V<span class="w"> </span>-L<span class="w"> </span>subdyn
+
+<span class="c1"># Run all cases that use SubDyn in 16 concurrent processes</span>
+ctest<span class="w"> </span>-j<span class="w"> </span><span class="m">16</span><span class="w"> </span>-L<span class="w"> </span>subdyn
+
+<span class="c1"># Run the case with name &quot;5MW_DLL_Potential_WTurb&quot; with verbose output</span>
+ctest<span class="w"> </span>-V<span class="w"> </span>-R<span class="w"> </span>5MW_DLL_Potential_WTurb
+
+<span class="c1"># List all tests with the &quot;beamdyn&quot; label</span>
+ctest<span class="w"> </span>-N<span class="w"> </span>-L<span class="w"> </span>beamdyn
+
+<span class="c1"># List the labels included in all tests matching the regex &quot;bd&quot;</span>
+ctest<span class="w"> </span>-N<span class="w"> </span>-R<span class="w"> </span>bd<span class="w"> </span>--print-labels
+</pre></div>
+</div>
+<p>The automated regression test writes new files only into the build directory.
+Specifically, all locally generated solutions are located in the corresponding
+glue-code or module within <code class="docutils literal notranslate"><span class="pre">openfast/build/reg_tests</span></code>. The baseline solutions
+contained in <code class="docutils literal notranslate"><span class="pre">openfast/reg_tests/r-test</span></code> are strictly read and are not
+modified by the automated process.</p>
+</div>
+<div class="section" id="regression-test-examples">
+<span id="regression-test-example"></span><h2><span class="section-number">5.2.5. </span>Regression test examples<a class="headerlink" href="#regression-test-examples" title="Permalink to this heading"></a></h2>
+<p>The following examples illustrate methods of running the regression tests
+on Unix-based systems. However, similar procedures can be used
+on Windows with CMake and CTest. An alternate method of running the
+regression tests on Windows is given in <a class="reference internal" href="#reg-test-windows"><span class="std std-ref">Detailed example of running on Windows</span></a>.</p>
+<div class="section" id="compile-openfast-and-execute-with-ctest">
+<h3><span class="section-number">5.2.5.1. </span>Compile OpenFAST and execute with CTest<a class="headerlink" href="#compile-openfast-and-execute-with-ctest" title="Permalink to this heading"></a></h3>
+<p>The following example assumes the user is starting completely from scratch.
+The commands below download the source code, configure the OpenFAST project
+with CMake, compile all executables, and execute the full regression test
+suite.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download the source code from GitHub</span>
+<span class="c1">#    Note: The default branch is &#39;main&#39;</span>
+git<span class="w"> </span>clone<span class="w"> </span>--recursive<span class="w"> </span>https://github.com/openfast/openfast.git
+<span class="nb">cd</span><span class="w"> </span>openfast
+
+<span class="c1"># If necessary, switch to another target branch and update r-test</span>
+git<span class="w"> </span>checkout<span class="w"> </span>dev
+git<span class="w"> </span>submodule<span class="w"> </span>update
+
+<span class="c1"># Create the build and install directories and move into build</span>
+mkdir<span class="w"> </span>build<span class="w"> </span>install<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build
+
+<span class="c1"># Configure CMake for testing</span>
+<span class="c1"># - BUILD_TESTING - turn ON</span>
+<span class="c1"># - CTEST_OPENFAST_EXECUTABLE - accept the default</span>
+<span class="c1"># - CTEST_[MODULE]_EXECUTABLE - accept the default</span>
+cmake<span class="w"> </span>..<span class="w"> </span>-DBUILD_TESTING<span class="o">=</span>ON
+
+<span class="c1"># Compile and install</span>
+make<span class="w"> </span>install
+
+<span class="c1"># Execute the full test suite with 4 concurrent processes</span>
+ctest<span class="w"> </span>-j4
+</pre></div>
+</div>
+</div>
+<div class="section" id="configure-with-cmake-and-a-given-executable">
+<h3><span class="section-number">5.2.5.2. </span>Configure with CMake and a given executable<a class="headerlink" href="#configure-with-cmake-and-a-given-executable" title="Permalink to this heading"></a></h3>
+<p>This example assumes the user has a fully functional OpenFAST executable
+available along with any necessary libraries, but does not have the source
+code repository downloaded. This might be the case when executables are
+distributed within an organization or downloaded from an
+<a class="reference external" href="https://github.com/openfast/openfast/releases">OpenFAST Release</a>.
+Here, nothing will be compiled, but the test suite will be configured
+with CMake for use with the CTest command.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download the source code from GitHub</span>
+<span class="c1">#    Note: The default branch is &#39;main&#39;</span>
+git<span class="w"> </span>clone<span class="w"> </span>--recursive<span class="w"> </span>https://github.com/openfast/openfast.git
+<span class="nb">cd</span><span class="w"> </span>openfast
+
+<span class="c1"># If necessary, switch to another target branch and update r-test</span>
+git<span class="w"> </span>checkout<span class="w"> </span>dev
+git<span class="w"> </span>submodule<span class="w"> </span>update
+
+<span class="c1"># Create the build directory and move into it</span>
+mkdir<span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build
+
+<span class="c1"># Configure CMake with openfast/reg_tests/CMakeLists.txt for testing</span>
+<span class="c1"># - BUILD_TESTING - turn ON</span>
+<span class="c1"># - CTEST_OPENFAST_EXECUTABLE - provide a path</span>
+<span class="c1"># - CTEST_[MODULE]_EXECUTABLE - provide a path</span>
+cmake<span class="w"> </span>../reg_tests<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-DBUILD_TESTING<span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-DCTEST_OPENFAST_EXECUTABLE<span class="o">=</span>/home/user/Desktop/openfast_executable<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-DCTEST_BEAMDYN_EXECUTABLE<span class="o">=</span>/home/user/Desktop/beamdyn_driver
+
+<span class="c1"># Install required files</span>
+make<span class="w"> </span>install
+
+<span class="c1"># Execute the full test suite with 4 concurrent processes</span>
+ctest<span class="w"> </span>-j4
+</pre></div>
+</div>
+</div>
+<div class="section" id="python-driver-with-a-given-executable">
+<span id="example-python-driver"></span><h3><span class="section-number">5.2.5.3. </span>Python driver with a given executable<a class="headerlink" href="#python-driver-with-a-given-executable" title="Permalink to this heading"></a></h3>
+<p>This example assumes the user has a fully functional OpenFAST executable
+available along with any necessary libraries, but does not have the source
+code repository downloaded. This might be the case when executables are
+distributed within an organization or downloaded from an
+<a class="reference external" href="https://github.com/openfast/openfast/releases">OpenFAST Release</a>.
+Nothing will be compiled, but the test suite will be executed with the
+included Python driver.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download the source code from GitHub</span>
+<span class="c1">#    Note: The default branch is &#39;main&#39;</span>
+git<span class="w"> </span>clone<span class="w"> </span>--recursive<span class="w"> </span>https://github.com/openfast/openfast.git
+<span class="nb">cd</span><span class="w"> </span>openfast
+
+<span class="c1"># If necessary, switch to another target branch and update r-test</span>
+git<span class="w"> </span>checkout<span class="w"> </span>dev
+git<span class="w"> </span>submodule<span class="w"> </span>update
+
+<span class="c1"># Execute the Python driver</span>
+<span class="nb">cd</span><span class="w"> </span>reg_tests
+python<span class="w"> </span>manualRegressionTest.py<span class="w"> </span>-h
+<span class="c1"># usage: manualRegressionTest.py [-h] [-p [Plotting-Flag]] [-n [No-Execution]]</span>
+<span class="c1">#                                [-v [Verbose-Flag]] [-case [Case-Name]] [-module [Module-Name]]</span>
+<span class="c1">#                                Executable-Name Relative-Tolerance Absolute-Tolerance</span>
+<span class="c1">#</span>
+<span class="c1"># Executes OpenFAST or driver and a regression test for a single test case.</span>
+<span class="c1">#</span>
+<span class="c1"># positional arguments:</span>
+<span class="c1"># Executable-Name       path to the executable</span>
+<span class="c1"># Relative-Tolerance    Relative tolerance to allow the solution to deviate; expressed as order of magnitudes less than baseline.</span>
+<span class="c1"># Absolute-Tolerance    Absolute tolerance to allow small values to pass; expressed as order of magnitudes less than baseline.</span>
+<span class="c1">#</span>
+<span class="c1"># optional arguments:</span>
+<span class="c1">#   -h, --help            show this help message and exit</span>
+<span class="c1">#   -p [Plotting-Flag], -plot [Plotting-Flag]</span>
+<span class="c1">#                         bool to include plots in failed cases</span>
+<span class="c1">#   -n [No-Execution], -no-exec [No-Execution]</span>
+<span class="c1">#                         bool to prevent execution of the test cases</span>
+<span class="c1">#   -v [Verbose-Flag], -verbose [Verbose-Flag]</span>
+<span class="c1">#                         bool to include verbose system output</span>
+<span class="c1">#   -case [Case-Name]     single case name to execute</span>
+<span class="c1">#   -module [Module-Name], -mod [Module-Name]</span>
+<span class="c1">#                         name of module to execute</span>
+
+python<span class="w"> </span>manualRegressionTest.py<span class="w"> </span>..<span class="se">\b</span>uild<span class="se">\b</span>in<span class="se">\o</span>penfast_x64_Double.exe<span class="w"> </span><span class="m">2</span>.0<span class="w"> </span><span class="m">1</span>.9
+</pre></div>
+</div>
+</div>
+<div class="section" id="detailed-example-of-running-on-windows">
+<span id="reg-test-windows"></span><h3><span class="section-number">5.2.5.4. </span>Detailed example of running on Windows<a class="headerlink" href="#detailed-example-of-running-on-windows" title="Permalink to this heading"></a></h3>
+<p>The <a class="reference internal" href="#example-python-driver"><span class="std std-ref">Python driver with a given executable</span></a> example can be used for running the
+regression tests on a Windows computer. However, a more detailed, step-by-step
+description is given in <a class="reference internal" href="regression_test_windows.html#regression-test-windows"><span class="std std-ref">Windows with Visual Studio regression test</span></a>.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+<div class="section" id="adding-test-cases">
+<span id="new-regression-test-case"></span><h2><span class="section-number">5.2.6. </span>Adding test cases<a class="headerlink" href="#adding-test-cases" title="Permalink to this heading"></a></h2>
+<p>In all modes of execution, the regression tests are ultimately driven by a
+series of Python scripts located in the <code class="docutils literal notranslate"><span class="pre">openfast/reg_tests</span></code> directory
+with the naming scheme <code class="docutils literal notranslate"><span class="pre">execute&lt;Module&gt;RegressionTest.py</span></code>.
+The first step to adding a new regression test case is to verify that
+a script exists for the target module. If it does not, an issue
+should be opened in <a class="reference external" href="https://github.com/openfast/openfast/issues">OpenFAST Issues</a>
+to coordinate with the NLR team on creating this script.</p>
+<p>The next step is to add the test case in the appropriate location in
+the <cite>r-test</cite> submodule. The directory structure in r-test mirrors the
+directory structure in OpenFAST, so module-level tests should be placed
+in their respective module directories and glue-code tests go in
+<code class="docutils literal notranslate"><span class="pre">r-test/glue-codes/openfast</span></code>. Note the naming scheme of files for
+existing tests and adapt the new test case files accordingly. Specifically,
+the main input file and output file names may be expected in a particular
+convention by the Python scripts. Also, consider that any relative paths
+within the input deck for the new test case must work within the r-test
+directory structure.</p>
+<p>Once the test directory exists, the test case must be registered with
+the appropriate drivers. For OpenFAST glue-code tests, this happens both in
+CMake and a standalone list of test cases. For CMake, edit the file
+<code class="docutils literal notranslate"><span class="pre">openfast/reg_tests/CTestList.cmake</span></code>. The additional test should be
+added in the section corresponding to the module or driver at the
+bottom of that file. For the Python driver, the new test case must
+be added to <code class="docutils literal notranslate"><span class="pre">openfast/reg_tests/r-test/glue-codes/openfast/CaseList.md</span></code>.
+At this point, the registration with CTest can be verified:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Move into the build directory</span>
+<span class="nb">cd</span><span class="w"> </span>openfast/build
+
+<span class="c1"># Run CMake to take the new changes to the test list</span>
+cmake<span class="w"> </span>..<span class="w"> </span>-DBUILD_TESTING<span class="o">=</span>ON<span class="w">  </span><span class="c1"># If the BUILD_TESTING flag was previously enabled, this can be left off</span>
+
+<span class="c1"># List the registered tests, but don&#39;t run them</span>
+ctest<span class="w"> </span>-N
+</pre></div>
+</div>
+<p>For module regression tests, the only option for execution is with the
+CMake driver, so follow the instructions above to edit <code class="docutils literal notranslate"><span class="pre">CTestList.cmake</span></code>.</p>
+<p>Finally, the new test cases in the r-test submodule must be added to the
+r-test repository. To do this, open a new issue in <a class="reference external" href="https://github.com/openfast/r-test/issues">r-test Issues</a>
+requesting for support from the NLR team to commit your test.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="unit_test.html" class="btn btn-neutral float-left" title="5.1. Unit tests" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="regression_test_windows.html" class="btn btn-neutral float-right" title="5.2.5.4.1. Windows with Visual Studio regression test" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

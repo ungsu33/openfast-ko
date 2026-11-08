@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.7.7. References &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.7.8. Appendix" href="appendix.html" />
+    <link rel="prev" title="4.7.6. Future Work" href="future_work.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/beamdyn/zrefs.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.7. BeamDyn</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">4.7.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="running_bd.html">4.7.2. Running BeamDyn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input_files.html">4.7.3. Input Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="output_files.html">4.7.4. Output Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory.html">4.7.5. BeamDyn Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="future_work.html">4.7.6. Future Work</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.7.7. References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.7.8. Appendix</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.7. </span>BeamDyn User Guide and Theory Manual</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.7.7. </span>References</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/beamdyn/zrefs.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="references">
+<h1><span class="section-number">4.7.7. </span>References<a class="headerlink" href="#references" title="Permalink to this heading"></a></h1>
+</div>
+<div class="docutils container" id="id1">
+<dl class="citation">
+<dt class="label" id="id19"><span class="brackets">BC80</span></dt>
+<dd><p>K. J. Bathe and A. P. Cimento. Some practical procedures for the solution of nonlinear finite element equations. <em>Computer Methods in Applied Mechanics and Engineering</em>, 22:59–85, 1980. <a class="reference external" href="http://web.mit.edu/kjb/www/Publications_Prior_to_1998/Some_Practical_Procedures_for_the_Solution_of_Nonlinear_Finite_Element_Equations.pdf">http://web.mit.edu/kjb/www/Publications_Prior_to_1998/Some_Practical_Procedures_for_the_Solution_of_Nonlinear_Finite_Element_Equations.pdf</a>. <a class="reference external" href="https://doi.org/10.1016/0045-7825(80)90051-1">doi:10.1016/0045-7825(80)90051-1</a>.</p>
+</dd>
+<dt class="label" id="id3"><span class="brackets">Bau10</span></dt>
+<dd><p>O. A. Bauchau. <em>Flexible Multibody Dynamics</em>. Springer, 2010. <a class="reference external" href="https://doi.org/10.1007/978-94-007-0335-3">doi:10.1007/978-94-007-0335-3</a>.</p>
+</dd>
+<dt class="label" id="id4"><span class="brackets">BEH08</span></dt>
+<dd><p>O.A. Bauchau, A. Epple, and S.D. Heo. Interpolation of finite rotations in flexible multibody dynamics simulations. <em>Proceedings of the Institution of Mechanical Engineers, Part K: Journal of Multi-body Dynamics</em>, 222:353–366, 2008.</p>
+</dd>
+<dt class="label" id="id20"><span class="brackets">CH93</span></dt>
+<dd><p>J. Chung and G. M. Hulbert. A time integration algorithm for structural dynamics with improved numerical dissipation: the generalized-α method. <em>Journal of Applied Mechanics</em>, 60:371–375, 1993. <a class="reference external" href="https://doi.org/10.1115/1.2900803">doi:10.1115/1.2900803</a>.</p>
+</dd>
+<dt class="label" id="id12"><span class="brackets">GSJ13</span></dt>
+<dd><p>A. Gasmi, M.A. Sprague, and J.M. Jonkman. Numerical stability and accuracy of temporally coupled multi physics modules in wind-turbine cae tools. In <em>Proceedings of the 51st AIAA Aerospace Sciences Meeting including the New Horizons Forum and Aerospace Exposition</em>. Grapevine, Texas, January 2013.</p>
+</dd>
+<dt class="label" id="id2"><span class="brackets">Hod06</span></dt>
+<dd><p>Dewey H. Hodges. <em>Nonlinear Composite Beam Theory</em>. AIAA, 2006.</p>
+</dd>
+<dt class="label" id="id5"><span class="brackets">JelenicC99</span></dt>
+<dd><p>G. Jelenić and M. A. Crisfield. Geometrically exact 3d beam theory: implementation of a strain-invariant finite element for statics and dynamics. <em>Computer Methods in Applied Mechanics and Engineering</em>, 171:141–171, 1999.</p>
+</dd>
+<dt class="label" id="id11"><span class="brackets">Jon13</span></dt>
+<dd><p>J.M. Jonkman. The new modularization framework for the fast wind turbine cae tool. In <em>Proceedings of the 51st AIAA Aerospace Sciences Meeting including the New Horizons Forum and Aerospace Exposition</em>. Grapevine, Texas, January 2013.</p>
+</dd>
+<dt class="label" id="id14"><span class="brackets">JJ13</span></dt>
+<dd><p>Jason Jonkman and Bonnie Jonkman. Fast v8. <a class="reference external" href="https://nwtc.nrel.gov/FAST8">https://nwtc.nrel.gov/FAST8</a>, October 2013. [Online; accessed 29-OCTOBER-2014].</p>
+</dd>
+<dt class="label" id="id15"><span class="brackets">Pat84</span></dt>
+<dd><p>A. T. Patera. A spectral element method for fluid dynamics: laminar flow in a channel expansion. <em>Journal of Computational Physics</em>, 54:468–488, 1984.</p>
+</dd>
+<dt class="label" id="id16"><span class="brackets">RP87</span></dt>
+<dd><p>E. M. Ronquist and A. T. Patera. A legendre spectral element method for the stefan problem. <em>International Journal for Numerical Methods in Engineering</em>, 24:2273–2299, 1987.</p>
+</dd>
+<dt class="label" id="id17"><span class="brackets">SG03</span></dt>
+<dd><p>M. A. Sprague and T. L. Geers. Spectral elements and field separation for an acoustic fluid subject to cavitation. <em>Journal of Computational Physics</em>, 184:149–162, 2003.</p>
+</dd>
+<dt class="label" id="id18"><span class="brackets">SG04</span></dt>
+<dd><p>M. A. Sprague and T. L. Geers. A spectral-element method for modeling cavitation in transient fluid-structure interaction. <em>International Journal for Numerical Methods in Engineering</em>, 60:2467–2499, 2004.</p>
+</dd>
+<dt class="label" id="id13"><span class="brackets">SJJ14</span></dt>
+<dd><p>M.A. Sprague, J.M. Jonkman, and B.J. Jonkman. Fast modular wind turbine cae tool: non matching spatial and temporal meshes. In <em>Proceedings of the 32nd ASME Wind Energy Symposium</em>. National Harbor, Maryland, January 2014.</p>
+</dd>
+<dt class="label" id="id9"><span class="brackets">WJSJ15</span></dt>
+<dd><p>Q. Wang, N. Johnson, M.A. Sprague, and J. Jonkman. Beamdyn: a high-fidelity wind turbine blade solver in the fast modular framework. In <em>Proceedings of the 33rd ASME Wind Energy Symposium</em>. Kissimmee, Florida, January 2015. https://www.nrel.gov/docs/fy15osti/63165.pdf.</p>
+</dd>
+<dt class="label" id="id7"><span class="brackets">WS13</span></dt>
+<dd><p>Q. Wang and M.A. Sprague. A legendre spectral finite element implementation of geometrically exact beam theory. In <em>Proceedings of the 54th Structures, Structural Dynamics, and Materials Conference</em>. Boston, Massachusetts, April 2013.</p>
+</dd>
+<dt class="label" id="id8"><span class="brackets">WSJJ14</span></dt>
+<dd><p>Q. Wang, M.A. Sprague, J. Jonkman, and N. Johnson. Nonlinear legendre spectral finite elements for wind turbine blade dynamics. In <em>Proceedings of the 32nd ASME Wind Energy Symposium</em>. National Harbor, Maryland, January 2014.</p>
+</dd>
+<dt class="label" id="id10"><span class="brackets">WSJJ16</span></dt>
+<dd><p>Q. Wang, M.A. Sprague, J. Jonkman, and B. Jonkman. Partitioned nonlinear structural analysis of wind turbines using beamdyn. In <em>Proceedings of the 34th ASME Wind Energy Symposium</em>. San Diego, California, January 2016.</p>
+</dd>
+<dt class="label" id="id6"><span class="brackets">WYS13</span></dt>
+<dd><p>Q. Wang, W. Yu, and M.A. Sprague. Gemoetrically nonlinear analysis of composite beams using wiener-milenković parameters. In <em>Proceedings of the 54th Structures, Structural Dynamics, and Materials Conference</em>. Boston, Massachusetts, April 2013.</p>
+</dd>
+</dl>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="future_work.html" class="btn btn-neutral float-left" title="4.7.6. Future Work" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="appendix.html" class="btn btn-neutral float-right" title="4.7.8. Appendix" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

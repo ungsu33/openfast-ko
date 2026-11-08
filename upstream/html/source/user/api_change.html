@@ -1,0 +1,3362 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.1.2. API changes between versions &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="4.1.3. Input file formats" href="input_file_overview.html" />
+    <link rel="prev" title="4.1.1. FAST v8 and the transition to OpenFAST" href="fast_to_openfast.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/api_change.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="general.html">4.1. General considerations</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="fast_to_openfast.html">4.1.1. FAST v8 and the transition to OpenFAST</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.1.2. API changes between versions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#openfast-v4-2-x-to-openfast-v5-0-0">4.1.2.1. OpenFAST v4.2.x to OpenFAST  v5.0.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#openfast-v4-2-0-to-openfast-v4-2-1">4.1.2.2. OpenFAST v4.2.0 to OpenFAST v4.2.1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#openfast-v4-1-x-to-openfast-v4-2-0">4.1.2.3. OpenFAST v4.1.x to OpenFAST v4.2.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#openfast-v4-1-1-to-openfast-v4-1-2">4.1.2.4. OpenFAST v4.1.1 to OpenFAST v4.1.2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#openfast-v4-1-0-to-openfast-v4-1-1">4.1.2.5. OpenFAST v4.1.0 to OpenFAST v4.1.1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#openfast-v4-0-5-to-openfast-v4-1-0">4.1.2.6. OpenFAST v4.0.5 to OpenFAST v4.1.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#openfast-v4-0-4-to-openfast-v4-0-5">4.1.2.7. OpenFAST v4.0.4 to OpenFAST v4.0.5</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#openfast-v4-0-3-to-openfast-v4-0-4">4.1.2.8. OpenFAST v4.0.3 to OpenFAST v4.0.4</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#openfast-v4-0-2-to-openfast-v4-0-3">4.1.2.9. OpenFAST v4.0.2 to OpenFAST v4.0.3</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#openfast-v4-0-1-to-openfast-v4-0-2">4.1.2.10. OpenFAST v4.0.1 to OpenFAST v4.0.2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#openfast-v4-0-0-to-openfast-v4-0-1">4.1.2.11. OpenFAST v4.0.0 to OpenFAST v4.0.1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#openfast-v3-5-5-to-openfast-4-0-0">4.1.2.12. OpenFAST v3.5.5 to OpenFAST 4.0.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#aerodyn-changes-starting-from-v4-x">4.1.2.13. AeroDyn changes starting from v4.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#openfast-v3-5-4-to-openfast-v3-5-5">4.1.2.14. OpenFAST v3.5.4 to OpenFAST v3.5.5</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#openfast-v3-5-3-to-openfast-v3-5-4">4.1.2.15. OpenFAST v3.5.3 to OpenFAST v3.5.4</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#openfast-v3-5-2-to-openfast-v3-5-3">4.1.2.16. OpenFAST v3.5.2 to OpenFAST v3.5.3</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#openfast-v3-5-1-to-openfast-v3-5-2">4.1.2.17. OpenFAST v3.5.1 to OpenFAST v3.5.2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#openfast-v3-5-0-to-openfast-v3-5-1">4.1.2.18. OpenFAST v3.5.0 to OpenFAST v3.5.1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#openfast-v3-4-0-to-openfast-v3-5-0">4.1.2.19. OpenFAST v3.4.0 to OpenFAST v3.5.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#openfast-v3-4-0-to-openfast-v3-4-1">4.1.2.20. OpenFAST v3.4.0 to OpenFAST v3.4.1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#openfast-v3-4-0-to-openfast-dev">4.1.2.21. OpenFAST v3.4.0 to OpenFAST dev</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#openfast-v3-3-0-to-openfast-v3-4-0">4.1.2.22. OpenFAST v3.3.0 to OpenFAST v3.4.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#openfast-v3-2-0-to-openfast-v3-3-0">4.1.2.23. OpenFAST v3.2.0 to OpenFAST v3.3.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#openfast-v3-1-0-to-openfast-v3-2-0">4.1.2.24. OpenFAST v3.1.0 to OpenFAST v3.2.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#openfast-v3-0-0-to-openfast-v3-1-0">4.1.2.25. OpenFAST v3.0.0 to OpenFAST v3.1.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#openfast-v2-6-0-to-openfast-v3-0-0">4.1.2.26. OpenFAST v2.6.0 to OpenFAST v3.0.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#openfast-v2-5-0-to-openfast-v2-6-0">4.1.2.27. OpenFAST v2.5.0 to OpenFAST v2.6.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#openfast-v2-4-0-to-openfast-v2-5-0">4.1.2.28. OpenFAST v2.4.0 to OpenFAST v2.5.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#openfast-v2-3-0-to-openfast-v2-4-0">4.1.2.29. OpenFAST v2.3.0 to OpenFAST v2.4.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#openfast-v2-2-0-to-openfast-v2-3-0">4.1.2.30. OpenFAST v2.2.0 to OpenFAST v2.3.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#openfast-v2-1-0-to-openfast-v2-2-0">4.1.2.31. OpenFAST v2.1.0 to OpenFAST v2.2.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#openfast-v2-0-0-to-openfast-v2-1-0">4.1.2.32. OpenFAST v2.0.0 to OpenFAST v2.1.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#openfast-v1-0-0-to-openfast-v2-0-0">4.1.2.33. OpenFAST v1.0.0 to OpenFAST v2.0.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fast-v8-16-to-openfast-v1-0-0">4.1.2.34. FAST v8.16 to OpenFAST v1.0.0</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="input_file_overview.html">4.1.3. Input file formats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="general.html#modularization-framework">4.1.4. Modularization Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="general.html#glue-code-and-mesh-mapping">4.1.5. Glue Code and Mesh Mapping</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="general.html"><span class="section-number">4.1. </span>General</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.1.2. </span>API changes between versions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/source/user/api_change.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="api-changes-between-versions">
+<span id="api-change"></span><h1><span class="section-number">4.1.2. </span>API changes between versions<a class="headerlink" href="#api-changes-between-versions" title="Permalink to this heading"></a></h1>
+<p>This page lists the main changes in the OpenFAST API (input files) between different versions.</p>
+<p>The changes are tabulated according to the module input file, line number, and flag name.
+The line number corresponds to the resulting line number after all changes are implemented.
+Thus, be sure to implement each in order so that subsequent line numbers are correct.</p>
+<div class="section" id="openfast-v4-2-x-to-openfast-v5-0-0">
+<h2><span class="section-number">4.1.2.1. </span>OpenFAST v4.2.x to OpenFAST  v5.0.0<a class="headerlink" href="#openfast-v4-2-x-to-openfast-v5-0-0" title="Permalink to this heading"></a></h2>
+<p>Added mass and fluid inertia loads were added to the rotor blades and tower in AeroDyn.
+This results in new columns in the AeroDyn blade input file and new columns in the
+“Tower Influence and Aerodynamics” section of the AeroDyn primary input file. Given the
+addition of these loads, the Buoyancy flag was also removed, and the buoyancy, added mass,
+and inertia loads can all be turned off by setting the appropriate coefficients to zero
+rather than via a separate flag for each.</p>
+<p>Superposition of wave and current velocities between InflowWind and SeaState was enabled,
+which requires a “SeaState Data” section in the AeroDyn driver input file.</p>
+<p>Changes to the OpenFAST input file support multiple rotors in one turbine. Line 16, NRotors,
+is required to specify the number of rotors in the turbine. Lines 50-56 specify the
+ElastoDyn, BeamDyn, and ServoDyn input files for the second rotor; all other modules use
+the input files specified in the first section. The <cite>MirrorRotor</cite> line sets a flag to
+reverse the direction the rotor is spinning. The first rotor always spins in the typical direction.
+These lines are specified only if NRotors is greater than 1 and are repeated for subsequent rotors.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 3%" />
+<col style="width: 7%" />
+<col style="width: 73%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p>Added in OpenFAST <cite>5.0.0</cite></p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Module</p></th>
+<th class="head"><p>Line</p></th>
+<th class="head"><p>Flag Name</p></th>
+<th class="head"><p>Example Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>OpenFAST</p></td>
+<td><p>8</p></td>
+<td><p>ModCoupling</p></td>
+<td><p>3    ModCoupling  - Module coupling method (switch) {1=loose; 2=tight with fixed Jacobian updates (DT_UJac); 3=tight with automatic Jacobian updates}</p></td>
+</tr>
+<tr class="row-even"><td><p>OpenFAST</p></td>
+<td><p>11</p></td>
+<td><p>RhoInf</p></td>
+<td><p>1.0  RhoInf       - Numerical damping parameter for tight coupling generalized-alpha integrator (-) [0.0 to 1.0]</p></td>
+</tr>
+<tr class="row-odd"><td><p>OpenFAST</p></td>
+<td><p>12</p></td>
+<td><p>ConvTol</p></td>
+<td><p>1e-4 ConvTol      - Convergence iteration error tolerance for tight coupling generalized alpha integrator (-)</p></td>
+</tr>
+<tr class="row-even"><td><p>OpenFAST</p></td>
+<td><p>13</p></td>
+<td><p>MaxConvIter</p></td>
+<td><p>6    MaxConvIter  - Maximum number of convergence iterations for tight coupling generalized alpha integrator (-)</p></td>
+</tr>
+<tr class="row-odd"><td><p>OpenFAST</p></td>
+<td><p>17</p></td>
+<td><p>NRotors</p></td>
+<td><p>2   NRotors      - Number of rotors in turbine (-)</p></td>
+</tr>
+<tr class="row-even"><td><p>OpenFAST</p></td>
+<td><p>20</p></td>
+<td><p>CompSoil</p></td>
+<td><p>0   CompSoil     - Compute soil-structural dynamics (switch) {0=None; 1=SoilDyn}</p></td>
+</tr>
+<tr class="row-odd"><td><p>OpenFAST</p></td>
+<td><p>29</p></td>
+<td><p>MirrorRotor</p></td>
+<td><p>F   MirrorRotor  - Flag to reverse rotor rotation direction [1 to NRotors] {F=Normal, T=Mirror}</p></td>
+</tr>
+<tr class="row-even"><td><p>OpenFAST</p></td>
+<td><p>53</p></td>
+<td><p>SoilFile</p></td>
+<td><p>“SoilDyn.dat”     SoilFile        - Name of the file containing the SoilDyn input parameters (quoted string)</p></td>
+</tr>
+<tr class="row-odd"><td><p>OpenFAST</p></td>
+<td><p>54</p></td>
+<td></td>
+<td><p>———————- INPUT FILES Rotor 2 ————————————-</p></td>
+</tr>
+<tr class="row-even"><td><p>OpenFAST</p></td>
+<td><p>55</p></td>
+<td><p>EDFile</p></td>
+<td><p>“ElastoDyn.dat”   EDFile          - Name of file containing ElastoDyn input parameters (quoted string)</p></td>
+</tr>
+<tr class="row-odd"><td><p>OpenFAST</p></td>
+<td><p>56</p></td>
+<td><p>BDBldFile(1)</p></td>
+<td><p>“BeamDyn.dat”     BDBldFile(1)    - Name of file containing BeamDyn input parameters for blade 1 (quoted string)</p></td>
+</tr>
+<tr class="row-even"><td><p>OpenFAST</p></td>
+<td><p>57</p></td>
+<td><p>BDBldFile(2)</p></td>
+<td><p>“BeamDyn.dat”     BDBldFile(2)    - Name of file containing BeamDyn input parameters for blade 2 (quoted string)</p></td>
+</tr>
+<tr class="row-odd"><td><p>OpenFAST</p></td>
+<td><p>58</p></td>
+<td><p>BDBldFile(3)</p></td>
+<td><p>“BeamDyn.dat”     BDBldFile(3)    - Name of file containing BeamDyn input parameters for blade 3 (quoted string)</p></td>
+</tr>
+<tr class="row-even"><td><p>OpenFAST</p></td>
+<td><p>59</p></td>
+<td><p>ServoFile</p></td>
+<td><p>“ServoDyn_R2.dat” ServoFile       - Name of file containing control and electrical-drive input parameters (quoted string)</p></td>
+</tr>
+<tr class="row-odd"><td><p>AeroDyn blade file</p></td>
+<td></td>
+<td><p>t_c</p></td>
+<td><p>0.8651      [additional column in <em>Blade Properties</em> table]</p></td>
+</tr>
+<tr class="row-even"><td><p>AeroDyn blade file</p></td>
+<td></td>
+<td><p>BlCpn</p></td>
+<td><p>1.0         [additional column in <em>Blade Properties</em> table]</p></td>
+</tr>
+<tr class="row-odd"><td><p>AeroDyn blade file</p></td>
+<td></td>
+<td><p>BlCpt</p></td>
+<td><p>1.0         [additional column in <em>Blade Properties</em> table]</p></td>
+</tr>
+<tr class="row-even"><td><p>AeroDyn blade file</p></td>
+<td></td>
+<td><p>BlCan</p></td>
+<td><p>6.8459E+00  [additional column in <em>Blade Properties</em> table]</p></td>
+</tr>
+<tr class="row-odd"><td><p>AeroDyn blade file</p></td>
+<td></td>
+<td><p>BlCat</p></td>
+<td><p>5.4605E-01  [additional column in <em>Blade Properties</em> table]</p></td>
+</tr>
+<tr class="row-even"><td><p>AeroDyn blade file</p></td>
+<td></td>
+<td><p>BlCam</p></td>
+<td><p>5.5180E-02  [additional column in <em>Blade Properties</em> table]</p></td>
+</tr>
+<tr class="row-odd"><td><p>AeroDyn driver</p></td>
+<td><p>23</p></td>
+<td></td>
+<td><p>—– SeaState Data [used only when MHK = 1 or 2] —————————————</p></td>
+</tr>
+<tr class="row-even"><td><p>AeroDyn driver</p></td>
+<td><p>24</p></td>
+<td><p>CompSeaSt</p></td>
+<td><p>1     CompSeaSt     - Compute wave velocities (switch) {0=No Waves; 1=SeaState}</p></td>
+</tr>
+<tr class="row-odd"><td><p>AeroDyn driver</p></td>
+<td><p>25</p></td>
+<td><p>SeaStFile</p></td>
+<td><p>“MHK_RM1_Fixed_SeaState.dat”     SeaStFile     - Name of the SeaState input file [used only when CompSeaSt=1]</p></td>
+</tr>
+<tr class="row-even"><td><p>AeroDyn</p></td>
+<td><p>*</p></td>
+<td><p>TwrCp</p></td>
+<td><p>1.0         [additional column in <em>Tower Influence and Aerodynamics</em> table]</p></td>
+</tr>
+<tr class="row-odd"><td><p>AeroDyn</p></td>
+<td><p>*</p></td>
+<td><p>TwrCa</p></td>
+<td><p>1.0         [additional column in <em>Tower Influence and Aerodynamics</em> table]</p></td>
+</tr>
+<tr class="row-even"><td><p>SeaState</p></td>
+<td><p>18</p></td>
+<td><p>WvCrntMod</p></td>
+<td><p>0     WvCrntMod     - Combined wave-current modeling option {0: simple superposition, 1: include Doppler effect, 2: include both Doppler effect and wave amplitude/spectrum scaling} (switch)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ElastoDyn</p></td>
+<td><p>11</p></td>
+<td><p>PitchDOF</p></td>
+<td><p>False         PitchDOF    - Blade pitch DOF (flag)</p></td>
+</tr>
+<tr class="row-even"><td><p>ElastoDyn</p></td>
+<td><p>70</p></td>
+<td><p>PtfmRefxt</p></td>
+<td><p>0             PtfmRefxt   - Downwind distance from the ground level [onshore], MSL [offshore wind or floating MHK], or seabed [fixed MHK] to the platform reference point (meters)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ElastoDyn</p></td>
+<td><p>71</p></td>
+<td><p>PtfmRefyt</p></td>
+<td><p>0             PtfmRefyt   - Lateral distance from the ground level [onshore], MSL [offshore wind or floating MHK], or seabed [fixed MHK] to the platform reference point (meters)</p></td>
+</tr>
+<tr class="row-even"><td><p>ElastoDyn</p></td>
+<td><p>77</p></td>
+<td><p>PBrIner(1)</p></td>
+<td><p>200           PBrIner(1)  - Pitch bearing/actuator inertia, blade 1 (kg m^2)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ElastoDyn</p></td>
+<td><p>78</p></td>
+<td><p>PBrIner(2)</p></td>
+<td><p>200           PBrIner(2)  - Pitch bearing/actuator inertia, blade 2 (kg m^2)</p></td>
+</tr>
+<tr class="row-even"><td><p>ElastoDyn</p></td>
+<td><p>79</p></td>
+<td><p>PBrIner(3)</p></td>
+<td><p>200           PBrIner(3)  - Pitch bearing/actuator inertia, blade 3 (kg m^2) [unused for 2 blades]</p></td>
+</tr>
+<tr class="row-odd"><td><p>ElastoDyn</p></td>
+<td><p>80</p></td>
+<td><p>BlPIner(1)</p></td>
+<td><p>28578         BlPIner(1)  - Pitch inertia of an undeflected blade, blade 1 (kg m^2)</p></td>
+</tr>
+<tr class="row-even"><td><p>ElastoDyn</p></td>
+<td><p>81</p></td>
+<td><p>BlPIner(2)</p></td>
+<td><p>28578         BlPIner(2)  - Pitch inertia of an undeflected blade, blade 2 (kg m^2)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ElastoDyn</p></td>
+<td><p>82</p></td>
+<td><p>BlPIner(3)</p></td>
+<td><p>28578         BlPIner(3)  - Pitch inertia of an undeflected blade, blade 3 (kg m^2) [unused for 2 blades]</p></td>
+</tr>
+<tr class="row-even"><td><p>BeamDyn blade file</p></td>
+<td><p>10</p></td>
+<td></td>
+<td><p>—— Modal Damping [used only if damp_type=2] ——————————–</p></td>
+</tr>
+<tr class="row-odd"><td><p>BeamDyn blade file</p></td>
+<td><p>11</p></td>
+<td><p>n_modes</p></td>
+<td><p>3             n_modes     - Number of modal damping coefficients (-)</p></td>
+</tr>
+<tr class="row-even"><td><p>BeamDyn blade file</p></td>
+<td><p>12</p></td>
+<td><p>zeta</p></td>
+<td><p>0.1, 0.2, 0.3 zeta        - Damping coefficients for mode 1 through n_modes</p></td>
+</tr>
+<tr class="row-odd"><td><p>ServoDyn</p></td>
+<td><p>9</p></td>
+<td><p>PitNeut(1)</p></td>
+<td><p>0             PitNeut(1)  - Blade 1 neutral pitch position–pitch spring moment is zero at this position <em>[unused when</em> <strong>PCMode&gt;0</strong> and <strong>t&gt;=TPCOn</strong> <em>]</em></p></td>
+</tr>
+<tr class="row-even"><td><p>ServoDyn</p></td>
+<td><p>10</p></td>
+<td><p>PitNeut(2)</p></td>
+<td><p>0             PitNeut(2)  - Blade 2 neutral pitch position–pitch spring moment is zero at this position <em>[unused when</em> <strong>PCMode&gt;0</strong> and <strong>t&gt;=TPCOn</strong> <em>]</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>ServoDyn</p></td>
+<td><p>11</p></td>
+<td><p>PitNeut(3)</p></td>
+<td><p>0             PitNeut(3)  - Blade 3 neutral pitch position–pitch spring moment is zero at this position <em>[unused when</em> <strong>PCMode&gt;0</strong> and <strong>t&gt;=TPCOn</strong> <em>]</em> <em>[unused for 2 blades]</em></p></td>
+</tr>
+<tr class="row-even"><td><p>ServoDyn</p></td>
+<td><p>12</p></td>
+<td><p>PitSpr(1)</p></td>
+<td><p>3.6E7         PitSpr(1)   - Blade 1 pitch spring constant</p></td>
+</tr>
+<tr class="row-odd"><td><p>ServoDyn</p></td>
+<td><p>13</p></td>
+<td><p>PitSpr(2)</p></td>
+<td><p>3.6E7         PitSpr(2)   - Blade 2 pitch spring constant</p></td>
+</tr>
+<tr class="row-even"><td><p>ServoDyn</p></td>
+<td><p>14</p></td>
+<td><p>PitSpr(3)</p></td>
+<td><p>3.6E7         PitSpr(3)   - Blade 3 pitch spring constant <em>[unused for 2 blades]</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>ServoDyn</p></td>
+<td><p>15</p></td>
+<td><p>PitDamp(1)</p></td>
+<td><p>1.4E6         PitDamp(1)  - Blade 1 pitch damping constant</p></td>
+</tr>
+<tr class="row-even"><td><p>ServoDyn</p></td>
+<td><p>16</p></td>
+<td><p>PitDamp(2)</p></td>
+<td><p>1.4E6         PitDamp(2)  - Blade 2 pitch damping constant</p></td>
+</tr>
+<tr class="row-odd"><td><p>ServoDyn</p></td>
+<td><p>17</p></td>
+<td><p>PitDamp(3)</p></td>
+<td><p>1.4E6         PitDamp(3)  - Blade 3 pitch damping constant <em>[unused for 2 blades]</em></p></td>
+</tr>
+<tr class="row-even"><td><p>HydroDyn</p></td>
+<td><p>*</p></td>
+<td><p>HstMod</p></td>
+<td><p>1             HstMod      - Method of computing hydrostatic loads. (0: Up to the still water level. 1: Up to the instantaneous free surface) <em>[overwrite to 0 when WaveStMod = 0 in SeaState]</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>FAST.Farm</p></td>
+<td><p>35</p></td>
+<td></td>
+<td><p>— AMBIENT WIND: AMReX MODULE — [used only for Mod_AmbWind=4]</p></td>
+</tr>
+<tr class="row-even"><td><p>FAST.Farm</p></td>
+<td><p>36</p></td>
+<td><p>WindDirPrefix</p></td>
+<td><p>“inflow/ffboxes”   WindDirPrefix - Directory prefix of AMReX wind sub-volumes {0=low-res, 1+=high-res} (quoted string)</p></td>
+</tr>
+<tr class="row-odd"><td><p>FAST.Farm</p></td>
+<td><p>37</p></td>
+<td><p>DirStartIndex</p></td>
+<td><p>00110              DirStartIndex - AMReX sub-volume directory suffix to consider as time=0 (quoted string)</p></td>
+</tr>
+<tr class="row-even"><td><p>FAST.Farm</p></td>
+<td><p>38</p></td>
+<td><p>DT_Low-AMReX</p></td>
+<td><p>2.0                DT_Low-AMReX  - Time step for low-resolution wind data interpolation; will be used as the global FAST.Farm time step (s) [&gt;0.0]</p></td>
+</tr>
+<tr class="row-odd"><td><p>FAST.Farm</p></td>
+<td><p>39</p></td>
+<td><p>DT_High-AMReX</p></td>
+<td><p>1.0                DT_High-AMReX - Time step for high-resolution wind data interpolation (s) [&gt;0.0]</p></td>
+</tr>
+<tr class="row-even"><td><p>FAST.Farm</p></td>
+<td><p>50</p></td>
+<td><p>NumDFull</p></td>
+<td><p>DEFAULT            NumDFull      - Distance of full wake propagation, expressed as a multiple of RotorDiamRef [&gt;0.0] or DEFAULT [DEFAULT=15]</p></td>
+</tr>
+<tr class="row-odd"><td><p>FAST.Farm</p></td>
+<td><p>51</p></td>
+<td><p>NumDBuff</p></td>
+<td><p>DEFAULT            NumDBuff      - Length of wake propagation buffer region, expressed as a multiple of RotorDiamRef [&gt;=0.0] or DEFAULT [DEFAULT=5]</p></td>
+</tr>
+<tr class="row-even"><td><p>SoilDyn</p></td>
+<td><p>all</p></td>
+<td></td>
+<td><p>New module</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 3%" />
+<col style="width: 7%" />
+<col style="width: 73%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p>Modified in OpenFAST <cite>5.0.0</cite></p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Module</p></th>
+<th class="head"><p>Line</p></th>
+<th class="head"><p>Flag Name</p></th>
+<th class="head"><p>Example Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>AeroDyn blade file</p></td>
+<td><p>5</p></td>
+<td></td>
+<td><p>BlSpn      BlCrvAC    BlSwpAC    BlCrvAng    BlTwist    BlChord    BlAFID    t_c      BlCb     BlCenBn     BlCenBt    BlCpn    BlCpt    BlCan    BlCat    BlCam</p></td>
+</tr>
+<tr class="row-even"><td><p>AeroDyn blade file</p></td>
+<td><p>6</p></td>
+<td></td>
+<td><ol class="loweralpha simple" start="13">
+<li><ol class="loweralpha simple" start="13">
+<li><ol class="loweralpha simple" start="13">
+<li><p>(deg)       (deg)      (m)        (-)       (-)      (-)      (m)         (m)        (-)      (-)      (-)      (-)      (-)</p></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</td>
+</tr>
+<tr class="row-odd"><td><p>AeroDyn</p></td>
+<td><p>*</p></td>
+<td></td>
+<td><p>======  Hub Properties ============================================================================== [used only when MHK=1 or 2]</p></td>
+</tr>
+<tr class="row-even"><td><p>AeroDyn</p></td>
+<td><p>*</p></td>
+<td></td>
+<td><p>======  Nacelle Properties ========================================================================== [used only when MHK=1 or 2 or when NacelleDrag=True]</p></td>
+</tr>
+<tr class="row-odd"><td><p>AeroDyn</p></td>
+<td><p>*</p></td>
+<td></td>
+<td><p>======  Tower Influence and Aerodynamics ============================================================ [used only when TwrPotent/=0, TwrShadow/=0, TwrAero=True, or MHK=1 or 2]</p></td>
+</tr>
+<tr class="row-even"><td><p>AeroDyn</p></td>
+<td><p>*</p></td>
+<td><p>NumTwrNds</p></td>
+<td><p>5     NumTwrNds     - Number of tower nodes used in the analysis  (-) [used only when TwrPotent/=0, TwrShadow/=0, TwrAero=True, or MHK=1 or 2]</p></td>
+</tr>
+<tr class="row-odd"><td><p>AeroDyn</p></td>
+<td><p>*</p></td>
+<td></td>
+<td><p>TwrElev        TwrDiam        TwrCd          TwrTI          TwrCb          TwrCp          TwrCa !TwrTI used only with TwrShadow=2, TwrCb/TwrCp/TwrCa used only with MHK=1 or 2</p></td>
+</tr>
+<tr class="row-even"><td><p>AeroDyn</p></td>
+<td><p>*</p></td>
+<td></td>
+<td><ol class="loweralpha simple" start="13">
+<li><ol class="loweralpha simple" start="13">
+<li><p>(-)            (-)            (-)            (-)            (-)</p></li>
+</ol>
+</li>
+</ol>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 3%" />
+<col style="width: 7%" />
+<col style="width: 73%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p>Removed in OpenFAST <cite>5.0.0</cite></p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Module</p></th>
+<th class="head"><p>Line</p></th>
+<th class="head"><p>Flag Name</p></th>
+<th class="head"><p>Example Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>AeroDyn</p></td>
+<td><p>11</p></td>
+<td><p>Buoyancy</p></td>
+<td><p>False         Buoyancy           - Include buoyancy effects? (flag)</p></td>
+</tr>
+<tr class="row-even"><td><p>BeamDyn</p></td>
+<td><p>*</p></td>
+<td></td>
+<td><p>———————- PITCH ACTUATOR PARAMETERS ——————————-</p></td>
+</tr>
+<tr class="row-odd"><td><p>BeamDyn</p></td>
+<td><p>*</p></td>
+<td><p>UsePitchAct</p></td>
+<td><p>False         UsePitchAct - Whether a pitch actuator should be used (flag)</p></td>
+</tr>
+<tr class="row-even"><td><p>BeamDyn</p></td>
+<td><p>*</p></td>
+<td><p>PitchJ</p></td>
+<td><p>200           PitchJ      - Pitch actuator inertia (kg-m^2) [used only when UsePitchAct is true]</p></td>
+</tr>
+<tr class="row-odd"><td><p>BeamDyn</p></td>
+<td><p>*</p></td>
+<td><p>PitchK</p></td>
+<td><p>20000000      PitchK      - Pitch actuator stiffness (kg-m^2/s^2) [used only when UsePitchAct is true]</p></td>
+</tr>
+<tr class="row-even"><td><p>BeamDyn</p></td>
+<td><p>*</p></td>
+<td><p>PitchC</p></td>
+<td><p>500000        PitchC      - Pitch actuator damping (kg-m^2/s) [used only when UsePitchAct is true]</p></td>
+</tr>
+<tr class="row-odd"><td><p>ElastoDyn Blade Input File</p></td>
+<td><p>*</p></td>
+<td></td>
+<td><p>The PitchAxis column has been removed from the DISTRIBUTED BLADE PROPERTIES table. The table should now only have 5 columns: BlFract, StrcTwst, BMassDen, FlpStff, and EdgStff</p></td>
+</tr>
+<tr class="row-even"><td><p>FAST.Farm</p></td>
+<td><p>50</p></td>
+<td><p>NumPlanes</p></td>
+<td><p>140           NumPlanes   - Number of wake planes (-) [&gt;=2]</p></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="new-modules-in-v5-0-0">
+<h3><span class="section-number">4.1.2.1.1. </span>New Modules in v5.0.0<a class="headerlink" href="#new-modules-in-v5-0-0" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>SoilDyn – a soil interaction module specifically designed to work with the RedWin DLL from NGI for soil interaction. Documentation for this module is limited.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="openfast-v4-2-0-to-openfast-v4-2-1">
+<h2><span class="section-number">4.1.2.2. </span>OpenFAST v4.2.0 to OpenFAST v4.2.1<a class="headerlink" href="#openfast-v4-2-0-to-openfast-v4-2-1" title="Permalink to this heading"></a></h2>
+<p>No input file changes were made.</p>
+</div>
+<div class="section" id="openfast-v4-1-x-to-openfast-v4-2-0">
+<h2><span class="section-number">4.1.2.3. </span>OpenFAST v4.1.x to OpenFAST v4.2.0<a class="headerlink" href="#openfast-v4-1-x-to-openfast-v4-2-0" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 1%" />
+<col style="width: 4%" />
+<col style="width: 16%" />
+<col style="width: 68%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="5"><p>Modified in OpenFAST <cite>v4.2.0</cite></p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Module</p></th>
+<th class="head"><p>Line</p></th>
+<th class="head"><p>Flag Name</p></th>
+<th class="head"><p>Change</p></th>
+<th class="head"><p>Example Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>FAST.Farm.fstf</p></td>
+<td><p>72</p></td>
+<td><p>WAT_ScaleBox</p></td>
+<td><p>default changed from <cite>false</cite> to <cite>true</cite></p></td>
+<td><p>default            WAT_ScaleBox       - Flag to scale the input turbulence box to zero mean and unit standard deviation at every node [DEFAULT=True] (flag)</p></td>
+</tr>
+<tr class="row-even"><td><p>HydroDyn</p></td>
+<td><p>na</p></td>
+<td><p>Members section</p></td>
+<td><p>Added optional <cite>FDMod</cite> <cite>VnCOffA</cite> <cite>VnCOffB</cite> <cite>FDLoFScA</cite> <cite>FDLoFScB</cite></p></td>
+<td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--------------------</span> <span class="n">MEMBERS</span> <span class="o">-------------------------------------------------</span>
+   <span class="mi">2</span>            <span class="n">NMembers</span>       <span class="o">-</span> <span class="n">Number</span> <span class="n">of</span> <span class="n">members</span> <span class="p">(</span><span class="o">-</span><span class="p">)</span>
+<span class="n">MemberID</span>  <span class="n">MJointID1</span>  <span class="n">MJointID2</span>  <span class="n">MPropSetID1</span>  <span class="n">MPropSetID2</span>  <span class="n">MSecGeom</span>    <span class="n">MSpinOrient</span>   <span class="n">MDivSize</span>   <span class="n">MCoefMod</span>  <span class="n">MHstLMod</span>   <span class="n">PropPot</span>   <span class="n">FDMod</span>    <span class="n">VnCOffA</span>  <span class="n">VnCOffB</span>  <span class="n">FDLoFScA</span> <span class="n">FDLoFScB</span>   <span class="p">[</span><span class="n">MCoefMod</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span> <span class="n">use</span> <span class="n">simple</span> <span class="n">coeff</span> <span class="n">table</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="n">use</span> <span class="n">depth</span><span class="o">-</span><span class="n">based</span> <span class="n">coeff</span> <span class="n">table</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="n">use</span> <span class="n">member</span><span class="o">-</span><span class="n">based</span> <span class="n">coeff</span> <span class="n">table</span><span class="p">]</span>
+  <span class="p">(</span><span class="o">-</span><span class="p">)</span>        <span class="p">(</span><span class="o">-</span><span class="p">)</span>        <span class="p">(</span><span class="o">-</span><span class="p">)</span>         <span class="p">(</span><span class="o">-</span><span class="p">)</span>          <span class="p">(</span><span class="o">-</span><span class="p">)</span>      <span class="p">(</span><span class="n">switch</span><span class="p">)</span>       <span class="p">(</span><span class="n">deg</span><span class="p">)</span>        <span class="p">(</span><span class="n">m</span><span class="p">)</span>      <span class="p">(</span><span class="n">switch</span><span class="p">)</span>  <span class="p">(</span><span class="n">switch</span><span class="p">)</span>   <span class="p">(</span><span class="n">flag</span><span class="p">)</span>   <span class="p">(</span><span class="n">switch</span><span class="p">)</span>   <span class="p">(</span><span class="n">Hz</span><span class="p">)</span>     <span class="p">(</span><span class="n">Hz</span><span class="p">)</span>       <span class="p">(</span><span class="o">-</span><span class="p">)</span>      <span class="p">(</span><span class="o">-</span><span class="p">)</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 1%" />
+<col style="width: 6%" />
+<col style="width: 76%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p>Added in OpenFAST <cite>v4.2.0</cite></p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Module</p></th>
+<th class="head"><p>Line</p></th>
+<th class="head"><p>Flag Name</p></th>
+<th class="head"><p>Example Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>ElastoDyn</p></td>
+<td><p>72</p></td>
+<td><p>HubIner_Teeter</p></td>
+<td><p>0   HubIner_Teeter - Hub inertia about teeter axis (2-blades) (kg m^2)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="openfast-v4-1-1-to-openfast-v4-1-2">
+<h2><span class="section-number">4.1.2.4. </span>OpenFAST v4.1.1 to OpenFAST v4.1.2<a class="headerlink" href="#openfast-v4-1-1-to-openfast-v4-1-2" title="Permalink to this heading"></a></h2>
+<p>No input file changes were made.</p>
+</div>
+<div class="section" id="openfast-v4-1-0-to-openfast-v4-1-1">
+<h2><span class="section-number">4.1.2.5. </span>OpenFAST v4.1.0 to OpenFAST v4.1.1<a class="headerlink" href="#openfast-v4-1-0-to-openfast-v4-1-1" title="Permalink to this heading"></a></h2>
+<p>No input file changes were made.</p>
+</div>
+<div class="section" id="openfast-v4-0-5-to-openfast-v4-1-0">
+<h2><span class="section-number">4.1.2.6. </span>OpenFAST v4.0.5 to OpenFAST v4.1.0<a class="headerlink" href="#openfast-v4-0-5-to-openfast-v4-1-0" title="Permalink to this heading"></a></h2>
+<p>Supercontroller module has been removed from FAST.Farm.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 1%" />
+<col style="width: 4%" />
+<col style="width: 87%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p>Removed in OpenFAST <cite>v4.1.0</cite></p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Module</p></th>
+<th class="head"><p>Line</p></th>
+<th class="head"><p>Flag Name</p></th>
+<th class="head"><p>Example Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>FAST.Farm</p></td>
+<td><p>7</p></td>
+<td><p>UseSC</p></td>
+<td><p>False         UseSC                 - Use a super controller? (flag)</p></td>
+</tr>
+<tr class="row-even"><td><p>FAST.Farm</p></td>
+<td><p>11</p></td>
+<td><p>na</p></td>
+<td><p>— SUPER CONTROLLER — [used only for UseSC=True]</p></td>
+</tr>
+<tr class="row-odd"><td><p>FAST.Farm</p></td>
+<td><p>12</p></td>
+<td><p>SC_FileName</p></td>
+<td><p>“SC_DLL.dll”  SC_FileName Name/location of the dynamic library {.dll [Windows] or .so [Linux]} containing the Super Controller algorithms (quoted string)</p></td>
+</tr>
+</tbody>
+</table>
+<p>Line numbers are not provided in the table below because the line numbers can change depending on the number of entries in the input files. Please refer to the User Documentation on the input files for examples.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 2%" />
+<col style="width: 3%" />
+<col style="width: 86%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p>Added/Modified in OpenFAST <cite>v4.1.0</cite></p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Module</p></th>
+<th class="head"><p>Change</p></th>
+<th class="head"><p>Flag Name</p></th>
+<th class="head"><p>Example Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>HydroDyn</p></td>
+<td><p>Modified</p></td>
+<td><p>na</p></td>
+<td><p>—————- CYLINDRICAL MEMBER CROSS-SECTION PROPERTIES ——————-</p></td>
+</tr>
+<tr class="row-even"><td><p>HydroDyn</p></td>
+<td><p>Modified</p></td>
+<td><p>NPropSetsCyl</p></td>
+<td><p>1   NPropSetsCyl    - Number of cylindrical member property sets (-)</p></td>
+</tr>
+<tr class="row-odd"><td><p>HydroDyn</p></td>
+<td><p>Added</p></td>
+<td><p>na</p></td>
+<td><p>—————- RECTANGULAR MEMBER CROSS-SECTION PROPERTIES ——————-</p></td>
+</tr>
+<tr class="row-even"><td><p>HydroDyn</p></td>
+<td><p>Added</p></td>
+<td><p>NPropSetsRec</p></td>
+<td><p>1   NPropSetsRec    - Number of rectangular member property sets (-)</p></td>
+</tr>
+<tr class="row-odd"><td><p>HydroDyn</p></td>
+<td><p>Added</p></td>
+<td><p>na</p></td>
+<td><p>PropSetID    PropA      PropB    PropThck</p></td>
+</tr>
+<tr class="row-even"><td><p>HydroDyn</p></td>
+<td><p>Added</p></td>
+<td><p>na</p></td>
+<td><p>(-)        (m)        (m)       (m)</p></td>
+</tr>
+<tr class="row-odd"><td><p>HydroDyn</p></td>
+<td><p>Modified</p></td>
+<td><p>na</p></td>
+<td><p>——– SIMPLE CYLINDRICAL-MEMBER HYDRODYNAMIC COEFFICIENTS (model 1) ———</p></td>
+</tr>
+<tr class="row-even"><td><p>HydroDyn</p></td>
+<td><p>Added</p></td>
+<td><p>na</p></td>
+<td><p>——– SIMPLE RECTANGULAR-MEMBER HYDRODYNAMIC COEFFICIENTS (model 1) ———</p></td>
+</tr>
+<tr class="row-odd"><td><p>HydroDyn</p></td>
+<td><p>Added</p></td>
+<td><p>na</p></td>
+<td><p>SimplCdA SimplCdAMG SimplCdB SimplCdBMG SimplCaA SimplCaAMG SimplCaB SimplCaBMG SimplCp SimplCpMG SimplAxCd SimplAxCdMG SimplAxCa SimplAxCaMG SimplAxCp SimplAxCpMG SimplCb SimplCbMG</p></td>
+</tr>
+<tr class="row-even"><td><p>HydroDyn</p></td>
+<td><p>Added</p></td>
+<td><p>na</p></td>
+<td><p>(-)      (-)        (-)      (-)        (-)      (-)        (-)      (-)        (-)     (-)       (-)       (-)         (-)       (-)         (-)       (-)         (-)     (-)</p></td>
+</tr>
+<tr class="row-odd"><td><p>HydroDyn</p></td>
+<td><p>Modified</p></td>
+<td><p>na</p></td>
+<td><p>—— DEPTH-BASED CYLINDRICAL-MEMBER HYDRODYNAMIC COEFFICIENTS (model 2) ——-</p></td>
+</tr>
+<tr class="row-even"><td><p>HydroDyn</p></td>
+<td><p>Modified</p></td>
+<td><p>NCoefDpthCyl</p></td>
+<td><p>0   NCoefDpthCyl    - Number of depth-dependent cylindrical member coefficients (-)</p></td>
+</tr>
+<tr class="row-odd"><td><p>HydroDyn</p></td>
+<td><p>Added</p></td>
+<td><p>na</p></td>
+<td><p>—— DEPTH-BASED RECTANGULAR-MEMBER HYDRODYNAMIC COEFFICIENTS (model 2) ——-</p></td>
+</tr>
+<tr class="row-even"><td><p>HydroDyn</p></td>
+<td><p>Added</p></td>
+<td><p>NCoefDpthRec</p></td>
+<td><p>0   NCoefDpthRec    - Number of depth-dependent rectangular member coefficients (-)</p></td>
+</tr>
+<tr class="row-odd"><td><p>HydroDyn</p></td>
+<td><p>Added</p></td>
+<td><p>na</p></td>
+<td><p>Dpth DpthCdA DpthCdAMG DpthCdB DpthCdBMG DpthCaA DpthCaAMG DpthCaB DpthCaBMG DpthCp DpthCpMG DpthAxCd DpthAxCdMG DpthAxCa DpthAxCaMG DpthAxCp DpthAxCpMG DpthCb DpthCbMG</p></td>
+</tr>
+<tr class="row-even"><td><p>HydroDyn</p></td>
+<td><p>Added</p></td>
+<td><p>na</p></td>
+<td><p><cite>(m)</cite>  (-)     (-)       (-)     (-)       (-)     (-)       (-)     (-)       (-)    (-)      (-)      (-)        (-)      (-)        (-)      (-)        (-)    (-)</p></td>
+</tr>
+<tr class="row-odd"><td><p>HydroDyn</p></td>
+<td><p>Modified</p></td>
+<td><p>na</p></td>
+<td><p>—— MEMBER-BASED CYLINDRICAL-MEMBER HYDRODYNAMIC COEFFICIENTS (model 3) ——</p></td>
+</tr>
+<tr class="row-even"><td><p>HydroDyn</p></td>
+<td><p>Modified</p></td>
+<td><p>NCoefMembersCyl</p></td>
+<td><p>0   NCoefMembersCyl - Number of member-based cylindrical member coefficients (-)</p></td>
+</tr>
+<tr class="row-odd"><td><p>HydroDyn</p></td>
+<td><p>Added</p></td>
+<td><p>na</p></td>
+<td><p>—— MEMBER-BASED RECTANGULAR-MEMBER HYDRODYNAMIC COEFFICIENTS (model 3) ——</p></td>
+</tr>
+<tr class="row-even"><td><p>HydroDyn</p></td>
+<td><p>Added</p></td>
+<td><p>NCoefMembersRec</p></td>
+<td><p>0   NCoefMembersRec - Number of member-based rectangular member coefficients (-)</p></td>
+</tr>
+<tr class="row-odd"><td><p>HydroDyn</p></td>
+<td><p>Added</p></td>
+<td><p>na</p></td>
+<td><p>MemberID MemberCdA1 MemberCdA2 MemberCdAMG1 MemberCdAMG2 MemberCdB1 MemberCdB2 MemberCdBMG1 MemberCdBMG2 MemberCaA1 MemberCaA2 MemberCaAMG1 MemberCaAMG2 MemberCaB1 MemberCaB2 MemberCaBMG1 MemberCaBMG2 MemberCp1 MemberCp2 MemberCpMG1 MemberCpMG2 MemberAxCd1 MemberAxCd2 MemberAxCdMG1 MemberAxCdMG2 MemberAxCa1 MemberAxCa2 MemberAxCaMG1 MemberAxCaMG2 MemberAxCp1 MemberAxCp2 MemberAxCpMG1 MemberAxCpMG2 MemberCb1 MemberCb2 MemberCbMG1 MemberCbMG2</p></td>
+</tr>
+<tr class="row-even"><td><p>HydroDyn</p></td>
+<td><p>Added</p></td>
+<td><p>na</p></td>
+<td><p>(-)      (-)        (-)        (-)          (-)          (-)        (-)        (-)          (-)          (-)        (-)        (-)          (-)          (-)        (-)        (-)          (-)          (-)       (-)       (-)         (-)         (-)         (-)         (-)           (-)           (-)         (-)         (-)           (-)           (-)         (-)         (-)           (-)           (-)       (-)       (-)         (-)</p></td>
+</tr>
+<tr class="row-odd"><td><p>HydroDyn</p></td>
+<td><p>Modified</p></td>
+<td><p>na</p></td>
+<td><p>MemberID MJointID1 MJointID2 MPropSetID1 MPropSetID2 MSecGeom MSpinOrient MDivSize MCoefMod MHstLMod PropPot [MCoefMod=1: use simple coeff table, 2: use depth-based coeff table, 3: use member-based coeff table] [PropPot/=0 if member is modeled with potential-flow theory]</p></td>
+</tr>
+<tr class="row-even"><td><p>HydroDyn</p></td>
+<td><p>Modified</p></td>
+<td><p>na</p></td>
+<td><p>(-)      (-)       (-)       (-)         (-)         (switch) (deg)       (m)      (switch) (switch) (flag)</p></td>
+</tr>
+<tr class="row-odd"><td><p>MoorDyn</p></td>
+<td><p>Optional</p></td>
+<td><p>na</p></td>
+<td><p>&lt;Several new optional sections have been added. See note below&gt;</p></td>
+</tr>
+<tr class="row-even"><td><p>SubDyn</p></td>
+<td><p>Modified</p></td>
+<td><p>na</p></td>
+<td><p>MemberID MJointID1 MJointID2 MPropSetID1 MPropSetID2 MType MSpin/COSMID ![MType={1c:beam circ., 1r:beam rect., 2:cable, 3:rigid, 4:beam arb., 5:spring}. COMSID={-1:none}]</p></td>
+</tr>
+<tr class="row-odd"><td><p>SubDyn</p></td>
+<td><p>Modified</p></td>
+<td><p>na</p></td>
+<td><p>(-)      (-)       (-)       (-)         (-)         (-)   (deg/-)</p></td>
+</tr>
+<tr class="row-even"><td><p>SubDyn</p></td>
+<td><p>Added</p></td>
+<td><p>na</p></td>
+<td><p>—————– RECTANGULAR BEAM CROSS-SECTION PROPERTIES —————————</p></td>
+</tr>
+<tr class="row-odd"><td><p>SubDyn</p></td>
+<td><p>Added</p></td>
+<td><p>na</p></td>
+<td><p>0   NPropSets   - Number of structurally unique cross-sections (if 0 the following table is ignored)</p></td>
+</tr>
+<tr class="row-even"><td><p>SubDyn</p></td>
+<td><p>Added</p></td>
+<td><p>na</p></td>
+<td><p>PropSetID YoungE ShearG MatDens XsecSa XsecSb XsecT</p></td>
+</tr>
+<tr class="row-odd"><td><p>SubDyn</p></td>
+<td><p>Added</p></td>
+<td><p>na</p></td>
+<td><p>(-)       (N/m2) (N/m2) (kg/m3) (m)    (m)    (m)</p></td>
+</tr>
+<tr class="row-even"><td><p>SubDyn</p></td>
+<td><p>Modified</p></td>
+<td><p>na</p></td>
+<td><p>PropSetID YoungE ShearG MatDens XsecA XsecAsx XsecAsy XsecJxx XsecJyy XsecJ0 XsecJt</p></td>
+</tr>
+<tr class="row-odd"><td><p>SubDyn</p></td>
+<td><p>Modified</p></td>
+<td><p>na</p></td>
+<td><p>(-)       (N/m2) (N/m2) (kg/m3) (m2)  (m2)    (m2)    (m4)    (m4)    (m4)   (m4)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="moordyn-changes">
+<h3><span class="section-number">4.1.2.6.1. </span>MoorDyn changes<a class="headerlink" href="#moordyn-changes" title="Permalink to this heading"></a></h3>
+<p>The <em>MoorDyn</em> input file now includes additional optional inputs, but is fully
+backwards compatible.  For further information on the new inputs:</p>
+<ul>
+<li><p>coupling with the <em>SeaState</em> module for wave information, see example files:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://github.com/OpenFAST/r-test/tree/main/modules/moordyn/md_waterkin3">https://github.com/OpenFAST/r-test/tree/main/modules/moordyn/md_waterkin3</a> - full wave information from <em>SeaState</em> module</p></li>
+<li><p><a class="reference external" href="https://github.com/OpenFAST/r-test/tree/main/modules/moordyn/md_waterkin2">https://github.com/OpenFAST/r-test/tree/main/modules/moordyn/md_waterkin2</a> - hybrid wave kinematics coupling with <em>SeaState</em> module</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>vortex-induced vibration (VIV) - see <a class="reference external" href="https://moordyn.readthedocs.io/en/latest/inputs.html#id2">https://moordyn.readthedocs.io/en/latest/inputs.html#id2</a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="openfast-v4-0-4-to-openfast-v4-0-5">
+<h2><span class="section-number">4.1.2.7. </span>OpenFAST v4.0.4 to OpenFAST v4.0.5<a class="headerlink" href="#openfast-v4-0-4-to-openfast-v4-0-5" title="Permalink to this heading"></a></h2>
+<p>No input file changes were made.</p>
+</div>
+<div class="section" id="openfast-v4-0-3-to-openfast-v4-0-4">
+<h2><span class="section-number">4.1.2.8. </span>OpenFAST v4.0.3 to OpenFAST v4.0.4<a class="headerlink" href="#openfast-v4-0-3-to-openfast-v4-0-4" title="Permalink to this heading"></a></h2>
+<p>No input file changes were made.</p>
+</div>
+<div class="section" id="openfast-v4-0-2-to-openfast-v4-0-3">
+<h2><span class="section-number">4.1.2.9. </span>OpenFAST v4.0.2 to OpenFAST v4.0.3<a class="headerlink" href="#openfast-v4-0-2-to-openfast-v4-0-3" title="Permalink to this heading"></a></h2>
+<p>No input file changes were made.</p>
+</div>
+<div class="section" id="openfast-v4-0-1-to-openfast-v4-0-2">
+<h2><span class="section-number">4.1.2.10. </span>OpenFAST v4.0.1 to OpenFAST v4.0.2<a class="headerlink" href="#openfast-v4-0-1-to-openfast-v4-0-2" title="Permalink to this heading"></a></h2>
+<p>No input file changes were made.</p>
+</div>
+<div class="section" id="openfast-v4-0-0-to-openfast-v4-0-1">
+<h2><span class="section-number">4.1.2.11. </span>OpenFAST v4.0.0 to OpenFAST v4.0.1<a class="headerlink" href="#openfast-v4-0-0-to-openfast-v4-0-1" title="Permalink to this heading"></a></h2>
+<p>No input file changes are required.  MoorDyn can contain an option section for
+<cite>External Loads</cite> (see the MoorDyn documentation for details <a class="reference external" href="https://moordyn.readthedocs.io/en/latest/inputs.html#the-v2-input-file">here</a>).</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 3%" />
+<col style="width: 8%" />
+<col style="width: 73%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p>Modified in OpenFAST <cite>v4.0.1</cite></p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Module</p></th>
+<th class="head"><p>Line</p></th>
+<th class="head"><p>Flag Name</p></th>
+<th class="head"><p>Example Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>MoorDyn</p></td>
+<td><p>*</p></td>
+<td></td>
+<td><p>New optional sections for <cite>EXTERNAL LOADS</cite> (freeform file).  See MoorDyn documentation for details (<a class="reference external" href="https://moordyn.readthedocs.io/en/latest/inputs.html#the-v2-input-file">here</a>)</p></td>
+</tr>
+</tbody>
+</table>
+<p>*Exact line number depends on number and size of preceeding sections.</p>
+</div>
+<div class="section" id="openfast-v3-5-5-to-openfast-4-0-0">
+<h2><span class="section-number">4.1.2.12. </span>OpenFAST v3.5.5 to OpenFAST 4.0.0<a class="headerlink" href="#openfast-v3-5-5-to-openfast-4-0-0" title="Permalink to this heading"></a></h2>
+<p>The HydroDyn module was split into HydroDyn and SeaState.  This results in a
+completely new input file for SeaState, and complete revision of the HydroDyn
+input file.  See examples in the regression tests for the new formats.</p>
+<p>New modules AeroDisk (see <a class="reference internal" href="aerodisk/index.html#adsk"><span class="std std-numref">Section 4.6</span></a>), Simplified-ElastoDyn (see
+<a class="reference internal" href="simplified_elastodyn/index.html#sed"><span class="std std-numref">Section 4.16</span></a>), and SeaState (see <a class="reference internal" href="seastate/index.html#seast"><span class="std std-numref">Section 4.12</span></a>) were added.  See
+documentation on those modules for exmple input files.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 2%" />
+<col style="width: 5%" />
+<col style="width: 81%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p>Modified in OpenFAST <cite>v4.0.0</cite></p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Module</p></th>
+<th class="head"><p>Line</p></th>
+<th class="head"><p>Flag Name</p></th>
+<th class="head"><p>Example Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>OpenFAST</p></td>
+<td><p>13</p></td>
+<td><p>CompElast</p></td>
+<td><p>3   CompElast       - Compute structural dynamics (switch) {1=ElastoDyn; 2=ElastoDyn + BeamDyn for blades; 3=Simplified ElastoDyn}</p></td>
+</tr>
+<tr class="row-even"><td><p>OpenFAST</p></td>
+<td><p>15</p></td>
+<td><p>CompAero**</p></td>
+<td><p>2   CompAero        - Compute aerodynamic loads (switch) {0=None; 1=AeroDisk; 2=AeroDyn; 3=ExtLoads}</p></td>
+</tr>
+<tr class="row-odd"><td><p>OpenFAST</p></td>
+<td><p>17</p></td>
+<td><p>CompSeaSt</p></td>
+<td><p>0   CompSeaSt       - Compute sea state information (switch) {0=None; 1=SeaState}</p></td>
+</tr>
+<tr class="row-even"><td><p>OpenFAST</p></td>
+<td><p>41</p></td>
+<td><p>SeaStFile</p></td>
+<td><p>“unused”      SeaStFile       - Name of file containing sea state input parameters (quoted string)</p></td>
+</tr>
+<tr class="row-odd"><td><p>AeroDyn</p></td>
+<td><p>all</p></td>
+<td></td>
+<td><p>Complete restructuring of input file (see notes below)</p></td>
+</tr>
+<tr class="row-even"><td><p>AeroDyn Aeroacoustics</p></td>
+<td><p>11*</p></td>
+<td><p>TI</p></td>
+<td><p>0.1 TI   - Rotor-incident wind turbulence intensity (-) [Only used if TiCalcMeth == 1]</p></td>
+</tr>
+<tr class="row-odd"><td><p>AeroDyn Aeroacoustics</p></td>
+<td><p>12*</p></td>
+<td><p>avgV</p></td>
+<td><p>8 avgV   - Average wind speed used to compute the section-incident turbulence intensity (m/s) [Only used if TiCalcMeth == 1]</p></td>
+</tr>
+<tr class="row-even"><td><p>HydroDyn</p></td>
+<td><p>all</p></td>
+<td></td>
+<td><p>Complete restructuring of input file</p></td>
+</tr>
+<tr class="row-odd"><td><p>SeaState</p></td>
+<td><p>all</p></td>
+<td></td>
+<td><p>New module (split from HydroDyn, so contains some inputs previously found in HydroDyn)</p></td>
+</tr>
+<tr class="row-even"><td><p>AeroDisk</p></td>
+<td><p>all</p></td>
+<td></td>
+<td><p>New module</p></td>
+</tr>
+<tr class="row-odd"><td><p>Simplified-ElastoDyn</p></td>
+<td><p>all</p></td>
+<td></td>
+<td><p>New module</p></td>
+</tr>
+<tr class="row-even"><td><p>ElastoDyn</p></td>
+<td><p>84</p></td>
+<td><p>PtfmXYIner</p></td>
+<td><p>0   PtfmXYIner  - Platform xy moment of inertia about the platform CM (=-int(xydm)) (kg m^2)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ElastoDyn</p></td>
+<td><p>84</p></td>
+<td><p>PtfmYZIner</p></td>
+<td><p>0   PtfmYZIner  - Platform yz moment of inertia about the platform CM (=-int(yzdm)) (kg m^2)</p></td>
+</tr>
+<tr class="row-even"><td><p>ElastoDyn</p></td>
+<td><p>84</p></td>
+<td><p>PtfmXZIner</p></td>
+<td><p>0   PtfmXZIner  - Platform xz moment of inertia about the platform CM (=-int(xzdm)) (kg m^2)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ElastoDyn</p></td>
+<td><p>101</p></td>
+<td></td>
+<td><p>———————- YAW-FRICTION ——————————————–</p></td>
+</tr>
+<tr class="row-even"><td><p>ElastoDyn</p></td>
+<td><p>102</p></td>
+<td><p>YawFrctMod</p></td>
+<td><p>0   YawFrctMod  - Yaw-friction model {0: none, 1: friction independent of yaw-bearing force and bending moment, 2: friction with Coulomb terms depending on yaw-bearing force and bending moment…</p></td>
+</tr>
+<tr class="row-odd"><td><p>ElastoDyn</p></td>
+<td><p>103</p></td>
+<td><p>M_CSmax</p></td>
+<td><p>300   M_CSmax     - Maximum static Coulomb friction torque (N-m) [M_CSmax when YawFrctMod=1; abs(Fz)*M_CSmax when YawFrctMod=2 and Fz&lt;0]</p></td>
+</tr>
+<tr class="row-even"><td><p>ElastoDyn</p></td>
+<td><p>104</p></td>
+<td><p>M_FCSmax</p></td>
+<td><p>0   M_FCSmax    - Maximum static Coulomb friction torque proportional to yaw bearing shear force (N-m) [sqrt(Fx^2+Fy^2)*M_FCSmax; only used when YawFrctMod=2]</p></td>
+</tr>
+<tr class="row-odd"><td><p>ElastoDyn</p></td>
+<td><p>105</p></td>
+<td><p>M_MCSmax</p></td>
+<td><p>0   M_MCSmax    - Maximum static Coulomb friction torque proportional to yaw bearing bending moment (N-m) [sqrt(Mx^2+My^2)*M_MCSmax; only used when YawFrctMod=2]</p></td>
+</tr>
+<tr class="row-even"><td><p>ElastoDyn</p></td>
+<td><p>106</p></td>
+<td><p>M_CD</p></td>
+<td><p>40   M_CD        - Dynamic Coulomb friction moment (N-m) [M_CD when YawFrctMod=1; abs(Fz)*M_CD when YawFrctMod=2 and Fz&lt;0]</p></td>
+</tr>
+<tr class="row-odd"><td><p>ElastoDyn</p></td>
+<td><p>107</p></td>
+<td><p>M_FCD</p></td>
+<td><p>0   M_FCD       - Dynamic Coulomb friction moment proportional to yaw bearing shear force (N-m) [sqrt(Fx^2+Fy^2)*M_FCD; only used when YawFrctMod=2]</p></td>
+</tr>
+<tr class="row-even"><td><p>ElastoDyn</p></td>
+<td><p>108</p></td>
+<td><p>M_MCD</p></td>
+<td><p>0   M_MCD       - Dynamic Coulomb friction moment proportional to yaw bearing bending moment (N-m) [sqrt(Mx^2+My^2)*M_MCD; only used when YawFrctMod=2]</p></td>
+</tr>
+<tr class="row-odd"><td><p>ElastoDyn</p></td>
+<td><p>109</p></td>
+<td><p>sig_v</p></td>
+<td><p>0   sig_v       - Linear viscous friction coefficient (N-m/(rad/s))</p></td>
+</tr>
+<tr class="row-even"><td><p>ElastoDyn</p></td>
+<td><p>110</p></td>
+<td><p>sig_v2</p></td>
+<td><p>0   sig_v2      - Quadratic viscous friction coefficient (N-m/(rad/s)^2)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ElastoDyn</p></td>
+<td><p>111</p></td>
+<td><p>OmgCut</p></td>
+<td><p>0   OmgCut      - Yaw angular velocity cutoff below which viscous friction is linearized (rad/s)</p></td>
+</tr>
+<tr class="row-even"><td><p>ElastoDyn blade file</p></td>
+<td><p>15</p></td>
+<td></td>
+<td><p>Removal of the <cite>PitchAxis</cite> input column</p></td>
+</tr>
+<tr class="row-odd"><td><p>InflowWind driver</p></td>
+<td><p>27</p></td>
+<td></td>
+<td><p>—-  Output VTK slices  ——————————————————</p></td>
+</tr>
+<tr class="row-even"><td><p>InflowWind driver</p></td>
+<td><p>28</p></td>
+<td><p>NOutWindXY</p></td>
+<td><p>0            NOutWindXY    – Number of XY planes for output &lt;RootName&gt;.XY&lt;loc&gt;.t&lt;n&gt;.vtk (-) [0 to 9]</p></td>
+</tr>
+<tr class="row-odd"><td><p>InflowWind driver</p></td>
+<td><p>29</p></td>
+<td><p>OutWindZ</p></td>
+<td><p>90           OutWindZ      – Z coordinates of XY planes for output (m) [1 to NOutWindXY] [unused for NOutWindXY=0]</p></td>
+</tr>
+<tr class="row-even"><td><p>MoorDyn</p></td>
+<td><p>–</p></td>
+<td></td>
+<td><p>New optional sections (freeform file).  See MoorDyn documentation for details (<a class="reference external" href="https://moordyn.readthedocs.io/en/latest/inputs.html#the-v2-input-file">here</a>)</p></td>
+</tr>
+<tr class="row-odd"><td><p>SubDyn</p></td>
+<td><p>8</p></td>
+<td><p>–removed–</p></td>
+<td><p>removed: GuyanLoadCorrection</p></td>
+</tr>
+<tr class="row-even"><td><p>SubDyn</p></td>
+<td><p>12</p></td>
+<td><p>–removed–</p></td>
+<td><p>removed: CBMod</p></td>
+</tr>
+<tr class="row-odd"><td><p>SubDyn</p></td>
+<td><p>56*</p></td>
+<td></td>
+<td><p>———————– SPRING ELEMENT PROPERTIES ————————————-</p></td>
+</tr>
+<tr class="row-even"><td><p>SubDyn</p></td>
+<td><p>57*</p></td>
+<td><p>NSpringPropSets  0</p></td>
+<td><ul class="simple">
+<li><p>Number of spring properties</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>SubDyn</p></td>
+<td><p>58*</p></td>
+<td></td>
+<td><p>PropSetID   k11     k12     k13     k14     k15     k16     k22     k23     k24     k25     k26     k33     k34     k35     k36     k44      k45      k46      k55      k56      k66</p></td>
+</tr>
+<tr class="row-even"><td><p>SubDyn</p></td>
+<td><p>59*</p></td>
+<td></td>
+<td><p>(-)      (N/m)   (N/m)   (N/m)  (N/rad) (N/rad) (N/rad)  (N/m)   (N/m)  (N/rad) (N/rad) (N/rad)  (N/m)  (N/rad) (N/rad) (N/rad) (Nm/rad) (Nm/rad) (Nm/rad) (Nm/rad) (Nm/rad) (Nm/rad)</p></td>
+</tr>
+<tr class="row-odd"><td><p>FAST.Farm</p></td>
+<td><p>16</p></td>
+<td><p>WrMooringVis</p></td>
+<td><p>true          WrMooringVis       - Write shared mooring visualization, at DT_Mooring timestep (-) [only used for Mod_SharedMooring=3]</p></td>
+</tr>
+<tr class="row-even"><td><p>FAST.Farm</p></td>
+<td><p>48*</p></td>
+<td><p>RotorDiamRef</p></td>
+<td><p>125           RotorDiamRef       - Reference turbine rotor diameter for wake calculations (m) [&gt;0.0]</p></td>
+</tr>
+<tr class="row-odd"><td><p>FAST.Farm</p></td>
+<td><p>53*</p></td>
+<td><p>k_vAmb</p></td>
+<td><p>DEFAULT       k_vAmb        - Calibrated parameters for the influence of the ambient turbulence in the eddy viscosity (set of 5 parameters: k, FMin, DMin, DMax, Exp) (-) [&gt;=0.0, &gt;=0.0 and &lt;=1.0, &gt;=0.0, &gt;DMin, &gt;0.0] or DEFAULT [DEFAULT=0.05, 1.0, 0.0, 1.0, 0.01]</p></td>
+</tr>
+<tr class="row-even"><td><p>FAST.Farm</p></td>
+<td><p>54*</p></td>
+<td><p>kvShr</p></td>
+<td><p>DEFAULT       k_vShr        - Calibrated parameters for the influence of the shear layer in the eddy viscosity (set of 5 parameters: k, FMin, DMin, DMax, Exp) (-) [&gt;=0.0, &gt;=0.0 and &lt;=1.0, &gt;=0.0, &gt;DMin, &gt;0.0] or DEFAULT [DEFAULT=0.016, 0.2, 3.0, 25.0, 0.1]</p></td>
+</tr>
+<tr class="row-odd"><td><p>FAST.Farm</p></td>
+<td><p>55-62*</p></td>
+<td><p>–removed–</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>FAST.Farm</p></td>
+<td><p>69*</p></td>
+<td></td>
+<td><p>— WAKE-ADDED TURBULENCE —</p></td>
+</tr>
+<tr class="row-odd"><td><p>FAST.Farm</p></td>
+<td><p>70*</p></td>
+<td><p>WAT</p></td>
+<td><p>2                  WAT                - Switch between wake-added turbulence box options {0: no wake added turbulence, 1: predefined turbulence box, 2: user defined turbulence box} (switch)</p></td>
+</tr>
+<tr class="row-even"><td><p>FAST.Farm</p></td>
+<td><p>71*</p></td>
+<td><p>WAT_BoxFile</p></td>
+<td><p>“../WAT_MannBoxDB/FFDB_D100_512x512x64.u” WAT_BoxFile  - Filepath to the file containing the u-component of the turbulence box (either predefined or user-defined) (quoted string)</p></td>
+</tr>
+<tr class="row-odd"><td><p>FAST.Farm</p></td>
+<td><p>72*</p></td>
+<td><p>WAT_NxNyNz</p></td>
+<td><p>512, 512, 64       WAT_NxNyNz         - Number of points in the x, y, and z directions of the WAT_BoxFile [used only if WAT=2, derived value if WAT=1] (-)</p></td>
+</tr>
+<tr class="row-even"><td><p>FAST.Farm</p></td>
+<td><p>73*</p></td>
+<td><p>WAT_DxDyDz</p></td>
+<td><p>5.0, 5.0, 5.0      WAT_DxDyDz         - Distance (in meters) between points in the x, y, and z directions of the WAT_BoxFile [used only if WAT=2, derived value if WAT=1] (m)</p></td>
+</tr>
+<tr class="row-odd"><td><p>FAST.Farm</p></td>
+<td><p>74*</p></td>
+<td><p>WAT_ScaleBox</p></td>
+<td><p>default            WAT_ScaleBox       - Flag to scale the input turbulence box to zero mean and unit standard deviation at every node [DEFAULT=False] (flag)</p></td>
+</tr>
+<tr class="row-even"><td><p>FAST.Farm</p></td>
+<td><p>75*</p></td>
+<td><p>WAT_k_Def</p></td>
+<td><p>default            WAT_k_Def          - Calibrated parameters for the influence of the maximum wake deficit on wake-added turbulence (set of 5 parameters: k_Def, FMin, DMin, DMax, Exp) (-) [&gt;=0.0, &gt;=0.0 and &lt;=1.0, &gt;=0.0, &gt;DMin, &gt;0.0] or DEFAULT [DEFAULT=[0.6, 0.0, 0.0, 2.0, 1.0 ]]</p></td>
+</tr>
+<tr class="row-odd"><td><p>FAST.Farm</p></td>
+<td><p>76*</p></td>
+<td><p>WAT_k_Grad</p></td>
+<td><p>default            WAT_k_Grad         - Calibrated parameters for the influence of the radial velocity gradient of the wake deficit on wake-added turbulence (set of 5 parameters: k_Grad, FMin, DMin, DMax, Exp) (-) [&gt;=0.0, &gt;=0.0 and &lt;=1.0, &gt;=0.0, &gt;DMin, &gt;0.0] or DEFAULT [DEFAULT=[3.0, 0.0, 0.0, 12.0, 0.65]</p></td>
+</tr>
+</tbody>
+</table>
+<p>*Exact line number depends on number of entries in various preceeding tables.</p>
+<p>** The AeroDyn 14 module has been removed and replaced with AeroDisk.  AeroDyn15 renamed to AeroDyn</p>
+<div class="section" id="new-modules">
+<h3><span class="section-number">4.1.2.12.1. </span>New Modules<a class="headerlink" href="#new-modules" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>AeroDisk             – reduced order actuator disk model  (see <a class="reference internal" href="aerodisk/index.html#adsk"><span class="std std-numref">Section 4.6</span></a>)</p></li>
+<li><p>Simplified ElastoDyn – a reduced order structural model with only yaw and rotor speed degrees of freedom (see <a class="reference internal" href="simplified_elastodyn/index.html#sed"><span class="std std-numref">Section 4.16</span></a>)</p></li>
+<li><p>SeaState             – wave dynamics calculations (previously part of HydroDyn)</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="aerodyn-changes-starting-from-v4-x">
+<span id="api-change-ad4x"></span><h2><span class="section-number">4.1.2.13. </span>AeroDyn changes starting from v4.x<a class="headerlink" href="#aerodyn-changes-starting-from-v4-x" title="Permalink to this heading"></a></h2>
+<p>The table below shows how to convert from the Old AeroDyn inputs to the new AeroDyn inputs.
+Additional ressources:</p>
+<ul class="simple">
+<li><p>The AeroDyn input file description (<a class="reference internal" href="aerodyn/input.html#ad-input"><span class="std std-numref">Section 4.3.3</span></a>) for more details on the new inputs.</p></li>
+<li><p>The <a class="reference external" href="https://github.com/OpenFAST/openfast/discussions/1895">discussion</a> that led to these new inputs.</p></li>
+<li><p>An example of AeroDyn input file at it’s latest format: <a class="reference download internal" download="" href="../../_downloads/cd9ea254187c54cc46075f64b501259d/ad_primary_example.dat"><code class="xref download docutils literal notranslate"><span class="pre">Example</span></code></a>:</p></li>
+<li><p>A directory with a working example: <a class="reference external" href="https://github.com/OpenFAST/r-test/blob/dev/modules/aerodyn/ad_BAR_OLAF/OpenFAST_BAR_00_AeroDyn.dat">here</a></p></li>
+<li><p>An example python converter (v3.5.x to 4.x): <a class="reference external" href="https://github.com/OpenFAST/openfast_toolbox/blob/dev/openfast_toolbox/converters/examples/Main_AD30_AD40.py">here</a></p></li>
+</ul>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 32%" />
+<col style="width: 68%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Old inputs</p></th>
+<th class="head"><p>Corresponding new inputs</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><cite>WakeMod=0</cite></p></td>
+<td><p><cite>Wake_Mod=0</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>WakeMod=1</cite> (“BEM”)</p></td>
+<td><p><cite>Wake_Mod=1</cite> and <cite>DBEMT_Mod=0</cite> and <cite>BEM_Mod=1</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><cite>WakeMod=2</cite> (“DBEMT”)</p></td>
+<td><p><cite>Wake_Mod=1</cite> and <cite>DBEMT_Mod={1,2,3}</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>WakeMod=3</cite> (“OLAF”)</p></td>
+<td><p><cite>Wake_Mod=3</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><cite>AFAeroMod=1</cite></p></td>
+<td><p><cite>UA_Mod=0</cite> and <cite>AoA34=False</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>AFAeroMod=2</cite></p></td>
+<td><p><cite>UA_Mod&gt;0</cite> and <cite>AoA34=True</cite> and <cite>UA_Mod=UAMod</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><cite>FrozenWake=True</cite></p></td>
+<td><p><cite>DBEMT_Mod=-1</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>FrozenWake=False</cite></p></td>
+<td><p><cite>DBEMT_Mod=0</cite> (quasi-steady) or <cite>DBEMT_Mod&gt;0</cite> (dynamic)</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>SkewMod=2</cite> (Glauert)</p></td>
+<td><p><cite>Skew_Mod=1</cite> and <cite>SkewRedistr_Mod=1</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>SkewMod=0</cite> (Orthogonal)</p></td>
+<td><p><cite>Skew_Mod=-1</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><cite>SkewModFactor</cite></p></td>
+<td><p><cite>SkewRedistrFactor</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>UAMod={2-7}</cite></p></td>
+<td><p><cite>UA_Mod={2-7}</cite> and <cite>AoA34=True</cite></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="openfast-v3-5-4-to-openfast-v3-5-5">
+<h2><span class="section-number">4.1.2.14. </span>OpenFAST v3.5.4 to OpenFAST v3.5.5<a class="headerlink" href="#openfast-v3-5-4-to-openfast-v3-5-5" title="Permalink to this heading"></a></h2>
+<p>No input file changes were made.</p>
+</div>
+<div class="section" id="openfast-v3-5-3-to-openfast-v3-5-4">
+<h2><span class="section-number">4.1.2.15. </span>OpenFAST v3.5.3 to OpenFAST v3.5.4<a class="headerlink" href="#openfast-v3-5-3-to-openfast-v3-5-4" title="Permalink to this heading"></a></h2>
+<p>No input file changes were made.</p>
+</div>
+<div class="section" id="openfast-v3-5-2-to-openfast-v3-5-3">
+<h2><span class="section-number">4.1.2.16. </span>OpenFAST v3.5.2 to OpenFAST v3.5.3<a class="headerlink" href="#openfast-v3-5-2-to-openfast-v3-5-3" title="Permalink to this heading"></a></h2>
+<p>No input file changes were made.</p>
+</div>
+<div class="section" id="openfast-v3-5-1-to-openfast-v3-5-2">
+<h2><span class="section-number">4.1.2.17. </span>OpenFAST v3.5.1 to OpenFAST v3.5.2<a class="headerlink" href="#openfast-v3-5-1-to-openfast-v3-5-2" title="Permalink to this heading"></a></h2>
+<p>No input file changes were made.</p>
+</div>
+<div class="section" id="openfast-v3-5-0-to-openfast-v3-5-1">
+<h2><span class="section-number">4.1.2.18. </span>OpenFAST v3.5.0 to OpenFAST v3.5.1<a class="headerlink" href="#openfast-v3-5-0-to-openfast-v3-5-1" title="Permalink to this heading"></a></h2>
+<p>No input file changes were made.  Some input files now include additional
+output channels:  AeroDyn nodal outputs for another coordinate system, new
+MoorDyn output names (Connect changed to Point).</p>
+</div>
+<div class="section" id="openfast-v3-4-0-to-openfast-v3-5-0">
+<h2><span class="section-number">4.1.2.19. </span>OpenFAST v3.4.0 to OpenFAST v3.5.0<a class="headerlink" href="#openfast-v3-4-0-to-openfast-v3-5-0" title="Permalink to this heading"></a></h2>
+<p>Updated the CMake build system.  Now requires CMake v3.12 or higher.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 1%" />
+<col style="width: 6%" />
+<col style="width: 79%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p>Modified in OpenFAST <cite>3.5.0</cite></p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Module</p></th>
+<th class="head"><p>Line</p></th>
+<th class="head"><p>Flag Name</p></th>
+<th class="head"><p>Example Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>ServoDyn-StructCtrl</p></td>
+<td><p>6</p></td>
+<td><p>StC_DOF_MODE</p></td>
+<td><p>2   StC_DOF_MODE - DOF mode (switch) {0: No StC or TLCD DOF; 1: StC_X_DOF, StC_Y_DOF, and/or StC_Z_DOF (three independent StC DOFs); 2: StC_XY_DOF (Omni-Directional StC); 3: TLCD; 4: Prescribed force/moment time series; 5: Force determined by external DLL}</p></td>
+</tr>
+<tr class="row-even"><td><p>InflowWind</p></td>
+<td><p>8</p></td>
+<td><p>VelInterpCubic</p></td>
+<td><p>true   VelInterpCubic      - Use cubic interpolation for velocity in time (false=linear, true=cubic) [Used with WindType=2,3,4,5,7]</p></td>
+</tr>
+<tr class="row-odd"><td><p>InflowWind</p></td>
+<td><p>51</p></td>
+<td></td>
+<td><p>================== LIDAR Parameters ===========================================================================</p></td>
+</tr>
+<tr class="row-even"><td><p>InflowWind</p></td>
+<td><p>52</p></td>
+<td><p>SensorType</p></td>
+<td><p>0   SensorType          - Switch for lidar configuration (0 = None, 1 = Single Point Beam(s), 2 = Continuous, 3 = Pulsed)</p></td>
+</tr>
+<tr class="row-odd"><td><p>InflowWind</p></td>
+<td><p>53</p></td>
+<td><p>NumPulseGate</p></td>
+<td><p>0   NumPulseGate        - Number of lidar measurement gates (used when SensorType = 3)</p></td>
+</tr>
+<tr class="row-even"><td><p>InflowWind</p></td>
+<td><p>54</p></td>
+<td><p>PulseSpacing</p></td>
+<td><p>30   PulseSpacing        - Distance between range gates (m) (used when SensorType = 3)</p></td>
+</tr>
+<tr class="row-odd"><td><p>InflowWind</p></td>
+<td><p>55</p></td>
+<td><p>NumBeam</p></td>
+<td><p>0   NumBeam             - Number of lidar measurement beams (0-5)(used when SensorType = 1)</p></td>
+</tr>
+<tr class="row-even"><td><p>InflowWind</p></td>
+<td><p>56</p></td>
+<td><p>FocalDistanceX</p></td>
+<td><p>-200   FocalDistanceX      - Focal distance co-ordinates of the lidar beam in the x direction (relative to hub height) (only first coordinate used for SensorType 2 and 3) (m)</p></td>
+</tr>
+<tr class="row-odd"><td><p>InflowWind</p></td>
+<td><p>57</p></td>
+<td><p>FocalDistanceY</p></td>
+<td><p>0   FocalDistanceY      - Focal distance co-ordinates of the lidar beam in the y direction (relative to hub height) (only first coordinate used for SensorType 2 and 3) (m)</p></td>
+</tr>
+<tr class="row-even"><td><p>InflowWind</p></td>
+<td><p>58</p></td>
+<td><p>FocalDistanceZ</p></td>
+<td><p>0   FocalDistanceZ      - Focal distance co-ordinates of the lidar beam in the z direction (relative to hub height) (only first coordinate used for SensorType 2 and 3) (m)</p></td>
+</tr>
+<tr class="row-odd"><td><p>InflowWind</p></td>
+<td><p>59</p></td>
+<td><p>RotorApexOffsetPos</p></td>
+<td><p>0.0 0.0 0.0   RotorApexOffsetPos  - Offset of the lidar from hub height (m)</p></td>
+</tr>
+<tr class="row-even"><td><p>InflowWind</p></td>
+<td><p>60</p></td>
+<td><p>URefLid</p></td>
+<td><p>17   URefLid             - Reference average wind speed for the lidar[m/s]</p></td>
+</tr>
+<tr class="row-odd"><td><p>InflowWind</p></td>
+<td><p>61</p></td>
+<td><p>MeasurementInterval</p></td>
+<td><p>0.25   MeasurementInterval - Time between each measurement [s]</p></td>
+</tr>
+<tr class="row-even"><td><p>InflowWind</p></td>
+<td><p>62</p></td>
+<td><p>LidRadialVel</p></td>
+<td><p>False   LidRadialVel        - TRUE =&gt; return radial component, FALSE =&gt; return ‘x’ direction estimate</p></td>
+</tr>
+<tr class="row-odd"><td><p>InflowWind</p></td>
+<td><p>63</p></td>
+<td><p>ConsiderHubMotion</p></td>
+<td><p>1   ConsiderHubMotion   - Flag whether to consider the hub motion’s impact on Lidar measurements</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="openfast-v3-4-0-to-openfast-v3-4-1">
+<h2><span class="section-number">4.1.2.20. </span>OpenFAST v3.4.0 to OpenFAST v3.4.1<a class="headerlink" href="#openfast-v3-4-0-to-openfast-v3-4-1" title="Permalink to this heading"></a></h2>
+<p>Restored the AeroDyn channel names with <cite>Aero</cite> in the name.  These had be
+changed to <cite>Fld</cite> in v3.4.0 which caused headaches for users.  The <cite>Fld</cite> names
+are now aliases to the <cite>Aero</cite> names.</p>
+</div>
+<div class="section" id="openfast-v3-4-0-to-openfast-dev">
+<h2><span class="section-number">4.1.2.21. </span>OpenFAST v3.4.0 to OpenFAST dev<a class="headerlink" href="#openfast-v3-4-0-to-openfast-dev" title="Permalink to this heading"></a></h2>
+<p>AeroDyn14 has been removed!</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 2%" />
+<col style="width: 6%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p>Changed in OpenFAST <cite>dev</cite></p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Module</p></th>
+<th class="head"><p>Line</p></th>
+<th class="head"><p>Flag Name</p></th>
+<th class="head"><p>Example Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>OpenFAST</p></td>
+<td><p>15</p></td>
+<td><p>CompAero</p></td>
+<td><p>2   CompAero        - Compute aerodynamic loads (switch) {0=None; 2=AeroDyn v15}</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="openfast-v3-3-0-to-openfast-v3-4-0">
+<h2><span class="section-number">4.1.2.22. </span>OpenFAST v3.3.0 to OpenFAST v3.4.0<a class="headerlink" href="#openfast-v3-3-0-to-openfast-v3-4-0" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 1%" />
+<col style="width: 6%" />
+<col style="width: 79%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p>Added in OpenFAST <cite>3.4.0</cite></p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Module</p></th>
+<th class="head"><p>Line</p></th>
+<th class="head"><p>Flag Name</p></th>
+<th class="head"><p>Example Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>FAST.Farm</p></td>
+<td><p>42*</p></td>
+<td><p>ModWake</p></td>
+<td><p>1          Mod_Wake          - Switch between wake formulations {1:Polar, 2:Curl, 3:Cartesian} (-) (switch)</p></td>
+</tr>
+<tr class="row-even"><td><p>FAST.Farm</p></td>
+<td><p>67</p></td>
+<td><p>CurlSection</p></td>
+<td><p>— CURLED-WAKE PARAMETERS [only used if Mod_Wake=2 or 3] —</p></td>
+</tr>
+<tr class="row-odd"><td><p>FAST.Farm</p></td>
+<td><p>68</p></td>
+<td><p>Swirl</p></td>
+<td><p>DEFAULT    Swirl             - Switch to include swirl velocities in wake (-) (switch) [DEFAULT=True]</p></td>
+</tr>
+<tr class="row-even"><td><p>FAST.Farm</p></td>
+<td><p>69</p></td>
+<td><p>k_VortexDecay</p></td>
+<td><p>DEFAULT    k_VortexDecay     - Vortex decay constant for curl (-) [DEFAULT=0.01] [only used if Mod_Wake=2]</p></td>
+</tr>
+<tr class="row-odd"><td><p>FAST.Farm</p></td>
+<td><p>70</p></td>
+<td><p>NumVortices</p></td>
+<td><p>DEFAULT    NumVortices       - The number of vortices in the curled wake model (-) [DEFAULT=100] [only used if Mod_Wake=2]</p></td>
+</tr>
+<tr class="row-even"><td><p>FAST.Farm</p></td>
+<td><p>71</p></td>
+<td><p>sigma_D</p></td>
+<td><p>DEFAULT    sigma_D           - The width of the vortices in the curled wake model non-dimensionalized by rotor diameter (-) [DEFAULT=0.2] [only used if Mod_Wake=2]</p></td>
+</tr>
+<tr class="row-odd"><td><p>FAST.Farm</p></td>
+<td><p>72</p></td>
+<td><p>FilterInit</p></td>
+<td><p>DEFAULT    FilterInit        - Switch to filter the initial wake plane deficit and select the number of grid points for the filter {0: no filter, 1: filter of size 1} or DEFAULT [DEFAULT=1] (switch)</p></td>
+</tr>
+<tr class="row-even"><td><p>FAST.Farm</p></td>
+<td><p>73</p></td>
+<td><p>k_vCurl</p></td>
+<td><p>DEFAULT    k_vCurl           - Calibrated parameter for scaling the eddy viscosity in the curled-wake model (-) [&gt;=0] or DEFAULT [DEFAULT=2.0 ]</p></td>
+</tr>
+<tr class="row-odd"><td><p>FAST.Farm</p></td>
+<td><p>74</p></td>
+<td><p>Mod_Projection</p></td>
+<td><p>DEFAULT    Mod_Projection    - Switch to select how the wake plane velocity is projected in AWAE {1: keep all components, 2: project against plane normal} or DEFAULT [DEFAULT=1: if Mod_Wake is 1 or 3, or DEFAULT=2: if Mod_Wake is 2] (switch)</p></td>
+</tr>
+<tr class="row-even"><td><p>FAST.Farm</p></td>
+<td><p>91</p></td>
+<td><p>OutAllPlanes</p></td>
+<td><p>DEFAULT    OutAllPlanes      - Output all wake planes at all time steps. [DEFAULT=False]</p></td>
+</tr>
+<tr class="row-odd"><td><p>AeroDyn 15</p></td>
+<td><p>13</p></td>
+<td><p>Buoyancy</p></td>
+<td><p>True       Buoyancy          - Include buoyancy effects? (flag)</p></td>
+</tr>
+<tr class="row-even"><td><p>AeroDyn 15</p></td>
+<td><p>65</p></td>
+<td><p>HubPropsSection</p></td>
+<td><p>======  Hub Properties ============================================================================== [used only when Buoyancy=True]</p></td>
+</tr>
+<tr class="row-odd"><td><p>AeroDyn 15</p></td>
+<td><p>66</p></td>
+<td><p>VolHub</p></td>
+<td><p>7.0        VolHub            - Hub volume (m^3)</p></td>
+</tr>
+<tr class="row-even"><td><p>AeroDyn 15</p></td>
+<td><p>67</p></td>
+<td><p>HubCenBx</p></td>
+<td><p>0.5        HubCenBx          - Hub center of buoyancy x direction offset (m)</p></td>
+</tr>
+<tr class="row-odd"><td><p>AeroDyn 15</p></td>
+<td><p>68</p></td>
+<td><p>NacPropsSection</p></td>
+<td><p>======  Nacelle Properties ========================================================================== [used only when Buoyancy=True]</p></td>
+</tr>
+<tr class="row-even"><td><p>AeroDyn 15</p></td>
+<td><p>69</p></td>
+<td><p>VolNac</p></td>
+<td><p>32.0       VolNac            - Nacelle volume (m^3)</p></td>
+</tr>
+<tr class="row-odd"><td><p>AeroDyn 15</p></td>
+<td><p>70</p></td>
+<td><p>NacCenB</p></td>
+<td><p>0.4,0,0    NacCenB           - Position of nacelle center of buoyancy from yaw bearing in nacelle coordinates (m)</p></td>
+</tr>
+<tr class="row-even"><td><p>AeroDyn 15</p></td>
+<td><p>71</p></td>
+<td><p>TFinPropsSection</p></td>
+<td><p>======  Tail fin Aerodynamics ========================================================================</p></td>
+</tr>
+<tr class="row-odd"><td><p>AeroDyn 15</p></td>
+<td><p>72</p></td>
+<td><p>TFinAero</p></td>
+<td><p>True      TFinAero            - Calculate tail fin aerodynamics model (flag)</p></td>
+</tr>
+<tr class="row-even"><td><p>AeroDyn 15</p></td>
+<td><p>73</p></td>
+<td><p>TFinFile$</p></td>
+<td><p>“AD_Fin.dat”  TFinFile        - Input file for tail fin aerodynamics [used only when TFinAero=True]</p></td>
+</tr>
+<tr class="row-odd"><td><p>AeroDyn 15</p></td>
+<td></td>
+<td><p>TwrCb</p></td>
+<td><p>1.0        [additional column in <em>Tower Influence and Aerodynamics</em> table]</p></td>
+</tr>
+<tr class="row-even"><td><p>AeroDyn blade</p></td>
+<td></td>
+<td><p>BlCb</p></td>
+<td><p>0.187      [additional column in <em>Blade Properties</em> table]</p></td>
+</tr>
+<tr class="row-odd"><td><p>AeroDyn blade</p></td>
+<td></td>
+<td><p>BlCenBn</p></td>
+<td><p>0.3        [additional column in <em>Blade Properties</em> table]</p></td>
+</tr>
+<tr class="row-even"><td><p>AeroDyn blade</p></td>
+<td></td>
+<td><p>BlCenBt</p></td>
+<td><p>0.1        [additional column in <em>Blade Properties</em> table]</p></td>
+</tr>
+<tr class="row-odd"><td><p>OLAF</p></td>
+<td><p>18</p></td>
+<td><p>nNWPanelFree</p></td>
+<td><p>180       nNWPanelFree       - Number of free near-wake panels (-) {default: nNWPanels}</p></td>
+</tr>
+<tr class="row-even"><td><p>OLAF</p></td>
+<td><p>19</p></td>
+<td><p>nFWPanels</p></td>
+<td><p>900       nFWPanels          - Number of far-wake panels (-) {default: 0}</p></td>
+</tr>
+<tr class="row-odd"><td><p>OLAF</p></td>
+<td><p>20</p></td>
+<td><p>nFWPanelsFree</p></td>
+<td><p>0         nFWPanelsFree      - Number of free far-wake panels (-) {default: nFWPanels}</p></td>
+</tr>
+</tbody>
+</table>
+<p>*Exact line number depends on number of entries in various preceeding tables.</p>
+<p>$ The content of the tail fin input file is described in <a class="reference internal" href="aerodyn/input.html#tf-tf-input-file"><span class="std std-numref">Section 4.3.3.19.3</span></a>.</p>
+<p><strong>New Default Values</strong>:
+The following default value were changed</p>
+<ul class="simple">
+<li><p>OLAF <em>VelocityMethod</em> is now 2 (particle tree), previous value 1 (n^2 BiotSavart law on segments).</p></li>
+<li><p>OLAF <em>WakeRegMethod</em> is now 3 (increasing with wake age), previous value was 1 (constant).</p></li>
+<li><p>OLAF <em>nVTKBlades</em> is now 0 (no wake panels output), previous value was 1 (wake panels output for blade 1)</p></li>
+</ul>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 2%" />
+<col style="width: 6%" />
+<col style="width: 76%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p>Removed in OpenFAST v3.4.0</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Module</p></th>
+<th class="head"><p>Line</p></th>
+<th class="head"><p>Flag Name</p></th>
+<th class="head"><p>Example Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>OLAF</p></td>
+<td><p>18</p></td>
+<td><p>WakeLength</p></td>
+<td><p>900     WakeLength         Total wake distance [integer] (number of time steps)</p></td>
+</tr>
+<tr class="row-even"><td><p>OLAF</p></td>
+<td><p>19</p></td>
+<td><p>FreeWakeLength</p></td>
+<td><p>0       FreeWakeLength     Wake length that is free [integer] (number of time steps) {default: WakeLength}</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="openfast-v3-2-0-to-openfast-v3-3-0">
+<h2><span class="section-number">4.1.2.23. </span>OpenFAST v3.2.0 to OpenFAST v3.3.0<a class="headerlink" href="#openfast-v3-2-0-to-openfast-v3-3-0" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 2%" />
+<col style="width: 6%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p>Added in OpenFAST <cite>3.3.0</cite></p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Module</p></th>
+<th class="head"><p>Line</p></th>
+<th class="head"><p>Flag Name</p></th>
+<th class="head"><p>Example Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>FAST.Farm</p></td>
+<td><p>9</p></td>
+<td><p>ModWaveField</p></td>
+<td><p>2           Mod_WaveField     - Wave field handling (-) (switch) {1: use individual HydroDyn inputs without adjustment, 2: adjust wave phases based on turbine offsets from farm origin}</p></td>
+</tr>
+<tr class="row-even"><td><p>FAST.Farm</p></td>
+<td><p>10</p></td>
+<td><p>Mod_SharedMooring</p></td>
+<td><p>0           Mod_SharedMooring - Shared mooring system model (switch) {0: None, 3=MoorDyn}}</p></td>
+</tr>
+<tr class="row-odd"><td><p>FAST.Farm</p></td>
+<td><p>13</p></td>
+<td><p>na</p></td>
+<td><p>—— SHARED MOORING SYSTEM —— [used only for Mod_SharedMoor&gt;0]</p></td>
+</tr>
+<tr class="row-even"><td><p>FAST.Farm</p></td>
+<td><p>14</p></td>
+<td><p>SharedMoorFile</p></td>
+<td><p>“”          SharedMoorFile   -  Name of file containing shared mooring system input parameters (quoted string) [used only when Mod_SharedMooring &gt; 0]</p></td>
+</tr>
+<tr class="row-odd"><td><p>FAST.Farm</p></td>
+<td><p>15</p></td>
+<td><p>DT_Mooring</p></td>
+<td><p>0.04        DT_Mooring       -  Time step for farm-level mooring coupling with each turbine (s) [used only when Mod_SharedMooring &gt; 0]</p></td>
+</tr>
+<tr class="row-even"><td><p>AeroDyn driver</p></td>
+<td><p>54*</p></td>
+<td><p>WrVTK_Type</p></td>
+<td><p>1           WrVTK_Type       - VTK visualization data type: (switch) {1=surfaces; 2=lines; 3=both}</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 2%" />
+<col style="width: 6%" />
+<col style="width: 76%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p>Modified in OpenFAST v3.3.0</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Module</p></th>
+<th class="head"><p>Line</p></th>
+<th class="head"><p>Flag Name</p></th>
+<th class="head"><p>Example Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>MoorDyn&amp;</p></td>
+<td><p>5</p></td>
+<td><p>na</p></td>
+<td><p>Name     Diam      MassDen       EA    BA/-zeta    EI    Cd      Ca     CdAx   CaAx</p></td>
+</tr>
+<tr class="row-even"><td><p>MoorDyn&amp;</p></td>
+<td><p>6</p></td>
+<td><p>na</p></td>
+<td><p>(-)       (m)      (kg/m)        (N)    (N-s/-)    (-)   (-)     (-)    (-)    (-)</p></td>
+</tr>
+<tr class="row-odd"><td><p>MoorDyn&amp;</p></td>
+<td><p>7</p></td>
+<td><p>na</p></td>
+<td><p>main     0.0766    113.35     7.536E8     -1.0      0    2.0     0.8    0.4   0.25</p></td>
+</tr>
+<tr class="row-even"><td><p>MoorDyn&amp;</p></td>
+<td><p>8*</p></td>
+<td><p>na</p></td>
+<td><p>———————- POINTS ——————————–</p></td>
+</tr>
+<tr class="row-odd"><td><p>MoorDyn&amp;</p></td>
+<td><p>9*</p></td>
+<td><p>na</p></td>
+<td><p>ID     Attachment   X          Y         Z      M      V       CdA   CA</p></td>
+</tr>
+<tr class="row-even"><td><p>MoorDyn&amp;</p></td>
+<td><p>10*</p></td>
+<td><p>na</p></td>
+<td><p>(-)    (-)         (m)        (m)       (m)    (kg)   (m^3)   (m^2)  (-)</p></td>
+</tr>
+<tr class="row-odd"><td><p>MoorDyn&amp;</p></td>
+<td><p>11*</p></td>
+<td><p>na</p></td>
+<td><p>1      Fixed     418.8      725.383   -200.0     0      0       0     0</p></td>
+</tr>
+<tr class="row-even"><td><p>MoorDyn&amp;</p></td>
+<td><p>17*</p></td>
+<td><p>na</p></td>
+<td><p>———————- LINES ————————————–</p></td>
+</tr>
+<tr class="row-odd"><td><p>MoorDyn&amp;</p></td>
+<td><p>18*</p></td>
+<td><p>na</p></td>
+<td><p>ID      LineType   AttachA   AttachB  UnstrLen  NumSegs   Outputs</p></td>
+</tr>
+<tr class="row-even"><td><p>MoorDyn&amp;</p></td>
+<td><p>19*</p></td>
+<td><p>na</p></td>
+<td><p>(-)       (-)       (-)       (-)         (m)      (-)         (-)</p></td>
+</tr>
+<tr class="row-odd"><td><p>MoorDyn&amp;</p></td>
+<td><p>20*</p></td>
+<td><p>na</p></td>
+<td><p>1         main       1         4        835.35      20          -</p></td>
+</tr>
+</tbody>
+</table>
+<p>&amp;MoorDyn has undergone an extensive revision that leaves few lines unchanged. We recommend looking at a sample input file for the 5MW_OC4Semi_WSt_WavesWN regression test for reference rather than line by line changes in the above tables.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 2%" />
+<col style="width: 6%" />
+<col style="width: 76%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p>Removed in OpenFAST v3.3.0</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Module</p></th>
+<th class="head"><p>Line</p></th>
+<th class="head"><p>Flag Name</p></th>
+<th class="head"><p>Example Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>MoorDyn&amp;</p></td>
+<td><p>5</p></td>
+<td><p>NTypes</p></td>
+<td><p>1        NTypes    - number of LineTypes</p></td>
+</tr>
+<tr class="row-even"><td><p>MoorDyn&amp;</p></td>
+<td><p>10*</p></td>
+<td><p>NConnects</p></td>
+<td><p>6        NConnects - number of connections including anchors and fairleads</p></td>
+</tr>
+<tr class="row-odd"><td><p>MoorDyn&amp;</p></td>
+<td><p>20*</p></td>
+<td><p>NLines</p></td>
+<td><p>3        NLines    - number of line objects</p></td>
+</tr>
+</tbody>
+</table>
+<p>*Exact line number depends on number of entries in various preceeding tables.</p>
+<p>&amp;MoorDyn has undergone an extensive revision that leaves few lines unchanged. We recommend looking at a sample input file for the 5MW_OC4Semi_WSt_WavesWN regression test for reference rather than line by line changes in the above tables.</p>
+</div>
+<div class="section" id="openfast-v3-1-0-to-openfast-v3-2-0">
+<h2><span class="section-number">4.1.2.24. </span>OpenFAST v3.1.0 to OpenFAST v3.2.0<a class="headerlink" href="#openfast-v3-1-0-to-openfast-v3-2-0" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 2%" />
+<col style="width: 6%" />
+<col style="width: 76%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p>Added in OpenFAST v3.2.0</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Module</p></th>
+<th class="head"><p>Line</p></th>
+<th class="head"><p>Flag Name</p></th>
+<th class="head"><p>Example Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>TurbSim</p></td>
+<td><p>13</p></td>
+<td><p>WrHAWCFF</p></td>
+<td><p>False      WrHAWCFF          - Output full-field time-series data in HAWC form?  (Generates RootName-u.bin, RootName-v.bin, RootName-w.bin, RootName.hawc)</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 2%" />
+<col style="width: 6%" />
+<col style="width: 76%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p>Removed in OpenFAST v3.2.0</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Module</p></th>
+<th class="head"><p>Line</p></th>
+<th class="head"><p>Flag Name</p></th>
+<th class="head"><p>Example Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>TurbSim</p></td>
+<td><p>14</p></td>
+<td><p>Clockwise</p></td>
+<td><p>True           Clockwise       - Clockwise rotation looking downwind? (used only for full-field binary files - not necessary for AeroDyn)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="openfast-v3-0-0-to-openfast-v3-1-0">
+<h2><span class="section-number">4.1.2.25. </span>OpenFAST v3.0.0 to OpenFAST v3.1.0<a class="headerlink" href="#openfast-v3-0-0-to-openfast-v3-1-0" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 1%" />
+<col style="width: 4%" />
+<col style="width: 82%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p>Added in OpenFAST v3.1.0</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Module</p></th>
+<th class="head"><p>Line</p></th>
+<th class="head"><p>Flag Name</p></th>
+<th class="head"><p>Example Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>ServoDyn</p></td>
+<td><p>60</p></td>
+<td><p>AeroControlSec</p></td>
+<td><p>———————- AERODYNAMIC FLOW CONTROL ——————————–</p></td>
+</tr>
+<tr class="row-even"><td><p>ServoDyn</p></td>
+<td><p>61</p></td>
+<td><p>AfCmode</p></td>
+<td><p>0             AfCmode      - Airfoil control mode {0: none, 1: cosine wave cycle, 4: user-defined from Simulink/Labview, 5: user-defined from Bladed-style DLL} (switch)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ServoDyn</p></td>
+<td><p>62</p></td>
+<td><p>AfC_Mean</p></td>
+<td><p>0             AfC_Mean     - Mean level for cosine cycling or steady value (-) [used only with AfCmode==1]</p></td>
+</tr>
+<tr class="row-even"><td><p>ServoDyn</p></td>
+<td><p>63</p></td>
+<td><p>AfC_Amp</p></td>
+<td><p>0             AfC_Amp      - Amplitude for cosine cycling of flap signal (-) [used only with AfCmode==1]</p></td>
+</tr>
+<tr class="row-odd"><td><p>ServoDyn</p></td>
+<td><p>64</p></td>
+<td><p>AfC_Phase</p></td>
+<td><p>0             AfC_Phase    - Phase relative to the blade azimuth (0 is vertical) for cosine cycling of flap signal (deg) [used only with AfCmode==1]</p></td>
+</tr>
+<tr class="row-even"><td><p>ServoDyn</p></td>
+<td><p>74</p></td>
+<td><p>CablesSection</p></td>
+<td><p>———————- CABLE CONTROL ——————————————-</p></td>
+</tr>
+<tr class="row-odd"><td><p>ServoDyn</p></td>
+<td><p>75</p></td>
+<td><p>CCmode</p></td>
+<td><p>0          CCmode            - Cable control mode {0: none, 4: user-defined from Simulink/Labview, 5: user-defined from Bladed-style DLL} (switch)</p></td>
+</tr>
+<tr class="row-even"><td><p>HydroDyn driver</p></td>
+<td><p>6</p></td>
+<td><p>WtrDens</p></td>
+<td><p>1025       WtrDens           - Water density (kg/m^3)</p></td>
+</tr>
+<tr class="row-odd"><td><p>HydroDyn driver</p></td>
+<td><p>7</p></td>
+<td><p>WtrDpth</p></td>
+<td><p>200        WtrDpth           - Water depth (m)</p></td>
+</tr>
+<tr class="row-even"><td><p>HydroDyn driver</p></td>
+<td><p>8</p></td>
+<td><p>MSL2SWL</p></td>
+<td><p>0          MSL2SWL           - Offset between still-water level and mean sea level (m) [positive upward]</p></td>
+</tr>
+<tr class="row-odd"><td><p>OpenFAST</p></td>
+<td><p>21</p></td>
+<td><p>MHK</p></td>
+<td><p>0          MHK               - MHK turbine type (switch) {0=Not an MHK turbine; 1=Fixed MHK turbine; 2=Floating MHK turbine}</p></td>
+</tr>
+<tr class="row-even"><td><p>OpenFAST</p></td>
+<td><p>22</p></td>
+<td><p>EnvCondSection</p></td>
+<td><p>———————- ENVIRONMENTAL CONDITIONS ——————————–</p></td>
+</tr>
+<tr class="row-odd"><td><p>OpenFAST</p></td>
+<td><p>23</p></td>
+<td><p>Gravity</p></td>
+<td><p>9.80665    Gravity           - Gravitational acceleration (m/s^2)</p></td>
+</tr>
+<tr class="row-even"><td><p>OpenFAST</p></td>
+<td><p>24</p></td>
+<td><p>AirDens</p></td>
+<td><p>1.225      AirDens           - Air density (kg/m^3)</p></td>
+</tr>
+<tr class="row-odd"><td><p>OpenFAST</p></td>
+<td><p>25</p></td>
+<td><p>WtrDens</p></td>
+<td><p>1025       WtrDens           - Water density (kg/m^3)</p></td>
+</tr>
+<tr class="row-even"><td><p>OpenFAST</p></td>
+<td><p>26</p></td>
+<td><p>KinVisc</p></td>
+<td><p>1.464E-05  KinVisc           - Kinematic viscosity of working fluid (m^2/s)</p></td>
+</tr>
+<tr class="row-odd"><td><p>OpenFAST</p></td>
+<td><p>27</p></td>
+<td><p>SpdSound</p></td>
+<td><p>335        SpdSound          - Speed of sound in air (m/s)</p></td>
+</tr>
+<tr class="row-even"><td><p>OpenFAST</p></td>
+<td><p>28</p></td>
+<td><p>Patm</p></td>
+<td><p>103500     Patm              - Atmospheric pressure (Pa) [used only for an MHK turbine cavitation check]</p></td>
+</tr>
+<tr class="row-odd"><td><p>OpenFAST</p></td>
+<td><p>29</p></td>
+<td><p>Pvap</p></td>
+<td><p>1700       Pvap              - Vapour pressure of working fluid (Pa) [used only for an MHK turbine cavitation check]</p></td>
+</tr>
+<tr class="row-even"><td><p>OpenFAST</p></td>
+<td><p>30</p></td>
+<td><p>WtrDpth</p></td>
+<td><p>50         WtrDpth           - Water depth (m)</p></td>
+</tr>
+<tr class="row-odd"><td><p>OpenFAST</p></td>
+<td><p>31</p></td>
+<td><p>MSL2SWL</p></td>
+<td><p>0          MSL2SWL           - Offset between still-water level and mean sea level (m) [positive upward]</p></td>
+</tr>
+<tr class="row-even"><td><p>AeroDyn 15</p></td>
+<td><p>39</p></td>
+<td><p>UAStartRad</p></td>
+<td><p>0.25       UAStartRad        - Starting radius for dynamic stall (fraction of rotor radius) [used only when AFAeroMod=2; if line is missing UAStartRad=0]</p></td>
+</tr>
+<tr class="row-odd"><td><p>AeroDyn 15</p></td>
+<td><p>40</p></td>
+<td><p>UAEndRad</p></td>
+<td><p>0.95       UAEndRad          - Ending radius for dynamic stall (fraction of rotor radius) [used only when AFAeroMod=2; if line is missing UAEndRad=1]</p></td>
+</tr>
+<tr class="row-even"><td><p>AeroDyn driver</p></td>
+<td><p>34</p></td>
+<td><p>Twr2Shft</p></td>
+<td><p>3.09343    Twr2Shft          - Vertical distance from the tower-top to the rotor shaft (m)</p></td>
+</tr>
+<tr class="row-odd"><td><p>AirFoilTables</p></td>
+<td><p>12*</p></td>
+<td><p>alphaUpper</p></td>
+<td><p>5.0        alphaUpper        ! Angle of attack at upper boundary of fully-attached region. (deg) [used only when UAMod=5] ! THIS IS AN OPTIONAL LINE; if omitted, it will be calculated from the polar data</p></td>
+</tr>
+<tr class="row-even"><td><p>AirFoilTables</p></td>
+<td><p>13*</p></td>
+<td><p>alphaLower</p></td>
+<td><p>-3.0      alphaLower        ! Angle of attack at lower boundary of fully-attached region. (deg) [used only when UAMod=5] ! THIS IS AN OPTIONAL LINE; if omitted, it will be calculated from the polar data</p></td>
+</tr>
+<tr class="row-odd"><td><p>AirFoilTables</p></td>
+<td><p>42*</p></td>
+<td><p>UACutout_delta</p></td>
+<td><p>“DEFAULT”  UACutout_delta    ! Delta angle of attack below UACutout where unsteady aerodynamics begin to turn off (blend with steady solution) (deg) [Specifying the string “Default” sets UACutout_delta to 5 degrees] ! THIS IS AN OPTIONAL LINE; if omitted, it will be set to its default value</p></td>
+</tr>
+<tr class="row-even"><td><p>FASTFarm</p></td>
+<td><p>28</p></td>
+<td><p>Mod_Wake</p></td>
+<td><p>1          Mod_Wake          -  Switch between wake formulations {1:Polar, 2:Curl, 3:Cartesian} (-) (switch)</p></td>
+</tr>
+<tr class="row-odd"><td><p>FASTFarm</p></td>
+<td><p>62</p></td>
+<td><p>Swirl</p></td>
+<td><p>False      Swirl             - Switch to include swirl velocities in wake [only used if Mod_Wake=2 or Mod_Wake=3] (-) (switch)</p></td>
+</tr>
+<tr class="row-even"><td><p>FASTFarm</p></td>
+<td><p>63</p></td>
+<td><p>k_VortexDecay</p></td>
+<td><ol class="arabic simple" start="0">
+<li><p>k_VortexDecay     - Vortex decay constant for curl (-)</p></li>
+</ol>
+</td>
+</tr>
+<tr class="row-odd"><td><p>FASTFarm</p></td>
+<td><p>64</p></td>
+<td><p>NumVortices</p></td>
+<td><p>DEFAULT    NumVortices       - The number of vortices in the curled wake model (-) [DEFAULT=100]</p></td>
+</tr>
+<tr class="row-even"><td><p>FASTFarm</p></td>
+<td><p>65</p></td>
+<td><p>sigma_D</p></td>
+<td><p>DEFAULT    sigma_D           - The width of the vortices in the curled wake model non-dimesionalized by rotor diameter (-) [DEFAULT=0.2]</p></td>
+</tr>
+<tr class="row-odd"><td><p>FASTFarm</p></td>
+<td><p>66</p></td>
+<td><p>FilterInit</p></td>
+<td><p>DEFAULT    FilterInit        - Switch to filter the initial wake plane deficit and select the number of grid points for the filter {0: no filter, 1: filter of size 1} or DEFAULT [DEFAULT=1] [unused for Mod_Wake=1] (switch)</p></td>
+</tr>
+<tr class="row-even"><td><p>FASTFarm</p></td>
+<td><p>67</p></td>
+<td><p>k_vCurl</p></td>
+<td><p>20         k_vCurl           - Calibrated parameter for scaling the eddy viscosity in the curled-wake model (-) [only used if Mod_Wake=2 or Mod_Wake=3] [&gt;=0] or DEFAULT [DEFAULT=2.0 ]</p></td>
+</tr>
+<tr class="row-odd"><td><p>FASTFarm</p></td>
+<td><p>68</p></td>
+<td><p>Mod_Projection</p></td>
+<td><p>DEFAULT    Mod_Projection    - Switch to select how the wake plane velocity is project</p></td>
+</tr>
+<tr class="row-even"><td><p>FASTFarm</p></td>
+<td><p>85</p></td>
+<td><p>OutAllPlanes</p></td>
+<td><p>True       OutAllPlanes      - Output all wake planes at all time steps. [DEFAULT=False]</p></td>
+</tr>
+</tbody>
+</table>
+<p>*non-comment line count, excluding lines contained if NumCoords is not 0, and including all OPTIONAL lines in the UA coefficients table.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 2%" />
+<col style="width: 6%" />
+<col style="width: 76%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p>Modified in OpenFAST v3.1.0</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Module</p></th>
+<th class="head"><p>Line</p></th>
+<th class="head"><p>Flag Name</p></th>
+<th class="head"><p>Example Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>AeroDyn</p></td>
+<td><p>16</p></td>
+<td><p>AirDens</p></td>
+<td><p>“default”  AirDens           - Air density (kg/m^3)</p></td>
+</tr>
+<tr class="row-even"><td><p>AeroDyn</p></td>
+<td><p>17</p></td>
+<td><p>KinVisc</p></td>
+<td><p>“default”  KinVisc           - Kinematic viscosity of working fluid (m^2/s)</p></td>
+</tr>
+<tr class="row-odd"><td><p>AeroDyn</p></td>
+<td><p>18</p></td>
+<td><p>SpdSound</p></td>
+<td><p>“default”  SpdSound          - Speed of sound in air (m/s)</p></td>
+</tr>
+<tr class="row-even"><td><p>AeroDyn</p></td>
+<td><p>19</p></td>
+<td><p>Patm</p></td>
+<td><p>“default”  Patm              - Atmospheric pressure (Pa) [used only when CavitCheck=True]</p></td>
+</tr>
+<tr class="row-odd"><td><p>AeroDyn</p></td>
+<td><p>20</p></td>
+<td><p>Pvap</p></td>
+<td><p>“default”  Pvap              - Vapour pressure of working fluid (Pa) [used only when CavitCheck=True]</p></td>
+</tr>
+<tr class="row-even"><td><p>HydroDyn</p></td>
+<td><p>5</p></td>
+<td><p>WtrDens</p></td>
+<td><p>“default”  WtrDens           - Water density (kg/m^3)</p></td>
+</tr>
+<tr class="row-odd"><td><p>HydroDyn</p></td>
+<td><p>6</p></td>
+<td><p>WtrDpth</p></td>
+<td><p>“default”  WtrDpth           - Water depth (meters)</p></td>
+</tr>
+<tr class="row-even"><td><p>HydroDyn</p></td>
+<td><p>7</p></td>
+<td><p>MSL2SWL</p></td>
+<td><p>“default”  MSL2SWL           - Offset between still-water level and mean sea level (meters) [positive upward; unused when WaveMod = 6; must be zero if PotMod=1 or 2]</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 2%" />
+<col style="width: 6%" />
+<col style="width: 76%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p>Removed in OpenFAST v3.1.0</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Module</p></th>
+<th class="head"><p>Line</p></th>
+<th class="head"><p>Flag Name</p></th>
+<th class="head"><p>Example Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>AeroDyn</p></td>
+<td><p>21</p></td>
+<td><p>FluidDepth</p></td>
+<td><p>0.5        FluidDepth        - Water depth above mid-hub height (m) [used only when CavitCheck=True]</p></td>
+</tr>
+<tr class="row-even"><td><p>ElastoDyn</p></td>
+<td><p>7</p></td>
+<td><p>EnvCondSection</p></td>
+<td><p>———————- ENVIRONMENTAL CONDITION ———————————</p></td>
+</tr>
+<tr class="row-odd"><td><p>ElastoDyn</p></td>
+<td><p>8</p></td>
+<td><p>Gravity</p></td>
+<td><p>9.80665    Gravity           - Gravitational acceleration (m/s^2)</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>The AeroDyn driver input file was completely rewritten. You may consult the following examples for a <a class="reference download internal" download="" href="../../_downloads/7a77314a2cb8728956c5d1ddb48e0039/ad_driver_example.dvr"><code class="xref download docutils literal notranslate"><span class="pre">single</span> <span class="pre">rotor</span></code></a> and <a class="reference download internal" download="" href="../../_downloads/ac5577e8159b01ae60d7a0048ad1820e/ad_driver_multiple.dvr"><code class="xref download docutils literal notranslate"><span class="pre">multiple</span> <span class="pre">rotors</span></code></a> in addition to the <a class="reference internal" href="aerodyn/driver.html#ad-driver"><span class="std std-ref">AeroDyn driver documentation</span></a>.</p></li>
+<li><p>SubDyn</p>
+<ul>
+<li><p>SubDyn Driver, applied loads input:</p></li>
+</ul>
+</li>
+</ul>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 2%" />
+<col style="width: 9%" />
+<col style="width: 83%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p>Added</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Module</p></th>
+<th class="head"><p>Line</p></th>
+<th class="head"><p>Flag Name</p></th>
+<th class="head"><p>Example Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>SubDyn driver</p></td>
+<td><p>21</p></td>
+<td><p>[separator line]</p></td>
+<td><p>———————- LOADS ——————————————————————–</p></td>
+</tr>
+<tr class="row-even"><td><p>SubDyn driver</p></td>
+<td><p>22</p></td>
+<td><p>nAppliedLoads</p></td>
+<td><p>1    nAppliedLoads  - Number of applied loads at given nodes false</p></td>
+</tr>
+<tr class="row-odd"><td><p>SubDyn driver</p></td>
+<td><p>23</p></td>
+<td><p>ALTableHeader</p></td>
+<td><p>ALJointID    Fx     Fy    Fz     Mx     My     Mz   UnsteadyFile</p></td>
+</tr>
+<tr class="row-even"><td><p>SubDyn driver</p></td>
+<td><p>24</p></td>
+<td><p>ALTableUnit</p></td>
+<td><p>(-)       (N)    (N)   (N)   (Nm)   (Nm)   (Nm)     (-)</p></td>
+</tr>
+<tr class="row-odd"><td><p>SubDyn driver</p></td>
+<td><p>25</p></td>
+<td><p>ALTableLine1</p></td>
+<td><p>10       0.0    0.0   0.0    0.0   0.0     0.0     “”</p></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><ul class="simple">
+<li><p>SubDyn: the lines at n+1 and n+2 below were inserted after line n.</p></li>
+</ul>
+</div></blockquote>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 2%" />
+<col style="width: 9%" />
+<col style="width: 83%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p>Added</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Module</p></th>
+<th class="head"><p>Line</p></th>
+<th class="head"><p>Flag Name</p></th>
+<th class="head"><p>Example Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>SubDyn</p></td>
+<td><p>n</p></td>
+<td><p>OutCOSM</p></td>
+<td><p>Output cosine matrices with the selected output member forces (flag)</p></td>
+</tr>
+<tr class="row-even"><td><p>SubDyn</p></td>
+<td><p>n+1</p></td>
+<td><p>OutCBModes</p></td>
+<td><p>Output Guyan and Craig-Bampton modes {0: No output, 1: JSON output}, (flag)</p></td>
+</tr>
+<tr class="row-odd"><td><p>SubDyn</p></td>
+<td><p>n+2</p></td>
+<td><p>OutFEMModes</p></td>
+<td><p>Output first 30 FEM modes {0: No output, 1: JSON output} (flag)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="openfast-v2-6-0-to-openfast-v3-0-0">
+<h2><span class="section-number">4.1.2.26. </span>OpenFAST v2.6.0 to OpenFAST v3.0.0<a class="headerlink" href="#openfast-v2-6-0-to-openfast-v3-0-0" title="Permalink to this heading"></a></h2>
+<p><strong>ServoDyn Changes</strong></p>
+<ul class="simple">
+<li><p>The input file parser is updated to a keyword/value pair based input.
+Each entry must have a corresponding keyword with the same spelling as
+expected.</p></li>
+<li><p>The TMD submodule of ServoDyn is replaced by an updated Structural Control
+module (StC) with updated capabilities and input file.</p></li>
+</ul>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 2%" />
+<col style="width: 6%" />
+<col style="width: 76%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p>Removed in OpenFAST v3.0.0</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Module</p></th>
+<th class="head"><p>Line</p></th>
+<th class="head"><p>Flag Name</p></th>
+<th class="head"><p>Example Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>ServoDyn</p></td>
+<td><p>60</p></td>
+<td><p>na</p></td>
+<td><p>———————- TUNED MASS DAMPER —————————————</p></td>
+</tr>
+<tr class="row-even"><td><p>ServoDyn</p></td>
+<td><p>61</p></td>
+<td><p>CompNTMD</p></td>
+<td><p>False         CompNTMD     - Compute nacelle tuned mass damper {true/false} (flag)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ServoDyn</p></td>
+<td><p>62</p></td>
+<td><p>NTMDfile</p></td>
+<td><p>“NRELOffshrBsline5MW_ServoDyn_TMD.dat”    NTMDfile     - Name of the file for nacelle tuned mass damper (quoted string) [unused when CompNTMD is false]</p></td>
+</tr>
+<tr class="row-even"><td><p>ServoDyn</p></td>
+<td><p>63</p></td>
+<td><p>CompTTMD</p></td>
+<td><p>False         CompTTMD     - Compute tower tuned mass damper {true/false} (flag)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ServoDyn</p></td>
+<td><p>64</p></td>
+<td><p>TTMDfile</p></td>
+<td><p>“NRELOffshrBsline5MW_ServoDyn_TMD.dat”    TTMDfile     - Name of the file for tower tuned mass damper (quoted string) [unused when CompTTMD is false]</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 2%" />
+<col style="width: 6%" />
+<col style="width: 76%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p>Added in OpenFAST v3.0.0</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Module</p></th>
+<th class="head"><p>Line</p></th>
+<th class="head"><p>Flag Name</p></th>
+<th class="head"><p>Example Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>ServoDyn</p></td>
+<td><p>60</p></td>
+<td><p>na</p></td>
+<td><p>———————- STRUCTURAL CONTROL ————————————–</p></td>
+</tr>
+<tr class="row-even"><td><p>ServoDyn</p></td>
+<td><p>61</p></td>
+<td><p>NumBStC</p></td>
+<td><p>0             NumBStC      - Number of blade structural controllers (integer)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ServoDyn</p></td>
+<td><p>62</p></td>
+<td><p>BStCfiles</p></td>
+<td><p>“unused”      BStCfiles    - Name of the files for blade structural controllers (quoted strings) [unused when NumBStC==0]</p></td>
+</tr>
+<tr class="row-even"><td><p>ServoDyn</p></td>
+<td><p>63</p></td>
+<td><p>NumNStC</p></td>
+<td><p>0             NumNStC      - Number of nacelle structural controllers (integer)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ServoDyn</p></td>
+<td><p>64</p></td>
+<td><p>NStCfiles</p></td>
+<td><p>“unused”      NStCfiles    - Name of the files for nacelle structural controllers (quoted strings) [unused when NumNStC==0]</p></td>
+</tr>
+<tr class="row-even"><td><p>ServoDyn</p></td>
+<td><p>65</p></td>
+<td><p>NumTStC</p></td>
+<td><p>0             NumTStC      - Number of tower structural controllers (integer)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ServoDyn</p></td>
+<td><p>66</p></td>
+<td><p>TStCfiles</p></td>
+<td><p>“unused”      TStCfiles    - Name of the files for tower structural controllers (quoted strings) [unused when NumTStC==0]</p></td>
+</tr>
+<tr class="row-even"><td><p>ServoDyn</p></td>
+<td><p>67</p></td>
+<td><p>NumSStC</p></td>
+<td><p>0             NumSStC      - Number of substructure structural controllers (integer)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ServoDyn</p></td>
+<td><p>68</p></td>
+<td><p>SStCfiles</p></td>
+<td><p>“unused”      SStCfiles    - Name of the files for substructure structural controllers (quoted strings) [unused when NumSStC==0]</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="openfast-v2-5-0-to-openfast-v2-6-0">
+<h2><span class="section-number">4.1.2.27. </span>OpenFAST v2.5.0 to OpenFAST v2.6.0<a class="headerlink" href="#openfast-v2-5-0-to-openfast-v2-6-0" title="Permalink to this heading"></a></h2>
+<p>Many changes were applied to SubDyn input file format. You may consult the following example:
+<a class="reference download internal" download="" href="../../_downloads/0ed591d9649fba389285474bc2d44e18/OC4_Jacket_SD_Input.dat"><code class="xref download docutils literal notranslate"><span class="pre">(SubDyn's</span> <span class="pre">Input</span> <span class="pre">File)</span></code></a>:
+and the online SubDyn documentation.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 1%" />
+<col style="width: 4%" />
+<col style="width: 84%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p>Added in OpenFAST v2.6.0</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Module</p></th>
+<th class="head"><p>Line</p></th>
+<th class="head"><p>Flag Name</p></th>
+<th class="head"><p>Example Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>AeroDyn 15</p></td>
+<td></td>
+<td><p>TwrTi</p></td>
+<td><p>0.0000000E+00  6.0000000E+00  1.0000000E+00  1.0000000E-01                 [additional column in <em>Tower Influence and Aerodynamics</em> table]</p></td>
+</tr>
+<tr class="row-even"><td><p>SubDyn</p></td>
+<td><p>8</p></td>
+<td><p>GuyanLoadCorr.</p></td>
+<td><p>False   GuyanLoadCorection  - Include extra moment from lever arm at interface and rotate FEM for floating</p></td>
+</tr>
+<tr class="row-odd"><td><p>SubDyn</p></td>
+<td><p>15</p></td>
+<td><p>GuyanDampMod</p></td>
+<td><p>0       GuyanDampMod - Guyan damping {0=none, 1=Rayleigh Damping, 2=user specified 6x6 matrix}</p></td>
+</tr>
+<tr class="row-even"><td><p>SubDyn</p></td>
+<td><p>16</p></td>
+<td><p>RayleighDamp</p></td>
+<td><p>0.001, 0.003   RayleighDamp - Mass and stiffness proportional damping  coefficients (Rayleigh Damping) [only if GuyanDampMod=1]</p></td>
+</tr>
+<tr class="row-odd"><td><p>SubDyn</p></td>
+<td><p>17</p></td>
+<td><p>GuyanDampSize</p></td>
+<td><p>6       GuyanDampSize - Guyan damping matrix size (square, 6x6) [only if GuyanDampMod=2]</p></td>
+</tr>
+<tr class="row-even"><td><p>SubDyn</p></td>
+<td><p>18</p></td>
+<td><p>GuyanDampMat</p></td>
+<td><p>0.0000e+00   0.0000e+00   0.0000e+00   0.0000e+00   0.0000e+00   0.0000e+00</p></td>
+</tr>
+<tr class="row-odd"><td><p>SubDyn</p></td>
+<td><p>-23</p></td>
+<td><p>GuyanDampMat</p></td>
+<td><p>0.0000e+00   0.0000e+00   0.0000e+00   0.0000e+00   0.0000e+00   0.0000e+00</p></td>
+</tr>
+<tr class="row-even"><td><p>SubDyn</p></td>
+<td><p>na</p></td>
+<td><p>CablesSection</p></td>
+<td><p>————————– CABLE PROPERTIES  ————————————-</p></td>
+</tr>
+<tr class="row-odd"><td><p>SubDyn</p></td>
+<td><p>na</p></td>
+<td><p>CablesSection</p></td>
+<td><p>0   NCablePropSets   - Number of cable cable properties</p></td>
+</tr>
+<tr class="row-even"><td><p>SubDyn</p></td>
+<td><p>na</p></td>
+<td><p>CablesSection</p></td>
+<td><p>PropSetID     EA          MatDens       T0</p></td>
+</tr>
+<tr class="row-odd"><td><p>SubDyn</p></td>
+<td><p>na</p></td>
+<td><p>CablesSection</p></td>
+<td><p>(-)        (N)         (kg/m)        (N)</p></td>
+</tr>
+<tr class="row-even"><td><p>SubDyn</p></td>
+<td><p>na</p></td>
+<td><p>RigidSection</p></td>
+<td><p>———————- RIGID LINK PROPERTIES ————————————</p></td>
+</tr>
+<tr class="row-odd"><td><p>SubDyn</p></td>
+<td><p>na</p></td>
+<td><p>RigidSection</p></td>
+<td><p>0   NRigidPropSets - Number of rigid link properties</p></td>
+</tr>
+<tr class="row-even"><td><p>SubDyn</p></td>
+<td><p>na</p></td>
+<td><p>RigidSection</p></td>
+<td><p>PropSetID   MatDens</p></td>
+</tr>
+<tr class="row-odd"><td><p>SubDyn</p></td>
+<td><p>na</p></td>
+<td><p>RigidSection</p></td>
+<td><p>(-)       (kg/m)</p></td>
+</tr>
+<tr class="row-even"><td><p>HydroDyn</p></td>
+<td><p>52</p></td>
+<td><p>NBody</p></td>
+<td><p>1   NBody          - Number of WAMIT bodies to be used (-) [&gt;=1; only used when PotMod=1. If NBodyMod=1, the WAMIT data contains a vector of size 6*NBody x 1 and matrices of size 6*NBody x 6*NBody; if NBodyMod&gt;1, there are NBody sets of WAMIT data each with a vector of size 6 x 1 and matrices of size 6 x 6]</p></td>
+</tr>
+<tr class="row-odd"><td><p>HydroDyn</p></td>
+<td><p>53</p></td>
+<td><p>NBodyMod</p></td>
+<td><p>1   NBodyMod       - Body coupling model {1: include coupling terms between each body and NBody in HydroDyn equals NBODY in WAMIT, 2: neglect coupling terms between each body and NBODY=1 with XBODY=0 in WAMIT, 3: Neglect coupling terms between each body and NBODY=1 with XBODY=/0 in WAMIT} (switch) [only used when PotMod=1]</p></td>
+</tr>
+<tr class="row-even"><td><p>ServoDyn</p></td>
+<td><p>61</p></td>
+<td><p>NumBStC</p></td>
+<td><p>0             NumBStC      - Number of blade structural controllers (integer)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ServoDyn</p></td>
+<td><p>62</p></td>
+<td><p>BStCfiles</p></td>
+<td><p>“unused”      BStCfiles    - Name of the files for blade structural controllers (quoted strings) [unused when NumBStC==0]</p></td>
+</tr>
+<tr class="row-even"><td><p>ServoDyn</p></td>
+<td><p>63</p></td>
+<td><p>NumNStC</p></td>
+<td><p>0             NumNStC      - Number of nacelle structural controllers (integer)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ServoDyn</p></td>
+<td><p>64</p></td>
+<td><p>NStCfiles</p></td>
+<td><p>“unused”      NStCfiles    - Name of the files for nacelle structural controllers (quoted strings) [unused when NumNStC==0]</p></td>
+</tr>
+<tr class="row-even"><td><p>ServoDyn</p></td>
+<td><p>65</p></td>
+<td><p>NumTStC</p></td>
+<td><p>0             NumTStC      - Number of tower structural controllers (integer)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ServoDyn</p></td>
+<td><p>66</p></td>
+<td><p>TStCfiles</p></td>
+<td><p>“unused”      TStCfiles    - Name of the files for tower structural controllers (quoted strings) [unused when NumTStC==0]</p></td>
+</tr>
+<tr class="row-even"><td><p>ServoDyn</p></td>
+<td><p>67</p></td>
+<td><p>NumSStC</p></td>
+<td><p>0             NumSStC      - Number of substructure structural controllers (integer)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ServoDyn</p></td>
+<td><p>68</p></td>
+<td><p>SStCfiles</p></td>
+<td><p>“unused”      SStCfiles    - Name of the files for substructure structural controllers (quoted strings) [unused when NumSStC==0]</p></td>
+</tr>
+<tr class="row-even"><td><p>AirFoilTables</p></td>
+<td><p>12*</p></td>
+<td><p>alphaUpper</p></td>
+<td><p>5.0   alphaUpper        ! Angle of attack at upper boundary of fully-attached region. (deg) [used only when UAMod=5] ! THIS IS AN OPTIONAL LINE; if omitted, it will be calculated from the polar data</p></td>
+</tr>
+<tr class="row-odd"><td><p>AirFoilTables</p></td>
+<td><p>13*</p></td>
+<td><p>alphaLower</p></td>
+<td><p>-3.0   alphaLower        ! Angle of attack at lower boundary of fully-attached region. (deg) [used only when UAMod=5] ! THIS IS AN OPTIONAL LINE; if omitted, it will be calculated from the polar data</p></td>
+</tr>
+<tr class="row-even"><td><p>AirFoilTables</p></td>
+<td><p>42*</p></td>
+<td><p>UACutout_delta</p></td>
+<td><p>“DEFAULT”  UACutout_delta  ! Delta angle of attack below UACutout where unsteady aerodynamics begin to turn off (blend with steady solution) (deg) [Specifying the string “Default” sets UACutout_delta to 5 degrees] ! THIS IS AN OPTIONAL LINE; if omitted, it will be set to its default value</p></td>
+</tr>
+</tbody>
+</table>
+<p>*non-comment line count, excluding lines contained if NumCoords is not 0, and including all OPTIONAL lines in the UA coefficients table.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 1%" />
+<col style="width: 2%" />
+<col style="width: 90%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p>Modified in OpenFAST v2.6.0</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Module</p></th>
+<th class="head"><p>Line</p></th>
+<th class="head"><p>Flag Name</p></th>
+<th class="head"><p>Example Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>AeroDyn 15</p></td>
+<td><p>9</p></td>
+<td><p>TwrShadow</p></td>
+<td><p>0   TwrShadow          - Calculate tower influence on wind based on downstream tower shadow (switch) {0=none, 1=Powles model, 2=Eames model}</p></td>
+</tr>
+<tr class="row-even"><td><p>SubDyn</p></td>
+<td><p>26</p></td>
+<td><p>Joints</p></td>
+<td><p>JointID JointXss JointYss JointZss JointType JointDirX  JointDirY JointDirZ JointStiff</p></td>
+</tr>
+<tr class="row-odd"><td><p>SubDyn</p></td>
+<td><p>27</p></td>
+<td><p>Joints</p></td>
+<td><p>(-)     (m)      (m)      (m)      (-)        (-)       (-)       (-)      (Nm/rad)</p></td>
+</tr>
+<tr class="row-even"><td><p>SubDyn</p></td>
+<td><p>na</p></td>
+<td><p>Members</p></td>
+<td><p>MemberID MJointID1 MJointID2 MPropSetID1 MPropSetID2 MType COSMID</p></td>
+</tr>
+<tr class="row-odd"><td><p>SubDyn</p></td>
+<td><p>na</p></td>
+<td><p>Members</p></td>
+<td><p>(-)       (-)       (-)        (-)         (-)      (-)   (-)</p></td>
+</tr>
+<tr class="row-even"><td><p>SubDyn</p></td>
+<td><p>na</p></td>
+<td><p>ConcentratedM</p></td>
+<td><p>CMJointID  JMass    JMXX      JMYY      JMZZ       JMXY     JMXZ     JMYZ    MCGX  MCGY MCGZ</p></td>
+</tr>
+<tr class="row-odd"><td><p>SubDyn</p></td>
+<td><p>na</p></td>
+<td><p>ConcentratedM</p></td>
+<td><p>(-)      (kg)    (kg*m^2)  (kg*m^2)  (kg*m^2)  (kg*m^2)  (kg*m^2) (kg*m^2)  (m)  (m)   (m)</p></td>
+</tr>
+<tr class="row-even"><td><p>HydroDyn</p></td>
+<td><p>48</p></td>
+<td><p>ExtnMod</p></td>
+<td><p>1   ExctnMod       - Wave-excitation model {0: no wave-excitation calculation, 1: DFT, 2: state-space} (switch) [only used when PotMod=1; STATE-SPACE REQUIRES *.ssexctn INPUT FILE]</p></td>
+</tr>
+<tr class="row-odd"><td><p>HydroDyn</p></td>
+<td><p>49</p></td>
+<td><p>RdtnMod</p></td>
+<td><p>2   RdtnMod        - Radiation memory-effect model {0: no memory-effect calculation, 1: convolution, 2: state-space} (switch) [only used when PotMod=1; STATE-SPACE REQUIRES *.ss INPUT FILE]</p></td>
+</tr>
+<tr class="row-even"><td><p>HydroDyn</p></td>
+<td><p>50</p></td>
+<td><p>RdtnTMax</p></td>
+<td><p>60   RdtnTMax       - Analysis time for wave radiation kernel calculations (sec) [only used when PotMod=1 and RdtnMod&gt;0; determines RdtnDOmega=Pi/RdtnTMax in the cosine transform; MAKE SURE THIS IS LONG ENOUGH FOR THE RADIATION IMPULSE RESPONSE FUNCTIONS TO DECAY TO NEAR-ZERO FOR THE GIVEN PLATFORM!]</p></td>
+</tr>
+<tr class="row-odd"><td><p>HydroDyn</p></td>
+<td><p>51</p></td>
+<td><p>RdtnDT</p></td>
+<td><p>0.0125   RdtnDT         - Time step for wave radiation kernel calculations (sec) [only used when PotMod=1 and ExctnMod&gt;0 or RdtnMod&gt;0; DT&lt;=RdtnDT&lt;=0.1 recommended; determines RdtnOmegaMax=Pi/RdtnDT in the cosine transform]</p></td>
+</tr>
+<tr class="row-even"><td><p>HydroDyn</p></td>
+<td><p>54</p></td>
+<td><p>PotFile</p></td>
+<td><p>“Barge”  PotFile        - Root name of potential-flow model data; WAMIT output files containing the linear, nondimensionalized, hydrostatic restoring matrix (.hst), frequency-dependent hydrodynamic added mass matrix and damping matrix (.1), and frequency- and direction-dependent wave excitation force vector per unit wave amplitude (.3) (quoted string) [1 to NBody if NBodyMod&gt;1] [MAKE SURE THE FREQUENCIES INHERENT IN THESE WAMIT FILES SPAN THE PHYSICALLY-SIGNIFICANT RANGE OF FREQUENCIES FOR THE GIVEN PLATFORM; THEY MUST CONTAIN THE ZERO- AND INFINITE-FREQUENCY LIMITS!]</p></td>
+</tr>
+<tr class="row-odd"><td><p>HydroDyn</p></td>
+<td><p>55</p></td>
+<td><p>WAMITULEN</p></td>
+<td><p>1   WAMITULEN      - Characteristic body length scale used to redimensionalize WAMIT output (meters) [1 to NBody if NBodyMod&gt;1] [only used when PotMod=1]</p></td>
+</tr>
+<tr class="row-even"><td><p>HydroDyn</p></td>
+<td><p>56</p></td>
+<td><p>PtfmRefxt</p></td>
+<td><p>0.0   PtfmRefxt      - The xt offset of the body reference point(s) from (0,0,0) (meters) [1 to NBody] [only used when PotMod=1]</p></td>
+</tr>
+<tr class="row-odd"><td><p>HydroDyn</p></td>
+<td><p>57</p></td>
+<td><p>PtfmRefyt</p></td>
+<td><p>0.0   PtfmRefyt      - The yt offset of the body reference point(s) from (0,0,0) (meters) [1 to NBody] [only used when PotMod=1]</p></td>
+</tr>
+<tr class="row-even"><td><p>HydroDyn</p></td>
+<td><p>58</p></td>
+<td><p>PtfmRefzt</p></td>
+<td><p>0.0   PtfmRefzt      - The zt offset of the body reference point(s) from (0,0,0) (meters) [1 to NBody] [only used when PotMod=1. If NBodyMod=2,PtfmRefzt=0.0]</p></td>
+</tr>
+<tr class="row-odd"><td><p>HydroDyn</p></td>
+<td><p>59</p></td>
+<td><p>PtfmRefztRot</p></td>
+<td><p>0.0   PtfmRefztRot   - The rotation about zt of the body reference frame(s) from xt/yt (degrees) [1 to NBody] [only used when PotMod=1]</p></td>
+</tr>
+<tr class="row-even"><td><p>HydroDyn</p></td>
+<td><p>60</p></td>
+<td><p>PtfmVol0</p></td>
+<td><p>6000   PtfmVol0       - Displaced volume of water when the body is in its undisplaced position (m^3) [1 to NBody] [only used when PotMod=1; USE THE SAME VALUE COMPUTED BY WAMIT AS OUTPUT IN THE .OUT FILE!]</p></td>
+</tr>
+<tr class="row-odd"><td><p>HydroDyn</p></td>
+<td><p>61</p></td>
+<td><p>PtfmCOBxt</p></td>
+<td><p>0.0   PtfmCOBxt      - The xt offset of the center of buoyancy (COB) from (0,0) (meters) [1 to NBody] [only used when PotMod=1]</p></td>
+</tr>
+<tr class="row-even"><td><p>HydroDyn</p></td>
+<td><p>62</p></td>
+<td><p>PtfmCOByt</p></td>
+<td><p>0.0   PtfmCOByt      - The yt offset of the center of buoyancy (COB) from (0,0) (meters) [1 to NBody] [only used when PotMod=1]</p></td>
+</tr>
+<tr class="row-odd"><td><p>HydroDyn</p></td>
+<td><p>69-74</p></td>
+<td><p>AddF0</p></td>
+<td><p>0   AddF0    - Additional preload (N, N-m) [If NBodyMod=1, one size 6*NBody x 1 vector; if NBodyMod&gt;1, NBody size 6 x 1 vectors]</p></td>
+</tr>
+<tr class="row-even"><td><p>HydroDyn</p></td>
+<td><p>75-80</p></td>
+<td><p>AddCLin</p></td>
+<td><p>0 0 0 0 0 0   AddCLin  - Additional linear stiffness (N/m, N/rad, N-m/m, N-m/rad)                     [If NBodyMod=1, one size 6*NBody x 6*NBody matrix; if NBodyMod&gt;1, NBody size 6 x 6 matrices]</p></td>
+</tr>
+<tr class="row-odd"><td><p>HydroDyn</p></td>
+<td><p>81-86</p></td>
+<td><p>AddBLin</p></td>
+<td><p>0 0 0 0 0 0   AddBLin  - Additional linear damping(N/(m/s), N/(rad/s), N-m/(m/s), N-m/(rad/s))        [If NBodyMod=1, one size 6*NBody x 6*NBody matrix; if NBodyMod&gt;1, NBody size 6 x 6 matrices]</p></td>
+</tr>
+<tr class="row-even"><td><p>HydroDyn</p></td>
+<td><p>87-92</p></td>
+<td><p>AddBQuad</p></td>
+<td><p>0 0 0 0 0 0   AddBQuad - Additional quadratic drag(N/(m/s)^2, N/(rad/s)^2, N-m(m/s)^2, N-m/(rad/s)^2) [If NBodyMod=1, one size 6*NBody x 6*NBody matrix; if NBodyMod&gt;1, NBody size 6 x 6 matrices]</p></td>
+</tr>
+<tr class="row-odd"><td><p>HydroDyn</p></td>
+<td><p>na</p></td>
+<td><p>Simple Coef Tab</p></td>
+<td><p>SimplCd    SimplCdMG    SimplCa    SimplCaMG    SimplCp    SimplCpMG   SimplAxCa  SimplAxCaMG  SimplAxCa  SimplAxCaMG  SimplAxCp   SimplAxCpMG</p></td>
+</tr>
+<tr class="row-even"><td><p>HydroDyn</p></td>
+<td><p>na</p></td>
+<td></td>
+<td><p>(-)         (-)         (-)         (-)         (-)         (-)         (-)         (-)         (-)         (-)         (-)         (-)</p></td>
+</tr>
+<tr class="row-odd"><td><p>HydroDyn</p></td>
+<td><p>na</p></td>
+<td><p>Depth Coef Tab</p></td>
+<td><p>Dpth      DpthCd   DpthCdMG   DpthCa   DpthCaMG       DpthCp   DpthCpMG   DpthAxCa   DpthAxCaMG    DpthAxCa   DpthAxCaMG       DpthAxCp   DpthAxCpMG</p></td>
+</tr>
+<tr class="row-even"><td><p>HydroDyn</p></td>
+<td><p>na</p></td>
+<td></td>
+<td><ol class="loweralpha simple" start="13">
+<li><p>(-)      (-)        (-)      (-)            (-)      (-)          (-)        (-)           (-)        (-)              (-)         (-)</p></li>
+</ol>
+</td>
+</tr>
+<tr class="row-odd"><td><p>HydroDyn</p></td>
+<td><p>na</p></td>
+<td><p>Member Coef Tab</p></td>
+<td><p>MemberID    MemberCd1     MemberCd2    MemberCdMG1   MemberCdMG2    MemberCa1     MemberCa2    MemberCaMG1   MemberCaMG2    MemberCp1     MemberCp2    MemberCpMG1   MemberCpMG2   MemberAxCd1   MemberAxCd2  MemberAxCdMG1 MemberAxCdMG2  MemberAxCa1   MemberAxCa2  MemberAxCaMG1 MemberAxCaMG2  MemberAxCp1  MemberAxCp2   MemberAxCpMG1   MemberAxCpMG2</p></td>
+</tr>
+<tr class="row-even"><td><p>HydroDyn</p></td>
+<td><p>na</p></td>
+<td></td>
+<td><p>(-)         (-)           (-)           (-)           (-)           (-)           (-)           (-)           (-)           (-)           (-)           (-)           (-)           (-)           (-)           (-)           (-)           (-)           (-)           (-)           (-)           (-)           (-)           (-)           (-)</p></td>
+</tr>
+<tr class="row-odd"><td><p>HydroDyn</p></td>
+<td><p>na</p></td>
+<td><p>OutList names</p></td>
+<td><p><em>see OutlistParameters.xlsx for new and revised output channel names</em></p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 2%" />
+<col style="width: 6%" />
+<col style="width: 76%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p>Removed in OpenFAST v2.6.0</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Module</p></th>
+<th class="head"><p>Line</p></th>
+<th class="head"><p>Flag Name</p></th>
+<th class="head"><p>Example Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>HydroDyn</p></td>
+<td><p>68</p></td>
+<td><p>na</p></td>
+<td><p>———————- FLOATING PLATFORM FORCE FLAGS  ————————– [unused with WaveMod=6]</p></td>
+</tr>
+<tr class="row-even"><td><p>HydroDyn</p></td>
+<td><p>69</p></td>
+<td><p>PtfmSgF</p></td>
+<td><p>True             PtfmSgF        - Platform horizontal surge translation force (flag) or DEFAULT</p></td>
+</tr>
+<tr class="row-odd"><td><p>HydroDyn</p></td>
+<td><p>70</p></td>
+<td><p>PtfmSwF</p></td>
+<td><p>True             PtfmSwF        - Platform horizontal sway translation force (flag) or DEFAULT</p></td>
+</tr>
+<tr class="row-even"><td><p>HydroDyn</p></td>
+<td><p>71</p></td>
+<td><p>PtfmHvF</p></td>
+<td><p>True             PtfmHvF        - Platform vertical heave translation force (flag) or DEFAULT</p></td>
+</tr>
+<tr class="row-odd"><td><p>HydroDyn</p></td>
+<td><p>72</p></td>
+<td><p>PtfmRF</p></td>
+<td><p>True             PtfmRF         - Platform roll tilt rotation force (flag) or DEFAULT</p></td>
+</tr>
+<tr class="row-even"><td><p>HydroDyn</p></td>
+<td><p>73</p></td>
+<td><p>PtfmPF</p></td>
+<td><p>True             PtfmPF         - Platform pitch tilt rotation force (flag) or DEFAULT</p></td>
+</tr>
+<tr class="row-odd"><td><p>HydroDyn</p></td>
+<td><p>74</p></td>
+<td><p>PtfmYF</p></td>
+<td><p>True             PtfmYF         - Platform yaw rotation force (flag) or DEFAULT</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="openfast-v2-4-0-to-openfast-v2-5-0">
+<h2><span class="section-number">4.1.2.28. </span>OpenFAST v2.4.0 to OpenFAST v2.5.0<a class="headerlink" href="#openfast-v2-4-0-to-openfast-v2-5-0" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>InflowWind</p>
+<ul>
+<li><p>The input file parser is updated to a keyword/value pair based input.
+Each entry must have a corresponding keyword with the same spelling as
+expected. See <a class="reference internal" href="input_file_overview.html#input-file-overview"><span class="std std-numref">Section 4.1.3</span></a> for an overview.</p></li>
+<li><p>Driver code includes ability to convert between wind types</p></li>
+</ul>
+</li>
+</ul>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 2%" />
+<col style="width: 9%" />
+<col style="width: 83%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p>Added in OpenFAST v2.5.0</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Module</p></th>
+<th class="head"><p>Line</p></th>
+<th class="head"><p>Flag Name</p></th>
+<th class="head"><p>Example Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>IfW driver</p></td>
+<td><p>6</p></td>
+<td><p>[separator line]</p></td>
+<td><p>===================== File Conversion Options =================================</p></td>
+</tr>
+<tr class="row-even"><td><p>IfW driver</p></td>
+<td><p>7</p></td>
+<td><p>WrHAWC</p></td>
+<td><p>false    WrHAWC      - Convert all data to HAWC2 format? (flag)</p></td>
+</tr>
+<tr class="row-odd"><td><p>IfW driver</p></td>
+<td><p>8</p></td>
+<td><p>WrBladed</p></td>
+<td><p>false    WrBladed    - Convert all data to Bladed format? (flag)</p></td>
+</tr>
+<tr class="row-even"><td><p>IfW driver</p></td>
+<td><p>9</p></td>
+<td><p>WrVTK</p></td>
+<td><p>false    WrVTK       - Convert all data to VTK format? (flag)</p></td>
+</tr>
+<tr class="row-odd"><td><p>InflowWind</p></td>
+<td><p>7</p></td>
+<td><p>VFlowAng</p></td>
+<td><p>0   VFlowAng    - Upflow angle (degrees) (not used for native Bladed format WindType=7)</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 4%" />
+<col style="width: 29%" />
+<col style="width: 51%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p>Modified in OpenFAST v2.5.0</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Module</p></th>
+<th class="head"><p>Line</p></th>
+<th class="head"><p>Flag Name / section</p></th>
+<th class="head"><p>Example Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>MoorDyn</p></td>
+<td><p>na</p></td>
+<td><p>added CtrlChan column in LINE PROPERTIES table</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 3%" />
+<col style="width: 7%" />
+<col style="width: 6%" />
+<col style="width: 78%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="5"><p>Renamed in OpenFAST v2.5.0</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Module</p></th>
+<th class="head"><p>Line</p></th>
+<th class="head"><p>Previous Name</p></th>
+<th class="head"><p>New Name</p></th>
+<th class="head"><p>Example Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>InflowWind</p></td>
+<td><p>17</p></td>
+<td><p>Filename</p></td>
+<td><p>FileName_Uni</p></td>
+<td><p>“Shr11_30.wnd”    FileName_Uni   - Filename of time series data for uniform wind field.      (-)</p></td>
+</tr>
+<tr class="row-even"><td><p>InflowWind</p></td>
+<td><p>18</p></td>
+<td><p>RefHt</p></td>
+<td><p>RefHt_Uni</p></td>
+<td><p>90                RefHt_Uni      - Reference height for horizontal wind speed                (m)</p></td>
+</tr>
+<tr class="row-odd"><td><p>InflowWind</p></td>
+<td><p>21</p></td>
+<td><p>Filename</p></td>
+<td><p>FileName_BTS</p></td>
+<td><p>“unused”          FileName_BTS   - Name of the Full field wind file to use (.bts)            (-)</p></td>
+</tr>
+<tr class="row-even"><td><p>InflowWind</p></td>
+<td><p>23</p></td>
+<td><p>Filename</p></td>
+<td><p>FileNameRoot</p></td>
+<td><p>“unused”          FileNameRoot   - WindType=4: Rootname of the full-field wind file to use (.wnd, .sum); WindType=7: name of the intermediate file with wind scaling values</p></td>
+</tr>
+<tr class="row-odd"><td><p>InflowWind</p></td>
+<td><p>35</p></td>
+<td><p>RefHt</p></td>
+<td><p>RefHt_Hawc</p></td>
+<td><p>90                RefHt_Hawc     - reference height; the height (in meters) of the vertical center of the grid  (m)</p></td>
+</tr>
+<tr class="row-even"><td><p>InflowWind</p></td>
+<td><p>47</p></td>
+<td><p>PLExp</p></td>
+<td><p>PLExp_Hawc</p></td>
+<td><p>0.2               PLExp_Hawc     - Power law exponent (-) (used for PL wind profile type only)</p></td>
+</tr>
+<tr class="row-odd"><td><p>InflowWind</p></td>
+<td><p>49</p></td>
+<td><p>InitPosition(x)</p></td>
+<td><p>XOffset</p></td>
+<td><p>0                 XOffset        - Initial offset in +x direction (shift of wind box)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="openfast-v2-3-0-to-openfast-v2-4-0">
+<h2><span class="section-number">4.1.2.29. </span>OpenFAST v2.3.0 to OpenFAST v2.4.0<a class="headerlink" href="#openfast-v2-3-0-to-openfast-v2-4-0" title="Permalink to this heading"></a></h2>
+<p>Additional nodal output channels added for <a class="reference internal" href="aerodyn/input.html#ad-nodal-outputs"><span class="std std-ref">AeroDyn</span></a>, <a class="reference internal" href="beamdyn/input_files.html#bd-nodal-outputs"><span class="std std-ref">BeamDyn</span></a>, and <a class="reference internal" href="elastodyn/input.html#ed-nodal-outputs"><span class="std std-ref">ElastoDyn</span></a>.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 2%" />
+<col style="width: 9%" />
+<col style="width: 83%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p>Added in OpenFAST v2.4.0</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Module</p></th>
+<th class="head"><p>Line</p></th>
+<th class="head"><p>Flag Name</p></th>
+<th class="head"><p>Example Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>HydroDyn</p></td>
+<td><p>53</p></td>
+<td><p>ExctnMod</p></td>
+<td><p>0   ExctnMod   - Wave Excitation model {0: None, 1: DFT, 2: state-space} (-)</p></td>
+</tr>
+<tr class="row-even"><td><p>OpenFAST</p></td>
+<td><p>44</p></td>
+<td><p>CalcSteady</p></td>
+<td><p>true     CalcSteady - Calculate a steady-state periodic operating point before linearization? [unused if Linearize=False] (flag)</p></td>
+</tr>
+<tr class="row-odd"><td><p>OpenFAST</p></td>
+<td><p>45</p></td>
+<td><p>TrimCase</p></td>
+<td><p>3   TrimCase   - Controller parameter to be trimmed {1:yaw; 2:torque; 3:pitch} [used only if CalcSteady=True] (-)</p></td>
+</tr>
+<tr class="row-even"><td><p>OpenFAST</p></td>
+<td><p>46</p></td>
+<td><p>TrimTol</p></td>
+<td><p>0.0001   TrimTol    - Tolerance for the rotational speed convergence [used only if CalcSteady=True] (-)</p></td>
+</tr>
+<tr class="row-odd"><td><p>OpenFAST</p></td>
+<td><p>47</p></td>
+<td><p>TrimGain</p></td>
+<td><p>0.001   TrimGain   - Proportional gain for the rotational speed error (&gt;0) [used only if CalcSteady=True] (rad/(rad/s) for yaw or pitch; Nm/(rad/s) for torque)</p></td>
+</tr>
+<tr class="row-even"><td><p>OpenFAST</p></td>
+<td><p>48</p></td>
+<td><p>Twr_Kdmp</p></td>
+<td><p>0   Twr_Kdmp   - Damping factor for the tower [used only if CalcSteady=True] (N/(m/s))</p></td>
+</tr>
+<tr class="row-odd"><td><p>OpenFAST</p></td>
+<td><p>49</p></td>
+<td><p>Bld_Kdmp</p></td>
+<td><p>0   Bld_Kdmp   - Damping factor for the blades [used only if CalcSteady=True] (N/(m/s))</p></td>
+</tr>
+<tr class="row-even"><td><p>InflowWind</p></td>
+<td><p>48</p></td>
+<td><p>InitPosition(x)</p></td>
+<td><p>0.0   InitPosition(x) - Initial offset in +x direction (shift of wind box) [Only used with WindType = 5] (m)</p></td>
+</tr>
+<tr class="row-odd"><td><p>AeroDyn</p></td>
+<td><p>13</p></td>
+<td><p>CompAA</p></td>
+<td><p>False                   CompAA             - Flag to compute AeroAcoustics calculation [only used when WakeMod=1 or 2]</p></td>
+</tr>
+<tr class="row-even"><td><p>AeroDyn</p></td>
+<td><p>14</p></td>
+<td><p>AA_InputFile</p></td>
+<td><p>“unused”                AA_InputFile       - Aeroacoustics input file</p></td>
+</tr>
+<tr class="row-odd"><td><p>AeroDyn</p></td>
+<td><p>35</p></td>
+<td><p>[separator line]</p></td>
+<td><p>======  OLAF cOnvecting LAgrangian Filaments (Free Vortex Wake) Theory Options  ================== [used only when WakeMod=3]</p></td>
+</tr>
+<tr class="row-even"><td><p>AeroDyn</p></td>
+<td><p>36</p></td>
+<td><p>OLAFInputFileName</p></td>
+<td><p>“Elliptic_OLAF.dat”     OLAFInputFileName - Input file for OLAF [used only when WakeMod=3]</p></td>
+</tr>
+<tr class="row-odd"><td><p>AirFoilTables</p></td>
+<td><p>4*</p></td>
+<td><p>BL_file</p></td>
+<td><p>“unused”                BL_file           - The file name including the boundary layer characteristics of the profile. Ignored if the aeroacoustic module is not called.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 2%" />
+<col style="width: 8%" />
+<col style="width: 71%" />
+<col style="width: 12%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="5"><p>Modified in OpenFAST v2.4.0</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Module</p></th>
+<th class="head"><p>Line</p></th>
+<th class="head"><p>New Flag Name</p></th>
+<th class="head"><p>Example Value</p></th>
+<th class="head"><p>Previous Flag Name/Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>AirFoilTables</p></td>
+<td><p>40*</p></td>
+<td><p>filtCutOff</p></td>
+<td><p>“DEFAULT”  filtCutOff   - Reduced frequency cut-off for low-pass filtering the AoA input to UA, as well as the 1st and 2nd deriv (-) [default = 0.5]</p></td>
+<td><p>[default = 20]</p></td>
+</tr>
+</tbody>
+</table>
+<p>*non-comment line count, excluding lines contained if NumCoords is not 0.</p>
+</div>
+<div class="section" id="openfast-v2-2-0-to-openfast-v2-3-0">
+<h2><span class="section-number">4.1.2.30. </span>OpenFAST v2.2.0 to OpenFAST v2.3.0<a class="headerlink" href="#openfast-v2-2-0-to-openfast-v2-3-0" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 2%" />
+<col style="width: 6%" />
+<col style="width: 76%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p>Removed in OpenFAST v2.3.0</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Module</p></th>
+<th class="head"><p>Line</p></th>
+<th class="head"><p>Flag Name</p></th>
+<th class="head"><p>Example Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>AeroDyn Airfoil Input File - Airfoil Tables</p></td>
+<td><p>2</p></td>
+<td><p>Ctrl</p></td>
+<td><p>0   Ctrl              ! Control setting (must be 0 for current AirfoilInfo)</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 2%" />
+<col style="width: 6%" />
+<col style="width: 76%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p>Added in OpenFAST v2.3.0</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Module</p></th>
+<th class="head"><p>Line</p></th>
+<th class="head"><p>Flag Name</p></th>
+<th class="head"><p>Example Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>AeroDyn Airfoil Input File - Airfoil Tables</p></td>
+<td><p>2</p></td>
+<td><p>UserProp</p></td>
+<td><p>0   UserProp          ! User property (control) setting</p></td>
+</tr>
+<tr class="row-even"><td><p>AeroDyn</p></td>
+<td><p>37</p></td>
+<td><p>AFTabMod</p></td>
+<td><p>1   AFTabMod          - Interpolation method for multiple airfoil tables {1=1D interpolation on AoA (first table only); 2=2D interpolation on AoA and Re; 3=2D interpolation on AoA and UserProp} (-)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="openfast-v2-1-0-to-openfast-v2-2-0">
+<h2><span class="section-number">4.1.2.31. </span>OpenFAST v2.1.0 to OpenFAST v2.2.0<a class="headerlink" href="#openfast-v2-1-0-to-openfast-v2-2-0" title="Permalink to this heading"></a></h2>
+<p>No changes required.</p>
+</div>
+<div class="section" id="openfast-v2-0-0-to-openfast-v2-1-0">
+<h2><span class="section-number">4.1.2.32. </span>OpenFAST v2.0.0 to OpenFAST v2.1.0<a class="headerlink" href="#openfast-v2-0-0-to-openfast-v2-1-0" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 2%" />
+<col style="width: 9%" />
+<col style="width: 82%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p>Added in OpenFAST v2.1.0</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Module</p></th>
+<th class="head"><p>Line</p></th>
+<th class="head"><p>Flag Name</p></th>
+<th class="head"><p>Example Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>BeamDyn driver</p></td>
+<td><p>21</p></td>
+<td><p>GlbRotBladeT0</p></td>
+<td><p>True   GlbRotBladeT0 - Reference orientation for BeamDyn calculations is aligned with initial blade root?</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="openfast-v1-0-0-to-openfast-v2-0-0">
+<h2><span class="section-number">4.1.2.33. </span>OpenFAST v1.0.0 to OpenFAST v2.0.0<a class="headerlink" href="#openfast-v1-0-0-to-openfast-v2-0-0" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 5%" />
+<col style="width: 2%" />
+<col style="width: 9%" />
+<col style="width: 84%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p>Removed in OpenFAST v2.0.0</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Module</p></th>
+<th class="head"><p>Line</p></th>
+<th class="head"><p>Flag Name</p></th>
+<th class="head"><p>Example Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>BeamDyn</p></td>
+<td><p>5</p></td>
+<td><p>analysis_type</p></td>
+<td><p>analysis_type  - 1: Static analysis; 2: Dynamic analysis</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 5%" />
+<col style="width: 2%" />
+<col style="width: 9%" />
+<col style="width: 84%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p>Added in OpenFAST v2.0.0</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Module</p></th>
+<th class="head"><p>Line</p></th>
+<th class="head"><p>Flag Name</p></th>
+<th class="head"><p>Example Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>AeroDyn</p></td>
+<td><p>22</p></td>
+<td><p>SkewModFactor</p></td>
+<td><p>“default”     SkewModFactor    - Constant used in Pitt/Peters skewed wake model {or “default” is 15/32*pi} (-) [used only when SkewMod=2; unused when WakeMod=0]</p></td>
+</tr>
+<tr class="row-even"><td><p>AeroDyn</p></td>
+<td><p>30</p></td>
+<td><p>Section header</p></td>
+<td><p>======  Dynamic Blade-Element/Momentum Theory Options  ============================================== [used only when WakeMod=2]</p></td>
+</tr>
+<tr class="row-odd"><td><p>AeroDyn</p></td>
+<td><p>31</p></td>
+<td><p>DBEMT_Mod</p></td>
+<td><p>2             DBEMT_Mod        - Type of dynamic BEMT (DBEMT) model {1=constant tau1, 2=time-dependent tau1} (-) [used only when WakeMod=2]</p></td>
+</tr>
+<tr class="row-even"><td><p>AeroDyn</p></td>
+<td><p>32</p></td>
+<td><p>tau1_const</p></td>
+<td><p>4             tau1_const       - Time constant for DBEMT (s) [used only when WakeMod=2 and DBEMT_Mod=1]</p></td>
+</tr>
+<tr class="row-odd"><td><p>BeamDyn</p></td>
+<td><p>5</p></td>
+<td><p>QuasiStaticInit</p></td>
+<td><p>True          QuasiStaticInit  - Use quasi-static pre-conditioning with centripetal accelerations in initialization (flag) [dynamic solve only]</p></td>
+</tr>
+<tr class="row-even"><td><p>BeamDyn</p></td>
+<td><p>11</p></td>
+<td><p>load_retries</p></td>
+<td><p>DEFAULT       load_retries     - Number of factored load retries before quitting the simulation</p></td>
+</tr>
+<tr class="row-odd"><td><p>BeamDyn</p></td>
+<td><p>14</p></td>
+<td><p>tngt_stf_fd</p></td>
+<td><p>DEFAULT       tngt_stf_fd      - Flag to use finite differenced tangent stiffness matrix (-)</p></td>
+</tr>
+<tr class="row-even"><td><p>BeamDyn</p></td>
+<td><p>15</p></td>
+<td><p>tngt_stf_comp</p></td>
+<td><p>DEFAULT       tngt_stf_comp    - Flag to compare analytical finite differenced tangent stiffness matrix  (-)</p></td>
+</tr>
+<tr class="row-odd"><td><p>BeamDyn</p></td>
+<td><p>16</p></td>
+<td><p>tngt_stf_pert</p></td>
+<td><p>DEFAULT       tngt_stf_pert    - perturbation size for finite differencing (-)</p></td>
+</tr>
+<tr class="row-even"><td><p>BeamDyn</p></td>
+<td><p>17</p></td>
+<td><p>tngt_stf_difftol</p></td>
+<td><p>DEFAULT       tngt_stf_difftol - Maximum allowable relative difference between analytical and fd tangent stiffness (-)</p></td>
+</tr>
+<tr class="row-odd"><td><p>BeamDyn</p></td>
+<td><p>18</p></td>
+<td><p>RotStates</p></td>
+<td><p>True          RotStates        - Orient states in the rotating frame during linearization? (flag) [used only when linearizing]</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="fast-v8-16-to-openfast-v1-0-0">
+<h2><span class="section-number">4.1.2.34. </span>FAST v8.16 to OpenFAST v1.0.0<a class="headerlink" href="#fast-v8-16-to-openfast-v1-0-0" title="Permalink to this heading"></a></h2>
+<p>The transition from FAST v8 to OpenFAST is described in detail at <a class="reference internal" href="fast_to_openfast.html#fast-to-openfast"><span class="std std-ref">FAST v8 and the transition to OpenFAST</span></a>.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 3%" />
+<col style="width: 12%" />
+<col style="width: 78%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p>Removed in OpenFAST v1.0.0</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Module</p></th>
+<th class="head"><p>Line</p></th>
+<th class="head"><p>Flag Name</p></th>
+<th class="head"><p>Example Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>OpenFAST</p></td>
+<td><p>18</p></td>
+<td><p>CompSub</p></td>
+<td><p>0 CompSub - Compute sub-structural dynamics (switch) {0=None; 1=SubDyn}</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 3%" />
+<col style="width: 12%" />
+<col style="width: 78%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="4"><p>Added in OpenFAST v1.0.0</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Module</p></th>
+<th class="head"><p>Line</p></th>
+<th class="head"><p>Flag Name</p></th>
+<th class="head"><p>Example Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>OpenFAST</p></td>
+<td><p>18</p></td>
+<td><p>CompSub</p></td>
+<td><p>0 CompSub - Compute sub-structural dynamics (switch) {0=None; 1=SubDyn; 2=External Platform MCKF}</p></td>
+</tr>
+<tr class="row-even"><td><p>AeroDyn</p></td>
+<td><p>12</p></td>
+<td><p>CavityCheck</p></td>
+<td><p>False         CavitCheck         - Perform cavitation check? (flag)</p></td>
+</tr>
+<tr class="row-odd"><td><p>AeroDyn</p></td>
+<td><p>17</p></td>
+<td><p>Patm</p></td>
+<td><p>9999.9   Patm               - Atmospheric pressure (Pa) [used only when CavitCheck=True]</p></td>
+</tr>
+<tr class="row-even"><td><p>AeroDyn</p></td>
+<td><p>18</p></td>
+<td><p>Pvap</p></td>
+<td><p>9999.9   Pvap               - Vapor pressure of fluid (Pa) [used only when CavitCheck=True]</p></td>
+</tr>
+<tr class="row-odd"><td><p>AeroDyn</p></td>
+<td><p>19</p></td>
+<td><p>FluidDepth</p></td>
+<td><p>9999.9   FluidDepth         - Water depth above mid-hub height (m) [used only when CavitCheck=True]</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="fast_to_openfast.html" class="btn btn-neutral float-left" title="4.1.1. FAST v8 and the transition to OpenFAST" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="input_file_overview.html" class="btn btn-neutral float-right" title="4.1.3. Input file formats" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

@@ -1,0 +1,624 @@
+<!DOCTYPE html><html class="writer-html5" lang="ko"><head><!-- Modified 2026-11-08: unofficial Korean machine translation of OpenFAST 5.0.0. Equations, code, figures, input values and attribution retained. -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.11.7. 부록 A: OC4 반잠수식 입력 파일 - OpenFAST v5.0.0 문서</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../../../genindex.html">
+    <link rel="search" title="검색" href="../../../search.html">
+    <link rel="next" title="4.12. SeaState 사용자 가이드 및 이론 설명서" href="../seastate/index.html">
+    <link rel="prev" title="4.11.6. 참고문헌" href="zrefs.html"> 
+<link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/hydrodyn/appendix.html"></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+          </a>
+              <div class="version">5.0 · 한국어</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="문서 검색" aria-label="문서 검색">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.11. HydroDyn</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html">4.11.1. 설치 및 시작하기</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input_files.html">4.11.2. 입력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="output_files.html">4.11.3. 출력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modeling_considerations.html">4.11.4. 모델링 시 고려사항</a></li>
+<li class="toctree-l3"><a class="reference internal" href="future_work.html">4.11.5. 향후 개발 계획</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.11.6. 참고문헌</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.11.7. 부록 A: OC4 반잠수식 입력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#appendix-b-oc4-semi-submersible-input-file">4.11.8. 부록 B: OC4 반잠수식 입력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#appendix-c-list-of-output-channels">4.11.9. 부록 C. 출력 채널 목록</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. 단순화 ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. 구조 제어</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. 추가 모듈 문서</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC 서브루틴 라이브러리</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+</ul>
+
+        <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="페이지 탐색">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.11. </span>HydroDyn 사용자 가이드 및 이론 설명서</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.11.7. </span>부록 A: OC4 반잠수식 입력 파일</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/hydrodyn/appendix.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+      </li>
+  </ul>
+  <hr>
+</div><aside class="ko-notice" aria-label="한국어 번역 안내"><strong>한국어 자동번역</strong> · OpenFAST v5.0.0 · 2026-11-08 기준<br>비공식 번역본입니다. 수식·명령어·입력 변수와 첨부자료는 원문을 보존합니다. <a href="https://openfast.readthedocs.io/en/main/source/user/hydrodyn/appendix.html" target="_blank" rel="noopener noreferrer" lang="en">영문 원문 대조 ↗</a></aside>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="appendix-a-oc4-semi-submersible-input-file">
+<span id="hd-primary-input-example"></span><h1><span class="section-number">4.11.7. </span>부록 A: OC4 반잠수식 입력 파일<a class="headerlink" href="#appendix-a-oc4-semi-submersible-input-file" title="이 제목의 고유 링크"></a></h1>
+<p>다음은 OC4 반잠수식 구조에 대한 HydroDyn 기본 입력 파일입니다.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>------- HydroDyn Input File ----------------------------------------------------
+historic NREL 5.0 MW offshore baseline floating platform HydroDyn input properties for the OC4 Semi-submersible.
+False            Echo           - Echo the input file data (flag)
+---------------------- FLOATING PLATFORM --------------------------------------- [unused with WaveMod=6]
+             1   PotMod         - Potential-flow model {0: none=no potential flow, 1: frequency-to-time-domain transforms based on WAMIT output, 2: fluid-impulse theory (FIT)} (switch)
+             1   ExctnMod       - Wave-excitation model {0: no wave-excitation calculation, 1: DFT, 2: state-space} (switch) [only used when PotMod=1; STATE-SPACE REQUIRES *.ssexctn INPUT FILE; if PtfmYMod=1, need ExctnMod=0 or 1]
+             0   ExctnDisp      - Method of computing Wave Excitation {0: use undisplaced position, 1: use displaced position, 2: use low-pass filtered displaced position) [only used when PotMod=1 and ExctnMod&gt;0 and SeaState's WaveMod&gt;0]} (switch)
+            10   ExctnCutOff    - Cutoff (corner) frequency of the low-pass time-filtered displaced position (Hz) [&gt;0.0] [used only when PotMod=1, ExctnMod&gt;0, and ExctnDisp=2]) [only used when PotMod=1 and ExctnMod&gt;0 and SeaState's WaveMod&gt;0]} (switch)
+             0   PtfmYMod       - Model for large platform yaw offset {0: Static reference yaw offset based on PtfmRefY, 1: dynamic reference yaw offset based on low-pass filtering the PRP yaw motion with cutoff frequency PtfmYCutOff} (switch)
+             0   PtfmRefY       - Constant (if PtfmYMod=0) or initial (if PtfmYMod=1) platform reference yaw offset (deg)
+          0.01   PtfmYCutOff    - Cutoff frequency for the low-pass filtering of PRP yaw motion when PtfmYMod=1 [&gt;0.0; unused when PtfmYMod=0] (Hz)
+            36   NExctnHdg      - Number of evenly distributed platform yaw/heading angles over the range of [-180, 180) deg for which the wave excitation shall be computed [&gt;=2; unused when PtfmYMod=0] (-)
+             1   RdtnMod        - Radiation memory-effect model {0: no memory-effect calculation, 1: convolution, 2: state-space} (switch) [only used when PotMod=1; STATE-SPACE REQUIRES *.ss INPUT FILE]
+            60   RdtnTMax       - Analysis time for wave radiation kernel calculations (sec) [only used when PotMod=1 and RdtnMod&gt;0; determines RdtnDOmega=Pi/RdtnTMax in the cosine transform; MAKE SURE THIS IS LONG ENOUGH FOR THE RADIATION IMPULSE RESPONSE FUNCTIONS TO DECAY TO NEAR-ZERO FOR THE GIVEN PLATFORM!]
+        0.0125   RdtnDT         - Time step for wave radiation kernel calculations (sec) [only used when PotMod=1 and ExctnMod&gt;0 or RdtnMod&gt;0; DT&lt;=RdtnDT&lt;=0.1 recommended; determines RdtnOmegaMax=Pi/RdtnDT in the cosine transform]
+             1   NBody          - Number of WAMIT bodies to be used (-) [&gt;=1; only used when PotMod=1. If NBodyMod=1, the WAMIT data contains a vector of size 6*NBody x 1 and matrices of size 6*NBody x 6*NBody; if NBodyMod&gt;1, there are NBody sets of WAMIT data each with a vector of size 6 x 1 and matrices of size 6 x 6]
+             1   NBodyMod       - Body coupling model {1: include coupling terms between each body and NBody in HydroDyn equals NBODY in WAMIT, 2: neglect coupling terms between each body and NBODY=1 with XBODY=0 in WAMIT, 3: Neglect coupling terms between each body and NBODY=1 with XBODY=/0 in WAMIT} (switch) [only used when PotMod=1]
+  "marin_semi"   PotFile        - Root name of potential-flow model data; WAMIT output files containing the linear, nondimensionalized, hydrostatic restoring matrix (.hst), frequency-dependent hydrodynamic added mass matrix and damping matrix (.1), and frequency- and direction-dependent wave excitation force vector per unit wave amplitude (.3) (quoted string) [1 to NBody if NBodyMod&gt;1] [MAKE SURE THE FREQUENCIES INHERENT IN THESE WAMIT FILES SPAN THE PHYSICALLY-SIGNIFICANT RANGE OF FREQUENCIES FOR THE GIVEN PLATFORM; THEY MUST CONTAIN THE ZERO- AND INFINITE-FREQUENCY LIMITS!]
+             1   WAMITULEN      - Characteristic body length scale used to redimensionalize WAMIT output (meters) [1 to NBody if NBodyMod&gt;1] [only used when PotMod=1]
+             0   PtfmRefxt      - The xt offset of the body reference point(s) from (0,0,0) (meters) [1 to NBody] [only used when PotMod=1]
+             0   PtfmRefyt      - The yt offset of the body reference point(s) from (0,0,0) (meters) [1 to NBody] [only used when PotMod=1]
+             0   PtfmRefzt      - The zt offset of the body reference point(s) from (0,0,0) (meters) [1 to NBody] [only used when PotMod=1. If NBodyMod=2,PtfmRefzt=0.0]
+             0   PtfmRefztRot   - The rotation about zt of the body reference frame(s) from xt/yt (degrees) [1 to NBody] [only used when PotMod=1]
+         13917   PtfmVol0       - Displaced volume of water when the body is in its undisplaced position (m^3) [1 to NBody] [only used when PotMod=1; USE THE SAME VALUE COMPUTED BY WAMIT AS OUTPUT IN THE .OUT FILE!]
+             0   PtfmCOBxt      - The xt offset of the center of buoyancy (COB) from (0,0) (meters) [1 to NBody] [only used when PotMod=1]
+             0   PtfmCOByt      - The yt offset of the center of buoyancy (COB) from (0,0) (meters) [1 to NBody] [only used when PotMod=1]
+---------------------- 2ND-ORDER FLOATING PLATFORM FORCES ---------------------- [unused with WaveMod=0 or 6, or PotMod=0 or 2]
+             0   MnDrift        - Mean-drift 2nd-order forces computed                                       {0: None; [7, 8, 9, 10, 11, or 12]: WAMIT file to use} [Only one of MnDrift, NewmanApp, or DiffQTF can be non-zero. If NBody&gt;1, MnDrift  /=8]
+             0   NewmanApp      - Mean- and slow-drift 2nd-order forces computed with Newman's approximation {0: None; [7, 8, 9, 10, 11, or 12]: WAMIT file to use} [Only one of MnDrift, NewmanApp, or DiffQTF can be non-zero. If NBody&gt;1, NewmanApp/=8. Used only when WaveDirMod=0]
+             0   DiffQTF        - Full difference-frequency 2nd-order forces computed with full QTF          {0: None; [10, 11, or 12]: WAMIT file to use}          [Only one of MnDrift, NewmanApp, or DiffQTF can be non-zero. If PtfmYMod=1, need DiffQTF=0]
+             0   SumQTF         - Full summation -frequency 2nd-order forces computed with full QTF          {0: None; [10, 11, or 12]: WAMIT file to use}          [If PtfmYMod=1, need SumQTF=0]
+---------------------- PLATFORM ADDITIONAL STIFFNESS AND DAMPING  -------------- [unused with PotMod=0 or 2]
+             0   AddF0    - Additional preload (N, N-m)  [If NBodyMod=1, one size 6*NBody x 1 vector; if NBodyMod&gt;1, NBody size 6 x 1 vectors]
+             0
+             0
+             0
+             0
+             0
+             0             0             0             0             0             0   AddCLin  - Additional linear stiffness (N/m, N/rad, N-m/m, N-m/rad)  [If NBodyMod=1, one size 6*NBody x 6*NBody matrix; if NBodyMod&gt;1, NBody size 6 x 6 matrices]
+             0             0             0             0             0             0
+             0             0             0             0             0             0
+             0             0             0             0             0             0
+             0             0             0             0             0             0
+             0             0             0             0             0             0
+             0             0             0             0             0             0   AddBLin  - Additional linear damping (N/(m/s), N/(rad/s), N-m/(m/s), N-m/(rad/s))  [If NBodyMod=1, one size 6*NBody x 6*NBody matrix; if NBodyMod&gt;1, NBody size 6 x 6 matrices]
+             0             0             0             0             0             0
+             0             0             0             0             0             0
+             0             0             0             0             0             0
+             0             0             0             0             0             0
+             0             0             0             0             0             0
+             0             0             0             0             0             0   AddBQuad - Additional quadratic damping (N/(m/s)^2, N/(rad/s)^2, N-m(m/s)^2, N-m/(rad/s)^2)  [If NBodyMod=1, one size 6*NBody x 6*NBody matrix; if NBodyMod&gt;1, NBody size 6 x 6 matrices]
+             0             0             0             0             0             0
+             0             0             0             0             0             0
+             0             0             0             0             0             0
+             0             0             0             0             0             0
+             0             0             0             0             0             0
+---------------------- STRIP THEORY OPTIONS --------------------------------------
+             0   WaveDisp       - Method of computing Wave Kinematics {0: use undisplaced position, 1: use displaced position) } (switch) [If PtfmYMod=1, need WaveDisp=1]
+             0   AMMod          - Method of computing distributed added-mass force. (0: Only and always on nodes below SWL at the undisplaced position. 2: Up to the instantaneous free surface) [overwrite to 0 when WaveMod = 0 or 6 or when WaveStMod = 0 in SeaState]
+---------------------- AXIAL COEFFICIENTS --------------------------------------
+             2   NAxCoef        - Number of axial coefficients (-)
+AxCoefID  AxCd     AxCa     AxCp    AxFDMod   AxVnCOff  AxFDLoFSc
+   (-)    (-)      (-)      (-)      (-)       (-)        (-)
+    1     0.00     0.00     1.00      0        0.00       1.00
+    2     9.60     0.00     1.00      0        0.00       1.00
+---------------------- MEMBER JOINTS -------------------------------------------
+            44   NJoints        - Number of joints (-)   [must be exactly 0 or at least 2]
+JointID   Jointxi     Jointyi     Jointzi  JointAxID   JointOvrlp   [JointOvrlp= 0: do nothing at joint, 1: eliminate overlaps by calculating super member]
+   (-)     (m)         (m)         (m)        (-)       (switch)
+    1     0.00000     0.00000   -20.00000      1            0
+    2     0.00000     0.00000    10.00000      1            0
+    3    14.43376    25.00000   -14.00000      1            0
+    4    14.43376    25.00000    12.00000      1            0
+    5   -28.86751     0.00000   -14.00000      1            0
+    6   -28.86751     0.00000    12.00000      1            0
+    7    14.43376   -25.00000   -14.00000      1            0
+    8    14.43376   -25.00000    12.00000      1            0
+    9    14.43375    25.00000   -20.00000      2            0
+   10   -28.86750     0.00000   -20.00000      2            0
+   11    14.43375   -25.00000   -20.00000      2            0
+   12     9.23760    22.00000    10.00000      1            0
+   13   -23.67130     3.00000    10.00000      1            0
+   14   -23.67130    -3.00000    10.00000      1            0
+   15     9.23760   -22.00000    10.00000      1            0
+   16    14.43375   -19.00000    10.00000      1            0
+   17    14.43375    19.00000    10.00000      1            0
+   18     4.04145    19.00000   -17.00000      1            0
+   19   -18.47520     6.00000   -17.00000      1            0
+   20   -18.47520    -6.00000   -17.00000      1            0
+   21     4.04145   -19.00000   -17.00000      1            0
+   22    14.43375   -13.00000   -17.00000      1            0
+   23    14.43375    13.00000   -17.00000      1            0
+   24     1.62500     2.81500    10.00000      1            0
+   25    11.43376    19.80385    10.00000      1            0
+   26    -3.25000     0.00000    10.00000      1            0
+   27   -22.87000     0.00000    10.00000      1            0
+   28     1.62500    -2.81500    10.00000      1            0
+   29    11.43376   -19.80385    10.00000      1            0
+   30     1.62500     2.81500   -17.00000      1            0
+   31     8.43376    14.60770   -17.00000      1            0
+   32    -3.25000     0.00000   -17.00000      1            0
+   33   -16.87000     0.00000   -17.00000      1            0
+   34     1.62500    -2.81500   -17.00000      1            0
+   35     8.43376   -14.60770   -17.00000      1            0
+   36     1.62500     2.81500   -16.20000      1            0
+   37    11.43376    19.80385     9.13000      1            0
+   38    -3.25000     0.00000   -16.20000      1            0
+   39   -22.87000     0.00000     9.13000      1            0
+   40     1.62500    -2.81500   -16.20000      1            0
+   41    11.43376   -19.80385     9.13000      1            0
+   42    14.43376    25.00000   -19.94000      1            0
+   43   -28.86751     0.00000   -19.94000      1            0
+   44    14.43376   -25.00000   -19.94000      1            0
+---------------- CYLINDRICAL MEMBER CROSS-SECTION PROPERTIES -------------------
+             4   NPropSetsCyl    - Number of cylindrical member property sets (-)
+PropSetID    PropD         PropThck
+   (-)        (m)            (m)
+    1        6.50000        0.03000          ! Main Column
+    2       12.00000        0.06000          ! Upper Columns
+    3       24.00000        0.06000          ! Base Columns
+    4        1.60000        0.01750          ! Pontoons
+---------------- RECTANGULAR MEMBER CROSS-SECTION PROPERTIES -------------------
+             0   NPropSetsRec    - Number of rectangular member property sets (-)
+MPropSetID   PropA      PropB    PropThck
+   (-)        (m)        (m)       (m)
+-------- SIMPLE CYLINDRICAL-MEMBER HYDRODYNAMIC COEFFICIENTS (model 1) ---------
+SimplCd    SimplCdMG    SimplCa    SimplCaMG    SimplCp    SimplCpMG   SimplAxCd  SimplAxCdMG   SimplAxCa  SimplAxCaMG  SimplAxCp   SimplAxCpMG    SimplCb    SimplCbMG
+   (-)         (-)         (-)         (-)         (-)         (-)         (-)         (-)         (-)         (-)         (-)         (-)            (-)         (-)
+   0.00        0.00        0.00        0.00        1.00        1.00        0.00        0.00        0.00        0.00        1.00        1.00           1.00        1.00
+-------- SIMPLE RECTANGULAR-MEMBER HYDRODYNAMIC COEFFICIENTS (model 1) ---------
+SimplCdA    SimplCdAMG    SimplCdB    SimplCdBMG    SimplCaA    SimplCaAMG    SimplCaB    SimplCaBMG    SimplCp    SimplCpMG   SimplAxCd  SimplAxCdMG   SimplAxCa  SimplAxCaMG  SimplAxCp   SimplAxCpMG  SimplCb  SimplCbMG
+  (-)         (-)           (-)         (-)           (-)         (-)           (-)         (-)           (-)         (-)         (-)         (-)          (-)         (-)         (-)         (-)          (-)       (-)
+  0.0         0.0           0.0         0.0           0.0         0.0           0.0         0.0           0.0         0.0         0.0         0.0          0.0         0.0         0.0         0.0          1.0       1.0
+------ DEPTH-BASED CYLINDRICAL-MEMBER HYDRODYNAMIC COEFFICIENTS (model 2) -------
+             0   NCoefDpthCyl    - Number of depth-dependent cylindrical member coefficients (-)
+Dpth      DpthCd   DpthCdMG   DpthCa   DpthCaMG       DpthCp   DpthCpMG   DpthAxCd   DpthAxCdMG   DpthAxCa   DpthAxCaMG   DpthAxCp   DpthAxCpMG   DpthCb   DpthCbMG
+(m)       (-)      (-)        (-)      (-)            (-)      (-)        (-)        (-)          (-)        (-)          (-)        (-)           (-)      (-)
+------ DEPTH-BASED RECTANGULAR-MEMBER HYDRODYNAMIC COEFFICIENTS (model 2) -------
+             0   NCoefDpthRec    - Number of depth-dependent rectangular member coefficients (-)
+Dpth    DpthCdA   DpthCdAMG    DpthCdB   DpthCdBMG   DpthCaA   DpthCaAMG   DpthCaB   DpthCaBMG     DpthCp   DpthCpMG   DpthAxCd   DpthAxCdMG   DpthAxCa   DpthAxCaMG   DpthAxCp   DpthAxCpMG   DpthCb   DpthCbMG
+(m)       (-)       (-)          (-)       (-)         (-)       (-)        (-)        (-)          (-)        (-)       (-)        (-)          (-)        (-)          (-)        (-)          (-)      (-)
+------ MEMBER-BASED CYLINDRICAL-MEMBER HYDRODYNAMIC COEFFICIENTS (model 3) ------
+            25   NCoefMembersCyl    - Number of member-based cylindrical member coefficients (-)
+MemberID    MemberCd1     MemberCd2    MemberCdMG1   MemberCdMG2    MemberCa1     MemberCa2    MemberCaMG1   MemberCaMG2    MemberCp1     MemberCp2    MemberCpMG1   MemberCpMG2   MemberAxCd1   MemberAxCd2  MemberAxCdMG1 MemberAxCdMG2  MemberAxCa1   MemberAxCa2  MemberAxCaMG1 MemberAxCaMG2  MemberAxCp1  MemberAxCp2   MemberAxCpMG1   MemberAxCpMG2    MemberCb1     MemberCb2    MemberCbMG1   MemberCbMG2
+   (-)         (-)           (-)           (-)           (-)           (-)           (-)           (-)           (-)           (-)           (-)           (-)           (-)           (-)           (-)           (-)           (-)           (-)           (-)           (-)           (-)           (-)           (-)           (-)           (-)              (-)           (-)           (-)           (-)
+    1          0.56          0.56          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00             1.00          1.00          1.00          1.00          ! Main Column
+    2          0.61          0.61          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00             1.00          1.00          1.00          1.00          ! Upper Column 1
+    3          0.61          0.61          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00             1.00          1.00          1.00          1.00          ! Upper Column 2
+    4          0.61          0.61          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00             1.00          1.00          1.00          1.00          ! Upper Column 3
+    5          0.68          0.68          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00             1.00          1.00          1.00          1.00          ! Base Column 1
+    6          0.68          0.68          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00             1.00          1.00          1.00          1.00          ! Base Column 2
+    7          0.68          0.68          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00             1.00          1.00          1.00          1.00          ! Base Column 3
+   23          0.68          0.68          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00             1.00          1.00          1.00          1.00          ! Base column cap 1
+   24          0.68          0.68          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00             1.00          1.00          1.00          1.00          ! Base column cap 2
+   25          0.68          0.68          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00             1.00          1.00          1.00          1.00          ! Base column cap 3
+    8          0.63          0.63          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00             1.00          1.00          1.00          1.00          ! Delta Pontoon, Upper 1
+    9          0.63          0.63          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00             1.00          1.00          1.00          1.00          ! Delta Pontoon, Upper 2
+   10          0.63          0.63          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00             1.00          1.00          1.00          1.00          ! Delta Pontoon, Upper 3
+   11          0.63          0.63          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00             1.00          1.00          1.00          1.00          ! Delta Pontoon, Lower 1
+   12          0.63          0.63          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00             1.00          1.00          1.00          1.00          ! Delta Pontoon, Lower 2
+   13          0.63          0.63          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00             1.00          1.00          1.00          1.00          ! Delta Pontoon, Lower 3
+   14          0.63          0.63          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00             1.00          1.00          1.00          1.00          ! Y Pontoon, Upper 1
+   15          0.63          0.63          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00             1.00          1.00          1.00          1.00          ! Y Pontoon, Upper 2
+   16          0.63          0.63          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00             1.00          1.00          1.00          1.00          ! Y Pontoon, Upper 3
+   17          0.63          0.63          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00             1.00          1.00          1.00          1.00          ! Y Pontoon, Lower 1
+   18          0.63          0.63          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00             1.00          1.00          1.00          1.00          ! Y Pontoon, Lower 2
+   19          0.63          0.63          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00             1.00          1.00          1.00          1.00          ! Y Pontoon, Lower 3
+   20          0.63          0.63          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00             1.00          1.00          1.00          1.00          ! Cross Brace 1
+   21          0.63          0.63          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00             1.00          1.00          1.00          1.00          ! Cross Brace 2
+   22          0.63          0.63          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00          0.00             1.00          1.00          1.00          1.00          ! Cross Brace 3
+------ MEMBER-BASED RECTANGULAR-MEMBER HYDRODYNAMIC COEFFICIENTS (model 3) ------
+            0   NCoefMembersRec - Number of member-based rectangular member coefficients (-)
+MemberID    MemberCdA1     MemberCdA2    MemberCdAMG1   MemberCdAMG2    MemberCdB1     MemberCdB2    MemberCdBMG1   MemberCdBMG2    MemberCaA1     MemberCaA2    MemberCaAMG1   MemberCaAMG2    MemberCaB1     MemberCaB2    MemberCaBMG1   MemberCaBMG2    MemberCp1     MemberCp2    MemberCpMG1   MemberCpMG2   MemberAxCd1   MemberAxCd2  MemberAxCdMG1 MemberAxCdMG2  MemberAxCa1   MemberAxCa2  MemberAxCaMG1 MemberAxCaMG2  MemberAxCp1  MemberAxCp2   MemberAxCpMG1   MemberAxCpMG2   MemberCb1     MemberCb2    MemberCbMG1   MemberCbMG2
+   (-)         (-)            (-)           (-)            (-)             (-)            (-)           (-)            (-)             (-)            (-)           (-)            (-)             (-)            (-)           (-)            (-)             (-)           (-)          (-)           (-)           (-)           (-)          (-)           (-)            (-)           (-)          (-)           (-)              (-)           (-)          (-)           (-)            (-)           (-)          (-)           (-)
+-------------------- MEMBERS -------------------------------------------------
+            25   NMembers       - Number of members (-)
+MemberID  MJointID1  MJointID2  MPropSetID1  MPropSetID2  MSecGeom    MSpinOrient   MDivSize   MCoefMod  MHstLMod  PropPot   [MCoefMod=1: use simple coeff table, 2: use depth-based coeff table, 3: use member-based coeff table] [ PropPot/=0 if member is modeled with potential-flow theory]
+  (-)        (-)        (-)         (-)          (-)      (switch)       (deg)        (m)      (switch)  (switch)  (flag)
+   1          1          2           1            1           1            0         1.0000        3         1      TRUE           ! Main Column
+   2          3          4           2            2           1            0         1.0000        3         1      TRUE           ! Upper Column 1
+   3          5          6           2            2           1            0         1.0000        3         1      TRUE           ! Upper Column 2
+   4          7          8           2            2           1            0         1.0000        3         1      TRUE           ! Upper Column 3
+   5         42          3           3            3           1            0         1.0000        3         1      TRUE           ! Base Column 1
+   6         43          5           3            3           1            0         1.0000        3         1      TRUE           ! Base Column 2
+   7         44          7           3            3           1            0         1.0000        3         1      TRUE           ! Base Column 3
+  23          9         42           3            3           1            0         1.0000        3         1      TRUE           ! Base column cap 1
+  24         10         43           3            3           1            0         1.0000        3         1      TRUE           ! Base column cap 2
+  25         11         44           3            3           1            0         1.0000        3         1      TRUE           ! Base column cap 3
+   8         12         13           4            4           1            0         1.0000        3         1      TRUE           ! Delta Pontoon, Upper 1
+   9         14         15           4            4           1            0         1.0000        3         1      TRUE           ! Delta Pontoon, Upper 2
+  10         16         17           4            4           1            0         1.0000        3         1      TRUE           ! Delta Pontoon, Upper 3
+  11         18         19           4            4           1            0         1.0000        3         1      TRUE           ! Delta Pontoon, Lower 1
+  12         20         21           4            4           1            0         1.0000        3         1      TRUE           ! Delta Pontoon, Lower 2
+  13         22         23           4            4           1            0         1.0000        3         1      TRUE           ! Delta Pontoon, Lower 3
+  14         24         25           4            4           1            0         1.0000        3         1      TRUE           ! Y Pontoon, Upper 1
+  15         26         27           4            4           1            0         1.0000        3         1      TRUE           ! Y Pontoon, Upper 2
+  16         28         29           4            4           1            0         1.0000        3         1      TRUE           ! Y Pontoon, Upper 3
+  17         30         31           4            4           1            0         1.0000        3         1      TRUE           ! Y Pontoon, Lower 1
+  18         32         33           4            4           1            0         1.0000        3         1      TRUE           ! Y Pontoon, Lower 2
+  19         34         35           4            4           1            0         1.0000        3         1      TRUE           ! Y Pontoon, Lower 3
+  20         36         37           4            4           1            0         1.0000        3         1      TRUE           ! Cross Brace 1
+  21         38         39           4            4           1            0         1.0000        3         1      TRUE           ! Cross Brace 2
+  22         40         41           4            4           1            0         1.0000        3         1      TRUE           ! Cross Brace 3
+---------------------- FILLED MEMBERS ------------------------------------------
+             2   NFillGroups     - Number of filled member groups (-) [If FillDens = DEFAULT, then FillDens = WtrDens; FillFSLoc is related to MSL2SWL]
+FillNumM FillMList FillFSLoc     FillDens
+(-)      (-)       (m)           (kg/m^3)
+ 3   2   3   4    -6.17           1025
+ 3   5   6   7   -14.89           1025
+---------------------- MARINE GROWTH -------------------------------------------
+             0   NMGDepths      - Number of marine-growth depths specified (-)
+MGDpth     MGThck       MGDens
+(m)        (m)         (kg/m^3)
+---------------------- MEMBER OUTPUT LIST --------------------------------------
+             0   NMOutputs      - Number of member outputs (-) [must be &lt; 10]
+MemberID   NOutLoc    NodeLocs [NOutLoc &lt; 10; node locations are normalized distance from the start of the member, and must be &gt;=0 and &lt;= 1] [unused if NMOutputs=0]
+  (-)        (-)        (-)
+---------------------- JOINT OUTPUT LIST ---------------------------------------
+             0   NJOutputs      - Number of joint outputs [Must be &lt; 10]
+                 JOutLst        - List of JointIDs which are to be output (-)[unused if NJOutputs=0]
+---------------------- OUTPUT --------------------------------------------------
+True             HDSum          - Output a summary file [flag]
+False            OutAll         - Output all user-specified member and joint loads (only at each member end, not interior locations) [flag]
+             2   OutSwtch       - Output requested channels to: [1=Hydrodyn.out, 2=GlueCode.out, 3=both files]
+"E16.8e2"        OutFmt         - Output format for numerical results (quoted string) [not checked for validity!]
+"A11"            OutSFmt        - Output format for header strings (quoted string) [not checked for validity!]
+---------------------- OUTPUT CHANNELS -----------------------------------------
+HydroFxi
+HydroFyi
+HydroFzi
+HydroMxi
+HydroMyi
+HydroMzi
+END of output channels and end of file. (the word "END" must appear in the first 3 columns of this line)
+</pre></div>
+</div>
+</div>
+<div class="section" id="appendix-b-oc4-semi-submersible-input-file">
+<h1><span class="section-number">4.11.8. </span>부록 B: OC4 반잠수식 입력 파일<a class="headerlink" href="#appendix-b-oc4-semi-submersible-input-file" title="이 제목의 고유 링크"></a></h1>
+<p>다음은 OC4 반잠수식 구조용 HydroDyn 드라이버 입력 파일입니다.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-------</span> <span class="n">HydroDyn</span> <span class="n">Driver</span> <span class="n">Input</span> <span class="n">File</span> <span class="o">--------------------------------------------</span>
+<span class="n">HydroDyn</span> <span class="n">Driver</span> <span class="n">file</span> <span class="k">for</span> <span class="n">OC4</span> <span class="n">Semi</span><span class="o">-</span><span class="n">submersible</span><span class="o">.</span>
+      <span class="n">FALSE</span>   <span class="n">Echo</span>                <span class="o">-</span> <span class="n">Echo</span> <span class="n">the</span> <span class="nb">input</span> <span class="n">file</span> <span class="n">data</span> <span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+<span class="o">----------------------</span> <span class="n">ENVIRONMENTAL</span> <span class="n">CONDITIONS</span> <span class="o">-------------------------------</span>
+    <span class="mf">9.80665</span>   <span class="n">Gravity</span>             <span class="o">-</span> <span class="n">Gravity</span> <span class="p">(</span><span class="n">m</span><span class="o">/</span><span class="n">s</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span>
+       <span class="mi">1025</span>   <span class="n">WtrDens</span>             <span class="o">-</span> <span class="n">Water</span> <span class="n">density</span> <span class="p">(</span><span class="n">kg</span><span class="o">/</span><span class="n">m</span><span class="o">^</span><span class="mi">3</span><span class="p">)</span>
+        <span class="mi">200</span>   <span class="n">WtrDpth</span>             <span class="o">-</span> <span class="n">Water</span> <span class="n">depth</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span>
+          <span class="mi">0</span>   <span class="n">MSL2SWL</span>             <span class="o">-</span> <span class="n">Offset</span> <span class="n">between</span> <span class="n">still</span><span class="o">-</span><span class="n">water</span> <span class="n">level</span> <span class="ow">and</span> <span class="n">mean</span> <span class="n">sea</span> <span class="n">level</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="p">[</span><span class="n">positive</span> <span class="n">upward</span><span class="p">]</span>
+<span class="o">----------------------</span> <span class="n">HYDRODYN</span> <span class="o">-----------------------------------------------</span>
+<span class="s2">"./OC4Semi.dat"</span>    <span class="n">HDInputFile</span>       <span class="o">-</span> <span class="n">Primary</span> <span class="n">HydroDyn</span> <span class="nb">input</span> <span class="n">file</span> <span class="n">name</span> <span class="p">(</span><span class="n">quoted</span> <span class="n">string</span><span class="p">)</span>
+<span class="s2">"./SeaState.dat"</span>   <span class="n">SeaStateInputFile</span> <span class="o">-</span> <span class="n">Primary</span> <span class="n">SeaState</span> <span class="nb">input</span> <span class="n">file</span> <span class="n">name</span> <span class="p">(</span><span class="n">quoted</span> <span class="n">string</span><span class="p">)</span>
+<span class="s2">"./OC4Semi"</span>        <span class="n">OutRootName</span>       <span class="o">-</span> <span class="n">The</span> <span class="n">name</span> <span class="n">which</span> <span class="n">prefixes</span> <span class="nb">all</span> <span class="n">HydroDyn</span> <span class="n">generated</span> <span class="n">files</span> <span class="p">(</span><span class="n">quoted</span> <span class="n">string</span><span class="p">)</span>
+      <span class="n">FALSE</span>        <span class="n">Linearize</span>         <span class="o">-</span> <span class="n">Flag</span> <span class="n">to</span> <span class="n">enable</span> <span class="n">linearization</span>
+       <span class="mi">4801</span>        <span class="n">NSteps</span>            <span class="o">-</span> <span class="n">Number</span> <span class="n">of</span> <span class="n">time</span> <span class="n">steps</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">simulation</span> <span class="p">(</span><span class="o">-</span><span class="p">)</span>   <span class="p">[</span><span class="mi">60</span> <span class="n">seconds</span> <span class="n">total</span><span class="p">]</span>
+     <span class="mf">0.0125</span>        <span class="n">TimeInterval</span>      <span class="o">-</span> <span class="n">Time</span> <span class="n">step</span> <span class="k">for</span> <span class="n">the</span> <span class="n">simulation</span> <span class="p">(</span><span class="n">sec</span><span class="p">)</span>
+<span class="o">----------------------</span> <span class="n">PRP</span> <span class="n">INPUTS</span> <span class="p">(</span><span class="n">Platform</span> <span class="n">Reference</span> <span class="n">Point</span><span class="p">)</span> <span class="o">------------------</span>
+          <span class="mi">0</span>   <span class="n">PRPInputsMod</span>      <span class="o">-</span> <span class="n">Model</span> <span class="k">for</span> <span class="n">the</span> <span class="n">PRP</span> <span class="p">(</span><span class="n">platform</span> <span class="n">reference</span> <span class="n">point</span><span class="p">)</span> <span class="n">inputs</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="nb">all</span> <span class="n">inputs</span> <span class="n">are</span> <span class="n">zero</span> <span class="k">for</span> <span class="n">every</span> <span class="n">timestep</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="n">steady</span><span class="o">-</span><span class="n">state</span> <span class="n">inputs</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="n">read</span> <span class="n">inputs</span> <span class="kn">from</span><span class="w"> </span><span class="nn">a</span> <span class="n">file</span> <span class="p">(</span><span class="n">InputsFile</span><span class="p">)}</span> <span class="p">(</span><span class="n">switch</span><span class="p">)</span>
+          <span class="mi">0</span>   <span class="n">PtfmRefzt</span>         <span class="o">-</span> <span class="n">Vertical</span> <span class="n">distance</span> <span class="kn">from</span><span class="w"> </span><span class="nn">the</span> <span class="n">ground</span> <span class="n">level</span> <span class="n">to</span> <span class="n">the</span> <span class="n">platform</span> <span class="n">reference</span> <span class="n">point</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="s2">"not_used"</span>    <span class="n">PRPInputsFile</span>     <span class="o">-</span> <span class="n">Filename</span> <span class="k">for</span> <span class="n">the</span> <span class="n">PRP</span> <span class="n">HydroDyn</span> <span class="nb">input</span> <span class="n">InputsMod</span> <span class="o">=</span> <span class="mi">2</span> <span class="p">(</span><span class="n">quoted</span> <span class="n">string</span><span class="p">)</span>
+<span class="o">----------------------</span> <span class="n">PRP</span> <span class="n">STEADY</span> <span class="n">STATE</span> <span class="n">INPUTS</span>  <span class="o">-------------------------------</span>
+          <span class="mi">0</span><span class="p">,</span>          <span class="mi">0</span><span class="p">,</span>          <span class="mi">0</span><span class="p">,</span>          <span class="mi">0</span><span class="p">,</span>          <span class="mi">0</span><span class="p">,</span>          <span class="mi">0</span>    <span class="n">uPRPInSteady</span>         <span class="o">-</span> <span class="n">PRP</span> <span class="n">Steady</span><span class="o">-</span><span class="n">state</span> <span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="n">displacements</span> <span class="ow">and</span> <span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="n">rotations</span> <span class="n">at</span> <span class="n">the</span> <span class="n">platform</span> <span class="n">reference</span> <span class="n">point</span> <span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">rad</span><span class="p">,</span> <span class="n">rad</span><span class="p">,</span> <span class="n">rad</span><span class="p">)</span>
+          <span class="mi">0</span><span class="p">,</span>          <span class="mi">0</span><span class="p">,</span>          <span class="mi">0</span><span class="p">,</span>          <span class="mi">0</span><span class="p">,</span>          <span class="mi">0</span><span class="p">,</span>          <span class="mi">0</span>    <span class="n">uDotPRPInSteady</span>      <span class="o">-</span> <span class="n">PRP</span> <span class="n">Steady</span><span class="o">-</span><span class="n">state</span> <span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="n">translational</span> <span class="ow">and</span> <span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="n">rotational</span> <span class="n">velocities</span> <span class="n">at</span> <span class="n">the</span> <span class="n">platform</span> <span class="n">reference</span> <span class="n">point</span> <span class="p">(</span><span class="n">m</span><span class="o">/</span><span class="n">s</span><span class="p">,</span> <span class="n">rads</span><span class="o">/</span><span class="n">s</span><span class="p">)</span>
+          <span class="mi">0</span><span class="p">,</span>          <span class="mi">0</span><span class="p">,</span>          <span class="mi">0</span><span class="p">,</span>          <span class="mi">0</span><span class="p">,</span>          <span class="mi">0</span><span class="p">,</span>          <span class="mi">0</span>    <span class="n">uDotDotPRPInSteady</span>   <span class="o">-</span> <span class="n">PRP</span> <span class="n">Steady</span><span class="o">-</span><span class="n">state</span> <span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="n">translational</span> <span class="ow">and</span> <span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="n">rotational</span> <span class="n">accelerations</span> <span class="n">at</span> <span class="n">the</span> <span class="n">platform</span> <span class="n">reference</span> <span class="n">point</span> <span class="p">(</span><span class="n">m</span><span class="o">/</span><span class="n">s</span><span class="o">^</span><span class="mi">2</span><span class="p">,</span> <span class="n">rads</span><span class="o">/</span><span class="n">s</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="appendix-c-list-of-output-channels">
+<span id="hd-output-channels"></span><h1><span class="section-number">4.11.9. </span>부록 C. 출력 채널 목록<a class="headerlink" href="#appendix-c-list-of-output-channels" title="이 제목의 고유 링크"></a></h1>
+<p>이것은 HydroDyn 모듈에 대해 가능한 모든 출력 매개변수의 목록입니다. 이름은 의미별로 그룹화되어 있지만 필요에 따라 HydroDyn 입력 파일의 OUTPUT CHANNELS 섹션에서 순서를 지정할 수 있습니다. MαNβ는 출력 멤버 α의 출력 노드 β를 나타냅니다. 여기서 α는 [1,9] 범위의 숫자이고 MEMBER OUTPUT LIST 테이블의 행 α에 해당하고 β는 [1,9] 범위의 숫자이며 테이블의 위치 β에 해당합니다.
+<strong>NodeLocs</strong> 목록입니다. Jα는 출력 조인트 α를 나타냅니다. 여기서 α는 [1,9] 범위의 숫자이고 JOINT OUTPUT LIST 테이블의 행 α에 해당합니다. Bα는 신체 α를 나타내며, 여기서 α는 [1,9] 범위의 숫자입니다. α &gt; Nbody를 설정하면 잘못된 출력이 생성됩니다. Nbody &gt; 9이면 처음 9개 본체만 출력될 수 있습니다. Waveα는 파고를 출력할 수 있는 지점 α를 의미하며, 여기서 α는 [1,9] 범위의 숫자입니다. α &gt; NWaveElev를 설정하면 잘못된 출력이 생성됩니다. 모든 출력은 전역 관성 프레임 좌표에 있습니다.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 41%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>채널 이름</p></th>
+<th class="head"><p>장치</p></th>
+<th class="head"><p>설명</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>파동 및 전류 운동학</strong></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>MαNβVxi, MαNβVyi, MαNβVzi</p></td>
+<td><p>(m/s), (m/s), (m/s)</p></td>
+<td><p>MαNβ에서의 총(1차 및 2차) 유체 입자 속도</p></td>
+</tr>
+<tr class="row-even"><td><p>MαNβAxi, MαNβAyi, MαNβAzi</p></td>
+<td><p>(m/s<sup>2</sup>), (m/s<sup>2</sup>), (m/s<sup>2</sup>)</p></td>
+<td><p>MαNβ에서의 총(1차 및 2차) 유체 입자 가속도</p></td>
+</tr>
+<tr class="row-odd"><td><p>MαNβDynP</p></td>
+<td><p>(Pa)</p></td>
+<td><p>MαNβ에서의 총(1차 및 2차) 유체 입자 동적 압력</p></td>
+</tr>
+<tr class="row-even"><td><p>JαVxi, JαVyi, JαVzi</p></td>
+<td><p>(m/s), (m/s), (m/s)</p></td>
+<td><p>Jα에서의 총(1차 및 2차) 유체 입자 속도</p></td>
+</tr>
+<tr class="row-odd"><td><p>JαAxi, JαAyi, JαAzi</p></td>
+<td><p>(m/s<sup>2</sup>), (m/s<sup>2</sup>), (m/s<sup>2</sup>)</p></td>
+<td><p>Jα에서의 총(1차 및 2차) 유체 입자 가속도</p></td>
+</tr>
+<tr class="row-even"><td><p>JαDynP</p></td>
+<td><p>(Pa)</p></td>
+<td><p>Jα에서의 총(1차 및 2차) 유체 입자 동적 압력</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>총 및 추가 부하</strong></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>BαAddFxi, BαAddFyi, BαAddFzi, BαAddMxi, BαAddMyi, BαAddMzi</p></td>
+<td><p>(N), (N), (N), (N·m), (N·m), (N·m)</p></td>
+<td><p>Bα에서의 추가 예압, 강성 및 감쇠로 인한 하중</p></td>
+</tr>
+<tr class="row-odd"><td><p>HydroFxi, HydroFyi, HydroFzi, HydroMxi, HydroMyi, HydroMzi</p></td>
+<td><p>(N), (N), (N), (N·m), (N·m), (N·m)</p></td>
+<td><p>(0,0,0)에서 잠재적 흐름과 스트립 이론의 총 통합 유체 역학 부하</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>는 전위 흐름 솔루션에서 로드됩니다.</strong></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>BαWvsFxi, BαWvsFyi, BαWvsFzi, BαWvsMxi, BαWvsMyi, BαWvsMzi</p></td>
+<td><p>(N), (N), (N), (N·m), (N·m), (N·m)</p></td>
+<td><p>Bα에서 회절로 인한 총(1차 및 2차) 파동 여기 부하</p></td>
+</tr>
+<tr class="row-even"><td><p>BαWvsF1xi, BαWvsF1yi, BαWvsF1zi, BαWvsM1xi, BαWvsM1yi, BαWvsM1zi</p></td>
+<td><p>(N), (N), (N), (N·m), (N·m), (N·m)</p></td>
+<td><p>Bα에서의 회절로 인한 1차 파동 여기 하중</p></td>
+</tr>
+<tr class="row-odd"><td><p>BαWvsF2xi, BαWvsF2yi, BαWvsF2zi, BαWvsM2xi, BαWvsM2yi, BαWvsM2zi</p></td>
+<td><p>(N), (N), (N), (N·m), (N·m), (N·m)</p></td>
+<td><p>Bα에서의 회절로 인한 2차 파동 여기 하중</p></td>
+</tr>
+<tr class="row-even"><td><p>BαHdSFxi, BαHdSFyi, BαHdSFzi, BαHdSMxi, BαHdSMyi, BαHdSMzi
+Bα의</p></td>
+<td><p>(N), (N), (N), (N·m), (N·m), (N·m)</p></td>
+<td><p>정수압 하중</p></td>
+</tr>
+<tr class="row-odd"><td><p>BαRdtFxi, BαRdtFyi, BαRdtFzi, BαRdtMxi, BαRdtMyi, BαRdtMzi</p></td>
+<td><p>(N), (N), (N), (N·m), (N·m), (N·m)</p></td>
+<td><p>Bα에서의 파동 복사 부하</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>구조적 동작</strong></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>PRPS서지, PRPSway, PRPHeave, PRRPol, PRPPitch, PRPYaw</p></td>
+<td><p>(m), (m), (m), (rad), (rad), (rad)</p></td>
+<td><p>플랫폼 기준점(PRP)에서의 변위 및 회전</p></td>
+</tr>
+<tr class="row-even"><td><p>PRPTVxi, PRPTVyi, PRPTVzi, PRPRVxi, PRPRVyi, PRPRVzi</p></td>
+<td><p>(m/s), (m/s), (m/s), (rad/s), (rad/s), (rad/s)</p></td>
+<td><p>PRP의 병진 및 회전 속도</p></td>
+</tr>
+<tr class="row-odd"><td><p>PRPTAxi, PRPTAyi, PRPTAzi, PRPRAxi, PRPRAyi, PRPRAzi</p></td>
+<td><p>(m/s<sup>2</sup>), (m/s<sup>2</sup>), (m/s<sup>2</sup>), (rad/s<sup>2</sup>), (rad/s<sup>2</sup>), (rad/s<sup>2</sup>)</p></td>
+<td><p>PRP의 병진 및 회전 가속도</p></td>
+</tr>
+<tr class="row-even"><td><p>BαSurge, BαSway, BαHeave, BαRoll, BαPitch BαYaw</p></td>
+<td><p>(m), (m), (m), (rad), (rad), (rad)</p></td>
+<td><p>Bα에서의 변위 및 회전</p></td>
+</tr>
+<tr class="row-odd"><td><p>BαTVxi, BαTVyi, BαTVzi, BαRVxi, BαRVyi, BαRVzi</p></td>
+<td><p>(m/s), (m/s), (m/s), (rad/s), (rad/s), (rad/s)</p></td>
+<td><p>Bα에서의 병진 및 회전 속도</p></td>
+</tr>
+<tr class="row-even"><td><p>BαTAxi, BαTAyi, BαTAzi, BαRAxi, BαRAyi, BαRAzi</p></td>
+<td><p>(m/s<sup>2</sup>), (m/s<sup>2</sup>), (m/s<sup>2</sup>), (rad/s<sup>2</sup>), (rad/s<sup>2</sup>), (rad/s<sup>2</sup>)</p></td>
+<td><p>Bα에서의 병진 및 회전 가속도</p></td>
+</tr>
+<tr class="row-odd"><td><p>MαNβSTVxi, MαNβSTVyi, MαNβSTVzi</p></td>
+<td><p>(m/s), (m/s), (m/s)</p></td>
+<td><p>MαNβ에서의 구조적 병진 속도</p></td>
+</tr>
+<tr class="row-even"><td><p>MαNβSTAxi, MαNβSTAyi, MαNβSTAzi</p></td>
+<td><p>(m/s<sup>2</sup>), (m/s<sup>2</sup>), (m/s<sup>2</sup>)</p></td>
+<td><p>MαNβ에서의 구조적 병진 가속</p></td>
+</tr>
+<tr class="row-odd"><td><p>JαSTVxi, JαSTVyi, JαSTVzi</p></td>
+<td><p>(m/s), (m/s), (m/s)</p></td>
+<td><p>Jα에서의 구조적 병진 속도</p></td>
+</tr>
+<tr class="row-even"><td><p>JαSTAxi, JαSTAyi, JαSTAzi</p></td>
+<td><p>(m/s<sup>2</sup>), (m/s<sup>2</sup>), (m/s<sup>2</sup>)</p></td>
+<td><p>Jα에서의 구조적 병진 가속도</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>부재의 분산 하중(단위 길이당)</strong></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>MαNβFDxi, MαNβFDyi, MαNβFDzi</p></td>
+<td><p>(N/m), (N/m), (N/m)</p></td>
+<td><p>MαNβ의 점성 항력</p></td>
+</tr>
+<tr class="row-odd"><td><p>MαNβFIxi, MαNβFIyi, MαNβFIzi</p></td>
+<td><p>(N/m), (N/m), (N/m)</p></td>
+<td><p>MαNβ의 유체 관성력</p></td>
+</tr>
+<tr class="row-even"><td><p>MαNβFBxi, MαNβFByi, MαNβFBzi, MαNβMBxi, MαNβMByi, MαNβMBzi</p></td>
+<td><p>(N/m), (N/m), (N/m), (N·m/m), (N·m/m), (N·m/m)</p></td>
+<td><p>MαNβ에서의 부력 하중</p></td>
+</tr>
+<tr class="row-odd"><td><p>MαNβFBFxi, MαNβFBFyi, MαNβFBFzi, MαNβMBFxi, MαNβMBFyi, MαNβMBFzi</p></td>
+<td><p>(N/m), (N/m), (N/m), (N·m/m), (N·m/m), (N·m/m)</p></td>
+<td><p>MαNβ의 범람/밸러스팅으로 인한 음의 부력 하중</p></td>
+</tr>
+<tr class="row-even"><td><p>MαNβFMGxi, MαNβFMGyi, MαNβFMGzi, MαNβMMGxi, MαNβMMGyi, MαNβMMGzi</p></td>
+<td><p>(N/m), (N/m), (N/m), (N·m/m), (N·m/m), (N·m/m)</p></td>
+<td><p>MαNβ에서 해양 성장 중량으로 인한 하중</p></td>
+</tr>
+<tr class="row-odd"><td><p>MαNβFAMxi, MαNβFAMii, MαNβFAMzi</p></td>
+<td><p>(N/m), (N/m), (N/m)</p></td>
+<td><p>MαNβ에서의 유체역학적 추가 질량 힘</p></td>
+</tr>
+<tr class="row-even"><td><p>MαNβFAGxi, MαNβFAGyi, MαNβFAGzi, MαNβMAGxi, MαNβMAGyi, MαNβMAGzi</p></td>
+<td><p>(N/m), (N/m), (N/m), (N·m/m), (N·m/m), (N·m/m)</p></td>
+<td><p>MαNβ에서의 해양 성장 질량 관성 하중</p></td>
+</tr>
+<tr class="row-odd"><td><p>MαNβFAFxi, MαNβFAFyi, MαNβFAFzi, MαNβMAFxi, MαNβMAFyi, MαNβMAFzi</p></td>
+<td><p>(N/m), (N/m), (N/m), (N·m/m), (N·m/m), (N·m/m)</p></td>
+<td><p>MαNβ에서의 범람/밸러스트 질량 관성 하중</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>접합부 집중 하중</strong></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>JαFDxi, JαFDyi, JαFDzi</p></td>
+<td><p>(N), (N), (N)</p></td>
+<td><p>Jα의 점성 항력</p></td>
+</tr>
+<tr class="row-even"><td><p>JαFIxi, JαFIyi, JαFIzi</p></td>
+<td><p>(N), (N), (N)</p></td>
+<td><p>Jα의 유체 관성력</p></td>
+</tr>
+<tr class="row-odd"><td><p>JαFBxi, JαFByi, JαFBzi, JαMBxi, JαMByi, JαMBzi</p></td>
+<td><p>(N), (N), (N), (N·m), (N·m), (N·m)</p></td>
+<td><p>Jα에서의 부력 하중</p></td>
+</tr>
+<tr class="row-even"><td><p>JαFBFxi, JαFBFyi, JαFBFzi, JαMBFxi, JαMBFyi, JαMBFzi</p></td>
+<td><p>(N), (N), (N), (N·m), (N·m), (N·m)</p></td>
+<td><p>Jα의 범람/밸러스팅으로 인한 음의 부력 하중</p></td>
+</tr>
+<tr class="row-odd"><td><p>JαFMGxi, JαFMGyi, JαFMGzi</p></td>
+<td><p>(N), (N), (N)</p></td>
+<td><p>Jα의 해양 성장 무게로 인한 힘</p></td>
+</tr>
+<tr class="row-even"><td><p>JαFAMxi, JαFAMyi, JαFAMzi</p></td>
+<td><p>(N), (N), (N)</p></td>
+<td><p>Jα에서의 유체역학적 추가 질량 힘</p></td>
+</tr>
+<tr class="row-odd"><td><p>JαFAGxi, JαFAGyi, JαFAGzi, JαMAGxi, JαMAGyi, JαMAGzi</p></td>
+<td><p>(N), (N), (N), (N·m), (N·m), (N·m)</p></td>
+<td><p>Jα에서의 해양 성장 질량 관성 하중</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="zrefs.html" class="btn btn-neutral float-left" title="4.11.6. 참고문헌" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+        <a href="../seastate/index.html" class="btn btn-neutral float-right" title="4.12. SeaState 사용자 가이드 및 이론 설명서" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>© Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    
+     
+
+
+</body></html>

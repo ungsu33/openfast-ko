@@ -1,0 +1,21 @@
+/* Korean localization additions. Original Sphinx RTD theme is retained. */
+body,input,button,select,textarea{font-family:Lato,"Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+h1,h2,h3,h4,h5,h6{font-family:"Roboto Slab","Apple SD Gothic Neo","Malgun Gothic",sans-serif;word-break:keep-all}
+.rst-content p,.rst-content li,.rst-content dd{word-break:normal;overflow-wrap:anywhere}
+.ko-notice{margin:0 0 24px;padding:10px 12px;font-size:12px;line-height:1.7;background:#f1f7fb;border-left:3px solid #2980b9;color:#44505a}
+.ko-tools{margin-top:16px!important;border-top:1px solid #555;padding-top:10px!important}
+.ko-tools a{font-size:13px!important;color:#b9d8ee!important}
+.ko-search-row{display:flex;gap:8px;margin:10px 0}
+.ko-search-row input{flex:1;min-width:0;padding:10px;border:1px solid #aaa;border-radius:3px}
+.ko-search-row button{padding:8px 20px;border:0;background:#2980b9;color:white;border-radius:3px;cursor:pointer}
+#ko-search-results>li{margin:20px 0}
+#ko-search-results p{font-size:14px;margin-top:5px;line-height:1.7}
+.ko-review-table{overflow-x:auto}.ko-review-table table{font-size:13px;width:100%;border-collapse:collapse}
+.ko-review-table th,.ko-review-table td{padding:8px;border:1px solid #ddd;vertical-align:top}
+.ko-review-table th{background:#f0f0f0}
+.ko-inventory details{border-bottom:1px solid #ddd;padding:12px 0}
+.ko-inventory summary{cursor:pointer;font-weight:600;color:#2980b9;line-height:1.6}
+.ko-inventory .ko-meta{font-size:12px;color:#666;margin:8px 0}
+.ko-review-callout{background:#fff6df;border-left:3px solid #e6ad28;padding:12px;margin:16px 0}
+@media(max-width:768px){.ko-notice{font-size:11px}.ko-search-row{flex-wrap:wrap}.ko-review-table table{min-width:560px}}
+@media print{.ko-notice,.ko-tools{display:none}}

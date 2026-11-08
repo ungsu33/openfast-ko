@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.8.8. References &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.8.9. Appendix A. OC4 Jacket Input File" href="appendixA.html" />
+    <link rel="prev" title="4.8.7. Known Limitations and Future Work" href="future_work.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/subdyn/zrefs.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.8. SubDyn</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">4.8.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="running_sd.html">4.8.2. Running SubDyn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input_files.html">4.8.3. Input Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="output_files.html">4.8.4. Output Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modeling.html">4.8.5. Modeling Considerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory.html">4.8.6. SubDyn Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="future_work.html">4.8.7. Known Limitations and Future Work</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.8.8. References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendixA.html">4.8.9. Appendix A. OC4 Jacket Input File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendixB.html">4.8.10. Appendix B. OC4 Jacket Driver File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendixC.html">4.8.11. Appendix C. OC4 Jacket SSI Input File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendixD.html">4.8.12. Appendix D. List of Output Channels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendixE.html">4.8.13. Appendix E. Compiling Stand-Alone SubDyn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendixF.html">4.8.14. Appendix F. Major Changes in SubDyn</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.8. </span>SubDyn User Guide and Theory Manual</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.8.8. </span>References</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/subdyn/zrefs.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="references">
+<h1><span class="section-number">4.8.8. </span>References<a class="headerlink" href="#references" title="Permalink to this heading"></a></h1>
+</div>
+<div class="docutils container" id="id1">
+<dl class="citation">
+<dt class="label" id="id2"><span class="brackets">CC10</span></dt>
+<dd><p>S.C. Chapra and R.P. Canale. <em>Numerical Methods for Engineers</em>. McGraw-Hill Science/Engineering/Mat, 2010.</p>
+</dd>
+<dt class="label" id="id17"><span class="brackets">Coo01</span></dt>
+<dd><p>Robert D. Cook. <em>Concepts and Applications of Finite Element Analysis</em>. John Wiley &amp; Sons, 2001.</p>
+</dd>
+<dt class="label" id="id6"><span class="brackets">CB68</span></dt>
+<dd><p>R. Craig and M. Bampton. Coupling of substructures for dynamic analyses. <em>AIAA Journal</em>, 6:1313 – 1319, 1968.</p>
+</dd>
+<dt class="label" id="id12"><span class="brackets">DJH15</span></dt>
+<dd><p>R. Damiani, J. Jonkman, and G. Hayman. Subdyn user's guide and theory manual. Technical Report NREL/TP-5000-63062, National Renewable Energy Laboratory, 2015.</p>
+</dd>
+<dt class="label" id="id13"><span class="brackets">DS13</span></dt>
+<dd><p>R. Damiani and H. Song. A jacket sizing tool for offshore wind turbines within the systems engineering initiative. <em>Offshore Technology Conference</em>, 2013.</p>
+</dd>
+<dt class="label" id="id14"><span class="brackets">DSRJ13</span></dt>
+<dd><p>R. Damiani, H. Song, A. Robertson, and J. Jonkman. Assessing the importance of nonlinear structural characteristics in the development of a jacket model for the wind turbine cae tool fast. <em>32nd International Conference on Ocean, Offshore and Arctic Engineering</em>, 2013.</p>
+</dd>
+<dt class="label" id="id16"><span class="brackets">Fel04</span></dt>
+<dd><p>Carlos A. Felippa. Introduction to finite element methods - lecture notes (asen 5007). Technical Report, Department of Aerospace Engineering Sciences and Center for Aerospace Structures, University of Colorado, Boulder, CO, USA, 2004.</p>
+</dd>
+<dt class="label" id="id5"><span class="brackets">Hur64</span></dt>
+<dd><p>W.C. Hurty. On the dynamic analysis of structural systems using component modes. In <em>Proceedings of the 51st AIAA Annual Meeting</em>. Washington, DC, June 29–July 2 1964. AIAA Paper No. 64-487.</p>
+</dd>
+<dt class="label" id="id4"><span class="brackets">JJo13</span></dt>
+<dd><p>JJonkman. The new modularization framework for the FAST wind turbine CAE tool. In <em>Proceedings of the 51st AIAA Aerospace Sciences Meeting and 31st ASME Wind Energy Symposium</em>. Grapevine, Texas, January 7 – 10 2013.</p>
+</dd>
+<dt class="label" id="id18"><span class="brackets">JBH+20</span></dt>
+<dd><p>Jason Jonkman, Emmanuel Branlard, Matthew Hall, Greg Hayman, Andy Platt, and Amy Robertson. Implementation of substructure flexibility and member-level load capabilities for floating offshore wind turbines in openfast. Technical Report NREL/TP-5000-76822, National Renewable Energy Laboratory, 2020.</p>
+</dd>
+<dt class="label" id="id7"><span class="brackets">MJJ14</span></dt>
+<dd><p>MSprague, J.M. Jonkman, and B.J. Jonkman. FAST modular wind turbine CAE tool: nonmatching spatial and temporal meshes. In <em>Proceedings of the 32nd ASME Wind Energy Symposium</em>. National Harbor, Maryland, January 2014.</p>
+</dd>
+<dt class="label" id="id8"><span class="brackets">PHEL09</span></dt>
+<dd><p>H. Panzer, J. Hubele, R. Eid, and B. Lohmann. Generating a parametric finite element model of a 3d cantilever timoshenko beam using matlab. Technical Report, Technische Universitat Munchen, 2009. Technical Reports on Automatic Control.</p>
+</dd>
+<dt class="label" id="id3"><span class="brackets">SDRJ13</span></dt>
+<dd><p>H. Song, R. Damiani, A. Robertson, and J. Jonkman. (2013). new structural-dynamics module for offshore multimember substructures within the wind turbine computer-aided engineering tool FAST. In <em>Proceedings of the 23rd International Ocean, Offshore and Polar Engineering Conference - ISOPE 2013</em>. Anchorage, Alaska, June 30 – July 5 2013. https://www.nrel.gov/docs/fy15osti/63165.pdf.</p>
+</dd>
+<dt class="label" id="id11"><span class="brackets">SKM13</span></dt>
+<dd><p>A. Steinboeck, A. Kugi, and H Mang. Energy-consistent shear coefficients for beams with circular cross sections and radially in homogeneous materials. <em>International Journal of Solids and Structures</em>, 50(11–12):1859–1868, 2013.</p>
+</dd>
+<dt class="label" id="id10"><span class="brackets">API14</span></dt>
+<dd><p>API. Planning, designing and constructing fixed offshore platforms - working stress design. Technical Report API Recommended Practice 2A-WSD, 22nd Edition, American Petroleum Institute, 2014.</p>
+</dd>
+<dt class="label" id="id9"><span class="brackets">ISO07</span></dt>
+<dd><p>ISO. 19902:2007 - petroleum and natural gas industries – fixed steel offshore structures. Technical Report, ISO, Geneva, Switzerland, 2007.</p>
+</dd>
+</dl>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="future_work.html" class="btn btn-neutral float-left" title="4.8.7. Known Limitations and Future Work" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="appendixA.html" class="btn btn-neutral float-right" title="4.8.9. Appendix A. OC4 Jacket Input File" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

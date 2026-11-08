@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.3.2. Coordinate systems &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.3.3. Input Files" href="input.html" />
+    <link rel="prev" title="4.3.1. Introduction" href="introduction.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/aerodyn/coordsys.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.3. AeroDyn</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">4.3.1. Introduction</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.3.2. Coordinate systems</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#inertial-system-i">4.3.2.1. Inertial system (i)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hub-system-h">4.3.2.2. Hub system (h)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polar-system-p">4.3.2.3. Polar system (p)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cone-system-c">4.3.2.4. Cone system (c)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#blade-system-b">4.3.2.5. Blade system (b)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#airfoil-system-a">4.3.2.6. Airfoil system (a)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#legacy-n-t-system">4.3.2.7. Legacy (n-t) system</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#local-polar-system-l">4.3.2.8. Local polar system (l)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#legacy-local-output-system-w">4.3.2.9. Legacy local output system (w)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tower-system">4.3.2.10. Tower system</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="input.html">4.3.3. Input Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="output.html">4.3.4. Output Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modeling.html">4.3.5. Modeling Considerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver.html">4.3.6. AeroDyn Driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory.html">4.3.7. AeroDyn Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory_ua.html">4.3.8. Unsteady Aerodynamics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory_tailfin.html">4.3.9. Tail fin Aerodynamics Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.3.10. References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.3.11. Appendix</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.3. </span>AeroDyn Users Guide and Theory Manual</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.3.2. </span>Coordinate systems</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/aerodyn/coordsys.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="coordinate-systems">
+<span id="ad-coordsys"></span><h1><span class="section-number">4.3.2. </span>Coordinate systems<a class="headerlink" href="#coordinate-systems" title="Permalink to this heading"></a></h1>
+<p>AeroDyn uses different coordinate system for its internal computations and its outputs.
+The output channels are typically suffixed with a letter corresponding to the coordinate system being used:</p>
+<ul class="simple">
+<li><p>(i): inertial system</p></li>
+<li><p>(h): hub system</p></li>
+<li><p>(p): polar system</p></li>
+<li><p>(l): local-polar system</p></li>
+<li><p>None or (w): the legacy output system.</p></li>
+<li><p>(n-t): the legacy airfoil system.</p></li>
+</ul>
+<p>The different systems are described below.</p>
+<div class="section" id="inertial-system-i">
+<h2><span class="section-number">4.3.2.1. </span>Inertial system (i)<a class="headerlink" href="#inertial-system-i" title="Permalink to this heading"></a></h2>
+<p>The inertial system  <span class="math notranslate nohighlight">\((i)\)</span> is the global system used by OpenFAST (see ElastoDyn documentation).</p>
+</div>
+<div class="section" id="hub-system-h">
+<h2><span class="section-number">4.3.2.2. </span>Hub system (h)<a class="headerlink" href="#hub-system-h" title="Permalink to this heading"></a></h2>
+<p>The hub system  <span class="math notranslate nohighlight">\((h)\)</span> rotates along the <span class="math notranslate nohighlight">\(x_h\)</span> axis based on the shaft azimuthal position <span class="math notranslate nohighlight">\(\psi\)</span> (see ElastoDyn documentation).</p>
+</div>
+<div class="section" id="polar-system-p">
+<h2><span class="section-number">4.3.2.3. </span>Polar system (p)<a class="headerlink" href="#polar-system-p" title="Permalink to this heading"></a></h2>
+<p>The polar system <span class="math notranslate nohighlight">\((p_k)\)</span> is constructed from the hub coordinate system <span class="math notranslate nohighlight">\((h)\)</span>
+by rotating the <span class="math notranslate nohighlight">\(x_h\)</span> axis by the azimuthal offset of each blade <span class="math notranslate nohighlight">\(\psi_{0,k}\)</span> (the blades are distributed evenly across the azimuth).
+For conciseness we refer to this system as the <span class="math notranslate nohighlight">\((p)\)</span> system.
+If the number of blade is written <span class="math notranslate nohighlight">\(n_B\)</span>, the azimuthal offset for blade <span class="math notranslate nohighlight">\(k\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+   \psi_{0,k} = 2 \pi \frac{k-1}{n_B}
+\end{aligned}\]</div>
+<p>For blade 1, <span class="math notranslate nohighlight">\(\psi_{0,1}=0\)</span>, therefore <span class="math notranslate nohighlight">\(y_{p,1}=y_h\)</span> and <span class="math notranslate nohighlight">\(z_{p,1}=z_h\)</span>.</p>
+<p>The <span class="math notranslate nohighlight">\(x_{p,k}\)</span> axis is along the hub x-axis.</p>
+<p>In the absence of coning, the <span class="math notranslate nohighlight">\(z_{p,k}\)</span> axis corresponds to the <span class="math notranslate nohighlight">\(z_{b,k}\)</span> axis of the blade.</p>
+</div>
+<div class="section" id="cone-system-c">
+<h2><span class="section-number">4.3.2.4. </span>Cone system (c)<a class="headerlink" href="#cone-system-c" title="Permalink to this heading"></a></h2>
+<p>The cone system  <span class="math notranslate nohighlight">\((c)\)</span> is obtained from the polar system by a rotation about the <span class="math notranslate nohighlight">\(y_{p,k}\)</span> axis of each blade <span class="math notranslate nohighlight">\(k\)</span>.
+See ElastoDyn/FAST8 documentation for more details.
+AeroDyn uses this system to estimate the blade pitch angle (by comparing the <span class="math notranslate nohighlight">\((c)\)</span> and <span class="math notranslate nohighlight">\((b)\)</span> systems).</p>
+</div>
+<div class="section" id="blade-system-b">
+<h2><span class="section-number">4.3.2.5. </span>Blade system (b)<a class="headerlink" href="#blade-system-b" title="Permalink to this heading"></a></h2>
+<p>The blade system  <span class="math notranslate nohighlight">\((b)\)</span> is otbained from the cone system by a rotation (pitching) about the <span class="math notranslate nohighlight">\(z_c\)</span> axis.
+It is used to define the location of the aerodynamic center, the local twist of the blade along the span of the blade.
+See <a class="reference internal" href="input.html#blade-data-input-file"><span class="std std-numref">Section 4.3.3.19.2</span></a> and <a class="reference internal" href="input.html#ad-blade-geom"><span class="std std-numref">Fig. 4.6</span></a>.</p>
+</div>
+<div class="section" id="airfoil-system-a">
+<h2><span class="section-number">4.3.2.6. </span>Airfoil system (a)<a class="headerlink" href="#airfoil-system-a" title="Permalink to this heading"></a></h2>
+<p><strong>Currently the user specifies the prebend orientation in the input file and it is used to orient the airfoil</strong> (i.e. the axis <span class="math notranslate nohighlight">\(z_a\)</span>). In the future, this orientation may be computed automatically from the AC-line.</p>
+<p>The airfoil section system <span class="math notranslate nohighlight">\((a_{_{kj}})\)</span>, or <span class="math notranslate nohighlight">\((a)\)</span> for short, is the coordinate system where Blade Element Theory is applied, and where the airfoil shape and polar data are given.
+The airfoil coordinate system, <span class="math notranslate nohighlight">\((a_{_{kj}})\)</span> is defined for each blade <span class="math notranslate nohighlight">\(k\)</span> and each blade node <span class="math notranslate nohighlight">\(j\)</span>.
+The <span class="math notranslate nohighlight">\(y_a\)</span> axis is along the airfoil chord (tangential to chord), towards the trailing
+edge.
+The <span class="math notranslate nohighlight">\(x_a\)</span> axis is normal to chord, towards the suction side (for an asymmetric airfoil).
+See <a class="reference internal" href="#ad-cs-airfoil"><span class="std std-numref">Fig. 4.2</span></a>.</p>
+<div class="figure align-center" id="id1">
+<span id="ad-cs-airfoil"></span><a class="reference internal image-reference" href="../../../_images/FASTAirfoilSystem.svg"><img alt="../../../_images/FASTAirfoilSystem.svg" src="../../../_images/FASTAirfoilSystem.svg" width="80%" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.2 </span><span class="caption-text">The airfoil (a) coordinate system.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</div>
+<p>The <span class="math notranslate nohighlight">\((a)\)</span> system is where Blade Element Theory (BET) is applied: the angle of attack, <span class="math notranslate nohighlight">\(\alpha\)</span>, the lift, <span class="math notranslate nohighlight">\(L\)</span>, and drag, <span class="math notranslate nohighlight">\(D\)</span>, are all defined in the <span class="math notranslate nohighlight">\(x_a-y_a\)</span> plane.
+The lifting line loads are computed in this system.
+The relative wind in this system is the projection of the 3D
+relative wind into the 2D plane of the <span class="math notranslate nohighlight">\((a)\)</span>-system, noted <span class="math notranslate nohighlight">\({}^{\perp_a}\boldsymbol{V}_\text{rel}\)</span> or <span class="math notranslate nohighlight">\(\boldsymbol{V}_\text{rel,a}\)</span>.</p>
+<p>In the airfoil system, we have:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+   C_{x_a}  =  C_l(\alpha) \cos\alpha + C_d(\alpha)\sin\alpha % that's Cn
+   ,\quad
+   C_{y_a}  = -C_l(\alpha) \sin\alpha + C_d(\alpha)\cos\alpha % that's -Ct for the t of AeroDyn
+   ,\quad
+   C_{m_a} = C_m(\alpha)
+  \end{aligned}\]</div>
+<p>and the loads (per unit length) are:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+  f_{x_a} = \frac{1}{2}\rho V_{\text{rel},a}^2 c C_{x_a}
+  ,\quad
+  f_{y_a} = \frac{1}{2}\rho V_{\text{rel},a}^2 c C_{y_a}
+  ,\quad
+  m_{z_a} = \frac{1}{2}\rho V_{\text{rel},a}^2 c^2 C_{m_a}
+  \end{aligned}\]</div>
+</div>
+<div class="section" id="legacy-n-t-system">
+<h2><span class="section-number">4.3.2.7. </span>Legacy (n-t) system<a class="headerlink" href="#legacy-n-t-system" title="Permalink to this heading"></a></h2>
+<p>In legacy AeroDyn code and documentation, the <span class="math notranslate nohighlight">\((n-t)\)</span> system is sometimes used.
+The <span class="math notranslate nohighlight">\(n\)</span>-axis corresponds to the <span class="math notranslate nohighlight">\(x_a\)</span> axis (normal to chord).
+The <span class="math notranslate nohighlight">\(t\)</span>-axis corresponds to the <span class="math notranslate nohighlight">\(-y_a\)</span> axis (opposite direction).</p>
+</div>
+<div class="section" id="local-polar-system-l">
+<h2><span class="section-number">4.3.2.8. </span>Local polar system (l)<a class="headerlink" href="#local-polar-system-l" title="Permalink to this heading"></a></h2>
+<p><strong>Currently the local polar system is only used for output purposes. It will be used in the BEM implementation in future releases.</strong></p>
+<p>The local polar coordinate system <span class="math notranslate nohighlight">\((l_{_{kj}})\)</span>, or <span class="math notranslate nohighlight">\((l)\)</span> for short, is similar to the polar coordinate system, but is rotated about the <span class="math notranslate nohighlight">\(x_h\)</span> axis, such that the <span class="math notranslate nohighlight">\(z_{l,kj}\)</span> axis passes through the deflected position of node <span class="math notranslate nohighlight">\(j\)</span> of blade <span class="math notranslate nohighlight">\(k\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(x_l\)</span> is along the hub <span class="math notranslate nohighlight">\(x_h\)</span> axis,
+and <span class="math notranslate nohighlight">\(z_l\)</span> is the radial coordinate in the plane normal to the shaft axis.
+The coordinate system is illustrated in <a class="reference internal" href="#ad-cs-localpolar"><span class="std std-numref">Fig. 4.3</span></a> for a case with prebend only (left) and presweep only (right).</p>
+<div class="figure align-center" id="id2">
+<span id="ad-cs-localpolar"></span><a class="reference internal image-reference" href="../../../_images/FASTLocalPolarSystem.svg"><img alt="../../../_images/FASTLocalPolarSystem.svg" src="../../../_images/FASTLocalPolarSystem.svg" width="70%" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.3 </span><span class="caption-text">The polar (p) and local polar (l) coordinate systems.
+Left: pure prebend.
+Right: pure sweep.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</div>
+<p>The local polar coordinate system is defined for each blade node as follows. The position of a deflected blade node <span class="math notranslate nohighlight">\(A_j\)</span> with respect to the hub <span class="math notranslate nohighlight">\(H\)</span> is :</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{aligned}
+   \boldsymbol{r}_{HA_j} = \boldsymbol{r}_{A_j}-\boldsymbol{r}_H
+\end{aligned}\]</div>
+</div></blockquote>
+<p>This vector is projected onto the rotor plane as follows:</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{aligned}
+   \boldsymbol{r}_{HA_j}^\perp = \mathop{\mathrm{\boldsymbol{\mathrm{P}}}}_{\boldsymbol{\hat{x}}_h}(\boldsymbol{r}_{HA_j}) = \boldsymbol{r}_{HA_j} - (\boldsymbol{\hat{x}}_h \cdot {\boldsymbol{r}_{HA_j}}) \boldsymbol{\hat{x}}_h
+\end{aligned}\]</div>
+</div></blockquote>
+<p>The vectors of the local polar coordinate system are then defined as:</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{aligned}
+   \boldsymbol{\hat{x}}_{l} = \boldsymbol{\hat{x}}_h
+   ,\quad
+   \boldsymbol{\hat{z}}_{l} = \frac{ \boldsymbol{r}_{HA_j}^\perp }{\lVert\boldsymbol{r}_{HA_j}\rVert}
+   ,\quad
+   \boldsymbol{\hat{y}}_{l} = \boldsymbol{\hat{z}}_h \times \boldsymbol{\hat{x}}_h
+ \end{aligned}\]</div>
+</div></blockquote>
+<p>The local polar coordinate systems of the different blade nodes differ from
+an azimuthal rotation about the <span class="math notranslate nohighlight">\(x_h\)</span> axis (and a translation
+of origin about the <span class="math notranslate nohighlight">\(x_h\)</span>-axis, which is mostly irrelevant).</p>
+</div>
+<div class="section" id="legacy-local-output-system-w">
+<h2><span class="section-number">4.3.2.9. </span>Legacy local output system (w)<a class="headerlink" href="#legacy-local-output-system-w" title="Permalink to this heading"></a></h2>
+<p><strong>Outputs of AeroDyn labeled “x” or “y” without any other letters defining the coordinate system are currently provided in the legacy output system.</strong> (for instance <span class="math notranslate nohighlight">\(F_x\)</span>, <span class="math notranslate nohighlight">\(V_x\)</span>, or <span class="math notranslate nohighlight">\(V_{dis,y}\)</span>).</p>
+<p>We write <span class="math notranslate nohighlight">\((w)\)</span> the legacy output system of OpenFAST. The legacy output system has previously been documented using Figure <a class="reference internal" href="#ad-blade-local-cs"><span class="std std-numref">Fig. 4.4</span></a>.
+The figure also shows the direction of the local angles and force components.
+In this figure, <span class="math notranslate nohighlight">\(x\)</span> should be understood as <span class="math notranslate nohighlight">\(x_w\)</span> and <span class="math notranslate nohighlight">\(y\)</span> as <span class="math notranslate nohighlight">\(y_w\)</span>.
+The figure is mostly valid if there is no prebend, precone or presweep.</p>
+<div class="figure align-center" id="id3">
+<span id="ad-blade-local-cs"></span><a class="reference internal image-reference" href="../../../_images/aerodyn_blade_local_cs.png"><img alt="aerodyn_blade_local_cs.png" src="../../../_images/aerodyn_blade_local_cs.png" style="width: 80%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.4 </span><span class="caption-text">AeroDyn Legacy Local Output Coordinate System (Looking Toward the Tip,
+from the Root) – l: Lift, d: Drag, m: Pitching, x: Normal (to Plane),
+y: Tangential (to Plane), n: Normal (to Chord),
+and t: Tangential (to Chord)</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</div>
+<p>The <span class="math notranslate nohighlight">\((w_{kj})\)</span> is defined for each blade <span class="math notranslate nohighlight">\(k\)</span> and node <span class="math notranslate nohighlight">\(j\)</span>, written <span class="math notranslate nohighlight">\((w)\)</span> for conciseness.
+The <span class="math notranslate nohighlight">\((w)\)</span> system is a transformation of the airfoil system such that this system has no
+rotation about the <span class="math notranslate nohighlight">\(x\)</span> (sweep) or <span class="math notranslate nohighlight">\(z\)</span> (pitch/twist) axis compared to the coned coordinate system.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The <span class="math notranslate nohighlight">\(y_w\)</span>-axis (in plane) of this system is orthogonal to
+the pitch axis, neglecting presweep and in-plane deflection.</p></li>
+<li><p>The <span class="math notranslate nohighlight">\(x_w\)</span>-axis (out of plane) is normal to the deflected
+blade, including precurve and out-of-plane deflection.</p></li>
+<li><p>The <span class="math notranslate nohighlight">\(z_w\)</span>-axis (radial) is tangent to the deflected blade,
+including precurve and out-of-plane deflection.</p></li>
+</ul>
+</div></blockquote>
+<p>The system is constructed as follows in AeroDyn. First, the coned
+coordinate system <span class="math notranslate nohighlight">\((c)\)</span> (located at the blade root, coned, but
+without pitching) is defined using the following substeps and
+matrices:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{R}_{bi}\)</span>: from inertial to blade root (the
+blade root is pitched by <span class="math notranslate nohighlight">\(\theta_p\)</span>).</p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{R}_{hi}\)</span>: from inertial to hub.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{R}_{bh} = \boldsymbol{R}_{bi} \boldsymbol{R}_{hi}^t=\mathop{\mathrm{Euler}}(\theta_1, \theta_2, -\theta_p)\)</span>:
+from hub to blade. The third Euler angle from
+<span class="math notranslate nohighlight">\(\boldsymbol{R}_{bh}\)</span> is the opposite of the pitch angle
+<span class="math notranslate nohighlight">\(\theta_p\)</span> (wind turbines use a negative convention of pitch
+and twist about the <span class="math notranslate nohighlight">\(z\)</span> axis). By setting this Euler angle
+to zero and constructing the transformation matrix from the two
+first angles, one obtains:</p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{R}_{ch}=\mathop{\mathrm{Euler}}(\theta_1, \theta_2,0)\)</span>:
+from hub to the coned coordinate system.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{R}_{ci}=\boldsymbol{R}_{ch} \boldsymbol{R}_{hi}\)</span>:
+from inertial to coned coordinate system.</p></li>
+</ul>
+</div></blockquote>
+<p>Then, the <span class="math notranslate nohighlight">\((w)\)</span> system is defined for each airfoil cross
+section:</p>
+<blockquote>
+<div><ul>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{R}_{ai}\)</span>: from inertial to blade airfoil
+section (include elastic motions)</p></li>
+<li><p>From coned system to blade airfoil section:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+            \boldsymbol{R}_{ac}=\boldsymbol{R}_{ai}\boldsymbol{R}_{ci}^t=\mathop{\mathrm{Euler}}({}^w\!\tau,{}^w\!\kappa,-{}^w\!\beta)
+              \label{eq:R_acBetaFull}
+  \end{aligned}\]</div>
+</li>
+</ul>
+<p>where <span class="math notranslate nohighlight">\({}^w\!\beta\)</span> contains the full twist (aerodynamic,
+elastic and pitch), <span class="math notranslate nohighlight">\({}^w\!\tau\)</span> would be the toe angle (but
+it is not used) <span class="math notranslate nohighlight">\({}^w\!\kappa\)</span> is the cant angle (stored as
+<code class="docutils literal notranslate"><span class="pre">Curve</span></code>). We use the supperscript <span class="math notranslate nohighlight">\(w\)</span> because these angles
+are defined as part of the <span class="math notranslate nohighlight">\((w)\)</span> system.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{R}_{wc}=\mathop{\mathrm{Euler}}(0,{}^w\!\kappa,0)\)</span>:
+from coned system to <span class="math notranslate nohighlight">\(w\)</span>-system. The <span class="math notranslate nohighlight">\((w)\)</span> system
+keeps only the rotation about <span class="math notranslate nohighlight">\(y_c\)</span>
+(<span class="math notranslate nohighlight">\(\approx\)</span>prebend), thereby neglecting the ones about
+<span class="math notranslate nohighlight">\(x\)</span> (sweep) and <span class="math notranslate nohighlight">\(z\)</span> (<span class="math notranslate nohighlight">\(\approx\)</span> twist+pitch).</p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{R}_{wi}=\boldsymbol{R}_{wc}\boldsymbol{R}_{ci}\)</span>:
+from inertial system to <span class="math notranslate nohighlight">\(w\)</span>-system</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="tower-system">
+<h2><span class="section-number">4.3.2.10. </span>Tower system<a class="headerlink" href="#tower-system" title="Permalink to this heading"></a></h2>
+<p>The local tower coordinate system is shown in <a class="reference internal" href="input.html#ad-tower-geom"><span class="std std-numref">Fig. 4.5</span></a>.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="introduction.html" class="btn btn-neutral float-left" title="4.3.1. Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="input.html" class="btn btn-neutral float-right" title="4.3.3. Input Files" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

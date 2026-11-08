@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.4.4.1. Guide: Setting Up OpenFAST on Windows with WSL and VS Code &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="2.8.1. Building OpenFAST with Spack" href="install_spack.html" />
+    <link rel="prev" title="2.4.3.1. Building OpenFAST on Windows with Visual Studio" href="install_vs_windows.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/install/OFcompile_WSL_VScode.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">2. Installing OpenFAST</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#download-binaries">2.1. Download binaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#running-openfast-with-docker">2.2. Running OpenFAST with docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#install-the-openfast-io-python-wrapper">2.3. Install the <code class="docutils literal notranslate"><span class="pre">openfast_io</span></code> python wrapper</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#compile-from-source">2.4. Compile from source</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html#dependencies">2.4.1. Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#get-the-code">2.4.2. Get the code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#visual-studio-solution-for-windows">2.4.3. Visual Studio Solution for Windows</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#windows-with-the-linux-subsystem-and-vs-code">2.4.4. Windows with the linux subsystem and VS code</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">2.4.4.1. Guide: Setting Up OpenFAST on Windows with WSL and VS Code</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#understanding-cmake">2.4.5. Understanding CMake</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#cmake-with-make-for-linux-macos">2.4.6. CMake with Make for Linux/macOS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#cmake-with-visual-studio-for-windows">2.4.7. CMake with Visual Studio for Windows</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#c-api">2.5. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#fast-farm">2.6. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#simulink">2.7. Simulink</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#appendix">2.8. Appendix</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">4. User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">2. </span>Installing OpenFAST</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">2.4.4.1. </span>Guide: Setting Up OpenFAST on Windows with WSL and VS Code</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/source/install/OFcompile_WSL_VScode.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="guide-setting-up-openfast-on-windows-with-wsl-and-vs-code">
+<h1><span class="section-number">2.4.4.1. </span>Guide: Setting Up OpenFAST on Windows with WSL and VS Code<a class="headerlink" href="#guide-setting-up-openfast-on-windows-with-wsl-and-vs-code" title="Permalink to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Adapted from guide written by <a class="reference external" href="https://github.com/skvibimigger">skvibimigger</a> in an issue comment: <a class="reference external" href="https://github.com/OpenFAST/openfast/issues/2904#issuecomment-3056252458">OpenFAST Issue #2904</a></p>
+</div>
+<p>This guide provides a comprehensive, step-by-step process for compiling OpenFAST from source on a Windows machine using the Windows Subsystem for Linux (WSL). This method is highly reliable and avoids common issues with native Windows compilers.</p>
+<div class="section" id="part-1-setting-up-the-linux-environment-wsl">
+<h2><span class="section-number">2.4.4.1.1. </span>Part 1: Setting Up the Linux Environment (WSL)<a class="headerlink" href="#part-1-setting-up-the-linux-environment-wsl" title="Permalink to this heading"></a></h2>
+<div class="section" id="install-windows-subsystem-for-linux-wsl">
+<h3><span class="section-number">2.4.4.1.1.1. </span>1. Install Windows Subsystem for Linux (WSL)<a class="headerlink" href="#install-windows-subsystem-for-linux-wsl" title="Permalink to this heading"></a></h3>
+<p>WSL allows you to run a Linux distribution directly on Windows.</p>
+<ul>
+<li><p>Open Windows PowerShell or Command Prompt as an Administrator.</p></li>
+<li><p>Run the installation command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wsl<span class="w"> </span>--install
+</pre></div>
+</div>
+</li>
+<li><p>Restart your computer when prompted. After rebooting, an Ubuntu terminal will open to complete the setup. You will be asked to create a Unix username and password.</p></li>
+</ul>
+</div>
+<div class="section" id="install-build-tools-and-dependencies">
+<h3><span class="section-number">2.4.4.1.1.2. </span>2. Install Build Tools and Dependencies<a class="headerlink" href="#install-build-tools-and-dependencies" title="Permalink to this heading"></a></h3>
+<p>Once your Ubuntu terminal is running, you need to install the necessary compilers and libraries.</p>
+<ul>
+<li><p>Update Package Lists:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+</pre></div>
+</div>
+</li>
+<li><p>Install Compilers and Build System:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>build-essential<span class="w"> </span>gfortran<span class="w"> </span>cmake<span class="w"> </span>git
+</pre></div>
+</div>
+</li>
+<li><p>Install Required Math Libraries:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>libblas-dev<span class="w"> </span>liblapack-dev
+</pre></div>
+</div>
+</li>
+<li><p>(Optional) Install Documentation Dependencies:</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">texlive-full</span></code> package is several gigabytes and may take a long time to install.</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>graphviz<span class="w"> </span>texlive-full<span class="w"> </span>doxygen
+pip<span class="w"> </span>install<span class="w"> </span>sphinx
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="part-2-compiling-openfast">
+<h2><span class="section-number">2.4.4.1.2. </span>Part 2: Compiling OpenFAST<a class="headerlink" href="#part-2-compiling-openfast" title="Permalink to this heading"></a></h2>
+<div class="section" id="clone-the-openfast-repository">
+<h3><span class="section-number">2.4.4.1.2.1. </span>1. Clone the OpenFAST Repository<a class="headerlink" href="#clone-the-openfast-repository" title="Permalink to this heading"></a></h3>
+<p>Download the main source code:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/OpenFAST/openfast.git
+</pre></div>
+</div>
+</div>
+<div class="section" id="download-the-test-cases-submodule">
+<h3><span class="section-number">2.4.4.1.2.2. </span>2. Download the Test Cases (Submodule)<a class="headerlink" href="#download-the-test-cases-submodule" title="Permalink to this heading"></a></h3>
+<p>The regression test files (r-test) are in a separate repository (a Git submodule) and must be downloaded explicitly.</p>
+<ul>
+<li><p>Navigate into the <code class="docutils literal notranslate"><span class="pre">openfast</span></code> directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>openfast
+</pre></div>
+</div>
+</li>
+<li><p>Initialize and download the submodule:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>submodule<span class="w"> </span>init
+git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--progress
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="build-with-cmake-and-make">
+<h3><span class="section-number">2.4.4.1.2.3. </span>3. Build with CMake and Make<a class="headerlink" href="#build-with-cmake-and-make" title="Permalink to this heading"></a></h3>
+<p>Configure the build using CMake and compile the project with make.</p>
+<ul>
+<li><p>Create a build directory and navigate into it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>build
+<span class="nb">cd</span><span class="w"> </span>build
+</pre></div>
+</div>
+</li>
+<li><p>Run CMake to configure the build:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>..<span class="w"> </span>-DBUILD_SHARED_LIBS<span class="o">=</span>ON<span class="w"> </span>-DBUILD_TESTING<span class="o">=</span>ON<span class="w"> </span>-DBUILD_DOCUMENTATION<span class="o">=</span>ON
+</pre></div>
+</div>
+</li>
+<li><p>Compile the project:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make
+</pre></div>
+</div>
+</li>
+</ul>
+<p>After this completes without errors, OpenFAST is successfully built.</p>
+</div>
+</div>
+<div class="section" id="part-3-setting-up-the-python-environment">
+<h2><span class="section-number">2.4.4.1.3. </span>Part 3: Setting Up the Python Environment<a class="headerlink" href="#part-3-setting-up-the-python-environment" title="Permalink to this heading"></a></h2>
+<div class="section" id="install-a-compatible-python-version">
+<h3><span class="section-number">2.4.4.1.3.1. </span>1. Install a Compatible Python Version<a class="headerlink" href="#install-a-compatible-python-version" title="Permalink to this heading"></a></h3>
+<p>The default Python version in new Ubuntu releases can be too new for some packages. Install Python 3.11:</p>
+<ul>
+<li><p>Add the “deadsnakes” repository:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>add-apt-repository<span class="w"> </span>ppa:deadsnakes/ppa
+</pre></div>
+</div>
+</li>
+<li><p>Install Python 3.11 and its virtual environment module:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3.11<span class="w"> </span>python3.11-venv
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="create-and-activate-a-virtual-environment">
+<h3><span class="section-number">2.4.4.1.3.2. </span>2. Create and Activate a Virtual Environment<a class="headerlink" href="#create-and-activate-a-virtual-environment" title="Permalink to this heading"></a></h3>
+<p>Create a self-contained environment for your Python packages.</p>
+<ul>
+<li><p>Navigate to your home directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~
+</pre></div>
+</div>
+</li>
+<li><p>Create the virtual environment:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3.11<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>openfast_env
+</pre></div>
+</div>
+</li>
+<li><p>Activate the environment:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>openfast_env/bin/activate
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="install-python-packages">
+<h3><span class="section-number">2.4.4.1.3.3. </span>3. Install Python Packages<a class="headerlink" href="#install-python-packages" title="Permalink to this heading"></a></h3>
+<ul>
+<li><p>Install <code class="docutils literal notranslate"><span class="pre">pyOpenFAST</span></code> from local source:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/openfast/glue-codes/python/
+pip<span class="w"> </span>install<span class="w"> </span>.
+</pre></div>
+</div>
+</li>
+<li><p>Install Jupyter and other libraries:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>jupyterlab<span class="w"> </span>pandas<span class="w"> </span>matplotlib
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="part-4-configuring-and-using-vs-code">
+<h2><span class="section-number">2.4.4.1.4. </span>Part 4: Configuring and Using VS Code<a class="headerlink" href="#part-4-configuring-and-using-vs-code" title="Permalink to this heading"></a></h2>
+<div class="section" id="install-vs-code-extensions">
+<h3><span class="section-number">2.4.4.1.4.1. </span>1. Install VS Code Extensions<a class="headerlink" href="#install-vs-code-extensions" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Open VS Code on Windows.</p></li>
+<li><p>Go to the Extensions tab.</p></li>
+<li><p>Install the following official Microsoft extensions:</p>
+<ul>
+<li><p>WSL</p></li>
+<li><p>Jupyter</p></li>
+<li><p>Python</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="connect-vs-code-to-wsl">
+<h3><span class="section-number">2.4.4.1.4.2. </span>2. Connect VS Code to WSL<a class="headerlink" href="#connect-vs-code-to-wsl" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Click the green &gt;&lt; button in the bottom-left corner of the VS Code window.</p></li>
+<li><p>Select “Connect to WSL” from the menu. The window will reload.</p></li>
+</ul>
+</div>
+<div class="section" id="create-and-run-a-notebook">
+<h3><span class="section-number">2.4.4.1.4.3. </span>3. Create and Run a Notebook<a class="headerlink" href="#create-and-run-a-notebook" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>In the connected VS Code window, open your project folder (e.g., <code class="docutils literal notranslate"><span class="pre">/home/YOUR_USERNAME</span></code>).</p></li>
+<li><p>Create a new file named <code class="docutils literal notranslate"><span class="pre">simulation.ipynb</span></code>.</p></li>
+<li><p>When the notebook opens, click “Select Kernel” in the top-right corner.</p></li>
+<li><p>Choose “Python Environments…” and select the kernel associated with your virtual environment: <code class="docutils literal notranslate"><span class="pre">openfast_env</span> <span class="pre">(Python</span> <span class="pre">3.11.x)</span></code>.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="part-5-example-test-script">
+<h2><span class="section-number">2.4.4.1.5. </span>Part 5: Example Test Script<a class="headerlink" href="#part-5-example-test-script" title="Permalink to this heading"></a></h2>
+<p>Paste this code into a cell in your notebook to run a test simulation and plot the results.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the correct class from the correct file</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyOpenFAST.fast</span><span class="w"> </span><span class="kn">import</span> <span class="n">FastLibAPI</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--- Step 1: Setting up paths ---&quot;</span><span class="p">)</span>
+
+<span class="c1"># The OpenFAST library file</span>
+<span class="n">openfast_library_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~/openfast/build/modules/openfast-library/libopenfastlib.so&#39;</span><span class="p">)</span>
+
+<span class="c1"># Use the minimal example test case</span>
+<span class="n">sample_input_file</span> <span class="o">=</span> <span class="s1">&#39;/home/YOUR_USERNAME/openfast/reg_tests/r-test/glue-codes/openfast/MinimalExample/Main.fst&#39;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Step 2: Running OpenFAST ---&quot;</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Initialize the OpenFAST library interface</span>
+        <span class="n">fast_api</span> <span class="o">=</span> <span class="n">FastLibAPI</span><span class="p">(</span>
+                <span class="n">library_path</span><span class="o">=</span><span class="n">openfast_library_path</span><span class="p">,</span>
+                <span class="n">input_file_name</span><span class="o">=</span><span class="n">sample_input_file</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Run the simulation</span>
+        <span class="n">fast_api</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ OpenFAST simulation ran successfully!&quot;</span><span class="p">)</span>
+
+        <span class="c1"># --- Step 3: Post-processing ---</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Step 3: Accessing results ---&quot;</span><span class="p">)</span>
+
+        <span class="n">results</span> <span class="o">=</span> <span class="n">fast_api</span><span class="o">.</span><span class="n">output_values</span>
+        <span class="n">channels</span> <span class="o">=</span> <span class="n">fast_api</span><span class="o">.</span><span class="n">output_channel_names</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Simulation produced </span><span class="si">{</span><span class="n">results</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> time steps and </span><span class="si">{</span><span class="n">results</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> output channels.&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Available channels: </span><span class="si">{</span><span class="n">channels</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Define the channel to plot (choose one from the &quot;Available channels&quot; list)</span>
+        <span class="n">channel_to_plot</span> <span class="o">=</span> <span class="s1">&#39;OoPDefl1&#39;</span>
+
+        <span class="c1"># Find the index of the channel</span>
+        <span class="k">try</span><span class="p">:</span>
+                <span class="n">channel_idx</span> <span class="o">=</span> <span class="n">channels</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">channel_to_plot</span><span class="p">)</span>
+                <span class="n">time</span> <span class="o">=</span> <span class="n">results</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+                <span class="n">channel_data</span> <span class="o">=</span> <span class="n">results</span><span class="p">[:,</span> <span class="n">channel_idx</span><span class="p">]</span>
+
+                <span class="c1"># Plot the results</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">channel_data</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">channel_to_plot</span><span class="si">}</span><span class="s1"> (m)&#39;</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">channel_to_plot</span><span class="si">}</span><span class="s1"> vs. Time&#39;</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ Plot generated successfully!&quot;</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;❌ Could not find &#39;</span><span class="si">{</span><span class="n">channel_to_plot</span><span class="si">}</span><span class="s2">&#39; in the output channels.&quot;</span><span class="p">)</span>
+
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;❌ An error occurred during the simulation: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="notes">
+<h2><span class="section-number">2.4.4.1.6. </span>Notes<a class="headerlink" href="#notes" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Replace <code class="docutils literal notranslate"><span class="pre">YOUR_USERNAME</span></code> with your actual Linux username where applicable.</p></li>
+<li><p>Ensure all dependencies are installed correctly to avoid runtime errors.</p></li>
+<li><p>For additional help, refer to the <a class="reference external" href="https://github.com/OpenFAST/openfast">OpenFAST GitHub repository</a>.</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="install_vs_windows.html" class="btn btn-neutral float-left" title="2.4.3.1. Building OpenFAST on Windows with Visual Studio" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="install_spack.html" class="btn btn-neutral float-right" title="2.8.1. Building OpenFAST with Spack" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

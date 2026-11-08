@@ -1,0 +1,592 @@
+<!DOCTYPE html><html class="writer-html5" lang="ko"><head><!-- Modified 2026-11-08: unofficial Korean machine translation of OpenFAST 5.0.0. Equations, code, figures, input values and attribution retained. -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.19.6. 모델링 지침 — OpenFAST v5.0.0 문서</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../../../genindex.html">
+    <link rel="search" title="검색" href="../../../search.html">
+    <link rel="next" title="4.19.7. FAST.팜 이론" href="FFarmTheory.html">
+    <link rel="prev" title="4.19.5. 출력 파일" href="OutputFiles.html"> 
+<link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/fast.farm/ModelGuidance.html"></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+          </a>
+              <div class="version">5.0 · 한국어</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="문서 검색" aria-label="문서 검색">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. 단순화 ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. 구조 제어</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.19. FAST.Farm</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Nomenclature.html">4.19.1. 명명법</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Introduction.html">4.19.2. 소개</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RunningFFarm.html">4.19.3. FAST.Farm 실행</a></li>
+<li class="toctree-l3"><a class="reference internal" href="InputFiles.html">4.19.4. 입력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="OutputFiles.html">4.19.5. 출력 파일</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.19.6. 모델링 지침</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#fast-farm-setup-overview">4.19.6.1. FAST.Farm 설정 개요</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#inflow-wind-generation">4.19.6.2. 유입 풍력 발전</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#low-and-high-resolution-domain-discretization">4.19.6.3. 저해상도 및 고해상도 도메인 이산화</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#parameter-selection">4.19.6.4. 매개변수 선택</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#commonly-encountered-errors">4.19.6.5. 자주 발생하는 오류</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="FFarmTheory.html">4.19.7. FAST.팜 이론</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FutureWork.html">4.19.8. 향후 개발 계획</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.19.9. 참고문헌</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixA.html">4.19.10. FAST.Farm 기본 입력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixB.html">4.19.11. 주변 바람 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixC.html">4.19.12. 출력 채널 목록</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. 추가 모듈 문서</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC 서브루틴 라이브러리</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+</ul>
+
+        <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="페이지 탐색">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.19. </span>FAST.Farm 사용자 가이드 및 이론 설명서</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.19.6. </span>모델링 지침</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/fast.farm/ModelGuidance.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+      </li>
+  </ul>
+  <hr>
+</div><aside class="ko-notice" aria-label="한국어 번역 안내"><strong>한국어 자동번역</strong> · OpenFAST v5.0.0 · 2026-11-08 기준<br>비공식 번역본입니다. 수식·명령어·입력 변수와 첨부자료는 원문을 보존합니다. <a href="https://openfast.readthedocs.io/en/main/source/user/fast.farm/ModelGuidance.html" target="_blank" rel="noopener noreferrer" lang="en">영문 원문 대조 ↗</a></aside>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="modeling-guidance">
+<span id="ff-modguidance"></span><h1><span class="section-number">4.19.6. </span>모델링 지침<a class="headerlink" href="#modeling-guidance" title="이 제목의 고유 링크"></a></h1>
+<p>이 장에는 FAST.Farm 시뮬레이션을 설정하고 실행하기 위한 모델링 지침이 포함되어 있습니다. 여기에는 유입 풍력 발전에 대한 지침이 포함됩니다. 저해상도 및 고해상도 그리드 이산화; 매개변수 선택; 일반적으로 발생하는 오류에 대한 솔루션.</p>
+<div class="section" id="fast-farm-setup-overview">
+<span id="ff-sec-setup"></span><h2><span class="section-number">4.19.6.1. </span>FAST.Farm 설정 개요<a class="headerlink" href="#fast-farm-setup-overview" title="이 제목의 고유 링크"></a></h2>
+<p>이 섹션에는 특히 주변 유입 및 FAST.Farm 시뮬레이션을 설정하는 방법에 대한 높은 수준의 개요, 다양한 매개변수를 계산하는 데 필요한 정보가 포함되어 있습니다.
+<a class="reference internal" href="#ff-ffarmsetup"><span class="std std-numref">그림 4.64</span></a>.</p>
+<div class="figure align-center" id="ff-ffarmsetup">
+<a class="reference internal image-reference" href="../../../_images/FFarmFlowChart.png"><img alt="유입 생성 및 FAST.Farm 시뮬레이션 설정을 위한 정보 흐름도. 여기서는 *S*\ =\ *X*, *Y* 또는 *Z*입니다." src="../../../_images/FFarmFlowChart.png" style="width: 100%;"></a>
+<p class="caption"><span class="caption-number">그림 4.64 </span><span class="caption-text">유입 생성 및 FAST.Farm 시뮬레이션 설정을 위한 정보 흐름도. 여기, <em>S</em> = <em>X</em>, <em>Y</em>또는 <em>Z</em>.</span><a class="headerlink" href="#ff-ffarmsetup" title="이 이미지에 대한 영구 링크"></a></p>
+</div>
+<p>이 회로도에는 FAST.Farm 시뮬레이션과 관련된 정보만 포함되어 있습니다. 일반적으로 유입 및 OpenFAST 모델을 생성하려면 추가 유입 정보가 필요합니다. 입력 매개변수를 계산하는 데 사용해야 하는 특정 방정식은 다음에서 설명합니다.
+<a class="reference internal" href="#ff-sec-paramselect"><span class="std std-numref">섹션 4.19.6.4</span></a>. FAST.Farm에서 제공되는 Python 노트북을 사용하는 것이 좋습니다. <a class="reference external" href="https://github.com/OpenFAST/python-toolbox/tree/main/pyFAST/fastfarm" target="_blank" rel="noopener noreferrer">도구 저장소</a> 는 새로운 유입 또는 FAST.Farm 케이스를 설정할 때 사용됩니다. 이러한 매개변수를 부적절하게 설정하면 일반적인 오류 및/또는 과도한 보간이 발생할 수 있으므로 피해야 합니다. 이 장에서는 풍향이 다음과 같다고 가정합니다.
+<span class="math notranslate nohighlight">\(0^\circ\)</span>– 즉, <em>+X</em> 축.</p>
+<p>FAST.Farm 시뮬레이션 설정 및 해당 유입을 생성할 때 계획이 중요합니다. 부적절한 계획으로 인해 FAST.Farm 오류가 발생하거나 유입량을 재생성해야 할 수 있습니다. 알아야 할 가치 <em>사전에</em> 는 다음과 같습니다.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>풍력터빈 로터 직경(<span class="math notranslate nohighlight">\(D^\text{Rotor}\)</span>);</p></li>
+<li><p>풍력터빈 허브 높이;</p></li>
+<li><p>최대 터빈 코드 길이(<span class="math notranslate nohighlight">\(c_\text{max}\)</span>);</p></li>
+<li><p>최대 터빈 고유 주파수(
+풍력 발전 단지에 있는 모든 터빈의<span class="math notranslate nohighlight">\(f_\text{max}\)</span>);</p></li>
+<li><p><em>X</em>, <em>Y</em>및
+이 플래그 값 아래에 <em>Z</em> 위치;</p></li>
+<li><p>원하는 평균 유입 허브 높이 풍속; 그리고</p></li>
+<li><p>는 유입 풍향을 의미합니다.</p></li>
+</ul>
+</div></blockquote>
+<p>이 정보를 사용하여 계산해야 하는 값은 다음과 같습니다.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>유입 및 FAST.Farm 도메인 크기(높이, 너비 및 길이)</p></li>
+<li><p>FAST.Farm 고해상도 및 저해상도 도메인 원본 위치(<strong>S0_High</strong> 및
+<strong>S0_Low</strong>, 여기서 <em>S</em> = <em>X</em>, <em>Y</em>또는 <em>Z</em>);</p></li>
+<li><p>고해상도 및 저해상도 시간 이산화 값(<strong>DT_High</strong> 및
+<strong>DT_Low</strong>);</p></li>
+<li><p>고해상도 및 저해상도 공간 이산화 값(<strong>DS_High</strong> 및 <strong>DS_Low</strong>);</p></li>
+<li><p>고해상도 및 저해상도 도메인의 그리드 포인트 수(<strong>NS_High</strong> 및 <strong>NS_Low</strong>);</p></li>
+<li><p>실제 평균 유입 허브 높이 풍속(<span class="math notranslate nohighlight">\(V_\text{hub}\)</span>);</p></li>
+<li><p>추가 웨이크 역학 속성(<strong>박사</strong>, <strong>NumRadii</strong>및
+이 플래그 값 아래에
+<strong>NumPlanes</strong>).</p></li>
+</ul>
+</div></blockquote>
+<p>이 정보를 사용하여 유입 생성을 시작할 수 있습니다. 필수는 아니지만 FAST.Farm 시뮬레이션을 설정하기 전에 유입 생성을 완료하는 것이 좋습니다. 이는 실현된 공간 이산화 값 및/또는 평균 허브 높이 속도가 원하는 것과 다를 수 있기 때문입니다. 이러한 매개변수의 올바른 값을 가지면 FAST.Farm 시뮬레이션에서 바람 데이터의 보간이 줄어들어 주변 난류가 줄어듭니다.</p>
+<p>유입 생성을 설정할 때 권장되는 공간적 및 시간적 이산화를 사용해야 합니다.
+<a class="reference internal" href="#ff-sec-discrecs"><span class="std std-numref">섹션 4.19.6.3</span></a>. 사용하는 경우:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Mod_AmbWind</strong> = 1이면 높은 충실도가 생성되어야 하며 모든 이산화 값을 원하는 정확한 값으로 지정할 수 있습니다.</p></li>
+<li><p><strong>Mod_AmbWind</strong> = 2인 경우, 단일 합성 유입(TurbSim 또는 Mann)은 여기에서 권장되는 고해상도 이산화 값을 사용하여 생성되어야 합니다.</p></li>
+<li><p><strong>Mod_AmbWind</strong> = 3, 다중 합성 유입이 생성되어야 합니다. 이 경우 생성된 모든 고해상도 유입량에 대해 권장되는 고해상도 이산화를 사용해야 합니다. 저해상도 유입량 생성을 위해서는 권장되는 고해상도 시간 이산화와 저해상도 공간 이산화를 사용해야 합니다.</p></li>
+</ul>
+</div></blockquote>
+<p>합성 유입(TurbSim 또는 Mann)을 사용하는 경우 유입 흐름 방향 공간 이산화, <strong>DX_Inflow</strong>는 사용자가 지정하지 않지만 대신 Taylor의 동결 난류 가정을 기반으로 합니다. FAST.Farm 도메인의 스트림별 이산화는 유입 스트림별 이산화를 기반으로 해야 하기 때문에 사용자는 유입 시간 단계를 사용하여 이 값을 계산해야 합니다(<strong>DT_High</strong>) 및 합성풍 데이터의 이류 속도,
+<span class="math notranslate nohighlight">\(V_\text{Advect}\)</span>. 는 <span class="math notranslate nohighlight">\(V_\text{Advect}\)</span> 는 허브 높이에서 실제 풍속과 다를 수 있으며, <span class="math notranslate nohighlight">\(V_\text{Hub}\)</span>에서 설명한 대로
+<a class="reference internal" href="#ff-sec-synthetic"><span class="std std-numref">섹션 4.19.6.2.3</span></a>이며 생성된 합성 유입량에서 직접 계산되어야 합니다. 그러므로 정확한 결과는 <strong>DX_Inflow</strong> 는 유입이 생성될 때까지 알려지지 않습니다. 추가적으로, <strong>DX_Inflow</strong>
+는 원하는 값보다 훨씬 작을 가능성이 높습니다. <strong>DX_Low</strong> 및
+<strong>DX_High</strong>.</p>
+<p>FAST.Farm 시뮬레이션 자체를 설정할 때 유입 생성에 사용된 많은 값이 여기에서 FAST.Farm 도메인을 지정하는 데 다시 사용됩니다. FAST.Farm의 이 도메인 사양은 합성 난류 유입을 사용할 때만 필요합니다. 저해상도 도메인의 원점(<strong>X0_Low</strong>, <strong>Y0_Low</strong>및
+이 플래그 값 아래에 <strong>Z0_Low</strong>)는 다음을 기준으로 결정되어야 합니다.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>최소 터빈 <em>X</em>- 및 <em>Y</em>-위치;</p></li>
+<li><p>터빈 요 정렬 불량;</p></li>
+<li><p>유입 풍향; 그리고</p></li>
+<li><p>항적 구불구불한 예상 범위.</p></li>
+</ul>
+</div></blockquote>
+<p>구체적으로는, <strong>X0_Low</strong> 는 모든 터빈 위치를 수용할 뿐만 아니라 원하는 경우 풍력 발전 단지의 방해받지 않는 유입 흐름을 분석할 수 있는 충분한 공간을 허용해야 합니다. <strong>Y0_Low</strong> 는 수평 후류 사행뿐만 아니라 모든 터빈 위치를 수용해야 합니다. 지상에서는 바람을 발생시킬 수 없는 TurbSim을 사용할 경우, <strong>Z0_Low</strong> 는 지면에 가깝지만 위에 있어야 합니다.</p>
+<p>FAST.Farm 도메인 너비와 높이는 다음을 사용하여 계산됩니다.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>터빈 위치;</p></li>
+<li><p>계산된 <strong>Y0_Low</strong> 및 <strong>Z0_Low</strong> 값;</p></li>
+<li><p>수평 및 수직 구불구불한 거리 요구 사항;</p></li>
+<li><p>터빈 요 정렬 불량; 그리고</p></li>
+<li><p>유입 풍향.</p></li>
+</ul>
+</div></blockquote>
+<p>도메인 길이는 풍력 발전 단지의 하천 방향 범위를 기반으로 해야 하며 원하는 경우 풍력 발전 단지의 하류에서 발생하는 유출을 분석할 수 있는 충분한 공간을 허용해야 합니다.</p>
+<p>FAST.Farm의 저해상도 도메인(<strong>DY_Low</strong> 및 <strong>DZ_Low</strong>) 및 그리드 포인트 수(<strong>NY_Low</strong> 및 <strong>NZ_Low</strong>)는 다음을 사용하여 계산할 수 있습니다.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>도메인 너비와 높이;</p></li>
+<li><p>생성된 유입의 측면 및 수직 간격; 그리고</p></li>
+<li><p>DY_Inflow 및 DZ_Inflow.</p></li>
+</ul>
+</div></blockquote>
+<p>저해상도 시간 이산화(<strong>DT_Low</strong>)는 다음을 사용하여 계산되어야 합니다.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>터빈 직경;</p></li>
+<li><p>유입 허브 높이 속도; 그리고</p></li>
+<li><p>유입 시간적 이산화.</p></li>
+</ul>
+</div></blockquote>
+<p>유선형 간격 및 그리드 포인트 수(<strong>DX_Low</strong> 및 <strong>NX_Low</strong>)도 기반으로 해야 합니다. <strong>DT_Low</strong> 및 평균 풍속.</p>
+<p>계산할 최종 도메인 매개변수는 고해상도 도메인의 위치입니다(<strong>X0_High</strong>, <strong>Y0_High</strong>및
+이 플래그 값 아래에
+<strong>Z0_High</strong>) 및 도메인을 구성하는 데 필요한 그리드 포인트 수(<strong>NX_High</strong>, <strong>NY_High</strong>및
+이 플래그 값 아래에 <strong>NZ_High</strong>). 이러한 수량은 다음을 통해 결정되어야 합니다.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>DS_High</strong> 값;</p></li>
+<li><p>터빈 위치; 그리고</p></li>
+<li><p>는 고해상도 도메인의 크기입니다.</p></li>
+</ul>
+</div></blockquote>
+<p>해당 <strong>DS_High</strong> 값은 권장되는 고해상도 도메인 이산화 기준에 따라 선택되어야 합니다. <a class="reference internal" href="#ff-sec-discrecs"><span class="std std-numref">섹션 4.19.6.3</span></a>.</p>
+<p>FAST.Farm 입력 파일을 지정할 때 추가 후류 역학 수량이 필요합니다. <a class="reference internal" href="#ff-wake-dynamics-parameters"><span class="std std-numref">섹션 4.19.6.4.2</span></a>. 설정하는 것이 좋습니다
+후류 직경에 대한 <strong>박사</strong> 에
+액추에이터 라인 애플리케이션용 <span class="math notranslate nohighlight">\(\le D^\text{Rotor} / 15\)</span>;
+<strong>NumRadii</strong> 및 <strong>박사</strong>; 그리고 <strong>NumPlanes</strong> 켜짐 <strong>DT_Low</strong>, 유입 허브 높이 속도 및 터빈 위치 간 거리.</p>
+<p>샘플 터빈 레이아웃과 도메인 위치는 다음과 같습니다.
+<a class="reference internal" href="#ff-ffarmlayout"><span class="std std-numref">그림 4.65</span></a>.</p>
+<div class="figure align-center" id="ff-ffarmlayout">
+<a class="reference internal image-reference" href="../../../_images/FFarmLayout.png"><img alt="저해상도 및 고해상도 도메인과 터빈 위치를 포함하는 9개 터빈 풍력 발전 단지 레이아웃 예시의 도식입니다." src="../../../_images/FFarmLayout.png" style="width: 100%;"></a>
+<p class="caption"><span class="caption-number">그림 4.65 </span><span class="caption-text">저해상도 및 고해상도 도메인과 터빈 위치를 포함하는 9개 터빈 풍력 발전 단지 레이아웃 예시의 도식입니다.</span><a class="headerlink" href="#ff-ffarmlayout" title="이 이미지에 대한 영구 링크"></a></p>
+</div>
+</div>
+<div class="section" id="inflow-wind-generation">
+<h2><span class="section-number">4.19.6.2. </span>유입 풍력 발전<a class="headerlink" href="#inflow-wind-generation" title="이 제목의 고유 링크"></a></h2>
+<p>이 섹션에는 FAST.Farm과 함께 사용하기 위해 난류 유입을 생성해야 하는 지침이 포함되어 있습니다.</p>
+<div class="section" id="high-fidelity-precursor-ambient-inflow">
+<h3><span class="section-number">4.19.6.2.1. </span>고충실도 전구체 주변 유입<a class="headerlink" href="#high-fidelity-precursor-ambient-inflow" title="이 제목의 고유 링크"></a></h3>
+<p>충실도가 높은 전구체 주변 유입을 생성할 수 있는 다양한 방법이 있습니다. 이 섹션에서는 다음을 사용하여 이러한 유입을 생성하는 데 중점을 둡니다.
+<a class="reference external" href="https://github.com/NatLabRockies/SOWFA-6/blob/ee5b13875ea8f1088f4ca79ba41ff8be34870761/SOWFA_Training.NAWEA.2017_web.pdf" target="_blank" rel="noopener noreferrer">SOWFA</a>.</p>
+<p>SOWFA를 사용하여 FAST.Farm 전구체 유입을 생성할 때, <em>ABL솔버</em>
+전처리기가 사용됩니다. 기본 고충실도 솔루션은 FAST.Farm의 유입으로 직접 사용되지 않고 대신 지정된 도메인 및 분할 내에서 샘플링된다는 점에 유의하는 것이 중요합니다. 이 샘플링은 SOWFA를 통해 수행되며 SOWFA 입력 파일에 지정됩니다. 유입 데이터는 3D 볼륨 VTK 형식 파일에 기록됩니다.
+<a class="reference internal" href="InputFiles.html#ff-ambwindvtk"><span class="std std-numref">섹션 4.19.4.3</span></a>. 이는 대용량 ASCII 형식 파일입니다. 따라서 정밀도를 예를 들어 3자리로 줄이는 것이 좋습니다. SOWFA 시뮬레이션에 사용되는 도메인 크기와 저해상도 도메인 이산화는 FAST.Farm 시뮬레이션에 필요한 것보다 훨씬 큽니다. 따라서 FAST.Farm 이산화 제안에 자세히 설명된 FAST.Farm 이산화 제안을 기반으로 FAST.Farm과 함께 사용할 경계 조건을 생성하려면 샘플링 파일을 설정해야 합니다. <a class="reference internal" href="#ff-sec-discrecs"><span class="std std-numref">섹션 4.19.6.3</span></a>. 두 개의 샘플링 파일이 필요합니다. 하나는 농장 규모 도메인의 저해상도 샘플링용이고 다른 하나는 터빈 규모 도메인의 고해상도 샘플링용입니다. 각 샘플링 파일은 FAST.Farm 시뮬레이션에 사용될 공간적 및 시간적 이산화를 정의합니다. 저해상도 도메인 파일은 FAST.Farm 시뮬레이션에 사용될 단일 저해상도 도메인을 정의합니다. 고해상도 도메인 파일은 FAST.Farm 시뮬레이션에 사용될 각 고해상도 도메인을 정의합니다. 따라서 유입을 생성하기 전에 FAST.Farm 시뮬레이션에서 모든 터빈이 어디에 위치할 것인지 정확히 아는 것이 중요합니다. 이 FAST.Farm 샘플링 단계는 계산 비용이 많이 들 수 있습니다. 따라서 사용자는 SOWFA를 실행하기 전에 터빈 위치 및 이산화 수준을 포함하여 모든 입력이 올바른지 확인하는 것이 좋습니다.</p>
+<p>예제 Python 노트북은 FAST.Farm에 제공됩니다. <a class="reference external" href="https://github.com/OpenFAST/python-toolbox/tree/main/pyFAST/fastfarm" target="_blank" rel="noopener noreferrer">도구 저장소</a> 는 특정 FAST.Farm 시뮬레이션을 위해 이러한 파일을 설정하는 데 도움을 줍니다.</p>
+</div>
+<div class="section" id="complex-terrain">
+<h3><span class="section-number">4.19.6.2.2. </span>복잡한 지형<a class="headerlink" href="#complex-terrain" title="이 제목의 고유 링크"></a></h3>
+<p>복잡한 지형 또는 해양 시스템의 시간에 따라 변하는 해수면 고도는 LES 전구체에서 표면 경계 조건을 모델링하는 등 지형을 따르는 주변 유입 데이터를 제공하여 FAST.Farm에서 모델링할 수 있습니다. FAST.Farm에서 사용하는 VTK 형식은 공간적으로 균일합니다. 복잡한 지형이나 균일한 그리드가 있는 파도를 수용하려면 지형 표면 아래 지점의 풍속을 NaN으로 설정해야 합니다. 모든 NaN 값은 FAST.Farm에 의해 트랩되고 도메인 외부로 표시되므로 AWAE 모듈 내의 계산에서는 사용되지 않습니다. 주변 바람 유입이 지형을 따르는 경우, FAST.Farm에 복잡한 지형, 흐름 재순환 또는 분리, 국지적 압력 변화에 대한 명시적인 모델이 포함되어 있지 않더라도 후류도 자연스럽게 지형을 따릅니다.</p>
+<p>SOWFA 유입 전구체를 사용하는 경우 SOWFA 유입 전구체 생성에서 복잡한 지형이 고려되므로
+FAST.Farm 시뮬레이션을 위해 샘플링할 때 복잡한 지형을 설명하려면
+<em>vtk</em> 파일이 필요합니다.</p>
+</div>
+<div class="section" id="synthetic-turbulence-ambient-inflow">
+<span id="ff-sec-synthetic"></span><h3><span class="section-number">4.19.6.2.3. </span>합성 난류 주변 유입<a class="headerlink" href="#synthetic-turbulence-ambient-inflow" title="이 제목의 고유 링크"></a></h3>
+<p>합성으로 생성된 난류 유입을 FAST.Farm에서 사용하여 다양한 대기 조건에서 터빈 반응과 후류 역학을 정확하게 예측할 수 있습니다. 이를 달성하는 방법에는 여러 가지가 있습니다. 지원되는 형식으로 출력 파일을 생성하는 한 모든 방법을 사용할 수 있습니다. <em>InflowWind</em>. TurbSim 및 Mann 모델에 대한 모델링 지침은 다음에서 논의됩니다.</p>
+<div class="section" id="turbsim">
+<h4><span class="section-number">4.19.6.2.3.1. </span>TurbSim<a class="headerlink" href="#turbsim" title="이 제목의 고유 링크"></a></h4>
+<p>NREL 도구를 사용하는 경우 <a class="reference external" href="https://github.com/OpenFAST/openfast/tree/master/modules/turbsim" target="_blank" rel="noopener noreferrer">TurbSim v2</a>, 원하는 특정 결과를 향해 합성 난류를 유도하기 위해 다양한 옵션을 사용할 수 있습니다.</p>
+<ol class="arabic simple">
+<li><p>표준 또는 사용자 정의 시간 평균 바람 프로필(전단, 방향);</p></li>
+<li><p>세 방향(바람, u, 가로, v 및 w)의 표준 또는 사용자 정의 속도 스펙트럼;</p></li>
+<li><p>표준 또는 사용자 정의 공간 지점 간 일관성; 그리고</p></li>
+<li><p>표준 또는 사용자 정의 구성 요소 간 상관 관계(레이놀즈 스트레스).</p></li>
+</ol>
+<p>또한, TurbSim v2를 사용하면 사용자는 하나 이상의 지점(즉, 구속된 바람)에서 사용자가 정의한 3성분 바람 시계열과 일치하는 난류를 생성할 수 있습니다. 이러한 옵션은 개별적으로 또는 일부 조합으로 사용할 수 있습니다(단, 사용자 정의 스펙트럼과 사용자 정의 시계열은 함께 사용할 수 없습니다). 적절하게 정의되면 이러한 모든 방법은 FAST.Farm 결과와 참조 데이터 세트(예: LES 전구체 또는 물리적으로 측정된 유입량과 비교) 간의 터빈 응답 및 후류 역학을 효과적으로 통계적으로 비교할 수 있습니다. 그러나 대기 조건이 적절하게 모델링되도록 이러한 유입을 생성할 때 주의를 기울여야 합니다.</p>
+<p>특히, TurbSim은 선택한 일관성 모델 방정식과 관련 매개변수를 기반으로 u-, v- 및 w-공간 일관성 모델을 사용하여 도메인 전체에 걸쳐 풍속을 생성합니다. 이러한 모델과 매개변수는 명시적으로 지정하거나 다음과 같이 남겨둘 수 있습니다. <em>기본값
+TurbSim의</em> 값. IEC 공간 일관성 모델이 선택되면 공간 일관성은 Eq.를 사용하여 계산됩니다.&nbsp;<a class="reference internal" href="#equation-eq-ieccoh">(4.221)</a>&nbsp;(<span id="id1">[<a class="reference internal" href="zrefs.html#id33" title="B. 존크만. Turbsim 사용자 가이드 v2.00.00. 기술 보고서 NREL/TP-xxxx-xxxxx, 국립 재생 에너지 연구소, Golden, CO, 2014년 10월.">ff-Jon14</a>]</span>).</p>
+<div class="math notranslate nohighlight" id="equation-eq-ieccoh">
+<span class="eqno">(4.221)<a class="headerlink" href="#equation-eq-ieccoh" title="이 방정식에 대한 영구 링크"></a></span>\[Coh_{i,j_K}(f)=exp\left(-a_K\sqrt{\left(\frac{fr}{V_\text{Advect}}\right)^2+(rb_K)^2}~\right)\]</div>
+<p>여기서 <span class="math notranslate nohighlight">\(V_\text{Advect}\)</span> 는 TurbSim에 지정된 허브 높이에서의 평균 풍속이며, 이는 TurbSim의 이류 속도이기도 합니다. <em>InflowWind</em>;
+<span class="math notranslate nohighlight">\(Coh_{i,j_K}\)</span> 는 점 간의 공간적 일관성입니다.
+속도 구성요소용 <span class="math notranslate nohighlight">\(i\)</span>
+및 <span class="math notranslate nohighlight">\(j\)</span> 속도 성분에 대해 <span class="math notranslate nohighlight">\(K=u,v,w\)</span>; <span class="math notranslate nohighlight">\(r\)</span> 는 점 사이의 거리입니다. <span class="math notranslate nohighlight">\(i\)</span> 및 <span class="math notranslate nohighlight">\(j\)</span>; <span class="math notranslate nohighlight">\(a_K\)</span> 는 일관성 감소 매개변수입니다. 그리고 <span class="math notranslate nohighlight">\(b_K\)</span> 는 일관성 오프셋 매개변수입니다. 에서 발견되었습니다.
+IEC Kaimal 스펙트럼과 함께 기본 일관성 매개변수가 있는 IEC 일관성 모델을 사용하면 무시할 수 있는 후류 구불구불한 결과가 발생한다는&nbsp;<span id="id2">[<a class="reference internal" href="zrefs.html#id25" title="K. Shaler 및 그 외 여러분. 다양한 바람 유입 기술의 Fast.farm 응답. 제37회 풍력에너지 심포지엄에서. 캘리포니아주 샌디에고, 2019. AIAA. 도이:https://arc.aiaa.org/doi/pdf/10.2514/6.2019-2086.">ff-Seal19b</a>]</span> 가 있습니다. 이는 TurbSim의 기본 v- 및 w-일관성 매개변수가 다음과 같이 설정되어 있기 때문입니다. <span class="math notranslate nohighlight">\(a_K\)</span> 는 매우 큰 숫자이며
+<span class="math notranslate nohighlight">\(b_K=0\)</span>, 효과적으로 일관성이 없음(<span class="math notranslate nohighlight">\(Coh_{i,j_K}(f)=0\)</span>)&nbsp;(<span id="id3">[<a class="reference internal" href="zrefs.html#id33" title="B. 존크만. Turbsim 사용자 가이드 v2.00.00. 기술 보고서 NREL/TP-xxxx-xxxxx, 국립 재생 에너지 연구소, Golden, CO, 2014년 10월.">ff-Jon14</a>]</span>).&nbsp; <a class="footnote-reference brackets" href="#id14" id="id4">1</a> 이러한 사행 부족은 비물리적이며 다운스트림 터빈의 반응에 비물리적 영향을 미칩니다. 기본값을 사용하는 대신 v- 및 w-coherence 매개변수가&nbsp;<span id="id5">[<a class="reference internal" href="zrefs.html#id25" title="K. Shaler 및 그 외 여러분. 다양한 바람 유입 기술의 Fast.farm 응답. 제37회 풍력에너지 심포지엄에서. 캘리포니아주 샌디에고, 2019. AIAA. 도이:https://arc.aiaa.org/doi/pdf/10.2514/6.2019-2086.">ff-Seal19b</a>]</span> 는 다음과 같이 IEC 표준에 지정된 u-일관성 매개변수와 동일하게 동일합니다.
+<span class="math notranslate nohighlight">\(SCMod2=SCMod3=IEC\)</span>; <span class="math notranslate nohighlight">\(a_K=12.0\)</span> 및 <span class="math notranslate nohighlight">\(b_K=0.00035273\)</span>
+m<span class="math notranslate nohighlight">\(^{-1}\)</span>; 그리고
+<span class="math notranslate nohighlight">\(CohExp=0.0\)</span>.&nbsp;(<span id="id6">[<a class="reference internal" href="zrefs.html#id33" title="B. 존크만. Turbsim 사용자 가이드 v2.00.00. 기술 보고서 NREL/TP-xxxx-xxxxx, 국립 재생 에너지 연구소, Golden, CO, 2014년 10월.">ff-Jon14</a>]</span>). 후류 사행을 정확하게 예측하려면 횡풍속 구성요소에 대한 공간 일관성 매개변수를 적절하게 설정하는 것이 필요합니다. TurbSim에서는 <span class="math notranslate nohighlight">\(a_K\)</span> 및 <span class="math notranslate nohighlight">\(b_K\)</span> 값은 따옴표 안에 지정해야 합니다(예: <code class="docutils literal notranslate"><span class="pre">"12.0</span> <span class="pre">0.00035273"</span></code>) 또는 현재 값은 다음과 같이 설정되어 있습니다. <span class="math notranslate nohighlight">\(0\)</span>.</p>
+<p>TurbSim을 사용하여 FAST.Farm에 대한 전체 필드 난류 데이터를 생성할 때 종종 TurbSim 그리드가 허브 높이보다 훨씬 높게 확장되어 수직 후류 구불구불한 현상을 포착하기를 원합니다.
+난류의 <span class="math notranslate nohighlight">\(w\)</span>
+구성 요소입니다. TurbSim에서는 이를 요구하기 때문에
+<strong>HubHt</strong><span class="math notranslate nohighlight">\(&gt; 0.5*\)</span><strong>GridHeight</strong>, 인위적으로 높은 값을 지정해야 하는 경우가 많습니다.
+TurbSim의 <strong>HubHt</strong> . 제대로 설정하려면
+<strong>HubHt</strong> 매개변수에는 다음 방정식이 제안됩니다.</p>
+<div class="math notranslate nohighlight">
+\[\textbf{HubHt} = z_\text{bot}+\textbf{GridHeight}-0.5D_\text{grid}\]</div>
+<p>여기서 <span class="math notranslate nohighlight">\(z_\text{bot}\)</span> 는 그리드의 원하는 하단 수직 위치(지면 바로 위)이고
+<span class="math notranslate nohighlight">\(D_\text{grid}=MIN\left( \textbf{GridWidth}, \textbf{GridHeight}\right)\)</span>. 참고 <strong>HubHt</strong> 매개변수는 TurbSim에서 사용된 풍속에 대한 참조 높이로 사용됩니다(<span class="math notranslate nohighlight">\(V_\text{Advect}\)</span>)는 IEC 난류 모델의 풍속 표준 편차와 공간 일관성뿐만 아니라 이류 속도(in <em>InflowWind</em>) 모든 모델에 적용됩니다. 따라서 IEC 난류 모델의 결과적인 풍속 표준 편차와 공간적 일관성은 두 영역 사이의 풍속 차이를 명시적으로 고려하지 않고는 예상한 것과 다를 수 있습니다.
+TurbSim에서 사용되는 <strong>HubHt</strong> 및 실제 터빈 허브 높이. 이류 속도(in <em>InflowWind</em>)도 실제 허브 높이 속도를 사용할 때보다 더 빠를 가능성이 높습니다. 별도의 기준 높이(<strong>RefHt</strong>)는 기준 풍속이 적용되는 높이인 TurbSim에 지정됩니다. 이 값은 거듭제곱 법칙 속도 프로파일을 적절하게 설정하는 데에도 사용됩니다. 앞으로의 작업이 필요하다
+<a class="reference external" href="https://github.com/OpenFAST/openfast/issues/199" target="_blank" rel="noopener noreferrer">는 TurbSim 그리드 생성에서 HubHt 매개변수를 분리합니다.</a>.</p>
+<p>일반적으로 전체 필드 바람 데이터 파일을 주기적으로 생성하는 것이 좋습니다. 이는 바람 전파 방향을 따라 바람 영역을 영원히 효과적으로 확장합니다.
+이 경우</p>
+<p>여러 인스턴스를 통해 주변 바람을 사용할 때 <em>InflowWind</em>
+모듈, 즉, <strong>Mod_AmbWind</strong> = 3, 하나만 <em>InflowWind</em> 입력 파일이 지정되었습니다. 그러나 각각 다른 이름을 가진 여러 바람 데이터 파일이 사용됩니다. 특히 파일 이름은
+이 경우 <em>InflowWind</em> 입력 파일은 Wind 파일의 디렉터리 경로만 나타냅니다. 바람 파일 루트 이름은 다음과 같아야 합니다. <em>낮음</em> 및
+터빈과 관련된 고해상도 도메인용 <em>HighT&lt;n:math:`_text{t}`&gt;</em> 다음 터빈에 대응하는 고해상도 영역에 대해 <span class="math notranslate nohighlight">\(n_\text{t}\)</span>.&nbsp; <a class="footnote-reference brackets" href="#id15" id="id7">2</a> 지속적으로 유입될 때
+<em>InflowWind</em> 가 사용됩니다(<strong>WindType</strong> = 1), 설정 <strong>Mod_AmbWind</strong> 를 2 또는 3으로 설정하면 동일한 결과가 생성됩니다. 전체 필드 난류 데이터를 사용할 때 <em>InflowWind</em> 포함 <strong>Mod_AmbWind</strong> = 3, 다음이 필요합니다.</p>
+<ul class="simple">
+<li><p>전체 필드 바람 데이터 파일이 주기적으로 생성됩니다. 이는 바람 전파 방향을 따라 바람 영역을 영원히 효과적으로 확장합니다.</p></li>
+<li><p>입력 매개변수 <strong>PropagationDir</strong> 의 <em>InflowWind</em> 입력 파일은 다음으로 설정됩니다.
+FAST.Farm 관성 프레임 좌표계의 <span class="math notranslate nohighlight">\(0\)</span> 도를 따라 바람이 전파되도록
+FAST.Farm 관성 프레임 좌표계의 <em>X</em>
+축.</p></li>
+<li><p>고해상도 주변 바람과 관련된 바람 데이터 파일은 저해상도 바람 데이터 파일과 공간적, 시간적으로 동기화됩니다. 공간 동기화는 전역을 기반으로 해야 합니다.
+<em>X-Y-Z</em> 관성 프레임 좌표계의 원점을 기준으로 각 터빈 원점의 오프셋입니다. 각 풍력터빈에 대해 터빈 위치의 속도 시계열은 저해상도 TurbSim 도메인에서 추출되어야 합니다. 터빈 하류 거리를 설명하려면 각 시계열은 자유류 속도와 터빈 위치를 기준으로 시간 상 오프셋되어야 합니다. 그런 다음 이 시계열을 사용하여 각 터빈에 대한 고해상도 TurbSim 유입을 생성해야 합니다. TurbSim 사용자 매뉴얼에는 지정된 시계열을 사용하여 TurbSim 유입을 생성하는 방법에 대한 세부 정보가 포함되어 있습니다.&nbsp;<span id="id8">[<a class="reference internal" href="zrefs.html#id33" title="B. 존크만. Turbsim 사용자 가이드 v2.00.00. 기술 보고서 NREL/TP-xxxx-xxxxx, 국립 재생 에너지 연구소, Golden, CO, 2014년 10월.">ff-Jon14</a>]</span>.</p></li>
+</ul>
+</div>
+<div class="section" id="mann-model">
+<h4><span class="section-number">4.19.6.2.3.2. </span>만 모델<a class="headerlink" href="#mann-model" title="이 제목의 고유 링크"></a></h4>
+<p>Mann 모델로 확률적 난류를 생성할 때, <span class="math notranslate nohighlight">\(11\)</span>
+사용자 정의 입력이 필요합니다: <strong>접두사</strong>, <strong>alpha_epsilon</strong>, <strong>L</strong>,
+<strong>감마</strong>, <strong>종자</strong>, <strong>nx</strong>, <strong>뉴욕</strong>, <strong>뉴질랜드</strong>, <strong>dx</strong>, <strong>다이</strong>및
+이 플래그 값 아래에 <strong>dz</strong>. FAST.Farm 매개변수와 함께 선택해야 하는 매개변수는 여기에서 설명됩니다.</p>
+<p><strong>dx</strong>, <strong>다이</strong>및
+이 플래그 값 아래에 <strong>dz</strong> – 이러한 매개변수는 아래 설명된 고해상도 공간 이산화 권장 사항을 기반으로 선택해야 합니다. <a class="reference internal" href="#ff-sec-discrecs"><span class="std std-numref">섹션 4.19.6.3</span></a>.</p>
+<p><strong>nx</strong> – 이 값은 다음의 거듭제곱이 되어야 합니다. <span class="math notranslate nohighlight">\(2\)</span>. 시뮬레이션 기간 동안 난류 상자가 반복되지 않도록 하려면 다음 방정식을 사용하는 것이 좋습니다.</p>
+<div class="math notranslate nohighlight">
+\[\textbf{nx} = 2^{CEILING\big[log_2
+   \left(\frac{V_\text{Advect}\textbf{T_Max}}
+      {\textbf{dx}}\right)\big]}\]</div>
+<p>여기서 <span class="math notranslate nohighlight">\(V_\text{Advect}\)</span> 는 Mann 상자의 이류 속도이고
+<span class="math notranslate nohighlight">\(CEILING\big[x\big]\)</span> 라운드 <span class="math notranslate nohighlight">\(x\)</span> 를 다음으로 높은 정수로 변환합니다. 이 방정식은 시뮬레이션 중에 난류 상자가 반복되지 않고 두 기준의 검정력이 충족되도록 보장합니다.</p>
+<p><strong>뉴욕</strong> 및 <strong>뉴질랜드</strong> – 이 값은 또한 다음의 거듭제곱이 필요합니다.
+<span class="math notranslate nohighlight">\(2\)</span>. 이러한 요구 사항을 염두에 두고 원하는 전체 도메인 너비(<em>Y</em>) 및 높이(<em>Z</em>)는 아래 설명된 대로 캡처됩니다.
+<a class="reference internal" href="#ff-sec-lowres"><span class="std std-numref">섹션 4.19.6.4.1.1</span></a>.</p>
+<p>해당 <em>InflowWind</em> 입력 파일에는 Mann 난류 상자를 사용하기 위한 특정 섹션이 있습니다. 이 섹션에는 다음의 입력이 필요합니다. <strong>nx</strong>, <strong>뉴욕</strong>, <strong>뉴질랜드</strong>, <strong>dx</strong>, <strong>다이</strong>,
+<strong>dz</strong>, <strong>RefHt</strong>및
+이 플래그 값 아래에 <strong>URef</strong>. 이러한 값은 유입을 생성하는 데 사용된 값과 정확히 동일하게 지정되어야 합니다. 참고하세요 <strong>dx</strong>, <strong>다이</strong>및
+이 플래그 값 아래에 <strong>dz</strong>
+에 지정됨 <em>InflowWind</em> 는 다음과 동일해야 합니다.
+각각 FAST.Farm의 <strong>dX_High</strong>, <strong>dY_High</strong>및
+이 플래그 값 아래에
+<strong>dZ_High</strong> 입니다.  <strong>RefHt</strong> 는 다음과 같이 정의되어야 합니다.</p>
+<div class="math notranslate nohighlight">
+\[\textbf{RefHt} = 0.5\textbf{dz}(\textbf{nz} - 1)+z_\text{bot}\]</div>
+<p>여기서 <strong>URef</strong> 는 기준 높이에서의 평균 풍속이며 여기에서 다음과 같이 식별되는 Mann 상자의 이류 속도를 나타냅니다. <span class="math notranslate nohighlight">\(V_\text{Advect}\)</span>.</p>
+<p>Mann 상자를 사용할 때 다음 사항을 아는 것이 중요합니다. <strong>x축 방향은 InflowWind에서 사용하는 규칙과 반대입니다. InflowWind(OpenFAST 및 FAST.Farm 포함)의 해석은 Mann 상자가 다른 공탄성 소프트웨어에서 사용되는 방식과 일치하지만 해석은 비물리적입니다.</strong>. 원하는 경우 사용자는 FAST.Farm 소스 코드를 조정하여 x축을 역방향으로 읽을 수 있습니다. Mann 박스를 사용하는 모든 공탄성 소프트웨어에서 이 오류를 보편적으로 수정해야 합니다. <a class="reference external" href="https://github.com/OpenFAST/openfast/issues/256" target="_blank" rel="noopener noreferrer">향후 작업</a>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="low-and-high-resolution-domain-discretization">
+<span id="ff-sec-discrecs"></span><h2><span class="section-number">4.19.6.3. </span>저해상도 및 고해상도 도메인 이산화<a class="headerlink" href="#low-and-high-resolution-domain-discretization" title="이 제목의 고유 링크"></a></h2>
+<p>공간적 및 시간적 이산화는 후류 사행, 터빈 구조 응답, 결과적인 후류 및 하중 계산에 영향을 미칠 수 있습니다. 이 섹션에서는 계산 효율성을 극대화하는 동시에 수렴된 솔루션을 보장할 기하학 및 풍속 측면에서 이산화 값에 대한 권장 사항을 요약합니다. 이러한 권장 사항이 어떻게 형성되었는지에 대한 자세한 내용은 다음을 참조하세요.&nbsp;<span id="id9">[<a class="reference internal" href="zrefs.html#id16" title="K. Shaler 및 그 외 여러분. fast.farm을 이용한 후류 사행 및 터빈 구조 응답에 대한 유입 시공간 이산화의 영향. 물리학 저널: 컨퍼런스 시리즈, 2019년 5월. doi:10.1088/1742-6596/1256/1/012023.">ff-Seal19a</a>]</span>. FAST.Farm 사용을 위해 개발되었지만 이러한 지침은 모든 DWM 유형 모델 또는 공탄성 해석에 적용될 수 있습니다.</p>
+<div class="section" id="low-resolution-domain">
+<h3><span class="section-number">4.19.6.3.1. </span>저해상도 도메인<a class="headerlink" href="#low-resolution-domain" title="이 제목의 고유 링크"></a></h3>
+<p>FAST.Farm의 저해상도 도메인은 주로 Wake Meandering 및 병합을 담당합니다. 따라서 수렴은 하류의 다양한 거리에서 각 터빈 뒤의 후류에 대한 수평 및 수직 구불구불한 후류 중심 위치의 표준 편차 경향을 비교함으로써 평가되었습니다. 평균 수평 및 수직 후류 궤적은 <strong>DT_Low</strong> 또는 <strong>DS_Low</strong>. 저해상도 영역에서 후류 사행의 수렴을 보장하기 위해 다음 방정식을 사용할 수 있습니다.</p>
+<div class="math notranslate nohighlight">
+\[\textbf{DT_Low} \le
+   \frac{C_\text{Meander}D^\text{Wake}}{10V_\text{Hub}}\]</div>
+<p>이 방정식은 후류 사행에 대한 저역 통과 차단 주파수를 기반으로 합니다.
+<span class="math notranslate nohighlight">\(\left(\frac{V_\text{Hub}}{C_\text{Meander}D^\text{Wake}}\right)\)</span>
+의&nbsp;<span id="id10">[<a class="reference internal" href="zrefs.html#id4" title="G. C. Larsen 및 그 외 여러분. Wake Meander: 실용적인 접근 방식. 풍력 에너지, 11:337-95, 2008. doi:http://onlinelibrary.wiley.com/doi/10.1002/we.267/epdf.">ff-Leal08</a>]</span> (여기서
+<span class="math notranslate nohighlight">\(C_\text{Meander}=2\)</span>, 하지만 <span class="math notranslate nohighlight">\(C_\text{Meander}\)</span> 의 기본값은 다음과 같습니다.
+FAST.Farm의
+<span class="math notranslate nohighlight">\(1.9\)</span> ) 후류 구불구불한 가장 높은 빈도가 최소한 해결되어야 함을 효과적으로 지정합니다. <span class="math notranslate nohighlight">\(10\)</span>
+시간 단계. 참고하세요 <span class="math notranslate nohighlight">\(D^\text{Wake}\)</span> 는 다음과 같이 근사화될 수 있습니다.
+이 계산에서는
+<span class="math notranslate nohighlight">\(D^\text{Rotor}\)</span> 입니다.</p>
+<p>언제 <strong>Wake_Mod=2,3</strong>, 수치적 안정성을 위해 다음 지침을 (대략) 만족하는 값으로 시간 간격을 설정하는 것이 좋습니다(다음의 수학식 20 참조). <a class="reference external" href="https://doi.org/10.5194/wes-6-555-2021" target="_blank" rel="noopener noreferrer">종이</a>):</p>
+<div class="math notranslate nohighlight">
+\[\textbf{DT_Low}  \lessapprox \frac{dr}{2 V_\text{Hub}}\]</div>
+<p>공간 이산화 수렴은 시간 이산화와 동일한 방식으로 평가되었습니다. 고려된 공간 이산화 범위에서 저해상도 영역에 대해 공간 이산화에 대한 최소 민감도가 발견되었습니다. 그럼에도 불구하고 제안된 최대값을 식별하기 위해 다음 방정식이 권장됩니다. <strong>DS_Low</strong>, 여기서
+<span class="math notranslate nohighlight">\(S\)</span> 는 다음을 가리킨다. <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(Y\)</span>또는 <span class="math notranslate nohighlight">\(Z\)</span> 및 분모의 단위는 [m/s]입니다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\textbf{DS_Low} \le
+   \frac{C_\text{Meander}D^\text{Wake}V_\text{Hub}}{150~\text{m/s}} =
+   \begin{cases}
+      \frac{\textbf{DT_Low}V_\text{Hub}^2}{15~\text{m/s}}
+         &amp; \qquad \text{for polar wake model} \\[0.5em]
+      \frac{C_\text{Meander}\textbf{DT_Low}V_\text{Hub}^2}{5~\text{m/s}}
+         &amp; \qquad \text{for curled wake model}
+   \end{cases}\end{split}\]</div>
+<p>모든 합성 난류 방법의 경우 다음을 권장합니다.
+<strong>DX_Low</strong><span class="math notranslate nohighlight">\(= V_\text{Advect}\)</span><strong>DT_Low</strong> 는 X 방향 보간을 방지합니다. 이류 속도의 사용에 주목하세요. <span class="math notranslate nohighlight">\(V_\text{Advect}\)</span>, 계산 <strong>DX_Low</strong>실제 허브 높이 풍속이 아닌,
+<span class="math notranslate nohighlight">\(V_\text{Hub}\)</span>. 추가적으로, <strong>X0_Low</strong> 는 다음의 정수 배수여야 합니다.
+<strong>DX_Low</strong>.</p>
+</div>
+<div class="section" id="high-resolution-domain">
+<h3><span class="section-number">4.19.6.3.2. </span>고해상도 도메인<a class="headerlink" href="#high-resolution-domain" title="이 제목의 고유 링크"></a></h3>
+<p>FAST.Farm의 고해상도 풍력 도메인은 주로 터빈에 대한 주변 및 활성화된 유입을 담당합니다. 따라서 각 터빈의 터빈 구조적 운동과 하중의 평균 및 표준 편차 추세를 비교하여 수렴성을 평가했습니다.</p>
+<p>필요한 이산화 수준은 관심 수량에 따라 다릅니다. 따라서 고해상도 이산화 수준을 선택할 때 어떤 구조적 구성 요소를 고려할지 결정하는 것이 중요합니다. 특히 타워 기반 모멘트는 다음 사항에 가장 민감합니다.
+<strong>DT_High</strong>, 발전기 전력, 블레이드 처짐 및 모멘트는 이 값에 거의 의존하지 않습니다. 전체 구조적 반응을 포착하려면, <strong>DT_High</strong> 는 관련 구조 구성 요소의 난류 및 응답, 즉 고유 주파수의 회전 샘플링을 포함하여 구조적 가진에 영향을 미치는 가장 높은 주파수를 기반으로 선택해야 합니다. <span class="math notranslate nohighlight">\(f_\text{max}\)</span> (Hz), 방정식과 동일&nbsp;<a class="reference internal" href="#equation-eq-dthigh-a">(4.222)</a>, 여기서 인수는 <span class="math notranslate nohighlight">\(2\)</span> 는 Nyquist 샘플링 정리에서 가져온 것입니다. 이는 난류 유입으로 인한 자극을 받는 풍력터빈 공탄성 해석에서 자주 사용되는 경험 법칙입니다.</p>
+<div class="math notranslate nohighlight" id="equation-eq-dthigh-a">
+<span class="eqno">(4.222)<a class="headerlink" href="#equation-eq-dthigh-a" title="이 방정식에 대한 영구 링크"></a></span>\[\textbf{DT_High} \le \frac{1}{2f_\text{max}}\]</div>
+<p>필수 <strong>DS_High</strong> 는 대략 터빈의 최대 블레이드 코드 길이에 해당하며, <span class="math notranslate nohighlight">\(c_\text{max}\)</span>, 방정식과 같이&nbsp;<a class="reference internal" href="#equation-eq-dshigh-a">(4.223)</a>. 선택
+이 값에 해당하는 <strong>DS_High</strong> 는 오랫동안 난류 유입으로 인해 여기된 풍력터빈 공탄성 해석의 경험 법칙이었습니다.</p>
+<div class="math notranslate nohighlight" id="equation-eq-dshigh-a">
+<span class="eqno">(4.223)<a class="headerlink" href="#equation-eq-dshigh-a" title="이 방정식에 대한 영구 링크"></a></span>\[\textbf{DS_High} \le c_\text{max}\]</div>
+</div>
+</div>
+<div class="section" id="parameter-selection">
+<span id="ff-sec-paramselect"></span><h2><span class="section-number">4.19.6.4. </span>매개변수 선택<a class="headerlink" href="#parameter-selection" title="이 제목의 고유 링크"></a></h2>
+<p>FAST.Farm 시뮬레이션을 설정하려면 특히 다음과 같은 경우 많은 수의 매개변수를 지정해야 할 수 있습니다. <em>InflowWind</em> 모듈은 주변 바람에 사용됩니다. 이 섹션에는 이러한 매개변수 중 일부를 선택하는 모범 사례가 요약되어 있습니다. 원하는 값과 실현된 값에 대한 참조가 이루어집니다. 이러한 값 사이의 불일치는 다음 항목에서 설명됩니다.
+<a class="reference internal" href="#ff-sec-setup"><span class="std std-numref">섹션 4.19.6.1</span></a>.</p>
+<div class="section" id="inflowwind-domain-parameters">
+<h3><span class="section-number">4.19.6.4.1. </span>InflowWind 도메인 매개변수<a class="headerlink" href="#inflowwind-domain-parameters" title="이 제목의 고유 링크"></a></h3>
+<p>다음을 사용하여 FAST.Farm 시뮬레이션을 설정할 때는 주의를 기울여야 합니다. <em>InflowWind</em>
+주변풍 유입 옵션. 배포하는 것이 좋습니다.
+<a class="reference external" href="https://github.com/OpenFAST/python-toolbox/tree/main/pyFAST/fastfarm" target="_blank" rel="noopener noreferrer">Python 노트북</a> 는 새로운 케이스를 설정할 때 사용됩니다. 이러한 매개변수를 부적절하게 설정하면 일반적인 오류 및/또는 과도한 보간이 발생할 수 있으므로 피해야 합니다. Python 노트북에 사용되는 방법과 경험 법칙도 여기에서 논의됩니다.</p>
+<div class="section" id="ff-sec-lowres">
+<span id="id11"></span><h4><span class="section-number">4.19.6.4.1.1. </span>저해상도 도메인<a class="headerlink" href="#ff-sec-lowres" title="이 제목의 고유 링크"></a></h4>
+<p><strong>NX_Low</strong>, <strong>NY_Low</strong>, <strong>NZ_Low</strong> – 이 수량은 다음을 기준으로 해야 합니다.
+<strong>DS_Low</strong> 및 원하는 도메인 크기(<em>Sdist_Low</em>), 여기서 <em>S</em>=<em>X</em>,
+<em>Y</em> 또는 <em>Z</em>. 이 정수 수량은 다음과 같이 계산되어야 합니다.</p>
+<div class="math notranslate nohighlight">
+\[\textbf{NS_Low} = CEILING\left(
+   \frac{{Sdist\_Low}}{\textbf{DS_Low}}\right)+1\]</div>
+<p><strong>X0_Low</strong> – 이 수량은 수량보다 적어야 합니다.
+가장 먼 상류 터빈의 <em>X</em> 위치. 주변 유입을 분석할 수 있도록 이 값을 추가로 업스트림으로 설정하는 것이 좋습니다. Mann 상자를 사용하는 경우 이 값은 0이어야 합니다.</p>
+<p><strong>Y0_Low</strong> – 이 수량은 최저 수량보다 적어야 합니다.
+터빈의 <em>Y</em> 위치(<strong>WT_Y_</strong>). 후류 사행, 후류 편향 및 공간 평균화를 수용하려면 추가 여유 공간이 필요합니다. <em>AWAE</em> 모듈. 이 값은 다음과 같이 계산될 수 있습니다.</p>
+<div class="math notranslate nohighlight">
+\[\textbf{Y0_Low} \le \textbf{WT_Y_min}-3D^\text{Rotor}\]</div>
+<p>상당한 후류 구불구불한 움직임 및/또는 요를 위해 추가 간격을 허용해야 합니다. 에 대한 <strong>Mod_AmbWind</strong> = 2, 합성 유입 데이터는 Y=0을 중심으로 합니다. 이 때문에 <strong>Y0_Low</strong> 는 -와 같아야 합니다.<em>Ydist_Low</em>/2. 이는 저해상도 도메인에서도 동일합니다.
+<strong>Mod_AmbWind</strong> = 3.</p>
+<p><strong>Z0_Low</strong> – 이 값은 지면보다 높지만 가깝게 설정하는 것이 좋습니다. TurbSim을 사용할 때 TurbSim은 이러한 위치에서 바람을 생성할 수 없기 때문에 이 값은 지면 수준 이하일 수 없습니다.</p>
+<p><strong>DX_Low</strong>, <strong>DY_Low</strong>, <strong>DZ_Low</strong> – 원하는 공간 값은 여기서 자세히 다루지 않으므로 여기서는 논의하지 않습니다.
+<a class="reference internal" href="#ff-sec-discrecs"><span class="std std-numref">섹션 4.19.6.3</span></a>. 그러나 실제 사용된 양은 합성 유입량을 사용할 때 원하는 값과 다를 수 있습니다. <a class="reference internal" href="#ff-sec-synthetic"><span class="std std-numref">섹션 4.19.6.2.3</span></a>. 실제 수량을 결정하기 위해 합성 유입량을 사용할 때 다음 방정식이 제안됩니다.</p>
+<div class="math notranslate nohighlight">
+\[\textbf{DS_Low} = FLOOR\left( \frac{{DS\_Low\_Desired}}
+   {\textbf{DS_High}} \right)*\textbf{DS_High}\]</div>
+<p>이 방정식을 사용하는 것이 다음을 보장하는 가장 좋은 방법입니다. <strong>DS_Low</strong> 는 다음의 배수 정수입니다. <strong>DS_High</strong>, 보간 평활화를 줄입니다.</p>
+</div>
+<div class="section" id="ff-high-resolution-domain-1">
+<span id="id12"></span><h4><span class="section-number">4.19.6.4.1.2. </span>고해상도 도메인<a class="headerlink" href="#ff-high-resolution-domain-1" title="이 제목의 고유 링크"></a></h4>
+<p><em>Xdist_High</em>, <em>Ydist_High</em>, <em>Zdist_High</em> – 직접 입력은 아니지만 고해상도 도메인의 길이, 너비 및 높이는 터빈의 크기와 위치에 따라 선택해야 합니다. 다음 값이 권장됩니다.</p>
+<div class="math notranslate nohighlight">
+\[\textbf{Xdist_High} = \textbf{Ydist_High}
+   = \textbf{Zdist_High} \ge 1.1 D^\text{Rotor}\]</div>
+<p>타워 공기역학적 하중이 필요한 경우 고해상도 도메인은 전체 타워와 로터에 걸쳐 있어야 합니다.</p>
+<div class="math notranslate nohighlight">
+\[\textbf{Zdist_High} = \textbf{HubHt}
+   + \frac{1.1\ D^\text{Rotor}}{2}\]</div>
+<p>부유식 해상 풍력 응용 분야와 같은 대규모 구조적 움직임을 설명하기 위해 이러한 매개변수를 늘려야 할 수도 있습니다.</p>
+<p><strong>NX_High</strong>, <strong>NY_High</strong>, <strong>NZ_High</strong> – 이 수량은 다음을 기준으로 해야 합니다. <strong>DS_High</strong> 및 원하는 도메인 크기(<em>Sdist_High</em>), 여기서
+<em>S</em>=<em>X</em>, <em>Y</em>또는 <em>Z</em>. 이 정수 수량은 다음과 같이 계산되어야 합니다.</p>
+<div class="math notranslate nohighlight">
+\[\textbf{NS_High} = \text{CEILING}\left(
+   \frac{{Sdist\_High}}{\textbf{DS_High}}\right)+1\]</div>
+<p><strong>X0_High</strong>, <strong>Y0_High</strong>, <strong>Z0_High</strong> – 이 수량은 각 터빈에 대해 설정됩니다. 이는 터빈 위치를 기반으로 해야 하며 터빈이 고해상도 영역 내에 포함되도록 설정되어야 합니다. 권장되는 사항은 다음과 같습니다. <strong>X0_High</strong> 및 <strong>Y0_High</strong> 는 대략적으로 설정됩니다.
+<span class="math notranslate nohighlight">\(1.1D^\text{Rotor}/2\)</span> 는 터빈 위치보다 낮습니다. 고해상도 도메인의 경우 <strong>Mod_AmbWind</strong> = 3, 합성 유입 데이터는 다음을 기반으로 각 터빈을 중심으로 합니다. <strong>WT_X/Y/Z</strong>.</p>
+<p><strong>DX_High</strong>, <strong>DY_High</strong>, <strong>DZ_High</strong> – 원하는 공간 값은 여기서 자세히 다루지 않으므로 여기서는 논의하지 않습니다.
+<a class="reference internal" href="#ff-sec-discrecs"><span class="std std-numref">섹션 4.19.6.3</span></a>.</p>
+</div>
+</div>
+<div class="section" id="wake-dynamics-parameters">
+<span id="ff-wake-dynamics-parameters"></span><h3><span class="section-number">4.19.6.4.2. </span>웨이크 역학 매개변수<a class="headerlink" href="#wake-dynamics-parameters" title="이 제목의 고유 링크"></a></h3>
+<p>웨이크 역학 매개변수는 각 웨이크 평면에 사용되는 축대칭 유한차분 그리드를 정의합니다. 이러한 평면은 다음 매개변수로 정의됩니다.</p>
+<ul>
+<li><p><strong>박사</strong> – FAST.Farm이 각 평면 내에서 웨이크 부족을 충분히 해결하도록 이 값을 설정해야 합니다. 다음 값이 제안됩니다.</p>
+<div class="math notranslate nohighlight">
+\[\textbf{dr} \le D^\text{Rotor} / 15\]</div>
+</li>
+</ul>
+<p>언제 <strong>Wake_Mod=2,3</strong>, 수치적 안정성을 위해 다음 지침을 (대략) 만족하는 값으로 간격을 설정하는 것이 좋습니다(다음의 수학식 20 참조). <a class="reference external" href="https://doi.org/10.5194/wes-6-555-2021" target="_blank" rel="noopener noreferrer">종이</a>):</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\textbf{dr} \le D^\text{Rotor} / 15\]</div>
+</div></blockquote>
+<ul>
+<li><p><strong>NumRadii</strong> – FAST.Farm에서 웨이크 부족을 정확하게 계산하려면, <strong>NumRadii</strong> 는 각 후류면의 직경이 2(<strong>NumRadii</strong>-1)<strong>박사</strong>는 로터 직경에 비해 큽니다. 다음 값이 제안됩니다.</p>
+<div class="math notranslate nohighlight">
+\[\textbf{NumRadii} \ge \frac{3D^{Rotor}}{2\ \textbf{dr}}+1\]</div>
+</li>
+<li><p><strong>NumPlanes</strong> – FAST.Farm에서 웨이크 부족을 정확하게 캡처하려면, <strong>NumPlanes</strong> 는 후류 평면이 하류로 충분한 거리를 전파하도록 설정되어야 하며, 바람직하게는 후류 부족이 사라질 때까지(<span class="math notranslate nohighlight">\(x_\text{dist}\)</span>), 일반적인 값은 다음과 같습니다. <span class="math notranslate nohighlight">\(10-20\times D^{Rotor}\)</span>. 다음 값이 제안됩니다.</p>
+<div class="math notranslate nohighlight">
+\[\textbf{NumPlanes} \ge \frac{x_\text{dist}}
+   {\textbf{DT_Low}\overline{V}}\]</div>
+<p>여기서 <span class="math notranslate nohighlight">\(\overline{V}\)</span> 는 후류의 평균 대류 속도로, 다음과 같이 근사할 수 있습니다.</p>
+<div class="math notranslate nohighlight">
+\[\overline{V} = V_\text{Hub}\left( 1-\frac{\overline{a}}{2}\right)\]</div>
+<p>여기서 <span class="math notranslate nohighlight">\(\overline{a}\)</span> 는 로터 디스크의 축 유도의 시간 및 공간 시간 평균입니다. <span class="math notranslate nohighlight">\(\overline{a}\)</span> 가 나올 것으로 예상됩니다. <span class="math notranslate nohighlight">\(1/3\)</span> 는 정격 풍속보다 낮고(최적의 공기 역학적 효율성을 위해) 정격 풍속 이상을 컷아웃 풍속 이전에 거의 0으로 감소시킵니다.</p>
+</li>
+</ul>
+<p>시뮬레이션이 시작될 때 각 시간 단계마다 새로운 웨이크 평면이 추가되기 때문에 <strong>NumPlanes</strong> 는 또한 시뮬레이션의 초기 과도 시간을 증가시킵니다. 시동 과도 시간은 방정식으로 추정됩니다.&nbsp;<a class="reference internal" href="#equation-eq-startup-a">(4.226)</a>.</p>
+<div class="math notranslate nohighlight" id="equation-eq-startup-a">
+<span class="eqno">(4.226)<a class="headerlink" href="#equation-eq-startup-a" title="이 방정식에 대한 영구 링크"></a></span>\[t_\text{startup}=\textbf{DT_Low}(\textbf{NumPlanes}-2)\]</div>
+<ul class="simple">
+<li><p><strong>Mod_WakeDiam</strong> – 값 <strong>1</strong> 를 권장합니다. 이 매개변수의 옵션에 대한 자세한 내용은 방정식을 참조하세요.&nbsp;<a class="reference internal" href="FFarmTheory.html#equation-eq-dwake">(4.247)</a>.</p></li>
+<li><p><strong>Mod_Meander</strong> – 값 <strong>3</strong> 를 권장합니다. 이 매개변수의 옵션에 대한 자세한 내용은 방정식을 참조하세요.&nbsp;<a class="reference internal" href="FFarmTheory.html#equation-eq-wn">(4.256)</a>.</p></li>
+</ul>
+<p>남은 <span class="math notranslate nohighlight">\(20\)</span> 입력은 후류 역학 계산에 영향을 미치는 사용자 지정 교정 매개변수 및 옵션입니다. 매개변수는 예를 들어 실험 데이터와 더 잘 일치하도록 보정할 수 있는 터빈 작동이나 대기 조건에 따라 또는 HFM 벤치마크를 사용하여 달라질 수 있습니다. 기본값은 다음을 기반으로 교정된 각 매개변수에 대해 파생되었습니다. <a class="reference external" href="https://nwtc.nrel.gov/SOWFA" target="_blank" rel="noopener noreferrer">SOWFA</a>
+시뮬레이션(&nbsp;<span id="id13">[<a class="reference internal" href="zrefs.html#id19" title="P. Doubrawa 및 그 외 여러분. sofa에 대한 fast.farm 매개변수의 최적화 기반 보정. 제36회 풍력에너지 심포지엄에서. 플로리다주 키시미, 2018년 1월. AIAA. 도이:https://arc.aiaa.org/doi/pdf/10.2514/6.2018-0512.">ff-Deal18</a>]</span>), 사용자가 덮어쓸 수 있습니다.</p>
+</div>
+</div>
+<div class="section" id="commonly-encountered-errors">
+<h2><span class="section-number">4.19.6.5. </span>일반적으로 발생하는 오류<a class="headerlink" href="#commonly-encountered-errors" title="이 제목의 고유 링크"></a></h2>
+<p>이 섹션에서는 FAST.Farm을 개발, 검증, 사용하는 과정에서 사용자가 흔히 접할 수 있는 오류를 다룹니다. 추가 오류나 질문이 있는 경우 <a class="reference external" href="https://wind.nrel.gov/forum/wind/" target="_blank" rel="noopener noreferrer">NWTC 포럼</a>.</p>
+<div class="section" id="inflowwind-errors">
+<h3><span class="section-number">4.19.6.5.1. </span>InflowWind 오류<a class="headerlink" href="#inflowwind-errors" title="이 제목의 고유 링크"></a></h3>
+<p><em>InflowWind</em> 오류는 고해상도 또는 저해상도 도메인 크기를 부적절하게 설정하는 것과 관련된 경향이 있습니다. 이러한 두 가지 일반적인 오류는 여기에 자세히 설명되어 있습니다.
+도메인을 떠나는</p>
+<div class="section" id="turbine-leaving-the-domain">
+<h4><span class="section-number">4.19.6.5.1.1. </span>터빈<a class="headerlink" href="#turbine-leaving-the-domain" title="이 제목의 고유 링크"></a></h4>
+<p>다음 오류가 일반적으로 발생합니다.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">T</span><span class="o">&lt;</span><span class="n">n_t</span><span class="o">&gt;</span><span class="p">:</span><span class="o">&lt;</span><span class="n">routine</span> <span class="n">name</span><span class="o">&gt;</span><span class="p">:</span><span class="n">FAST_Solution0</span><span class="p">:</span><span class="n">CalcOutputs_And_SolveForInputs</span><span class="p">:</span>
+<span class="n">SolveOption2</span><span class="p">:</span><span class="n">InflowWind_CalcOutput</span><span class="p">:</span><span class="n">CalcOutput</span><span class="p">:</span><span class="n">IfW_4Dext_CalcOutput</span>
+<span class="p">[</span><span class="n">position</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">1.8753</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">32.183</span><span class="p">)</span> <span class="ow">in</span> <span class="n">wind</span><span class="o">-</span><span class="n">file</span> <span class="n">coordinates</span><span class="p">]:</span><span class="n">Interp4D</span><span class="p">:</span><span class="n">Outside</span>
+<span class="n">the</span> <span class="n">grid</span> <span class="n">bounds</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>이 오류는 터빈이 지정된 고해상도 도메인을 벗어날 때 발생합니다. 이는 일반적으로 부적절한 도메인 지정이나 큰 블레이드 편향/구조적 움직임을 통해 발생합니다. 이 오류의 좌표는 터빈의 로컬 기준 프레임에 있으며 경우에 따라 다릅니다.</p>
+<p>원인이 부적절한 도메인 지정인 경우 시뮬레이션의 초기화 단계에서 오류가 트리거됩니다(<em>&lt;루틴 이름&gt;=FARM_InitialCO:FWrap_t0</em>). 이 경우 기본 FAST.Farm 입력 파일을 검토하는 것이 좋습니다. 특히,
+<strong>NX_High</strong>, <strong>NY_High</strong>, <strong>NZ_High</strong>, <strong>X0_High</strong>, <strong>Y0_High</strong>,
+<strong>Z0_High</strong>, <strong>dX_High</strong>, <strong>dY_High</strong>및
+이 플래그 값 아래에 <strong>dZ_High</strong>, 이러한 매개변수는 고해상도 도메인의 크기와 위치를 정의합니다. 오류는 어느 터빈(T&lt;<em>n</em><span class="math notranslate nohighlight">\(_t\)</span>&gt;) 오류가 발생했습니다. 이는 오류가 있는 곳을 디버깅하는 데 도움이 됩니다.</p>
+<p>원인이 큰 블레이드 편향 또는 구조적 움직임인 경우 시뮬레이션 중 특정 지점에서 오류가 트리거됩니다(<em>&lt;루틴 이름&gt;=FARM_UpdateStates:FWrap_t0</em>). 이 경우 고해상도 도메인의 전체 크기를 늘리면 이 문제를 완화할 수 있습니다. 그러나 사용자는 먼저 그러한 큰 편향/움직임이 예상되고 현실적이며 터빈 모델링 오류로 인한 것이 아니라는 점을 확인해야 합니다.</p>
+</div>
+<div class="section" id="undefined-location">
+<h4><span class="section-number">4.19.6.5.1.2. </span>정의되지 않은 위치<a class="headerlink" href="#undefined-location" title="이 제목의 고유 링크"></a></h4>
+<p>다음 오류가 일반적으로 발생합니다.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Farm_Initialize</span><span class="p">:</span><span class="n">InflowWind_CalcOutput</span><span class="p">:</span><span class="n">CalcOutput</span><span class="p">:</span><span class="n">IfW_TSFFWind_CalcOutput</span>
+<span class="p">[</span><span class="n">position</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">565</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="ow">in</span> <span class="n">wind</span><span class="o">-</span><span class="n">file</span> <span class="n">coordinates</span><span class="p">]:</span> <span class="n">FF</span> <span class="n">wind</span> <span class="n">array</span> <span class="n">boundaries</span>
+<span class="n">violated</span><span class="p">:</span> <span class="n">Grid</span> <span class="n">too</span> <span class="n">small</span> <span class="ow">in</span> <span class="n">Y</span> <span class="n">direction</span><span class="o">.</span> <span class="n">Y</span><span class="o">=</span><span class="mi">565</span><span class="p">;</span> <span class="n">Y</span> <span class="n">boundaries</span> <span class="o">=</span>
+<span class="p">[</span><span class="o">-</span><span class="mi">555</span><span class="p">,</span> <span class="mi">555</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>이 오류는 FAST.Farm이 대기 바람 파일에 포함되지 않은 저해상도 도메인의 지점에 액세스하려고 할 때 발생합니다. 이 오류의 좌표는 전역 참조 프레임에 있으며 대소문자에 따라 다릅니다. 이 오류의 경우 기본 FAST.Farm 입력 파일을 검토하는 것이 좋습니다. 특히,
+<strong>NX_Low</strong>, <strong>NY_Low</strong>, <strong>NZ_Low</strong>, <strong>X0_Low</strong>, <strong>Y0_Low</strong>, <strong>Z0_Low</strong>,
+<strong>dX_Low</strong>, <strong>dY_Low</strong>및
+이 플래그 값 아래에 <strong>dZ_Low</strong>, 이러한 매개변수는 저해상도 도메인의 크기와 위치를 정의합니다. 오류는 오류가 발생한 축을 지정하여 디버깅에 도움을 줍니다.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id14"><span class="brackets"><a class="fn-backref" href="#id4">1</a></span></dt>
+<dd><p>TurbSim은 IEC 설계 표준에 규정되어 있지 않기 때문에 기본 IEC 사례에서 공간 v 및 w 일관성을 효과적으로 무시합니다.</p>
+</dd>
+<dt class="label" id="id15"><span class="brackets"><a class="fn-backref" href="#id7">2</a></span></dt>
+<dd><p>HAWC 형식을 사용하는 경우(
+파일 이름에<strong>WindType</strong> = 5), <cite>_u</cite>,
+<cite>_v</cite>, <cite>_w</cite> 를 추가해야 합니다.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="OutputFiles.html" class="btn btn-neutral float-left" title="4.19.5. 출력 파일" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+        <a href="FFarmTheory.html" class="btn btn-neutral float-right" title="4.19.7. FAST.팜 이론" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>© Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    
+     
+
+
+</body></html>

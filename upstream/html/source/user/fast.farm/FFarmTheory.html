@@ -1,0 +1,1948 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.19.7. FAST.Farm Theory &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.19.8. Future Work" href="FutureWork.html" />
+    <link rel="prev" title="4.19.6. Modeling Guidance" href="ModelGuidance.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/fast.farm/FFarmTheory.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.19. FAST.Farm</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Nomenclature.html">4.19.1. Nomenclature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Introduction.html">4.19.2. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RunningFFarm.html">4.19.3. Running FAST.Farm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="InputFiles.html">4.19.4. Input Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="OutputFiles.html">4.19.5. Output Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ModelGuidance.html">4.19.6. Modeling Guidance</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.19.7. FAST.Farm Theory</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#dynamic-wake-meandering-principles-and-limitations-addressed">4.19.7.1. Dynamic Wake Meandering Principles and Limitations Addressed</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fast-farm-theory-basis">4.19.7.2. FAST.Farm Theory Basis</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="FutureWork.html">4.19.8. Future Work</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.19.9. References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixA.html">4.19.10. FAST.Farm Primary Input File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixB.html">4.19.11. Ambient Wind File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixC.html">4.19.12. List of Output Channels</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.19. </span>FAST.Farm User’s Guide and Theory Manual</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.19.7. </span>FAST.Farm Theory</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/fast.farm/FFarmTheory.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="fast-farm-theory">
+<span id="ff-theory"></span><h1><span class="section-number">4.19.7. </span>FAST.Farm Theory<a class="headerlink" href="#fast-farm-theory" title="Permalink to this heading"></a></h1>
+<p>FAST.Farm is a multiphysics
+engineering tool for predicting the performance and loads of wind
+turbines within a wind farm. FAST.Farm uses
+<a class="reference external" href="https://github.com/OpenFAST/openfast">OpenFAST</a> to solve the
+aero-hydro-servo-elastic dynamics of each individual turbine, but
+considers additional physics for wind-farm-wide ambient wind in the
+atmospheric boundary layer; and wake
+deficits, advection, deflection, meandering, and merging. FAST.Farm is
+based on the principles of the DWM model – including passive tracer
+modeling of wake meandering – but addresses many of the limitations of
+previous DWM implementations.</p>
+<div class="section" id="dynamic-wake-meandering-principles-and-limitations-addressed">
+<span id="ff-dwmprincipals"></span><h2><span class="section-number">4.19.7.1. </span>Dynamic Wake Meandering Principles and Limitations Addressed<a class="headerlink" href="#dynamic-wake-meandering-principles-and-limitations-addressed" title="Permalink to this heading"></a></h2>
+<p>The main idea behind the DWM model is to capture key wake features
+pertinent to accurate prediction of wind farm power performance and wind
+turbine loads, including the wake-deficit evolution (important for
+performance) and the wake meandering and wake-added turbulence
+(important for loads, see <a class="reference internal" href="#ff-wat"><span class="std std-numref">Section 4.19.7.2.3.4</span></a>).
+Although fundamental laws of physics are applied,
+appropriate simplifications have been made to minimize the computational
+expense, and HFM solutions are used to inform and calibrate the
+submodels. In the DWM model, the wake-flow processes are treated via the
+“splitting of scales,” in which small turbulent eddies (less than two
+diameters) affect wake-deficit evolution and large turbulent eddies
+(greater than two diameters) affect wake meandering.</p>
+<p>The presence of thrust from the wind turbine rotor causes the wind speed
+to decrease and the pressure to increase just upwind of the rotor. In
+the near-wake region just downwind of the rotor – illustrated in
+<a class="reference internal" href="#ff-nearwake"><span class="std std-numref">Fig. 4.66</span></a> – coherent vortices break down, the pressure
+recovers to free stream, the wind speed decreases further, and the wake
+expands radially. In the far-wake region further downwind, the wake
+deficit is approximately Gaussian and recovers to free stream due to the
+turbulent transfer of momentum into the wake from the ambient wind
+across the wake shear layer. This flow-speed reduction and gradual
+recovery to free stream is known as the wake-deficit evolution. In most
+DWM implementations, the wake-deficit evolution is modeled via the thin
+shear-layer approximation of the Reynolds-averaged Navier-Stokes
+equations under quasi-steady-state conditions in axisymmetric
+coordinates – illustrated in <a class="reference internal" href="Introduction.html#ff-wakeadv"><span class="std std-numref">Fig. 4.58</span></a>. The
+turbulence closure is captured by using an eddy-viscosity formulation,
+dependent on small turbulent eddies. This wake-deficit evolution
+solution is only valid in the far wake. This far wake is most important
+for wind farm analysis because wind turbines are not typically spaced
+closely. However, because the wake-deficit evolution solution begins at
+the rotor, a near-wake correction is applied at the inlet boundary
+condition to improve the accuracy of the far-wake solution.</p>
+<div class="figure align-center" id="ff-nearwake">
+<a class="reference internal image-reference" href="../../../_images/NearWake.png"><img alt="Near-wake region." src="../../../_images/NearWake.png" style="width: 100%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.66 </span><span class="caption-text">Near-wake region.</span><a class="headerlink" href="#ff-nearwake" title="Permalink to this image"></a></p>
+</div>
+<p>Wake meandering is the large-scale movement of the wake deficit
+transported by large turbulent eddies. This wake-meandering process is
+treated pragmatically in DWM (<span id="id1">[<a class="reference internal" href="zrefs.html#id4" title="G. C. Larsen and et al. Wake meander: a pragmatic approach. Wind Energy, 11:337-95, 2008. doi:http://onlinelibrary.wiley.com/doi/10.1002/we.267/epdf.">ff-Leal08</a>]</span>) by
+modeling the meandering as a passive tracer, which transfers the wake
+deficit transversely (horizontally and vertically) to a moving frame of
+reference (MFoR) – as illustrated in
+<a class="reference internal" href="Introduction.html#ff-wakemeandering"><span class="std std-numref">Fig. 4.55</span></a> – based on the ambient wind
+(including large turbulent eddies) spatially averaged across planes of
+the wake.</p>
+<p>Wake-added turbulence is the additional small-scale turbulence generated
+from the turbulent mixing in the wake. It is often modeled in DWM by
+scaling up the background (undisturbed) turbulence (see <a class="reference internal" href="#ff-wat"><span class="std std-numref">Section 4.19.7.2.3.4</span></a>).</p>
+<p>Several variations of DWM have been implemented, e.g., by the Technical
+University of Denmark (<span id="id2">[<a class="reference internal" href="zrefs.html#id15" title="H. A. Madsen and et al. Calibration and validation of the dynamic wake meandering model for implementation in an aeroelastic code. Journal of Solar Energy Engineering, November 2010. doi:https://doi.org/10.1115/1.4002555.">ff-Meal10</a>, <a class="reference internal" href="zrefs.html#id20" title="H. A. Madsen and et al. Wake flow characteristics at high wind speed. In 34th Wind Energy Symposium. San Diego, CA, 2016. AIAA. doi:http://dx.doi.org/10.2514/6.2016-1522.">ff-Meal16</a>]</span>) and the University
+of Massachusetts (<span id="id3">[<a class="reference internal" href="zrefs.html#id28" title="M. J. Churchfield and et al. A comparison of the dynamic wake meandering model, large-eddy simulations, and field data at the egmond aan zee offshore wind plant. In 33rd Wind Energy Symposium. Kissimmee, FL, 2015. AIAA. doi:http://dx.doi.org/10.2514/6.2015-0724.">ff-Ceal15</a>, <a class="reference internal" href="zrefs.html#id11" title="Y. Hao. Wind Farm Wake Modeling and Analysis of Wake Impacts in a Wind Farm. Phd thesis, University of Massachusetts, Amherst, Massachusetts, 2016.">ff-Hao16</a>, <a class="reference internal" href="zrefs.html#id29" title="Y. Hao and et al. Implementing the dynamic wake meandering model in the nwtc design codes. In 32nd Wind Energy Symposium. National Harbor, MD, January 2014. AIAA. doi:http://dx.doi.org/10.2514/6.2014-1089.">ff-Heal14</a>]</span>).  Although
+the exact limitations of existing DWM implementations depend on the
+implementation, specific limitations that are addressed in developing FAST.Farm
+are summarized in <a class="reference internal" href="#ff-tab-dwmimprovs"><span class="std std-numref">Table 4.15</span></a> and are discussed where
+appropriate in the next section.</p>
+<table class="docutils align-default" id="ff-tab-dwmimprovs">
+<caption><span class="caption-number">Table 4.15 </span><span class="caption-text">Dynamic Wake Meandering Limitations Addressed by FAST.Farm</span><a class="headerlink" href="#ff-tab-dwmimprovs" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Limitation</strong></p></th>
+<th class="head"><p><strong>Solution/Innovation</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><ul class="simple">
+<li><p>Ambient wind is solved per
+individual rotor and
+generated synthetically based
+on the Taylor’s
+frozen-turbulence assumption;
+not coherent across the wind
+farm or based on mesoscale
+conditions or local terrain.</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>Optionally compute ambient
+wind-farm-wide from a
+high-fidelity precursor.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><ul class="simple">
+<li><p>Wake advects at mean ambient
+wind speed, not accelerating
+from near wake to far wake or
+affected by local flow
+conditions.</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>Wake advects based on the
+local spatially averaged
+ambient wind speed and wake
+deficit.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><ul class="simple">
+<li><p>Wake deficit is not distorted
+by inflow skew (i.e., when
+looking downwind, the wake
+looks circular, not
+elliptical).</p></li>
+<li><p>Wake centerline is not
+deflected by inflow skew.</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>Wake deficit solved in planes
+parallel to rotor disk.</p></li>
+<li><p>Wake centerline deflected
+based on inflow skew.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><ul class="simple">
+<li><p>Wake deficit and centerline
+based only on mean
+conditions, not updated for
+transients in inflow, turbine
+control, or wind turbine
+motion (the latter is
+especially important for
+floating offshore wind
+turbines).</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>Wake deficit and centerline
+updated based on
+low-pass-filtered inflow,
+wind turbine control, and
+wind turbine motion.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><ul class="simple">
+<li><p>Individual wind turbine and
+wake dynamics solved
+individually or serially, not
+considering two-way
+wake-merging interactions.</p></li>
+<li><p>Wake impingement based only
+on the strongest wake
+deficit – not considering
+cumulative effects from
+multiple upwind wind
+turbines – and/or the wake
+impingement approach is
+treated differently below and
+above rated wind speed (i.e.,
+a discrete change).</p></li>
+<li><p>No available method to
+calculate disturbed wind in
+zones of wake overlap.</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>Individual wind turbine and
+wake dynamics solved in
+parallel on multiple cores.</p></li>
+<li><p>Wake merging allowed to
+influence wake dynamics.</p></li>
+<li><p>Wake deficits of downwind
+wind turbines dependent on
+impingement of wakes from
+upwind wind turbines.</p></li>
+<li><p>Wake deficits superimposed in
+the axial direction based on
+the RSS method.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><ul class="simple">
+<li><p>Wake meandering velocity
+calculated with uniform
+spatial averaging, resulting
+in less meandering than
+expected and at improper
+frequencies.</p></li>
+<li><p>The wakes meander laterally,
+but not axially.</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>Wake meandering velocity
+calculated with optional
+weighted spatial averaging
+based on the jinc function to
+result in closer-to-ideal
+low-pass filtering.</p></li>
+<li><p>Wakes meander both laterally
+and axially.</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="fast-farm-theory-basis">
+<span id="ff-theorybasis"></span><h2><span class="section-number">4.19.7.2. </span>FAST.Farm Theory Basis<a class="headerlink" href="#fast-farm-theory-basis" title="Permalink to this heading"></a></h2>
+<p>FAST.Farm is a nonlinear time-domain multiphysics engineering tool
+composed of multiple submodels, each representing different physics
+domains of the wind farm. FAST.Farm is implemented as open-source
+software that follows the programming requirements of the FAST
+modularization framework (<span id="id4">[<a class="reference internal" href="zrefs.html#id22" title="J. Jonkman. The new modularization framework for the fast wind turbine cae tool. In 51st AIAA Aerospace Sciences Meeting. Dallas, TX, 2013. AIAA.">ff-Jon13</a>]</span>), whereby the
+submodels are implemented as modules interconnected through a driver
+code. The submodel hierarchy of FAST.Farm is illustrated in
+<a class="reference internal" href="Introduction.html#ff-ffarm"><span class="std std-numref">Fig. 4.56</span></a>. Wake advection, deflection, and meandering;
+near-wake correction; and wake-deficit increment are submodels of the
+wake-dynamics (<em>WD</em>) model, implemented in a single module. Ambient wind
+and wake merging are submodels of the ambient wind and array effects
+(<em>AWAE</em>) model, implemented in a single module. Combined with the
+OpenFAST (<em>OF</em>) modules, FAST.Farm has three
+modules and one driver. There are multiple instances of the <em>OF</em> and
+<em>WD</em> modules – one instance for each wind turbine/rotor. Each
+submodel/module is described in the subsections below.</p>
+<p>FAST.Farm can be compiled and run in serial or parallel mode.
+Parallelization has been implemented in FAST.Farm through OpenMP, which
+allows FAST.Farm to take advantage of multicore computers by dividing
+computational tasks among the cores/threads within a node (but not
+between nodes) to speed up a single simulation. This process is
+illustrated in <a class="reference internal" href="#ff-parallel"><span class="std std-numref">Fig. 4.67</span></a> for a node where the number of
+threads (<span class="math notranslate nohighlight">\(N_{Th}\)</span>) is greater than the number of wind turbines
+(<span class="math notranslate nohighlight">\(N_t\)</span>). There is one instance of the <em>AWAE</em> modules and
+<span class="math notranslate nohighlight">\(N_t\)</span> instances of the <em>OF</em> and <em>WD</em> modules. The initialization,
+update states, calculate output, and end calls to each module are shown.
+The output calculation of <em>AWAE</em> is parallelized across all threads.
+During time marching, each instance of <em>OF</em> is solved in parallel while
+the ambient wind data are read by <em>AWAE</em>.</p>
+<div class="figure align-center" id="ff-parallel">
+<a class="reference internal image-reference" href="../../../_images/Parallelization.png"><img alt="FAST.Farm parallelization process." src="../../../_images/Parallelization.png" style="width: 100%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.67 </span><span class="caption-text">FAST.Farm parallelization process.</span><a class="headerlink" href="#ff-parallel" title="Permalink to this image"></a></p>
+</div>
+<p>The size of the wind farm and number of wind turbines is limited only by
+the available RAM. In parallel mode, each instance of the OpenFAST
+submodel can be run in parallel on separate threads. At the same time,
+the ambient wind within the <em>AWAE</em> module is being read into memory on
+another thread. Thus, the fastest simulations require at least one more
+core than the number of wind turbines in the wind farm. Furthermore, the
+output calculations within the <em>AWAE</em> module are parallelized into
+separate threads. To support the modeling of large wind farms, single
+simulations involving memory parallelization and parallelization between
+nodes of a multinode HPC through MPI is likely required. MPI has not yet
+been implemented within FAST.Farm. However, a multinode HPC can be used
+to run multiple serial or parallelized simulations in parallel (in batch
+mode) on separate nodes. In serial mode, multiple serial simulations can
+be run in parallel (in batch mode) on separate cores and/or nodes.</p>
+<div class="section" id="fast-farm-driver">
+<span id="ff-driver"></span><h3><span class="section-number">4.19.7.2.1. </span>FAST.Farm Driver<a class="headerlink" href="#fast-farm-driver" title="Permalink to this heading"></a></h3>
+<p>The FAST.Farm driver, also known as the “glue code,” is the code that
+couples individual modules together and drives the overall time-domain
+solution forward. Additionally, the FAST.Farm driver reads an input file
+of simulation parameters, checks the validity of these parameters,
+initializes the modules, writes results to a file, and releases memory
+at the end of the simulation.</p>
+<p>To simplify the coupling algorithm in the FAST.Farm driver and ensure
+computational efficiency, all module states (<span class="math notranslate nohighlight">\(x^d\)</span>), inputs
+(<span class="math notranslate nohighlight">\(u^d\)</span>), outputs (<span class="math notranslate nohighlight">\(y^d\)</span>), and functions (<span class="math notranslate nohighlight">\(X^d\)</span> for
+state updates and <span class="math notranslate nohighlight">\(Y^d\)</span> for outputs) in FAST.Farm are expressed in
+discrete time, <span class="math notranslate nohighlight">\(t=n\Delta t\)</span>, where <span class="math notranslate nohighlight">\(t\)</span> is time, <span class="math notranslate nohighlight">\(n\)</span>
+is the discrete-time-step counter, and <span class="math notranslate nohighlight">\(\Delta t\)</span> is the
+user-specified discrete time step (increment). Thus, the most general
+form of a module in FAST.Farm is simpler than that permitted by the FAST
+modularization framework (<span id="id5">[<a class="reference internal" href="zrefs.html#id22" title="J. Jonkman. The new modularization framework for the fast wind turbine cae tool. In 51st AIAA Aerospace Sciences Meeting. Dallas, TX, 2013. AIAA.">ff-Jon13</a>]</span>), represented
+mathematically as: <a class="footnote-reference brackets" href="#id34" id="id6">1</a></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    x^d\left[ n+1 \right]=X^d\left( x^d\left[ n \right],u^d\left[ n \right],n \right)\\
+    y^d\left[ n \right]=Y^d\left( x^d\left[ n \right],u^d\left[ n \right],n \right)\end{aligned}\end{split}\]</div>
+<p>The <em>OF</em>, and <em>WD</em> modules do not have direct feedthrough of input
+to output, meaning that the corresponding output functions simplify to
+<span class="math notranslate nohighlight">\(y^d\left[ n \right]=Y^d\left( x^d\left[ n \right],n \right)\)</span>. The
+ability of the <em>OF</em> module to be written in the above form is explained
+in <a class="reference internal" href="#ff-of"><span class="std std-numref">Section 4.19.7.2.2</span></a>. Additionally, the <em>AWAE</em> module does not
+have states, reducing the module to a feed-forward-only system and a
+module form that simplifies to
+<span class="math notranslate nohighlight">\(y^d\left[ n \right]=Y^d\left( u^d\left[ n \right],n \right)\)</span>. For
+functions in this manual, square brackets <span class="math notranslate nohighlight">\(\left[\quad\right]\)</span>
+denote discrete functions and round parentheses
+<span class="math notranslate nohighlight">\(\left(\quad\right)\)</span> denote continuous functions; the
+brackets/parentheses are dropped when implied. The states, inputs, and
+outputs of each of the FAST.Farm modules (<em>OF</em>, <em>WD</em>, and <em>AWAE</em>)
+are listed in <a class="reference internal" href="#ff-tab-modules"><span class="std std-numref">Table 4.16</span></a> and explained further in the
+sections below.</p>
+<table class="docutils align-default" id="ff-tab-modules">
+<caption><span class="caption-number">Table 4.16 </span><span class="caption-text">Module States, Inputs, and Outputs in FAST.Farm</span><a class="headerlink" href="#ff-tab-modules" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 31%" />
+<col style="width: 26%" />
+<col style="width: 27%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Module</strong></p></th>
+<th class="head"><p><strong>States (Discrete Time)</strong></p></th>
+<th class="head"><p><strong>Inputs</strong></p></th>
+<th class="head"><p><strong>Outputs</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><em>OpenFAST (OF)</em></p></td>
+<td><ul class="simple">
+<li><p>None in the OpenFAST wrapper, but there are many states internal to OpenFAST</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>Global controller commands</p></li>
+<li><p>Commands to the individual turbine controller</p></li>
+<li><p><span class="math notranslate nohighlight">\(\vec{V}_\text{Dist}^\text{High}\)</span></p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>Commands/measurements from the individual turbine controller</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{x}^\text{Disk}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\vec{p}^\text{Hub}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(D^\text{Rotor}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\gamma^\text{YawErr}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(^\text{DiskAvg}V_x^\text{Rel}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(^\text{AzimAvg}C_t\left(r\right)\)</span></p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p><em>Wake Dynamics (WD)</em></p></td>
+<td><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(^\text{FiltDiskAvg}V_x^\text{Rel}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(^\text{FiltAzimAvg}C_t\left(r\right)\)</span></p></li>
+</ul>
+<p>For <span class="math notranslate nohighlight">\(0 \le n_p \le N_p-1\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(^\text{Filt}D_{n_p}^\text{Rotor}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(^\text{Filt}\gamma_{n_p}^\text{YawErr}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(^\text{Filt}\vec{V}_{n_p}^\text{Plane}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(^\text{FiltDiskAvg}V_{x_{n_p}}^\text{Wind}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(^\text{Filt}TI_{\text{Amb}_{n_p}}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(x_{n_p}^\text{Plane}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{x}_{n_p}^\text{Plane}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\vec{p}_{n_p}^\text{Plane}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(V_{x_{n_p}}^\text{Wake}\left(r\right)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(V_{r_{n_p}}^\text{Wake}\left(r\right)\)</span></p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\hat{x}^\text{Disk}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\vec{p}^\text{Hub}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(D^\text{Rotor}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\gamma^\text{YawErr}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(^\text{DiskAvg}V_x^\text{Rel}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(^\text{AzimAvg}C_t\left(r\right)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\vec{V}_{n_p}^\text{Plane}\)</span> for <span class="math notranslate nohighlight">\(0\le n_p \le N_p-1\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(^\text{DiskAvg}V_x^\text{Wind}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(TI_\text{Amb}\)</span></p></li>
+</ul>
+</td>
+<td><p>For <span class="math notranslate nohighlight">\(0 \le n_p \le N_p-1\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\hat{x}_{n_p}^\text{Plane}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\vec{p}_{n_p}^\text{Plane}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(V_{x_{n_p}}^\text{Wake}\left(r\right)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(V_{r_{n_p}}^\text{Wake}\left(r\right)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(D_{n_p}^\text{Wake}\)</span></p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p><em>Ambient Wind and Array Effects (AWAE)</em></p></td>
+<td><ul class="simple">
+<li><p>None</p></li>
+</ul>
+</td>
+<td><p>For each turbine and <span class="math notranslate nohighlight">\(0 \le n_p \le N_p-1\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\hat{x}_{n_p}^\text{Plane}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\vec{p}_{n_p}^\text{Plane}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(V_{x_{n_p}}^\text{Wake}\left(r\right)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(V_{r_{n_p}}^\text{Wake}\left(r\right)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(D_{n_p}^\text{Wake}\)</span></p></li>
+</ul>
+</td>
+<td><p>For each turbine:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\vec{V}_\text{Dist}^\text{High}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\vec{V}_{n_p}^\text{Plane}\)</span> for <span class="math notranslate nohighlight">\(0 \le n_p \le N_p-1\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(^\text{DiskAvg}V_x^\text{Wind}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(TI_\text{Amb}\)</span></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>After initialization and within each time step, the states of each
+module (<em>OF</em>, and <em>WD</em>) are updated (from time <span class="math notranslate nohighlight">\(t\)</span> to time
+<span class="math notranslate nohighlight">\(t+\Delta t\)</span>, or equivalently, <span class="math notranslate nohighlight">\(n\)</span> to <span class="math notranslate nohighlight">\(n+1\)</span>); time is
+incremented; and the module outputs are calculated and transferred as
+inputs to other modules. Because of the form simplifications, the state
+updates of each module can be solved in parallel; the output-to-input
+transfer does not require a large nonlinear solve; and overall
+correction steps of the solution are not needed. The lack of a
+correction step is a major simplification of the coupling algorithm used
+within OpenFAST (<span id="id7">[<a class="reference internal" href="zrefs.html#id23" title="M. A. Sprague and et al. Fast modular wind turbine cae tool: nonmatching spatial and temporal meshes. In 50th AIAA Aerospace Sciences Meeting. National Harbor, MD, January 2014. AIAA. doi:http://arc.aiaa.org/doi/pdf/10.2514/6.2014-0520.">ff-Seal14</a>, <a class="reference internal" href="zrefs.html#id24" title="M. A. Sprague and et al. Fast modular framework for wind turbine simulation: new algorithms and numerical examples. In 51th AIAA Aerospace Sciences Meeting. Kissimmee, FL, 2015. AIAA. doi:http://arc.aiaa.org/doi/pdf/10.2514/6.2014-0520.">ff-Seal15</a>]</span>).
+Furthermore, the output calculations of the <em>OF</em>, and <em>WD</em> modules
+can be parallelized, followed then by the output calculation of the
+<em>AWAE</em> module. <a class="footnote-reference brackets" href="#id37" id="id8">2</a> In parallel mode, parallelization has been
+implemented in FAST.Farm through OpenMP.</p>
+<p>Because of the small timescales and sophisticated physics, the OpenFAST
+submodel is the computationally slowest of the FAST.Farm modules.
+Additionally, the output calculation of the <em>AWAE</em> module is the only
+major calculation that cannot be solved in parallel to OpenFAST. Because
+of this, the parallelized FAST.Farm solution at its fastest may execute
+only slightly more slowly than stand-alone OpenFAST simulations. This
+results in simulations that are computationally inexpensive enough to
+run the many simulations necessary for wind turbine/farm design and
+analysis.</p>
+</div>
+<div class="section" id="openfast-of-module">
+<span id="ff-of"></span><h3><span class="section-number">4.19.7.2.2. </span>OpenFAST (OF Module)<a class="headerlink" href="#openfast-of-module" title="Permalink to this heading"></a></h3>
+<p>FAST.Farm makes use of
+<a class="reference external" href="https://github.com/OpenFAST/openfast">OpenFAST</a> to model the
+dynamics (loads and motions) of distinct turbines in the wind farm.
+OpenFAST captures the environmental excitations (wind inflow; for
+offshore systems, waves, current, and ice) and coupled system response
+of the full system (the rotor, drivetrain, nacelle, tower, controller;
+for offshore systems, the substructure and station-keeping system).
+OpenFAST itself is an interconnection of various modules, each
+corresponding to different physical domains of the coupled
+aero-hydro-servo-elastic solution. The details of the OpenFAST solution
+are outside the scope of this document, but can be found in the
+hyperlink above and associated references.</p>
+<p>The <em>OF</em> module of FAST.Farm is a wrapper that enables the coupling of
+OpenFAST to FAST.Farm – similar to the OpenFAST wrapper available in
+SOWFA, but with different inputs and outputs (described below). This
+wrapper also controls subcycling of the OpenFAST state updates. The
+timescales solved within OpenFAST are much smaller than those within
+FAST.Farm. Therefore, for accuracy and numerical stability reasons, the
+OpenFAST time step is typically much smaller than that required of
+FAST.Farm, as depicted in <a class="reference internal" href="#ff-timescales"><span class="std std-numref">Fig. 4.68</span></a>.</p>
+<div class="figure align-center" id="ff-timescales">
+<a class="reference internal image-reference" href="../../../_images/timescales.png"><img alt="Illustration of timescale ranges for OpenFAST (DT), the FAST.Farm high-resolution domain (DT_High), and the FAST.Farm low-resolution domain (DT_Low)." src="../../../_images/timescales.png" style="width: 100%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.68 </span><span class="caption-text">Illustration of timescale ranges for OpenFAST (DT), the FAST.Farm
+high-resolution domain (DT_High), and the FAST.Farm low-resolution
+domain (DT_Low).</span><a class="headerlink" href="#ff-timescales" title="Permalink to this image"></a></p>
+</div>
+<p>There is one instance of the <em>OF</em> module for each wind turbine. In
+parallel mode, these instances are parallelized through OpenMP. OpenFAST
+itself has various modules with different inputs, outputs, states, and
+parameters – including continuous-time, discrete-time, algebraic, and
+other (e.g., logical) states. However, for the purposes of coupling
+OpenFAST to FAST.Farm, the <em>OF</em> module functions in discrete time and
+without direct feedthrough of input to output. This is achieved by
+calling the <em>OF</em> module at the rate dictated by the FAST.Farm time step,
+<span class="math notranslate nohighlight">\(\Delta t\)</span>, and by introducing a one-time-step (<span class="math notranslate nohighlight">\(\Delta t\)</span>)
+delay of the output relative to the input; this one-time-step delay is
+not expected to be problematic because of the slow timescales solved
+within FAST.Farm.</p>
+<p>At initialization, the number of wind turbines (<span class="math notranslate nohighlight">\(N_t\)</span>, with
+<span class="math notranslate nohighlight">\(n_t\)</span> the turbine counter such that <span class="math notranslate nohighlight">\(1\le n_t\le N_t\)</span>), the
+corresponding OpenFAST primary input files, and turbine origins in the
+global <em>X-Y-Z</em> inertial-frame coordinate system are specified by the
+user. Turbine origins are defined as the intersection of the undeflected
+tower centerline and the ground or, for offshore systems, mean sea
+level. The global inertial-frame coordinate system is defined with <em>Z</em>
+directed vertically upward (opposite gravity), <em>X</em> directed horizontally
+nominally downwind (along the zero-degree wind direction), and <em>Y</em>
+directed horizontally transversely.</p>
+<p>The <em>OF</em> module also uses the disturbed wind (ambient plus wakes of
+neighboring turbines) across a high-resolution wind domain (in both time
+and space) around the turbine (output from the <em>AWAE</em> module – see
+<a class="reference internal" href="#ff-awae"><span class="std std-numref">Section 4.19.7.2.4</span></a> for more information),
+<span class="math notranslate nohighlight">\(\vec{V}_\text{Dist}^\text{High}\)</span>, as input, to ensure that the
+individual turbine loads and response calculated by OpenFAST are
+accurately driven by flow through the wind farm, including wake and
+array effects. Spatially, the high-resolution wind domain must be large
+enough to encompass yawing of the rotor, blade deflection, and motion of
+the support structure (the latter is especially important for floating
+offshore wind turbines). OpenFAST uses a four-dimensional (three space
+dimensions plus one time dimension) interpolation to determine the wind
+local to its analysis nodes.</p>
+<p>The <em>OF</em> module computes several outputs needed for calculating wake
+dynamics (inputs to the <em>WD</em> module). These include:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\hat{x}^\text{Disk}\)</span> – the orientation of the rotor centerline</p></li>
+<li><p><span class="math notranslate nohighlight">\(\vec{p}^\text{Hub}\)</span> – the global position of the rotor center</p></li>
+<li><p><span class="math notranslate nohighlight">\(D^\text{Rotor}\)</span> – the rotor diameter</p></li>
+<li><p><span class="math notranslate nohighlight">\(\gamma^\text{YawErr}\)</span> – the nacelle-yaw error of the rotor</p></li>
+<li><p><span class="math notranslate nohighlight">\(^\text{DiskAvg}V_x^\text{Rel}\)</span> – the rotor-disk-averaged
+relative wind speed (ambient plus wakes of neighboring turbines plus
+turbine motion), normal to the disk</p></li>
+<li><p><span class="math notranslate nohighlight">\(^\text{AzimAvg}C_t\left( r \right)\)</span> – the azimuthally averaged
+thrust-force coefficient (normal to the rotor disk), distributed
+radially, where <span class="math notranslate nohighlight">\(r\)</span> is the radius.</p></li>
+</ul>
+<p>In this manual, an over arrow (<span class="math notranslate nohighlight">\(\vec{\quad}\)</span>) denotes a
+three-component vector and a hat (<span class="math notranslate nohighlight">\(\hat{\quad}\)</span>) denotes a
+three-component unit vector. For clarity in this manual,
+<span class="math notranslate nohighlight">\(\left( r \right)\)</span> is used to denote radial dependence as a
+continuous function, even though the radial dependence is
+stored/computed on a discrete radial finite-difference grid within
+FAST.Farm. Except for <span class="math notranslate nohighlight">\(\gamma^\text{YawErr}\)</span> and
+<span class="math notranslate nohighlight">\(^\text{AzimAvg}C_t\left( r \right)\)</span>, all of the listed variables
+were computed within OpenFAST before the development of FAST.Farm.
+<span class="math notranslate nohighlight">\(\gamma^\text{YawErr}\)</span> is defined as the angle about global <em>Z</em>
+from the rotor centerline to the rotor-disk-averaged relative wind
+velocity (ambient plus wakes of neighboring turbines plus turbine
+motion), both projected onto the horizontal global <em>X-Y</em> plane – see
+<a class="reference internal" href="Introduction.html#ff-wakedefl"><span class="std std-numref">Fig. 4.57</span></a> for an illustration.
+<span class="math notranslate nohighlight">\(^\text{AzimAvg}C_t\left( r \right)\)</span> is computed by
+Equation <a class="reference internal" href="#equation-eq-ct">(4.228)</a></p>
+<div class="math notranslate nohighlight" id="equation-eq-ct">
+<span class="eqno">(4.228)<a class="headerlink" href="#equation-eq-ct" title="Permalink to this equation"></a></span>\[^\text{AzimAvg}C_t\left( r \right)=
+   \frac{\sum\limits_{n_b=1}^{N_b}
+         {\left\{ \hat{x}^\text{Disk} \right\}^T}\vec{f}_{n_b}\left( r \right)}
+      {\frac{1}{2}\rho 2\pi r\left( ^\text{DiskAvg}V_x^\text{Rel} \right)^2}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(N_b\)</span> – number of rotor blades, with <span class="math notranslate nohighlight">\(n_b\)</span> as the blade
+counter such that <span class="math notranslate nohighlight">\(1\le n_b\le N_b\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\left\{ \quad \right\}^T\)</span> – vector transpose</p></li>
+<li><p><span class="math notranslate nohighlight">\(\rho\)</span> – air density</p></li>
+<li><p><span class="math notranslate nohighlight">\(\vec{f}_{n_b}\left( r \right)\)</span> – aerodynamic applied loads <a class="footnote-reference brackets" href="#id38" id="id9">3</a>
+distributed per unit length along a line extending radially outward
+in the plane of the rotor disk for blade <span class="math notranslate nohighlight">\(n_b\)</span>.</p></li>
+</ul>
+<p>The numerator of Equation <a class="reference internal" href="#equation-eq-ct">(4.228)</a> is the aerodynamic
+applied loads distributed per unit length projected normal to the rotor
+disk, i.e., the radially dependent thrust force. The denominator is the
+normalizing factor for the radially dependent thrust coefficient,
+composed of the circumference at the given radius, <span class="math notranslate nohighlight">\(2\pi r\)</span>, and
+the dynamic pressure of the rotor-disk-averaged relative wind speed,
+<span class="math notranslate nohighlight">\(\frac{1}{2}\rho {{\left( ^\text{DiskAvg}V_x^\text{Rel} \right)}^2}\)</span>.</p>
+</div>
+<div class="section" id="wake-dynamics-wd-module">
+<span id="ff-wd"></span><h3><span class="section-number">4.19.7.2.3. </span>Wake Dynamics (WD Module)<a class="headerlink" href="#wake-dynamics-wd-module" title="Permalink to this heading"></a></h3>
+<p>The <em>WD</em> module of FAST.Farm calculates wake dynamics for an individual
+rotor, including wake advection, deflection, and meandering; a near-wake
+correction; and a wake-deficit increment. The near-wake correction
+treats the near-wake (pressure-gradient zone) expansion of the wake
+deficit. The wake-deficit increment shifts the quasi-steady-state
+axisymmetric wake deficit nominally downwind. Each submodel is described
+in the subsections below. There is one instance of the <em>WD</em> module for
+each rotor.</p>
+<p>The wake-dynamics calculations involve many user-specified parameters
+that may depend, e.g., on turbine operation or atmospheric conditions
+that can be calibrated to better match experimental data or HFM, e.g.,
+by running <a class="reference external" href="https://github.com/NatLabRockies/SOWFA">SOWFA</a> (or equivalent) as a
+benchmark. Default values have been derived for each calibrated
+parameter based on <a class="reference external" href="https://github.com/NatLabRockies/SOWFA">SOWFA</a>
+simulations (<span id="id10">[<a class="reference internal" href="zrefs.html#id19" title="P. Doubrawa and et al. Optimization-based calibration of fast.farm parameters against sowfa. In 36th Wind Energy Symposium. Kissimmee, FL, January 2018. AIAA. doi:https://arc.aiaa.org/doi/pdf/10.2514/6.2018-0512.">ff-Deal18</a>]</span>), but these can be
+overwritten by the user of FAST.Farm.</p>
+<p>The wake-deficit evolution is solved in discrete time on an axisymmetric
+finite-difference grid consisting of a fixed number of wake planes,
+<span class="math notranslate nohighlight">\(N_p\)</span> (with <span class="math notranslate nohighlight">\(n_p\)</span> the wake-plane counter such that
+<span class="math notranslate nohighlight">\(0\le n_p\le N_p-1\)</span>).
+A wake plane can be
+thought of as a cross section of the wake wherein the wake deficit is
+calculated.</p>
+<p>Three wake formulations are available forthe evolution of the wake planes.
+The parameter <strong>Mod_Wake</strong> is used to switch between wake formulations.
+There are three options available:</p>
+<p>1) Polar [<strong>Mod_Wake=1</strong>] (default).
+The wake is axi-symmetric, defined on a polar grid,
+solved using an implicit Crank-Nicolson scheme,
+satisfying both the momentum and mass conservation laws under a shear layer approximation.
+Each plane has a fixed radial grid of nodes.
+Because the wake deficit is assumed to be axisymmetric, the radial
+finite-difference grid can be considered a plane.</p>
+<p>2) Curled-wake model [<strong>Mod_Wake=2</strong>].
+The wake is defined on a Cartesian grid,
+the effect of curled wake vorticies in skewed inflow is accounted for by introducing cross-flow velocities, the momentum conservation is solved using a first-order forward Euler scheme,
+mass conservation is not enforced, the effect of wake swirl may be accounted for.
+Each plane has a fixed number of nodes in the y and z direction (of the meandering frame).
+The wake will adopt a “curled” shape in skewed inflow.</p>
+<p>3) Cartesian [<strong>Mod_Wake=3</strong>]
+This corresponds to model 2 with curled-wake vortices of zero intensities, leading to an axi-symmetric wake.
+Swirl effects can be included in this formulation.</p>
+<p>Because the Curl and Cartesian implementations rely on a first-order forward sheme, the implementation is less robust that the Polar implementation.
+An approximate stability criterion for the curled-wake model is given in Equation 20 of the following <a class="reference external" href="https://doi.org/10.5194/wes-6-555-2021">paper</a>). This criterion was adapted to provide the guidelines on <strong>dr</strong> and <strong>DT_Low</strong> given in <a class="reference internal" href="ModelGuidance.html#ff-modguidance"><span class="std std-numref">Section 4.19.6</span></a>.</p>
+<p>The curled-wake model implementation is described in the following <a class="reference external" href="https://onlinelibrary.wiley.com/doi/10.1002/we.2785">reference</a>.</p>
+<p><strong>The rest of this documentation concerns the Polar fomulation</strong>.</p>
+<p>Inputs to the <em>WD</em> module include <span class="math notranslate nohighlight">\(\hat{x}^\text{Disk}\)</span>,
+<span class="math notranslate nohighlight">\(\vec{p}^\text{Hub}\)</span>, <span class="math notranslate nohighlight">\(D^\text{Rotor}\)</span>,
+<span class="math notranslate nohighlight">\(\gamma^\text{YawErr}\)</span>, <span class="math notranslate nohighlight">\(^\text{DiskAvg}V_x^\text{Rel}\)</span>, and
+<span class="math notranslate nohighlight">\(^\text{AzimAvg}C_t\left( r \right)\)</span>. Additional inputs are the
+advection, deflection, and meandering velocity of the wake planes for
+the rotor (<span class="math notranslate nohighlight">\(\vec{V}_{n_p}^\text{Plane}\)</span>); the rotor-disk-averaged
+ambient wind speed, normal to the disk
+(<span class="math notranslate nohighlight">\(^\text{DiskAvg}V_x^\text{Wind}\)</span>); and the ambient turbulence
+intensity of the wind at the rotor (<span class="math notranslate nohighlight">\(TI_\text{Amb}\)</span>) (output from
+the <em>AWAE</em> module – see <a class="reference internal" href="#ff-awae"><span class="std std-numref">Section 4.19.7.2.4</span></a> for more information).
+<span class="math notranslate nohighlight">\(\vec{V}_{n_p}^\text{Plane}\)</span> is computed for
+<span class="math notranslate nohighlight">\(0\le n_p\le N_p-1\)</span> by spatial averaging of the disturbed wind.</p>
+<p>The <em>WD</em> module computes several outputs needed for the calculation of
+disturbed wind, to be used as input to the <em>AWAE</em> module. These outputs
+include:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\hat{x}_{n_p}^\text{Plane}\)</span> – the orientations of the wake
+planes defined using the unit vectors normal to each plane, i.e., the
+orientation of the wake-plane centerline</p></li>
+<li><p><span class="math notranslate nohighlight">\(\vec{p}_{n_p}^\text{Plane}\)</span> – the global positions of the
+centers of the wake planes</p></li>
+<li><p><span class="math notranslate nohighlight">\(V_{x_{n_p}}^\text{Wake}\left(r\right)\)</span> and
+<span class="math notranslate nohighlight">\(V_{r_{n_p}}^\text{Wake}\left(r\right)\)</span> – the axial and radial
+wake-velocity deficits, respectively, at the wake planes, distributed
+radially</p></li>
+<li><p><span class="math notranslate nohighlight">\(D_{n_p}^\text{Wake}\)</span> – the wake diameters at the wake planes,
+each for <span class="math notranslate nohighlight">\(0\le n_p\le N_p-1\)</span>.</p></li>
+</ul>
+<p>Though the details are left out of this manual, during start-up – whereby
+a wake has not yet propagated through all of the wake planes – the number
+of wake planes is limited by the elapsed time to avoid having to set
+inputs, outputs, and states in the <em>WD</em> and <em>AWAE</em> modules beyond where
+the wake has propagated.</p>
+<div class="section" id="wake-advection-deflection-and-meandering">
+<span id="ff-advdefmean"></span><h4><span class="section-number">4.19.7.2.3.1. </span>Wake Advection, Deflection, and Meandering<a class="headerlink" href="#wake-advection-deflection-and-meandering" title="Permalink to this heading"></a></h4>
+<p>By simple extensions to the passive tracer solution for transverse
+(horizontal and vertical) wake meandering, the wake-dynamics solution in
+FAST.Farm is extended to account for wake deflection – as illustrated in
+<a class="reference internal" href="Introduction.html#ff-wakedefl"><span class="std std-numref">Fig. 4.57</span></a> – and wake advection – as illustrated in
+<a class="reference internal" href="Introduction.html#ff-wakeadv"><span class="std std-numref">Fig. 4.58</span></a> – among other physical improvements. The
+following extensions are introduced:</p>
+<ol class="arabic simple">
+<li><p>Calculating the wake plane velocities,
+<span class="math notranslate nohighlight">\(\vec{V}_{n_p}^\text{Plane}\)</span> for <span class="math notranslate nohighlight">\(0\le n_p\le N_p-1\)</span>, by
+spatially averaging the disturbed wind instead of the ambient wind
+(see <a class="reference internal" href="#ff-awae"><span class="std std-numref">Section 4.19.7.2.4</span></a>)</p></li>
+<li><p>Orientating the wake planes with the rotor centerline instead of the
+wind direction</p></li>
+<li><p>Low-pass filtering the local conditions at the rotor, as input to the
+<em>WD</em> module, to account for transients in inflow, turbine control,
+and/or turbine motion instead of considering time-averaged
+conditions.</p></li>
+</ol>
+<p>With these extensions, the passive tracer solution enables:</p>
+<ol class="arabic simple">
+<li><p>The wake centerline to deflect based on inflow skew. This is achieved
+because in skewed inflow, the wake deficit normal to the disk
+introduces a velocity component that is not parallel to the ambient
+flow.</p></li>
+<li><p>The wake to accelerate from near wake to far wake because the wake
+deficits are stronger in the near wake and weaken downwind.</p></li>
+<li><p>The wake-deficit evolution to change based on conditions at the rotor
+because low-pass time filtered conditions are used instead of
+time-averaged.</p></li>
+<li><p>The wake to meander axially in addition to transversely because local
+axial winds are considered.</p></li>
+<li><p>The wake shape to be elliptical instead of circular in skewed flow
+when looking downwind (the wake shape remains circular when looking
+down the rotor centerline).</p></li>
+</ol>
+<p>For item 3, low-pass time filtering is important because the wake reacts
+slowly to changes in local conditions at the rotor and because the wake
+evolution is treated in a quasi-steady-state fashion. Furthermore, a
+correction to the wake deflection resulting from item 1 is needed to
+account for the physical combination of wake rotation and shear, which
+is not modeled directly in the <em>WD</em> module. This is achieved through a
+horizontally asymmetric correction to the wake deflection from item 1
+(see <a class="reference internal" href="Introduction.html#ff-wakedefl"><span class="std std-numref">Fig. 4.57</span></a> for an illustration). This
+horizontal wake-deflection correction is a simple linear correction with
+slope and offset, similar to the correction implemented in the wake
+model of FLORIS. It is important for accurate modeling of
+nacelle-yaw-based wake-redirection (wake-steering) wind farm control.</p>
+<p>Mathematically, the low-pass time filter is implemented using a
+recursive, single-pole filter with exponential
+smoothing (<span id="id11">[<a class="reference internal" href="zrefs.html#id39" title="S. W. Smith. The Scientist and Engineer's Guide to Digital Signal Processing. Californial Technical Publishing, 2006. ISBN 978-0966017632.">ff-Smi06</a>]</span>). The discrete-time recursion
+(difference) equation for this filter
+is (<span id="id12">[<a class="reference internal" href="zrefs.html#id31" title="J. Jonkman and et al. Definition of a 5-mw reference wind turbine for offshore system development. Technical Report NREL/TP-500-38060, National Renewable Energy Laboratory, Golden, CO, February 2009.">ff-Jeal09</a>]</span>):</p>
+<div class="math notranslate nohighlight" id="equation-eq-disc">
+<span class="eqno">(4.229)<a class="headerlink" href="#equation-eq-disc" title="Permalink to this equation"></a></span>\[{x^d_{n_p}}\left[ n+1 \right]={x^d_{n_p}}
+      \left[ n \right]\alpha
+      +{u^d}\left[ n \right]\left( 1-\alpha  \right)
+      \qquad \textrm{for } n_p=0\]</div>
+<p>where</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x^d\)</span> – discrete-time state storing the low-pass time-filtered
+value of input <span class="math notranslate nohighlight">\(u^d\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha=e^{-2\pi \Delta t f_c}\)</span> – low-pass time-filter parameter,
+with a value between 0 (minimum filtering) and 1 (maximum filtering)
+(exclusive)</p></li>
+<li><p><span class="math notranslate nohighlight">\(f_c\)</span> – user-specified cutoff (corner) frequency (the time
+constant of the low-pass time filter is <span class="math notranslate nohighlight">\(\frac{1}{f_c}\)</span>).</p></li>
+</ul>
+<p>Subscript <span class="math notranslate nohighlight">\(n_p\)</span> is used to denote the state associated with
+wake-plane <span class="math notranslate nohighlight">\(n_p\)</span>; Equation <a class="reference internal" href="#equation-eq-disc">(4.229)</a> applies at the
+rotor disk, where <span class="math notranslate nohighlight">\(n_p=0\)</span>.</p>
+<p>To be consistent with the quasi-steady-state treatment of the
+wake-deficit evolution (see <a class="reference internal" href="#ff-deficit"><span class="std std-numref">Section 4.19.7.2.3.3</span></a>), the
+conditions at the rotor are maintained as fixed states of a wake plane
+as the plane propagates downstream</p>
+<div class="math notranslate nohighlight" id="equation-eq-propagation">
+<span class="eqno">(4.230)<a class="headerlink" href="#equation-eq-propagation" title="Permalink to this equation"></a></span>\[x^d_{n_p}[n+1] = x^d_{n_p-1}[n]
+   \qquad \textrm{for } 1 \leq n_p \leq N_p-1\]</div>
+<p>Equations <a class="reference internal" href="#equation-eq-disc">(4.229)</a>
+and <a class="reference internal" href="#equation-eq-propagation">(4.230)</a> apply directly to the <em>WD</em>
+module inputs <span class="math notranslate nohighlight">\(D^\text{Rotor}\)</span> <a class="footnote-reference brackets" href="#id40" id="id13">4</a>,
+<span class="math notranslate nohighlight">\(\gamma^\text{YawErr}\)</span>, <span class="math notranslate nohighlight">\(^\text{DiskAvg}V_x^\text{Rel}\)</span>, and
+<span class="math notranslate nohighlight">\(TI_\text{Amb}\)</span>. The associated states are
+<span class="math notranslate nohighlight">\(^\text{Filt}D_{n_p}^\text{Rotor}\)</span>,
+<span class="math notranslate nohighlight">\(^\text{Filt}\gamma_{n_p}^\text{YawErr}\)</span>,
+<span class="math notranslate nohighlight">\(^\text{FiltDiskAvg}V_{x_{n_p}}^\text{Wind}\)</span>, and
+<span class="math notranslate nohighlight">\(^\text{Filt}TI_{\text{Amb}_{n_p}}\)</span> respectively (each for
+<span class="math notranslate nohighlight">\(0\le n_p\le N_p-1\)</span>). The <em>WD</em> module inputs
+<span class="math notranslate nohighlight">\(^\text{DiskAvg}V_x^\text{Rel}\)</span> and
+<span class="math notranslate nohighlight">\(^\text{AzimAvg}C_t\left( r \right)\)</span> are needed for the boundary
+condition at the rotor, but are not otherwise needed in the wake-deficit
+evolution calculation and are therefore not propagated downstream with
+the wake planes. Therefore, Equation <a class="reference internal" href="#equation-eq-disc">(4.229)</a> applies to
+these inputs but Equation <a class="reference internal" href="#equation-eq-propagation">(4.230)</a> does
+not. The associated states are <span class="math notranslate nohighlight">\(^\text{FiltDiskAvg}V_x^\text{Rel}\)</span>
+and <span class="math notranslate nohighlight">\(^\text{FiltAzimAvg}C_t\left( r \right)\)</span>. Likewise, only
+Equation <a class="reference internal" href="#equation-eq-disc">(4.229)</a> is used to low-pass time filter the
+<em>WD</em> module input <span class="math notranslate nohighlight">\(\vec{V}_{n_p}^\text{Plane}\)</span> with state
+<span class="math notranslate nohighlight">\(^\text{Filt}\vec{V}_{n_p}^\text{Plane}\)</span> (for
+<span class="math notranslate nohighlight">\(0\le n_p\le N_p-1\)</span>). Equations <a class="reference internal" href="#equation-eq-disc">(4.229)</a>
+and <a class="reference internal" href="#equation-eq-propagation">(4.230)</a> apply in a modified form to
+the <em>WD</em> module inputs <span class="math notranslate nohighlight">\(\hat{x}^\text{Disk}\)</span> and
+<span class="math notranslate nohighlight">\(\vec{p}^\text{Hub}\)</span> to derive the state associated with the
+downwind distance from the rotor to each wake plane in the axisymmetric
+coordinate system (<span class="math notranslate nohighlight">\(x_{n_p}^\text{Plane}\)</span>), and the states and
+outputs associated with the orientations of the wake planes, normal to
+the planes, (<span class="math notranslate nohighlight">\(\hat{x}_{n_p}^\text{Plane}\)</span>), and the global center
+positions of the wake planes, (<span class="math notranslate nohighlight">\(\vec{p}_{n_p}^\text{Plane}\)</span>) as
+follows:</p>
+<div class="math notranslate nohighlight" id="equation-eq-6-6">
+<span class="eqno">(4.231)<a class="headerlink" href="#equation-eq-6-6" title="Permalink to this equation"></a></span>\[\begin{split}\hat{x}_{n_p}^\text{Plane}\left[ n+1 \right]=
+   \begin{cases}
+      \frac{\hat{x}_{n_p}^\text{Plane}\left[ n \right]\alpha +\hat{x}^\text{Disk}\left( 1-\alpha \right)}
+         {\left\| \hat{x}_{n_p}^\text{Plane}\left[ n \right]\alpha +\hat{x}^\text{Disk}\left( 1-\alpha \right) \right\|_2}
+         &amp;\qquad\textrm{for}~n_p=0  \\
+      \\
+      \hat{x}_{n_p-1}^\text{Plane}\left[ n \right]
+         &amp;\qquad\textrm{for}~1\le n_p\le N_p-1  \\
+   \end{cases}\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-6-7">
+<span class="eqno">(4.232)<a class="headerlink" href="#equation-eq-6-7" title="Permalink to this equation"></a></span>\[\begin{split}x_{n_p}^\text{Plane}\left[ n+1 \right]=
+   \begin{cases}
+      0  &amp;\qquad\textrm{for}~n_p=0 \\
+      \\
+      x_{n_p-1}^\text{Plane}\left[ n \right]+|d\hat{x}_{n_p-1}|
+         &amp;\qquad\textrm{for}~1\le n_p\le N_p-1 \\
+   \end{cases}\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-6-8">
+<span class="eqno">(4.233)<a class="headerlink" href="#equation-eq-6-8" title="Permalink to this equation"></a></span>\[\begin{split}\vec{p}_{n_p}^\text{Plane}\left[ n+1 \right]=
+   \begin{cases}
+      \begin{aligned}[l]
+      &amp;\vec{p}_{n_p}^\text{Plane}\left[ n \right]\alpha + \left\{ \vec{p}^\text{Hub}\left[ n \right]\right. \\
+      &amp;\qquad   + \left.\left( C_\text{HWkDfl}^\text{O}+C_\text{HWkDfl}^\text{OY}~^\text{Filt}\gamma _{n_p}^\text{YawErr}\left[ n+1 \right] \right)\widehat{XY_{n_p}} \right\}\left( 1-\alpha \right)
+      \end{aligned}
+      &amp; \textrm{for}~ n_p=0 \\
+      \\
+      \begin{aligned}[l]
+      &amp;\vec{p}_{n_p-1}^\text{Plane}\left[ n \right] + \hat{x}_{n_p-1}^\text{Plane}\left[ n \right]\ d\hat{x}_{n_p-1} \\
+      &amp;\qquad   +\left[ I-\hat{x}_{n_p-1}^\text{Plane}\left[ n \right]{{\left\{ \hat{x}_{n_p-1}^\text{Plane}\left[ n \right] \right\}}^T} \right]\vec{V}_{n_p-1}^\text{Plane}\Delta t    \\
+      &amp;\qquad   +\left( \left( C_\text{HWkDfl}^\text{x}+C_\text{HWkDfl}^\text{xY}\ ^\text{Filt}\gamma _{n_p-1}^\text{YawErr}\left[ n \right] \right)d\hat{x}_{n_p-1} \right)\widehat{XY_{n_p-1}}
+      \end{aligned}
+      &amp; \textrm{for}~ 1\le n_p\le N_p-1 \\
+   \end{cases}\end{split}\]</div>
+<p>where:</p>
+<div class="math notranslate nohighlight" id="equation-eq-6-9">
+<span class="eqno">(4.234)<a class="headerlink" href="#equation-eq-6-9" title="Permalink to this equation"></a></span>\[d\hat{x}_{n_p-1}=\left\{ \hat{x}_{n_p-1}^\text{Plane}\left[ n \right] \right\}^T\ ^\text{Filt}\vec{V}_{n_p-1}^\text{Plane}\left[ n+1 \right]\Delta t\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-6-10">
+<span class="eqno">(4.235)<a class="headerlink" href="#equation-eq-6-10" title="Permalink to this equation"></a></span>\[\widehat{XY_{n_p}}=\left\{ \frac{\left( \left\{ \hat{x}_{n_p}^\text{Plane}\left[ n+1 \right] \right\}^T\hat{X} \right)\hat{Y}-\left( \left\{ \hat{x}_{n_p}^\text{Plane}\left[ n+1 \right] \right\}^T\hat{Y} \right)\hat{X}}{\left\| \left( \left\{ \hat{x}_{n_p}^\text{Plane}\left[ n+1 \right] \right\}^T\hat{X} \right)\hat{X}+\left( \left\{ \hat{x}_{n_p}^\text{Plane}\left[ n+1 \right] \right\}^T\hat{Y} \right)\hat{Y} \right\|_2} \right\}\]</div>
+<p>Equation <a class="reference internal" href="#equation-eq-6-6">(4.231)</a> differs from
+Equations <a class="reference internal" href="#equation-eq-disc">(4.229)</a>
+and <a class="reference internal" href="#equation-eq-propagation">(4.230)</a> in that after applying
+Equation <a class="reference internal" href="#equation-eq-disc">(4.229)</a> to low-pass time-filter input
+<span class="math notranslate nohighlight">\(\hat{x}^\text{Disk}\)</span>, the state is renormalized to ensure that
+the vector remains unit length; Equation <a class="reference internal" href="#equation-eq-6-6">(4.231)</a> ensures
+that the wake-plane orientation is maintained as the planes propagate
+nominally downwind. Equation <a class="reference internal" href="#equation-eq-6-7">(4.232)</a> expresses that each
+wake plane propagates downwind in the axisymmetric coordinate system by
+a distance equal to that traveled by the low-pass time-filtered
+wake-plane velocity projected along the plane orientation over the time
+step; <a class="footnote-reference brackets" href="#id41" id="id14">5</a> the initial wake plane (<span class="math notranslate nohighlight">\(n_p=0\)</span>) is always at the rotor
+disk. Equation <a class="reference internal" href="#equation-eq-6-8">(4.233)</a> expresses the global center
+positions of the wake plane following the passive tracer concept,
+similar to Equation <a class="reference internal" href="#equation-eq-6-7">(4.232)</a>, but considering the full
+three-component movement of the wake plane, including deflection and
+meandering. The last term on the right-hand side of
+Equation <a class="reference internal" href="#equation-eq-6-8">(4.233)</a> for each wake plane is the horizontal
+wake-deflection correction, where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(C_{HWkDfl}^\text{O}\)</span> – user-specified parameter defining the
+horizontal offset at the rotor</p></li>
+<li><p><span class="math notranslate nohighlight">\(C_{HWkDfl}^\text{OY}\)</span> – user-specified parameter defining the
+horizontal offset at the rotor scaled with nacelle-yaw error</p></li>
+<li><p><span class="math notranslate nohighlight">\(C_{HWkDfl}^\text{x}\)</span> – user-specified parameter defining the
+horizontal offset scaled with downstream distance</p></li>
+<li><p><span class="math notranslate nohighlight">\(C_{HWkDfl}^\text{xY}\)</span> – user-specified parameter defining the
+horizontal offset scaled with downstream distance and nacelle-yaw
+error</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{X}\)</span>, <span class="math notranslate nohighlight">\(\hat{Y}\)</span>, and <span class="math notranslate nohighlight">\(\hat{Z}\)</span> – unit vectors
+parallel to the inertial-frame coordinates <em>X</em>, <em>Y</em> and, <em>Z</em>
+respectively</p></li>
+<li><p><span class="math notranslate nohighlight">\(\widehat{XY_{np}}\)</span> – three-component unit vector in the
+horizontal global <em>X-Y</em> plane orthogonal to
+<span class="math notranslate nohighlight">\(\hat{x}^\text{Plane}_{n_p}\left[ n+1 \right]\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(C_\text{HWkDfl}^\text{O}+C_\text{HWkDfl}^\text{OY} \ ^\text{Filt}\gamma _{n_p}^\text{YawErr}\left[ n+1 \right]\)</span> – offset
+at the rotor</p></li>
+<li><p><span class="math notranslate nohighlight">\(C_\text{HWkDfl}^\text{x}+C_\text{HWkDfl}^\text{xY} \ ^\text{Filt}\gamma _{n_p}^\text{YawErr}\left[ n+1 \right]\)</span> – slope</p></li>
+<li><p><span class="math notranslate nohighlight">\(d\hat{x}_{n_p-1}\)</span> – nominally downwind increment of the wake
+plane (from Equation <a class="reference internal" href="#equation-eq-6-7">(4.232)</a>)</p></li>
+<li><p><em>I</em> – three-by-three identity matrix</p></li>
+<li><p><span class="math notranslate nohighlight">\(\left[ I-\hat{x}_{n_p-1}^\text{Plane}\left[ n \right]\left\{ \hat{x}_{n_p-1}^\text{Plane}\left[ n \right] \right\}^T \right]\)</span> – used
+to calculate the transverse component of
+<span class="math notranslate nohighlight">\(V^\text{Plane}_{n_p-1}\)</span> normal to
+<span class="math notranslate nohighlight">\(\hat{x}^\text{Plane}_{n_p-1}\left[ n\right]\)</span>.</p></li>
+</ul>
+<p>It is noted that the advection, deflection, and meandering velocity of
+the wake planes, <span class="math notranslate nohighlight">\(\vec{V}^\text{Plane}_{n_p-1}\)</span>, is low-pass time
+filtered in the axial direction, but not in the transverse direction.
+Low-pass time filtering in the axial direction is useful for minimizing
+how often wake planes get close to or pass each other while they travel
+axially; this filtering is not needed transversely because an
+appropriate transverse meandering velocity is achieved through spatially
+averaging the disturbed wind (see <a class="reference internal" href="#ff-awae"><span class="std std-numref">Section 4.19.7.2.4</span></a>).</p>
+<p>The consistent output equation corresponding to the low-pass time filter
+of Equation <a class="reference internal" href="#equation-eq-disc">(4.229)</a> is
+<span class="math notranslate nohighlight">\(y^d\left[ n \right]={x^d}\left[ n \right]\alpha +{u^d}\left[ n \right]\left( 1-\alpha \right)\)</span>,
+i.e., <span class="math notranslate nohighlight">\({Y^d(\quad)}=X^d(\quad)\)</span>, or equivalently,
+<span class="math notranslate nohighlight">\(y^d\left[ n \right]=x^d\left[ n+1 \right]\)</span> (<span id="id15">[<a class="reference internal" href="zrefs.html#id31" title="J. Jonkman and et al. Definition of a 5-mw reference wind turbine for offshore system development. Technical Report NREL/TP-500-38060, National Renewable Energy Laboratory, Golden, CO, February 2009.">ff-Jeal09</a>]</span>).
+However, the output is delayed by one time step (<span class="math notranslate nohighlight">\(\Delta t\)</span>) to
+avoid having direct feedthrough of input to output within the <em>WD</em>
+module, yielding <span class="math notranslate nohighlight">\(y^d\left[ n \right]=x^d\left[ n \right]\)</span>. This
+one-time-step delay is applied to all outputs of the <em>WD</em> module and is
+not expected to be problematic because of the slow timescales solved
+within FAST.Farm.</p>
+</div>
+<div class="section" id="near-wake-correction">
+<span id="ff-snearwake"></span><h4><span class="section-number">4.19.7.2.3.2. </span>Near-Wake Correction<a class="headerlink" href="#near-wake-correction" title="Permalink to this heading"></a></h4>
+<p>The near-wake correction submodel of the <em>WD</em> module computes the axial
+and radial wake-velocity deficits at the rotor disk as an inlet boundary
+condition for the wake-deficit evolution described in
+<a class="reference internal" href="#ff-deficit"><span class="std std-numref">Section 4.19.7.2.3.3</span></a>. To improve the accuracy of the far-wake
+solution, the near-wake correction accounts for the drop in wind speed
+and radial expansion of the wake in the pressure-gradient zone behind
+the rotor that is not otherwise accounted for in the solution for the
+wake-deficit evolution. For clarity, the equations in this section are
+expressed using continuous variables, but within FAST.Farm the equations
+are solved discretely on an axisymmetric finite-difference grid.</p>
+<p>The near-wake correction is computed differently for low thrust
+conditions (<span class="math notranslate nohighlight">\(C_T&lt;\frac{24}{25}\)</span>), momentum theory is valid, and
+high thrust conditions (<span class="math notranslate nohighlight">\(1.1&lt;C_T \le 2\)</span>), where <span class="math notranslate nohighlight">\(C_T\)</span> is the
+rotor disk-averaged thrust coefficient, derived from the low-pass
+time-filtered azimuthally averaged thrust-force coefficient (normal to
+the rotor disk), <span class="math notranslate nohighlight">\(^\text{FiltAzimAvg}{C_t}\left( r \right)\)</span>,
+evaluated at <span class="math notranslate nohighlight">\(n+1\)</span>. The propeller brake region occurs for very
+high thrust-force coefficients (<span class="math notranslate nohighlight">\(C_T \ge 2\)</span>) and is not
+considered. Between the low and high thrust regions, a linear blending
+of the two solutions, based on <span class="math notranslate nohighlight">\(C_T\)</span>, is implemented.</p>
+<p>At low thrust (<span class="math notranslate nohighlight">\(C_T&lt;\frac{24}{25}\)</span>) conditions, the axial
+induction at the rotor disk, distributed radially,
+<span class="math notranslate nohighlight">\(a\left( r\right)\)</span>, is derived from the low-pass time-filtered
+azimuthally averaged thrust-force coefficient (normal to the rotor
+disk), <span class="math notranslate nohighlight">\(^\text{FiltAzimAvg}{C_t}\left( r \right)\)</span>, evaluated at
+<span class="math notranslate nohighlight">\(n+1\)</span> using Equation <a class="reference internal" href="#equation-eq-ar">(4.236)</a>, which follows from the
+momentum region of blade-element momentum (BEM) theory.</p>
+<div class="math notranslate nohighlight" id="equation-eq-ar">
+<span class="eqno">(4.236)<a class="headerlink" href="#equation-eq-ar" title="Permalink to this equation"></a></span>\[a\left( r \right)=\frac{1}{2}\left( 1-\sqrt{1-MIN \Big[^\text{FiltAzimAvg}C_t\left( r \right),\frac{24}{25} \Big]} \right)\]</div>
+<p>To avoid unrealistically high induction at the ends of a blade,
+Equation <a class="reference internal" href="#equation-eq-ar">(4.236)</a> does not directly consider hub- or
+tip-loss corrections, but these may be accounted for in the calculation
+of the applied aerodynamic loads within OpenFAST (depending on the
+aerodynamic options enabled within OpenFAST), which have an effect on
+<span class="math notranslate nohighlight">\(^\text{FiltAzimAvg}C_t\left( r \right)\)</span>. Moreover,
+<span class="math notranslate nohighlight">\(^\text{FiltAzimAvg}{C_t}\left( r \right)\)</span> is capped at
+<span class="math notranslate nohighlight">\(\frac{24}{25}\)</span> to avoid ill-conditioning of the radial wake
+expansion discussed next.</p>
+<p>The states and outputs associated with the axial and radial
+wake-velocity deficits, distributed radially
+(<span class="math notranslate nohighlight">\(V_{x_{n_p}}^\text{Wake}\left(r\right)\)</span> and
+<span class="math notranslate nohighlight">\(V_{r_{n_p}}^\text{Wake}\left(r\right)\)</span>), are derived at the rotor
+disk (<span class="math notranslate nohighlight">\(n_p = 0\)</span>) from <span class="math notranslate nohighlight">\(a\left( r\right)\)</span> and the low-pass
+time-filtered rotor-disk-averaged relative wind speed (ambient plus
+wakes of neighboring turbines plus turbine motion), normal to the disk
+(<span class="math notranslate nohighlight">\(^\text{FiltDiskAvg}V_x^\text{Rel}\)</span>), evaluated at <span class="math notranslate nohighlight">\(n+1\)</span>
+using Equations <a class="reference internal" href="#equation-eq-vwake-xatrotor">(4.237)</a>
+and <a class="reference internal" href="#equation-eq-vwake-ratrotor">(4.238)</a>.</p>
+<div class="math notranslate nohighlight" id="equation-eq-vwake-xatrotor">
+<span class="eqno">(4.237)<a class="headerlink" href="#equation-eq-vwake-xatrotor" title="Permalink to this equation"></a></span>\[V^\text{Wake}_{x_{n_p}}(r^\text{Plane})|_{n_p=0} = -^\text{FiltDiskAvg}V^\text{Rel}_x C_\text{NearWake} a(r)\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-vwake-ratrotor">
+<span class="eqno">(4.238)<a class="headerlink" href="#equation-eq-vwake-ratrotor" title="Permalink to this equation"></a></span>\[V^\text{Wake}_{r_{n_p}}(r^\text{Plane})|_{n_p=0} = 0\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[r^\text{Plane}=\sqrt{2 \int\limits_0^r  \frac{1-a(r')}{1-C_\text{NearWake} a(r')} r' \ dr'}\]</div>
+<p>In Equation <a class="reference internal" href="#equation-eq-vwake-xatrotor">(4.237)</a>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(r^\text{Plane}\)</span> – radial expansion of the wake associated with
+<span class="math notranslate nohighlight">\(r\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(r'\)</span> – dummy variable of <span class="math notranslate nohighlight">\(r\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(C_\text{NearWake}\)</span> – user-specified calibration parameter
+greater than unity and less than <span class="math notranslate nohighlight">\(2.5\)</span> which determines how far
+the wind speed drops and wake expands radially in the
+pressure-gradient zone before recovering in the far wake. <a class="footnote-reference brackets" href="#id42" id="id16">6</a></p></li>
+</ul>
+<p>The right-hand side of Equation <a class="reference internal" href="#equation-eq-vwake-xatrotor">(4.237)</a>
+represents the axial-induced velocity at the end of the
+pressure-gradient zone; the negative sign appears because the axial wake
+deficit is in the opposite direction of the free stream axial wind – see
+<a class="reference internal" href="#ff-deficit"><span class="std std-numref">Section 4.19.7.2.3.3</span></a> for more information. The radial
+expansion of the wake in the left-hand side of
+Equation <a class="reference internal" href="#equation-eq-vwake-xatrotor">(4.237)</a> results from the
+application of the conservation of mass within an incremental annulus in
+the pressure-gradient zone. <a class="footnote-reference brackets" href="#id43" id="id17">7</a> The radial wake deficit is initialized
+to zero, as given in Equations <a class="reference internal" href="#equation-eq-vwake-ratrotor">(4.238)</a>.
+Because the near-wake correction is applied directly at the rotor disk,
+the solution to the wake-deficit evolution for downwind distances within
+the first few diameters of the rotor, i.e., in the near wake, is not
+expected to be accurate; as a result, modifications to FAST.Farm would
+be needed to accurately model closely spaced wind farms.</p>
+<p>At high thrust (<span class="math notranslate nohighlight">\(1.1&lt;C_T \le 2\)</span>) conditions, the axial
+wake-velocity deficit, distributed radially
+(<span class="math notranslate nohighlight">\(V_{x_{n_p}}^\text{Wake}\left(r\right)\)</span>), is derived at the rotor
+disk (<span class="math notranslate nohighlight">\(n_p = 0\)</span>) by a Gaussian fit to LES solutions at high thrust
+per Equation <a class="reference internal" href="#equation-eq-vwake-xatrotor-high">(4.239)</a>, as
+derived by <span id="id18">[<a class="reference internal" href="zrefs.html#id6" title="L. A. Martinez-Tossas. Wind turbine wakes: high-thrust coefficient. Wind Energy, 2021. Publication pending.">ff-MT21</a>]</span>. The radial wake deficit is
+again initialized to zero.</p>
+<div class="math notranslate nohighlight" id="equation-eq-vwake-xatrotor-high">
+<span class="eqno">(4.239)<a class="headerlink" href="#equation-eq-vwake-xatrotor-high" title="Permalink to this equation"></a></span>\[V^\text{Wake}_{x_{n_p}}(r)|_{n_p=0} = -\mu(C_T) ^\text{FiltDiskAvg}V^\text{Rel}_x e^{-\Big(\frac{r}{\sigma(C_T)^\text{Filt}D_{n_p}^\text{Rotor}|_{n_p=0}}\Big)^2}\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[\mu(C_T)=\frac{0.3}{2C_T^2-1}+\frac{1}{5}\]</div>
+<div class="math notranslate nohighlight">
+\[\sigma(C_T)=\frac{C_T}{2}+\frac{4}{25}\]</div>
+</div>
+<div class="section" id="wake-deficit-increment">
+<span id="ff-deficit"></span><h4><span class="section-number">4.19.7.2.3.3. </span>Wake-Deficit Increment<a class="headerlink" href="#wake-deficit-increment" title="Permalink to this heading"></a></h4>
+<p>As with most DWM implementations, the <em>WD</em> module of FAST.Farm models
+the wake-deficit evolution via the thin shear-layer approximation of the
+Reynolds-averaged Navier-Stokes equations under quasi-steady-state
+conditions in axisymmetric coordinates, with turbulence closure captured
+by using an eddy-viscosity
+formulation (<span id="id19">[<a class="reference internal" href="zrefs.html#id12" title="J. F. Ainslie. Calculating the flowfield in the wake of wind turbines. Journal of Wind Engineering and Industrial Aerodynamics, 27:213-224, 1988. doi:https://doi.org/10.1016/0167-6105(88)90037-2.">ff-Ain88</a>]</span>). The thin shear-layer
+approximation drops the pressure term and assumes that the velocity
+gradients are much bigger in the radial direction than in the axial
+direction. With these simplifications, analytical expressions for the
+conservation of momentum (Equation <a class="reference internal" href="#equation-eq-6-16">(4.240)</a>) and
+conservation of mass (continuity, Equation <a class="reference internal" href="#equation-eq-6-17">(4.241)</a>) are
+as follows:</p>
+<div class="math notranslate nohighlight" id="equation-eq-6-16">
+<span class="eqno">(4.240)<a class="headerlink" href="#equation-eq-6-16" title="Permalink to this equation"></a></span>\[\begin{split}\begin{aligned}
+&amp;   V_x\frac{\partial V_x}{\partial x}+V_r\frac{\partial V_x}{\partial r}=\frac{1}{r}\frac{\partial }{\partial r}\left( r \nu _T\frac{\partial V_x}{\partial r} \right),\\
+&amp;   \qquad\qquad \textrm{or equivalently, }\\
+&amp;   r V_x\frac{\partial V_x}{\partial x}+rV_r\frac{\partial V_x}{\partial r}={\nu_T}\frac{\partial V_x}{\partial r}+r{\nu_T}\frac{\partial^2V_x}{\partial r^2}+r\frac{\partial \nu_T}{\partial r}\frac{\partial V_x}{\partial r}
+\end{aligned}\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-6-17">
+<span class="eqno">(4.241)<a class="headerlink" href="#equation-eq-6-17" title="Permalink to this equation"></a></span>\[\frac{\partial V_x}{\partial x}+\frac{1}{r}\frac{\partial}{\partial r} \left(r V_r \right)=0\quad \textrm{, or equivalently, }\quad V_r+r\frac{\partial V_r}{\partial r}+r\frac{\partial V_x}{\partial x}=0\]</div>
+<p>where <span class="math notranslate nohighlight">\(V_x\)</span> and <span class="math notranslate nohighlight">\(V_r\)</span> are the axial and radial velocities in
+the axisymmetric coordinate system, respectively, and <span class="math notranslate nohighlight">\(\nu_T\)</span> is
+the eddy viscosity (all dependent on <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(r\)</span>). The
+equations on the left are written in a form common in literature. The
+equivalent equations on the right are written in the form implemented
+within FAST.Farm. For clarity, the equations in this section are first
+expressed using continuous variables, but within FAST.Farm the equations
+are solved discretely on an axisymmetric finite-difference grid
+consisting of a fixed number of wake planes, as summarized at the end of
+this section. For the continuous variables, subscript <span class="math notranslate nohighlight">\(n_p\)</span>,
+corresponding to wake plane <span class="math notranslate nohighlight">\(n_p\)</span>, is replaced with
+<span class="math notranslate nohighlight">\(\left( x \right)\)</span>. The subscript is altogether dropped for
+variables that remain constant as the wake propagates downstream,
+following Equation <a class="reference internal" href="#equation-eq-propagation">(4.230)</a>. For example,
+<span class="math notranslate nohighlight">\(^\text{Filt}D_{n_p}^\text{Rotor}\)</span>,
+<span class="math notranslate nohighlight">\(^\text{FiltDiskAvg}V_{x_{n_p}}^\text{Wind}\)</span>, and
+<span class="math notranslate nohighlight">\(^\text{Filt}TI_{\text{Amb}_{n_p}}\)</span> are written as
+<span class="math notranslate nohighlight">\(^\text{Filt}D^\text{Rotor}\)</span>,
+<span class="math notranslate nohighlight">\(^\text{FiltDiskAvg}V_{x}^\text{Wind}\)</span>, and
+<span class="math notranslate nohighlight">\(^\text{Filt}TI_\text{Amb}\)</span>, respectively.</p>
+<p><span class="math notranslate nohighlight">\(V_x\)</span> and <span class="math notranslate nohighlight">\(V_r\)</span> are related to the low-pass time-filtered
+rotor-disk-averaged ambient wind speed, normal to the disk
+(<span class="math notranslate nohighlight">\(^\text{FiltDiskAvg}V_{x}^\text{Wind}\)</span>), and the states and
+outputs associated with radially distributed axial and radial
+wake-velocity deficits, <span class="math notranslate nohighlight">\(V^\text{Wake}_x(x,r)\)</span> and
+<span class="math notranslate nohighlight">\(V^\text{Wake}_r(x,r)\)</span>, respectively, by Equations <a class="reference internal" href="#equation-eq-vx">(4.242)</a>
+and <a class="reference internal" href="#equation-eq-vr">(4.243)</a>.</p>
+<div class="math notranslate nohighlight" id="equation-eq-vx">
+<span class="eqno">(4.242)<a class="headerlink" href="#equation-eq-vx" title="Permalink to this equation"></a></span>\[V_x(x,r) =\ ^\text{FiltDiskAvg}V^\text{Wind}_x + V^\text{Wake}_x(x,r)\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-vr">
+<span class="eqno">(4.243)<a class="headerlink" href="#equation-eq-vr" title="Permalink to this equation"></a></span>\[V_r(x,r) = V^\text{Wake}_r(x,r)\]</div>
+<p><span class="math notranslate nohighlight">\(V_x(x,r)\)</span> and <span class="math notranslate nohighlight">\(V_r(x,r)\)</span> can be thought of as the change in
+wind velocity in the wake relative to free stream; therefore,
+<span class="math notranslate nohighlight">\(V^\text{Wake}_x(x,r)\)</span> usually has a negative value. Several
+variations of the eddy-viscosity formulation have been used in prior
+implementations of DWM. The eddy-viscosity formulation currently
+implemented within FAST.Farm is given by
+Equation <a class="reference internal" href="#equation-eq-eddyviscosity">(4.244)</a>.</p>
+<div class="math notranslate nohighlight" id="equation-eq-eddyviscosity">
+<span class="eqno">(4.244)<a class="headerlink" href="#equation-eq-eddyviscosity" title="Permalink to this equation"></a></span>\[\begin{split}\begin{split}
+    \nu_T(x,r) = &amp;F_{\nu \text{Amb}}(x) k_{\nu \text{Amb}}\ ^\text{Filt}TI_\text{Amb}\ ^\text{FiltDiskAvg}V^\text{Wind}_x \frac{^\text{Filt}D^\text{Rotor}}{2} \\+&amp;
+    F_{\nu \text{Shr}}(x) k_{\nu \text{Shr}} MAX\Bigg[ \Bigg(\frac{D^\text{Wake}(x)}{2}\Bigg)^2 \Bigg|\frac{\partial V_x}{\partial r}(x,r)\Bigg|, \frac{D^\text{Wake}(x)}{2} MIN\Big|_r\{V_x(x,r)\} \Bigg]
+\end{split}\end{split}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(F_{\nu \text{Amb}}(x)\)</span> – filter function associated with ambient
+turbulence</p></li>
+<li><p><span class="math notranslate nohighlight">\(F_{\nu \text{Shr}}(x)\)</span> – filter function associated with the
+wake shear layer</p></li>
+<li><p><span class="math notranslate nohighlight">\(k_{\nu \text{Amb}}\)</span> – user-specified calibration parameters
+weighting the influence of ambient turbulence on the eddy viscosity</p></li>
+<li><p><span class="math notranslate nohighlight">\(k_{\nu \text{Shr}}\)</span> – user-specified calibration parameters
+weighting the influence of the wake shear layer on the eddy viscosity</p></li>
+<li><p><span class="math notranslate nohighlight">\(\frac{D^\text{Wake}(x)}{2}\)</span> – wake half-width</p></li>
+<li><p><span class="math notranslate nohighlight">\(|\frac{\partial V_x}{\partial r}|\)</span> – absolute value of the
+radial gradient of the axial velocity</p></li>
+<li><p><span class="math notranslate nohighlight">\(MIN|_r(V_x(x,r))\)</span> – used to denote the minimum value of
+<span class="math notranslate nohighlight">\(V_x\)</span> along the radius for a given downstream distance.</p></li>
+</ul>
+<p>Although not matching any specific eddy-viscosity formulation found in
+prior implementations of DWM, the chosen implementation within FAST.Farm
+is simple to apply and inherently tailorable, allowing the user to
+properly calibrate the wake evolution to known solutions. The
+eddy-viscosity formulation expresses the influence of the ambient
+turbulence (first term on the right-hand side) and wake shear layer
+(second term) on the turbulent stresses in the wake. The dependence of
+the eddy viscosity on <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(r\)</span> is explicitly given in
+Equations <a class="reference internal" href="#equation-eq-eddyviscosity">(4.244)</a> to make it clear which
+terms depend on the downwind distance and/or radius. The first term on
+the right-hand side of Equations <a class="reference internal" href="#equation-eq-eddyviscosity">(4.244)</a> is
+similar to that given by <span id="id20">[<a class="reference internal" href="zrefs.html#id15" title="H. A. Madsen and et al. Calibration and validation of the dynamic wake meandering model for implementation in an aeroelastic code. Journal of Solar Energy Engineering, November 2010. doi:https://doi.org/10.1115/1.4002555.">ff-Meal10</a>]</span> with a
+characteristic length taken to be the rotor radius,
+<span class="math notranslate nohighlight">\(\frac{^\text{Filt}D^\text{Rotor}}{2}\)</span>. The second term is similar
+to that given by <span id="id21">[<a class="reference internal" href="zrefs.html#id10" title="R.-E. Keck and et al. A Consistent Turbulence Formulation for the Dynamic Wake Meandering Model in the Atmospheric Boundary Layer. Phd thesis, DTU, Denmark, 2013.">ff-Keal13</a>]</span>, but without consideration
+of atmospheric shear, which is considered by the <em>AWAE</em> module in the
+definition of ambient turbulence – see <a class="reference internal" href="#ff-awae"><span class="std std-numref">Section 4.19.7.2.4</span></a> for more
+information. In this second term, the characteristic length is taken to
+be the wake half-width and the <span class="math notranslate nohighlight">\(MAX(\quad)\)</span> operator is used to
+denote the maximum of the two wake shear-layer methods. The second
+shear-layer method is needed to avoid underpredicting the turbulent
+stresses from the first method at radii where the radial gradient of the
+axial velocity approaches zero.</p>
+<p>The filter functions currently implemented within FAST.Farm are given by
+Equations <a class="reference internal" href="#equation-eq-famb">(4.245)</a> and <a class="reference internal" href="#equation-eq-fshr">(4.246)</a>, where
+<span class="math notranslate nohighlight">\(C_{\nu \text{Amb}}^{DMax}\)</span>, <span class="math notranslate nohighlight">\(C_{\nu \text{Amb}}^{DMin}\)</span>,
+<span class="math notranslate nohighlight">\(C_{\nu \text{Amb}}^{Exp}\)</span>, <span class="math notranslate nohighlight">\(C_{\nu \text{Amb}}^{FMin}\)</span>,
+<span class="math notranslate nohighlight">\(C_{\nu \text{Shr}}^{DMax}\)</span>, <span class="math notranslate nohighlight">\(C_{\nu \text{Shr}}^{DMin}\)</span>,
+<span class="math notranslate nohighlight">\(C_{\nu \text{Shr}}^{Exp}\)</span>, and <span class="math notranslate nohighlight">\(C_{\nu \text{Shr}}^{FMin}\)</span>
+are user-specified calibration parameters for the functions associated
+with ambient turbulence and the wake shear layer, respectively.</p>
+<div class="math notranslate nohighlight" id="equation-eq-famb">
+<span class="eqno">(4.245)<a class="headerlink" href="#equation-eq-famb" title="Permalink to this equation"></a></span>\[\begin{split}F_{\nu \text{Amb}}\left( x \right)=
+   \begin{cases}
+      C_{\nu \text{Amb}}^\text{FMin} &amp; \textrm{for } x\le C_{\nu \text{Amb}}^\text{DMin}\ ^\text{Filt}D^\text{Rotor}  \\
+      \\
+      C_{\nu \text{Amb}}^\text{FMin}+\left( 1-C_{\nu \text{Amb}}^\text{FMin} \right){{\left[ \frac{\frac{x}{^\text{Filt}D^\text{Rotor}}-C_{\nu \text{Amb}}^\text{DMin}}{C_{\nu \text{Amb}}^\text{DMax}-C_{\nu \text{Amb}}^\text{DMin}} \right]}^{C_{\nu \text{Amb}}^\text{Exp}}} &amp; \textrm{for } C_{\nu \text{Amb}}^\text{DMin}\ ^\text{Filt}D^\text{Rotor}&lt;x&lt;C_{\nu \text{Amb}}^\text{DMax}\ ^\text{Filt}D^\text{Rotor}  \\
+      \\
+      1 &amp; \textrm{for } x\ge C_{\nu \text{Amb}}^\text{DMax}\ ^\text{Filt}D^\text{Rotor}  \\
+   \end{cases}\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-fshr">
+<span class="eqno">(4.246)<a class="headerlink" href="#equation-eq-fshr" title="Permalink to this equation"></a></span>\[\begin{split}F_{\nu \text{Shr}}\left( x \right)=
+   \begin{cases}
+      C_{\nu \text{Shr}}^\text{FMin} &amp; \textrm{for } x\le C_{\nu \text{Shr}}^\text{DMin}\ ^\text{Filt}D^\text{Rotor} \\
+      \\
+      C_{\nu \text{Shr}}^\text{FMin}+\left( 1-C_{\nu \text{Shr}}^\text{FMin} \right){{\left[ \frac{\frac{x}{^\text{Filt}D^\text{Rotor}}-C_{\nu \text{Shr}}^\text{DMin}}{C_{\nu \text{Shr}}^\text{DMax}-C_{\nu \text{Shr}}^\text{DMin}} \right]}^{C_{\nu \text{Shr}}^\text{Exp}}} &amp; \textrm{for } C_{\nu \text{Shr}}^\text{DMin}\ ^\text{Filt}D^\text{Rotor}&lt;x&lt;C_{\nu \text{Shr}}^\text{DMax}\ ^\text{Filt}D^\text{Rotor} \\
+      \\
+      1 &amp; \textrm{for } x\ge C_{\nu \text{Shr}}^\text{DMax}\ ^\text{Filt}D^\text{Rotor} \\
+   \end{cases}\end{split}\]</div>
+<p>The filter functions of Equations <a class="reference internal" href="#equation-eq-famb">(4.245)</a>
+and <a class="reference internal" href="#equation-eq-fshr">(4.246)</a> represent the delay in the turbulent stress
+generated by ambient turbulence and the development of turbulent
+stresses generated by the wake shear layer, respectively, and are made
+general in FAST.Farm. Each filter function is split into three regions
+of downstream distance, including:</p>
+<ol class="arabic simple">
+<li><p>A fixed minimum value (between zero and unity, inclusive) near the
+rotor</p></li>
+<li><p>A fixed value of unity far downstream from the rotor</p></li>
+<li><p>A transition region for intermediate distances, where the value can
+transition linearly or via any rational exponent of the normalized
+downstream distance within the transition region.</p></li>
+</ol>
+<p>The definition of wake diameter is somewhat ambiguous and not defined
+consistently in DWM literature. FAST.Farm allows the user to choose one
+of several methods to calculate the wake diameter,
+<span class="math notranslate nohighlight">\(D^\text{Wake}\left( x \right)\)</span>, including taking the wake
+diameter to be:</p>
+<ol class="arabic simple">
+<li><p>The rotor diameter</p></li>
+<li><p>The diameter at which the axial velocity of the wake is the
+<span class="math notranslate nohighlight">\(C_\text{WakeDiam}\)</span> fraction of the ambient wind speed, where
+<span class="math notranslate nohighlight">\(C_\text{WakeDiam}\)</span> is a user-specified calibration parameter
+between zero and <span class="math notranslate nohighlight">\(0.99\)</span> (exclusive)</p></li>
+<li><p>The diameter that captures the <span class="math notranslate nohighlight">\(C_\text{WakeDiam}\)</span> fraction of
+the mass flux of the axial wake deficit across the wake plane</p></li>
+<li><p>The diameter that captures the <span class="math notranslate nohighlight">\(C_\text{WakeDiam}\)</span> fraction of
+the momentum flux of the axial wake deficit across the wake plane.</p></li>
+</ol>
+<p>Through the use of a <span class="math notranslate nohighlight">\(MAX(\quad)\)</span> operator, models 2 through 4
+have a lower bound set equal to the rotor diameter when the
+wake-diameter calculation otherwise returns smaller values. This is done
+to avoid numerical problems resulting from too few wind data points in
+the spatial averaging used to compute the wake-meandering velocity – see
+<a class="reference internal" href="#ff-awae"><span class="std std-numref">Section 4.19.7.2.4</span></a> for more information. Although the
+implementation in FAST.Farm is numerical, analytical expressions for
+these four methods are given in Equation <a class="reference internal" href="#equation-eq-dwake">(4.247)</a>. Here,
+<span class="math notranslate nohighlight">\(|x\)</span> means the mean conditioned on <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<div class="math notranslate nohighlight" id="equation-eq-dwake">
+<span class="eqno">(4.247)<a class="headerlink" href="#equation-eq-dwake" title="Permalink to this equation"></a></span>\[\begin{split}D^\text{Wake}\left( x \right)=
+   \begin{cases}
+   &amp;^\text{Filt}D^\text{Rotor}\qquad\textrm{for}~\textit{method 1-rotor diameter}\\
+   \\
+   &amp;MAX\left( ^\text{Filt}D^\text{Rotor},\left\{ 2r|\left( V_x\left( x,r \right)=C_\text{WakeDiam}\ ^\text{FiltDiskAvg}V_x^\text{Wind} \right) \right\} \right)\\
+      &amp;\phantom{^\text{Filt}D^\text{Rotor}}\qquad\textrm{for}~\textit{method 2-velocity based}\\
+   \\
+   &amp;MAX\left( ^\text{Filt}D^\text{Rotor},\left\{ D^\text{Wake}\left( x \right)|\int\limits_{0}^{\frac{D^\text{Wake}\left( x \right)}{2}}{V_x^\text{Wake}\left( x,r \right)2\pi rdr}=C_\text{WakeDiam}\int\limits_{0}^{\infty }{V_x^\text{Wake}\left( x,r \right)2\pi rdr} \right\} \right)\\
+      &amp;\phantom{^\text{Filt}D^\text{Rotor}}\qquad\textrm{for}~\textit{method 3-mass-flux based}\\
+   \\
+   &amp;MAX\left( ^\text{Filt}D^\text{Rotor},\left\{ D^\text{Wake}\left( x \right)|\int\limits_{0}^{\frac{D^\text{Wake}\left( x \right)}{2}}{\left( V_x^\text{Wake}\left( x,r \right) \right)^2 2\pi rdr}=C_\text{WakeDiam}\int\limits_{0}^{\infty }{\left( V_x^\text{Wake}\left( x,r \right) \right)^2 2\pi rdr} \right\} \right)\\
+      &amp;\phantom{^\text{Filt}D^\text{Rotor}}\qquad\textrm{for}~\textit{method 4-momentum-flux based}\\
+\end{cases}\end{split}\]</div>
+<p>The momentum and continuity equations are solved numerically in the
+wake-deficit-increment submodel of the <em>WD</em> module using a second-order
+accurate finite-difference method at <span class="math notranslate nohighlight">\(n+\frac{1}{2}\)</span>, following
+the implicit Crank-Nicolson method (<span id="id22">[<a class="reference internal" href="zrefs.html#id13" title="J. Crank and P. Nicolson. A practical method for numerical evaluation of solutions of partial differencial equations of the heat-conduction type. Advances in Computaional Mathematics, 6:207-226, 1996.">ff-CN96</a>]</span>).
+Following this method, central differences are used for all derivatives,
+e.g., Equation <a class="reference internal" href="#equation-eq-fd">(4.248)</a> for the momentum equation.</p>
+<div class="math notranslate nohighlight" id="equation-eq-fd">
+<span class="eqno">(4.248)<a class="headerlink" href="#equation-eq-fd" title="Permalink to this equation"></a></span>\[\frac{\partial V_x}{\partial x}=\frac{V_{x_{n_p}}^\text{Wake}\left( r \right)\left[ n+1 \right]-V_{x_{n_p-1}}^\text{Wake}\left( r \right)\left[ n \right]}{\Delta x}\]</div>
+<p>Here,</p>
+<div class="math notranslate nohighlight">
+\[\Delta x=|x_{n_p}^\text{Plane}\left[ n+1 \right]-x_{n_p-1}^\text{Plane}\left[ n \right]|\]</div>
+<p>or equivalently from Equation <a class="reference internal" href="#equation-eq-6-9">(4.234)</a></p>
+<div class="math notranslate nohighlight">
+\[\Delta x=|{{\left\{ \hat{x}_{n_p-1}^\text{Plane}\left[ n \right] \right\}}^T}\ ^\text{Filt}\vec{V}_{n_p-1}^\text{Plane}\left[ n+1 \right]\Delta t| \qquad \textrm{for } 1\le n_p\le N_p-1\]</div>
+<p>For the momentum equation, for each wake plane downstream of the rotor
+(<span class="math notranslate nohighlight">\(1\le n_p\le N_p-1\)</span>), the terms <span class="math notranslate nohighlight">\(V_x\)</span>, <span class="math notranslate nohighlight">\(V_r\)</span>,
+<span class="math notranslate nohighlight">\(\nu_T\)</span>, and <span class="math notranslate nohighlight">\(\frac{\partial \nu_T}{\partial r}\)</span> are
+calculated at <span class="math notranslate nohighlight">\(n\)</span> (or equivalently
+<span class="math notranslate nohighlight">\(x=x_{n_p-1}^\text{Plane}\left[ n \right]\)</span>), e.g.,
+<span class="math notranslate nohighlight">\(V_x=^\text{FiltDiskAvg}V_{x_{n_p-1}}^\text{Wind}\left[ n \right]+V_{x_{n_p-1}}^\text{Wake}\left( r \right)\left[ n \right]\)</span>
+and
+<span class="math notranslate nohighlight">\(V_r = V_{r_{n_p-1}}^\text{Wake}\left( r \right)\left[ n \right]\)</span>,
+to avoid nonlinearities in the solution for <span class="math notranslate nohighlight">\(n+1\)</span>. This will
+prevent the solution from achieving second-order convergence, but has
+been shown to remain numerically stable. Although the definition of each
+central difference is outside the scope of this document, the end result
+is that for each wake plane downstream of the rotor,
+<span class="math notranslate nohighlight">\(V_{x_{n_p}}^\text{Wake}\left( r \right)\left[ n+1 \right]\)</span> can be
+solved via a linear tridiagonal matrix system of equations in terms of
+known solutions of
+<span class="math notranslate nohighlight">\(V_{x_{n_p-1}}^\text{Wake}\left( r \right)\left[ n \right]\)</span>,
+<span class="math notranslate nohighlight">\(V_{r_{n_p-1}}^\text{Wake}\left( r \right)\left[ n \right]\)</span>, and
+other previously calculated states, e.g.,
+<span class="math notranslate nohighlight">\(^\text{FiltDiskAvg}V_{x_{n_p-1}}^\text{Wind}\left[ n \right]\)</span>.
+The linear tridiagonal matrix system of equations is solved efficiently
+in FAST.Farm via the Thomas algorithm (<span id="id23">[<a class="reference internal" href="zrefs.html#id14" title="L. H. Thomas. Elliptic problems in linear difference equations over a network. Technical Report, Watson Science Computer Laboratory, New York, NY, 1949.">ff-Tho49</a>]</span>).</p>
+<p>For the continuity equation, a different finite-difference scheme is
+needed because the resulting tridiagonal matrix is not diagonally
+dominant when the same finite-difference scheme used for the momentum
+equation is used for the continuity equation, resulting in a numerically
+unstable solution. Instead, the finite-difference scheme used for the
+continuity equation is based on a second-order accurate scheme at
+<span class="math notranslate nohighlight">\(n+\frac{1}{2}\)</span> and <span class="math notranslate nohighlight">\(n_r-\frac{1}{2}\)</span>. However, the terms
+involving <span class="math notranslate nohighlight">\(V_r\)</span> and <span class="math notranslate nohighlight">\(\frac{\partial V_r}{\partial r}\)</span> are
+calculated at <span class="math notranslate nohighlight">\(n+1\)</span>, e.g.,
+<span class="math notranslate nohighlight">\(V_r=\frac{1}{2}\left(V_{r_{n_p,n_r}}^\text{Wake}\left[ n+1 \right]+V_{r_{n_p,n_r-1}}^\text{Wake}\left[ n+1 \right]\right)\)</span>,
+where <span class="math notranslate nohighlight">\(n_r\)</span> is the radii counter for <span class="math notranslate nohighlight">\(N_r\)</span> radial nodes
+(<span class="math notranslate nohighlight">\(0\le n_r\le N_r-1\)</span>). <a class="footnote-reference brackets" href="#id44" id="id24">8</a> Although the definition of each
+central difference is outside the scope of this document, the end result
+is that for each wake plane downstream of the rotor,
+<span class="math notranslate nohighlight">\(V_{r_{n_p,n_r}}^\text{Wake}\left[ n+1 \right]\)</span> can be solved
+explicitly sequentially from known solutions of
+<span class="math notranslate nohighlight">\(V_{x_{n_p}}^\text{Wake}\left( r \right)\left[ n+1 \right]\)</span> (from
+the solution of the momentum equation),
+<span class="math notranslate nohighlight">\(V_{x_{n_p-1}}^\text{Wake}\left( r \right)\left[ n \right]\)</span>, and
+<span class="math notranslate nohighlight">\(V_{r_{n_p,n_r-1}}^\text{Wake}\left[ n+1 \right]\)</span> for
+<span class="math notranslate nohighlight">\(1\le n_r\le N_r-1\)</span>. <a class="footnote-reference brackets" href="#id45" id="id25">9</a></p>
+</div>
+<div class="section" id="wake-added-turbulence-wat">
+<span id="ff-wat"></span><h4><span class="section-number">4.19.7.2.3.4. </span>Wake-Added Turbulence (WAT)<a class="headerlink" href="#wake-added-turbulence-wat" title="Permalink to this heading"></a></h4>
+<p>Wake-added turbulence is the additional small-scale turbulence generated
+from the turbulent mixing in the wake.
+It is modeled by scaling up a background (undisturbed) turbulence.</p>
+<p>The theory for WAT will is presented in more detail in <span id="id26">[<a class="reference internal" href="zrefs.html#id2" title="E. Branlard, J. Jonkman, A. Platt, R. Thedin, L. A. Martinez-Tossas, and M. Kretschmer. Development and verification of an improved wake-added turbulence model in fast.farm. In TORQUE 2024. Florence, Italy, May 2024. EAWE.">ff-BJP+24</a>]</span>.</p>
+<p>The basic principle for the wake-added turbulence is illustrated in <a class="reference internal" href="#ff-watsketch"><span class="std std-numref">Fig. 4.69</span></a>.</p>
+<div class="figure align-center" id="ff-watsketch">
+<a class="reference internal image-reference" href="../../../_images/FFWakeAddedTurbBoxCoord.svg"><img alt="Wake Added turbulence" src="../../../_images/FFWakeAddedTurbBoxCoord.svg" width="100%" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.69 </span><span class="caption-text">Wake-added turbulence</span><a class="headerlink" href="#ff-watsketch" title="Permalink to this image"></a></p>
+</div>
+<p>A scaling factor is computed at each wake plane, it is multiplied with a unit turbulence box
+and added to the quasi steady wake to form the final wake with wake-added turbulence.
+In this implementation, the scaling factors are computed in the meandering
+frame, but assembled with the “global” unit turbulence box in the global
+frame. More details follow.</p>
+<p><strong>Scaling factor</strong></p>
+<p>The scaling factor, expressed in terms of the wake deficit <span class="math notranslate nohighlight">\(V_x^{Wake}\)</span>, is determined at each wake plane as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+   k_{} (x,y,z) =
+       \frac{k_\text{def}^\text{WAT}  }{ \overline{U}} \left| V_x^{Wake}(x,y,z) \right|
+     + \frac{k_\text{grad}^\text{WAT}D}{2\overline{U}} \left[\left|{\frac{\partial {V_x^{Wake}(x,y,z)}}{\partial r}}\right| +  \left|{\frac{1}{r}\frac{\partial {V_x^{Wake}(x,y,z)}}{\partial \theta}}\right|  \right]
+\end{aligned}\]</div>
+<p>where <span class="math notranslate nohighlight">\(D\)</span> is a reference diameter, and <span class="math notranslate nohighlight">\(\bar{U}\)</span> is the mean
+velocity taken as the filtered velocity at the turbine location normal to the
+rotor disk.  The coordinates <span class="math notranslate nohighlight">\(x,y,z\)</span> and <span class="math notranslate nohighlight">\(r,\theta\)</span> are taken in the
+meandering frame of reference.  The parameters <span class="math notranslate nohighlight">\(k_\text{def}^\text{WAT}\)</span>
+and <span class="math notranslate nohighlight">\(k_\text{grad}^\text{WAT}\)</span> are tuning parameters of the model
+respectively multiplying the quasi-steady wake deficit and the gradient of the
+wake deficit. These are based on an eddy-viscosity filter with five calibrated
+parameters to give a more realistic dependence on downstream position.  The
+general form for both is given in Equation <a class="reference internal" href="#equation-eq-kdefgrad">(4.249)</a>,</p>
+<div class="math notranslate nohighlight" id="equation-eq-kdefgrad">
+<span class="eqno">(4.249)<a class="headerlink" href="#equation-eq-kdefgrad" title="Permalink to this equation"></a></span>\[k_\text{def/grad}^\text{WAT} \left( \tilde{x}, k_\text{c}, f_\text{min}, D_\text{min}, D_\text{max}, e \right) = k_\text{c} \left( f_\text{min} + (1 - f_\text{min}) \left[ \frac{\tilde{x} - D_\text{min}}{D_\text{max} - D_\text{min}} \right]^e \right)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\tilde{x} = x/D\)</span>, and <span class="math notranslate nohighlight">\(k_\text{c}\)</span> is either
+<span class="math notranslate nohighlight">\(k_\text{def}\)</span> or <span class="math notranslate nohighlight">\(k_\text{grad}\)</span>.  This function is capped between
+<span class="math notranslate nohighlight">\(k_\text{c} f_\text{min}\)</span> and <span class="math notranslate nohighlight">\(k_\text{c}\)</span> when <span class="math notranslate nohighlight">\(\tilde{x}\)</span> is
+not between <span class="math notranslate nohighlight">\(D_\text{min}\)</span> and <span class="math notranslate nohighlight">\(D_\text{max}\)</span>.  The tuning
+parameters are shown in <a class="reference internal" href="#equation-eq-kdefgraddefaults">(4.250)</a>.</p>
+<div class="math notranslate nohighlight" id="equation-eq-kdefgraddefaults">
+<span class="eqno">(4.250)<a class="headerlink" href="#equation-eq-kdefgraddefaults" title="Permalink to this equation"></a></span>\[\begin{split}\begin{matrix}
+                            &amp; &amp; k_\text{def/grad} &amp; f_\text{min}   &amp; D_\text{min} &amp; D_\text{max}       &amp; e       \\
+                            &amp; &amp; (\gt 0)           &amp; (\ge 0, \le 1) &amp; (\ge 0)      &amp; (\gt k_\text{min}) &amp; (\gt 0) \\\hline
+   k_\text{def}^\text{WAT}  &amp; &amp; 0.6               &amp; 0              &amp; 0            &amp; 2                  &amp; 1       \\
+   k_\text{grad}^\text{WAT} &amp; &amp; 3                 &amp; 0              &amp; 0            &amp; 12                 &amp; 0.65    \\
+\end{matrix}\end{split}\]</div>
+<p>These parameters were chosen as they fit relatively well for stable and neutral
+cases (prior studies have shown that FAST.Farm matches LES well for unstable
+cases with high ambient turbulence where a WAT model seems unnecessary), as seen
+in <a class="reference internal" href="#ff-wat-tuneparam"><span class="std std-numref">Fig. 4.70</span></a>.</p>
+<div class="figure align-center" id="ff-wat-tuneparam">
+<a class="reference internal image-reference" href="../../../_images/KFitDownstreamConcatNEW.png"><img alt="Fitted tuning parameters" src="../../../_images/KFitDownstreamConcatNEW.png" style="width: 100%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.70 </span><span class="caption-text">Fitted tuning parameters as a function of downstream distance for different stability cases. Values for different fitting options and smoothing are shown with lighter colors, and the averages are shown with darker colors. The model and recommended default values are given as the black dashed line.  Note that results for the unstable case beyond <em>8D</em> are uncertain due to the strong wake decay.</span><a class="headerlink" href="#ff-wat-tuneparam" title="Permalink to this image"></a></p>
+</div>
+<p>We chose to enforce a zero value at <span class="math notranslate nohighlight">\(\tilde{x}=0\)</span>, as this is the expected
+behavior for a case with no background turbulence intensity. The progressive
+ramp-up of the <span class="math notranslate nohighlight">\(k\)</span> factors is characteristic of what would be expected as
+the vortices progressively break down downstream as seen in
+<a class="reference internal" href="#ff-wat-noti"><span class="std std-numref">Fig. 4.71</span></a>.</p>
+<div class="figure align-center" id="ff-wat-noti">
+<a class="reference internal image-reference" href="../../../_images/FF-WakeNoTI.png"><img alt="Single wind turbine with and without WAT" src="../../../_images/FF-WakeNoTI.png" style="width: 100%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.71 </span><span class="caption-text">Instantaneous velocity field in the wake of one wind turbine in uniform 8 m/s inflow without (left) and with (right) WAT implemented in FAST.Farm.</span><a class="headerlink" href="#ff-wat-noti" title="Permalink to this image"></a></p>
+</div>
+<p><strong>Unit turbulence boxes</strong></p>
+<p>The 3 turbulence Mann boxes are stored as a 4D
+array <span class="math notranslate nohighlight">\(\boldsymbol{u}_\text{unit}\)</span> of dimension
+<span class="math notranslate nohighlight">\((3,n_x, n_y, n_z)\)</span>.
+The turbulence boxes used for the WAT are isotropic turbulence boxes
+with unit standard deviation, generated using the Mann
+model <span id="id27">[<a class="reference internal" href="zrefs.html#id3" title="J. Mann. The spatial structure of neutral atmospheric surface-layer turbulence. Journal of Fluid Mechanics, 273:p141-168, 1994.">ff-Man94</a>]</span>.
+To generate a box with unit standard deviation, the dissipation rate is set to:</p>
+<div class="math notranslate nohighlight">
+\[\alpha\epsilon^{2/3}\approx \frac{1}{0.688 L^{2/3}}\]</div>
+<p>We have found that there is no dependency on the length scale. We nevertheless recommend to set it to the rotor diameter if the users generate their own boxes.</p>
+<p><strong>Predefined boxes</strong></p>
+<p>A recommended practice for the high-resolution domain of FAST.Farm is to chose a grid
+spacing equal to the maximum chord of the blade.
+Based on the data from
+different wind turbine, the max-chord can be approximated as:
+<span class="math notranslate nohighlight">\(c_\text{max}\approx 0.03D\)</span>.
+Therefore we suggest to use this spacing in all three directions, and as a compromise to obtain a box
+with sufficient extent but moderate size, we select: <span class="math notranslate nohighlight">\(\Delta x = \Delta y = \Delta z = 0.03D\)</span>,
+<span class="math notranslate nohighlight">\(L_x = L_y=15D\)</span>, <span class="math notranslate nohighlight">\(L_z= 2D\)</span>, <span class="math notranslate nohighlight">\(n_x=n_y=512\)</span>,
+<span class="math notranslate nohighlight">\(n_z=64\)</span>, leading to a box size of <span class="math notranslate nohighlight">\(65\)</span> Mb per wind
+component.</p>
+<p>Users may generate their own Mann box using the guidelines presented in this paragraph and the one above.</p>
+<p><strong>Convection of the WAT box</strong></p>
+<p>There is only one WAT turbulence box stored for the entire wind farm. To
+convect the WAT turbulence box, the AWAE module keeps track of a passive
+tracer that is convected at each time step with the mean of the
+rotor-average velocity of each wind turbine
+<span class="math notranslate nohighlight">\((\boldsymbol{U}_\text{farm}\)</span>). The position of the passive
+tracer, <span class="math notranslate nohighlight">\(\boldsymbol{B}\)</span>, is defined as:</p>
+<div class="math notranslate nohighlight">
+\[\frac{d\boldsymbol{B}}{dt} = \boldsymbol{U}_\text{farm}(t)\]</div>
+<p>where:</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{U}_\text{farm} = \operatorname{mean}\{ \overline{V}^\text{Low}_\text{Amb}[i_w], i_w =1\cdots n_{WT}\}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\overline{V}^\text{Low}_\text{Amb}[i_w]\)</span> is the rotor
+averaged ambient wind speed.
+The equation is integrated using a first order forward Euler scheme as follows:</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{B}^{n+1} =  \boldsymbol{B}^{n}  + \Delta t_\text{low}\,  \boldsymbol{U}^{n}_\text{farm}\]</div>
+<p>where the superscript <span class="math notranslate nohighlight">\(n\)</span> denotes the time step, and where the
+tracer is assumed to be at the origin at <span class="math notranslate nohighlight">\(t=0\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{B}^{0}=(0,0,0)\]</div>
+<p>The AWAE module needs the position of the tracer at intermediate,
+high-res, time steps. The position at high-res time step is computed as
+follows:</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{B}^{n,j} =  \boldsymbol{B}^{n}   - (n_h-j) \, \Delta t_\text{high}\,  \boldsymbol{U}^{n-1}_\text{farm}
+,\qquad j\in{0,.., n_h-1}\]</div>
+</div>
+</div>
+<div class="section" id="ambient-wind-and-array-effects-awae-module">
+<span id="ff-awae"></span><h3><span class="section-number">4.19.7.2.4. </span>Ambient Wind and Array Effects (AWAE Module)<a class="headerlink" href="#ambient-wind-and-array-effects-awae-module" title="Permalink to this heading"></a></h3>
+<p>The <em>AWAE</em> module of FAST.Farm processes ambient wind and wake
+interactions across the wind farm, including the ambient wind and
+wake-merging submodels. The ambient wind submodule processes ambient
+wind across the wind farm from either a high-fidelity precursor
+simulation or an interface to the <em>InflowWind</em> module in
+<a class="reference external" href="https://github.com/OpenFAST/openfast">OpenFAST</a>. The wake-merging
+submodule identifies zones of overlap between all wakes across the wind
+farm and merges their wake deficits. Both submodels are described in the
+subsections below.</p>
+<p>The calculations in the <em>AWAE</em> module make use of wake volumes, which
+are volumes formed by a (possibly curved) cylinder starting at a wake
+plane and extending to the next adjacent wake plane along a line
+connecting the centers of the two wake planes. If the adjacent wake
+planes (top and bottom of the cylinder) are not parallel, e.g., for
+transient simulations involving variations in nacelle-yaw angle, the
+centerline will be curved instead of straight.
+<a class="reference internal" href="Introduction.html#ff-ffarmdomains"><span class="std std-numref">Fig. 4.59</span></a> illustrates some of the
+concepts that will be detailed in the subsections below. The
+calculations in the <em>AWAE</em> module also require looping through all wind
+data points, turbines, and wake planes; these loops have been sped up in
+the parallel mode of FAST.Farm by implementation of OpenMP
+parallelization.</p>
+<p>The <em>AWAE</em> module does not have states, reducing the module to a
+feed-forward-only system whereby the module outputs are computed
+directly from the module inputs (with direct feedthrough of input to
+output). The <em>AWAE</em> module uses as input
+<span class="math notranslate nohighlight">\(\hat{x}_{n_p}^\text{Plane}\)</span>, <span class="math notranslate nohighlight">\(\vec{p}_{n_p}^\text{Plane}\)</span>,
+<span class="math notranslate nohighlight">\(V_{x_{n_p}}^\text{Wake}\left(r\right)\)</span>,
+<span class="math notranslate nohighlight">\(V_{r_{n_p}}^\text{Wake}\left(r\right)\)</span>, and
+<span class="math notranslate nohighlight">\(D_{n_p}^\text{Wake}\)</span> (each for <span class="math notranslate nohighlight">\(0\le n_p\le N_p-1\)</span>) as
+computed by the wake-dynamics model for each individual wind turbine
+(output by the <em>WD</em> module). The <em>AWAE</em> module computes output
+<span class="math notranslate nohighlight">\(\vec{V}_\text{Dist}^\text{High}\)</span> needed for the calculation of
+OpenFAST for each individual wind turbine (input to the <em>OF</em> module) as
+well as outputs for <span class="math notranslate nohighlight">\(\vec{V}_{n_p}^\text{Plane}\)</span> for
+<span class="math notranslate nohighlight">\(0\le n_p\le N_p-1\)</span>, <span class="math notranslate nohighlight">\(^\text{DiskAvg}V_x^\text{Wind}\)</span>, and
+<span class="math notranslate nohighlight">\(TI_\text{Amb}\)</span> needed for the calculation of wake dynamics for
+each individual wind turbine (input to the <em>WD</em> module).</p>
+<div class="section" id="ambient-wind">
+<span id="ff-ambwind"></span><h4><span class="section-number">4.19.7.2.4.1. </span>Ambient Wind<a class="headerlink" href="#ambient-wind" title="Permalink to this heading"></a></h4>
+<p>The ambient wind data used by FAST.Farm can be generated in one of two
+ways. The use of the <em>InflowWind</em> module in
+<a class="reference external" href="https://github.com/OpenFAST/openfast">OpenFAST</a> enables the use of
+simple ambient wind, e.g., uniform wind, discrete wind events, or
+synthetically generated turbulent wind data. Synthetically generated
+turbulence can be from, e.g.,
+TurbSim or the Mann model, in which
+the wind is propagated through the wind farm using Taylor’s
+frozen-turbulence assumption. This method is most applicable to small
+wind farms or a subset of wind turbines within a larger wind farm.
+FAST.Farm can also use ambient wind generated by a high-fidelity
+precursor LES simulation of the entire wind farm (without wind turbines
+present), such as the ABLSolver preprocessor of
+<a class="reference external" href="https://github.com/NatLabRockies/SOWFA">SOWFA</a>. This atmospheric precursor
+simulation captures more physics than synthetic turbulence – as
+illustrated in <a class="reference internal" href="Introduction.html#ff-ablsolver"><span class="std std-numref">Fig. 4.60</span></a> – including atmospheric
+stability, wind-farm-wide turbulent length scales, and complex terrain
+effects. It is more computationally expensive than using the ambient
+wind modeling options of <em>InflowWind</em>, but it is much less
+computationally expensive than a <a class="reference external" href="https://github.com/NatLabRockies/SOWFA">SOWFA</a>
+simulation with multiple wind turbines present.</p>
+<p>FAST.Farm requires ambient wind to be available in two different
+resolutions. Because wind will be spatially averaged across wake planes
+within the <em>AWAE</em> module, FAST.Farm needs a low-resolution wind domain
+(in both space and time) throughout the wind farm. The spatial
+resolution of the low-resolution domain – consisting of a structured 3D
+grid of wind data points – should be sufficient so that the spatial
+averaging is accurate, e.g., on the order of tens of meters for
+utility-scale wind turbines. The time step of the low-resolution domain
+dictates that of the FAST.Farm driver (<span class="math notranslate nohighlight">\(\Delta t\)</span>) and all
+FAST.Farm modules. It should therefore be consistent with the timescales
+of wake dynamics, e.g., on the order of seconds and smaller for higher
+mean wind speeds. Note that OpenFAST is subcycled within the <em>OF</em> module
+with a smaller time step. For accurate load calculation by OpenFAST,
+FAST.Farm also needs high-resolution wind domains (in both space and
+time) around each wind turbine and encompassing any turbine
+displacement. The spatial and time resolution of each high-resolution
+domain should be sufficient for accurate aerodynamic load calculations,
+e.g., on the order of the blade chord length and fractions of a
+second (<span id="id28">[<a class="reference internal" href="zrefs.html#id25" title="K. Shaler and et al. Fast.farm response of varying wind inflow techniques. In 37th Wind Energy Symposium. San Diego, CA, 2019. AIAA. doi:https://arc.aiaa.org/doi/pdf/10.2514/6.2019-2086.">ff-Seal19b</a>]</span>). The high-resolution domains
+overlap portions of the low-resolution domain. For simplicity of and to
+minimize computational expense within FAST.Farm, the time step of the
+high-resolution domain must be an integer divisor of the low-resolution
+domain time step.</p>
+<p>When using ambient wind generated by a high-fidelity precursor
+simulation, the <em>AWAE</em> module reads in the three-component wind-velocity
+data across the high- and low-resolution
+domains – <span class="math notranslate nohighlight">\(\vec{V}_\text{Amb}^\text{High}\)</span> for each turbine and
+<span class="math notranslate nohighlight">\(\vec{V}_\text{Amb}^\text{Low}\)</span>, respectively – that were computed
+by the high-fidelity solver within each time step. These values are
+stored in files for use in a given driver time step. The wind data
+files, including spatial discretizations, must be in VTK format and are
+specified by users of FAST.Farm at initialization. When using the
+<em>InflowWind</em> inflow option, the ambient wind across the high- and
+low-resolution domains are computed by calling the <em>InflowWind</em> module.
+In this case, the spatial discretizations of these domains are specified
+directly within the FAST.Farm primary input file. These wind data from
+the combined low- and high-resolution domains within a given driver time
+step represent the largest memory requirement of FAST.Farm.</p>
+<p>After the ambient wind is processed at a given time step, the ambient
+wind submodel computes as output the rotor-disk-averaged ambient wind
+speed, normal to the disk,<span class="math notranslate nohighlight">\(^\text{DiskAvg}V_x^\text{Wind}\)</span>, for
+each turbine using Equation <a class="reference internal" href="#equation-eq-vxwind">(4.251)</a>.</p>
+<div class="math notranslate nohighlight" id="equation-eq-vxwind">
+<span class="eqno">(4.251)<a class="headerlink" href="#equation-eq-vxwind" title="Permalink to this equation"></a></span>\[^\text{DiskAvg}V_x^\text{Wind}=\left. \left( \left\{ \hat{x}_{n_p}^\text{Plane} \right\}^T\left\{ \frac{1}{N_{n_p}^\text{Polar}}\sum\limits_{n^\text{Polar}=1}^{N_{n_p}^\text{Polar}}{\vec{V}_{\text{Amb}_{n^\text{Polar}}}^\text{Low}} \right\} \right) \right|_{n_p=0}\]</div>
+<p>In Equation <a class="reference internal" href="#equation-eq-vxwind">(4.251)</a>, <span class="math notranslate nohighlight">\(N_{n_p}^\text{Polar}\)</span> is the
+number of points in a polar grid on wake plane <span class="math notranslate nohighlight">\(n_p\)</span> of the given
+wind turbine, <span class="math notranslate nohighlight">\(n^\text{Polar}\)</span> is the point counter such that
+<span class="math notranslate nohighlight">\(1\le n^\text{Polar}\le N_{n_p}^\text{Polar}\)</span> for wake plane
+<span class="math notranslate nohighlight">\(n_p\)</span>, and the equation is evaluated for the wake plane at the
+rotor disk (<span class="math notranslate nohighlight">\(n_p=0\)</span>). The polar grid on wake plane <span class="math notranslate nohighlight">\(n_p\)</span> has
+a uniform radial and azimuthal discretization equal to the average
+<em>X-Y-Z</em> spatial discretization of the low-resolution domain (independent
+from the radial finite-difference grid used within the <em>WD</em> module) and
+a diameter of <span class="math notranslate nohighlight">\(C_\text{Meander}D_{n_p}^\text{Wake}\)</span>;
+<span class="math notranslate nohighlight">\(C_\text{Meander}\)</span> is discussed further in
+<a class="reference internal" href="#ff-wmerging"><span class="std std-numref">Section 4.19.7.2.4.2</span></a> below. Subscript <span class="math notranslate nohighlight">\(n^\text{Polar}\)</span>
+is appended to <span class="math notranslate nohighlight">\(\vec{V}_\text{Amb}^\text{Low}\)</span> in
+Equation <a class="reference internal" href="#equation-eq-vxwind">(4.251)</a> to identify wind data that have been
+trilinearly interpolated from the low-resolution domain to the polar
+grid on the wake plane. Intuitively, Equation <a class="reference internal" href="#equation-eq-vxwind">(4.251)</a>
+states that the rotor-disk-averaged ambient wind speed, normal to the
+disk, for each turbine is calculated as the uniform spatial average of
+the ambient wind velocity on the wake plane at the rotor disk projected
+along the low-pass time-filtered rotor centerline.</p>
+<p>The ambient wind submodel of the <em>AWAE</em> module also calculates as output
+the ambient turbulence intensity around each rotor,
+<span class="math notranslate nohighlight">\(TI_\text{Amb}\)</span>, using Equation <a class="reference internal" href="#equation-eq-ti">(4.252)</a>:</p>
+<div class="math notranslate nohighlight" id="equation-eq-ti">
+<span class="eqno">(4.252)<a class="headerlink" href="#equation-eq-ti" title="Permalink to this equation"></a></span>\[TI_\text{Amb}=\left. \left(
+   \frac{\sqrt{\frac{1}{3N_{n_p}^\text{Polar}}\sum\limits_{n^\text{Polar}=1}^{N_{n_p}^\text{Polar}}\left\| \vec{V}_{\text{Amb}_{n^\text{Polar}}}^\text{Low}-
+         \left\{ \frac{1}{N_{n_p}^\text{Polar}}\sum\limits_{n^\text{Polar}=1}^{N_{n_p}^\text{Polar}}{\vec{V}_{\text{Amb}_{n^\text{Polar}}}^\text{Low}} \right\} \right\|_2^2}}
+      {\left\| \left\{ \frac{1}{N_{n_p}^\text{Polar}}\sum\limits_{n^\text{Polar}=1}^{N_{n_p}^\text{Polar}}{\vec{V}_{\text{Amb}_{n^\text{Polar}}}^\text{Low}} \right\} \right\|_2}
+   \right) \right|_{n_p=0}\]</div>
+<p>The bracketed term in Equation <a class="reference internal" href="#equation-eq-ti">(4.252)</a> is the same as in
+Equation <a class="reference internal" href="#equation-eq-vxwind">(4.251)</a>, representing the uniform spatial
+average of the ambient wind velocity on the wake plane at the rotor
+disk. In contrast to the common definition of turbulence intensity used
+in the wind industry, which consists of a time-averaged quantity of the
+axial wind component, the turbulence intensity calculated in the ambient
+wind submodel of the <em>AWAE</em> module is based on a uniform spatial average
+of the three vector components. Not using time averaging ensures that
+only ambient wind at the current time step needs to be processed, which
+decreases memory requirements. Moreover, any time variation in the
+spatial average is moderated by the low-pass time filter in the <em>WD</em>
+module. Using spatial averaging and the three vector components allows
+for atmospheric shear, wind veer, and other ambient wind characteristics
+to influence the eddy viscosity and wake-deficit evolution in the <em>WD</em>
+module.
+Wake-added turbulence is described in <a class="reference internal" href="#ff-wat"><span class="std std-numref">Section 4.19.7.2.3.4</span></a>.
+Note that Equation <a class="reference internal" href="#equation-eq-ti">(4.252)</a> uses the eight wind data
+points from the low-resolution domain surrounding each point in the
+polar grid rather than interpolation. This is because calculating wind
+data in the polar grid on the wake plane via trilinear interpolation
+from the low-resolution domain would smooth out spatial variations and
+artificially reduce the calculated turbulence intensity.</p>
+</div>
+<div class="section" id="wake-merging">
+<span id="ff-wmerging"></span><h4><span class="section-number">4.19.7.2.4.2. </span>Wake Merging<a class="headerlink" href="#wake-merging" title="Permalink to this heading"></a></h4>
+<p>In previous implementations of DWM, the wind turbine and wake dynamics
+were solved individually or serially, not considering two-way
+wake-merging interactions. Additionally, there was no method available
+to calculate the disturbed wind in zones of wake overlap. Wake merging
+is illustrated by the <a class="reference external" href="https://github.com/NatLabRockies/SOWFA">SOWFA</a> simulation
+of <a class="reference internal" href="Introduction.html#ff-wakemerg"><span class="std std-numref">Fig. 4.61</span></a>. In FAST.Farm, the wake-merging
+submodel of the <em>AWAE</em> module identifies zones of wake overlap between
+all wakes across the wind farm by finding wake volumes that overlap in
+space. Wake deficits are superimposed in the axial direction based on
+the RSS method (<span id="id29">[<a class="reference internal" href="zrefs.html#id27" title="I. Kati\`c and et al. A simple model for cluster efficiency. In European Wind Energy Association Conference and Exhibition. Rome, Italy, 1986.">ff-Katiceal86</a>]</span>); transverse components
+(radial wake deficits) are superimposed by vector sum. In Katic et
+al. (<span id="id30">[<a class="reference internal" href="zrefs.html#id27" title="I. Kati\`c and et al. A simple model for cluster efficiency. In European Wind Energy Association Conference and Exhibition. Rome, Italy, 1986.">ff-Katiceal86</a>]</span>), the RSS method is applied to wakes
+with axial deficits that are uniform across the wake diameter and radial
+deficits are not considered. In contrast, the RSS method in FAST.Farm is
+applied locally at a given wind data point. The RSS method assumes that
+the local kinetic energy of the axial deficit in a merged wake equals
+the sum of the local energies of the axial deficits for each wake at the
+given wind data point. The RSS method only applies to an array of
+scalars, which works well for axial deficits because overlapping wakes
+likely have similar axial directions. This means, however, that only the
+magnitude of the vector is important in the superposition. A vector sum
+is applied to the transverse components (radial wake deficits) because
+any given radial direction is dependent on the azimuth angle in the
+axisymmetric coordinate system.</p>
+<p>The disturbed (ambient plus wakes) wind velocities across the high- and
+low-resolution domains – <span class="math notranslate nohighlight">\(\vec{V}_\text{Dist}^\text{High}\)</span> for each
+turbine and <span class="math notranslate nohighlight">\(\vec{V}_\text{Dist}^\text{Low}\)</span>, respectively – are
+computed using Equations <a class="reference internal" href="#equation-eq-vdisthigh">(4.253)</a>
+and <a class="reference internal" href="#equation-eq-vdistlow">(4.254)</a>, respectively.</p>
+<div class="math notranslate nohighlight" id="equation-eq-vdisthigh">
+<span class="eqno">(4.253)<a class="headerlink" href="#equation-eq-vdisthigh" title="Permalink to this equation"></a></span>\[\begin{split}\begin{split}
+  &amp; \vec{V}_\text{Dist}^\text{High}=\vec{V}_\text{Amb}^\text{High} \\
+ &amp; \quad \quad \,-\left\{
+   \sqrt{\sum\limits_{n^\text{Wake}=1}^{N^\text{Wake}}{
+      \begin{cases}
+         {{\left( \left\{ \bar{\hat{x}}^{Plane} \right\}^T
+            \left\{ V_{x_{n^\text{Wake}}}^\text{Wake}\hat{x}_{n^\text{Wake}}^\text{Plane}+
+               V_{r_{n^\text{Wake}}}^\text{Wake}\hat{r}_{n^\text{Wake}}^\text{Plane} \right\} \right)}^2}
+         &amp; \textrm{for}~\left( n_{t_{n^\text{Wake}}}\ne n_t \right)  \\
+         \\
+         0 &amp; \textrm{otherwise}\\
+      \end{cases}
+      }}
+   \right\}\bar{\hat{x}}^\text{Plane} \\
+ &amp; \quad \quad \,+\sum\limits_{n^\text{Wake}=1}^{N^\text{Wake}}{
+   \begin{cases}
+      \left[ I-\bar{\hat{x}}^\text{Plane}\left\{ \bar{\hat{x}}^\text{Plane} \right\}^T \right]
+         \left\{ V_{x_{n^\text{Wake}}}^\text{Wake}\hat{x}_{n^\text{Wake}}^\text{Plane}+
+            V_{r_{n^\text{Wake}}}^\text{Wake}\hat{r}_{n^\text{Wake}}^\text{Plane} \right\}
+      &amp; \textrm{for}~\left( {n_{t_{n^\text{Wake}}}}\ne n_t \right)  \\
+      \\
+      \vec{0} &amp; \textrm{otherwise}  \\
+   \end{cases}
+   } \\
+\end{split}\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-vdistlow">
+<span class="eqno">(4.254)<a class="headerlink" href="#equation-eq-vdistlow" title="Permalink to this equation"></a></span>\[\begin{split}\begin{split}
+  &amp; \vec{V}_\text{Dist}^\text{Low}=\vec{V}_\text{Amb}^\text{Low} \\
+  &amp; \quad \quad \,-\left\{
+      \sqrt{\sum\limits_{n^\text{Wake}=1}^{N^\text{Wake}}{
+         {\left( {{\left\{
+         \bar{\hat{x}}^\text{Plane} \right\}}^T}
+            \left\{ V_{x_{n^\text{Wake}}}^\text{Wake}\hat{x}_{n^\text{Wake}}^\text{Plane}+
+               V_{r_{n^\text{Wake}}}^\text{Wake}\hat{r}_{n^\text{Wake}}^\text{Plane}
+            \right\}
+         \right)}^2}}
+      \right\}\bar{\hat{x}}^\text{Plane} \\
+ &amp; \quad \quad +\sum\limits_{n^\text{Wake}=1}^{N^\text{Wake}}
+      \left[ I-\bar{\hat{x}}^\text{Plane}\left\{ \bar{\hat{x}}^\text{Plane} \right\}^T \right]
+      \left\{ V_{x_{n^\text{Wake}}}^\text{Wake}\hat{x}_{n^\text{Wake}}^\text{Plane}+
+         V_{r_{n^\text{Wake}}}^\text{Wake}\hat{r}_{n^\text{Wake}}^\text{Plane}
+      \right\} \\
+\end{split}\end{split}\]</div>
+<p>Here, <span class="math notranslate nohighlight">\((n_{t_{n^\text{Wake}}}\ne n_t)\)</span> signifies that wake
+<span class="math notranslate nohighlight">\(n^\text{Wake}\)</span> is not associated with the given turbine
+<span class="math notranslate nohighlight">\(n_t\)</span>. The first, second, and third terms on the right-hand side
+of Equations <a class="reference internal" href="#equation-eq-vdisthigh">(4.253)</a> and <a class="reference internal" href="#equation-eq-vdistlow">(4.254)</a>
+represent the ambient wind velocity, the RSS superposition of the axial
+wake-velocity deficits, and the vector sum of the transverse
+wake-velocity deficits, respectively. Although many mathematical details
+are outside the scope of this document, the nomenclature of
+Equations <a class="reference internal" href="#equation-eq-vdisthigh">(4.253)</a> and <a class="reference internal" href="#equation-eq-vdistlow">(4.254)</a> is
+as follows:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(N^\text{Wake}\)</span> – number of wake volumes overlapping a given wind
+data point in the wind domain</p></li>
+<li><p><span class="math notranslate nohighlight">\(n^\text{Wake}\)</span> – wake counter such that
+<span class="math notranslate nohighlight">\(1\le n^\text{Wake}\le N^\text{Wake}\)</span> which, when used as a
+subscript, is used to identify the specific point in a wake plane in
+place of <span class="math notranslate nohighlight">\(\left( r \right)\)</span> and subscript <span class="math notranslate nohighlight">\(n_p\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(V_{x_{n^\text{Wake}}}^\text{Wake}\)</span> – axial wake-velocity deficit
+associated with where the given wind data point lies within the
+specific wake volume and corresponding wake plane</p></li>
+<li><p><span class="math notranslate nohighlight">\(V_{r_{n^\text{Wake}}}^\text{Wake}\)</span> – radial wake-velocity
+deficit associated with where the given wind data point lies within
+the specific wake volume and corresponding wake plane</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{x}_{n^\text{Wake}}^\text{Plane}\)</span> – axial orientation
+associated with where the given wind data point lies within the
+specific wake volume and corresponding wake plane</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{r}_{n^\text{Wake}}^\text{Plane}\)</span> – radial unit vector
+associated with where the given wind data point lies within the
+specific wake volume and corresponding wake plane</p></li>
+<li><p><span class="math notranslate nohighlight">\(\overline{\hat{x}}^\text{Plane}\)</span> – weighted-average axial
+orientation associated with a given point in the wind spatial domain</p></li>
+<li><p><span class="math notranslate nohighlight">\(\{ \overline{\hat{x}}^\text{Plane}\}^T\)</span> – projects
+<span class="math notranslate nohighlight">\(\{ V_{x_{n^\text{Wake}}}^\text{Wake}\hat{x}_{n^\text{Wake}}^\text{Plane}+V_{r_{n^\text{Wake}}}^\text{Wake}\hat{r}_{n^\text{Wake}}^\text{Plane}\}\)</span>
+along <span class="math notranslate nohighlight">\(\hat{r}_{n^\text{Wake}}^\text{Plane}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\left[I-\hat{x}_{n^\text{Wake}}^\text{Plane}\{ \overline{\hat{x}}^\text{Plane}\}^T\right]\)</span> – calculates
+the transverse component of
+<span class="math notranslate nohighlight">\(\{ V_{x_{n^\text{Wake}}}^\text{Wake}\hat{x}_{n^\text{Wake}}^\text{Plane}+V_{r_{n^\text{Wake}}}^\text{Wake}\hat{r}_{n^\text{Wake}}^\text{Plane}\}\)</span>
+normal to <span class="math notranslate nohighlight">\(\overline{\hat{x}}^\text{Plane}\)</span>.</p></li>
+</ul>
+<p>Wake volumes are found by looping through all points, turbines, and wake
+planes and spatially determining if the given point resides in a wake
+volume that has a diameter equal to the radial extent of the wake
+planes. Wake volume <span class="math notranslate nohighlight">\(n_p\)</span> (for <span class="math notranslate nohighlight">\(0\le n_p\le N_p-2\)</span>) starts
+at wake plane <span class="math notranslate nohighlight">\(n_p\)</span> and extends to wake plane <span class="math notranslate nohighlight">\(n_p+1\)</span>. Wake
+volumes have a centerline determined by
+<span class="math notranslate nohighlight">\(\vec{p}_{n_p}^\text{Plane}\)</span>, <span class="math notranslate nohighlight">\(\hat{x}_{n_p}^\text{Plane}\)</span>,
+<span class="math notranslate nohighlight">\(\vec{p}_{n_p+1}^\text{Plane}\)</span>, and
+<span class="math notranslate nohighlight">\(\hat{x}_{n_p+1}^\text{Plane}\)</span> – this centerline is curved if
+<span class="math notranslate nohighlight">\(\hat{x}_{n_p}^\text{Plane}\)</span> and
+<span class="math notranslate nohighlight">\(\hat{x}_{n_p+1}^\text{Plane}\)</span> are not parallel. The calculations
+of <span class="math notranslate nohighlight">\(V_{x_{n^\text{Wake}}}^\text{Wake}\)</span> and
+<span class="math notranslate nohighlight">\(V_{r_{n^\text{Wake}}}^\text{Wake}\)</span> involve bilinear interpolation
+of the wake deficits in the axial and radial directions. The axial
+interpolation is complicated when the adjacent wake planes are not
+parallel. The vector quantity
+<span class="math notranslate nohighlight">\(\{ V_{x_{n^\text{Wake}}}^\text{Wake}\hat{x}_{n^\text{Wake}}^\text{Plane}+V_{r_{n^\text{Wake}}}^\text{Wake}\hat{r}_{n^\text{Wake}}^\text{Plane}\}\)</span>
+represents the total wake-velocity deficit associated with where the
+given wind data point lies within the specific wake volume and
+corresponding wake plane. Because each wake plane may have a unique
+orientation, what constitutes “axial” and “radial” in the superposition
+at a given wind data point is determined by weighted-averaging the
+orientations of each wake volume overlapping that point (weighted by the
+magnitude of each axial wake deficit). A similar equation is used to
+calculate the distributed wind velocities across the high-resolution
+domain (<span class="math notranslate nohighlight">\(\vec{V}_\text{Dist}^\text{High}\)</span>) for each turbine, which
+is needed to calculate the disturbed wind inflow to a turbine. Note that
+for the high-resolution domain, a turbine is prevented from interacting
+with its own wake.</p>
+<p>Once the distributed wind velocities across the low-resolution domain
+have been found, the wake merging submodel of the <em>AWAE</em> module computes
+as output the advection, deflection, and meandering velocity of each
+wake plane, <span class="math notranslate nohighlight">\(\vec{V}_{n_p}^\text{Plane}\)</span> for
+<span class="math notranslate nohighlight">\(0\le n_p\le N_p-1\)</span>, for each turbine as the weighted spatial
+average of the disturbed wind velocity across the wake plane, using
+Equation <a class="reference internal" href="#equation-eq-vnpplane">(4.255)</a>.</p>
+<div class="math notranslate nohighlight" id="equation-eq-vnpplane">
+<span class="eqno">(4.255)<a class="headerlink" href="#equation-eq-vnpplane" title="Permalink to this equation"></a></span>\[\vec{V}_{n_p}^\text{Plane}=
+   \frac{\sum\limits_{n^\text{Polar}=1}^{N_{n_p}^\text{Polar}}w_{n^\text{Polar}}\vec{V}_{\text{Dist}_{n^\text{Polar}}}^\text{Low}}
+        {\sum\limits_{n^\text{Polar}=1}^{N_{n_p}^\text{Polar}}{w_{n^\text{Polar}}}}\]</div>
+<p>The polar grid on wake plane <span class="math notranslate nohighlight">\(n_p\)</span> has a uniform radial and
+azimuthal discretization equal to the average <em>X-Y-Z</em> spatial
+discretization of the low-resolution domain (independent from the radial
+finite-difference grid used within the <em>WD</em> module) and a local diameter
+described below. Subscript <span class="math notranslate nohighlight">\(n^\text{Polar}\)</span> is appended to
+<span class="math notranslate nohighlight">\(\vec{V}_\text{Dist}^\text{Low}\)</span> in
+Equation <a class="reference internal" href="#equation-eq-vnpplane">(4.255)</a> to identify wind data that have been
+trilinearly interpolated from the low-resolution domain to the polar
+grid on the wake plane. Unlike Equation <a class="reference internal" href="#equation-eq-vxwind">(4.251)</a>,
+Equation <a class="reference internal" href="#equation-eq-vnpplane">(4.255)</a> includes a spatial weighting factor,
+<span class="math notranslate nohighlight">\(w_{n^\text{Polar}}\)</span>, dependent on the radial distance of point
+<span class="math notranslate nohighlight">\(n^\text{Polar}\)</span> from the center of the wake plane (discussed
+below). FAST.Farm will issue a warning if the center of any wake plane
+has left the boundaries of the low-resolution domain and set the
+meandering velocity of each wake plane,
+<span class="math notranslate nohighlight">\(\vec{V}_{n_p}^\text{Plane}\)</span>, to zero for any wake plane that has
+entirely left the boundaries of the low-resolution domain.
+Qualitatively, Equation <a class="reference internal" href="#equation-eq-vnpplane">(4.255)</a> states that the
+advection, deflection, and meandering velocity of each wake plane for
+each turbine is calculated as the weighted spatial average of the
+disturbed wind velocity on the wake plane. Larsen et
+al. (<span id="id31">[<a class="reference internal" href="zrefs.html#id4" title="G. C. Larsen and et al. Wake meander: a pragmatic approach. Wind Energy, 11:337-95, 2008. doi:http://onlinelibrary.wiley.com/doi/10.1002/we.267/epdf.">ff-Leal08</a>]</span>) proposed a uniform spatial average
+where all points within a circle of diameter
+<span class="math notranslate nohighlight">\(2D_{n_p}^\text{Wake}\)</span> are given equal weight. However, the
+Fourier transform of the circular function in a polar spatial domain
+results in a <em>jinc</em> function in the polar wave-number domain, <a class="footnote-reference brackets" href="#id46" id="id32">10</a>
+implying a gentle roll-off of energy below the cutoff wave number and
+pockets of energy at distinct wave numbers above the cutoff wave number.
+Experience with FAST.Farm development has shown that this approach
+results in less overall wake meandering and at improper frequencies. As
+such, three weighted spatial averaging methods have been implemented in
+FAST.Farm, as defined in Equation <a class="reference internal" href="#equation-eq-wn">(4.256)</a>.</p>
+<div class="math notranslate nohighlight" id="equation-eq-wn">
+<span class="eqno">(4.256)<a class="headerlink" href="#equation-eq-wn" title="Permalink to this equation"></a></span>\[\begin{split}w_{n^\text{Polar}}=
+\begin{cases}
+   1 &amp; \textrm{for}~\textit{method 1-uniform}\\
+   \\
+   jinc\left( \frac{r_{n^\text{Polar}}}{C_\text{Meander}D^\text{Wake}} \right)
+   &amp; \textrm{for}~\textit{method 2-truncated jinc}\\
+   \\
+   jinc\left( \frac{r_{n^\text{Polar}}}{C_\text{Meander}D^\text{Wake}} \right)jinc\left( \frac{r_{n^\text{Polar}}}{2C_\text{Meander}D^\text{Wake}} \right)
+   &amp; \textrm{for}~\textit{method 3-windowed jinc}\\
+\end{cases}\end{split}\]</div>
+<p>The first method is a spatial average with a uniform weighting with a
+local polar-grid diameter of <span class="math notranslate nohighlight">\(C_\text{Meander}D_{n_p}^\text{Wake}\)</span>
+at wake plane <span class="math notranslate nohighlight">\(n_p\)</span>, resulting in a cutoff wave number of
+<span class="math notranslate nohighlight">\(\frac{1}{C_\text{Meander}D^\text{Wake}}\)</span>. The second and third
+methods weight each point in the spatial average by a form of the <em>jinc</em>
+function dependent on the radius of the point from the wake centerline,
+<span class="math notranslate nohighlight">\(r_{n^\text{Polar}}\)</span>, normalized by
+<span class="math notranslate nohighlight">\(C_\text{Meander}D^\text{Wake}\)</span>. This results in a more ideal
+low-pass filter with a sharper cutoff of energy in the polar wave-number
+domain with a cutoff wave number of
+<span class="math notranslate nohighlight">\(\frac{1}{C_\text{Meander}D^\text{Wake}}\)</span>. However, because the
+<em>jinc</em> function decays slowly with increasing argument, the <em>jinc</em>
+function must be windowed to be applied in practice. The second method
+truncates the <em>jinc</em> function at its first zero crossing, corresponding
+to a local polar-grid diameter of
+<span class="math notranslate nohighlight">\(1.21967C_\text{Meander}D_{n_p}^\text{Wake}\)</span> at wake plane
+<span class="math notranslate nohighlight">\(n_p\)</span>. The third method windows the <em>jinc</em> function by multiplying
+it with a <em>jinc</em> function of half the argument (the polar-domain
+equivalent of a one-dimensional Lanczos/sinc window), which tapers the
+weighting to zero at its second zero crossing (the weighting is positive
+below the first zero crossing and negative past the first zero crossing
+until it tapers to zero). This corresponds to a local polar-grid
+diameter of <span class="math notranslate nohighlight">\(2.23313C_\text{Meander}D_{n_p}^\text{Wake}\)</span> at wake
+plane <span class="math notranslate nohighlight">\(n_p\)</span>. These weighted spatial averaging methods improve the
+overall level and frequency content of the wake meandering at the
+expense of a bit heavier computations due to the larger polar-grid
+diameters (i.e., the truncated <em>jinc</em> method has roughly <span class="math notranslate nohighlight">\(50\%\)</span>
+more points within the polar grid than the uniform method, and the
+windowed <em>jinc</em> method has roughly five times more points than the
+uniform method). A value of <span class="math notranslate nohighlight">\(C_\text{Meander}=2\)</span>, resulting in a
+polar-grid diameter of <span class="math notranslate nohighlight">\(2D^\text{Wake}\)</span> and cutoff wave number of
+<span class="math notranslate nohighlight">\(\frac{1}{2D^\text{Wake}}\)</span>, follows the characteristic dimension
+important to transverse wake meandering proposed by Larsen et
+al. (<span id="id33">[<a class="reference internal" href="zrefs.html#id4" title="G. C. Larsen and et al. Wake meander: a pragmatic approach. Wind Energy, 11:337-95, 2008. doi:http://onlinelibrary.wiley.com/doi/10.1002/we.267/epdf.">ff-Leal08</a>]</span>) <span class="math notranslate nohighlight">\(C_\text{Meander}\)</span> is
+included in all methods to enable the user of FAST.Farm to better match
+the meandering to known solutions. Note that the lower the value of
+<span class="math notranslate nohighlight">\(C_\text{Meander}\)</span>, the more the wake will meander.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id34"><span class="brackets"><a class="fn-backref" href="#id6">1</a></span></dt>
+<dd><p><span class="math notranslate nohighlight">\(x^d\)</span> and <span class="math notranslate nohighlight">\(X^d\)</span> are identical to what is described
+in <span id="id35">[<a class="reference internal" href="zrefs.html#id22" title="J. Jonkman. The new modularization framework for the fast wind turbine cae tool. In 51st AIAA Aerospace Sciences Meeting. Dallas, TX, 2013. AIAA.">ff-Jon13</a>]</span>. <span class="math notranslate nohighlight">\(u^d\)</span>, <span class="math notranslate nohighlight">\(y^d\)</span>, and
+<span class="math notranslate nohighlight">\(Y^d\)</span> are identical to <span class="math notranslate nohighlight">\(u\)</span>, <span class="math notranslate nohighlight">\(y\)</span>, and <span class="math notranslate nohighlight">\(Y\)</span>
+from <span id="id36">[<a class="reference internal" href="zrefs.html#id22" title="J. Jonkman. The new modularization framework for the fast wind turbine cae tool. In 51st AIAA Aerospace Sciences Meeting. Dallas, TX, 2013. AIAA.">ff-Jon13</a>]</span>, but are only evaluated in
+discrete time, <span class="math notranslate nohighlight">\(t=n\Delta t\)</span>, and so, are marked here with
+superscript <span class="math notranslate nohighlight">\(^d\)</span>.</p>
+</dd>
+<dt class="label" id="id37"><span class="brackets"><a class="fn-backref" href="#id8">2</a></span></dt>
+<dd><p>Not all of these possible parallel tasks have been implemented within
+FAST.Farm because profiling did not show adequate computational
+speedup. However, to minimize the computational expense of the output
+calculation of the <em>AWAE</em> module, the ambient wind data files are
+read in parallel to the state updates of the <em>OF</em>, and <em>WD</em>
+modules. See the introduction to <a class="reference internal" href="#ff-theorybasis"><span class="std std-numref">Section 4.19.7.2</span></a> for
+more information.</p>
+</dd>
+<dt class="label" id="id38"><span class="brackets"><a class="fn-backref" href="#id9">3</a></span></dt>
+<dd><p>Derived using the Line2-to-Line2 mesh-mapping algorithm of
+FAST (<span id="id39">[<a class="reference internal" href="zrefs.html#id23" title="M. A. Sprague and et al. Fast modular wind turbine cae tool: nonmatching spatial and temporal meshes. In 50th AIAA Aerospace Sciences Meeting. National Harbor, MD, January 2014. AIAA. doi:http://arc.aiaa.org/doi/pdf/10.2514/6.2014-0520.">ff-Seal14</a>, <a class="reference internal" href="zrefs.html#id24" title="M. A. Sprague and et al. Fast modular framework for wind turbine simulation: new algorithms and numerical examples. In 51th AIAA Aerospace Sciences Meeting. Kissimmee, FL, 2015. AIAA. doi:http://arc.aiaa.org/doi/pdf/10.2514/6.2014-0520.">ff-Seal15</a>]</span>) to transfer the
+aerodynamic applied loads distributed per unit length along the
+deflected/curved blade as calculated within FAST.</p>
+</dd>
+<dt class="label" id="id40"><span class="brackets"><a class="fn-backref" href="#id13">4</a></span></dt>
+<dd><p>Variations in the rotor diameter, <span class="math notranslate nohighlight">\(D^\text{Rotor}\)</span>, are
+possible as a result of blade deflection. These variations are likely
+small, but this variable is treated the same as other inputs for
+consistency.</p>
+</dd>
+<dt class="label" id="id41"><span class="brackets"><a class="fn-backref" href="#id14">5</a></span></dt>
+<dd><p>The absolute value is added because, as far as wake evolution is
+concerned, if a wake plane travels opposite of its original
+propagation direction (e.g., due to a localized wind gust), the total
+downwind distance traveled is used rather than the instantaneous
+downwind distance from the rotor.</p>
+</dd>
+<dt class="label" id="id42"><span class="brackets"><a class="fn-backref" href="#id16">6</a></span></dt>
+<dd><p>A value of <span class="math notranslate nohighlight">\(C_\text{NearWake}=2\)</span> is expected from first
+principles, but can be calibrated by the user of FAST.Farm to better
+match the far wake to known solutions.</p>
+</dd>
+<dt class="label" id="id43"><span class="brackets"><a class="fn-backref" href="#id17">7</a></span></dt>
+<dd><p>The incremental mass flow is given by:</p>
+<div class="math notranslate nohighlight">
+\[d\dot{m} = 2\pi r dr \rho\ ^\text{FiltDiskAvg}V^\text{Rel}_x (1-a(r)) = 2\pi r^\text{Plane} dr^\text{Plane} \rho\ ^\text{FiltDiskAvg}V^\text{Rel}_x (1-C_\text{NearWake} a(r))\]</div>
+<p>Following from this,
+<span class="math notranslate nohighlight">\(r^\text{Plane} dr^\text{Plane} = \frac{1-a\left( r\right)}{1-C_\text{NearWake} a\left( r\right)}r dr\)</span>,
+which can then be integrated along the radius.</p>
+</dd>
+<dt class="label" id="id44"><span class="brackets"><a class="fn-backref" href="#id24">8</a></span></dt>
+<dd><p>Subscript <span class="math notranslate nohighlight">\(n_r\)</span> has been used here in place of
+<span class="math notranslate nohighlight">\(\left( r\right)\)</span></p>
+</dd>
+<dt class="label" id="id45"><span class="brackets"><a class="fn-backref" href="#id25">9</a></span></dt>
+<dd><p>Note that the radial wake-velocity deficit at the centerline of the
+axisymmetric coordinate system (<span class="math notranslate nohighlight">\(n_r=0\)</span>) is always zero
+(<span class="math notranslate nohighlight">\(V_{r_{n_p}}^\text{Wake}\left( r \right)|_{r=0}=0)\)</span>.</p>
+</dd>
+<dt class="label" id="id46"><span class="brackets"><a class="fn-backref" href="#id32">10</a></span></dt>
+<dd><p>In this context, the <em>jinc</em> function is defined as
+<span class="math notranslate nohighlight">\(jinc(r)=\frac{J_1(2\pi r)}{r}\)</span> (with the limiting value at the
+origin of <span class="math notranslate nohighlight">\(jinc(0) = \pi)\)</span>, where <span class="math notranslate nohighlight">\(J_1(r)\)</span> is the Bessel
+function of the first kind and order one. The <em>jinc</em> function is
+normalized such that
+<span class="math notranslate nohighlight">\(\int\limits_{0}^{\infty }{jinc\left( r \right)2\pi rdr}=1\)</span>.
+The <em>jinc</em> function is the polar-equivalent of the one-dimensional
+sinc function defined as
+<span class="math notranslate nohighlight">\(\text{sinc} \left( x \right)=\frac{\sin \left( \pi x \right)}{\pi x}\)</span>
+(with the limiting value at the origin of <span class="math notranslate nohighlight">\(\text{sinc}(0)=1\)</span>,
+which is the Fourier transform of a rectangular function, i.e., an
+ideal low-pass filter, and normalized such that
+<span class="math notranslate nohighlight">\(\int\limits_{-\infty }^{\infty }{\text{sinc}\left( x \right)dx}=1\)</span>.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ModelGuidance.html" class="btn btn-neutral float-left" title="4.19.6. Modeling Guidance" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="FutureWork.html" class="btn btn-neutral float-right" title="4.19.8. Future Work" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

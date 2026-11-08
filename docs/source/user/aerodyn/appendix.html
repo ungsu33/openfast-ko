@@ -1,0 +1,216 @@
+<!DOCTYPE html><html class="writer-html5" lang="ko"><head><!-- Modified 2026-11-08: unofficial Korean machine translation of OpenFAST 5.0.0. Equations, code, figures, input values and attribution retained. -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.3.11. 부록 — OpenFAST v5.0.0 문서</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../../../genindex.html">
+    <link rel="search" title="검색" href="../../../search.html">
+    <link rel="next" title="4.4. OLAF 사용자 가이드 및 이론 설명서 (AeroDyn의 자유 와류 후류)" href="../aerodyn-olaf/index.html">
+    <link rel="prev" title="4.3.10. 참고문헌" href="zrefs.html"> 
+<link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/aerodyn/appendix.html"></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+          </a>
+              <div class="version">5.0 · 한국어</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="문서 검색" aria-label="문서 검색">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.3. AeroDyn</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">4.3.1. 소개</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coordsys.html">4.3.2. 좌표계</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input.html">4.3.3. 입력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="output.html">4.3.4. 출력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modeling.html">4.3.5. 모델링 시 고려사항</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver.html">4.3.6. AeroDyn 드라이버</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory.html">4.3.7. AeroDyn 이론</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory_ua.html">4.3.8. 불안정한 공기 역학</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory_tailfin.html">4.3.9. 꼬리지느러미 공기역학 이론</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.3.10. 참고문헌</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.3.11. 부록</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#aerodyn-input-files">4.3.11.1. AeroDyn 입력 파일</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#aerodyn-list-of-output-channels">4.3.11.2. AeroDyn 출력 채널 목록</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. 단순화 ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. 구조 제어</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. 추가 모듈 문서</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC 서브루틴 라이브러리</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+</ul>
+
+        <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="페이지 탐색">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.3. </span>AeroDyn 사용자 가이드 및 이론 설명서</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.3.11. </span>부록</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/aerodyn/appendix.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+      </li>
+  </ul>
+  <hr>
+</div><aside class="ko-notice" aria-label="한국어 번역 안내"><strong>한국어 자동번역</strong> · OpenFAST v5.0.0 · 2026-11-08 기준<br>비공식 번역본입니다. 수식·명령어·입력 변수와 첨부자료는 원문을 보존합니다. <a href="https://openfast.readthedocs.io/en/main/source/user/aerodyn/appendix.html" target="_blank" rel="noopener noreferrer" lang="en">영문 원문 대조 ↗</a></aside>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="appendix">
+<span id="ad-appendix"></span><h1><span class="section-number">4.3.11. </span>부록<a class="headerlink" href="#appendix" title="이 제목의 고유 링크"></a></h1>
+<div class="section" id="aerodyn-input-files">
+<span id="ad-input-files"></span><h2><span class="section-number">4.3.11.1. </span>AeroDyn 입력 파일<a class="headerlink" href="#aerodyn-input-files" title="이 제목의 고유 링크"></a></h2>
+<p>이 부록에서는 AeroDyn 입력 파일 구조를 설명하고 예제를 제공합니다.</p>
+<p>1) 기본 AeroDyn 드라이버 입력 파일:
+<a class="reference download internal" download="" href="../../../_downloads/7a77314a2cb8728956c5d1ddb48e0039/ad_driver_example.dvr"><code class="xref download docutils literal notranslate"><span class="pre">(driver</span> <span class="pre">input</span> <span class="pre">file</span> <span class="pre">example)</span></code></a>: 드라이버 입력 파일은 AeroDyn의 독립형 버전에만 필요하며 일반적으로 OpenFAST에서 생성되고 결합되지 않은 모델에 대한 공기 역학 시뮬레이션을 제어하는 데 필요한 입력을 포함합니다.</p>
+<p>AeroDyn 드라이버 시계열 입력 파일
+<a class="reference download internal" download="" href="../../../_downloads/e399351a88687fb05c32f91cee85548d/ad_driver_timeseries_example.csv"><code class="xref download docutils literal notranslate"><span class="pre">(driver</span> <span class="pre">timeseries</span> <span class="pre">input</span> <span class="pre">file</span> <span class="pre">example)</span></code></a>: AeroDyn 드라이버의 케이스에 대한 시계열 입력 파일을 사용하면 매개변수가 시간에 따라 달라질 수 있습니다. 이 기능은 OpenFAST 외부의 공기 역학적 응답을 디버깅하는 데 유용할 수 있습니다.</p>
+<p>2) 멀티로터 AeroDyn 드라이버 입력 파일
+<a class="reference download internal" download="" href="../../../_downloads/ac5577e8159b01ae60d7a0048ad1820e/ad_driver_multiple.dvr"><code class="xref download docutils literal notranslate"><span class="pre">(driver</span> <span class="pre">input</span> <span class="pre">file</span> <span class="pre">example)</span></code></a></p>
+<p>3) AeroDyn 기본 입력 파일
+<a class="reference download internal" download="" href="../../../_downloads/cd9ea254187c54cc46075f64b501259d/ad_primary_example.dat"><code class="xref download docutils literal notranslate"><span class="pre">(primary</span> <span class="pre">input</span> <span class="pre">file</span> <span class="pre">example)</span></code></a></p>
+<p>기본 AeroDyn 입력 파일은 모델링 옵션, 환경 조건(자유 흐름 제외), 익형, 타워 노드 이산화 및 속성, 타워, 허브 및 나셀 속성은 물론 출력 파일 사양을 정의합니다.</p>
+<p>파일은 여러 기능 섹션으로 구성됩니다. 각 섹션은 공기역학 모델의 측면에 해당합니다.</p>
+<p>입력 파일은 사용자용이지만 소프트웨어에서는 사용되지 않는 두 줄의 헤더 정보로 시작됩니다.</p>
+<ol class="arabic simple" start="4">
+<li><p>에어포일 데이터 입력 파일</p></li>
+</ol>
+<p><a class="reference download internal" download="" href="../../../_downloads/5ba9cfc7b0b53c6530f7032f44cb4874/ad_polar_example.dat"><code class="xref download docutils literal notranslate"><span class="pre">(profile</span> <span class="pre">data)</span></code></a></p>
+<p><a class="reference download internal" download="" href="../../../_downloads/a61e0144d2fbb7007e8a18c7c07a5860/ad_airfoil_example.dat"><code class="xref download docutils literal notranslate"><span class="pre">(profile</span> <span class="pre">coordinates)</span></code></a></p>
+<p>익형 데이터 입력 파일 자체(각 익형당 하나)에는 양력, 항력, AoA 대비 피칭 모멘트 계수와 UA 모델 매개변수가 포함된 테이블이 포함되어 있습니다. 이러한 파일에서는 공백이 아닌 첫 번째 문자가 느낌표(!)인 줄은 무시됩니다(주석 줄 삽입 시). 주석이 아닌 줄은 파일 내에서 순서대로 나타나야 하지만 명확하게 읽기 위해 원하는 대로 주석 줄을 혼합할 수도 있습니다.</p>
+<p>5) 블레이드 데이터 입력 파일
+<a class="reference download internal" download="" href="../../../_downloads/8c33e3aaf0e1e5d73970e7e96774f4ce/ad_blade_example.dat"><code class="xref download docutils literal notranslate"><span class="pre">(blade</span> <span class="pre">data</span> <span class="pre">input</span> <span class="pre">file</span> <span class="pre">example)</span></code></a></p>
+<p>블레이드 데이터 입력 파일에는 블레이드의 절점 이산화, 형상, 비틀림, 현, 익형 식별자 및 부력 속성이 포함되어 있습니다. 각 블레이드에 대해 별도의 파일이 사용되므로 공기역학적 불균형을 모델링할 수 있습니다.</p>
+</div>
+<div class="section" id="aerodyn-list-of-output-channels">
+<span id="ad-output-channels"></span><h2><span class="section-number">4.3.11.2. </span>AeroDyn 출력 채널 목록<a class="headerlink" href="#aerodyn-list-of-output-channels" title="이 제목의 고유 링크"></a></h2>
+<p>AeroDyn에는 일반 출력이 있습니다(참조: <a class="reference internal" href="input.html#ad-outputs"><span class="std std-numref">섹션 4.3.3.17
+위의</span></a>) 및 노드 출력(참조 <a class="reference internal" href="input.html#ad-nodal-outputs"><span class="std std-numref">섹션 4.3.3.18</span></a>).</p>
+<p>출력에 사용되는 좌표계(i, h, p, l, a로 표시)는 다음에 설명되어 있습니다. <a class="reference internal" href="coordsys.html#ad-coordsys"><span class="std std-numref">섹션 4.3.2</span></a>.</p>
+<p>가능한 모든 출력 매개변수의 포괄적인 최신 목록이 Excel 파일에 제공됩니다. <a class="reference download internal" download="" href="../../../_downloads/3f19498a5dc774461e022b671ff01ec6/OutListParameters.xlsx"><code class="xref download docutils literal notranslate"><span class="pre">OutListParameters.xlsx</span></code></a>탭에서 <cite>AeroDyn</cite> 및 <cite>AeroDyn_Nodes</cite> . Excel 파일의 이름은 의미별로 그룹화되어 있지만 원하는 대로 AeroDyn 입력 파일의 OUTPUTS 섹션에서 순서를 지정할 수 있습니다.</p>
+<p><strong>일반 출력</strong>
+일반 출력의 몇 가지 예가 아래에 나와 있습니다(참조:
+전체 목록은 <a class="reference download internal" download="" href="../../../_downloads/3f19498a5dc774461e022b671ff01ec6/OutListParameters.xlsx"><code class="xref download docutils literal notranslate"><span class="pre">OutListParameters.xlsx</span></code></a> ):</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><cite>RtAeroCp</cite> : 공기 역학적 동력 계수.</p></li>
+<li><p><span class="math notranslate nohighlight">\(B \alpha N \beta\)</span>, 출력 노드를 나타냅니다.
+블레이드의 <span class="math notranslate nohighlight">\(\beta\)</span> 블레이드의 <span class="math notranslate nohighlight">\(\alpha\)</span>, 여기서 <span class="math notranslate nohighlight">\(\alpha\)</span> 는 [1,3] 범위의 숫자이고 <span class="math notranslate nohighlight">\(\beta\)</span> 는 항목에 해당하는 [1,9] 범위의 숫자입니다. <span class="math notranslate nohighlight">\(\beta\)</span> 의 <span class="math notranslate nohighlight">\(\textit{BlOutNd}\)</span> 목록.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\textit{TwN}\beta\)</span> 는 출력 노드를 나타냅니다.
+타워의 <span class="math notranslate nohighlight">\(\beta\)</span> 는 항목에 해당하는 [1,9] 범위에 있습니다. <span class="math notranslate nohighlight">\(\beta\)</span> 의 <span class="math notranslate nohighlight">\(\textit{TwOutNd}\)</span> 목록.</p></li>
+</ul>
+</div></blockquote>
+<p><strong>노드 출력</strong></p>
+<p>노드 출력의 예는 아래에 설명되어 있습니다(참조:
+전체 목록은 <a class="reference download internal" download="" href="../../../_downloads/3f19498a5dc774461e022b671ff01ec6/OutListParameters.xlsx"><code class="xref download docutils literal notranslate"><span class="pre">OutListParameters.xlsx</span></code></a> ).</p>
+<p>교란되지 않은 유속의 x 성분(<cite>VUnd</cite>) 관성 프레임의 모든 블레이드 노드에서(<span class="math notranslate nohighlight">\(i\)</span>)를 배치하여 요청합니다.
+AeroDyn 노드 출력 목록의  <span class="math notranslate nohighlight">\(VUndxi\)</span> . 그러면 다음 형식의 출력 채널이 생성됩니다. <cite>AB</cite><span class="math notranslate nohighlight">\(\alpha N\beta\)</span> <cite>분드시</cite>, 노드용 <span class="math notranslate nohighlight">\(\beta\)</span> 블레이드의 <span class="math notranslate nohighlight">\(\alpha\)</span>, 여기서 <span class="math notranslate nohighlight">\(\alpha\)</span> 는 [1,3] 범위의 숫자이고 <span class="math notranslate nohighlight">\(\beta\)</span> 는 AeroDyn 블레이드 노드의 인덱스에 해당하는 [1,999] 범위의 숫자입니다.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="zrefs.html" class="btn btn-neutral float-left" title="4.3.10. 참고문헌" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+        <a href="../aerodyn-olaf/index.html" class="btn btn-neutral float-right" title="4.4. OLAF 사용자 가이드 및 이론 설명서 (AeroDyn의 자유 와류 후류)" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>© Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    
+     
+
+
+</body></html>

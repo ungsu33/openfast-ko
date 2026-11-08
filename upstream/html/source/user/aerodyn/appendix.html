@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.3.11. Appendix &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.4. OLAF User’s Guide and Theory Manual (Free Vortex Wake in AeroDyn)" href="../aerodyn-olaf/index.html" />
+    <link rel="prev" title="4.3.10. References" href="zrefs.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/aerodyn/appendix.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.3. AeroDyn</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">4.3.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coordsys.html">4.3.2. Coordinate systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input.html">4.3.3. Input Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="output.html">4.3.4. Output Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modeling.html">4.3.5. Modeling Considerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver.html">4.3.6. AeroDyn Driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory.html">4.3.7. AeroDyn Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory_ua.html">4.3.8. Unsteady Aerodynamics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory_tailfin.html">4.3.9. Tail fin Aerodynamics Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.3.10. References</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.3.11. Appendix</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#aerodyn-input-files">4.3.11.1. AeroDyn Input Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#aerodyn-list-of-output-channels">4.3.11.2. AeroDyn List of Output Channels</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.3. </span>AeroDyn Users Guide and Theory Manual</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.3.11. </span>Appendix</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/aerodyn/appendix.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="appendix">
+<span id="ad-appendix"></span><h1><span class="section-number">4.3.11. </span>Appendix<a class="headerlink" href="#appendix" title="Permalink to this heading"></a></h1>
+<div class="section" id="aerodyn-input-files">
+<span id="ad-input-files"></span><h2><span class="section-number">4.3.11.1. </span>AeroDyn Input Files<a class="headerlink" href="#aerodyn-input-files" title="Permalink to this heading"></a></h2>
+<p>In this appendix we describe the AeroDyn input-file structure and provide examples.</p>
+<p>1) Baseline AeroDyn Driver Input File:
+<a class="reference download internal" download="" href="../../../_downloads/7a77314a2cb8728956c5d1ddb48e0039/ad_driver_example.dvr"><code class="xref download docutils literal notranslate"><span class="pre">(driver</span> <span class="pre">input</span> <span class="pre">file</span> <span class="pre">example)</span></code></a>:
+The driver input file is only needed for the standalone version of AeroDyn and contains inputs normally generated by OpenFAST, and necessary to control the aerodynamic simulation for uncoupled models.</p>
+<p>AeroDyn Driver Timeseries Input File
+<a class="reference download internal" download="" href="../../../_downloads/e399351a88687fb05c32f91cee85548d/ad_driver_timeseries_example.csv"><code class="xref download docutils literal notranslate"><span class="pre">(driver</span> <span class="pre">timeseries</span> <span class="pre">input</span> <span class="pre">file</span> <span class="pre">example)</span></code></a>:
+The timeseries input file for a case in the AeroDyn driver allows the parameters
+to vary with time. This feature can be useful for debugging the aerodynamic response
+outside of OpenFAST.</p>
+<p>2) Multi-rotor AeroDyn Driver Input File
+<a class="reference download internal" download="" href="../../../_downloads/ac5577e8159b01ae60d7a0048ad1820e/ad_driver_multiple.dvr"><code class="xref download docutils literal notranslate"><span class="pre">(driver</span> <span class="pre">input</span> <span class="pre">file</span> <span class="pre">example)</span></code></a></p>
+<p>3) AeroDyn Primary Input File
+<a class="reference download internal" download="" href="../../../_downloads/cd9ea254187c54cc46075f64b501259d/ad_primary_example.dat"><code class="xref download docutils literal notranslate"><span class="pre">(primary</span> <span class="pre">input</span> <span class="pre">file</span> <span class="pre">example)</span></code></a></p>
+<p>The primary AeroDyn input file defines modeling options, environmental conditions (except freestream flow), airfoils, tower nodal discretization and properties, tower, hub, and nacelle properties, as well as output file specifications.</p>
+<p>The file is organized into several functional sections.  Each section corresponds to an aspect of the aerodynamics model.</p>
+<p>The input file begins with two lines of header information which is for your use, but is not used by the software.</p>
+<ol class="arabic simple" start="4">
+<li><p>Airfoil Data Input File</p></li>
+</ol>
+<p><a class="reference download internal" download="" href="../../../_downloads/5ba9cfc7b0b53c6530f7032f44cb4874/ad_polar_example.dat"><code class="xref download docutils literal notranslate"><span class="pre">(profile</span> <span class="pre">data)</span></code></a></p>
+<p><a class="reference download internal" download="" href="../../../_downloads/a61e0144d2fbb7007e8a18c7c07a5860/ad_airfoil_example.dat"><code class="xref download docutils literal notranslate"><span class="pre">(profile</span> <span class="pre">coordinates)</span></code></a></p>
+<p>The airfoil data input files themselves (one for each airfoil) include tables containing coefficients of lift force, drag force, and pitching moment versus AoA, as well as UA model parameters.  In these files, any line whose first non-blank character is an exclamation point (!) is ignored (for inserting comment lines).  The non-comment lines should appear within the file in order, but comment lines may be intermixed as desired for reading clarity.</p>
+<p>5) Blade Data Input File
+<a class="reference download internal" download="" href="../../../_downloads/8c33e3aaf0e1e5d73970e7e96774f4ce/ad_blade_example.dat"><code class="xref download docutils literal notranslate"><span class="pre">(blade</span> <span class="pre">data</span> <span class="pre">input</span> <span class="pre">file</span> <span class="pre">example)</span></code></a></p>
+<p>The blade data input file contains the nodal discretization, geometry, twist, chord, airfoil identifier, and buoyancy properties for a blade.  Separate files are used for each blade, which permits modeling of aerodynamic imbalances.</p>
+</div>
+<div class="section" id="aerodyn-list-of-output-channels">
+<span id="ad-output-channels"></span><h2><span class="section-number">4.3.11.2. </span>AeroDyn List of Output Channels<a class="headerlink" href="#aerodyn-list-of-output-channels" title="Permalink to this heading"></a></h2>
+<p>AeroDyn has regular outputs (see <a class="reference internal" href="input.html#ad-outputs"><span class="std std-numref">Section 4.3.3.17</span></a>) and nodal outputs (see <a class="reference internal" href="input.html#ad-nodal-outputs"><span class="std std-numref">Section 4.3.3.18</span></a>).</p>
+<p>The coordinate systems used for the outputs (labeled, i, h, p, l, a) are described in <a class="reference internal" href="coordsys.html#ad-coordsys"><span class="std std-numref">Section 4.3.2</span></a>.</p>
+<p>A comprehensive, up-to-date list of all possible output parameters is given in the Excel file <a class="reference download internal" download="" href="../../../_downloads/3f19498a5dc774461e022b671ff01ec6/OutListParameters.xlsx"><code class="xref download docutils literal notranslate"><span class="pre">OutListParameters.xlsx</span></code></a>, in the tab <cite>AeroDyn</cite> and <cite>AeroDyn_Nodes</cite> for the regular and nodal outputs, respectively.
+The names in the Excel file are grouped by meaning, but can be ordered in the OUTPUTS section of the AeroDyn input file as you see fit.</p>
+<p><strong>Regular outputs</strong>
+Some examples of regular outputs are given below (see <a class="reference download internal" download="" href="../../../_downloads/3f19498a5dc774461e022b671ff01ec6/OutListParameters.xlsx"><code class="xref download docutils literal notranslate"><span class="pre">OutListParameters.xlsx</span></code></a> for an exhaustive list):</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><cite>RtAeroCp</cite> : aerodynamic power coefficient.</p></li>
+<li><p><span class="math notranslate nohighlight">\(B \alpha N \beta\)</span>, refers to output node <span class="math notranslate nohighlight">\(\beta\)</span> of blade <span class="math notranslate nohighlight">\(\alpha\)</span>, where <span class="math notranslate nohighlight">\(\alpha\)</span> is a number in the range [1,3] and <span class="math notranslate nohighlight">\(\beta\)</span> is a number in the range [1,9], corresponding to entry <span class="math notranslate nohighlight">\(\beta\)</span> in the <span class="math notranslate nohighlight">\(\textit{BlOutNd}\)</span> list.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\textit{TwN}\beta\)</span> refers to output node <span class="math notranslate nohighlight">\(\beta\)</span> of the tower and is in the range [1,9], corresponding to entry <span class="math notranslate nohighlight">\(\beta\)</span> in the <span class="math notranslate nohighlight">\(\textit{TwOutNd}\)</span> list.</p></li>
+</ul>
+</div></blockquote>
+<p><strong>Nodal outputs</strong></p>
+<p>An example of nodal outputs is described below (see <a class="reference download internal" download="" href="../../../_downloads/3f19498a5dc774461e022b671ff01ec6/OutListParameters.xlsx"><code class="xref download docutils literal notranslate"><span class="pre">OutListParameters.xlsx</span></code></a> for an exhaustive list).</p>
+<p>The x-component of the undisturbed flow velocity (<cite>VUnd</cite>) at all blade nodes in the inertial frame (<span class="math notranslate nohighlight">\(i\)</span>) is requested by placing  <span class="math notranslate nohighlight">\(VUndxi\)</span> in the AeroDyn nodal output list.
+This will result in output channels of the form <cite>AB</cite><span class="math notranslate nohighlight">\(\alpha N\beta\)</span> <cite>Vundxi</cite>, for node <span class="math notranslate nohighlight">\(\beta\)</span> of blade <span class="math notranslate nohighlight">\(\alpha\)</span>, where <span class="math notranslate nohighlight">\(\alpha\)</span> is a number in the range [1,3] and <span class="math notranslate nohighlight">\(\beta\)</span> is a number in the range [1,999] corresponding to the index of the AeroDyn blade node.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="zrefs.html" class="btn btn-neutral float-left" title="4.3.10. References" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../aerodyn-olaf/index.html" class="btn btn-neutral float-right" title="4.4. OLAF User’s Guide and Theory Manual (Free Vortex Wake in AeroDyn)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

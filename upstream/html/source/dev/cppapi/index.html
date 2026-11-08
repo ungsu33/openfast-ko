@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>6.3.1. OpenFAST C++ Application Programming Interface &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="6.3.1.1.1. C++ API Documentation" href="api.html" />
+    <link rel="prev" title="6.1.6.7. Versioning" href="../versioning.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/dev/cppapi/index.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/index.html">4. User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">6. Developer Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#development-philosophy-and-guidelines">6.1. Development Philosophy and Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#api-reference">6.2. API Reference</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#c-api-reference">6.3. C++ API Reference</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">6.3.1. OpenFAST C++ Application Programming Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#use-of-c-api-for-actuator-line-simulations">6.3.1.1. Use of C++ API for Actuator Line Simulations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#implementation">6.3.1.2. Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test-for-mapping-procedure">6.3.1.3. Test for mapping procedure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#references">6.3.1.4. References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#other-documentation">6.4. Other Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">6. </span>Developer Documentation</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">6.3.1. </span>OpenFAST C++ Application Programming Interface</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/dev/cppapi/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="openfast-c-application-programming-interface">
+<span id="cppapi"></span><h1><span class="section-number">6.3.1. </span>OpenFAST C++ Application Programming Interface<a class="headerlink" href="#openfast-c-application-programming-interface" title="Permalink to this heading"></a></h1>
+<p>OpenFAST provides a C++ application programming interface (API) to drive wind turbine simulations from an external program in C++. The C++ API was developed mainly to integrate OpenFAST with Computational Fluid Dynamics (CFD) solvers for Fluid-Structure Interaction (FSI) applications. It currently supports FSI simulations using the actuator line method with plans to support blade-resolved FSI simulations in the near future. The C++ API can also be used to create an external driver program or glue code that runs OpenFAST simulations of several wind turbines in parallel.</p>
+<p>The C++ API is defined and implemented in the <code class="xref py py-class docutils literal notranslate"><span class="pre">fast::OpenFAST</span></code> class. Any user who wants to write a glue-code for OpenFAST in C++ should instantiate an object of the OpenFAST class and use it to drive the simulation of turbines. A sample glue-code <a class="reference external" href="https://github.com/OpenFAST/openfast/blob/dev/glue-codes/openfast-cpp/src/FAST_Prog.cpp">FAST_Prog.cpp</a> is provided as a demonstration of the usage of the C++ API. The glue-code allows for the simulation of multiple turbines using OpenFAST in serial or in parallel over multiple processors. The message passing interface (MPI) is used to run the different instances of turbines in parallel. An abbrievated version of FAST_Prog.cpp is shown below. The highlighted lines indicate the use of the OpenFAST class.</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;OpenFAST.H&quot;</span>
+</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;yaml-cpp/yaml.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;mpi.h&gt;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">readTurbineData</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iTurb</span><span class="p">,</span><span class="w"> </span><span class="n">fast</span><span class="o">::</span><span class="n">fastInputs</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">fi</span><span class="p">,</span><span class="w"> </span><span class="n">YAML</span><span class="o">::</span><span class="n">Node</span><span class="w"> </span><span class="n">turbNode</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">//Read turbine data for a given turbine using the YAML node</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">readInputFile</span><span class="p">(</span><span class="n">fast</span><span class="o">::</span><span class="n">fastInputs</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">fi</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">cInterfaceInputFile</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">tEnd</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">//Read input data for a given turbine using the YAML node</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">iErr</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">nProcs</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">rank</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">iErr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MPI_Init</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+<span class="w">  </span><span class="n">iErr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MPI_Comm_size</span><span class="p">(</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">nProcs</span><span class="p">);</span>
+<span class="w">  </span><span class="n">iErr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MPI_Comm_rank</span><span class="p">(</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">rank</span><span class="p">);</span>
+
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">tEnd</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="c1">// This doesn&#39;t belong in the OpenFAST - C++ API</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">ntEnd</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="c1">// This doesn&#39;t belong in the OpenFAST - C++ API</span>
+
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">cDriverInputFile</span><span class="o">=</span><span class="s">&quot;cDriver.i&quot;</span><span class="p">;</span>
+<span class="hll"><span class="w">  </span><span class="n">fast</span><span class="o">::</span><span class="n">OpenFAST</span><span class="w"> </span><span class="n">FAST</span><span class="p">;</span>
+</span><span class="hll"><span class="w">  </span><span class="n">fast</span><span class="o">::</span><span class="n">fastInputs</span><span class="w"> </span><span class="n">fi</span><span class="w"> </span><span class="p">;</span>
+</span><span class="w">  </span><span class="n">readInputFile</span><span class="p">(</span><span class="n">fi</span><span class="p">,</span><span class="w"> </span><span class="n">cDriverInputFile</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">tEnd</span><span class="p">);</span>
+<span class="w">  </span><span class="n">ntEnd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tEnd</span><span class="o">/</span><span class="n">fi</span><span class="p">.</span><span class="n">dtFAST</span><span class="p">;</span><span class="w">  </span><span class="c1">//Calculate the last time step</span>
+
+<span class="hll"><span class="w">  </span><span class="n">FAST</span><span class="p">.</span><span class="n">setInputs</span><span class="p">(</span><span class="n">fi</span><span class="p">);</span>
+</span><span class="w">  </span><span class="c1">// In a parallel simulation, multiple turbines have to be allocated to processors.</span>
+<span class="w">  </span><span class="c1">// The C++ API can handle any allocation of turbines on an arbitrary number of processors</span>
+<span class="w">  </span><span class="n">FAST</span><span class="p">.</span><span class="n">allocateTurbinesToProcsSimple</span><span class="p">();</span><span class="w"> </span><span class="c1">// Use this for a simple round robin allocation of turbines to processors.</span>
+<span class="hll"><span class="w">  </span><span class="c1">// Or allocate turbines to procs by calling &quot;setTurbineProcNo(iTurbGlob, procId)&quot; for each turbine.</span>
+</span>
+<span class="hll"><span class="w">  </span><span class="n">FAST</span><span class="p">.</span><span class="n">init</span><span class="p">();</span>
+</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">FAST</span><span class="p">.</span><span class="n">isTimeZero</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="hll"><span class="w">    </span><span class="n">FAST</span><span class="p">.</span><span class="n">solution0</span><span class="p">();</span>
+</span><span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="w"> </span><span class="o">!</span><span class="n">FAST</span><span class="p">.</span><span class="n">isDryRun</span><span class="p">()</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">nt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FAST</span><span class="p">.</span><span class="n">get_ntStart</span><span class="p">();</span><span class="w"> </span><span class="n">nt</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ntEnd</span><span class="p">;</span><span class="w"> </span><span class="n">nt</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="hll"><span class="w">      </span><span class="n">FAST</span><span class="p">.</span><span class="n">step</span><span class="p">();</span>
+</span><span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="hll"><span class="w">  </span><span class="n">FAST</span><span class="p">.</span><span class="n">end</span><span class="p">()</span><span class="w"> </span><span class="p">;</span>
+</span><span class="w">  </span><span class="n">MPI_Finalize</span><span class="p">()</span><span class="w"> </span><span class="p">;</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>All inputs to the OpenFAST class are expected through an object of the <code class="xref py py-class docutils literal notranslate"><span class="pre">fast::fastInputs</span></code>.</p>
+<p>FIXME: <strong>doxygenclass</strong> is needed to render the <code class="xref py py-class docutils literal notranslate"><span class="pre">fast::fastInputs</span></code> class structure</p>
+<p>The object of <code class="xref py py-class docutils literal notranslate"><span class="pre">fast::fastInputs</span></code> class is expected hold a struct vector of type <code class="xref py py-class docutils literal notranslate"><span class="pre">fast::turbineDataType</span></code> and size of the number of turbines in the simulation.</p>
+<p>FIXME: <strong>doxygenstruct</strong> is needed to render the <code class="xref py py-class docutils literal notranslate"><span class="pre">fast::turbineDataType</span></code> class structure</p>
+<div class="section" id="use-of-c-api-for-actuator-line-simulations">
+<h2><span class="section-number">6.3.1.1. </span>Use of C++ API for Actuator Line Simulations<a class="headerlink" href="#use-of-c-api-for-actuator-line-simulations" title="Permalink to this heading"></a></h2>
+<p>The C++ API was developed mainly to integrate OpenFAST with Computational Fluid Dynamics (CFD) solvers for Fluid-Structure Interaction (FSI) applications. The workhorse FSI algorithm for wind energy applications today is the Actuator Line algorithm <span id="id1">[<a class="reference internal" href="#id5" title="Matthew Churchfield, Sang Lee, Patrick Moriarty, Luis Martinez, Stefano Leonardi, Ganesh Vijayakumar, and James Brasseur. A Large-Eddy Simulation of Wind-Plant Aerodynamics. American Institute of Aeronautics and Astronautics, 2017/07/18 2012. URL: https://doi.org/10.2514/6.2012-537, doi:doi:10.2514/6.2012-537.">cpp-CLM+12</a>]</span>. The Actuator Line algorithm represents the effect of a turbine on a flow field as a series of point forces at <strong>actuator points</strong> along aerodynamic surfaces. The use of Blade Element Momentum theory in AeroDyn is modified to interface OpenFAST with CFD solvers for actuator line simulations. The CFD solver becomes the inflow module for OpenFAST that provides velocity information near the turbine. The calculation of the induction factors is turned off in OpenFAST and AeroDyn simply uses look up tables and an optional dynamic stall model to calculate the loads on the turbine based on the inflow field information received from the CFD solver. The induction model should be turned off in OpenFAST by selecting <code class="samp docutils literal notranslate"><span class="pre">WakeMod=0</span></code> in the AeroDyn input file. OpenFAST lumps the line forces along the blades and tower into a series of point forces for the actuator line algorithm. <a class="reference internal" href="#actuatorline-viz"><span class="std std-numref">Fig. 6.1</span></a> illustrates the transfer of information between OpenFAST and a CFD solver for actuator line applications.</p>
+<div class="figure align-center" id="id18">
+<span id="actuatorline-viz"></span><a class="reference internal image-reference" href="../../../_images/actuatorLine_illustrationViz.png"><img alt="../../../_images/actuatorLine_illustrationViz.png" src="../../../_images/actuatorLine_illustrationViz.png" style="width: 100%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 6.1 </span><span class="caption-text">Illustration of transfer of velocity, loads and deflection between a CFD solver and OpenFAST through the C++ API for actuator line applications.</span><a class="headerlink" href="#id18" title="Permalink to this image"></a></p>
+</div>
+<p>The CFD solver is expected to be the <em>driver program</em> for actuator line FSI simulations coupled to OpenFAST. The C++ API allows for <em>substepping</em> where the driver timestep is an integral multiple of the OpenFAST time step (<span class="math notranslate nohighlight">\(\Delta_t^{CFD} = n \Delta_t^{OpenFAST}\)</span>). The current implementation of the C++ API for OpenFAST allows for a serial staggered FSI scheme between the fluid (CFD) and structural (OpenFAST) solver. <a class="reference internal" href="#actuatorline-css"><span class="std std-numref">Fig. 6.2</span></a> shows a suggested implementation of a loosely coupled serial staggered FSI scheme to move the simulation from time step <cite>n</cite> to <cite>n+1</cite> for actuator line applications. A strongly coupled FSI scheme can be constructed through the repetition of the coupling algorithm in <a class="reference internal" href="#actuatorline-css"><span class="std std-numref">Fig. 6.2</span></a> through “outer” iterations.</p>
+<div class="figure align-center" id="id19">
+<span id="actuatorline-css"></span><a class="reference internal image-reference" href="../../../_images/css_actuatorline.png"><img alt="../../../_images/css_actuatorline.png" src="../../../_images/css_actuatorline.png" style="width: 100%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 6.2 </span><span class="caption-text">A conventional serial staggered FSI scheme that can be constructed through the C++ API for actuator line applications.</span><a class="headerlink" href="#id19" title="Permalink to this image"></a></p>
+</div>
+<p>OpenFAST uses different spatial meshes for the various modules <span id="id2">[<a class="reference internal" href="#id12" title="Jason M. Jonkman. The new modularization framework for the fast wind turbine cae tool. Technical Report NREL/CP-5000-57228, National Renewable Energy Laboratory, January 2013.">cpp-Jon13</a>]</span>. We define the actuator points to be along the mesh defined in the structural model (ElastoDyn/BeamDyn) of the turbine. The user defines the required number of actuator points along each blade and the tower through the input parameters <code class="samp docutils literal notranslate"><span class="pre">numForcePtsBlade</span></code> and <code class="samp docutils literal notranslate"><span class="pre">numForcePtsTower</span></code> for each turbine. The number of actuator points have to be the same on all blades. The C++ API uses OpenFAST to create the requested number of actuator points through linear interpolation of the nodes in the structural model. The mesh mapping algorithm in OpenFAST <span id="id3">[<a class="reference internal" href="#id11" title="Michael A. Sprague, Jason M. Jonkman, and Bonnie J. Jonkman. Fast modular framework for wind turbine simulation: new algorithms and numerical examples. Technical Report NREL/CP-2C00-63203, National Renewable Energy Laboratory, January 2015.">cpp-SJJ15</a>]</span> is used to transfer deflections from the structural model and loads from AeroDyn to the actuator points. To distinguish the <em>actuator points</em> from the Aerodyn points, the OpenFAST C++ uses the term <code class="samp docutils literal notranslate"><span class="pre">forceNodes</span></code> for the actuator points and <code class="samp docutils literal notranslate"><span class="pre">velNodes</span></code> (velocity nodes) for the Aerodyn points. The following piece of code illustrates how one can use the C++ API to implement a strongly coupled FSI scheme with “outer” iterations for actuator line applications. This sample piece of code sets the velocity at the <code class="samp docutils literal notranslate"><span class="pre">velNodes</span></code> and access the coordinates and the lumped forces at the <code class="samp docutils literal notranslate"><span class="pre">forceNodes</span></code>.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">currentCoords</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sampleVel</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iOuter</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">iOuter</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nOuterIterations</span><span class="p">;</span><span class="w"> </span><span class="n">iOuter</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">   </span><span class="n">FAST</span><span class="p">.</span><span class="n">predict_states</span><span class="p">();</span><span class="w"> </span><span class="c1">//Predict the location and force at the actuator points at time step &#39;n+1&#39;.</span>
+
+<span class="w">   </span><span class="k">for</span><span class="p">(</span><span class="n">iTurb</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">iTurb</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nTurbines</span><span class="p">;</span><span class="w"> </span><span class="n">iTurb</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">FAST</span><span class="p">.</span><span class="n">get_numVelPts</span><span class="p">(</span><span class="n">iTurb</span><span class="p">);</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="c1">// Get actuator node co-ordinates at time step &#39;n+1&#39;</span>
+<span class="w">         </span><span class="n">FAST</span><span class="p">.</span><span class="n">getForceNodeCoordinates</span><span class="p">(</span><span class="n">currentCoords</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">iTurb</span><span class="p">,</span><span class="w"> </span><span class="n">fast</span><span class="o">::</span><span class="n">np1</span><span class="p">);</span>
+<span class="w">         </span><span class="c1">//Move the actuator point to this co-ordinate if necessary</span>
+<span class="w">         </span><span class="c1">// Get force at actuator node at time step &#39;n+1&#39;</span>
+<span class="w">         </span><span class="n">FAST</span><span class="p">.</span><span class="n">getForce</span><span class="p">(</span><span class="n">actForce</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">iTurb</span><span class="p">,</span><span class="w"> </span><span class="n">fast</span><span class="o">::</span><span class="n">np1</span><span class="p">);</span>
+<span class="w">         </span><span class="c1">//Do something with this force</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">   </span><span class="p">}</span>
+
+<span class="w">   </span><span class="c1">// Predict CFD solver to next time step here</span>
+
+<span class="w">   </span><span class="k">for</span><span class="p">(</span><span class="n">iTurb</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">iTurb</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nTurbines</span><span class="p">;</span><span class="w"> </span><span class="n">iTurb</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">FAST</span><span class="p">.</span><span class="n">get_numVelPts</span><span class="p">(</span><span class="n">iTurb</span><span class="p">);</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="c1">// Get velocity node co-ordinates at time step &#39;n+1&#39;</span>
+<span class="w">         </span><span class="n">FAST</span><span class="p">.</span><span class="n">getVelNodeCoordinates</span><span class="p">(</span><span class="n">currentCoords</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">iTurb</span><span class="p">,</span><span class="w"> </span><span class="n">fast</span><span class="o">::</span><span class="n">np1</span><span class="p">);</span>
+<span class="w">         </span><span class="c1">//Sample velocity from CFD solver at currentCoords into sampleVel here</span>
+<span class="w">         </span><span class="c1">// Set velocity at the velocity nodes at time step &#39;n+1&#39;</span>
+<span class="w">         </span><span class="n">FAST</span><span class="p">.</span><span class="n">setVelocity</span><span class="p">(</span><span class="n">sampleVel</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">iTurb</span><span class="p">,</span><span class="w"> </span><span class="n">fast</span><span class="o">::</span><span class="n">np1</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">   </span><span class="p">}</span>
+
+<span class="w">   </span><span class="n">FAST</span><span class="p">.</span><span class="n">update_states_driver_time_step</span><span class="p">();</span><span class="w"> </span><span class="c1">// Predict the state of OpenFAST at the next time step</span>
+
+<span class="p">}</span>
+
+<span class="c1">// Move OpenFAST to next CFD time step</span>
+<span class="n">FAST</span><span class="p">.</span><span class="n">advance_to_next_driver_time_step</span><span class="p">();</span>
+</pre></div>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api.html">6.3.1.1.1. C++ API Documentation</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="implementation">
+<h2><span class="section-number">6.3.1.2. </span>Implementation<a class="headerlink" href="#implementation" title="Permalink to this heading"></a></h2>
+<p>The C++ API uses the C-Fortran interface to call the same functions as the Fortran driver internally to advance the OpenFAST in time. FAST_Library.f90 contains all the functions that can be called from the C++ API. Some of the corresponding functions between the C++ API and the Fortran module are shown in the following table.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 36%" />
+<col style="width: 33%" />
+<col style="width: 31%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>C++ API - OpenFAST.cpp</p></th>
+<th class="head"><p>Fortran - FAST_Library.f90</p></th>
+<th class="head"><p>FAST_Subs.f90</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>init()</p></td>
+<td><p>FAST_AL_CFD_Init</p></td>
+<td><p>FAST_InitializeAll_T</p></td>
+</tr>
+<tr class="row-odd"><td><p>solution0()</p></td>
+<td><p>FAST_CFD_Solution0</p></td>
+<td><p>FAST_Solution0_T</p></td>
+</tr>
+<tr class="row-even"><td><p>prework()</p></td>
+<td><p>FAST_CFD_Prework</p></td>
+<td><p>FAST_Prework_T</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>FAST_CFD_Store_SS</p></td>
+<td><p>FAST_Store_SS</p></td>
+</tr>
+<tr class="row-even"><td><p>update_states_driver_time_step()</p></td>
+<td><p>FAST_CFD_UpdateStates</p></td>
+<td><p>FAST_UpdateStates_T</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>FAST_CFD_Reset_SS</p></td>
+<td><p>FAST_Reset_SS</p></td>
+</tr>
+<tr class="row-even"><td><p>advance_to_next_driver_time_step()</p></td>
+<td><p>FAST_CFD_AdvanceToNextTimeStep</p></td>
+<td><p>FAST_AdvanceToNextTimeStep_T</p></td>
+</tr>
+</tbody>
+</table>
+<p>The <cite>FAST_Solution_T</cite> subroutine in <cite>FAST_Subs.f90</cite> is split into three different subroutines <cite>FAST_Prework_T</cite>, <cite>FAST_UpdateStates_T</cite> and <cite>FAST_AdvanceToNextTimeStep_T</cite> to allow for multiple <em>outer</em> iterations with external driver programs. Extra subroutines <cite>FAST_Store_SS</cite> and <cite>FAST_Reset_SS</cite> are introduced to move OpenFAST back by more than 1 time step when using <em>sub-stepping</em> with external driver programs. The typical order in which the Fortran subroutines will be accessed when using the C++ API from an external driver program is shown below.</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">FAST_AL_CFD_Init</span>
+
+<span class="k">call </span><span class="n">FAST_CFD_Solution0</span>
+
+<span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">nTimesteps</span>
+
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">nSubsteps</span><span class="w"> </span><span class="p">.</span><span class="n">gt</span><span class="p">.</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="w">         </span><span class="k">call </span><span class="n">FAST_CFD_Store_SS</span>
+<span class="w">   </span><span class="k">else</span>
+<span class="k">         call </span><span class="n">FAST_CFD_Prework</span>
+<span class="w">   </span><span class="k">end if</span>
+
+<span class="k">   do </span><span class="n">iOuter</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">nOuterIterations</span>
+
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">nSubsteps</span><span class="w"> </span><span class="p">.</span><span class="n">gt</span><span class="p">.</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+
+<span class="w">         </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iOuter</span><span class="w"> </span><span class="p">.</span><span class="n">ne</span><span class="p">.</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="w">            </span><span class="c">! Reset OpenFAST back when not the first pass</span>
+<span class="w">            </span><span class="k">call </span><span class="n">FAST_CFD_Reset_SS</span>
+
+<span class="w">         </span><span class="k">end if</span>
+
+<span class="k">         do </span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">nSubsteps</span>
+
+<span class="w">            </span><span class="c">! Set external inputs into modules here for the substep</span>
+<span class="w">            </span><span class="k">call </span><span class="n">FAST_CFD_Prework</span>
+<span class="w">            </span><span class="k">call </span><span class="n">FAST_CFD_UpdateStates</span>
+<span class="w">            </span><span class="k">call </span><span class="n">FAST_CFD_AdvanceToNextTimeStep</span>
+
+<span class="w">         </span><span class="k">end do</span><span class="w"> </span><span class="c">!Substeps</span>
+
+<span class="w">      </span><span class="k">else</span>
+
+<span class="k">         call </span><span class="n">FAST_CFD_UpdateStates</span>
+
+<span class="w">      </span><span class="k">end if</span>
+
+<span class="k">   end do</span><span class="w"> </span><span class="c">!Outer iterations</span>
+
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">nSubsteps</span><span class="w"> </span><span class="p">.</span><span class="n">gt</span><span class="p">.</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+
+<span class="w">      </span><span class="c">! Nothing to do here</span>
+
+<span class="w">   </span><span class="k">else</span>
+
+<span class="k">      call </span><span class="n">FAST_CFD_AdvanceToNextTimeStep</span>
+
+<span class="w">   </span><span class="k">end if</span>
+
+<span class="k">end do</span>
+</pre></div>
+</div>
+<p>The mapping of loads and deflections to the actuator points is performed in the <code class="xref py py-class docutils literal notranslate"><span class="pre">ExternalInflow</span></code> module in OpenFAST. The C++ API supports the use of both BeamDyn and ElastoDyn to model the blades. When using BeamDyn to model the blade, the C++ API requires the use of only 1 finite element for each blade along with the choice of trapezoidal quadrature for actuator line simulations.</p>
+</div>
+<div class="section" id="test-for-mapping-procedure">
+<h2><span class="section-number">6.3.1.3. </span>Test for mapping procedure<a class="headerlink" href="#test-for-mapping-procedure" title="Permalink to this heading"></a></h2>
+<p>The test for the implementation of the mapping procedure is as follows. OpenFAST is run using the C++ API to simulate the Jonkman 5-MW (formerly known as the NREL 5-MW) turbine for one time step with a prescribed velocity of <span class="math notranslate nohighlight">\(8 m/s\)</span> at all the velocity nodes and no induction (<code class="samp docutils literal notranslate"><span class="pre">WakeMod=0</span></code>). The number of actuator force nodes is varied from 10 to 100 while the number of velocity nodes is fixed at 17. <a class="reference internal" href="#actuator-force-nodes-mapping-test-thrust"><span class="std std-numref">Fig. 6.3</span></a> and <a class="reference internal" href="#actuator-force-nodes-mapping-test-torque"><span class="std std-numref">Fig. 6.4</span></a> show that the thrust and torque vary by less than <span class="math notranslate nohighlight">\(1.1 \times 10^{-6}\%\)</span> and <span class="math notranslate nohighlight">\(2 \times 10^{-6}\%\)</span> respectively when the number of actuator force nodes is varied from <span class="math notranslate nohighlight">\(10-100\)</span>.</p>
+<div class="figure align-center" id="id20">
+<span id="actuator-force-nodes-mapping-test-thrust"></span><a class="reference internal image-reference" href="../../../_images/thrustXActuatorForcePoints.png"><img alt="../../../_images/thrustXActuatorForcePoints.png" src="../../../_images/thrustXActuatorForcePoints.png" style="width: 100%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 6.3 </span><span class="caption-text">Variation of thrust using different number of actuator force nodes in <cite>OpenFAST</cite> for the same number of velocity nodes.</span><a class="headerlink" href="#id20" title="Permalink to this image"></a></p>
+</div>
+<div class="figure align-center" id="id21">
+<span id="actuator-force-nodes-mapping-test-torque"></span><a class="reference internal image-reference" href="../../../_images/torqueXActuatorForcePoints.png"><img alt="../../../_images/torqueXActuatorForcePoints.png" src="../../../_images/torqueXActuatorForcePoints.png" style="width: 100%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 6.4 </span><span class="caption-text">Variation of torque using different number of actuator force nodes in <cite>OpenFAST</cite> for the same number of velocity nodes.</span><a class="headerlink" href="#id21" title="Permalink to this image"></a></p>
+</div>
+</div>
+<div class="section" id="references">
+<h2><span class="section-number">6.3.1.4. </span>References<a class="headerlink" href="#references" title="Permalink to this heading"></a></h2>
+<div class="docutils container" id="id4">
+<dl class="citation">
+<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id1">cpp-CLM+12</a></span></dt>
+<dd><p>Matthew Churchfield, Sang Lee, Patrick Moriarty, Luis Martinez, Stefano Leonardi, Ganesh Vijayakumar, and James Brasseur. <em>A Large-Eddy Simulation of Wind-Plant Aerodynamics</em>. American Institute of Aeronautics and Astronautics, 2017/07/18 2012. URL: <a class="reference external" href="https://doi.org/10.2514/6.2012-537">https://doi.org/10.2514/6.2012-537</a>, <a class="reference external" href="https://doi.org/doi:10.2514/6.2012-537">doi:doi:10.2514/6.2012-537</a>.</p>
+</dd>
+<dt class="label" id="id12"><span class="brackets"><a class="fn-backref" href="#id2">cpp-Jon13</a></span></dt>
+<dd><p>Jason M. Jonkman. The new modularization framework for the fast wind turbine cae tool. Technical Report NREL/CP-5000-57228, National Renewable Energy Laboratory, January 2013.</p>
+</dd>
+<dt class="label" id="id11"><span class="brackets"><a class="fn-backref" href="#id3">cpp-SJJ15</a></span></dt>
+<dd><p>Michael A. Sprague, Jason M. Jonkman, and Bonnie J. Jonkman. Fast modular framework for wind turbine simulation: new algorithms and numerical examples. Technical Report NREL/CP-2C00-63203, National Renewable Energy Laboratory, January 2015.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../versioning.html" class="btn btn-neutral float-left" title="6.1.6.7. Versioning" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api.html" class="btn btn-neutral float-right" title="6.3.1.1.1. C++ API Documentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

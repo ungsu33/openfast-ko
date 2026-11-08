@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.9.2. Input Files &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.9.3. Theory" href="theory.html" />
+    <link rel="prev" title="4.9.1. Usage" href="usage.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/extptfm/input_files.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.9. ExtPtfm</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="usage.html">4.9.1. Usage</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.9.2. Input Files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#extpftm-module-input-file">4.9.2.1. ExtPftm Module Input File</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#output-channels">4.9.2.2. Output channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#guyan-craig-bampton-superelement-input-file-provided-through-red-filename">4.9.2.3. Guyan/Craig-Bampton superelement input file (provided through <code class="docutils literal notranslate"><span class="pre">Red_Filename</span></code>)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#connections-input-file-provided-through-conn-filename">4.9.2.4. Connections input file (provided through <code class="docutils literal notranslate"><span class="pre">Conn_Filename</span></code>)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#user-modal-and-connection-force-file-provided-through-force-filename-and-fconn-filename">4.9.2.5. User modal and connection force file (provided through <code class="docutils literal notranslate"><span class="pre">Force_Filename</span></code> and <code class="docutils literal notranslate"><span class="pre">FConn_Filename</span></code> )</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="theory.html">4.9.3. Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.9.4. References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.9.5. Example Files</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.9. </span>ExtPtfm</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.9.2. </span>Input Files</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/extptfm/input_files.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="input-files">
+<span id="ep-input-files"></span><h1><span class="section-number">4.9.2. </span>Input Files<a class="headerlink" href="#input-files" title="Permalink to this heading"></a></h1>
+<p>The different input files used by ExtPtfm are described in this section.  ExtPtfm uses the SI system (kg, m, s, N)
+No lines should be added or removed from the input files.</p>
+<div class="section" id="extpftm-module-input-file">
+<span id="ep-main-input-file"></span><h2><span class="section-number">4.9.2.1. </span>ExtPftm Module Input File<a class="headerlink" href="#extpftm-module-input-file" title="Permalink to this heading"></a></h2>
+<p>Prior to OpenFAST 2.3, the ExtPtfm module had no “module” input file, and the Guyan ASCII input file was given directly. This is no longer supported, and a module input file is required.
+An example of <a class="reference external" href="https://github.com/OpenFAST/r-test/blob/main/glue-codes/openfast/5MW_OC4Jckt_ExtPtfm/">OpenFAST setup with ExtPtfm is available here</a>.
+An example of <a class="reference external" href="https://github.com/OpenFAST/r-test/blob/main/glue-codes/openfast/5MW_OC4Jckt_ExtPtfm/ExtPtfm.dat">ExtPtfm module input file is available here</a>.
+The format is similar to other <em>OpenFAST</em> module.
+The input parameters are:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">DT</span></code>: Time step for numerical integration (s). The user may specify
+a time step here or use “default” to rely on the glue-code time-step.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IntMethod</span></code>: numerical method for the time integration. The
+Runge-Kutta, Adams–Bashforth and Adams–Bashforth-Moutlon methods are
+available.</p>
+<p><code class="docutils literal notranslate"><span class="pre">RBMod</span></code>: method for handling rigid-body motion of floating structures (switch).
+0: No special handling for rigid-body motion (fixed-bottom structures);
+1: Transform to rigid-body frame of reference;
+2: Transform to rigid-body frame of reference and add fictitious forces and exact self-weight.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Red_Filename</span></code>: path of file containing the Guyan/Craig-Bampton
+inputs.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ActiveDOFList</span></code>: list of size <code class="docutils literal notranslate"><span class="pre">NActiveDOFList</span></code> containing the CB
+modes indices that are active. This list is not read if
+<code class="docutils literal notranslate"><span class="pre">NActiveDOFList&lt;=0</span></code>. When specified, all system matrices are reshaped as
+<span class="math notranslate nohighlight">\(\boldsymbol{M}_\text{new}=\boldsymbol{M}(I,I)\)</span> where <span class="math notranslate nohighlight">\(I\)</span>
+is the list of indices, potentially unsorted and noncontiguous.
+Setting <code class="docutils literal notranslate"><span class="pre">NActiveDOFList=0</span></code> is equivalent to a Guyan reduction.
+Setting <span class="math notranslate nohighlight">\(\texttt{NActiveCBDOF}=-1\)</span> uses all the CB DOF provided
+in the input file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">InitPosList</span></code>: list of size <code class="docutils literal notranslate"><span class="pre">NInitPosList</span></code> containing the initial
+positions for the CB modes. This list is not read if
+<code class="docutils literal notranslate"><span class="pre">NInitPosList&lt;=0</span></code>, in which case all the CB DOF positions are
+initialized to 0.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">InitVelList</span></code>: list of size <code class="docutils literal notranslate"><span class="pre">NInitVelList</span></code> containing the initial
+velocities for the CB modes. This list is not read if
+<code class="docutils literal notranslate"><span class="pre">NInitVelList&lt;=0</span></code>, in which case all the CB DOF velocities are
+initialized to 0.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Connections</span></code>: flag for including connection points on the structure.
+If true, a file specifiying the connections must be provided through
+<code class="docutils literal notranslate"><span class="pre">Conn_FileName</span></code>. Currently, this feature is only used to couple with
+one of the mooring modules.</p>
+<p><code class="docutils literal notranslate"><span class="pre">UserForcing</span></code>: flag for user-defined modal forcing. If true, a file
+containing the force time series to be applied must be provided through
+<code class="docutils literal notranslate"><span class="pre">Force_FileName</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">ConnForcing</span></code>: flag for user-defined external force at connection points.
+If true, a file containing the force time series to be applied at the connection
+points must be provided through <code class="docutils literal notranslate"><span class="pre">FConn_FileName</span></code>. This option requires
+<code class="docutils literal notranslate"><span class="pre">Connections</span></code> to be true. Application of moments is not supported.</p>
+</li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SumPrint</span></code>:  Print summary data to &lt;RootName&gt;.sum</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">OutFile</span></code> , <code class="docutils literal notranslate"><span class="pre">TabDelim</span></code>, <code class="docutils literal notranslate"><span class="pre">OutFmt</span></code>, <code class="docutils literal notranslate"><span class="pre">TStart</span></code>: Output flags, currently unused</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">OutList</span></code>: Specifies the list of outputs that the user requests.
+These outputs are described in <a class="reference internal" href="#epoutputchannels"><span class="std std-ref">Output channels</span></a>.</p></li>
+</ul>
+</div>
+<div class="section" id="output-channels">
+<span id="epoutputchannels"></span><h2><span class="section-number">4.9.2.2. </span>Output channels<a class="headerlink" href="#output-channels" title="Permalink to this heading"></a></h2>
+<p>Outputs are written to disk via the ’.out’ or ’.outb’ files exported
+by <em>OpenFAST</em>.
+The time series of loads and displacements at the
+interface can be selected in ElastoDyn (e.g. <code class="docutils literal notranslate"><span class="pre">PtfmPitch</span></code>)
+Additional “write outputs” are
+implemented in <em>ExtPtfm</em>, according to the
+list given below. The symbols used in the theory section (<a class="reference internal" href="theory.html#ep-theory"><span class="std std-ref">Theory</span></a>) are also given in the table.</p>
+<table class="docutils align-default" id="id5">
+<caption><span class="caption-number">Table 4.5 </span><span class="caption-text">Output channels for the <em>ExtPtfm</em> module</span><a class="headerlink" href="#id5" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 54%" />
+<col style="width: 27%" />
+<col style="width: 7%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Channel name</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+<th class="head"><p><strong>Symbol</strong></p></th>
+<th class="head"><p><strong>Units</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">IntrfFx</span></code></p></td>
+<td><p>Platform interface force - Directed along the x-direction</p></td>
+<td><p><span class="math notranslate nohighlight">\(f_{C}[1]\)</span></p></td>
+<td><ol class="upperalpha simple" start="14">
+<li></li>
+</ol>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">IntrfFy</span></code></p></td>
+<td><p>Platform interface force - Directed along the y-direction</p></td>
+<td><p><span class="math notranslate nohighlight">\(f_{C}[2]\)</span></p></td>
+<td><ol class="upperalpha simple" start="14">
+<li></li>
+</ol>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">IntrfFz</span></code></p></td>
+<td><p>Platform interface force - Directed along the z-direction</p></td>
+<td><p><span class="math notranslate nohighlight">\(f_{C}[3]\)</span></p></td>
+<td><ol class="upperalpha simple" start="14">
+<li></li>
+</ol>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">IntrfMx</span></code></p></td>
+<td><p>Platform interface moment - Directed along the x-direction</p></td>
+<td><p><span class="math notranslate nohighlight">\(f_{C}[4]\)</span></p></td>
+<td><p>(Nm)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">IntrfMy</span></code></p></td>
+<td><p>Platform interface moment - Directed along the y-direction</p></td>
+<td><p><span class="math notranslate nohighlight">\(f_{C}[5]\)</span></p></td>
+<td><p>(Nm)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">IntrfMz</span></code></p></td>
+<td><p>Platform interface moment - Directed along the z-direction</p></td>
+<td><p><span class="math notranslate nohighlight">\(f_{C}[6]\)</span></p></td>
+<td><p>(Nm)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ExtrnFx</span></code></p></td>
+<td><p>Reduced input force at interface point - Directed along the x-direction</p></td>
+<td><p><span class="math notranslate nohighlight">\(f_{r1}[1]\)</span></p></td>
+<td><ol class="upperalpha simple" start="14">
+<li></li>
+</ol>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ExtrnFy</span></code></p></td>
+<td><p>Reduced input force at interface point - Directed along the y-direction</p></td>
+<td><p><span class="math notranslate nohighlight">\(f_{r1}[2]\)</span></p></td>
+<td><ol class="upperalpha simple" start="14">
+<li></li>
+</ol>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ExtrnFz</span></code></p></td>
+<td><p>Reduced input force at interface point - Directed along the z-direction</p></td>
+<td><p><span class="math notranslate nohighlight">\(f_{r1}[3]\)</span></p></td>
+<td><ol class="upperalpha simple" start="14">
+<li></li>
+</ol>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ExtrnMx</span></code></p></td>
+<td><p>Reduced input moment at interface point - Directed along the x-direction</p></td>
+<td><p><span class="math notranslate nohighlight">\(f_{r1}[4]\)</span></p></td>
+<td><p>(Nm)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ExtrnMy</span></code></p></td>
+<td><p>Reduced input moment at interface point - Directed along the y-direction</p></td>
+<td><p><span class="math notranslate nohighlight">\(f_{r1}[5]\)</span></p></td>
+<td><p>(Nm)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ExtrnMz</span></code></p></td>
+<td><p>Reduced input moment at interface point - Directed along the z-direction</p></td>
+<td><p><span class="math notranslate nohighlight">\(f_{r1}[6]\)</span></p></td>
+<td><p>(Nm)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CBDXXX</span></code></p></td>
+<td><p>Displacement of CB DOF number XXX (e.g. <code class="docutils literal notranslate"><span class="pre">CBD001</span></code>)</p></td>
+<td><p><span class="math notranslate nohighlight">\(\boldsymbol{x}_2[XXX]\)</span></p></td>
+<td><p>(-)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CBVXXX</span></code></p></td>
+<td><p>Velocity of CB DOF number XXX     (e.g. <code class="docutils literal notranslate"><span class="pre">CBV001</span></code>)</p></td>
+<td><p><span class="math notranslate nohighlight">\(\boldsymbol{\dot{x}}_2[XXX]\)</span></p></td>
+<td><p>(-)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CBAXXX</span></code></p></td>
+<td><p>Acceleration of CB DOF number XXX (e.g. <code class="docutils literal notranslate"><span class="pre">CBA001</span></code>)</p></td>
+<td><p><span class="math notranslate nohighlight">\(\boldsymbol{\ddot{x}}_2[XXX]\)</span></p></td>
+<td><p>(-)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CBFXXX</span></code></p></td>
+<td><p>Reduced input modal force in CB DOF number XXX (e.g. <code class="docutils literal notranslate"><span class="pre">CBF001</span></code>)</p></td>
+<td><p><span class="math notranslate nohighlight">\(\boldsymbol{f}_{r2}[XXX]\)</span></p></td>
+<td><p>(-)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="guyan-craig-bampton-superelement-input-file-provided-through-red-filename">
+<span id="epsuperelementinputfile"></span><h2><span class="section-number">4.9.2.3. </span>Guyan/Craig-Bampton superelement input file (provided through <code class="docutils literal notranslate"><span class="pre">Red_Filename</span></code>)<a class="headerlink" href="#guyan-craig-bampton-superelement-input-file-provided-through-red-filename" title="Permalink to this heading"></a></h2>
+<p>This superelement input file is used to provide the system matrices.</p>
+<div class="section" id="example">
+<h3><span class="section-number">4.9.2.3.1. </span>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h3>
+<p>An example of superelement file is available <a class="reference external" href="https://github.com/OpenFAST/r-test/blob/main/glue-codes/openfast/5MW_OC4Jckt_ExtPtfm/ExtPtfm_SE.dat">here</a>.
+A “dummy” example is given below, where numerical values are
+implied for: <code class="docutils literal notranslate"><span class="pre">n</span></code>, <code class="docutils literal notranslate"><span class="pre">M(i,j)</span></code>, <code class="docutils literal notranslate"><span class="pre">K(i,j)</span></code>, <code class="docutils literal notranslate"><span class="pre">C(i,j)</span></code>, etc.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!Comment
+!Comment
+!Dimension: n
+
+!Mass Matrix (Units (kg,m))
+  M(1,1) ... M(1,n)
+        [...]
+  M(n,1) ... M(n,n)
+
+!Stiffness Matrix (Units (N,m))
+  K(1,1) ... K(1,n)
+        [...]
+  K(n,1) ... K(n,n)
+
+!Damping Matrix (Units (N,m,kg))
+  C(1,1) ... C(1,n)
+        [...]
+  C(n,1) ... C(n,n)
+
+!Weight constant (Units (N,m))
+  W_0(1) W_0(2) ... W_0(n)
+
+!Weight stiffness (Units (N,m))
+  K_W(1,1) ... K_W(1,n)
+          [...]
+  K_W(n,1) ... K_W(n,n)
+</pre></div>
+</div>
+</div>
+<div class="section" id="specifications">
+<h3><span class="section-number">4.9.2.3.2. </span>Specifications<a class="headerlink" href="#specifications" title="Permalink to this heading"></a></h3>
+<p>The file follows the following specifications:</p>
+<ul class="simple">
+<li><p>ASCII file</p></li>
+<li><p>The file can start with an arbitrary number of comment lines that
+start with an exclamation mark ‘<code class="docutils literal notranslate"><span class="pre">!</span></code>‘</p></li>
+<li><p>The following (case insensitive) keyword must be provided next:</p>
+<ul>
+<li><p>‘<code class="docutils literal notranslate"><span class="pre">!dimension</span></code>:‘ followed by the integer
+<code class="docutils literal notranslate"><span class="pre">n</span></code><span class="math notranslate nohighlight">\(=6+n_{CB}\)</span></p></li>
+</ul>
+</li>
+<li><p>The remaining lines consist of the following special (case
+insensitive) keywords:</p>
+<ul>
+<li><p>‘<code class="docutils literal notranslate"><span class="pre">!mass</span> <span class="pre">matrix</span></code>‘: followed by some text. The next <span class="math notranslate nohighlight">\(n\)</span>
+lines each contain <span class="math notranslate nohighlight">\(n\)</span> float values. These values correspond
+to <span class="math notranslate nohighlight">\(\boldsymbol{M}_r\)</span>. Note that when modeling a floating
+structure with <code class="docutils literal notranslate"><span class="pre">RBMod</span></code> &gt; 0, the first 6 modes, the interface modes,
+also serve as rigid-body modes. Therefore, the first 6-by-6 entries
+of <span class="math notranslate nohighlight">\(\boldsymbol{M}_r\)</span> must be a self-consistent rigid-body mass
+matrix. ExtPtfm will give a warning if this is not the case.
+Internally, ExtPtfm uses this information to determine the mass,
+rigid-body moments of inertia, and CoG location.</p></li>
+<li><p>‘<code class="docutils literal notranslate"><span class="pre">!stiffness</span> <span class="pre">matrix</span></code>‘: similar to the mass matrix, the
+values correspond to <span class="math notranslate nohighlight">\(\boldsymbol{K}_r\)</span>. For a floating
+structure, there should not be any structural stiffness associated
+with rigid-body motion; therefore, the first 6 rows and 6 columns of
+<span class="math notranslate nohighlight">\(\boldsymbol{K}_r\)</span> should all be zeros.</p></li>
+<li><p>‘<code class="docutils literal notranslate"><span class="pre">!weight</span> <span class="pre">constant</span></code>‘: followed by some text. The next line
+should contain <span class="math notranslate nohighlight">\(n\)</span> float values. The values correspond to the
+constant self-weight <span class="math notranslate nohighlight">\(\boldsymbol{W}_0\)</span>. For a floating
+structure, the 1st, 2nd, and 6th entries of <span class="math notranslate nohighlight">\(\boldsymbol{W}_0\)</span>
+must be zeros. The constant roll and pitch moments due to self-weight
+must be consistent with the CoG location derived from the mass matrix.</p></li>
+<li><p>‘<code class="docutils literal notranslate"><span class="pre">!weight</span> <span class="pre">stiffness</span></code>‘: similar to the mass matrix, the values
+correspond to <span class="math notranslate nohighlight">\(\boldsymbol{K}_W\)</span>. For a floating structure,
+the adopted convention requires
+<span class="math notranslate nohighlight">\(\boldsymbol{W}_0\)</span> - <span class="math notranslate nohighlight">\(\boldsymbol{K}_W\)</span> * (modal displacment)
+to return the self-weight in a frame of reference following the
+rigid-body/interface motion. This implies that entry (1,5) of
+<span class="math notranslate nohighlight">\(\boldsymbol{K}_W\)</span> must be equal to <span class="math notranslate nohighlight">\(\boldsymbol{W}_0(3)\)</span>.
+Entry (2,4) must be equal to <span class="math notranslate nohighlight">\(-\boldsymbol{W}_0(3)\)</span>. Entries (4,4)
+and (5,5) must be equal to <span class="math notranslate nohighlight">\(\boldsymbol{W}_0(3) * z_{CG}\)</span>.
+Entry (6,4) must be equal to <span class="math notranslate nohighlight">\(-\boldsymbol{W}_0(3) * x_{CG}\)</span>, and
+entry (6,5) must be equal to <span class="math notranslate nohighlight">\(-\boldsymbol{W}_0(3) * y_{CG}\)</span>, where
+<span class="math notranslate nohighlight">\((x_{CG},y_{CG},z_{CG})\)</span> are the location of the rigid-body
+center of mass measured from the platform reference point defined in
+ElastoDyn, i.e., (<em>PtfmRefxt</em>, <em>PtfmRefyt</em>, <em>PtfmRefzt</em>). All entries in the
+1st, 2nd, and 6th columns of <span class="math notranslate nohighlight">\(\boldsymbol{K}_W\)</span> should be
+zeros. Again, if the input matrix does not follow this structure, a
+warning will be given.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="connections-input-file-provided-through-conn-filename">
+<span id="epconnectinputfile"></span><h2><span class="section-number">4.9.2.4. </span>Connections input file (provided through <code class="docutils literal notranslate"><span class="pre">Conn_Filename</span></code>)<a class="headerlink" href="#connections-input-file-provided-through-conn-filename" title="Permalink to this heading"></a></h2>
+<p>The connection input file is used to provide the number and locations of connection
+points on the structure. Currently, the connection points are only used to couple
+with mooring fairleads when any of the available mooring modules is enabled. This file
+also needs to provide the structural motion/deflection at each connection point for
+each Guyan mode and Craig-Bampton mode.</p>
+<div class="section" id="id1">
+<h3><span class="section-number">4.9.2.4.1. </span>Example<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<p>A “dummy” example is given below, where numerical values are
+implied for <code class="docutils literal notranslate"><span class="pre">m</span></code>, <code class="docutils literal notranslate"><span class="pre">X1</span></code>, <code class="docutils literal notranslate"><span class="pre">Y1</span></code>, <code class="docutils literal notranslate"><span class="pre">Z1</span></code>, etc.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!Comment
+!Comment
+!nConn: m
+
+!Connections (m)
+  X1  Y1  Z1
+     [...]
+  Xm  Ym  Zm
+
+!Displacement (m)
+  [3m x n matrix]
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3><span class="section-number">4.9.2.4.2. </span>Specifications<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<p>The file follows the following specifications:</p>
+<ul class="simple">
+<li><p>ASCII file</p></li>
+<li><p>The file can start with an arbitrary number of comment lines that
+start with an exclamation mark ‘<code class="docutils literal notranslate"><span class="pre">!</span></code>‘</p></li>
+<li><p>The following (case insensitive) keywords must be provided next
+in the order given:</p>
+<ul>
+<li><p>‘<code class="docutils literal notranslate"><span class="pre">!nConn</span></code>:‘ followed by the integer
+<code class="docutils literal notranslate"><span class="pre">m</span></code> giving the number of connection points on the structure</p></li>
+<li><p>‘<code class="docutils literal notranslate"><span class="pre">!Connections</span></code>‘: followed by some text. The next <span class="math notranslate nohighlight">\(m\)</span>
+lines each containing 3 float values give the <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span>,
+and <span class="math notranslate nohighlight">\(z\)</span> coordinates of the <span class="math notranslate nohighlight">\(m\)</span> connection points. Note
+that the coordinates are in reference to the same global origin used
+in, e.g., HydroDyn and MoorDyn input files, and are not relative to
+the platform reference point defined in ElastoDyn.</p></li>
+<li><p>‘<code class="docutils literal notranslate"><span class="pre">!Displacement</span></code>‘: followed by some text. The next <span class="math notranslate nohighlight">\(3m\)</span>
+lines each contain <span class="math notranslate nohighlight">\(n\)</span> float values. The columns of this matrix
+correspond to the <span class="math notranslate nohighlight">\(n\)</span> modes defined in the superelement input
+file and give the <span class="math notranslate nohighlight">\(x\)</span>,  <span class="math notranslate nohighlight">\(y\)</span>, and <span class="math notranslate nohighlight">\(z\)</span> displacements
+of the first connection point in the first 3 rows, followed by those
+of the second connection point in the next 3 rows, and so on, for unit
+motion of each mode. When modeling a floating body with <code class="docutils literal notranslate"><span class="pre">RBMod</span></code> &gt; 0,
+the first 6 modes are the Guyan interface modes that also serve as
+rigid-body modes. Therefore, the first 6 columns of this matrix should
+simply describe the linearized rigid-body motion of each connection
+point following the platform reference point defined in ElastoDyn,
+i.e., (<em>PtfmRefxt</em>, <em>PtfmRefyt</em>, <em>PtfmRefzt</em>).</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="user-modal-and-connection-force-file-provided-through-force-filename-and-fconn-filename">
+<h2><span class="section-number">4.9.2.5. </span>User modal and connection force file (provided through <code class="docutils literal notranslate"><span class="pre">Force_Filename</span></code> and <code class="docutils literal notranslate"><span class="pre">FConn_Filename</span></code> )<a class="headerlink" href="#user-modal-and-connection-force-file-provided-through-force-filename-and-fconn-filename" title="Permalink to this heading"></a></h2>
+<p>These two files allow the user to prescribe external forcing to the system modes
+and the connection points. The two files have similar formatting. The only difference
+is in the number of columns.</p>
+<div class="section" id="id3">
+<h3><span class="section-number">4.9.2.5.1. </span>Example<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<p>A “dummy” example is given below, where numerical values are
+implied for <code class="docutils literal notranslate"><span class="pre">k</span></code>, <code class="docutils literal notranslate"><span class="pre">t1</span></code>, <code class="docutils literal notranslate"><span class="pre">F1</span></code>, etc.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!Comment
+!Comment
+!nSteps: k
+
+!Forcing (N/-)
+  t(1)  F_1(1)  F_2(1) ...
+        [...]
+  t(k)  F_1(k)  F_2(k) ...
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h3><span class="section-number">4.9.2.5.2. </span>Specifications<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<p>The files follow the following specifications:</p>
+<ul class="simple">
+<li><p>ASCII file</p></li>
+<li><p>The file can start with an arbitrary number of comment lines that
+start with an exclamation mark ‘<code class="docutils literal notranslate"><span class="pre">!</span></code>‘</p></li>
+<li><p>The following (case insensitive) keywords must be provided next
+in the order they are given:</p>
+<ul>
+<li><p>‘<code class="docutils literal notranslate"><span class="pre">!NSteps</span></code>:‘ followed by the integer
+<code class="docutils literal notranslate"><span class="pre">k</span></code> giving the number of time steps in the force time series</p></li>
+<li><p>‘<code class="docutils literal notranslate"><span class="pre">!Forcing</span></code>‘: followed by some text. The next <span class="math notranslate nohighlight">\(k\)</span>
+lines provide the user-defined modal or connection force time
+series. The number of columns depends on whether this is for
+modal forcing or connection forcing. In both cases, the first
+column is time. For modal forcing, there should be <span class="math notranslate nohighlight">\(n\)</span>
+columns following the time column, with each column corresponding
+to one of the modes defined in the superelement input file.
+For connection forcing, there should be <span class="math notranslate nohighlight">\(3m\)</span> columns
+following the time column, giving the <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span>, and
+<span class="math notranslate nohighlight">\(z\)</span> force components at the first connection point,
+followed by that at the second connection point, and so on. Note
+that the times in the first column need not match the simulation
+time step or be evenly spaced. ExtPtfm will perform linear
+interpolation between the provided times as needed.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="usage.html" class="btn btn-neutral float-left" title="4.9.1. Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="theory.html" class="btn btn-neutral float-right" title="4.9.3. Theory" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

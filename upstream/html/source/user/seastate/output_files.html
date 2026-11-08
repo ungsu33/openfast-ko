@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.12.2. Output Files &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.12.3. Appendix A: Example SeaState primary input file" href="appendix.html" />
+    <link rel="prev" title="4.12.1. Input Files" href="input_files.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/seastate/output_files.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.12. SeaState</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="input_files.html">4.12.1. Input Files</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.12.2. Output Files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#echo-files">4.12.2.1. Echo Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#wave-elevation-file">4.12.2.2. Wave-Elevation File</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#wave-kinematics-files">4.12.2.3. Wave-Kinematics Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#summary-file">4.12.2.4. Summary File</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#results-file">4.12.2.5. Results File</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.12.3. Appendix A: Example SeaState primary input file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html#appendix-b-example-seastate-driver-input-file">4.12.4. Appendix B: Example SeaState driver input file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html#appendix-c-list-of-output-channels">4.12.5. Appendix C. List of Output Channels</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.12. </span>SeaState User Guide and Theory Manual</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.12.2. </span>Output Files</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/seastate/output_files.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="output-files">
+<span id="sea-output"></span><h1><span class="section-number">4.12.2. </span>Output Files<a class="headerlink" href="#output-files" title="Permalink to this heading"></a></h1>
+<p>SeaState produces five types of output files: echo files, a wave-elevation
+file, wave-kinematics files, a summary file, and a time-series file.
+The following sections detail the purpose and contents of these files.</p>
+<div class="section" id="echo-files">
+<h2><span class="section-number">4.12.2.1. </span>Echo Files<a class="headerlink" href="#echo-files" title="Permalink to this heading"></a></h2>
+<p>If you set the <strong>Echo</strong> flag to TRUE in the SeaState driver file or the
+SeaState primary input file, the contents of those files will be echoed
+to a file with the naming conventions, <strong>OutRootName</strong><em>.dvr.ech</em> for
+the driver input file and <strong>OutRootName</strong><em>.SeaSt.ech</em> for the SeaState
+primary input file. <strong>OutRootName</strong> is either specified in the SEASTATE
+section of the driver input file, or by the OpenFAST program. The echo files
+are helpful for debugging your input files. The contents of an echo file
+will be truncated if SeaState encounters an error while parsing an input
+file. The error usually corresponds to the line after the last
+successfully echoed line.</p>
+</div>
+<div class="section" id="wave-elevation-file">
+<h2><span class="section-number">4.12.2.2. </span>Wave-Elevation File<a class="headerlink" href="#wave-elevation-file" title="Permalink to this heading"></a></h2>
+<p>Setting <strong>WaveElevSeriesFlag</strong> in the driver file to TRUE enables the
+output of the wave elevation across the entire SeaState wave grid to
+a text-based file with the name <code class="docutils literal notranslate"><span class="pre">OutRootName.WaveElev.out</span></code>.
+The output wave grid is controlled by the SPATIAL DISCRETIZATION
+section of the primary SeaState input file. These wave elevations are
+distinct and output separately from the wave elevations determined by
+<strong>NWaveElev</strong> in the SeaState primary input file, which are instead
+recorded in the time-series output file. The wave-elevation output file
+<code class="docutils literal notranslate"><span class="pre">OutRootName.WaveElev.out</span></code> contains the total wave elevation, which is
+the sum of the first- and second-order terms (when the second-order wave
+kinematics are optionally enabled). The wave-elevation file described
+here is useful for visualization purposes.</p>
+</div>
+<div class="section" id="wave-kinematics-files">
+<h2><span class="section-number">4.12.2.3. </span>Wave-Kinematics Files<a class="headerlink" href="#wave-kinematics-files" title="Permalink to this heading"></a></h2>
+<p><strong>WrWvKinMod</strong> controls the wave kinematics output from the SeaState driver.
+The driver will output the wave-elevation time series at the global origin
+(0,0) in a separate <em>.Elev</em> file if <strong>WrWvKinMod</strong> = 1. This file also serves
+as a valid <strong>WvKinFile</strong> for <strong>WaveMod</strong> = 5 (externally generated wave-elevation
+time series) in the primary SeaState input file. This is a separate wave-
+elevation output independent from the wave-field output obtained with
+<strong>WaveElevSeriesFlag</strong> = TRUE and the wave-elevation time series obtained with
+<strong>NWaveElev</strong> in the SeaState primary input file.</p>
+<p>If <strong>WrWvKinMod</strong> = 2, SeaState will output the full wave kinematics (velocity,
+acceleration, dynamic pressure, and wave elevation) at all wave grid points in
+eight output files with the extensions <em>.Vxi</em>, <em>.Vyi</em>, <em>.Vzi</em>, <em>.Axi</em>, <em>.Ayi</em>,
+<em>.Azi</em>, <em>.DynP</em>, and <em>.Elev</em>. The velocity and acceleration outputs are all in the
+global earth-fixed coordinate system. These files are also valid as
+<strong>WvKinFile</strong> for <strong>WaveMod</strong> = 6 (externally generated full wave-kinematics
+time series) and can be used as templates if users would like to build
+their own input files for <strong>WaveMod</strong> = 6.</p>
+</div>
+<div class="section" id="summary-file">
+<span id="sea-summary-file"></span><h2><span class="section-number">4.12.2.4. </span>Summary File<a class="headerlink" href="#summary-file" title="Permalink to this heading"></a></h2>
+<p>SeaState generates a summary file with the naming convention,
+<strong>OutRootName</strong><em>.SeaSt.sum</em> if the <strong>SeaStSum</strong> parameter is set
+to TRUE. This file summarizes key information about your sea-state
+model, including water density, water depth, still-water level,
+the wave grid, first-order wave frequency components, and any
+user-requested time-series outputs.</p>
+<div class="section" id="summary-of-user-requested-outputs">
+<h3><span class="section-number">4.12.2.4.1. </span>Summary of User-Requested Outputs<a class="headerlink" href="#summary-of-user-requested-outputs" title="Permalink to this heading"></a></h3>
+<p>The summary file includes information about all user-requested
+wave-elevation and wave-kinematics time-series output channels.</p>
+<div class="section" id="wave-kinematics-output-locations">
+<h4><span class="section-number">4.12.2.4.1.1. </span>Wave-Kinematics Output Locations<a class="headerlink" href="#wave-kinematics-output-locations" title="Permalink to this heading"></a></h4>
+<p>The first column lists the index of the wave-kinematics output locations,
+as entered in the OUTPUT CHANNELS section of the SeaState input file.
+<strong>Xi</strong>, <strong>Yi</strong>, and <strong>Zi</strong> provide the spatial coordinates of the wave-kinematics
+output locations in the global inertial-frame coordinate system.</p>
+</div>
+<div class="section" id="wave-elevation-output-locations">
+<h4><span class="section-number">4.12.2.4.1.2. </span>Wave-Elevation Output Locations<a class="headerlink" href="#wave-elevation-output-locations" title="Permalink to this heading"></a></h4>
+<p>The first column lists the index of the wave-elevation output locations,
+as entered in the OUTPUT CHANNELS section of the SeaState input file.
+<strong>Xi</strong> and <strong>Yi</strong> provide the spatial coordinates of the wave-elevation
+output locations in the global inertial-frame coordinate system.</p>
+</div>
+<div class="section" id="requested-output-channels">
+<h4><span class="section-number">4.12.2.4.1.3. </span>Requested Output Channels<a class="headerlink" href="#requested-output-channels" title="Permalink to this heading"></a></h4>
+<p>The string labels of all requested time-series output channels, as entered
+in the OUTPUT CHANNELS section of the SeaState input file, are summarized here.</p>
+</div>
+</div>
+<div class="section" id="wave-frequency-components">
+<h3><span class="section-number">4.12.2.4.2. </span>Wave Frequency Components<a class="headerlink" href="#wave-frequency-components" title="Permalink to this heading"></a></h3>
+<p>This section provides the frequency-domain description (in terms of a
+Discrete Fourier Transform or DFT) of the first-order wave elevation at
+(0,0) on the free surface, but is not written when <strong>WaveMod</strong> = 0 or 6.
+The first column, <strong>index</strong>, identifies the index of each wave frequency
+component. The finite-depth wave number, angular frequency, and direction of the
+wave components are given by <strong>k</strong>, <strong>Omega</strong>, and <strong>Direction</strong>,
+respectively. The last two columns provide the real
+(<strong>REAL(DFT{WaveElev})</strong>) and imaginary (<strong>IMAG(DFT{WaveElev})</strong>)
+parts of the first-order DFT wave amplitudes. The DFT
+produces both negative- and positive-frequency components.
+The negative-frequency components are complex conjugates of the
+positive-frequency components because the time-domain wave elevation is
+real-valued. The relationships between the negative- and
+positive-frequency components of the DFT are given by
+<span class="math notranslate nohighlight">\(k\left( - \omega \right) = - k\left( \omega \right)\)</span> and
+<span class="math notranslate nohighlight">\(H\left( - \omega \right) = {H\left( \omega \right)}^{*}\)</span>, where
+<em>H</em> is the DFT of the wave elevation and <em>*</em> denotes the complex
+conjugate.</p>
+</div>
+</div>
+<div class="section" id="results-file">
+<h2><span class="section-number">4.12.2.5. </span>Results File<a class="headerlink" href="#results-file" title="Permalink to this heading"></a></h2>
+<p>The SeaState time-series results are written to a text-based file with
+the naming convention <code class="docutils literal notranslate"><span class="pre">OutRootName.SeaSt.out</span></code> when <strong>OutSwtch</strong> is
+set to either 1 or 3. If SeaState is coupled to OpenFAST and <strong>OutSwtch</strong> is
+set to 2 or 3, then OpenFAST will generate a master results file that
+includes the SeaState results. The results are in table format, where
+each column is a data channel (the first column is always the
+simulation time), and each row corresponds to a simulation output time
+step. The data channels are specified in the OUTPUT CHANNELS section of
+the SeaState primary input file. The column format of the
+SeaState-generated file is specified using the <strong>OutFmt</strong> and
+<strong>OutSFmt</strong> parameter of the primary input file.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="input_files.html" class="btn btn-neutral float-left" title="4.12.1. Input Files" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="appendix.html" class="btn btn-neutral float-right" title="4.12.3. Appendix A: Example SeaState primary input file" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

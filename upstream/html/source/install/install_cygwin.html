@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.8.2. Building OpenFAST on Windows with CMake and Cygwin 64-bit &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="3. Working with OpenFAST" href="../working.html" />
+    <link rel="prev" title="2.8.1. Building OpenFAST with Spack" href="install_spack.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/install/install_cygwin.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">2. Installing OpenFAST</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#download-binaries">2.1. Download binaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#running-openfast-with-docker">2.2. Running OpenFAST with docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#install-the-openfast-io-python-wrapper">2.3. Install the <code class="docutils literal notranslate"><span class="pre">openfast_io</span></code> python wrapper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#compile-from-source">2.4. Compile from source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#c-api">2.5. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#fast-farm">2.6. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#simulink">2.7. Simulink</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#appendix">2.8. Appendix</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="install_spack.html">2.8.1. Building OpenFAST with Spack</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">2.8.2. Building OpenFAST on Windows with CMake and Cygwin 64-bit</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#installing-prerequisites">2.8.2.1. Installing prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#compiling-openfast">2.8.2.2. Compiling OpenFAST</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#other-tips">2.8.2.3. Other tips</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">4. User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">2. </span>Installing OpenFAST</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">2.8.2. </span>Building OpenFAST on Windows with CMake and Cygwin 64-bit</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/source/install/install_cygwin.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="building-openfast-on-windows-with-cmake-and-cygwin-64-bit">
+<span id="install-cygwin"></span><h1><span class="section-number">2.8.2. </span>Building OpenFAST on Windows with CMake and Cygwin 64-bit<a class="headerlink" href="#building-openfast-on-windows-with-cmake-and-cygwin-64-bit" title="Permalink to this heading"></a></h1>
+<p>WARNING: This build process takes a significantly long amount of time.
+If GNU tools are not required, it is recommended that Windows users see one
+of the following sections:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="index.html#download-binaries"><span class="std std-ref">Download binaries</span></a></p></li>
+<li><p><a class="reference internal" href="index.html#cmake-windows"><span class="std std-ref">CMake with Visual Studio for Windows</span></a></p></li>
+<li><p><a class="reference internal" href="install_vs_windows.html#install-vs-windows"><span class="std std-ref">Building OpenFAST on Windows with Visual Studio</span></a>.</p></li>
+</ul>
+<div class="section" id="installing-prerequisites">
+<h2><span class="section-number">2.8.2.1. </span>Installing prerequisites<a class="headerlink" href="#installing-prerequisites" title="Permalink to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Download and install <a class="reference external" href="https://cygwin.com/setup-x86_64.exe">Cygwin 64-bit</a>.
+You will need to <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">as</span> <span class="pre">Administrator</span></code> to complete the installation
+process.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Choose <code class="docutils literal notranslate"><span class="pre">Install</span> <span class="pre">from</span> <span class="pre">internet</span></code></p></li>
+<li><p>Choose the default install location</p></li>
+<li><p>Choose the default package download location</p></li>
+<li><p>Choose <code class="docutils literal notranslate"><span class="pre">Direct</span> <span class="pre">connection</span></code></p></li>
+<li><p>Choose a download site</p></li>
+<li><p>See next step for <code class="docutils literal notranslate"><span class="pre">select</span> <span class="pre">packages</span></code>. Alternately, you can skip this
+step and run <code class="docutils literal notranslate"><span class="pre">setup-x86_64.exe</span></code> anytime later to select and install
+required software.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Select packages necessary for compiling <code class="docutils literal notranslate"><span class="pre">OpenFAST</span></code>. Choose <code class="docutils literal notranslate"><span class="pre">binary</span></code>
+packages and not the source option.</p>
+<blockquote>
+<div><ul>
+<li><p>Choose <code class="docutils literal notranslate"><span class="pre">Category</span></code> view, we will be installing packages from
+<code class="docutils literal notranslate"><span class="pre">Devel</span></code> and <code class="docutils literal notranslate"><span class="pre">Math</span></code></p></li>
+<li><p>From <code class="docutils literal notranslate"><span class="pre">Devel</span></code> mark the following packages for installation</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cmake</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cmake-doc</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cmake-gui</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cygwin-devel</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gcc-core</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gcc-fortran</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gcc-g++</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">makedepend</span></code></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>From <code class="docutils literal notranslate"><span class="pre">Math</span></code> mark the following packages for installation</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">liblapack-devel</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libopenblas</span></code></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>To run the test suite, install these optional packages from <code class="docutils literal notranslate"><span class="pre">Python</span></code>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">python3</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Python3-numpy</span></code></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Next</span></code> and accept all additional packages that the setup
+process requests to install to satisfy dependencies</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>It is <em>recommended</em> that you reboot the machine after installing
+<code class="docutils literal notranslate"><span class="pre">Cygwin</span></code> and all the necessary packages.</p></li>
+</ol>
+</div>
+<div class="section" id="compiling-openfast">
+<h2><span class="section-number">2.8.2.2. </span>Compiling OpenFAST<a class="headerlink" href="#compiling-openfast" title="Permalink to this heading"></a></h2>
+<p>From here, pick up from the Linux with CMake instructions at
+<a class="reference internal" href="index.html#cmake-unix"><span class="std std-ref">CMake with Make for Linux/macOS</span></a>.</p>
+</div>
+<div class="section" id="other-tips">
+<h2><span class="section-number">2.8.2.3. </span>Other tips<a class="headerlink" href="#other-tips" title="Permalink to this heading"></a></h2>
+<ul>
+<li><p>If you would like to run <code class="docutils literal notranslate"><span class="pre">openfast.exe</span></code> from the <code class="docutils literal notranslate"><span class="pre">cmd</span></code> terminal, then you
+must add the <code class="docutils literal notranslate"><span class="pre">C:\cygwin64\lib\lapack</span></code> and
+<code class="docutils literal notranslate"><span class="pre">C:\cygwin64\home\&lt;USERNAME&gt;\software\bin</span></code> to your <code class="docutils literal notranslate"><span class="pre">%PATH%</span></code> variable in
+environment setting. Replace <code class="docutils literal notranslate"><span class="pre">&lt;USERNAME&gt;</span></code> with your account name on Windows
+system.</p></li>
+<li><p>It is suggested to compile with optimization level 2 for Cygwin. Do this by
+changing the build mode in the cmake command</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>..<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>RelWithDebInfo
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="install_spack.html" class="btn btn-neutral float-left" title="2.8.1. Building OpenFAST with Spack" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../working.html" class="btn btn-neutral float-right" title="3. Working with OpenFAST" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

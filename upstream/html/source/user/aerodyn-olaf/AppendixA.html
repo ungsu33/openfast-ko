@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.4.10. Appendix A: OLAF Primary Input File &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.4.11. Appendix B: Prescribed Circulation Input File" href="AppendixB.html" />
+    <link rel="prev" title="4.4.9. References" href="zrefs.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/aerodyn-olaf/AppendixA.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.4. OLAF</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Introduction.html">4.4.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Acronyms.html">4.4.2. List of Symbols</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RunningOLAF.html">4.4.3. Working with OLAF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="InputFiles.html">4.4.4. Input Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="OutputFiles.html">4.4.5. Output Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="OLAFTheory.html">4.4.6. OLAF Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="StateSpace.html">4.4.7. State-Space Representation and Integration with OpenFAST</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FutureWork.html">4.4.8. Future Work</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.4.9. References</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.4.10. Appendix A: OLAF Primary Input File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixB.html">4.4.11. Appendix B: Prescribed Circulation Input File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixC.html">4.4.12. Appendix C: OLAF List of Output Channels</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.4. </span>OLAF User’s Guide and Theory Manual (Free Vortex Wake in AeroDyn)</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.4.10. </span>Appendix A: OLAF Primary Input File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/aerodyn-olaf/AppendixA.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="appendix-a-olaf-primary-input-file">
+<span id="olaf-primary-input-file"></span><h1><span class="section-number">4.4.10. </span>Appendix A: OLAF Primary Input File<a class="headerlink" href="#appendix-a-olaf-primary-input-file" title="Permalink to this heading"></a></h1>
+<p><strong>Check the regression test cases for updates to this input file.</strong></p>
+<div class="docutils container" id="tab-olafinputfile">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>--------------------------- OLAF (cOnvecting LAgrangian Filaments) INPUT FILE -----------------
+<span class="linenos"> 2</span>Free wake input file for the Helix test case
+<span class="linenos"> 3</span>--------------------------- GENERAL OPTIONS ---------------------------------------------------
+<span class="linenos"> 4</span>default IntMethod          - Integration method {1: Runge-Kutta 4th order, 5: Forward Euler 1st order, default: 5} (switch)
+<span class="linenos"> 5</span>0.2     DTfvw              - Time interval for wake propagation. {default: dtaero} (s)
+<span class="linenos"> 6</span>default FreeWakeStart      - Time when wake is free. (-) value = always free. {default: 0.0} (s)
+<span class="linenos"> 7</span>default FullCircStart      - Time at which full circulation is reached. {default: 0.0} (s)
+<span class="linenos"> 8</span>--------------------------- CIRCULATION SPECIFICATIONS ----------------------------------------
+<span class="linenos"> 9</span>default CircSolvMethod     - Circulation solving method {1: Cl-Based, 2: No-Flow Through, 3: Prescribed, default: 1 }(switch)
+<span class="linenos">10</span>default CircSolvConvCrit   - Convergence criteria {default: 0.001} [only if CircSolvMethod=1] (-)
+<span class="linenos">11</span>default CircSolvRelaxation - Relaxation factor {default: 0.1} [only if CircSolvMethod=1] (-)
+<span class="linenos">12</span>default CircSolvMaxIter    - Maximum number of iterations for circulation solving {default: 30} (-)
+<span class="linenos">13</span>&quot;NA&quot;    PrescribedCircFile - File containing prescribed circulation [only if CircSolvMethod=3] (quoted string)
+<span class="linenos">14</span>===============================================================================================
+<span class="linenos">15</span>--------------------------- WAKE OPTIONS ------------------------------------------------------
+<span class="linenos">16</span>------------------- WAKE EXTENT AND DISCRETIZATION --------------------------------------------
+<span class="linenos">17</span>150     nNWPanels          - Number of near-wake panels (-)
+<span class="linenos">18</span>default nNWPanelsFree      - Number of free near-wake panels (-) {default: nNWPanels}
+<span class="linenos">19</span>default nFWPanels          - Number of far-wake panels (-) {default: 0}
+<span class="linenos">20</span>default nFWPanelsFree      - Number of free far-wake panels (-) {default: nNWPanels}
+<span class="linenos">21</span>default FWShedVorticity    - Include shed vorticity in the far wake {default: false}
+<span class="linenos">22</span>------------------- WAKE REGULARIZATIONS AND DIFFUSION -----------------------------------------
+<span class="linenos">23</span>default DiffusionMethod    - Diffusion method to account for viscous effects {0: None, 1: Core Spreading, &quot;default&quot;: 0}         
+<span class="linenos">24</span>2       RegDeterMethod     - Method to determine the regularization parameters {0: Constant, 1: Optimized, 2: Chord-scaled, 3: dr-scaled, default: 0 }          
+<span class="linenos">25</span>default RegFunction        - Viscous diffusion function {0: None, 1: Rankine, 2: LambOseen, 3: Vatistas, 4: Denominator, &quot;default&quot;: 3} (switch)
+<span class="linenos">26</span>default WakeRegMethod      - Wake regularization method {1: Constant, 2: Stretching, 3: Age, default: 1} (switch)
+<span class="linenos">27</span>0.25    WakeRegFactor      - Wake regularization factor (m or -)
+<span class="linenos">28</span>0.25    WingRegFactor      - Wing regularization factor (m or -)
+<span class="linenos">29</span>1000    CoreSpreadEddyVisc - Eddy viscosity in core spreading methods, typical values 1-1000 
+<span class="linenos">30</span>------------------- WAKE TREATMENT OPTIONS ---------------------------------------------------
+<span class="linenos">31</span>default TwrShadowOnWake    - Include tower flow disturbance effects on wake convection {default:false} [only if TwrPotent or TwrShadow]
+<span class="linenos">32</span>default ShearModel         - Shear Model {0: No treatment, 1: Mirrored vorticity, default: 0}
+<span class="linenos">33</span>------------------- SPEEDUP OPTIONS -----------------------------------------------------------
+<span class="linenos">34</span>default VelocityMethod     - Method to determine the velocity {1:Segment N^2, 2:Particle tree, 3: Particle N^2, 4: Segment Tree, default: 2}
+<span class="linenos">35</span>default TreeBranchFactor   - Branch radius fraction above which a multipole calculation is used {default: 1.5} [only if VelocityMethod=2,4]
+<span class="linenos">36</span>default PartPerSegment     - Number of particles per segment [only if VelocityMethod=2,3]
+<span class="linenos">37</span>===============================================================================================
+<span class="linenos">38</span>--------------------------- OUTPUT OPTIONS  ---------------------------------------------------
+<span class="linenos">39</span>default WrVTk              - Outputs Visualization Toolkit (VTK) (independent of .fst option) {0: NoVTK, 1: Write VTK at each time step, default: 0} (flag)
+<span class="linenos">40</span>default nVTKBlades         - Number of blades for which VTK files are exported {0: No VTK per blade, n: VTK for blade 1 to n, default: 0} (-) 
+<span class="linenos">41</span>default VTKCoord           - Coordinate system used for VTK export. {1: Global, 2: Hub, 3: Both, default: 1} 
+<span class="linenos">42</span>default VTK_fps            - Frame rate for VTK output (frames per second) {&quot;all&quot; for all glue code timesteps, &quot;default&quot; for all OLAF timesteps} [only if WrVTK=1] 
+<span class="linenos">43</span>0       nGridOut           - Number of grid outputs
+<span class="linenos">44</span>GridName  GridType  TStart  TEnd     DTGrid    XStart    XEnd   nX    YStart   YEnd    nY    ZStart   ZEnd   nZ
+<span class="linenos">45</span>(-)         (-)      (s)     (s)      (s)        (m)      (m)    (-)    (m)     (m)     (-)    (m)     (m)    (-)
+<span class="linenos">46</span>===============================================================================================
+<span class="linenos">47</span>--------------------------- ADVANCED OPTIONS --------------------------------------------------
+<span class="linenos">48</span>===============================================================================================
+<span class="linenos">49</span>! Advanced options may be placed here in arbitrary order, with the regular format:
+<span class="linenos">50</span>! Value   Key             - Comment
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="zrefs.html" class="btn btn-neutral float-left" title="4.4.9. References" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="AppendixB.html" class="btn btn-neutral float-right" title="4.4.11. Appendix B: Prescribed Circulation Input File" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

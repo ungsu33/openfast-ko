@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.15.2. Extended Bladed Interface &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.16. Simplified ElastoDyn" href="../simplified_elastodyn/index.html" />
+    <link rel="prev" title="4.15.1. Input Files" href="input.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/servodyn/ExtendedBladedInterface.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.15. ServoDyn</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="input.html">4.15.1. Input Files</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.15.2. Extended Bladed Interface</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.15. </span>ServoDyn Users Guide</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.15.2. </span>Extended Bladed Interface</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/servodyn/ExtendedBladedInterface.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="extended-bladed-interface">
+<span id="exbladed"></span><h1><span class="section-number">4.15.2. </span>Extended Bladed Interface<a class="headerlink" href="#extended-bladed-interface" title="Permalink to this heading"></a></h1>
+<p>The Bladed style DLL controller interface was extended to allow for a
+significant number of new channels arranged in channel groups in reserved
+ranges. This is shown in <a class="reference internal" href="#fig-blex"><span class="std std-numref">Fig. 4.53</span></a> below.</p>
+<div class="figure align-default" id="fig-blex">
+<a class="reference internal image-reference" href="../../../_images/BladedExInterface.png"><img alt="Channel scheme for extension to the Bladed DLL interface." src="../../../_images/BladedExInterface.png" style="width: 100.0%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.53 </span><span class="caption-text">Channel scheme for extension to the Bladed DLL interface.</span><a class="headerlink" href="#fig-blex" title="Permalink to this image"></a></p>
+</div>
+<p>The ServoDyn summary file contains a summary of all DLL inteface channels in
+use, as well as blocks of channels that are reserved.</p>
+<div class="docutils container" id="srvdsum">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  Legacy Bladed DLL interface channel usage by SrvD:
+
+                 --&gt;   indicates from SrvD to DLL
+                 &lt;--   indicates from DLL to SrvD
+                 &lt;-&gt;   indicates from bidirectional
+      Record #         Description
+      --------         -----------
+           1      --&gt;  Status flag set as follows: 0 if this is the first call, 1 for all subsequent time steps, -1 if this is the final call at the end of the simulation (-)
+           2      --&gt;  Current time (sec) [t in single precision]
+           3      --&gt;  Communication interval (sec)
+           4      --&gt;  Blade 1 pitch angle (rad) [SrvD input]
+           5      --&gt;  Below-rated pitch angle set-point (rad) [SrvD Ptch_SetPnt parameter]
+           6      --&gt;  Minimum pitch angle (rad) [SrvD Ptch_Min parameter]
+           7      --&gt;  Maximum pitch angle (rad) [SrvD Ptch_Max parameter]
+           8      --&gt;  Minimum pitch rate (most negative value allowed) (rad/s) [SrvD PtchRate_Min parameter]
+           9      --&gt;  Maximum pitch rate                               (rad/s) [SrvD PtchRate_Max parameter]
+          10      --&gt;  0 = pitch position actuator, 1 = pitch rate actuator (-) [must be 0 for ServoDyn]
+          11      --&gt;  Current demanded pitch angle (rad) [I am sending the previous value for blade 1 from the DLL, in the absence of any more information provided in Bladed documentation]
+          12      --&gt;  Current demanded pitch rate  (rad/s) [always zero for ServoDyn]
+          13      --&gt;  Demanded power (W) [SrvD GenPwr_Dem parameter from input file]
+          14      --&gt;  Measured shaft power (W) [SrvD input]
+          15      --&gt;  Measured electrical power output (W) [SrvD calculation from previous step; should technically be a state]
+          16      --&gt;  Optimal mode gain (Nm/(rad/s)^2) [if torque-speed table look-up not selected in input file, use SrvD Gain_OM parameter, otherwise use 0 (already overwritten in Init routine)]
+          17      --&gt;  Minimum generator speed (rad/s) [SrvD GenSpd_MinOM parameter]
+          18      --&gt;  Optimal mode maximum speed (rad/s) [SrvD GenSpd_MaxOMp arameter]
+          19      --&gt;  Demanded generator speed above rated (rad/s) [SrvD GenSpd_Dem parameter]
+          20      --&gt;  Measured generator speed (rad/s) [SrvD input]
+          21      --&gt;  Measured rotor speed (rad/s) [SrvD input]
+          22      --&gt;  Demanded generator torque above rated (Nm) [SrvD GenTrq_Dem parameter from input file]
+          23      --&gt;  Measured generator torque (Nm) [SrvD calculation from previous step; should technically be a state]
+          24      --&gt;  Measured yaw error (rad) [SrvD input]
+          25      --&gt;  Start of below-rated torque-speed look-up table (Lookup table not in use)
+          26      --&gt;  No. of points in torque-speed look-up table (-) [SrvD DLL_NumTrq parameter]:
+          27      --&gt;  Hub wind speed (m/s) [SrvD input]
+          28      --&gt;  Pitch control: 0 = collective, 1 = individual (-) [SrvD Ptch_Cntrl parameter]
+          29      --&gt;  Yaw control: 0 = yaw rate control, 1 = yaw torque control (-) [must be 0 for ServoDyn]
+          30      --&gt;  Blade 1 root out-of-plane bending moment (Nm) [SrvD input]
+          31      --&gt;  Blade 2 root out-of-plane bending moment (Nm) [SrvD input]
+          32      --&gt;  Blade 3 root out-of-plane bending moment (Nm) [SrvD input]
+          33      --&gt;  Blade 2 pitch angle (rad) [SrvD input]
+          34      --&gt;  Blade 3 pitch angle (rad) [SrvD input]
+          35      &lt;--  Generator contactor (-) [sent to DLL at the next call]
+          36      &lt;-&gt;  Shaft brake status (-) [sent to DLL at the next call; anything other than 0 or 1 is an error]
+          37      --&gt;  Nacelle yaw angle from North (rad)
+          41      &lt;--  demanded yaw actuator torque [this output is ignored since record 29 is set to 0 by ServoDyn indicating yaw rate control]
+          45      &lt;--  Demanded pitch angle (Collective pitch) (rad)
+          47      &lt;--  Demanded generator torque (Nm)
+          48      &lt;--  Demanded nacelle yaw rate (rad/s)
+          49      --&gt;  Maximum number of characters in the &quot;MESSAGE&quot; argument (-) [size of ErrMsg argument plus 1 (we add one for the C NULL CHARACTER)]
+          50      --&gt;  Number of characters in the &quot;INFILE&quot;  argument (-) [trimmed length of DLL_InFile parameter plus 1 (we add one for the C NULL CHARACTER)]
+          51      --&gt;  Number of characters in the &quot;OUTNAME&quot; argument (-) [trimmed length of RootName parameter plus 1 (we add one for the C NULL CHARACTER)]
+          53      --&gt;  Tower top fore-aft     acceleration (m/s^2) [SrvD input]
+          54      --&gt;  Tower top side-to-side acceleration (m/s^2) [SrvD input]
+          55      &lt;--  UNUSED: Pitch override [anything other than 0 is an error in ServoDyn]
+          56      &lt;--  UNUSED: Torque override [anything other than 0 is an error in ServoDyn]
+          60      --&gt;  Rotor azimuth angle (rad) [SrvD input]
+          61      --&gt;  Number of blades (-) [SrvD NumBl parameter]
+          62      --&gt;  Maximum number of values which can be returned for logging (-) [set to 300]
+          63      --&gt;  Record number for start of logging output (-) [set to ###]
+          64      --&gt;  Maximum number of characters which can be returned in &quot;OUTNAME&quot; (-) [set to 12601 (including the C NULL CHARACTER)]
+          65      &lt;--  Number of variables returned for logging [anything greater than MaxLoggingChannels is an error]
+          69      --&gt;  Blade 1 root in-plane bending moment (Nm) [SrvD input]
+          70      --&gt;  Blade 2 root in-plane bending moment (Nm) [SrvD input]
+          71      --&gt;  Blade 3 root in-plane bending moment (Nm) [SrvD input]
+          73      --&gt;  Rotating hub My (GL co-ords) (Nm) [SrvD input]
+          74      --&gt;  Rotating hub Mz (GL co-ords) (Nm) [SrvD input]
+          75      --&gt;  Fixed    hub My (GL co-ords) (Nm) [SrvD input]
+          76      --&gt;  Fixed    hub Mz (GL co-ords) (Nm) [SrvD input]
+          77      --&gt;  Yaw bearing  My (GL co-ords) (Nm) [SrvD input]
+          78      --&gt;  Yaw bearing  Mz (GL co-ords) (Nm) [SrvD input]
+          82      --&gt;  Nacelle roll    acceleration (rad/s^2) [SrvD input] -- this is in the shaft (tilted) coordinate system, instead of the nacelle (nontilted) coordinate system
+          83      --&gt;  Nacelle nodding acceleration (rad/s^2) [SrvD input]
+          84      --&gt;  Nacelle yaw     acceleration (rad/s^2) [SrvD input] -- this is in the shaft (tilted) coordinate system, instead of the nacelle (nontilted) coordinate system
+          95      --&gt;  Reserved (SrvD customization: set to SrvD AirDens parameter)
+          96      --&gt;  Reserved (SrvD customization: set to SrvD AvgWindSpeed parameter)
+         109      --&gt;  Shaft torque (=hub Mx for clockwise rotor) (Nm) [SrvD input]
+         110      --&gt;  Thrust - Rotating low-speed shaft force x (GL co-ords) (N) [SrvD input]
+         111      --&gt;  Nonrotating low-speed shaft force y (GL co-ords) (N) [SrvD input]
+         112      --&gt;  Nonrotating low-speed shaft force z (GL co-ords) (N) [SrvD input]		 
+         117      --&gt;  Controller state [always set to 0]
+         120      &lt;--  Airfoil command, blade 1
+         121      &lt;--  Airfoil command, blade 2
+         122      &lt;--  Airfoil command, blade 3
+         129      --&gt;  Maximum extent of the avrSWAP array: 3300
+
+   Legacy Bladed DLL interface with Extended avrSWAP
+          channel usage by SrvD:
+
+                 --&gt;   indicates from SrvD to DLL
+                 &lt;--   indicates from DLL to SrvD
+      Record #         Requested by            Description
+      --------         ---------------------   -----------
+        1000     --&gt;                           Version of extended avrSWAP: 1
+        1001     --&gt;                           General channel group -- Platform motion -- Displacement TDX (m)
+        1002     --&gt;                           General channel group -- Platform motion -- Displacement TDY (m)
+        1003     --&gt;                           General channel group -- Platform motion -- Displacement TDZ (m)
+        1004     --&gt;                           General channel group -- Platform motion -- Displacement RDX (rad)
+        1005     --&gt;                           General channel group -- Platform motion -- Displacement RDY (rad)
+        1006     --&gt;                           General channel group -- Platform motion -- Displacement RDZ (rad)
+        1007     --&gt;                           General channel group -- Platform motion -- Velocity     TVX (m/s)
+        1008     --&gt;                           General channel group -- Platform motion -- Velocity     TVY (m/s)
+        1009     --&gt;                           General channel group -- Platform motion -- Velocity     TVZ (m/s)
+        1010     --&gt;                           General channel group -- Platform motion -- Velocity     RVX (rad/s)
+        1011     --&gt;                           General channel group -- Platform motion -- Velocity     RVY (rad/s)
+        1012     --&gt;                           General channel group -- Platform motion -- Velocity     RVZ (rad/s)
+        1013     --&gt;                           General channel group -- Platform motion -- Acceleration TAX (m/s^2)
+        1014     --&gt;                           General channel group -- Platform motion -- Acceleration TAY (m/s^2)
+        1015     --&gt;                           General channel group -- Platform motion -- Acceleration TAZ (m/s^2)
+        1016     --&gt;                           General channel group -- Platform motion -- Acceleration RAX (rad/s^2)
+        1017     --&gt;                           General channel group -- Platform motion -- Acceleration RAY (rad/s^2)
+        1018     --&gt;                           General channel group -- Platform motion -- Acceleration RAZ (rad/s^2)
+        2000     --&gt;                           Ending   index for the non-lidar measurements channel block
+        2001     --&gt;                           Starting index for the lidar measurements channel block
+        2500     --&gt;                           Ending   index for the lidar measurements channel block
+        2501     &lt;--                           Starting index for the lidar control channel block
+        2600     &lt;--                           Ending   index for the lidar control channel block
+        2601     &lt;--    MoorDyn                Cable control channel group 1 -- DeltaL
+        2602     &lt;--    MoorDyn                Cable control channel group 1 -- DeltaLdot
+        2603     &lt;--                           Cable control channel group 2 -- DeltaL
+        2604     &lt;--                           Cable control channel group 2 -- DeltaLdot
+        2605     &lt;--    MoorDyn                Cable control channel group 3 -- DeltaL
+        2606     &lt;--    MoorDyn                Cable control channel group 3 -- DeltaLdot
+        2800     &lt;--                           Ending   index for the cable control channel block
+        2801     --&gt;                           StC control channel group 1 -- StC_Disp_X
+        2802     --&gt;                           StC control channel group 1 -- StC_Disp_Y
+        2803     --&gt;                           StC control channel group 1 -- StC_Disp_Z
+        2804     --&gt;                           StC control channel group 1 -- StC_Vel_X
+        2805     --&gt;                           StC control channel group 1 -- StC_Vel_Y
+        2806     --&gt;                           StC control channel group 1 -- StC_Vel_Z
+        2807     &lt;--                           StC control channel group 1 -- StC_Stiff_X (override spring  constant)
+        2808     &lt;--                           StC control channel group 1 -- StC_Stiff_Y (override spring  constant)
+        2809     &lt;--                           StC control channel group 1 -- StC_Stiff_Z (override spring  constant)
+        2810     &lt;--                           StC control channel group 1 -- StC_Damp_X  (override damping constant)
+        2811     &lt;--                           StC control channel group 1 -- StC_Damp_Y  (override damping constant)
+        2812     &lt;--                           StC control channel group 1 -- StC_Damp_Z  (override damping constant)
+        2813     &lt;--                           StC control channel group 1 -- StC_Brake_X (braking force)
+        2814     &lt;--                           StC control channel group 1 -- StC_Brake_Y (braking force)
+        2815     &lt;--                           StC control channel group 1 -- StC_Brake_Z (braking force)
+        2816     &lt;--                           StC control channel group 1 -- StC_Force_X (additional force)
+        2817     &lt;--                           StC control channel group 1 -- StC_Force_Y (additional force)
+        2818     &lt;--                           StC control channel group 1 -- StC_Force_Z (additional force)
+        2819     &lt;--                           StC control channel group 1 -- Reserved for future
+        2820     &lt;--                           StC control channel group 1 -- Reserved for future
+        2821     --&gt;    SStC2                  StC control channel group 2 -- StC_Disp_X
+        2822     --&gt;    SStC2                  StC control channel group 2 -- StC_Disp_Y
+        2823     --&gt;    SStC2                  StC control channel group 2 -- StC_Disp_Z
+        2824     --&gt;    SStC2                  StC control channel group 2 -- StC_Vel_X
+        2825     --&gt;    SStC2                  StC control channel group 2 -- StC_Vel_Y
+        2826     --&gt;    SStC2                  StC control channel group 2 -- StC_Vel_Z
+        2827     &lt;--    SStC2                  StC control channel group 2 -- StC_Stiff_X (override spring  constant)
+        2828     &lt;--    SStC2                  StC control channel group 2 -- StC_Stiff_Y (override spring  constant)
+        2829     &lt;--    SStC2                  StC control channel group 2 -- StC_Stiff_Z (override spring  constant)
+        2830     &lt;--    SStC2                  StC control channel group 2 -- StC_Damp_X  (override damping constant)
+        2831     &lt;--    SStC2                  StC control channel group 2 -- StC_Damp_Y  (override damping constant)
+        2832     &lt;--    SStC2                  StC control channel group 2 -- StC_Damp_Z  (override damping constant)
+        2833     &lt;--    SStC2                  StC control channel group 2 -- StC_Brake_X (braking force)
+        2834     &lt;--    SStC2                  StC control channel group 2 -- StC_Brake_Y (braking force)
+        2835     &lt;--    SStC2                  StC control channel group 2 -- StC_Brake_Z (braking force)
+        2836     &lt;--    SStC2                  StC control channel group 2 -- StC_Force_X (additional force)
+        2837     &lt;--    SStC2                  StC control channel group 2 -- StC_Force_Y (additional force)
+        2838     &lt;--    SStC2                  StC control channel group 2 -- StC_Force_Z (additional force)
+        2839     &lt;--    SStC2                  StC control channel group 2 -- Reserved for future
+        2840     &lt;--    SStC2                  StC control channel group 2 -- Reserved for future
+        3000     &lt;--                           Ending   index for the StC control channel block
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="input.html" class="btn btn-neutral float-left" title="4.15.1. Input Files" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../simplified_elastodyn/index.html" class="btn btn-neutral float-right" title="4.16. Simplified ElastoDyn" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

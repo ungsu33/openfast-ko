@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.12.3. Appendix A: Example SeaState primary input file &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.13. InflowWind Users Guide and Theory Manual" href="../inflowwind/index.html" />
+    <link rel="prev" title="4.12.2. Output Files" href="output_files.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/seastate/appendix.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.12. SeaState</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="input_files.html">4.12.1. Input Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="output_files.html">4.12.2. Output Files</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.12.3. Appendix A: Example SeaState primary input file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#appendix-b-example-seastate-driver-input-file">4.12.4. Appendix B: Example SeaState driver input file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#appendix-c-list-of-output-channels">4.12.5. Appendix C. List of Output Channels</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.12. </span>SeaState User Guide and Theory Manual</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.12.3. </span>Appendix A: Example SeaState primary input file</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/seastate/appendix.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="appendix-a-example-seastate-primary-input-file">
+<span id="ss-primary-input-example"></span><h1><span class="section-number">4.12.3. </span>Appendix A: Example SeaState primary input file<a class="headerlink" href="#appendix-a-example-seastate-primary-input-file" title="Permalink to this heading"></a></h1>
+<p>The following is a SeaState primary input file generating irregular (JONSWAP) waves internally
+structure:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>------- SeaState v1.00.* Input File --------------------------------------------
+Example SeaState primary input file
+False            Echo           - Echo the input file data (flag)
+---------------------- ENVIRONMENTAL CONDITIONS --------------------------------
+     &quot;default&quot;   WtrDens        - Water density (kg/m^3)
+     &quot;default&quot;   WtrDpth        - Water depth (meters) relative to MSL
+     &quot;default&quot;   MSL2SWL        - Offset between still-water level and mean sea level (meters) [positive upward; unused when WaveMod = 6; must be zero if PotMod=1 or 2]
+---------------------- SPATIAL DISCRETIZATION ---------------------------------------------------
+          30.0   X_HalfWidth    – Half-width of the domain in the X direction (m) [&gt;0, NOTE: X[nX] = nX*dX, where nX = {-NX+1,-NX+2,…,NX-1} and dX = X_HalfWidth/(NX-1)]
+          30.0   Y_HalfWidth    – Half-width of the domain in the Y direction (m) [&gt;0, NOTE: Y[nY] = nY*dY, where nY = {-NY+1,-NY+2,…,NY-1} and dY = Y_HalfWidth/(NY-1)]
+          25.0   Z_Depth        – Depth of the domain the Z direction (m) relative to SWL [0 &lt; Z_Depth &lt;= WtrDpth+MSL2SWL; &quot;default&quot;: Z_Depth = WtrDpth+MSL2SWL; Z[nZ] = ( COS( nZ*dthetaZ ) – 1 )*Z_Depth, where nZ = {0,1,…NZ-1} and dthetaZ = pi/( 2*(NZ-1) )]
+            10   NX             – Number of nodes in half of the X-direction domain (-) [&gt;=2]
+            10   NY             – Number of nodes in half of the Y-direction domain (-) [&gt;=2]
+            10   NZ             – Number of nodes in the Z direction (-) [&gt;=2]
+---------------------- WAVES ---------------------------------------------------
+             2   WaveMod        - Incident wave kinematics model {0: none=still water, 1: regular (periodic), 1P#: regular with user-specified phase, 2: JONSWAP/Pierson-Moskowitz spectrum (irregular), 3: White noise spectrum (irregular), 4: user-defined spectrum from routine UserWaveSpctrm (irregular), 5: Externally generated wave-elevation time series, 6: Externally generated full wave-kinematics time series [option 6 is invalid for PotMod/=0], 7: User-defined wave frequency components} (switch)
+             1   WaveStMod      - Model for stretching incident wave kinematics to instantaneous free surface {0: none=no stretching, 1: vertical stretching, 2: extrapolation stretching, 3: Wheeler stretching} (switch) [unused when WaveMod=0 or when PotMod/=0]
+           600   WaveTMax       - Analysis time for incident wave calculations (sec) [unused when WaveMod=0; determines WaveDOmega=2Pi/WaveTMax in the IFFT]
+           0.2   WaveDT         - Time step for incident wave calculations     (sec) [unused when WaveMod=0 or 7; 0.1&lt;=WaveDT&lt;=1.0 recommended; determines WaveOmegaMax=Pi/WaveDT in the IFFT]
+           2.0   WaveHs         - Significant wave height of incident waves (meters) [used only when WaveMod=1, 2, or 3]
+            10   WaveTp         - Peak-spectral period of incident waves       (sec) [used only when WaveMod=1 or 2]
+     &quot;DEFAULT&quot;   WavePkShp      - Peak-shape parameter of incident wave spectrum (-) or DEFAULT (string) [used only when WaveMod=2; use 1.0 for Pierson-Moskowitz]
+      0.314159   WvLowCOff      - Low  cut-off frequency or lower frequency limit of the wave spectrum beyond which the wave spectrum is zeroed (rad/s) [unused when WaveMod=0, 1, or 6]
+      1.570796   WvHiCOff       - High cut-off frequency or upper frequency limit of the wave spectrum beyond which the wave spectrum is zeroed (rad/s) [unused when WaveMod=0, 1, or 6]
+             0   WaveDir        - Incident wave propagation heading direction                         (degrees) [unused when WaveMod=0 or 6]
+             0   WaveDirMod     - Directional spreading function {0: none, 1: COS2S}                  (-)       [only used when WaveMod=2,3, or 4]
+             1   WaveDirSpread  - Wave direction spreading coefficient ( &gt; 0 )                        (-)       [only used when WaveMod=2,3, or 4 and WaveDirMod=1]
+             1   WaveNDir       - Number of wave directions                                           (-)       [only used when WaveMod=2,3, or 4 and WaveDirMod=1; odd number only]
+             0   WaveDirRange   - Range of wave directions (full range: WaveDir +/- 1/2*WaveDirRange) (degrees) [only used when WaveMod=2,3,or 4 and WaveDirMod=1]
+     123456789   WaveSeed(1)    - First  random seed of incident waves [-2147483648 to 2147483647]    (-)       [unused when WaveMod=0, 5, or 6]
+        RANLUX   WaveSeed(2)    - Second random seed of incident waves [-2147483648 to 2147483647] for intrinsic pRNG, or an alternative pRNG: &quot;RanLux&quot;    (-)       [unused when WaveMod=0, 5, or 6]
+         FALSE   WaveNDAmp      - Flag for normally distributed amplitudes                            (flag)    [only used when WaveMod=2, 3, or 4]
+      &quot;unused&quot;   WvKinFile      - Root name of externally generated wave data file(s)        (quoted string)    [used only when WaveMod=5 or 6]
+---------------------- 2ND-ORDER WAVES ----------------------------------------- [unused with WaveMod=0 or 6]
+         FALSE   WvDiffQTF      - Full difference-frequency 2nd-order wave kinematics (flag)
+         FALSE   WvSumQTF       - Full summation-frequency  2nd-order wave kinematics (flag)
+             0   WvLowCOffD     - Low  frequency cutoff used in the difference-frequencies (rad/s) [Only used with a difference-frequency method]
+      1.256637   WvHiCOffD      - High frequency cutoff used in the difference-frequencies (rad/s) [Only used with a difference-frequency method]
+      0.618319   WvLowCOffS     - Low  frequency cutoff used in the summation-frequencies  (rad/s) [Only used with a summation-frequency  method]
+      3.141593   WvHiCOffS      - High frequency cutoff used in the summation-frequencies  (rad/s) [Only used with a summation-frequency  method]
+---------------------- CONSTRAINED WAVES ---------------------------------------
+             0   ConstWaveMod   - Constrained wave model: 0=none; 1=Constrained wave with specified crest elevation, alpha; 2=Constrained wave with guaranteed peak-to-trough crest height, HCrest (flag)
+             3   CrestHmax      - Crest height (2*alpha for ConstWaveMod=1 or HCrest for ConstWaveMod=2), must be larger than WaveHs (m) [unused when ConstWaveMod=0]
+            60   CrestTime      - Time at which the crest appears (s) [unused when ConstWaveMod=0]
+             0   CrestXi        - X-position of the crest (m) [unused when ConstWaveMod=0]
+             0   CrestYi        - Y-position of the crest (m) [unused when ConstWaveMod=0]
+---------------------- CURRENT ------------------------------------------------- [unused with WaveMod=6]
+             0   CurrMod        - Current profile model {0: none=no current, 1: standard, 2: user-defined from routine UserCurrent} (switch)
+             0   CurrSSV0       - Sub-surface current velocity at still water level  (m/s) [used only when CurrMod=1]
+     &quot;DEFAULT&quot;   CurrSSDir      - Sub-surface current heading direction (degrees) or DEFAULT (string) [used only when CurrMod=1]
+            20   CurrNSRef      - Near-surface current reference depth            (meters) [used only when CurrMod=1]
+             0   CurrNSV0       - Near-surface current velocity at still water level (m/s) [used only when CurrMod=1]
+             0   CurrNSDir      - Near-surface current heading direction         (degrees) [used only when CurrMod=1]
+             0   CurrDIV        - Depth-independent current velocity                 (m/s) [used only when CurrMod=1]
+             0   CurrDIDir      - Depth-independent current heading direction    (degrees) [used only when CurrMod=1]
+---------------------- MacCamy-Fuchs diffraction model -------------------------
+             0   MCFD           - MacCamy-Fuchs member radius (ignored if radius &lt;= 0) [must be 0 when WaveMod 0 or 6]
+---------------------- OUTPUT --------------------------------------------------
+False            SeaStSum       - Output a summary file [flag]
+             3   OutSwtch       - Output requested channels to: [1=SeaState.out, 2=GlueCode.out, 3=both files]
+&quot;E15.7e2&quot;        OutFmt         - Output format for numerical results (quoted string) [not checked for validity!]
+&quot;A15&quot;            OutSFmt        - Output format for header strings (quoted string) [not checked for validity!]
+             2   NWaveElev      - Number of points where the incident wave elevations can be computed (-)       [maximum of 9 output locations]
+      0.0, 5.0   WaveElevxi     - List of xi-coordinates for points where the incident wave elevations can be output (meters) [NWaveElev points, separated by commas or white space; usused if NWaveElev = 0]
+      0.0, 0.0   WaveElevyi     - List of yi-coordinates for points where the incident wave elevations can be output (meters) [NWaveElev points, separated by commas or white space; usused if NWaveElev = 0]
+             2   NWaveKin       - Number of points where the wave kinematics can be output (-)       [maximum of 9 output locations]
+    0.0,   0.0   WaveKinxi - List of xi-coordinates for points where the wave kinematics can be output (meters) [NWaveKin points, separated by commas or white space; usused if NWaveKin = 0]
+    0.0,   5.0   WaveKinyi - List of yi-coordinates for points where the wave kinematics can be output (meters) [NWaveKin points, separated by commas or white space; usused if NWaveKin = 0]
+  -14.0, -17.0   WaveKinzi - List of zi-coordinates for points where the wave kinematics can be output (meters) [NWaveKin points, separated by commas or white space; usused if NWaveKin = 0]
+---------------------- OUTPUT CHANNELS -----------------------------------------
+&quot;Wave1Elev, Wave1Elv1, Wave1Elv2&quot;               - Wave elevation
+&quot;Wave2Elev, Wave2Elv1, Wave2Elv2&quot;
+&quot;FVel1xi, FVel1yi, FVel1zi&quot;  - fluid velocity      at location 1
+&quot;FAcc1xi, FAcc1yi, FAcc1zi&quot;  - fluid accelerations at location 1
+&quot;FDynP1&quot;                     - fluid dynamic pressure at location 1
+&quot;FVel2xi, FVel2yi, FVel2zi&quot;  - fluid velocity      at location 2
+&quot;FAcc2xi, FAcc2yi, FAcc2zi&quot;  - fluid accelerations at location 2
+&quot;FDynP2&quot;
+END
+</pre></div>
+</div>
+</div>
+<div class="section" id="appendix-b-example-seastate-driver-input-file">
+<h1><span class="section-number">4.12.4. </span>Appendix B: Example SeaState driver input file<a class="headerlink" href="#appendix-b-example-seastate-driver-input-file" title="Permalink to this heading"></a></h1>
+<p>The following is a SeaState driver input file
+structure:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Seastate driver file
+Compatible with SeaState v1.00
+FALSE            Echo               - Echo the input file data (flag)
+---------------------- ENVIRONMENTAL CONDITIONS -------------------------------
+9.80665          Gravity            - Gravity (m/s^2)
+1025             WtrDens            - Water density (kg/m^3)
+200              WtrDpth            - Water depth (m)
+0                MSL2SWL            - Offset between still-water level and mean sea level (m) [positive upward]
+---------------------- SEASTATE -----------------------------------------------
+&quot;./seastate_input.dat&quot; SeaStateInputFile  - Primary SeaState input file name (quoted string)
+&quot;./seastate.SeaSt&quot;     OutRootName        - The name which prefixes all SeaState generated files (quoted string)
+    0                  WrWvKinMod         - Write wave kinematics? [0: Do not write any kinematics to file, 1: Write only the (0,0) wave elevations to file, 2: Write the complete wave kinematics to files, no files written if WaveMod=6]
+ 5001                  NSteps             - Number of time steps in the simulations (-)
+  0.1                  TimeInterval       - Time step for the simulation (sec)
+---------------------- Waves multipoint elevation output ----------------------
+False                  WaveElevSeriesFlag - T/F flag to output the wave elevation field (for movies)
+END of driver input file
+</pre></div>
+</div>
+</div>
+<div class="section" id="appendix-c-list-of-output-channels">
+<span id="sea-output-channels"></span><h1><span class="section-number">4.12.5. </span>Appendix C. List of Output Channels<a class="headerlink" href="#appendix-c-list-of-output-channels" title="Permalink to this heading"></a></h1>
+<p>This is a list of all possible output channels for the SeaState module.
+The names are grouped by meaning, but can be ordered in the OUTPUT
+CHANNELS section of the primary SeaState input file as you see fit.
+α refers to the output position for either wave elevation or wave
+kinematics specified in the OUTPUT section of the primary SeaState input
+file, where α is a number in the range [1,NWaveElev] for wave elevation
+outputs and in the range [1,NWaveKin] for wave kinematics outputs.
+Setting α &gt; NWaveElev or α &gt; NWaveKin yields invalid output. All outputs
+are in the global inertial-frame coordinate system.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 41%" />
+<col style="width: 35%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Channel Name(s)</p></th>
+<th class="head"><p>Units</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Wave Elevation</strong></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>WaveαElev</p></td>
+<td><ol class="loweralpha simple" start="13">
+<li></li>
+</ol>
+</td>
+<td><p>Total (first- plus second-order) wave elevations (up to 9 designated locations)</p></td>
+</tr>
+<tr class="row-even"><td><p>WaveαElv1</p></td>
+<td><ol class="loweralpha simple" start="13">
+<li></li>
+</ol>
+</td>
+<td><p>First-order wave elevations (up to 9 designated locations)</p></td>
+</tr>
+<tr class="row-odd"><td><p>WaveαElv2</p></td>
+<td><ol class="loweralpha simple" start="13">
+<li></li>
+</ol>
+</td>
+<td><p>Second-order wave elevations (up to 9 designated locations)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Wave and Current Kinematics</strong></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>FVelαxi, FVelαyi, FVelαzi</p></td>
+<td><p>(m/s), (m/s), (m/s)</p></td>
+<td><p>Total (first- plus second-order waves and current) fluid velocities at α</p></td>
+</tr>
+<tr class="row-even"><td><p>FAccαxi, FAccαyi, FAccαzi</p></td>
+<td><p>(m/s<sup>2</sup>), (m/s<sup>2</sup>), (m/s<sup>2</sup>)</p></td>
+<td><p>Total (first- plus second-order waves) fluid accelerations at α</p></td>
+</tr>
+<tr class="row-odd"><td><p>FDynPα</p></td>
+<td><p>(Pa)</p></td>
+<td><p>Total (first- plus second-order waves) fluid dynamic pressure at α</p></td>
+</tr>
+<tr class="row-even"><td><p>FAccMCFαxi, FAccMCFαyi, FAccMCFαzi</p></td>
+<td><p>(m/s<sup>2</sup>), (m/s<sup>2</sup>), (m/s<sup>2</sup>)</p></td>
+<td><p>Scaled first-order-wave fluid accelerations for the MacCamy-Fuchs members in HydroDyn at α</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="output_files.html" class="btn btn-neutral float-left" title="4.12.2. Output Files" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../inflowwind/index.html" class="btn btn-neutral float-right" title="4.13. InflowWind Users Guide and Theory Manual" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

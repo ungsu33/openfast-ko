@@ -1,0 +1,267 @@
+<!DOCTYPE html><html class="writer-html5" lang="ko"><head><!-- Modified 2026-11-08: unofficial Korean machine translation of OpenFAST 5.0.0. Equations, code, figures, input values and attribution retained. -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.4.7. 상태공간 표현 및 OpenFAST와의 통합 — OpenFAST v5.0.0 문서</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../../../genindex.html">
+    <link rel="search" title="검색" href="../../../search.html">
+    <link rel="next" title="4.4.8. 향후 개발 계획" href="FutureWork.html">
+    <link rel="prev" title="4.4.6. OLAF 이론" href="OLAFTheory.html"> 
+<link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/aerodyn-olaf/StateSpace.html"></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+          </a>
+              <div class="version">5.0 · 한국어</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="문서 검색" aria-label="문서 검색">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.4. OLAF</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Introduction.html">4.4.1. 소개</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Acronyms.html">4.4.2. 기호 목록</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RunningOLAF.html">4.4.3. OLAF와 협력하기</a></li>
+<li class="toctree-l3"><a class="reference internal" href="InputFiles.html">4.4.4. 입력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="OutputFiles.html">4.4.5. 출력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="OLAFTheory.html">4.4.6. OLAF 이론</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.4.7. 상태공간 표현 및 OpenFAST와의 통합</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#state-constraint-input-and-output-variables">4.4.7.1. 상태, 제약 조건, 입력 및 출력 변수</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#state-constraint-and-output-equations">4.4.7.2. 상태, 제약 조건 및 출력 방정식</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#integration-with-aerodyn">4.4.7.3. AeroDyn과 통합</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="FutureWork.html">4.4.8. 향후 개발 계획</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.4.9. 참고문헌</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixA.html">4.4.10. 부록 A: OLAF 기본 입력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixB.html">4.4.11. 부록 B: 규정된 순환 입력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixC.html">4.4.12. 부록 C: 출력 채널의 OLAF 목록</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. 단순화 ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. 구조 제어</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. 추가 모듈 문서</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC 서브루틴 라이브러리</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+</ul>
+
+        <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="페이지 탐색">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.4. </span>OLAF 사용자 가이드 및 이론 설명서 (AeroDyn의 자유 와류 후류)</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.4.7. </span>상태공간 표현 및 OpenFAST와의 통합</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/aerodyn-olaf/StateSpace.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+      </li>
+  </ul>
+  <hr>
+</div><aside class="ko-notice" aria-label="한국어 번역 안내"><strong>한국어 자동번역</strong> · OpenFAST v5.0.0 · 2026-11-08 기준<br>비공식 번역본입니다. 수식·명령어·입력 변수와 첨부자료는 원문을 보존합니다. <a href="https://openfast.readthedocs.io/en/main/source/user/aerodyn-olaf/StateSpace.html" target="_blank" rel="noopener noreferrer" lang="en">영문 원문 대조 ↗</a></aside>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="state-space-representation-and-integration-with-openfast">
+<h1><span class="section-number">4.4.7. </span>상태공간 표현 및 OpenFAST와의 통합<a class="headerlink" href="#state-space-representation-and-integration-with-openfast" title="이 제목의 고유 링크"></a></h1>
+<div class="section" id="state-constraint-input-and-output-variables">
+<h2><span class="section-number">4.4.7.1. </span>상태, 제약 조건, 입력 및 출력 변수<a class="headerlink" href="#state-constraint-input-and-output-variables" title="이 제목의 고유 링크"></a></h2>
+<p>OLAF 모듈은 다음을 통해 최신 버전의 OpenFAST에 통합되었습니다.
+OpenFAST 모듈화 프레임워크를 따르는
+<em>AeroDyn</em>(<span id="id1">[<a class="reference internal" href="zrefs.html#id11" title="J. 존크만. 고속 풍력터빈 CAE 도구를 위한 새로운 모듈화 프레임워크입니다. 기술 보고서 NREL/CP-5000-57228, 국립 재생 에너지 연구소, 2013.">올라프-Jon13</a>, <a class="reference internal" href="zrefs.html#id38" title="Michael A. Sprague, Jason M. Jonkman 및 Bonnie J. Jonkman. 풍력터빈 시뮬레이션을 위한 빠른 모듈형 프레임워크: 새로운 알고리즘 및 수치 예제. 기술 보고서 NREL/CP-2C00-63203, 국립 재생 에너지 연구소, 2015.">올라프-SJJ15</a>]</span>). OpenFAST 프레임워크를 따르기 위해 소용돌이 코드는 모듈로 작성되었으며 해당 공식은 상태, 제약 조건 및 출력 방정식으로 구성됩니다. 모듈에 의해 조작되는 데이터에는 다음 벡터가 포함됩니다: 상수 매개변수, <span class="math notranslate nohighlight">\(\vec{p}\)</span>; 입력,
+<span class="math notranslate nohighlight">\(\vec{u}\)</span>; 제한된 상태, <span class="math notranslate nohighlight">\(\vec{z}\)</span>; 상태, <span class="math notranslate nohighlight">\(\vec{x}\)</span>; 그리고 출력, <span class="math notranslate nohighlight">\(\vec{y}\)</span>. 벡터는 다음과 같이 정의됩니다.</p>
+<ul class="simple">
+<li><p>매개변수, <span class="math notranslate nohighlight">\(\vec{p}~-\)</span> 는 상태 및 입력과 독립적인 내부 시스템 값 세트입니다. 매개변수는 초기화 시 완전히 정의될 수 있으며 시스템 상태 및 출력 방정식을 특성화할 수 있습니다.</p></li>
+<li><p>입력, <span class="math notranslate nohighlight">\(\vec{u}~-\)</span> 상태와 함께 향후 상태 및 시스템 출력을 계산하는 데 필요한 모듈에 제공되는 값 세트입니다.</p></li>
+<li><p>제약 조건은 다음과 같습니다. <span class="math notranslate nohighlight">\(\vec{z}~-\)</span> 현재 시간 단계의 값을 기반으로 비선형 솔버를 사용하여 계산되는 대수 변수입니다.</p></li>
+<li><p>상태, <span class="math notranslate nohighlight">\(\vec{x}~-\)</span> 모듈의 내부 값 세트입니다. 이는 입력의 영향을 받으며 미래 상태 값과 출력을 계산하는 데 사용됩니다. 연속 상태가 사용됩니다. 이는 상태가 시간에 따라 미분 가능하고 연속 시간 미분 방정식의 특징을 갖는다는 것을 의미합니다.</p></li>
+<li><p>출력, <span class="math notranslate nohighlight">\(\vec{y}~-\)</span>  출력 방정식을 통해 상태, 입력 및/또는 매개변수에 따라 모듈에서 계산하고 반환하는 값 집합입니다.</p></li>
+</ul>
+<p>소용돌이 코드의 매개변수는 다음과 같습니다.</p>
+<ul class="simple">
+<li><p>유체 특성: 동점도, <span class="math notranslate nohighlight">\(\nu\)</span>.</p></li>
+<li><p>에어포일 특성: 코드 <span class="math notranslate nohighlight">\(c\)</span> 및 극좌표 데이터 –
+<span class="math notranslate nohighlight">\(C_l(\alpha)\)</span>, <span class="math notranslate nohighlight">\(C_d(\alpha)\)</span>, <span class="math notranslate nohighlight">\(C_m(\alpha)\)</span>).</p></li>
+<li><p>알고리즘 방법 및 매개변수(예: 정규화, 점성 확산, 이산화, 후류 기하학 및 가속)</p></li>
+</ul>
+<p>소용돌이 코드의 입력은 다음과 같습니다.</p>
+<ul class="simple">
+<li><p>리프팅 라인의 다양한 노드의 위치, 방향, 병진 속도 및 회전 속도(<span class="math notranslate nohighlight">\(\vec{r}_{ll}\)</span>, <span class="math notranslate nohighlight">\(\Lambda_{ll}\)</span>,
+<span class="math notranslate nohighlight">\(\vec{\dot{r}}_{ll}\)</span>및
+이 플래그 값 아래에 <span class="math notranslate nohighlight">\(\vec{\omega}_{ll}\)</span>각각)을 벡터로 모아서,
+<span class="math notranslate nohighlight">\(\vec{x}_{\text{elast},ll}\)</span>, 간결함을 위해. 이러한 수량은 OpenFAST의 메시 매핑 기능과 데이터 구조를 사용하여 처리됩니다.</p></li>
+<li><p>요청된 위치의 교란 속도 장, 기록됨
+<span class="math notranslate nohighlight">\(\vec{V}_0=[\vec{V}_{0,ll}, \vec{V}_{0,m}]\)</span>. 리프팅 라인 포인트에 대한 위치가 요청됩니다. <span class="math notranslate nohighlight">\(\vec{r}_{ll}\)</span>및 라그랑지안 마커,
+<span class="math notranslate nohighlight">\(\vec{r}_m\)</span>. 매개변수를 기반으로 이 교란된 속도장은 자유류, 전단, 방향 전환, 난류, 타워 및 나셀 교란과 같은 영향을 포함할 수 있습니다. 속도장이 요청되는 위치는 일반적으로 라그랑주 마커의 위치입니다.</p></li>
+</ul>
+<p>제약 조건 상태는 다음과 같습니다.</p>
+<ul class="simple">
+<li><p>리프팅 라인을 따른 순환 강도,
+<span class="math notranslate nohighlight">\(\Gamma_{ll}\)</span>.</p></li>
+</ul>
+<p>연속 상태는 다음과 같습니다.</p>
+<ul class="simple">
+<li><p>라그랑지안 마커의 위치, <span class="math notranslate nohighlight">\(\vec{r}_m\)</span></p></li>
+<li><p>각 와류 요소와 관련된 와도, <span class="math notranslate nohighlight">\(\vec{\omega}_e\)</span>. 와류 세그먼트에 와도를 투영하는 경우 이는 순환에 해당합니다. <span class="math notranslate nohighlight">\(\vec{\Gamma}_e\)</span>. 각 세그먼트에 대해,
+<span class="math notranslate nohighlight">\(\vec{\Gamma}_e= \Gamma_e \vec{dl}_e =\vec{\omega}_e dV_e\)</span>와 함께
+<span class="math notranslate nohighlight">\(\vec{dl}_e\)</span> 및 <span class="math notranslate nohighlight">\(dV_e\)</span>, 소용돌이 세그먼트 길이 및 등가 소용돌이 볼륨.</p></li>
+</ul>
+<p>출력은 다음과 같습니다.  <a class="footnote-reference brackets" href="#id3" id="id2">1</a>:</p>
+<ul class="simple">
+<li><p>리프팅 라인 노드에서 유도된 속도,
+<span class="math notranslate nohighlight">\(\vec{v}_{i,ll}\)</span></p></li>
+<li><p>방해받지 않는 바람이 계산되는 위치, <span class="math notranslate nohighlight">\(\vec{r}_{r}\)</span>
+(일반적으로 <span class="math notranslate nohighlight">\(\vec{r_{r}}=\vec{r}_m\)</span>).</p></li>
+</ul>
+</div>
+<div class="section" id="state-constraint-and-output-equations">
+<h2><span class="section-number">4.4.7.2. </span>상태, 제약 조건 및 출력 방정식<a class="headerlink" href="#state-constraint-and-output-equations" title="이 제목의 고유 링크"></a></h2>
+<p>상태, 제약 조건 및 출력 방정식에 대한 개요가 여기에 제공됩니다. 자세한 내용은 <a class="reference internal" href="OLAFTheory.html#olaf-theory"><span class="std std-numref">섹션 4.4.6</span></a>. 제약 방정식은 각 리프팅 라인의 범위를 따라 순환 분포를 결정하는 데 사용됩니다. Van Garrel 방법의 경우 이 순환은 블레이드를 따른 받음각과 익형 계수의 함수입니다. 주어진 리프팅 라인 노드에서의 받음각은 교란되지 않은 속도의 함수입니다.
+<span class="math notranslate nohighlight">\(\vec{v}_{0,ll}\)</span>, 그리고 소용돌이에 의해 유도된 속도,
+<span class="math notranslate nohighlight">\(\vec{v}_{i,ll}\)</span>, 그 시점에서. 유도된 속도의 일부는 현재 시간 단계에서 흘려지고 따라가는 와도에 의해 발생하며, 이는 양력선을 따른 순환 분포의 함수입니다. 이 제약 방정식은 다음과 같이 작성될 수 있습니다.</p>
+<div class="math notranslate nohighlight">
+\[\vec{Z} = \vec{0} = \vec{\Gamma}_{ll} - \vec{\Gamma}_p\bigg(\vec{\alpha}(\vec{x},\vec{u}),\vec{p}\bigg)\]</div>
+<p>여기서 <span class="math notranslate nohighlight">\(\vec{\Gamma}_p\)</span> 는 제시된 방법 중 하나에 따라 블레이드 스팬을 따라 순환을 반환하는 기능입니다. <a class="reference internal" href="OLAFTheory.html#sec-circ"><span class="std std-numref">섹션 4.4.6.3</span></a>.</p>
+<p>상태 방정식은 와도의 시간 전개와 라그랑지 마커의 대류를 지정합니다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    \frac{d \vec{\omega}_e}{dt} &amp;= \bigg[(\vec{\omega}\cdot\nabla)\vec{v} + \nu\nabla^2 \vec{\omega} \bigg]_e
+\end{aligned}\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-convection">
+<span class="eqno">(4.31)<a class="headerlink" href="#equation-eq-convection" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{aligned}
+    \frac{d \vec{r}_m}{dt} &amp;= \vec{V}(\vec{r}_m)
+ =\vec{V}_0(\vec{r}_m)  + \vec{v}_\omega(\vec{r}_m)
+ =\vec{V}_0(\vec{r}_m)  + \vec{V}_\omega(\vec{r}_m, \vec{r}_m, \vec{\omega})
+\end{aligned}\]</div>
+<p>여기,</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\vec{v}_\omega\)</span> 는 영역의 소용돌이에 의해 유도된 속도입니다.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\vec{V}_\omega(\vec{r},\vec{r}_m,\vec{\omega})\)</span> 는 주어진 지점에서 유도된 속도를 계산하는 함수입니다. <span class="math notranslate nohighlight">\(\vec{r}\)</span>, 라그랑주 마커의 위치와 소용돌이 요소의 강도를 기반으로 합니다.</p></li>
+<li><p>아래 첨자 <span class="math notranslate nohighlight">\(e\)</span> 는 수량이 요소에 적용됨을 나타냅니다. 그리고</p></li>
+<li><p>소용돌이도, <span class="math notranslate nohighlight">\(\vec{\omega}\)</span>는 이산 컨볼루션을 통해 와류 요소의 와도로부터 복구됩니다.</p></li>
+</ul>
+<p>와류 세그먼트 시뮬레이션의 경우 점성 분할 알고리즘이 사용되며 대류 단계(Eq.&nbsp;<a class="reference internal" href="#equation-eq-convection">(4.31)</a>)는 해결되는 주요 상태 방정식입니다. 와도 신축이 자동으로 고려되고 확산이 수행됩니다. <em>사후</em>. 속도 함수,
+<span class="math notranslate nohighlight">\(\vec{V}_\omega\)</span>는 Biot-Savart 법칙을 사용합니다. 출력 방정식은 다음과 같습니다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+   \vec{y}_1&amp;=\vec{v}_{i,ll} = \vec{V}_\omega ( \vec{r}_{ll}, \vec{r}_m, \vec{\omega}) \\
+   \vec{y}_2&amp;=\vec{r}_{r}
+\end{aligned}\end{split}\]</div>
+</div>
+<div class="section" id="integration-with-aerodyn">
+<h2><span class="section-number">4.4.7.3. </span>AeroDyn과 통합<a class="headerlink" href="#integration-with-aerodyn" title="이 제목의 고유 링크"></a></h2>
+<p>소용돌이 코드는 OpenFAST의 공기 역학 모듈의 하위 모듈로 통합되었습니다. <em>AeroDyn</em>. OpenFAST의 다양한 모듈과 하위 모듈 간의 데이터 흐름은 다음과 같습니다. <a class="reference internal" href="#aerodyn-olaf"><span class="std std-numref">그림 4.16</span></a>. BEM 옵션(예: 팁 손실 계수), 스큐 모델 및 동적 유입과 같은 AeroDyn 입력은 와류 코드를 사용할 때 삭제됩니다. 환경 조건, 타워 그림자, 동적 실속 모델 옵션이 사용됩니다. 이번 통합에는 구조조정이 필요했다. <em>AeroDyn</em> 모듈은 타워 그림자 모델링, 유도 계산, 리프팅 라인 힘 계산 및 동적 실속과 관련된 코드 부분을 분리합니다. 동적 실속 모델은 와류 코드와 함께 사용될 때 발산 와도의 효과가 두 번 고려되지 않도록 조정됩니다. 사이의 인터페이스 <em>AeroDyn</em> 및 유입 모듈, <em>InflowWind</em>는 와류 코드에 의해 추가로 요청된 지점을 포함하도록 수용되었습니다.</p>
+<div class="figure align-center" id="id4">
+<span id="aerodyn-olaf"></span><a class="reference internal image-reference" href="../../../_images/VortexCodeWorkFlow.png"><img alt="OpenFAST-FVW 코드 통합 워크플로우" src="../../../_images/VortexCodeWorkFlow.png" style="width: 100%;"></a>
+<p class="caption"><span class="caption-number">그림 4.16 </span><span class="caption-text">OpenFAST-OLAF 코드 통합 워크플로우</span><a class="headerlink" href="#id4" title="이 이미지에 대한 영구 링크"></a></p>
+</div>
+<dl class="footnote brackets">
+<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
+<dd><p>리프팅 라인의 부하는 와류 코드의 출력이 아닙니다. 그들의 계산은 별도의 하위 모듈에 의해 처리됩니다. <em>AeroDyn</em>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="OLAFTheory.html" class="btn btn-neutral float-left" title="4.4.6. OLAF 이론" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+        <a href="FutureWork.html" class="btn btn-neutral float-right" title="4.4.8. 향후 개발 계획" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>© Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    
+     
+
+
+</body></html>

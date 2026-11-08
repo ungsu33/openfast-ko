@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.9.1. Usage &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.9.2. Input Files" href="input_files.html" />
+    <link rel="prev" title="4.9. ExtPtfm" href="index.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/extptfm/usage.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.9. ExtPtfm</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.9.1. Usage</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#typical-sequentially-coupled-workflow-with-extptfm">4.9.1.1. Typical sequentially coupled workflow with <em>ExtPtfm</em></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#using-the-module">4.9.1.2. Using the module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#recommendations">4.9.1.3. Recommendations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#openfast-5-0">4.9.1.4. OpenFAST 5.0</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="input_files.html">4.9.2. Input Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory.html">4.9.3. Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.9.4. References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.9.5. Example Files</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.9. </span>ExtPtfm</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.9.1. </span>Usage</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/extptfm/usage.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="usage">
+<span id="ep-usage"></span><h1><span class="section-number">4.9.1. </span>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h1>
+<p>The <em>ExtPtfm</em> module uses superelement properties of the support structure
+provided by the user (e.g., mass, stiffness, damping, and time series of excitation forces)
+to compute the reaction of the support-structure at the interface.
+The module uses a linear formulation and internally keeps track
+of Guyan and Craig-Bampton degrees of freedom.</p>
+<div class="section" id="typical-sequentially-coupled-workflow-with-extptfm">
+<h2><span class="section-number">4.9.1.1. </span>Typical sequentially coupled workflow with <em>ExtPtfm</em><a class="headerlink" href="#typical-sequentially-coupled-workflow-with-extptfm" title="Permalink to this heading"></a></h2>
+<p>The overall workflow includes the following steps:</p>
+<ul class="simple">
+<li><p>The substructure designer performs a time-domain simulation of the
+isolated substructure under a given sea state, using an external
+tool such as a finite-element tool that has the capability to generate
+a superelement model. The underlying model behind the external tool
+and the time series of loads are reduced using the CB technique described in <a class="reference internal" href="theory.html#ep-theory"><span class="std std-ref">Theory</span></a>,
+where the leader DOF are selected as the ones at the substructure
+interface node. Results from the reduction are written to a file
+containing the reduced system matrices, <span class="math notranslate nohighlight">\(\boldsymbol{M}_r\)</span>,
+<span class="math notranslate nohighlight">\(\boldsymbol{C}_r\)</span>, <span class="math notranslate nohighlight">\(\boldsymbol{K}_r\)</span>, and the time
+series of reduced loads, <span class="math notranslate nohighlight">\(\boldsymbol{f}_r\)</span>.</p></li>
+<li><p>The file is imported in <em>OpenFAST</em> by the <em>ExtPtfm</em> module, and a
+time-domain simulation of the full wind turbine is run with the
+reduced representation of the substructure. At every time step, the
+<em>ExtPtfm</em> module receives as inputs the displacement, velocity, and acceleration
+of the interface point and returns the loads at this point.</p></li>
+<li><p><em>OpenFAST</em> exports times series of loads and displacements at the
+interface, which are then returned to the substructure designer.
+These inputs are used as boundary conditions to the external
+tool and then another time-domain simulation of the substructure is
+run. Stress concentrations are computed, and code checks are
+performed.</p></li>
+</ul>
+</div>
+<div class="section" id="using-the-module">
+<h2><span class="section-number">4.9.1.2. </span>Using the module<a class="headerlink" href="#using-the-module" title="Permalink to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">ExtPtfm</span></code> module is activated by setting the flag <code class="docutils literal notranslate"><span class="pre">CompSub</span></code> to
+<span class="math notranslate nohighlight">\(2\)</span> in the main OpenFAST input file. The variable <code class="docutils literal notranslate"><span class="pre">SubFile</span></code> in
+this same file needs to be set to a valid input file for the module (see
+<a class="reference internal" href="input_files.html#ep-input-files"><span class="std std-ref">Input Files</span></a> for the input file specifications).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---</span>  <span class="p">[</span><span class="o">...</span><span class="p">]</span>
+  <span class="mi">2</span>  <span class="n">CompSub</span> <span class="o">-</span> <span class="n">Compute</span> <span class="n">sub</span><span class="o">-</span><span class="n">structural</span> <span class="n">dynamics</span> <span class="p">(</span><span class="n">switch</span><span class="p">)</span> <span class="p">{</span><span class="mi">0</span><span class="o">=</span><span class="kc">None</span><span class="p">;</span> <span class="mi">1</span><span class="o">=</span><span class="n">SubDyn</span><span class="p">;</span> <span class="mi">2</span><span class="o">=</span><span class="n">ExtPtfm</span><span class="p">}</span>
+<span class="o">---</span>  <span class="p">[</span><span class="o">...</span><span class="p">]</span>
+<span class="s2">&quot;Turbine_ExtPtfm.dat&quot;</span> <span class="n">SubFile</span> <span class="o">-</span> <span class="n">Sub</span><span class="o">-</span><span class="n">structure</span> <span class="nb">input</span> <span class="n">file</span> <span class="p">(</span><span class="n">SubDyn</span> <span class="ow">or</span> <span class="n">ExtPtfm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="recommendations">
+<h2><span class="section-number">4.9.1.3. </span>Recommendations<a class="headerlink" href="#recommendations" title="Permalink to this heading"></a></h2>
+<p><strong>Time step</strong> superelements may contain high frequencies.
+As a rule of thumb, it is recommended to use a time step
+satisfying the following criteria: <span class="math notranslate nohighlight">\(\Delta t=\frac{1}{10 f_\text{max}}\)</span>, where <span class="math notranslate nohighlight">\(f_\text{max}\)</span> is the maximum frequency present in the superelement or full OpenFAST model.</p>
+<p><strong>Number of Craig-Bampton modes</strong> It is recommended to perform a sensitivity analyses of the results
+for an increasing number of Craig-Bampton modes to get an idea of how many modes are needed to reach convergence
+and see which modes contributes the most to the sytem response.</p>
+</div>
+<div class="section" id="openfast-5-0">
+<h2><span class="section-number">4.9.1.4. </span>OpenFAST 5.0<a class="headerlink" href="#openfast-5-0" title="Permalink to this heading"></a></h2>
+<p>With the release of OpenFAST 5.0, significant changes were made to the input files of ExtPtfm and its internal formulation.
+Couplings between ExtPtfm and HydroDyn and between ExtPtfm and the mooring modules have been enabled to more conveniently
+simulate a flexible floating structure. Finally, linearization with ExtPtfm is now possible.</p>
+<p>When simulating a floating structure in ExtPtfm, HydroDyn can be enabled in the glue-code to compute and provide
+potential-flow wave excitation and radiation loads and hydrostatic loads for both rigid-body modes and additional
+generalized degrees of freedom through the <cite>NAddDOF</cite> option (see HydroDyn documentation). With this setup, we need
+the number of active modes in ExtPtfm to be equal to <span class="math notranslate nohighlight">\(6+NAddDOF\)</span> in HydroDyn, with the first 6 modes being
+rigid-body modes, followed by a number of elastic modes.</p>
+<p>Note that if HydroDyn also contains strip-theory members, the resulting strip-theory loads will all be mapped to
+the ExtPtfm rigid-body modes only, not the elastic modes. Therefore, users are discouraged from using strip-theory-only
+members in HydroDyn. The same applies to marine growth and ballast/flooding in HydroDyn. However, hybrid members
+with drag only can still be used in many cases to help obtain more relastic floater motions. The drag force tends
+to be small and does not have a strong direct impact on the structural loading. In this case, mapping the drag force
+to the rigid-body modes only can be an acceptable simplification. The same consideration also applies to the
+second-order potential-flow options in HydroDyn that do no support generalized degrees of freedom, yet.</p>
+<p>When coupling to mooring, a set of connection points must be defined in the ExtPtfm module. These connections points
+are coupled to the fairleads in the mooring models. Generally, the connection points in ExtPtfm should be the same
+set of points used as fairleads in the mooring model; however, they need not be exactly the same as OpenFAST automatically
+introduces nearest-neighbor mapping between the two assuming rigid connections.</p>
+<p>Note that the above workflow with ExtPtfm coupling to HydroDyn and mooring is still a work-in-progress.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="4.9. ExtPtfm" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="input_files.html" class="btn btn-neutral float-right" title="4.9.2. Input Files" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

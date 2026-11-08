@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.3.6. AeroDyn Driver &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.3.7. AeroDyn Theory" href="theory.html" />
+    <link rel="prev" title="4.3.5. Modeling Considerations" href="modeling.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/aerodyn/driver.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.3. AeroDyn</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">4.3.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coordsys.html">4.3.2. Coordinate systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input.html">4.3.3. Input Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="output.html">4.3.4. Output Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modeling.html">4.3.5. Modeling Considerations</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.3.6. AeroDyn Driver</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#compiling-the-driver">4.3.6.1. Compiling the driver</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#driver-inputs-and-options">4.3.6.2. Driver inputs and options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#aerodyn-inputs-for-multiple-turbines">4.3.6.3. AeroDyn inputs for multiple turbines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examples-of-driver-input-files">4.3.6.4. Examples of driver input files</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="theory.html">4.3.7. AeroDyn Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory_ua.html">4.3.8. Unsteady Aerodynamics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory_tailfin.html">4.3.9. Tail fin Aerodynamics Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.3.10. References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.3.11. Appendix</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.3. </span>AeroDyn Users Guide and Theory Manual</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.3.6. </span>AeroDyn Driver</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/aerodyn/driver.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="aerodyn-driver">
+<span id="ad-driver"></span><h1><span class="section-number">4.3.6. </span>AeroDyn Driver<a class="headerlink" href="#aerodyn-driver" title="Permalink to this heading"></a></h1>
+<p>A standalone AeroDyn driver is provided to perform aerodynamic simulations of rigid turbines
+undergoing rigid body motion (fixed, sinusoidal, or arbitrary).
+The standalone AeroDyn driver code improves on the functionality previously
+available in the separate wind turbine rotor-performance tool WT_Perf.
+The driver also supports turbine configurations that are not currently supported by OpenFAST.</p>
+<p>Examples of applications are:</p>
+<ul class="simple">
+<li><p>Simulation of horizontal/vertical axis wind turbine, kites, quad-rotors, multiple rotors and wings.</p></li>
+<li><p>Simulation with prescribed time series of wind speed, pitch, yaw, rotor speed.</p></li>
+<li><p>Combined case analyses to evaluate the turbine response at different operating conditions, for instance to compute the surfaces of power coefficient (C<sub>P</sub>), thrust coefficient (C<sub>T</sub>), and/or torque coefficient (C<sub>Q</sub>) as a function of tip-speed ratio (TSR) and blade-pitch angle.</p></li>
+<li><p>Simulations with oscillatory motion of the tower base at different amplitudes and frequencies.</p></li>
+</ul>
+<p>More details are provided below.</p>
+<div class="section" id="compiling-the-driver">
+<h2><span class="section-number">4.3.6.1. </span>Compiling the driver<a class="headerlink" href="#compiling-the-driver" title="Permalink to this heading"></a></h2>
+<p>The compilation steps for the AeroDyn driver are similar to the ones of OpenFAST (see <a class="reference internal" href="../../install/index.html#installation"><span class="std std-numref">Section 2</span></a>).  When using the CMake workflow, the driver is compiled automatically when running <cite>make</cite>. To compile only the driver, use <cite>make aerodyn_driver</cite>. The driver will be located in the folder <cite>/build/modules/aerodyn/</cite>. A Visual Studio solution is available for Windows, in the folder  <cite>/vs-build/AeroDyn</cite>.</p>
+</div>
+<div class="section" id="driver-inputs-and-options">
+<span id="addm-driver-input-file"></span><h2><span class="section-number">4.3.6.2. </span>Driver inputs and options<a class="headerlink" href="#driver-inputs-and-options" title="Permalink to this heading"></a></h2>
+<p><strong>Main concepts</strong></p>
+<p>The driver supports:</p>
+<ul class="simple">
+<li><p>two kinds of turbine definitions: basic (HAWT), and advanced.</p></li>
+<li><p>two kinds of inflow definition: basic (uniform power law), and advanced (InflowWind)</p></li>
+<li><p>three types of analyses (<cite>AnalysisType</cite>): 1) one simulation of one or multiple turbines, 2) one simulation of one wind turbine under time-dependent inputs, 3) combined cases of one wind turbine</p></li>
+</ul>
+<p>The current limitations are:</p>
+<ul class="simple">
+<li><p>The number of nodes per blades have to be the same for all blades and all rotors</p></li>
+<li><p>A turbine has only one (optional) tower</p></li>
+<li><p>Analysis Types 2 and 3 are limited to 1 turbine</p></li>
+</ul>
+<p>More details are provided below, where the different sections of the input file are described.</p>
+<p><strong>Header and input configuration</strong></p>
+<p>The input file starts with a header, the user can place a relevant description of the model on the second line.
+The input configuration section follows.
+The user can toggle the flag <cite>Echo</cite> to write back the input file, as parsed by the driver, to disk.
+The <cite>MHK</cite> switch allows the user to specify whether or not the turbine is an MHK turbine. <cite>MHK=0</cite> denotes not an MHK turbine, <cite>MHK=1</cite> denotes a fixed MHK turbine, and <cite>MHK=2</cite> denotes a floating MHK turbine.
+The driver supports three kinds of analyses, but not all turbine formats and inflow types are available for each analysis type:</p>
+<ul class="simple">
+<li><p><cite>AnalysisType=1</cite>: Simulation of one or multiple rotors with basic (HAWT) or arbitrary geometries (HAWT/VAWT, quad-rotor, etc.), with basic or advanced wind inputs, and optional time-varying motion of the tower base, nacelle and individual pitch angles. Arbitrary motion or sinusoidal motion of the tower base are possible.</p></li>
+<li><p><cite>AnalysisType=2</cite>: Simulation of one turbine with basic time-varying wind, nacelle motion, pitch. See “Time-dependent analysis” below.</p></li>
+<li><p><cite>AnalysisType=3</cite>: Combined cases analyses of one turbine with basic steady wind. A table of cases is run sequentially by the driver. See “Combined-Case analysis” below.</p></li>
+</ul>
+<p>The section follows with the definition of the total simulation time (<cite>TMax</cite>) and the time step used for the simulation (<cite>DT</cite>). These inputs are used for <cite>AnalysisType=1</cite> and <cite>AnalysisType=2</cite>.
+The user specifies the location of the AeroDyn primary file via the variable <cite>AeroFile</cite>. The path can be absolute or relative to the AeroDyn driver file.</p>
+<p>An example of header and input configuration is given below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>----- AeroDyn Driver Input File ---------------------------------------------------------
+Three bladed wind turbine, using basic geometry input
+----- Input Configuration -------------------------------------------------------
+False           Echo         - Echo input parameters to &quot;&lt;rootname&gt;.ech&quot;?
+        0       MHK          - MHK turbine type (switch) {0: not an MHK turbine, 1: fixed MHK turbine, 2: floating MHK turbine}
+        3       AnalysisType - {1: multiple turbines, one simulation, 2: one turbine, one time-dependent simulation, 3: one turbine, combined-cases}
+       11.0     TMax         - Total run time [used only when AnalysisType/=3] (s)
+        0.5     DT           - Simulation time step [used only when AnalysisType/=3] (s)
+&quot;AD.dat&quot;        AeroFile     - Name of the primary AeroDyn input file
+</pre></div>
+</div>
+<p><strong>Environmental conditions</strong></p>
+<p>Environmental conditions are specified here and passed to AeroDyn. <cite>FldDens</cite> (equivalent to <cite>AirDens</cite> in the AeroDyn primary input file) specifies the fluid density and must be a value greater than zero; a typical value is around 1.225 kg/m<sup>3</sup> for air (wind turbines) and 1025 kg/m<sup>3</sup> for seawater (MHK turbines). <cite>KinVisc</cite> specifies the kinematic viscosity of the fluid (used in the Reynolds number calculation); a typical value is around 1.460E-5 m<sup>2</sup>/s for air (wind turbines) and 1.004E-6 m<sup>2</sup>/s for seawater (MHK turbines). <cite>SpdSound</cite> is the speed of sound in the fluid (used to calculate the Mach number within the unsteady airfoil aerodynamics calculations); a typical value is around 340.3 m/s for air (wind turbines) and 1500 m/s for seawater (MHK turbines). The next two parameters in this section are only used when <cite>CavitCheck = TRUE</cite> for MHK turbines. <cite>Patm</cite> is the atmospheric pressure above the free surface; typically around 101,325 Pa. <cite>Pvap</cite> is the vapor pressure of the fluid; for seawater this is typically around 2,000 Pa. <cite>WtrDpth</cite> is the water depth from the seabed to the mean sea level (MSL).</p>
+<p><strong>Inflow data</strong></p>
+<p>The inflow can be provided in two ways:</p>
+<ul class="simple">
+<li><p>basic (<cite>CompInflow=0</cite>): uniform wind with a power law shear. The wind is defined using a reference height (<cite>RefHt</cite>), a power law exponent (<cite>PLExp</cite>), and the wind speed at reference height (<cite>HWindSpeed</cite>). With <cite>AnalysisType=2</cite>, the reference wind speed and power law are defined separately as time series (see “time-dependent analysis”). With <cite>AnalysisType=3</cite>, these parameters are provided in a separate table (see “Combined-Case analyses”). The reference height is used for all analyses types, since this height may be different than the hub height. The wind at a given node is determined using the following equation, where <span class="math notranslate nohighlight">\(Z\)</span> is the instantaneous elevation of the node above the ground for land-based wind turbines, above the mean sea level (MSL) for offshore wind turbines, or above the seabed for fixed and floating MHK turbines.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[U(Z) = \mathrm{HWindSpeed} \left( \frac{Z}{\mathrm{RefHt}} \right)^\mathrm{PLExp}\]</div>
+<ul class="simple">
+<li><p>advanced (<cite>CompInflow=1</cite>): the InflowWind module is used to compute the inflow, and all available options of InflowWind are then available. The user needs to provide the (relative or absolute) path of the InflowWind input file (<cite>InflowFile</cite>). This feature is limited to <cite>AnalysisType=1</cite>.</p></li>
+</ul>
+<p>An example of inputs is given below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-----</span> <span class="n">Inflow</span> <span class="n">Data</span> <span class="o">---------------------------------------------------------------</span>
+          <span class="mi">0</span>   <span class="n">CompInflow</span>  <span class="o">-</span> <span class="n">Compute</span> <span class="n">inflow</span> <span class="n">wind</span> <span class="n">velocities</span> <span class="p">(</span><span class="n">switch</span><span class="p">)</span> <span class="p">{</span><span class="mi">0</span><span class="o">=</span><span class="n">Steady</span> <span class="n">Wind</span><span class="p">;</span> <span class="mi">1</span><span class="o">=</span><span class="n">InflowWind</span><span class="p">}</span>
+<span class="s2">&quot;unused&quot;</span>      <span class="n">InflowFile</span>  <span class="o">-</span> <span class="n">Name</span> <span class="n">of</span> <span class="n">the</span> <span class="n">InflowWind</span> <span class="nb">input</span> <span class="n">file</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">CompInflow</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>
+        <span class="mf">9.0</span>   <span class="n">HWindSpeed</span>  <span class="o">-</span> <span class="n">Horizontal</span> <span class="n">wind</span> <span class="n">speed</span>   <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">CompInflow</span><span class="o">=</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">AnalysisType</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span> <span class="p">(</span><span class="n">m</span><span class="o">/</span><span class="n">s</span><span class="p">)</span>
+        <span class="mi">140</span>   <span class="n">RefHt</span>       <span class="o">-</span> <span class="n">Reference</span> <span class="n">height</span> <span class="k">for</span> <span class="n">horizontal</span> <span class="n">wind</span> <span class="n">speed</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">CompInflow</span><span class="o">=</span><span class="mi">0</span><span class="p">]</span>  <span class="p">(</span><span class="n">m</span><span class="p">)</span>
+       <span class="mf">0.10</span>   <span class="n">PLExp</span>       <span class="o">-</span> <span class="n">Power</span> <span class="n">law</span> <span class="n">exponent</span>   <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">CompInflow</span><span class="o">=</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">AnalysisType</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>                        <span class="p">(</span><span class="o">-</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>SeaState data</strong></p>
+<p>SeaState can be called by the AeroDyn driver to define a wave field as part of the inflow information.
+For MHK turbines with waves and currents, SeaState will query InflowWind and sum the velocities and
+accelerations from the wave and current fields. If SeaState is activated, InflowWind must also be
+activated, though the current can be set to 0 if desired. An example of inputs for this section is given below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-----</span> <span class="n">SeaState</span> <span class="n">Data</span> <span class="o">---------------------------------------------------------------------</span>
+<span class="mi">1</span>                               <span class="n">CompSeaSt</span>   <span class="o">-</span> <span class="n">Compute</span> <span class="n">wave</span> <span class="n">velocities</span> <span class="p">(</span><span class="n">switch</span><span class="p">)</span> <span class="p">{</span><span class="mi">0</span><span class="o">=</span><span class="n">No</span> <span class="n">Waves</span><span class="p">;</span> <span class="mi">1</span><span class="o">=</span><span class="n">SeaState</span><span class="p">}</span>
+<span class="s2">&quot;MHK_RM1_Floating_SeaState.dat&quot;</span> <span class="n">SeaStFile</span>   <span class="o">-</span> <span class="n">Name</span> <span class="n">of</span> <span class="n">the</span> <span class="n">SeaState</span> <span class="nb">input</span> <span class="n">file</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">CompSeaSt</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Turbine data</strong></p>
+<p>The user specifies the number of turbines as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-----</span> <span class="n">Turbine</span> <span class="n">Data</span> <span class="o">--------------------------------------------------------------</span>
+<span class="mi">1</span>   <span class="n">NumTurbines</span>  <span class="o">-</span> <span class="n">Number</span> <span class="n">of</span> <span class="n">turbines</span> <span class="p">(</span><span class="n">should</span> <span class="n">be</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">AnalysisType</span><span class="o">=</span><span class="mi">2</span> <span class="ow">or</span> <span class="n">AnalysisType</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>As noted in the comment, the number of turbines should be 1 for <cite>AnalysisType=2</cite> and <cite>AnalysisType=3</cite>.
+After this section, the geometry and motion is provided for each turbine. Inputs for each turbine must have the suffix <cite>(i)</cite> where <cite>i</cite> is the turbine number (even with <cite>NumTurbines=1</cite>, then <cite>i=1</cite>).
+Outputs for each turbine will be written to distinct files, with the suffix <cite>.Ti</cite> where <cite>i</cite> is the turbine number (the suffix is not added when only 1 turbine is used).</p>
+<p>An example of configuration with two wind turbines is shown in <a class="reference internal" href="#fig-multirotor"><span class="std std-numref">Fig. 4.7</span></a>. The figure defines the different frames and origin associated with each turbine: the turbine base frame (t), nacelle frame (n), hub frame (h), and blade frames (b). The notations and conventions follow the OpenFAST frames, except that the turbine frame does not have its origin at the tower base.
+Prescribed motions of the turbine occur at the turbine origin.
+Yawing occurs around the <span class="math notranslate nohighlight">\(z_n\)</span> axis,  the rotor rotates about the <span class="math notranslate nohighlight">\(x_h\)</span> axis, and blade pitching occurs around the individual <span class="math notranslate nohighlight">\(z_b\)</span> axes. The definitions of the different frames are standardized when using a basic (HAWT) input format definition, and are arbitrarily defined when using the advanced input format. More details are given in the next paragraph.</p>
+<div class="figure align-default" id="fig-multirotor">
+<a class="reference internal image-reference" href="../../../_images/MultiRotor.png"><img alt="../../../_images/MultiRotor.png" src="../../../_images/MultiRotor.png" style="width: 80%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.7 </span><span class="caption-text">Definition of multiple rotors.</span><a class="headerlink" href="#fig-multirotor" title="Permalink to this image"></a></p>
+</div>
+<p><strong>Turbine geometry definition</strong></p>
+<p>Two turbine input formats are supported:</p>
+<ul>
+<li><p>basic (<cite>BasicHAWTFormat=True</cite>): Basic horizontal axis wind turbine (HAWT) format.
+In this format, the turbine geometry is entirely determined by the number of blades (<cite>NumBlades</cite>), the hub radius (<cite>HubRad</cite>), the hub height  (<cite>HubHt</cite>), the overhang (<cite>Overhang</cite>), the shaft tilt (<cite>ShftTilt</cite>), the precone (<cite>Precone</cite>), and the vertical distance from the tower-top to the rotor shaft (<cite>Twr2Shft</cite>), as shown in <a class="reference internal" href="#fig-basicgeometry"><span class="std std-numref">Fig. 4.8</span></a>.
+The definition of each parameter follows the ElastoDyn convention. For example, <cite>HubRad</cite> specifies the radius from the center-of-rotation to the blade root along the (possibly preconed) blade-pitch axis and must be greater than zero. <cite>HubHt</cite> specifies the elevation of the hub center above the ground for land-based wind turbines, relative to the mean sea level (MSL) for offshore wind and floating MHK turbines, or relative to the seabed for fixed MHK turbines. For floating MHK turbines with the hub positioned below the MSL, <cite>HubHt</cite> should be negative. <cite>Overhang</cite> specifies the distance along the (possibly tilted) rotor shaft between the tower centerline and hub center and is positive downwind (use a negative number for upwind rotors). <cite>ShftTilt</cite> is the angle (in degrees) between the rotor shaft and the horizontal plane, and positive <cite>ShftTilt</cite> means that the downwind end of the shaft is the highest (upwind turbines have negative <cite>ShftTilt</cite> for improved tower clearance). For floating MHK turbines, the sign of <cite>ShftTilt</cite> should be flipped to achieve an equivalent shaft tilt. For example, floating, upwind MHK turbines have positive <cite>ShftTilt</cite> for improved tower clearance. <cite>Precone</cite> is the angle (in degrees) between a flat rotor disk and the cone swept by the blades, positive downwind (upwind turbines have negative <cite>Precone</cite> for improved tower clearance). <cite>Twr2Shft</cite> is the vertical distance from the tower-top to the rotor shaft. For floating MHK turbines with the rotor below the tower-top, this value should be negative.</p>
+<div class="figure align-default" id="fig-basicgeometry">
+<a class="reference internal image-reference" href="../../../_images/aerodyn_driver_geom.png"><img alt="../../../_images/aerodyn_driver_geom.png" src="../../../_images/aerodyn_driver_geom.png" style="width: 60%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.8 </span><span class="caption-text">Definition of basic turbine geometry.</span><a class="headerlink" href="#fig-basicgeometry" title="Permalink to this image"></a></p>
+</div>
+<p>Additionally, the user needs to provide the origin of the turbine base at <cite>t=0</cite> (<cite>BaseOriginInit</cite>). For fixed MHK turbines, <cite>BaseOriginInit</cite> is input relative to the seabed. For floating MHK turbines, <cite>BaseOriginInit</cite> is input relative to the MSL, and the vertical component is negative if the turbine base is below the MSL. An example of basic input is given below:</p>
+</li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-----</span> <span class="n">Turbine</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="n">Geometry</span> <span class="o">-------------------------------------------------------</span>
+        <span class="kc">True</span>    <span class="n">BasicHAWTFormat</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">Flag</span> <span class="n">to</span> <span class="n">switch</span> <span class="n">between</span> <span class="n">basic</span> <span class="ow">or</span> <span class="n">generic</span> <span class="nb">input</span> <span class="nb">format</span> <span class="p">{</span><span class="kc">True</span><span class="p">:</span> <span class="nb">next</span> <span class="mi">7</span> <span class="n">lines</span> <span class="n">are</span> <span class="n">basic</span> <span class="n">inputs</span><span class="p">,</span> <span class="kc">False</span><span class="p">:</span> <span class="n">Base</span><span class="o">/</span><span class="n">Twr</span><span class="o">/</span><span class="n">Nac</span><span class="o">/</span><span class="n">Hub</span><span class="o">/</span><span class="n">Bld</span> <span class="n">geometry</span> <span class="ow">and</span> <span class="n">motion</span> <span class="n">must</span> <span class="n">follow</span><span class="p">}</span>
+       <span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span>    <span class="n">BaseOriginInit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">Coordinates</span> <span class="n">of</span> <span class="n">turbine</span> <span class="n">base</span> <span class="ow">in</span> <span class="k">global</span> <span class="n">coordinates</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span>
+           <span class="mi">3</span>    <span class="n">NumBlades</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>    <span class="o">-</span> <span class="n">Number</span> <span class="n">of</span> <span class="n">blades</span> <span class="p">(</span><span class="o">-</span><span class="p">)</span>
+          <span class="mf">3.</span>    <span class="n">HubRad</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>       <span class="o">-</span> <span class="n">Hub</span> <span class="n">radius</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span>
+      <span class="mf">140.82513</span> <span class="n">HubHt</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>        <span class="o">-</span> <span class="n">Hub</span> <span class="n">height</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span>
+          <span class="o">-</span><span class="mi">7</span>    <span class="n">Overhang</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>     <span class="o">-</span> <span class="n">Overhang</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span>
+          <span class="o">-</span><span class="mi">6</span>    <span class="n">ShftTilt</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>     <span class="o">-</span> <span class="n">Shaft</span> <span class="n">tilt</span> <span class="p">(</span><span class="n">deg</span><span class="p">)</span>
+          <span class="o">-</span><span class="mi">4</span>    <span class="n">Precone</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>      <span class="o">-</span> <span class="n">Blade</span> <span class="n">precone</span> <span class="p">(</span><span class="n">deg</span><span class="p">)</span>
+     <span class="mf">3.09343</span>    <span class="n">Twr2Shft</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>     <span class="o">-</span> <span class="n">Vertical</span> <span class="n">distance</span> <span class="kn">from</span><span class="w"> </span><span class="nn">the</span> <span class="n">tower</span><span class="o">-</span><span class="n">top</span> <span class="n">to</span> <span class="n">the</span> <span class="n">rotor</span> <span class="n">shaft</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul>
+<li><p>advanced (<cite>BasicHAWTFormat=False</cite>): The position and orientation of the tower base, nacelle, hub, and individual blades can be arbitrarily defined. This can be used for HAWT and any other turbine concepts.
+The definition of the different frames are given in <a class="reference internal" href="#fig-multirotor"><span class="std std-numref">Fig. 4.7</span></a>.
+The position (<cite>BaseOriginInit</cite>) and orientation (<cite>BaseOrientationInit</cite>) of the turbine base frame are defined with respect to the global frame. The vertical component of <cite>BaseOriginInit</cite> is defined relative to the seabed for fixed MHK turbines and relative to the MSL for floating MHK turbines. Orientations are given using the values of three successive rotations (x-y-z Euler angle sequence). If the base undergoes a motion, the orientation of the base frame will consist of the time-varying rotations followed by these initial rotations.</p>
+<p>A flag indicating whether the turbine has a tower is given on the next line (<cite>HasTower</cite>). This flag currently affects the VTK outputs and does not have an impact on AeroDyn yet. The user still has to provide tower input data in AeroDyn for each turbine (see <a class="reference internal" href="#ad-inputs-multirot"><span class="std std-numref">Section 4.3.6.3</span></a>).
+The next line indicates which projection AeroDyn is to use in its calculation. It is recommended to use <cite>HAWTprojection=True</cite> for HAWT, which is the default projection used in AeroDyn (projects on the coned-pitched axis). For other rotor concepts, set <cite>HAWTprojection=False</cite>.
+The following lines indicate the position and orientations of the tower, nacelle and hub.</p>
+<p>The tower and the nacelle are defined with respect to the turbine base (t) origin and frame.
+The tower top is assumed to coincide with the nacelle origin.
+The tower stations defined in the AeroDyn input file are assumed to be given with respect to the tower origin, unlike OpenFAST which uses ground/MSL as a reference (see <a class="reference internal" href="#ad-inputs-multirot"><span class="std std-numref">Section 4.3.6.3</span></a>).
+For floating MHK turbines, the vertical components of <cite>TwrOrigin_t</cite> and <cite>NacOrigin_t</cite> are negative if the tower origin and nacelle origin are below the turbine base.
+The hub is defined with respect to the nacelle origin and frame (n). The vertical component of <cite>HubOrigin_n</cite> is negative for floating MHK turbines if the hub origin is below the nacelle origin (i.e., tower top).</p>
+<p>The definitions of the blades follow, starting with the number of blades <cite>NumBlades</cite>. A rotor with zero blades is supported and can be used to model an isolated tower.
+If tower shadow/potential is used in AeroDyn, then the isolated tower will disturb the flow of the vortex wake when OLAF is used.
+When BEM is used, the flow of the blades of a given turbine are disturbed only by that turbine’s tower.
+The inputs for turbine <cite>i</cite> and blade <cite>j</cite> are labelled <cite>(i_j)</cite>.
+The origin (<cite>BldOrigin_h</cite>) and orientation (<cite>BldOrientation_h</cite>) of each blade are given with respect to the hub origin and frame (h).
+Hub radius inputs (<cite>BldHubRad_Bl</cite>) are provided for convenience. They will effectively offset the blades origin along the <span class="math notranslate nohighlight">\(z_b\)</span> axis.
+An example of input for an advanced geometry definition is given below.
+This example corresponds to typical values for a 3-bladed upwind HAWT, with 6 degrees of tilt (-6 in OpenFAST) and -4 degrees of precone (blades inclined upstream).</p>
+</li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-----</span> <span class="n">Turbine</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="n">Geometry</span> <span class="o">-------------------------------------------------------</span>
+     <span class="kc">False</span>      <span class="n">BasicHAWTFormat</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">Flag</span> <span class="n">to</span> <span class="n">switch</span> <span class="n">between</span> <span class="n">basic</span> <span class="ow">or</span> <span class="n">generic</span> <span class="nb">input</span> <span class="nb">format</span> <span class="p">{</span><span class="kc">True</span><span class="p">:</span> <span class="nb">next</span> <span class="mi">7</span> <span class="n">lines</span> <span class="n">are</span> <span class="n">basic</span> <span class="n">inputs</span><span class="p">,</span> <span class="kc">False</span><span class="p">:</span> <span class="n">Base</span><span class="o">/</span><span class="n">Twr</span><span class="o">/</span><span class="n">Nac</span><span class="o">/</span><span class="n">Hub</span><span class="o">/</span><span class="n">Bld</span> <span class="n">geometry</span> <span class="ow">and</span> <span class="n">motion</span> <span class="n">must</span> <span class="n">follow</span><span class="p">}</span>
+<span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span>           <span class="n">BaseOriginInit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>      <span class="o">-</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="n">coordinates</span> <span class="n">of</span> <span class="n">turbine</span> <span class="n">base</span> <span class="n">origin</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span>           <span class="n">BaseOrientationInit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">successive</span> <span class="n">rotations</span> <span class="p">(</span><span class="n">theta_x</span><span class="p">,</span> <span class="n">theta_y</span><span class="p">,</span> <span class="n">theta_z</span><span class="p">)</span> <span class="n">defining</span> <span class="n">initial</span> <span class="n">orientation</span> <span class="n">of</span> <span class="n">the</span> <span class="n">base</span> <span class="n">frame</span> <span class="kn">from</span><span class="w"> </span><span class="nn">the</span> <span class="k">global</span> <span class="n">frame</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span> <span class="n">roll</span><span class="p">,</span> <span class="n">tilt</span><span class="p">,</span> <span class="n">yaw</span><span class="p">)</span> <span class="p">(</span><span class="n">deg</span><span class="p">)</span>
+<span class="kc">True</span>            <span class="n">HasTower</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>            <span class="o">-</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">turbine</span> <span class="n">has</span> <span class="n">a</span> <span class="n">tower</span> <span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+<span class="kc">True</span>            <span class="n">HAWTprojection</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>      <span class="o">-</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">turbine</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">horizontal</span> <span class="n">axis</span> <span class="n">turbine</span> <span class="p">(</span><span class="k">for</span> <span class="n">AeroDyn</span> <span class="n">projections</span><span class="p">)</span> <span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span>           <span class="n">TwrOrigin_t</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>         <span class="o">-</span> <span class="n">Coordinate</span> <span class="n">of</span> <span class="n">tower</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">base</span> <span class="n">coordinates</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">HasTower</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">]</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">137</span>         <span class="n">NacOrigin_t</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>         <span class="o">-</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="n">coordinates</span> <span class="n">of</span> <span class="n">nacelle</span> <span class="n">origin</span> <span class="p">(</span><span class="ow">and</span> <span class="n">tower</span> <span class="n">top</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">base</span><span class="p">,</span> <span class="ow">in</span> <span class="n">base</span> <span class="n">coordinates</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="o">-</span><span class="mf">6.96</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">3.82</span>   <span class="n">HubOrigin_n</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>         <span class="o">-</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="n">coordinates</span> <span class="n">of</span> <span class="n">hub</span> <span class="n">origin</span> <span class="kn">from</span><span class="w"> </span><span class="nn">nacelle</span> <span class="n">origin</span><span class="p">,</span> <span class="ow">in</span> <span class="n">nacelle</span> <span class="n">coordinates</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">0</span>           <span class="n">HubOrientation_n</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>    <span class="o">-</span> <span class="n">successive</span> <span class="n">rotations</span> <span class="p">(</span><span class="n">theta_x</span><span class="p">,</span> <span class="n">theta_y</span><span class="p">,</span> <span class="n">theta_z</span><span class="p">)</span> <span class="n">defining</span> <span class="n">initial</span> <span class="n">orientation</span> <span class="n">of</span> <span class="n">the</span> <span class="n">hub</span> <span class="n">frame</span> <span class="kn">from</span><span class="w"> </span><span class="nn">the</span> <span class="n">nacelle</span> <span class="n">frame</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span> <span class="n">roll</span><span class="p">,</span> <span class="n">tilt</span><span class="p">,</span> <span class="n">yaw</span><span class="p">)</span><span class="o">.</span> <span class="n">The</span> <span class="n">x</span> <span class="n">axis</span> <span class="n">needs</span> <span class="n">to</span> <span class="n">be</span> <span class="n">aligned</span> <span class="k">with</span> <span class="n">the</span> <span class="n">rotational</span> <span class="n">speed</span><span class="o">.</span> <span class="p">(</span><span class="n">deg</span><span class="p">)</span>
+<span class="o">-----</span> <span class="n">Turbine</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="n">Blades</span> <span class="o">-----------------------------------------------------------------</span>
+<span class="mi">3</span>               <span class="n">NumBlades</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>          <span class="o">-</span> <span class="n">Number</span> <span class="n">of</span> <span class="n">blades</span> <span class="k">for</span> <span class="n">current</span> <span class="n">rotor</span> <span class="p">(</span><span class="o">-</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span>           <span class="n">BldOrigin_h</span><span class="p">(</span><span class="mi">1_1</span><span class="p">)</span>      <span class="o">-</span> <span class="n">Origin</span> <span class="n">of</span> <span class="n">blade</span> <span class="mi">1</span> <span class="n">wrt</span><span class="o">.</span> <span class="n">hub</span> <span class="n">origin</span> <span class="ow">in</span> <span class="n">hub</span> <span class="n">coordinates</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span>           <span class="n">BldOrigin_h</span><span class="p">(</span><span class="mi">1_2</span><span class="p">)</span>      <span class="o">-</span> <span class="n">Origin</span> <span class="n">of</span> <span class="n">blade</span> <span class="mi">2</span> <span class="n">wrt</span><span class="o">.</span> <span class="n">hub</span> <span class="n">origin</span> <span class="ow">in</span> <span class="n">hub</span> <span class="n">coordinates</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span>           <span class="n">BldOrigin_h</span><span class="p">(</span><span class="mi">1_3</span><span class="p">)</span>      <span class="o">-</span> <span class="n">Origin</span> <span class="n">of</span> <span class="n">blade</span> <span class="mi">3</span> <span class="n">wrt</span><span class="o">.</span> <span class="n">hub</span> <span class="n">origin</span> <span class="ow">in</span> <span class="n">hub</span> <span class="n">coordinates</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="mi">0</span>  <span class="p">,</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span>        <span class="n">BldOrientation_h</span><span class="p">(</span><span class="mi">1_1</span><span class="p">)</span> <span class="o">-</span> <span class="n">successive</span> <span class="n">rotations</span> <span class="p">(</span><span class="n">theta_x</span><span class="p">,</span> <span class="n">theta_y</span><span class="p">,</span> <span class="n">theta_z</span><span class="p">)</span> <span class="n">defining</span> <span class="n">initial</span> <span class="n">orientation</span> <span class="n">of</span> <span class="n">the</span> <span class="n">blade</span> <span class="n">frame</span> <span class="kn">from</span><span class="w"> </span><span class="nn">the</span> <span class="n">hub</span> <span class="n">frame</span> <span class="n">such</span> <span class="n">that</span> <span class="n">the</span> <span class="s2">&quot;z&quot;</span> <span class="ow">is</span> <span class="n">along</span> <span class="n">span</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span> <span class="n">along</span> <span class="n">trailing</span> <span class="n">edge</span> <span class="n">without</span> <span class="n">pitch</span> <span class="p">(</span><span class="n">azimuth</span><span class="p">,</span> <span class="n">precone</span><span class="p">,</span> <span class="n">pitch</span><span class="p">)</span> <span class="p">(</span><span class="n">deg</span><span class="p">)</span>
+<span class="mi">120</span><span class="p">,</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span>        <span class="n">BldOrientation_h</span><span class="p">(</span><span class="mi">1_2</span><span class="p">)</span> <span class="o">-</span> <span class="n">successive</span> <span class="n">rotations</span> <span class="p">(</span><span class="n">theta_x</span><span class="p">,</span> <span class="n">theta_y</span><span class="p">,</span> <span class="n">theta_z</span><span class="p">)</span> <span class="n">defining</span> <span class="n">initial</span> <span class="n">orientation</span> <span class="n">of</span> <span class="n">the</span> <span class="n">blade</span> <span class="n">frame</span> <span class="kn">from</span><span class="w"> </span><span class="nn">the</span> <span class="n">hub</span> <span class="n">frame</span> <span class="n">such</span> <span class="n">that</span> <span class="n">the</span> <span class="s2">&quot;z&quot;</span> <span class="ow">is</span> <span class="n">along</span> <span class="n">span</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span> <span class="n">along</span> <span class="n">trailing</span> <span class="n">edge</span> <span class="n">without</span> <span class="n">pitch</span> <span class="p">(</span><span class="n">azimuth</span><span class="p">,</span> <span class="n">precone</span><span class="p">,</span> <span class="n">pitch</span><span class="p">)</span> <span class="p">(</span><span class="n">deg</span><span class="p">)</span>
+<span class="mi">240</span><span class="p">,</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span>        <span class="n">BldOrientation_h</span><span class="p">(</span><span class="mi">1_3</span><span class="p">)</span> <span class="o">-</span> <span class="n">successive</span> <span class="n">rotations</span> <span class="p">(</span><span class="n">theta_x</span><span class="p">,</span> <span class="n">theta_y</span><span class="p">,</span> <span class="n">theta_z</span><span class="p">)</span> <span class="n">defining</span> <span class="n">initial</span> <span class="n">orientation</span> <span class="n">of</span> <span class="n">the</span> <span class="n">blade</span> <span class="n">frame</span> <span class="kn">from</span><span class="w"> </span><span class="nn">the</span> <span class="n">hub</span> <span class="n">frame</span> <span class="n">such</span> <span class="n">that</span> <span class="n">the</span> <span class="s2">&quot;z&quot;</span> <span class="ow">is</span> <span class="n">along</span> <span class="n">span</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span> <span class="n">along</span> <span class="n">trailing</span> <span class="n">edge</span> <span class="n">without</span> <span class="n">pitch</span> <span class="p">(</span><span class="n">azimuth</span><span class="p">,</span> <span class="n">precone</span><span class="p">,</span> <span class="n">pitch</span><span class="p">)</span> <span class="p">(</span><span class="n">deg</span><span class="p">)</span>
+<span class="mf">3.0</span>             <span class="n">BldHubRad_bl</span><span class="p">(</span><span class="mi">1_1</span><span class="p">)</span>     <span class="o">-</span> <span class="n">z</span><span class="o">-</span><span class="n">offset</span> <span class="ow">in</span> <span class="n">blade</span> <span class="n">coordinates</span> <span class="n">of</span> <span class="n">blade</span> <span class="mi">1</span> <span class="n">where</span> <span class="n">radial</span> <span class="nb">input</span> <span class="n">data</span> <span class="n">start</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="mf">3.0</span>             <span class="n">BldHubRad_bl</span><span class="p">(</span><span class="mi">1_2</span><span class="p">)</span>     <span class="o">-</span> <span class="n">z</span><span class="o">-</span><span class="n">offset</span> <span class="ow">in</span> <span class="n">blade</span> <span class="n">coordinates</span> <span class="n">of</span> <span class="n">blade</span> <span class="mi">2</span> <span class="n">where</span> <span class="n">radial</span> <span class="nb">input</span> <span class="n">data</span> <span class="n">start</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="mf">3.0</span>             <span class="n">BldHubRad_bl</span><span class="p">(</span><span class="mi">1_3</span><span class="p">)</span>     <span class="o">-</span> <span class="n">z</span><span class="o">-</span><span class="n">offset</span> <span class="ow">in</span> <span class="n">blade</span> <span class="n">coordinates</span> <span class="n">of</span> <span class="n">blade</span> <span class="mi">3</span> <span class="n">where</span> <span class="n">radial</span> <span class="nb">input</span> <span class="n">data</span> <span class="n">start</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Turbine motion definition</strong></p>
+<p>The definition of the turbine motion is only used when <cite>AnalysisType=1</cite>, but must always be present in the input file.</p>
+<p>The base motion is given in the same way for basic or advanced geometries.
+The motion of the base may be: fixed (<cite>BaseMotionType=0</cite>), sinusoidal (<cite>BaseMotionType=1</cite>) or arbitrary (<cite>BaseMotionType=2</cite>).
+The turbine base motion is applied at each time step before applying the initial position and orientation of the turbine base.
+A sinusoidal motion implies that one degree of freedom (<cite>DegreeOfFreedom</cite>) of the turbine base is moving according to a sine function of a given amplitude (<cite>Amplitude</cite>) and frequency (<cite>Frequency</cite>, in Hz), with zero phase.
+The 6 possible degrees of freedom correspond to translations or rotations of the base frame in global coordinates (g) (e.g. surge, sway, heave, roll, pitch, yaw).
+An arbitrary motion is specified via a CSV file (<cite>BaseMotionFileName</cite>) which contains 19 columns: time, 3 translations (global), three successive rotations (global), 3 translation velocities, 3 rotational velocities (omega, in global), 3 translational accelerations and 3 rotational accelerations (alpha, in global). Example of arbitrary input files are given in <a class="reference internal" href="#ad-inputfiles-examples"><span class="std std-numref">Section 4.3.6.4</span></a>.
+The time vector in the motion file has to be ascending, but does not need to be linear. Linear interpolation is used by the driver to determine inputs at a given time.
+The displacements/orientations, velocities, and accelerations are not checked internally for consistency.</p>
+<p>An example of inputs for a sinusoidal surge motion is given below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-----</span> <span class="n">Turbine</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="n">Motion</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">AnalysisType</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span> <span class="o">--------------------------</span>
+<span class="mi">1</span>         <span class="n">BaseMotionType</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>      <span class="o">-</span> <span class="n">Type</span> <span class="n">of</span> <span class="n">motion</span> <span class="n">prescribed</span> <span class="k">for</span> <span class="n">this</span> <span class="n">base</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="n">fixed</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="n">Sinusoidal</span> <span class="n">motion</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="n">arbitrary</span> <span class="n">motion</span><span class="p">}</span> <span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+<span class="mi">1</span>         <span class="n">DegreeOfFreedom</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>     <span class="o">-</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span><span class="n">xg</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="n">yg</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span><span class="n">zg</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span><span class="n">theta_xg</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span><span class="n">theta_yg</span><span class="p">,</span> <span class="mi">6</span><span class="p">:</span><span class="n">theta_zg</span><span class="p">}</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">BaseMotionType</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span> <span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+<span class="mf">5.0</span>       <span class="n">Amplitude</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>           <span class="o">-</span> <span class="n">Amplitude</span> <span class="n">of</span> <span class="n">sinusoidal</span> <span class="n">motion</span>  <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">BaseMotionType</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span> <span class="p">(</span><span class="n">m</span> <span class="ow">or</span> <span class="n">rad</span><span class="p">)</span>
+<span class="mf">0.1</span>       <span class="n">Frequency</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>           <span class="o">-</span> <span class="n">Frequency</span> <span class="n">of</span> <span class="n">sinusoidal</span> <span class="n">motion</span>  <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">BaseMotionType</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span> <span class="p">(</span><span class="n">Hz</span><span class="p">)</span>
+<span class="s2">&quot;unused&quot;</span>  <span class="n">BaseMotionFileName</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="o">-</span> <span class="n">Filename</span> <span class="n">containing</span> <span class="n">arbitrary</span> <span class="n">base</span> <span class="n">motion</span> <span class="p">(</span><span class="mi">19</span> <span class="n">columns</span><span class="p">:</span> <span class="n">Time</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">theta_x</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">alpha_z</span><span class="p">)</span>  <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">BaseMotionType</span><span class="o">=</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The different inputs for the basic and advanced geometries are given below:</p>
+<ul class="simple">
+<li><p>basic: The motion of a basic turbine consists of a constant nacelle yaw (<cite>NacYaw</cite>, positive rotation of the nacelle about the vertical tower axis, counterclockwise when looking downward), rotor speed (<cite>RotSpeed</cite>, positive clockwise looking downwind), and blade pitch (<cite>BldPitch</cite>, negative around <span class="math notranslate nohighlight">\(z_b\)</span>). For floating MHK turbines, <cite>NacYaw</cite> should be flipped to achieve the same global yaw direction (i.e., positive rotation of the nacelle about the vertical tower axis, clockwise when looking downward).
+Examples are given below:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span>         <span class="n">NacYaw</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>        <span class="o">-</span> <span class="n">Yaw</span> <span class="n">angle</span> <span class="p">(</span><span class="n">about</span> <span class="n">z_t</span><span class="p">)</span> <span class="n">of</span> <span class="n">the</span> <span class="n">nacelle</span> <span class="p">(</span><span class="n">deg</span><span class="p">)</span>
+<span class="mi">7</span>         <span class="n">RotSpeed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>      <span class="o">-</span> <span class="n">Rotational</span> <span class="n">speed</span> <span class="n">of</span> <span class="n">rotor</span> <span class="ow">in</span> <span class="n">rotor</span> <span class="n">coordinates</span> <span class="p">(</span><span class="n">rpm</span><span class="p">)</span>
+<span class="mi">1</span>         <span class="n">BldPitch</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>      <span class="o">-</span> <span class="n">Blades</span> <span class="n">pitch</span> <span class="p">(</span><span class="n">deg</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>advanced: When an advanced geometry is provided and when the number of blades is non-zero, the motion section contains options for the nacelle motion, rotor motion and individual blade pitch motion.
+The syntax for each of these motions consists of defining a type (fixed or time-varying), a value for the fixed case or a file for the time-varying case.
+The input files are CSV files containing time, position, speed and acceleration. Examples of files are given in <a class="reference internal" href="#ad-inputfiles-examples"><span class="std std-numref">Section 4.3.6.4</span></a>.
+The displacements/orientations, velocities, and accelerations are not checked internally for consistency.
+The time vector in the motion file has to be ascending, but does not need to be linear. Linear interpolation is used by the driver to determine inputs at a given time.
+The angular and rotational data in the CSV file are defined in rad and rad/s, whereas they are defined in deg and rpm in the driver input file.
+An example is given below for a fixed rotational speed:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span>         <span class="n">NacMotionType</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>       <span class="o">-</span> <span class="n">Type</span> <span class="n">of</span> <span class="n">motion</span> <span class="n">prescribed</span> <span class="k">for</span> <span class="n">the</span> <span class="n">nacelle</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="n">fixed</span> <span class="n">yaw</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="n">time</span> <span class="n">varying</span> <span class="n">yaw</span> <span class="n">angle</span><span class="p">}</span> <span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+<span class="mi">0</span>         <span class="n">NacYaw</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>              <span class="o">-</span> <span class="n">Yaw</span> <span class="n">angle</span> <span class="p">(</span><span class="n">about</span> <span class="n">z_t</span><span class="p">)</span> <span class="n">of</span> <span class="n">the</span> <span class="n">nacelle</span> <span class="p">[</span><span class="n">user</span> <span class="n">only</span> <span class="n">when</span> <span class="n">NacMotionType</span><span class="o">=</span><span class="mi">0</span><span class="p">]</span> <span class="p">(</span><span class="n">deg</span><span class="p">)</span>
+<span class="s2">&quot;unused&quot;</span>  <span class="n">NacMotionFileName</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>   <span class="o">-</span> <span class="n">Filename</span> <span class="n">containing</span> <span class="n">yaw</span> <span class="n">motion</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">NacMotionType</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>
+<span class="mi">0</span>         <span class="n">RotMotionType</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>       <span class="o">-</span> <span class="n">Type</span> <span class="n">of</span> <span class="n">motion</span> <span class="n">prescribed</span> <span class="k">for</span> <span class="n">this</span> <span class="n">rotor</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="n">constant</span> <span class="n">rotation</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="n">time</span> <span class="n">varying</span> <span class="n">rotation</span><span class="p">}</span> <span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+<span class="mf">6.0</span>       <span class="n">RotSpeed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>            <span class="o">-</span> <span class="n">Rotational</span> <span class="n">speed</span> <span class="n">of</span> <span class="n">rotor</span> <span class="ow">in</span> <span class="n">rotor</span> <span class="n">coordinates</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">RotorMotionType</span><span class="o">=</span><span class="mi">0</span><span class="p">]</span> <span class="p">(</span><span class="n">rpm</span><span class="p">)</span>
+<span class="s2">&quot;unused&quot;</span>  <span class="n">RotMotionFileName</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>   <span class="o">-</span> <span class="n">Filename</span> <span class="n">containing</span> <span class="n">rotor</span> <span class="n">motion</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">RotorMotionType</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>
+<span class="mi">0</span>         <span class="n">BldMotionType</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>       <span class="o">-</span> <span class="n">Type</span> <span class="n">of</span> <span class="n">pitch</span> <span class="n">motion</span> <span class="n">prescribed</span> <span class="k">for</span> <span class="n">the</span> <span class="n">blades</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="n">fixed</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="n">time</span> <span class="n">varying</span> <span class="n">pitch</span><span class="p">}</span> <span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+<span class="mi">0</span>         <span class="n">BldPitch</span><span class="p">(</span><span class="mi">1_1</span><span class="p">)</span>          <span class="o">-</span> <span class="n">Blade</span> <span class="mi">1</span> <span class="n">pitch</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">BldMotionType</span><span class="o">=</span><span class="mi">0</span><span class="p">]</span> <span class="p">(</span><span class="n">deg</span><span class="p">)</span>
+<span class="mi">0</span>         <span class="n">BldPitch</span><span class="p">(</span><span class="mi">1_2</span><span class="p">)</span>          <span class="o">-</span> <span class="n">Blade</span> <span class="mi">2</span> <span class="n">pitch</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">BldMotionType</span><span class="o">=</span><span class="mi">0</span><span class="p">]</span> <span class="p">(</span><span class="n">deg</span><span class="p">)</span>
+<span class="mi">0</span>         <span class="n">BldPitch</span><span class="p">(</span><span class="mi">1_3</span><span class="p">)</span>          <span class="o">-</span> <span class="n">Blade</span> <span class="mi">3</span> <span class="n">pitch</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">BldMotionType</span><span class="o">=</span><span class="mi">0</span><span class="p">]</span> <span class="p">(</span><span class="n">deg</span><span class="p">)</span>
+<span class="s2">&quot;unused&quot;</span>  <span class="n">BldMotionFileName</span><span class="p">(</span><span class="mi">1_1</span><span class="p">)</span> <span class="o">-</span> <span class="n">Filename</span> <span class="n">containing</span> <span class="n">blade</span> <span class="n">pitch</span> <span class="n">motion</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">BldMotionType</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>
+<span class="s2">&quot;unused&quot;</span>  <span class="n">BldMotionFileName</span><span class="p">(</span><span class="mi">1_2</span><span class="p">)</span> <span class="o">-</span> <span class="n">Filename</span> <span class="n">containing</span> <span class="n">blade</span> <span class="n">pitch</span> <span class="n">motion</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">BldMotionType</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>
+<span class="s2">&quot;unused&quot;</span>  <span class="n">BldMotionFileName</span><span class="p">(</span><span class="mi">1_3</span><span class="p">)</span> <span class="o">-</span> <span class="n">Filename</span> <span class="n">containing</span> <span class="n">blade</span> <span class="n">pitch</span> <span class="n">motion</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">BldMotionType</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Time-dependent analysis</strong></p>
+<p>Time-dependent analyses are used to vary a few standard variables during the simulation.
+The variables are: reference wind speed (<cite>HWndSpeed</cite>), power law exponent (<cite>PLExp</cite>), rotor speed (<cite>RotSpd</cite>), collective pitch (<cite>Pitch</cite>), and nacelle yaw (<cite>Yaw</cite>).
+The time series of each variable are provided in a CSV file (<cite>TimeAnalysisFileName</cite>).
+Time-dependent analyses are selected using <cite>AnalysisType=2</cite>. They are restricted to one turbine (<cite>numTurbines=1</cite>).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-----</span> <span class="n">Time</span><span class="o">-</span><span class="n">dependent</span> <span class="n">Analysis</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">AnalysisType</span><span class="o">=</span><span class="mi">2</span> <span class="ow">and</span> <span class="n">numTurbines</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span> <span class="o">------</span>
+<span class="s2">&quot;TimeSeries.csv&quot;</span> <span class="n">TimeAnalysisFileName</span> <span class="o">-</span> <span class="n">Filename</span> <span class="n">containing</span> <span class="n">time</span> <span class="n">series</span> <span class="p">(</span><span class="mi">6</span> <span class="n">column</span><span class="p">:</span> <span class="n">Time</span><span class="p">,</span> <span class="n">HWndSpeed</span><span class="p">,</span> <span class="n">PLExp</span><span class="p">,</span> <span class="n">RotSpd</span><span class="p">,</span> <span class="n">Pitch</span><span class="p">,</span> <span class="n">Yaw</span><span class="p">)</span><span class="o">.</span>
+</pre></div>
+</div>
+<p><strong>Combined-case analyses</strong></p>
+<p>Combined-case analyses are used to run parametric studies in one single run.
+They are selected using <cite>AnalysisType=3</cite>, and are restricted to one turbine (<cite>numTurbines=1</cite>).
+The variables that can be changed for each simulation are: reference wind speed (<cite>HWndSpeed</cite>),  power law exponent (<cite>PLExp</cite>), rotor speed (<cite>RotSpd</cite>), collective pitch (<cite>Pitch</cite>), nacelle yaw (<cite>Yaw</cite>), time step (<cite>dT</cite>), simulation time (<cite>Tmax</cite>), and sinusoidal motion parameters (degree of freedom, <cite>DOF</cite>, amplitude and frequency).
+When <cite>DOF=0</cite>, the turbine base is fixed.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-----</span> <span class="n">Combined</span><span class="o">-</span><span class="n">Case</span> <span class="n">Analysis</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">AnalysisType</span><span class="o">=</span><span class="mi">3</span> <span class="ow">and</span> <span class="n">numTubines</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span> <span class="o">------</span>
+         <span class="mi">4</span>  <span class="n">NumCases</span>     <span class="o">-</span> <span class="n">Number</span> <span class="n">of</span> <span class="n">cases</span> <span class="n">to</span> <span class="n">run</span>
+<span class="n">HWndSpeed</span>  <span class="n">PLExp</span>   <span class="n">RotSpd</span>   <span class="n">Pitch</span>   <span class="n">Yaw</span>    <span class="n">dT</span>      <span class="n">Tmax</span>   <span class="n">DOF</span>   <span class="n">Amplitude</span>  <span class="n">Frequency</span>
+<span class="p">(</span><span class="n">m</span><span class="o">/</span><span class="n">s</span><span class="p">)</span>      <span class="p">(</span><span class="o">-</span><span class="p">)</span>     <span class="p">(</span><span class="n">rpm</span><span class="p">)</span>    <span class="p">(</span><span class="n">deg</span><span class="p">)</span>  <span class="p">(</span><span class="n">deg</span><span class="p">)</span>   <span class="p">(</span><span class="n">s</span><span class="p">)</span>     <span class="p">(</span><span class="n">s</span><span class="p">)</span>    <span class="p">(</span><span class="o">-</span><span class="p">)</span>  <span class="p">(</span><span class="n">m</span> <span class="ow">or</span> <span class="n">rad</span><span class="p">)</span>  <span class="p">(</span><span class="n">Hz</span><span class="p">)</span>
+   <span class="mf">8.</span>      <span class="mf">0.0</span>       <span class="mf">6.</span>     <span class="mf">0.</span>      <span class="mf">0.</span>     <span class="mf">1.0</span>     <span class="mi">100</span>     <span class="mi">0</span>      <span class="mi">0</span>         <span class="mf">0.0</span>
+   <span class="mf">8.</span>      <span class="mf">0.0</span>       <span class="mf">6.</span>     <span class="mf">0.</span>      <span class="mf">0.</span>     <span class="mf">1.0</span>     <span class="mi">100</span>     <span class="mi">0</span>      <span class="mi">0</span>         <span class="mf">0.0</span>
+   <span class="mf">9.</span>      <span class="mf">0.1</span>       <span class="mf">7.</span>     <span class="mf">1.</span>      <span class="mf">0.</span>     <span class="mf">0.5</span>      <span class="mi">50</span>     <span class="mi">1</span>      <span class="mf">5.0</span>       <span class="mf">0.1</span>
+   <span class="mf">9.</span>      <span class="mf">0.2</span>       <span class="mf">8.</span>     <span class="mf">2.</span>      <span class="mf">0.</span>     <span class="mf">0.5</span>      <span class="mi">50</span>     <span class="mi">1</span>      <span class="mf">2.0</span>       <span class="mf">0.2</span>
+</pre></div>
+</div>
+<p><strong>Outputs</strong></p>
+<p>The output section controls the format of the tabular output file and VTK files, similar to the OpenFAST outputs.
+The user can control the hub radius and nacelle dimension for the VTK visualization. The hub is represented as a sphere of radius (<cite>VTKHubRad</cite>), and the nacelle with a parallelepiped defined using an origin and three lengths parallel to the nacelle coordinates (<cite>VTKNacDim</cite>).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-----</span> <span class="n">Output</span> <span class="n">Settings</span> <span class="o">-------------------------------------------------------------------</span>
+  <span class="s2">&quot;ES15.8E2&quot;</span>     <span class="n">OutFmt</span>      <span class="o">-</span> <span class="n">Format</span> <span class="n">used</span> <span class="k">for</span> <span class="n">text</span> <span class="n">tabular</span> <span class="n">output</span><span class="p">,</span> <span class="n">excluding</span> <span class="n">the</span> <span class="n">time</span> <span class="n">channel</span><span class="o">.</span>  <span class="n">Resulting</span> <span class="n">field</span> <span class="n">should</span> <span class="n">be</span> <span class="mi">10</span> <span class="n">characters</span><span class="o">.</span> <span class="p">(</span><span class="n">quoted</span> <span class="n">string</span><span class="p">)</span>
+<span class="mi">2</span>                <span class="n">OutFileFmt</span>  <span class="o">-</span> <span class="n">Format</span> <span class="k">for</span> <span class="n">tabular</span> <span class="p">(</span><span class="n">time</span><span class="o">-</span><span class="n">marching</span><span class="p">)</span> <span class="n">output</span> <span class="n">file</span> <span class="p">(</span><span class="n">switch</span><span class="p">)</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="n">text</span> <span class="n">file</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">RootName</span><span class="o">&gt;.</span><span class="n">out</span><span class="p">],</span> <span class="mi">2</span><span class="p">:</span> <span class="n">binary</span> <span class="n">file</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">RootName</span><span class="o">&gt;.</span><span class="n">outb</span><span class="p">],</span> <span class="mi">3</span><span class="p">:</span> <span class="n">both</span><span class="p">}</span>
+<span class="mi">0</span>                <span class="n">WrVTK</span>       <span class="o">-</span> <span class="n">VTK</span> <span class="n">visualization</span> <span class="n">data</span> <span class="n">output</span><span class="p">:</span> <span class="p">(</span><span class="n">switch</span><span class="p">)</span> <span class="p">{</span><span class="mi">0</span><span class="o">=</span><span class="n">none</span><span class="p">;</span> <span class="mi">1</span><span class="o">=</span><span class="n">init</span><span class="p">;</span> <span class="mi">2</span><span class="o">=</span><span class="n">animation</span><span class="p">}</span>
+<span class="mi">2</span>                <span class="n">VTKHubRad</span>   <span class="o">-</span> <span class="n">HubRadius</span> <span class="k">for</span> <span class="n">VTK</span> <span class="n">visualization</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span>   <span class="n">VTKNacDim</span>   <span class="o">-</span> <span class="n">Nacelle</span> <span class="n">Dimension</span> <span class="k">for</span> <span class="n">VTK</span> <span class="n">visualization</span> <span class="n">x0</span><span class="p">,</span><span class="n">y0</span><span class="p">,</span><span class="n">z0</span><span class="p">,</span><span class="n">Lx</span><span class="p">,</span><span class="n">Ly</span><span class="p">,</span><span class="n">Lz</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="aerodyn-inputs-for-multiple-turbines">
+<span id="ad-inputs-multirot"></span><h2><span class="section-number">4.3.6.3. </span>AeroDyn inputs for multiple turbines<a class="headerlink" href="#aerodyn-inputs-for-multiple-turbines" title="Permalink to this heading"></a></h2>
+<p>No changes are required to the AeroDyn input files when one turbine is used.
+To minimize the impact of the multiple-turbines implementation, the driver currently uses only one AeroDyn input file for all turbines.
+This means that the AeroDyn options are currently the same for all rotors.</p>
+<p>The definition of the blade files and the tower, hub, and nacelle inputs needs to be adapted when more than three blades are used and more than one turbine is used.</p>
+<p><strong>Blade files</strong></p>
+<p>The legacy AeroDyn format requires a minimum of three blade file names.
+For this reason, the blades of all rotors are currently indicated successively in the <cite>ADBlFile</cite> list.
+The list is populated by looping on turbines and turbine blades, with the blade index being the fastest index.
+For now, the number of stations have to be the same for all blades.</p>
+<p>An example is given below for two turbines, the first one having 3 blades, the second 2 blades:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>======  Rotor/Blade Properties  =====================================================================
+True                   UseBlCm     - Include aerodynamic pitching moment in calculations?  (flag)
+&quot;AD_Turbine1_blade1.dat&quot; ADBlFile(1) - Name of file containing distributed aerodynamic properties for Blade #1 (-)
+&quot;AD_Turbine1_blade1.dat&quot; ADBlFile(2) - Name of file containing distributed aerodynamic properties for Blade #2 (-)
+&quot;AD_Turbine1_blade3.dat&quot; ADBlFile(3) - Name of file containing distributed aerodynamic properties for Blade #3 (-)
+&quot;AD_Turbine2_blade1.dat&quot; ADBlFile(4) - Name of file containing distributed aerodynamic properties for Blade #4 (-)
+&quot;AD_Turbine2_blade2.dat&quot; ADBlFile(5) - Name of file containing distributed aerodynamic properties for Blade #5 (-)
+</pre></div>
+</div>
+<p><strong>Hub and nacelle inputs</strong></p>
+<p>The sections defining the hub and nacelle parameters must also be reproduced for each turbine.</p>
+<p>An example is given below for two turbines:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">======</span>  <span class="n">Hub</span> <span class="n">Properties</span> <span class="o">==============================================================================</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">MHK</span><span class="o">=</span><span class="mi">1</span> <span class="ow">or</span> <span class="mi">2</span><span class="p">]</span>
+<span class="mf">7.0</span>   <span class="n">VolHub</span>                <span class="o">-</span> <span class="n">Hub</span> <span class="n">volume</span> <span class="p">(</span><span class="n">m</span><span class="o">^</span><span class="mi">3</span><span class="p">)</span>
+<span class="mf">0.0</span>   <span class="n">HubCenBx</span>              <span class="o">-</span> <span class="n">Hub</span> <span class="n">center</span> <span class="n">of</span> <span class="n">buoyancy</span> <span class="n">x</span> <span class="n">direction</span> <span class="n">offset</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="o">======</span>  <span class="n">Hub</span> <span class="n">Properties</span> <span class="o">==============================================================================</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">MHK</span><span class="o">=</span><span class="mi">1</span> <span class="ow">or</span> <span class="mi">2</span><span class="p">]</span>
+<span class="mf">5.0</span>   <span class="n">VolHub</span>                <span class="o">-</span> <span class="n">Hub</span> <span class="n">volume</span> <span class="p">(</span><span class="n">m</span><span class="o">^</span><span class="mi">3</span><span class="p">)</span>
+<span class="mf">0.2</span>   <span class="n">HubCenBx</span>              <span class="o">-</span> <span class="n">Hub</span> <span class="n">center</span> <span class="n">of</span> <span class="n">buoyancy</span> <span class="n">x</span> <span class="n">direction</span> <span class="n">offset</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="o">======</span>  <span class="n">Nacelle</span> <span class="n">Properties</span> <span class="o">==========================================================================</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">MHK</span><span class="o">=</span><span class="mi">1</span> <span class="ow">or</span> <span class="mi">2</span> <span class="ow">or</span> <span class="n">when</span> <span class="n">NacelleDrag</span><span class="o">=</span><span class="kc">True</span><span class="p">]</span>
+<span class="mf">32.0</span>            <span class="n">VolNac</span>      <span class="o">-</span> <span class="n">Nacelle</span> <span class="n">volume</span> <span class="p">(</span><span class="n">m</span><span class="o">^</span><span class="mi">3</span><span class="p">)</span>
+<span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.05</span>  <span class="n">NacCenB</span>     <span class="o">-</span> <span class="n">Position</span> <span class="n">of</span> <span class="n">nacelle</span> <span class="n">center</span> <span class="n">of</span> <span class="n">buoyancy</span> <span class="kn">from</span><span class="w"> </span><span class="nn">yaw</span> <span class="n">bearing</span> <span class="ow">in</span> <span class="n">nacelle</span> <span class="n">coordinates</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="mf">4.67</span><span class="p">,</span> <span class="mf">20.15</span><span class="p">,</span> <span class="mf">20.15</span> <span class="n">NacArea</span>  <span class="o">-</span> <span class="n">Projected</span> <span class="n">area</span> <span class="n">of</span> <span class="n">the</span> <span class="n">nacelle</span> <span class="ow">in</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">nacelle</span> <span class="n">coordinate</span> <span class="n">system</span> <span class="p">(</span><span class="n">m</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span>
+<span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span>   <span class="n">NacCd</span>       <span class="o">-</span> <span class="n">Drag</span> <span class="n">coefficient</span> <span class="k">for</span> <span class="n">the</span> <span class="n">nacelle</span> <span class="n">areas</span> <span class="n">defined</span> <span class="n">above</span> <span class="p">(</span><span class="o">-</span><span class="p">)</span>
+<span class="mf">0.43</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>      <span class="n">NacDragAC</span>   <span class="o">-</span> <span class="n">Position</span> <span class="n">of</span> <span class="n">aerodynamic</span> <span class="n">center</span> <span class="n">of</span> <span class="n">nacelle</span> <span class="n">drag</span> <span class="ow">in</span> <span class="n">nacelle</span> <span class="n">coordinates</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="o">======</span>  <span class="n">Nacelle</span> <span class="n">Properties</span> <span class="o">==========================================================================</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">MHK</span><span class="o">=</span><span class="mi">1</span> <span class="ow">or</span> <span class="mi">2</span> <span class="ow">or</span> <span class="n">when</span> <span class="n">NacelleDrag</span><span class="o">=</span><span class="kc">True</span><span class="p">]</span>
+<span class="mf">32.0</span>            <span class="n">VolNac</span>      <span class="o">-</span> <span class="n">Nacelle</span> <span class="n">volume</span> <span class="p">(</span><span class="n">m</span><span class="o">^</span><span class="mi">3</span><span class="p">)</span>
+<span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.05</span>  <span class="n">NacCenB</span>     <span class="o">-</span> <span class="n">Position</span> <span class="n">of</span> <span class="n">nacelle</span> <span class="n">center</span> <span class="n">of</span> <span class="n">buoyancy</span> <span class="kn">from</span><span class="w"> </span><span class="nn">yaw</span> <span class="n">bearing</span> <span class="ow">in</span> <span class="n">nacelle</span> <span class="n">coordinates</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="mf">4.67</span><span class="p">,</span> <span class="mf">20.15</span><span class="p">,</span> <span class="mf">20.15</span> <span class="n">NacArea</span>  <span class="o">-</span> <span class="n">Projected</span> <span class="n">area</span> <span class="n">of</span> <span class="n">the</span> <span class="n">nacelle</span> <span class="ow">in</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">nacelle</span> <span class="n">coordinate</span> <span class="n">system</span> <span class="p">(</span><span class="n">m</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span>
+<span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span>   <span class="n">NacCd</span>       <span class="o">-</span> <span class="n">Drag</span> <span class="n">coefficient</span> <span class="k">for</span> <span class="n">the</span> <span class="n">nacelle</span> <span class="n">areas</span> <span class="n">defined</span> <span class="n">above</span> <span class="p">(</span><span class="o">-</span><span class="p">)</span>
+<span class="mf">0.43</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>      <span class="n">NacDragAC</span>   <span class="o">-</span> <span class="n">Position</span> <span class="n">of</span> <span class="n">aerodynamic</span> <span class="n">center</span> <span class="n">of</span> <span class="n">nacelle</span> <span class="n">drag</span> <span class="ow">in</span> <span class="n">nacelle</span> <span class="n">coordinates</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Aerodynamic tower inputs</strong></p>
+<p>The entire tower input section of AeroDyn has to be reproduced for each turbine, including turbines that are set not to have a tower (<cite>hasTower=False</cite>).
+The number of stations may differ for each turbine.
+The tower stations defined in the AeroDyn input file are assumed to be given with respect to the tower origin, unlike OpenFAST which uses ground/MSL as a reference.</p>
+<p>An example is given below for two turbines:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">======</span>  <span class="n">Turbine</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="n">Tower</span> <span class="n">Influence</span> <span class="ow">and</span> <span class="n">Aerodynamics</span> <span class="o">================================================</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">TwrPotent</span><span class="o">/=</span><span class="mi">0</span><span class="p">,</span> <span class="n">TwrShadow</span><span class="o">/=</span><span class="mi">0</span><span class="p">,</span> <span class="n">TwrAero</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="ow">or</span> <span class="n">MHK</span><span class="o">=</span><span class="mi">1</span> <span class="ow">or</span> <span class="mi">2</span><span class="p">]</span>
+<span class="mi">2</span>   <span class="n">NumTwrNds</span>   <span class="o">-</span> <span class="n">Number</span> <span class="n">of</span> <span class="n">tower</span> <span class="n">nodes</span> <span class="n">used</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">analysis</span>  <span class="p">(</span><span class="o">-</span><span class="p">)</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">TwrPotent</span><span class="o">/=</span><span class="mi">0</span><span class="p">,</span> <span class="n">TwrShadow</span><span class="o">/=</span><span class="mi">0</span><span class="p">,</span> <span class="n">TwrAero</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="ow">or</span> <span class="n">MHK</span><span class="o">=</span><span class="mi">1</span> <span class="ow">or</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">TwrElev</span> <span class="n">TwrDiam</span>  <span class="n">TwrCd</span>    <span class="n">TwrTI</span>   <span class="n">TwrCb</span>
+<span class="p">(</span><span class="n">m</span><span class="p">)</span>       <span class="p">(</span><span class="n">m</span><span class="p">)</span>     <span class="p">(</span><span class="o">-</span><span class="p">)</span>     <span class="p">(</span><span class="o">-</span><span class="p">)</span>     <span class="p">(</span><span class="o">-</span><span class="p">)</span>
+ <span class="mf">0.0</span>      <span class="mf">2.0</span>     <span class="mf">1.0</span>    <span class="mf">0.1</span>      <span class="mf">0.0</span>
+<span class="mf">10.0</span>      <span class="mf">1.0</span>     <span class="mf">1.0</span>    <span class="mf">0.1</span>      <span class="mf">0.0</span>
+<span class="o">======</span>  <span class="n">Turbine</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="n">Tower</span> <span class="n">Influence</span> <span class="ow">and</span> <span class="n">Aerodynamics</span> <span class="o">================================================</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">TwrPotent</span><span class="o">/=</span><span class="mi">0</span><span class="p">,</span> <span class="n">TwrShadow</span><span class="o">/=</span><span class="mi">0</span><span class="p">,</span> <span class="n">TwrAero</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="ow">or</span> <span class="n">MHK</span><span class="o">=</span><span class="mi">1</span> <span class="ow">or</span> <span class="mi">2</span><span class="p">]</span>
+<span class="mi">3</span>   <span class="n">NumTwrNds</span>   <span class="o">-</span> <span class="n">Number</span> <span class="n">of</span> <span class="n">tower</span> <span class="n">nodes</span> <span class="n">used</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">analysis</span>  <span class="p">(</span><span class="o">-</span><span class="p">)</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">TwrPotent</span><span class="o">/=</span><span class="mi">0</span><span class="p">,</span> <span class="n">TwrShadow</span><span class="o">/=</span><span class="mi">0</span><span class="p">,</span> <span class="n">TwrAero</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="ow">or</span> <span class="n">MHK</span><span class="o">=</span><span class="mi">1</span> <span class="ow">or</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">TwrElev</span> <span class="n">TwrDiam</span>  <span class="n">TwrCd</span>   <span class="n">TwrTI</span>   <span class="n">TwrCb</span>
+<span class="p">(</span><span class="n">m</span><span class="p">)</span>       <span class="p">(</span><span class="n">m</span><span class="p">)</span>     <span class="p">(</span><span class="o">-</span><span class="p">)</span>    <span class="p">(</span><span class="o">-</span><span class="p">)</span>     <span class="p">(</span><span class="o">-</span><span class="p">)</span>
+ <span class="mf">0.0</span>      <span class="mf">4.0</span>     <span class="mf">1.0</span>    <span class="mf">0.1</span>     <span class="mf">0.0</span>
+<span class="mf">15.0</span>      <span class="mf">3.0</span>     <span class="mf">1.0</span>    <span class="mf">0.1</span>     <span class="mf">0.0</span>
+<span class="mf">30.0</span>      <span class="mf">2.0</span>     <span class="mf">1.0</span>    <span class="mf">0.1</span>     <span class="mf">0.0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="examples-of-driver-input-files">
+<span id="ad-inputfiles-examples"></span><h2><span class="section-number">4.3.6.4. </span>Examples of driver input files<a class="headerlink" href="#examples-of-driver-input-files" title="Permalink to this heading"></a></h2>
+<p>Working examples that use the different features of the driver are given in the r-test repository:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/OpenFAST/r-test/tree/dev/modules/aerodyn/">Dev branch</a> .</p></li>
+<li><p><a class="reference external" href="https://github.com/OpenFAST/r-test/tree/main/modules/aerodyn/">Main branch</a> .</p></li>
+</ul>
+<div class="section" id="main-driver-input-files">
+<h3><span class="section-number">4.3.6.4.1. </span>Main Driver Input Files<a class="headerlink" href="#main-driver-input-files" title="Permalink to this heading"></a></h3>
+<p>An example of an AeroDyn driver for a basic inflow, basic HAWT, and combined case analyses is given below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>----- AeroDyn Driver Input File ---------------------------------------------------------
+Three bladed wind turbine, using basic geometry input
+----- Input Configuration ---------------------------------------------------------------
+False           Echo         - Echo input parameters to &quot;&lt;rootname&gt;.ech&quot;?
+        0       MHK          - MHK turbine type (switch) {0: not an MHK turbine, 1: fixed MHK turbine, 2: floating MHK turbine}
+        3       AnalysisType - {1: multiple turbines, one simulation, 2: one turbine, one time-dependent simulation, 3: one turbine, combined cases}
+       11.0     TMax         - Total run time [used only when AnalysisType/=3] (s)
+        0.5     DT           - Simulation time step [used only when AnalysisType/=3] (s)
+&quot;./AD.dat&quot;      AeroFile - Name of the primary AeroDyn input file
+----- Environmental Conditions ----------------------------------------------------------
+1.225000000000000e+00     FldDens      - Density of working fluid (kg/m^3)
+1.477551020408163e-05     KinVisc      - Kinematic viscosity of working fluid (m^2/s)
+3.350000000000000e+02     SpdSound     - Speed of sound in working fluid (m/s)
+1.035000000000000e+05     Patm         - Atmospheric pressure (Pa) [used only for an MHK turbine cavitation check]
+1.700000000000000e+03     Pvap         - Vapour pressure of working fluid (Pa) [used only for an MHK turbine cavitation check]
+                    0     WtrDpth      - Water depth (m)
+----- Inflow Data -----------------------------------------------------------------------
+          0     CompInflow  - Compute inflow wind velocities (switch) {0=Steady Wind; 1=InflowWind}
+&quot;unused&quot;        InflowFile  - Name of the InflowWind input file [used only when CompInflow=1]
+        9.0     HWindSpeed  - Horizontal wind speed   [used only when CompInflow=0 and AnalysisType=1] (m/s)
+        140     RefHt       - Reference height for horizontal wind speed [used only when CompInflow=0]  (m)
+       0.10     PLExp       - Power law exponent   [used only when CompInflow=0 and AnalysisType=1]                        (-)
+----- SeaState Data ---------------------------------------------------------------------
+          0     CompSeaSt   - Compute wave velocities (switch) {0=No Waves; 1=SeaState}
+&quot;unused&quot;        SeaStFile   - Name of the SeaState input file [used only when CompSeaSt=1]
+----- Turbine Data ----------------------------------------------------------------------
+1               NumTurbines - Number of turbines
+----- Turbine(1) Geometry ---------------------------------------------------------------
+        True    BasicHAWTFormat(1) - Flag to switch between basic or generic input format {True: next 7 lines are basic inputs, False: Base/Twr/Nac/Hub/Bld geometry and motion must follow}
+       0,0,0    BaseOriginInit(1) - Coordinate of tower base in base coordinates (m)
+           3    NumBlades(1)    - Number of blades (-)
+          3.    HubRad(1)       - Hub radius (m)
+      140.82513 HubHt(1)        - Hub height (m)
+          -7    Overhang(1)     - Overhang (m)
+          -6    ShftTilt(1)     - Shaft tilt (deg)
+          -4    Precone(1)      - Blade precone (deg)
+     3.09343    Twr2Shft(1)     - Vertical distance from the tower-top to the rotor shaft (m)
+----- Turbine(1) Motion [used only when AnalysisType=1] ---------------------------------
+1               BaseMotionType(1)      - Type of motion prescribed for this base {0: fixed, 1: Sinusoidal motion, 2: arbitrary motion} (flag)
+1               DegreeOfFreedom(1)     - {1:xg, 2:yg, 3:zg, 4:theta_xg, 5:theta_yg, 6:theta_zg} [used only when BaseMotionType=1] (flag)
+5.0             Amplitude(1)           - Amplitude of sinusoidal motion  [used only when BaseMotionType=1] (m or rad)
+0.1             Frequency(1)           - Frequency of sinusoidal motion  [used only when BaseMotionType=1] (Hz)
+&quot;&quot;              BaseMotionFileName(1)  - Filename containing arbitrary base motion (19 columns: Time, x, y, z, theta_x, ..., alpha_z)  [used only when BaseMotionType=2]
+0               NacYaw(1)              - Yaw angle (about z_t) of the nacelle (deg)
+7               RotSpeed(1)            - Rotational speed of rotor in rotor coordinates (rpm)
+1               BldPitch(1)            - Blade 1 pitch (deg)
+----- Time-dependent Analysis [used only when AnalysisType=2, numTurbines=1] ------------
+&quot;unused&quot;         TimeAnalysisFileName - Filename containing time series (6 column: Time, HWndSpeed, PLExp, RotSpd, Pitch, Yaw).
+-----  Combined-Case Analysis [used only when AnalysisType=3, numTurbines=1 -------------
+         4  NumCases     - Number of cases to run
+HWndSpeed  PLExp  RotSpd  Pitch   Yaw   dT    Tmax  DOF  Amplitude Frequency
+(m/s)      (-)    (rpm)   (deg)  (deg)  (s)   (s)   (-)   (-)       (Hz)
+  8.0      0.0     6.      0.      0.   1.0   100    0    0          0
+  8.0      0.0     6.      0.      0.   1.0   100    0    0          0
+  9.0      0.1     7.      1.      0.   0.5   51     1    5.0        0.1
+  9.0      0.2     8.      2.      0.   0.51  52     1    2.0        0.2
+----- Output Settings -------------------------------------------------------------------
+&quot;ES15.8E2&quot;       OutFmt      - Format used for text tabular output, excluding the time channel.  Resulting field should be 10 characters. (quoted string)
+2                OutFileFmt  - Format for tabular (time-marching) output file (switch) {1: text file [&lt;RootName&gt;.out], 2: binary file [&lt;RootName&gt;.outb], 3: both}
+0                WrVTK       - VTK visualization data output: (switch) {0=none; 1=init; 2=animation}
+2                VTKHubRad   - HubRadius for VTK visualization (m)
+-1,-1,-1,2,2,2   VTKNacDim   - Nacelle Dimension for VTK visualization x0,y0,z0,Lx,Ly,Lz (m)
+</pre></div>
+</div>
+</div>
+<div class="section" id="motion-input-files">
+<h3><span class="section-number">4.3.6.4.2. </span>Motion input files<a class="headerlink" href="#motion-input-files" title="Permalink to this heading"></a></h3>
+<p>The time vector in the motion files has to be ascending, but does not need to be linear. Linear interpolation is used by the driver to determine inputs at a given time.</p>
+<p>Arbitrary base motion file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">time_</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">x_</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>    <span class="p">,</span> <span class="n">y_</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>    <span class="p">,</span> <span class="n">z_</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>    <span class="p">,</span> <span class="n">theta_x_</span><span class="p">[</span><span class="n">rad</span><span class="p">]</span> <span class="p">,</span> <span class="n">theta_y_</span><span class="p">[</span><span class="n">rad</span><span class="p">]</span> <span class="p">,</span> <span class="n">theta_z_</span><span class="p">[</span><span class="n">rad</span><span class="p">]</span> <span class="p">,</span> <span class="n">xdot_</span><span class="p">[</span><span class="n">m</span><span class="o">/</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">ydot_</span><span class="p">[</span><span class="n">m</span><span class="o">/</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">zdot_</span><span class="p">[</span><span class="n">m</span><span class="o">/</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">omega_x_g_</span><span class="p">[</span><span class="n">rad</span><span class="o">/</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">omega_y_g_</span><span class="p">[</span><span class="n">rad</span><span class="o">/</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">omega_z_g_</span><span class="p">[</span><span class="n">rad</span><span class="o">/</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">xddot_</span><span class="p">[</span><span class="n">m</span><span class="o">^</span><span class="mi">2</span><span class="o">/</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">yddot_</span><span class="p">[</span><span class="n">m</span><span class="o">^</span><span class="mi">2</span><span class="o">/</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">zddot_</span><span class="p">[</span><span class="n">m</span><span class="o">^</span><span class="mi">2</span><span class="o">/</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">alpha_x_g_</span><span class="p">[</span><span class="n">rad</span><span class="o">/</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">alpha_y_g_</span><span class="p">[</span><span class="n">rad</span><span class="o">/</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">alpha_z_g_</span><span class="p">[</span><span class="n">rad</span><span class="o">/</span><span class="n">s</span><span class="p">]</span>
+<span class="mf">0.000000</span> <span class="p">,</span> <span class="mf">0.000000</span> <span class="p">,</span> <span class="mf">0.000000</span> <span class="p">,</span> <span class="mf">0.000000</span> <span class="p">,</span> <span class="mf">0.000000</span>      <span class="p">,</span> <span class="mf">0.000000</span>      <span class="p">,</span> <span class="mf">0.000000</span>      <span class="p">,</span> <span class="mf">0.000000</span>   <span class="p">,</span> <span class="mf">0.000000</span>   <span class="p">,</span> <span class="mf">10.053096</span>  <span class="p">,</span> <span class="mf">0.000000</span>          <span class="p">,</span> <span class="mf">0.000000</span>          <span class="p">,</span> <span class="mf">0.000000</span>          <span class="p">,</span> <span class="mf">0.000000</span>      <span class="p">,</span> <span class="mf">0.000000</span>      <span class="p">,</span> <span class="o">-</span><span class="mf">0.000000</span>     <span class="p">,</span> <span class="mf">0.000000</span>          <span class="p">,</span> <span class="mf">0.000000</span>          <span class="p">,</span> <span class="mf">0.000000</span>
+<span class="mf">0.100000</span> <span class="p">,</span> <span class="mf">0.000000</span> <span class="p">,</span> <span class="mf">0.000000</span> <span class="p">,</span> <span class="mf">0.963507</span> <span class="p">,</span> <span class="mf">0.000000</span>      <span class="p">,</span> <span class="mf">0.000000</span>      <span class="p">,</span> <span class="mf">0.000000</span>      <span class="p">,</span> <span class="mf">0.000000</span>   <span class="p">,</span> <span class="mf">0.000000</span>   <span class="p">,</span> <span class="mf">8.809596</span>   <span class="p">,</span> <span class="mf">0.000000</span>          <span class="p">,</span> <span class="mf">0.000000</span>          <span class="p">,</span> <span class="mf">0.000000</span>          <span class="p">,</span> <span class="mf">0.000000</span>      <span class="p">,</span> <span class="mf">0.000000</span>      <span class="p">,</span> <span class="o">-</span><span class="mf">24.344157</span>    <span class="p">,</span> <span class="mf">0.000000</span>          <span class="p">,</span> <span class="mf">0.000000</span>          <span class="p">,</span> <span class="mf">0.000000</span>
+</pre></div>
+</div>
+<p>Yaw motion file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">time_</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">yaw_</span><span class="p">[</span><span class="n">rad</span><span class="p">]</span> <span class="p">,</span> <span class="n">yaw_rate_</span><span class="p">[</span><span class="n">rad</span><span class="o">/</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">yaw_acc_</span><span class="p">[</span><span class="n">rad</span><span class="o">/</span><span class="n">s</span><span class="o">^</span><span class="mi">2</span><span class="p">]</span>
+<span class="mf">0.000000</span> <span class="p">,</span> <span class="mf">0.000000</span>  <span class="p">,</span> <span class="mf">0.000000</span>         <span class="p">,</span> <span class="mf">0.000000</span>
+<span class="mf">0.100000</span> <span class="p">,</span> <span class="mf">0.007277</span>  <span class="p">,</span> <span class="mf">0.212647</span>         <span class="p">,</span> <span class="mf">4.029093</span>
+</pre></div>
+</div>
+<p>Rotor motion file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">time_</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">azimuth_</span><span class="p">[</span><span class="n">rad</span><span class="p">]</span> <span class="p">,</span> <span class="n">omega_</span><span class="p">[</span><span class="n">rad</span><span class="o">/</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">rotacc_</span><span class="p">[</span><span class="n">rad</span><span class="o">/</span><span class="n">s</span><span class="o">^</span><span class="mi">2</span><span class="p">]</span>
+<span class="mf">0.000000</span> <span class="p">,</span> <span class="mf">0.000000</span>      <span class="p">,</span> <span class="mf">0.000000</span>      <span class="p">,</span> <span class="mf">0.000000</span>
+<span class="mf">0.100000</span> <span class="p">,</span> <span class="mf">0.000000</span>      <span class="p">,</span> <span class="mf">0.000000</span>      <span class="p">,</span> <span class="mf">0.000000</span>
+</pre></div>
+</div>
+<p>Pitch motion file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">time_</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">pitch_</span><span class="p">[</span><span class="n">rad</span><span class="p">]</span> <span class="p">,</span> <span class="n">pitch_rate_</span><span class="p">[</span><span class="n">rad</span><span class="o">/</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">pitch_acc_</span><span class="p">[</span><span class="n">rad</span><span class="o">/</span><span class="n">s</span><span class="o">^</span><span class="mi">2</span><span class="p">]</span>
+<span class="mf">0.000000</span> <span class="p">,</span> <span class="mf">0.000000</span>    <span class="p">,</span> <span class="mf">0.000000</span>           <span class="p">,</span> <span class="mf">0.000000</span>
+<span class="mf">0.100000</span> <span class="p">,</span> <span class="mf">0.000000</span>    <span class="p">,</span> <span class="mf">0.000000</span>           <span class="p">,</span> <span class="mf">0.000000</span>
+<span class="mf">0.200000</span> <span class="p">,</span> <span class="mf">0.000000</span>    <span class="p">,</span> <span class="mf">0.000000</span>           <span class="p">,</span> <span class="mf">0.000000</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modeling.html" class="btn btn-neutral float-left" title="4.3.5. Modeling Considerations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="theory.html" class="btn btn-neutral float-right" title="4.3.7. AeroDyn Theory" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

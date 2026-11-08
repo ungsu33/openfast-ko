@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.19.8. Future Work &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.19.9. References" href="zrefs.html" />
+    <link rel="prev" title="4.19.7. FAST.Farm Theory" href="FFarmTheory.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/fast.farm/FutureWork.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.19. FAST.Farm</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Nomenclature.html">4.19.1. Nomenclature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Introduction.html">4.19.2. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RunningFFarm.html">4.19.3. Running FAST.Farm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="InputFiles.html">4.19.4. Input Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="OutputFiles.html">4.19.5. Output Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ModelGuidance.html">4.19.6. Modeling Guidance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FFarmTheory.html">4.19.7. FAST.Farm Theory</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.19.8. Future Work</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.19.9. References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixA.html">4.19.10. FAST.Farm Primary Input File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixB.html">4.19.11. Ambient Wind File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixC.html">4.19.12. List of Output Channels</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.19. </span>FAST.Farm User’s Guide and Theory Manual</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.19.8. </span>Future Work</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/fast.farm/FutureWork.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="future-work">
+<span id="ff-futurework"></span><h1><span class="section-number">4.19.8. </span>Future Work<a class="headerlink" href="#future-work" title="Permalink to this heading"></a></h1>
+<p>This list contains features that could be implemented in future
+releases:</p>
+<ul class="simple">
+<li><p>Develop more efficient methods of generating/processing ambient wind
+from a high-fidelity precursor simulation, including:</p>
+<ul>
+<li><p>Propagate 2D planes of ambient wind data using Taylor’s frozen
+turbulence hypothesis as an alternative to 3D volumes</p></li>
+<li><p>Allow for nonuniform grids in Turbsim</p></li>
+<li><p>Use Dynamic Mode Decomposition to compress the file size of the
+low-resolution domains</p></li>
+<li><p>Implement Gabor mode enrichment to replace the high-resolution
+domains</p></li>
+<li><p>Develop a more efficient ABLSolver based on a simple rectangular
+(rather than a generally unstructured) grid.</p></li>
+</ul>
+</li>
+<li><p>Improve the eddy-viscosity formulation with additional physics.</p></li>
+<li><p>Pursue additional wake-modeling approaches, including:</p>
+<ul>
+<li><p>Introduce simpler wake-deficit models, e.g., the Gaussian wake
+model by Bastankhah and Porté-Agel and the super-Gaussian model by
+Blondel and Cathelain</p></li>
+<li><p>Introduce simpler wake-deflection models, e.g., the model by
+Jiménez or the model by Qian and Ishihara</p></li>
+<li><p>Apply a free-vortex method for the near wake</p></li>
+<li><p>Incorporate a kidney-shaped wake under skewed-flow conditions,
+e.g., by incorporating opposing vortices from the skew-induced
+horseshoe vortex</p></li>
+<li><p>Deform the base-wake deficit (introduce asymmetry) as a result of
+background turbulence (in addition to wake meandering)</p></li>
+<li><p>Incorporate wake-added turbulence</p></li>
+<li><p>Improve the treatment of complex terrain (beyond specifying
+ambient wind data as NaN in VTK format)</p></li>
+<li><p>Include wakes from the nacelle and support structure</p></li>
+<li><p>Reflect wakes off of the ground.</p></li>
+</ul>
+</li>
+<li><p>Address deep-array effects for large wind farms and account for flow
+speedup around the edges of the wind farm – i.e., account for the
+wind-farm blockage effect – e.g., by mimicking the wind farm-induced
+boundary layer with surface roughness in the LES ambient wind
+precursor.</p></li>
+<li><p>Implement a model to mimic the measurements taken from a LIDAR and
+other remote sensing technologies.</p></li>
+<li><p>Incorporate MPI to support the modeling of large wind farms by taking
+advantage of memory parallelization and parallelization between nodes
+of an HPC.</p></li>
+<li><p>Allow for a more general module form, e.g.:</p>
+<ul>
+<li><p>Support continuous states</p></li>
+<li><p>Support direct feedthrough of input to output</p></li>
+<li><p>Support full-system linearization.</p></li>
+</ul>
+</li>
+<li><p>Support an interface to Simulink for individual wind turbine controllers.</p></li>
+<li><p>Implement checkpoint-restart capability.</p></li>
+<li><p>Enable binary wind data input and output formats and binary
+time-series results output format.</p></li>
+<li><p>Add ability to output disturbed wind in VTK format on 2D slices that
+need not be parallel to the <em>X-Y, Y-Z</em> and/or <em>X-Z</em> planes of the
+global inertial-frame coordinate system.</p></li>
+<li><p>Rename the ambient wind data input files in VTK format following the
+naming convention used for the FAST.Farm-generated visualization
+output files in VTK format (with leading zeros and without the <em>t</em>).</p></li>
+<li><p>Support inflow-, and wake-related output channels
+for more than the first 9 wind turbines in the wind farm.</p></li>
+<li><p>Interface FAST.Farm to the Wind-Plant Integrated System Design &amp;
+Engineering Model
+(<a class="reference external" href="https://github.com/NatLabRockies/WISDEM">WISDEM</a><span class="math notranslate nohighlight">\(^\text{TM}\)</span>) for
+systems-engineering applications (multidisciplinary design, analysis,
+and optimization; uncertainty quantification; and so on).</p></li>
+<li><p>Develop a wrapper for stand-alone
+AeroDyn – the aerodynamics module
+of OpenFAST (or an equivalent BEM tool) – as an alternative to
+OpenFAST to support advanced performance-only wind-farm analysis that
+is much more computationally efficient than FAST.Farm analysis using
+OpenFAST.</p></li>
+<li><p>Address unique offshore wind energy challenges, e.g.:</p>
+<ul>
+<li><p>Ensure consistent waves across an offshore wind farm</p></li>
+<li><p>Support the air-water interface</p></li>
+<li><p>Consider shared mooring and anchoring arrangements (for floating
+offshore wind farms).</p></li>
+</ul>
+</li>
+<li><p>Adopt the capability to support undersea marine turbine arrays (which
+may require supporting direct feedthrough of input to output to
+handle the added-mass effects).</p></li>
+</ul>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="FFarmTheory.html" class="btn btn-neutral float-left" title="4.19.7. FAST.Farm Theory" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="zrefs.html" class="btn btn-neutral float-right" title="4.19.9. References" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

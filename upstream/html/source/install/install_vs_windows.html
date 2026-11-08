@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.4.3.1. Building OpenFAST on Windows with Visual Studio &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="2.4.4.1. Guide: Setting Up OpenFAST on Windows with WSL and VS Code" href="OFcompile_WSL_VScode.html" />
+    <link rel="prev" title="2. Installing OpenFAST" href="index.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/install/install_vs_windows.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">2. Installing OpenFAST</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#download-binaries">2.1. Download binaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#running-openfast-with-docker">2.2. Running OpenFAST with docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#install-the-openfast-io-python-wrapper">2.3. Install the <code class="docutils literal notranslate"><span class="pre">openfast_io</span></code> python wrapper</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#compile-from-source">2.4. Compile from source</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html#dependencies">2.4.1. Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#get-the-code">2.4.2. Get the code</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#visual-studio-solution-for-windows">2.4.3. Visual Studio Solution for Windows</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">2.4.3.1. Building OpenFAST on Windows with Visual Studio</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#windows-with-the-linux-subsystem-and-vs-code">2.4.4. Windows with the linux subsystem and VS code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#understanding-cmake">2.4.5. Understanding CMake</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#cmake-with-make-for-linux-macos">2.4.6. CMake with Make for Linux/macOS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#cmake-with-visual-studio-for-windows">2.4.7. CMake with Visual Studio for Windows</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#c-api">2.5. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#fast-farm">2.6. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#simulink">2.7. Simulink</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#appendix">2.8. Appendix</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">4. User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">2. </span>Installing OpenFAST</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">2.4.3.1. </span>Building OpenFAST on Windows with Visual Studio</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/source/install/install_vs_windows.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="building-openfast-on-windows-with-visual-studio">
+<span id="install-vs-windows"></span><h1><span class="section-number">2.4.3.1. </span>Building OpenFAST on Windows with Visual Studio<a class="headerlink" href="#building-openfast-on-windows-with-visual-studio" title="Permalink to this heading"></a></h1>
+<p>These instructions are specifically for the standalone Visual Studio project at <cite>openfast/vs-build</cite>.
+Separate CMake documentation is provided for Windows users at <a class="reference internal" href="index.html#cmake-windows"><span class="std std-numref">Section 2.4.7</span></a>.</p>
+<div class="section" id="prerequisites">
+<h2><span class="section-number">2.4.3.1.1. </span>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a></h2>
+<ol class="arabic">
+<li><p>A version of Visual Studio (VS).</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>NOTE: not all VS Studio versions are supported by the Intel compilers. In general, the Fortran compiler must be newer than Visual Studio.  A list of Intel Fortran compatible VS versions and specific installation notes are found <a class="reference external" href="https://software.intel.com/en-us/intel-parallel-studio-xe-compilers-required-microsoft-visual-studio">here</a>.</p></li>
+<li><p>Currently VS 2019 Community Edition, VS 2022 Professional, and VS 2022 Community Edition have been tested with OpenFAST.  Download VS 2022 Community <a class="reference external" href="https://aka.ms/vs/17/release/vs_community.exe">here</a>.</p></li>
+<li><p>When installing Visual Studio, select the <code class="docutils literal notranslate"><span class="pre">Desktop</span> <span class="pre">development</span> <span class="pre">with</span> <span class="pre">C++</span></code> under <code class="docutils literal notranslate"><span class="pre">Workloads</span></code>.</p></li>
+<li><p>Note: The included C/C++ project files for MAP++ and the Registry are compatible with VS 2019, but will upgrade seemlessly to a newer version of VS.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Intel Fortran Compiler</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>We recommend compiling with the IFX compiler from Intel.  This is included in the <code class="docutils literal notranslate"><span class="pre">Intel</span> <span class="pre">Fortran</span> <span class="pre">Essentials</span></code> installation package.  Currently tested with version 2025.3</p></li>
+<li><p>You can download <code class="docutils literal notranslate"><span class="pre">Intel</span> <span class="pre">Fortran</span> <span class="pre">Essentials</span></code> <a class="reference external" href="https://www.intel.com/content/www/us/en/developer/tools/oneapi/fortran-compiler-download.html">here</a>.  Note: do not install the <code class="docutils literal notranslate"><span class="pre">oneAPI</span> <span class="pre">HPC</span> <span class="pre">Toolkit</span></code></p></li>
+<li><p>Only install Intel Fortran after you have completed your Visual Studio installation. Note that Intel Fortran must be compatible with your version of Visual Studio.  See <a class="reference external" href="https://www.intel.com/content/www/us/en/developer/articles/reference-implementation/intel-compilers-compatibility-with-microsoft-visual-studio-and-xcode.html">here</a> for compatibility tables.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Git for Windows</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Download and install <a class="reference external" href="https://git-scm.com/download/win">git</a> for Windows.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Python 3.x for Windows (for regression/unit testing)</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The testing framework of OpenFAST requires the use of Python.</p></li>
+<li><p>Please see <a class="reference internal" href="../testing/index.html#testing"><span class="std std-numref">Section 5</span></a>  on testing OpenFAST for further information on this topic.</p></li>
+<li><p>We have been working with Continuum’s <a class="reference external" href="https://www.anaconda.com/download/#windows">Anaconda</a> installation of Python 3.6 for Windows.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="compiling-openfast">
+<h2><span class="section-number">2.4.3.1.2. </span>Compiling OpenFAST<a class="headerlink" href="#compiling-openfast" title="Permalink to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Open <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">command</span> <span class="pre">prompt</span></code>, or <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">bash</span></code> shell from the <code class="docutils literal notranslate"><span class="pre">Start</span></code> menu</p></li>
+<li><p>Create a directory where you will clone OpenFAST repository (change
+<code class="docutils literal notranslate"><span class="pre">code</span></code> to your preferred name)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">code</span>
+<span class="n">cd</span> <span class="n">code</span>
+</pre></div>
+</div>
+</li>
+<li><p>Clone the OpenFAST repository</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">openfast</span><span class="o">/</span><span class="n">openfast</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>This will create a directory called <code class="docutils literal notranslate"><span class="pre">openfast</span></code> within the <code class="docutils literal notranslate"><span class="pre">code</span></code>
+directory.</p>
+<ol class="arabic simple" start="4">
+<li><p>Using Windows Explorer, navigate to the directory <code class="docutils literal notranslate"><span class="pre">openfast\vs-build\FAST</span></code>
+and double-click on the <code class="docutils literal notranslate"><span class="pre">FAST.sln</span></code> Visual Studio solution file.  This will
+open Visual Studio with the FAST solution and its associated projects.</p></li>
+</ol>
+<p>NOTE: If you are using Visual Studio 2015 or newer, you will be asked to upgrade
+both the <code class="docutils literal notranslate"><span class="pre">Fast_Registry.vcxproj</span></code> and the <code class="docutils literal notranslate"><span class="pre">MAP_dll.vcxproj</span></code> files to a newer
+format.  Go ahead and accept the upgrade on those files.</p>
+<ol class="arabic simple" start="5">
+<li><p>Select the desired Solution Configuration, such as <code class="docutils literal notranslate"><span class="pre">Release</span></code>, and the
+desired Solution Platform, such as <code class="docutils literal notranslate"><span class="pre">x64</span></code> by using the drop down boxes
+located below the menubar.</p></li>
+<li><p>Build the solution using the <code class="docutils literal notranslate"><span class="pre">Build-&gt;Build</span> <span class="pre">Solution</span></code> menu option.</p></li>
+<li><p>If the solution built without errors, the executable will be located under the <code class="docutils literal notranslate"><span class="pre">openfast\build\bin</span></code> folder.</p></li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="2. Installing OpenFAST" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="OFcompile_WSL_VScode.html" class="btn btn-neutral float-right" title="2.4.4.1. Guide: Setting Up OpenFAST on Windows with WSL and VS Code" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

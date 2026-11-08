@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.3.3. Input Files &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.3.4. Output Files" href="output.html" />
+    <link rel="prev" title="4.3.2. Coordinate systems" href="coordsys.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/aerodyn/input.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.3. AeroDyn</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">4.3.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coordsys.html">4.3.2. Coordinate systems</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.3.3. Input Files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#important-changes-introduced-in-v4-0">4.3.3.1. Important changes introduced in v4.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#introduction">4.3.3.2. Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#general-options">4.3.3.3. General Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#environmental-conditions">4.3.3.4. Environmental Conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#blade-element-momentum-theory-options">4.3.3.5. Blade-Element/Momentum Theory Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bem-algorithm-options">4.3.3.6. BEM Algorithm options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#shear-corrections">4.3.3.7. Shear corrections</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dynamic-wake-dynamic-inflow-model">4.3.3.8. Dynamic Wake / Dynamic inflow model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#olaf-convecting-lagrangian-filaments-free-vortex-wake-theory-options">4.3.3.9. OLAF – cOnvecting LAgrangian Filaments (Free Vortex Wake) Theory Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#unsteady-airfoil-aerodynamics-options">4.3.3.10. Unsteady Airfoil Aerodynamics Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#airfoil-information">4.3.3.11. Airfoil Information</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rotor-blade-properties">4.3.3.12. Rotor/Blade Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hub-properties">4.3.3.13. Hub Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nacelle-properties">4.3.3.14. Nacelle Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tail-fin-aerodynamics">4.3.3.15. Tail fin AeroDynamics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tower-influence-and-aerodynamics">4.3.3.16. Tower Influence and Aerodynamics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#outputs">4.3.3.17. Outputs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nodal-outputs">4.3.3.18. Nodal Outputs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tail-fin-outputs">4.3.3.19. Tail fin outputs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#general-inputs">4.3.3.20. General inputs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polar-based-model-inputs">4.3.3.21. Polar-based model inputs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#unsteady-slender-body-usb-model-inputs">4.3.3.22. Unsteady slender body (USB) model inputs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="output.html">4.3.4. Output Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modeling.html">4.3.5. Modeling Considerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver.html">4.3.6. AeroDyn Driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory.html">4.3.7. AeroDyn Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory_ua.html">4.3.8. Unsteady Aerodynamics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory_tailfin.html">4.3.9. Tail fin Aerodynamics Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.3.10. References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.3.11. Appendix</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.3. </span>AeroDyn Users Guide and Theory Manual</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.3.3. </span>Input Files</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/aerodyn/input.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="input-files">
+<span id="ad-input"></span><h1><span class="section-number">4.3.3. </span>Input Files<a class="headerlink" href="#input-files" title="Permalink to this heading"></a></h1>
+<div class="section" id="important-changes-introduced-in-v4-0">
+<h2><span class="section-number">4.3.3.1. </span>Important changes introduced in v4.0<a class="headerlink" href="#important-changes-introduced-in-v4-0" title="Permalink to this heading"></a></h2>
+<p>Some important changes have been introduced starting from version 4.0.
+Please refer to <a class="reference internal" href="../api_change.html#api-change-ad4x"><span class="std std-ref">AeroDyn changes starting from v4.x</span></a> to understand the link between the old and new inputs.</p>
+<p>The documentation below has been updated to incorporate these changes.</p>
+</div>
+<div class="section" id="introduction">
+<h2><span class="section-number">4.3.3.2. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<p>The user configures the aerodynamic model parameters via a primary
+AeroDyn input file, as well as separate input files for airfoil and
+blade data. When used in standalone mode, an additional driver input
+file is required. The AeroDyn driver and driver input file are detailed in
+<a class="reference internal" href="driver.html#ad-driver"><span class="std std-numref">Section 4.3.6</span></a>. The driver file specifies initialization inputs
+normally provided to AeroDyn by OpenFAST, as well as the per-time-step
+inputs to AeroDyn.</p>
+<p>As an example,  the <code class="docutils literal notranslate"><span class="pre">driver.dvr</span></code> file is the main driver, the <code class="docutils literal notranslate"><span class="pre">input.dat</span></code> is
+the primary input file, the <code class="docutils literal notranslate"><span class="pre">blade.dat</span></code> file contains the blade geometry data,
+and the <code class="docutils literal notranslate"><span class="pre">airfoil.dat</span></code> file contains the airfoil angle of attack, lift, drag,
+moment coefficients, and pressure coefficients.  Example input files are
+included in <a class="reference internal" href="appendix.html#ad-appendix"><span class="std std-numref">Section 4.3.11</span></a>.</p>
+<p>No lines should be added or removed from the input files, except in
+tables where the number of rows is specified and comment lines in the
+AeroDyn airfoil data files.</p>
+<div class="section" id="units">
+<h3><span class="section-number">4.3.3.2.1. </span>Units<a class="headerlink" href="#units" title="Permalink to this heading"></a></h3>
+<p>AeroDyn uses the SI system (kg, m, s, N). Angles are assumed to be in
+radians unless otherwise specified.</p>
+</div>
+<div class="section" id="aerodyn-primary-input-file">
+<h3><span class="section-number">4.3.3.2.2. </span>AeroDyn Primary Input File<a class="headerlink" href="#aerodyn-primary-input-file" title="Permalink to this heading"></a></h3>
+<p>The primary AeroDyn input file defines modeling options, environmental
+conditions (except freestream flow), airfoils, tower nodal
+discretization and properties, tower, hub, and nacelle properties,
+as well as output file specifications.</p>
+<p>The file is organized into several functional sections. Each section
+corresponds to an aspect of the aerodynamics model. A sample AeroDyn
+primary input file is given in
+<a class="reference internal" href="appendix.html#ad-appendix"><span class="std std-numref">Section 4.3.11</span></a>.</p>
+<p>The input file begins with two lines of header information which is for
+your use, but is not used by the software.</p>
+</div>
+</div>
+<div class="section" id="general-options">
+<h2><span class="section-number">4.3.3.3. </span>General Options<a class="headerlink" href="#general-options" title="Permalink to this heading"></a></h2>
+<p>Set the <code class="docutils literal notranslate"><span class="pre">Echo</span></code> flag to TRUE if you wish to have AeroDyn echo the
+contents of the AeroDyn primary, airfoil, and blade input files (useful
+for debugging errors in the input files). The echo file has the naming
+convention of <em>OutRootFile.AD.ech</em>. <code class="docutils literal notranslate"><span class="pre">OutRootFile</span></code> is either
+specified in the I/O SETTINGS section of the driver input file when
+running AeroDyn standalone, or by the OpenFAST program when running a
+coupled simulation.</p>
+<p><code class="docutils literal notranslate"><span class="pre">DTAero</span></code> sets the time step for the aerodynamic calculations. For
+accuracy and numerical stability, we recommend that <code class="docutils literal notranslate"><span class="pre">DTAero</span></code> be set
+such that there are at least 200 azimuth steps per rotor revolution.
+However, when AeroDyn is coupled to OpenFAST, OpenFAST may require time steps
+much smaller than this rule of thumb. If UA is enabled while using very
+small time steps, you may need to recompile AeroDyn in double precision
+to avoid numerical problems in the UA routines. The keyword <code class="docutils literal notranslate"><span class="pre">DEFAULT</span></code>
+for <code class="docutils literal notranslate"><span class="pre">DTAero</span></code> may be used to indicate that AeroDyn should employ the
+time step prescribed by the driver code (OpenFAST or the standalone driver
+program).</p>
+<p><strong>Wake_Mod</strong>
+Set <code class="docutils literal notranslate"><span class="pre">Wake_Mod</span></code> to 0 if you want to have zero induced velocities.
+Set it to 1 to include these effects using the BEM theory model.
+When <code class="docutils literal notranslate"><span class="pre">Wake_Mod</span></code> is set to 3, the free vortex wake model is used, also referred to as OLAF (see
+<a class="reference internal" href="../aerodyn-olaf/index.html#olaf"><span class="std std-numref">Section 4.4</span></a>). <code class="docutils literal notranslate"><span class="pre">Wake_Mod</span></code> cannot be set to 3 during linearization analyses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Link to old inputs: The previous input <cite>WakeMod</cite> is removed, <cite>WakeMod=2</cite> used to mean DBEMT, but this now controlled using <cite>DBEMT_Mod</cite>.
+<cite>Wake_Mod=2</cite> is a placeholder for future induction calculation method.</p>
+</div>
+<p><strong>~~AFAeroMod~~</strong>
+This input has been removed. See <code class="docutils literal notranslate"><span class="pre">UA_Mod</span></code> below.</p>
+<p><strong>~~FrozenWake~~</strong>
+This input has been removed. See <code class="docutils literal notranslate"><span class="pre">DBEMT_Mod</span></code> below.</p>
+<p>Set <code class="docutils literal notranslate"><span class="pre">TwrPotent</span></code> to 0 to disable the
+potential-flow influence of the tower on the fluid flow local to the
+blade, 1 to enable the standard potential-flow model, or 2 to include
+the Bak correction in the potential-flow model.</p>
+<p>Set the <code class="docutils literal notranslate"><span class="pre">TwrShadow</span></code> to 0 to disable to the tower shadow model,
+1 to enable the Powles tower shadow model, or 2 to use the Eames tower
+shadow model. These models calculate the influence of the tower on the
+flow local to the blade based on the downstream tower shadow model. If
+the tower influence from potential flow and tower shadow are both
+enabled, the two influences will be superimposed.</p>
+<p>Set the <code class="docutils literal notranslate"><span class="pre">TwrAero</span></code> flag to TRUE to calculate fluid drag loads on the
+tower or FALSE to disable these effects.</p>
+<p>During linearization analyses
+with AeroDyn coupled OpenFAST and BEM enabled (<code class="docutils literal notranslate"><span class="pre">Wake_Mod</span> <span class="pre">=</span> <span class="pre">1</span></code>), set the
+<code class="docutils literal notranslate"><span class="pre">DBEMT_Mod=-1</span></code> to employ frozen-wake assumptions
+(i.e. to fix the axial and tangential induces velocities, and, at their operating-point values during linearization)
+or
+<code class="docutils literal notranslate"><span class="pre">DBEMT_Mod=3</span></code> to use the continuous dynamic wake model.</p>
+<p>Set the <code class="docutils literal notranslate"><span class="pre">CavitCheck</span></code> flag to TRUE to perform a cavitation check for MHK
+turbines or FALSE to disable this calculation. If <code class="docutils literal notranslate"><span class="pre">CavitCheck</span></code> is
+TRUE, <code class="docutils literal notranslate"><span class="pre">UA_Mod</span></code> must be set to 0 because the cavitation check does
+not function with unsteady airfoil aerodynamics. If <code class="docutils literal notranslate"><span class="pre">CavitCheck</span></code> is
+TRUE, the <code class="docutils literal notranslate"><span class="pre">MHK</span></code> flag in the AeroDyn or OpenFAST driver input file must be set
+to 1 or 2 to indicate an MHK turbine is being modeled.</p>
+<p>Set the <code class="docutils literal notranslate"><span class="pre">NacelleDrag</span></code> flag to TRUE to calculate the drag loads on the nacelle
+or FALSE to disable this calculation.</p>
+<p>Set the <code class="docutils literal notranslate"><span class="pre">CompAA</span></code> flag to TRUE to run aero-acoustic calculations.  This
+option is only available for <code class="docutils literal notranslate"><span class="pre">Wake_Mod</span> <span class="pre">=</span> <span class="pre">1</span></code> and is not available for
+an MHK turbine.  See section <a class="reference internal" href="../aerodyn-aeroacoustics/index.html#aeroacoustics"><span class="std std-numref">Section 4.5</span></a> for information on how to
+use this feature.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">AA_InputFile</span></code> is used to specify the input file for the aeroacoustics
+sub-module. See <a class="reference internal" href="../aerodyn-aeroacoustics/index.html#aeroacoustics"><span class="std std-numref">Section 4.5</span></a> for information on how to use this
+feature.</p>
+</div>
+<div class="section" id="environmental-conditions">
+<h2><span class="section-number">4.3.3.4. </span>Environmental Conditions<a class="headerlink" href="#environmental-conditions" title="Permalink to this heading"></a></h2>
+<p>Environmental conditions are now specified in driver input files but are left in
+the AeroDyn primary input file for legacy compatibility. Use the keyword
+<code class="docutils literal notranslate"><span class="pre">DEFAULT</span></code> to pass in values specified by the driver input file. Otherwise,
+values given in the AeroDyn primary input file will overwrite those given in the
+driver input file. <code class="docutils literal notranslate"><span class="pre">AirDens</span></code> specifies the fluid density and must be a value
+greater than zero; a typical value is around 1.225 kg/m<sup>3</sup> for air (wind
+turbines) and 1025 kg/m<sup>3</sup> for seawater (MHK turbines).
+<code class="docutils literal notranslate"><span class="pre">KinVisc</span></code> specifies the kinematic viscosity of the fluid (used in the
+Reynolds number calculation); a typical value is around 1.460E-5
+m<sup>2</sup>/s for air (wind turbines) and 1.004E-6 m<sup>2</sup>/s for
+seawater (MHK turbines). <code class="docutils literal notranslate"><span class="pre">SpdSound</span></code> is the speed of sound in the fluid
+(used to calculate the Mach number within the unsteady airfoil
+aerodynamics calculations); a typical value is around 340.3 m/s for air (wind
+turbines) and 1500 m/s for seawater (MHK turbines). The
+last two parameters in this section are only used when
+<code class="docutils literal notranslate"><span class="pre">CavitCheck</span> <span class="pre">=</span> <span class="pre">TRUE</span></code> for MHK turbines. <code class="docutils literal notranslate"><span class="pre">Patm</span></code> is the atmospheric
+pressure above the free surface; typically around 101,325 Pa. <code class="docutils literal notranslate"><span class="pre">Pvap</span></code>
+is the vapor pressure of the fluid; for seawater this is typically
+around 2,000 Pa.</p>
+</div>
+<div class="section" id="blade-element-momentum-theory-options">
+<h2><span class="section-number">4.3.3.5. </span>Blade-Element/Momentum Theory Options<a class="headerlink" href="#blade-element-momentum-theory-options" title="Permalink to this heading"></a></h2>
+<p><strong>BEM_Mod</strong>
+Determines the kind of BEM algorithm to use.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">BEM_Mod=2</span></code> (recommended) uses the new AeroDyn BEM implementation using the local staggered polar grid coordinate system, which is more suitable for large coning. It also includes an optional momentum correction that is important for large skew (see <code class="docutils literal notranslate"><span class="pre">SkewMomCorr</span></code>). The feature will be documented at a later time.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BEM_Mod=1</span></code> (for backward compatibility) uses the old AeroDyn BEM implementation using the NoSweepPitchTwist coordinate system.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Link to old inputs: previous implementation would have <code class="docutils literal notranslate"><span class="pre">BEM_Mod=1</span></code> implied.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><code class="docutils literal notranslate"><span class="pre">BEM_Mod</span></code> currently governs the coordinate system used for “ill-defined” outputs (outputs that don’t have a specified coordinate system) such as the ones that ends with “x” and “y”. Other ill-defined outputs are the typical BEM quantities such as “AxInd”, “TnInd”, “Phi”, etc. These are defined in a different coordinate system depending on <cite>BEM_Mod</cite>. For consistency across differents <cite>Wake_Mod</cite> (even when <cite>Wake_Mod/=1</cite>), we use <cite>BEM_Mod</cite> to determine the coordinate system of the ill-defined outputs.</p>
+</div>
+<p>The following inputs in this section are only used when <code class="docutils literal notranslate"><span class="pre">Wake_Mod</span> <span class="pre">=</span> <span class="pre">1</span></code>.</p>
+<p><strong>Skew_Mod</strong>
+<code class="docutils literal notranslate"><span class="pre">Skew_Mod</span></code> determines the skew correction model (for yaw and tilt):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Skew_Mod=1</span></code>: activates Glauert’s skew model (recommended).  This model has two components: a momentum correction (<code class="docutils literal notranslate"><span class="pre">SkewMomCorr`</span> <span class="pre">`),</span> <span class="pre">and</span> <span class="pre">a</span> <span class="pre">velocity</span> <span class="pre">redistribution</span> <span class="pre">model</span> <span class="pre">(``SkewRedistr_Mod</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Skew_Mod=0</span></code> means no skew model at all (not recommended)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Skew_Mod=-1</span></code> throws away non-normal component (for linearization). This setting makes sure the wind speed is always normal to the rotor to limit periodic variation of the wind speed if the rotor is not perpendicular to the wind (e.g. tower top tilting or tilt). This is mostly needed for linearization.</p></li>
+</ul>
+<p>Currently (<code class="docutils literal notranslate"><span class="pre">Skew_Mod=0</span></code>) or (<code class="docutils literal notranslate"><span class="pre">Skew_Mod=1</span></code> and <code class="docutils literal notranslate"><span class="pre">SkewModCorr=False</span></code> and <code class="docutils literal notranslate"><span class="pre">SkewRedistr_Mod</span> <span class="pre">=</span> <span class="pre">0</span></code>)  are the same, both set of inputs turn off the skew correction entirely.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Link to old inputs: Previous implementations always had the skew model on. <cite>Skew_Mod=-1</cite> replaces the old <cite>SkewMod=0</cite> (an option that few users were using).</p>
+</div>
+<p><strong>SkewMomCorr</strong>
+Turns the skew momentum correction on or off [used only when <code class="docutils literal notranslate"><span class="pre">Skew_Mod=1</span></code>]
+The feature will be documented at a later time.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Link to old inputs: the previous behavior would be <cite>SkewMomCorr=False</cite></p>
+</div>
+<p><strong>SkewRedistr_Mod</strong>
+<code class="docutils literal notranslate"><span class="pre">SkewRedistr_Mod</span></code> allows to turn on and off the induced velocity redistribution model, and give room for other models to be selected/implemented. Default=1.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>0: no redistribution</p></li>
+<li><p>1: Glauert (Pitt-Peters) redistribution model</p></li>
+</ul>
+</div></blockquote>
+<p><strong>SkewRedistrFactor</strong>
+Defines the constant used in the Glauert redistribution model (<code class="docutils literal notranslate"><span class="pre">SkewRedistr_Mod=1</span></code>).
+Use <code class="docutils literal notranslate"><span class="pre">&quot;default&quot;</span></code> to use the default value of <span class="math notranslate nohighlight">\(\frac{15 \pi}{32}\)</span>.</p>
+</div>
+<div class="section" id="bem-algorithm-options">
+<h2><span class="section-number">4.3.3.6. </span>BEM Algorithm options<a class="headerlink" href="#bem-algorithm-options" title="Permalink to this heading"></a></h2>
+<p>Set <code class="docutils literal notranslate"><span class="pre">TipLoss</span></code> to TRUE to include the Prandtl tip-loss model or FALSE
+to disable it. Likewise, set <code class="docutils literal notranslate"><span class="pre">HubLoss</span></code> to TRUE to include the
+Prandtl hub-loss model or FALSE to disable it.</p>
+<p>Set <code class="docutils literal notranslate"><span class="pre">TanInd</span></code> to TRUE to include tangential induction (from the
+angular momentum balance) in the BEM solution or FALSE to neglect it.
+Set <code class="docutils literal notranslate"><span class="pre">AIDrag</span></code> to TRUE to include drag in the axial-induction
+calculation or FALSE to neglect it. If <code class="docutils literal notranslate"><span class="pre">TanInd</span> <span class="pre">=</span> <span class="pre">TRUE</span></code>, set
+<code class="docutils literal notranslate"><span class="pre">TIDrag</span></code> to TRUE to include drag in the tangential-induction
+calculation or FALSE to neglect it. Even when drag is not used in the
+BEM iteration, drag is still used to calculate the nodal loads once the
+induction has been found,</p>
+<p><code class="docutils literal notranslate"><span class="pre">IndToler</span></code> sets the convergence threshold for the iterative
+nonlinear solve of the BEM solution. The nonlinear solve is in terms of
+the inflow angle, but <code class="docutils literal notranslate"><span class="pre">IndToler</span></code> represents the tolerance of the
+nondimensional residual equation, with no physical association possible.
+When the keyword <code class="docutils literal notranslate"><span class="pre">DEFAULT</span></code> is used in place of a numerical value,
+<code class="docutils literal notranslate"><span class="pre">IndToler</span></code> will be set to 5E-5 when AeroDyn is compiled in single
+precision and to 5E-10 when AeroDyn is compiled in double precision; we
+recommend using these defaults. <code class="docutils literal notranslate"><span class="pre">MaxIter</span></code> determines the maximum
+number of iterations steps in the BEM solve. If the residual value of
+the BEM solve is not less than or equal to <code class="docutils literal notranslate"><span class="pre">IndToler</span></code> in
+<code class="docutils literal notranslate"><span class="pre">MaxIter</span></code>, AeroDyn will exit the BEM solver and return an error
+message.</p>
+</div>
+<div class="section" id="shear-corrections">
+<h2><span class="section-number">4.3.3.7. </span>Shear corrections<a class="headerlink" href="#shear-corrections" title="Permalink to this heading"></a></h2>
+<p>The BEM algorithm may need to be corrected to account for shear.
+Currently, a sector average correction is implemented, as a beta feature, to limit fluctuations associated with variations of wind speed as the blade rotates.</p>
+<p>The feature will be documented at a later time and is still at an experimental stage.</p>
+<p><strong>SectAvg</strong>  Use Sector Averaging (flag).
+The method uses sectors expanding forward and backward relative to the current azimuth of the blade (see <code class="docutils literal notranslate"><span class="pre">SectAvgPsiBwd</span></code> and <code class="docutils literal notranslate"><span class="pre">SectAvgPsiFwd</span></code>).
+The velocity is averaged within this sector by attributing different weighting at different points in the sector (see <code class="docutils literal notranslate"><span class="pre">SectAvgWeighting</span></code>).</p>
+<p><strong>SectAvgWeighting</strong> Weighting function for sector average.
+1=Uniform  (switch) [used only when <code class="docutils literal notranslate"><span class="pre">SectAvg=True</span></code>]. Default is 1.</p>
+<p><strong>SectAvgNPoints</strong> Number of points per sectors (-) [used only when <code class="docutils literal notranslate"><span class="pre">SectAvg=True</span></code>]. Default is 5.</p>
+<p><strong>SectAvgPsiBwd</strong> Backward azimuth (in degrees) relative to the blade azimuth where the sector starts. Must be negative. [used only when SectAvg=True]. Default is -60 deg.</p>
+<p><strong>SectAvgPsiFwd</strong> Forward azimuth (in degrees) relative to the blade azimuth where the sector ends. Must be positive. [used only when SectAvg=True]. Default is 60 deg.</p>
+</div>
+<div class="section" id="dynamic-wake-dynamic-inflow-model">
+<h2><span class="section-number">4.3.3.8. </span>Dynamic Wake / Dynamic inflow model<a class="headerlink" href="#dynamic-wake-dynamic-inflow-model" title="Permalink to this heading"></a></h2>
+<p>The input parameters in this section are used only when <code class="docutils literal notranslate"><span class="pre">Wake_Mod</span> <span class="pre">=</span> <span class="pre">1</span></code>.
+The theory is described in <a class="reference internal" href="theory.html#ad-dbemt"><span class="std std-numref">Section 4.3.7.2</span></a>.</p>
+<p>The dynamic wake (also called dynamic inflow) model is governed by the input <code class="docutils literal notranslate"><span class="pre">DBEMT_Mod</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code>: no dynamic wake, also called quasi-steady wake model (not recommended).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-1</span></code>: frozen wake, the induced velocities at a given operating point will remain constant (useful for simplified linearization only).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code>: discrete-time Oye’s model, with constant <span class="math notranslate nohighlight">\(\tau_1\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code>: discrete-time Oye’s model, with varying <span class="math notranslate nohighlight">\(\tau_1\)</span>, automatically adjusted based on inflow. (recommended for time-domain simulations)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">3</span></code>: continuous-time Oye’s model, with constant <span class="math notranslate nohighlight">\(\tau_1\)</span> (recommended for linearization)</p></li>
+</ul>
+<p>For <code class="docutils literal notranslate"><span class="pre">DBEMT_Mod=1</span></code> or <code class="docutils literal notranslate"><span class="pre">DBEMT_Mod=3</span></code> it is the user responsability to set the value of <span class="math notranslate nohighlight">\(\tau_1\)</span> (i.e. <code class="docutils literal notranslate"><span class="pre">tau1_const</span></code>) according to the expression given in <a class="reference internal" href="theory.html#ad-dbemt"><span class="std std-numref">Section 4.3.7.2</span></a>, using an estimate of what the mean axial induction (<span class="math notranslate nohighlight">\(\overline{a}\)</span>) and the mean relative wind velocity across the rotor (<span class="math notranslate nohighlight">\(\overline{U_0}\)</span>) are for a given simulation.</p>
+<p>Only the options <code class="docutils literal notranslate"><span class="pre">DBEMT_Mod={-1,3}</span></code> can be used for linearization.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Link to old inputs:
+The option <cite>DBEMT_Mod=-1</cite> has the same behavior as the old <cite>FrozenWake=True</cite>.
+<cite>DBEMT_Mod=0</cite> has the same behavior as the previous <cite>WakeMod=1</cite> option.
+<cite>DBEMT_Mod=J</cite> (<cite>J</cite> in <cite>1,2,3</cite>)  , has the same behavior as the previous <cite>WakeMod=2</cite> &amp; <cite>DBEMT_Mod=J</cite></p>
+</div>
+</div>
+<div class="section" id="olaf-convecting-lagrangian-filaments-free-vortex-wake-theory-options">
+<h2><span class="section-number">4.3.3.9. </span>OLAF – cOnvecting LAgrangian Filaments (Free Vortex Wake) Theory Options<a class="headerlink" href="#olaf-convecting-lagrangian-filaments-free-vortex-wake-theory-options" title="Permalink to this heading"></a></h2>
+<p>The input parameters in this section are used only when <code class="docutils literal notranslate"><span class="pre">Wake_Mod</span> <span class="pre">=</span> <span class="pre">3</span></code>.</p>
+<p>The settings for the free vortex wake model are set in the OLAF input file
+described in <a class="reference internal" href="../aerodyn-olaf/InputFiles.html#olaf-input-files"><span class="std std-numref">Section 4.4.4</span></a>.  <code class="docutils literal notranslate"><span class="pre">OLAFInputFileName</span></code> is the filename
+for this input file.</p>
+</div>
+<div class="section" id="unsteady-airfoil-aerodynamics-options">
+<span id="ad-ua-inputs"></span><h2><span class="section-number">4.3.3.10. </span>Unsteady Airfoil Aerodynamics Options<a class="headerlink" href="#unsteady-airfoil-aerodynamics-options" title="Permalink to this heading"></a></h2>
+<p><strong>AoA34</strong>
+Determine whether the baseline angle of attack is sampled at the 3/4 chord or at the aerodynamic center point.
+Most <code class="docutils literal notranslate"><span class="pre">UA_Mod</span></code> will require <cite>AoA34</cite> to be set to true. But when using quasi-steady aerodynamics, the user may want to set it to true or false.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This feature is currently not implemented due to a lag between the <cite>dev</cite> and <cite>dev-unstable</cite>  branch.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Link to previous inputs: <cite>AFAeroMod=1</cite> implies <cite>AoA34=False</cite>. But to have a fair comparison between steady and unsteady aerodynamics model, it would be best to set <cite>AoA34=True</cite> when doing quasi-steady aero.</p>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">UA_Mod</span></code> determines the UA model. It has the following options:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code>: no unsteady arifoil aerodynamics,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code>: the discrete-time model of Beddoes-Leishman (B-L) (<strong>not currently functional</strong>),</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code>: the extensions to B-L developed by González  (changes in Cn, Cc, Cm)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">3</span></code>: the extensions to B-L developed by Minnema/Pierce (changes in Cc and Cm)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">4</span></code>: 4-states continuous-time B-L model developed by Hansen, Gaunna, and Madsen (HGM). NOTE: might require smaller time steps until a stiff integrator is implemented.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">5</span></code>: 5-states continuous-time B-L model similar to HGM with an additional state for vortex generation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">6</span></code>: 1-state continuous-time developed by Oye</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">7</span></code>: discrete-time Boeing-Vertol (BV) model</p></li>
+</ul>
+<p>Linearization is supported with <code class="docutils literal notranslate"><span class="pre">UA_Mod=4,5,6</span></code> (which use continuous-time states) but not with the other models. The different models are described in <a class="reference internal" href="theory_ua.html#ad-ua"><span class="std std-numref">Section 4.3.8</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Link to old inputs: If <cite>UA_Mod&gt;0</cite>, then this is equivalent to the old <cite>AFAeroMod=2</cite>.</p>
+</div>
+<p><strong>While all of the UA models are documented in this
+manual, the original B-L model is not yet functional. Testing has shown
+that the González and Minnema/Pierce models produce reasonable
+hysteresis of the normal force, tangential force, and pitching-moment
+coefficients if the UA model parameters are set appropriately for a
+given airfoil, Reynolds number, and/or Mach number. However, the
+results will differ a bit from earlier versions of AeroDyn, (which was
+based on the Minnema/Pierce extensions to B-L) even if the default UA
+model parameters are used, due to differences in the UA model logic
+between the versions. We recommend that users run test cases with
+uniform inflow and fixed yaw error (e.g., through the standalone AeroDyn
+driver) to examine the accuracy of the normal force, tangential force,
+and pitching-moment coefficient hysteresis and to adjust the UA model
+parameters appropriately.</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">FLookup</span></code> determines how the nondimensional separation distance
+value, <em>f’</em>, will be calculated. When <code class="docutils literal notranslate"><span class="pre">FLookup</span></code> is set to TRUE, <em>f’</em>
+is determined via a lookup into the static lift-force coefficient and
+drag-force coefficient data. <strong>Using best-fit exponential equations
+(``FLookup = FALSE``) is not yet available, so ``FLookup`` must be
+``TRUE`` in this version of AeroDyn.</strong> Note, <code class="docutils literal notranslate"><span class="pre">FLookup</span></code> is not used
+when <code class="docutils literal notranslate"><span class="pre">UA_Mod=4</span></code> or <code class="docutils literal notranslate"><span class="pre">UA_Mod=5</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">UAStartRad</span></code> is the starting rotor radius where dynamic stall
+will be turned on. Enter a number between 0 and 1, representing a fraction of rotor radius,
+to indicate where unsteady aerodynamics should begin turning on. If this line is
+omitted from the input file, <code class="docutils literal notranslate"><span class="pre">UAStartRad</span></code> will default to 0 (turning on at the blade root).
+All blade nodes that are located at a rotor radius less than <code class="docutils literal notranslate"><span class="pre">UAStartRad</span></code> will have
+unsteady aerodynamics turned off for the entire simulation.</p>
+<p><code class="docutils literal notranslate"><span class="pre">UAEndRad</span></code> is the ending rotor radius where dynamic stall
+will be turned on. Enter a number between 0 and 1, representing a fraction of rotor radius,
+to indicate the last rotor radius where unsteady aerodynamics should be turned on. If this line is
+omitted from the input file, <code class="docutils literal notranslate"><span class="pre">UAEndRad</span></code> will default to 1 (the blade tip).
+All blade nodes that are located at a rotor radius greater than <code class="docutils literal notranslate"><span class="pre">UAEndRad</span></code> will have
+unsteady aerodynamics turned off for the entire simulation.</p>
+</div>
+<div class="section" id="airfoil-information">
+<span id="id1"></span><h2><span class="section-number">4.3.3.11. </span>Airfoil Information<a class="headerlink" href="#airfoil-information" title="Permalink to this heading"></a></h2>
+<p>This section defines the airfoil data input file information. The
+airfoil data input files themselves (one for each airfoil) include
+tables containing coefficients of lift force, drag force, and optionally
+pitching moment, and minimum pressure versus AoA, as well as UA model
+parameters, and are described in <a class="reference internal" href="#airfoil-data-input-file"><span class="std std-numref">Section 4.3.3.19.1</span></a>.</p>
+<p>The first 5 lines in the AIRFOIL INFORMATION section relate to the
+format of the tables of static airfoil coefficients within each of the
+airfoil input files. <code class="docutils literal notranslate"><span class="pre">InCol_Alfa</span></code>, <code class="docutils literal notranslate"><span class="pre">InCol_Cl</span></code>,
+<code class="docutils literal notranslate"><span class="pre">InCol_Cd</span></code>, <code class="docutils literal notranslate"><span class="pre">InCol_Cm,</span></code> and <code class="docutils literal notranslate"><span class="pre">InCol_Cpmin</span></code> are column
+numbers in the tables containing the AoA, lift-force coefficient,
+drag-force coefficient, pitching-moment coefficient, and minimum
+pressure coefficient, respectively (normally these are 1, 2, 3, 4, and
+5, respectively). If pitching-moment terms are neglected with
+<code class="docutils literal notranslate"><span class="pre">UseBlCm</span> <span class="pre">=</span> <span class="pre">FALSE</span></code>, <code class="docutils literal notranslate"><span class="pre">InCol_Cm</span></code> may be set to zero, and if the
+cavitation check is disabled with <code class="docutils literal notranslate"><span class="pre">CavitCheck</span> <span class="pre">=</span> <span class="pre">FALSE</span></code>,
+<code class="docutils literal notranslate"><span class="pre">InCol_Cpmin</span></code> may be set to zero.</p>
+<p>Specify the number of airfoil data input files to be used using
+<code class="docutils literal notranslate"><span class="pre">NumAFfiles</span></code>, followed by <code class="docutils literal notranslate"><span class="pre">NumAFfiles</span></code> lines of filenames. The
+file names should be in quotations and can contain an absolute path or a
+relative path e.g., “C:\airfoils\S809_CLN_298.dat” or
+“airfoils\S809_CLN_298.dat”. If you use relative paths, it is
+relative to the location of the file in which it is specified. The blade
+data input files will reference these airfoil data using their line
+identifier, where the first airfoil file is numbered 1 and the last
+airfoil file is numbered <code class="docutils literal notranslate"><span class="pre">NumAFfiles</span></code>.</p>
+</div>
+<div class="section" id="rotor-blade-properties">
+<h2><span class="section-number">4.3.3.12. </span>Rotor/Blade Properties<a class="headerlink" href="#rotor-blade-properties" title="Permalink to this heading"></a></h2>
+<p>Set <code class="docutils literal notranslate"><span class="pre">UseBlCm</span></code> to TRUE to include pitching-moment terms in the blade
+airfoil aerodynamics or FALSE to neglect them; if <code class="docutils literal notranslate"><span class="pre">UseBlCm</span> <span class="pre">=</span> <span class="pre">TRUE</span></code>,
+pitching-moment coefficient data must be included in the airfoil data
+tables with <code class="docutils literal notranslate"><span class="pre">InCol_Cm</span></code> not equal to zero.</p>
+<p>The blade nodal discretization, geometry, twist, chord, airfoil
+identifier, and buoyancy/added mass/fluid inertia properties are set in separate input files for each
+blade, described in <a class="reference internal" href="#blade-data-input-file"><span class="std std-numref">Section 4.3.3.19.2</span></a>. <code class="docutils literal notranslate"><span class="pre">ADBlFile(1)</span></code> is the
+filename for blade 1, <code class="docutils literal notranslate"><span class="pre">ADBlFile(2)</span></code> is the filename for blade 2, and
+<code class="docutils literal notranslate"><span class="pre">ADBlFile(3)</span></code> is the filename for blade 3, respectively; the latter is not
+used for two-bladed rotors and the latter two are not used for one-bladed
+rotors. The file names should be in quotations and can contain an absolute path
+or a relative path. The data in each file need not be identical, which
+permits modeling of aerodynamic imbalances.</p>
+</div>
+<div class="section" id="hub-properties">
+<h2><span class="section-number">4.3.3.13. </span>Hub Properties<a class="headerlink" href="#hub-properties" title="Permalink to this heading"></a></h2>
+<p>The input parameters in this section pertain to the calculation of buoyant loads
+on the hub.</p>
+<p><code class="docutils literal notranslate"><span class="pre">VolHub</span></code> is the volume of the hub and <code class="docutils literal notranslate"><span class="pre">HubCenBx</span></code> is the x offset of the hub
+center of buoyancy from the hub center in local hub coordinates;
+offsets in the y and z directions are assumed to be zero. To neglect buoyant
+loads on the hub, set <code class="docutils literal notranslate"><span class="pre">VolHub</span></code> to 0.</p>
+<p>Since the hub and blades are joined elements, hub buoyancy should be included if blade buoyancy is included, and vice versa.</p>
+</div>
+<div class="section" id="nacelle-properties">
+<h2><span class="section-number">4.3.3.14. </span>Nacelle Properties<a class="headerlink" href="#nacelle-properties" title="Permalink to this heading"></a></h2>
+<p>The input parameters in this section pertain to the calculation of buoyant and drag loads
+on the nacelle and are only used when <code class="docutils literal notranslate"><span class="pre">MHK</span> <span class="pre">&gt;</span> <span class="pre">0</span></code> or <code class="docutils literal notranslate"><span class="pre">NacelleDrag</span> <span class="pre">=</span> <span class="pre">TRUE</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">VolNac</span></code> is the volume of the nacelle and <code class="docutils literal notranslate"><span class="pre">NacCenB`</span></code> is the
+position (x,y,z vector) of the nacelle center of buoyancy from
+the yaw bearing in local nacelle coordinates. To neglect buoyant
+loads on the nacelle, set <code class="docutils literal notranslate"><span class="pre">VolNac</span></code> to 0. Only used when <code class="docutils literal notranslate"><span class="pre">Buoyancy</span> <span class="pre">=</span> <span class="pre">TRUE</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">NacArea</span></code> are the projected areas (Ax,Ay,Az vector) of the nacelle in the nacelle coordinate system,
+<code class="docutils literal notranslate"><span class="pre">NacCd</span></code> are the drag coefficients (Cdx, Cdy, Cdz vector) for the three nacelle areas defined by <code class="docutils literal notranslate"><span class="pre">NacArea``and</span> <span class="pre">``NacDragAC</span></code> is the
+position (x,y,z vector) of the nacelle aerodynamic center from
+the yaw bearing in local nacelle coordinates.  Only used when <code class="docutils literal notranslate"><span class="pre">NacelleDrag</span> <span class="pre">=</span> <span class="pre">TRUE</span></code>.</p>
+</div>
+<div class="section" id="tail-fin-aerodynamics">
+<h2><span class="section-number">4.3.3.15. </span>Tail fin AeroDynamics<a class="headerlink" href="#tail-fin-aerodynamics" title="Permalink to this heading"></a></h2>
+<p>The tail fin aerodynamics section contains two lines:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">======</span>  <span class="n">Tail</span> <span class="n">fin</span> <span class="n">AeroDynamics</span> <span class="o">========================================================================</span>
+    <span class="n">true</span>       <span class="n">TFinAero</span>     <span class="o">-</span> <span class="n">Calculate</span> <span class="n">tail</span> <span class="n">fin</span> <span class="n">aerodynamics</span> <span class="n">model</span> <span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+  <span class="s2">&quot;&quot;</span>           <span class="n">TFinFile</span>     <span class="o">-</span> <span class="n">Input</span> <span class="n">file</span> <span class="k">for</span> <span class="n">tail</span> <span class="n">fin</span> <span class="n">aerodynamics</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">TFinAero</span><span class="o">=</span><span class="kc">True</span><span class="p">]</span>
+<span class="o">======</span>  <span class="n">Tower</span> <span class="n">Influence</span> <span class="ow">and</span> <span class="n">Aerodynamics</span> <span class="o">=============================================================</span>
+</pre></div>
+</div>
+<p><strong>TFinAero</strong> Flag to activate the tail fin aerodynamics calculation.</p>
+<p><strong>TFinFile</strong> Path (absolute or relative to the AeroDyn input file) where the
+tail fin input file is located.</p>
+<p>The content of the tail fin input file is described in <a class="reference internal" href="#tf-tf-input-file"><span class="std std-numref">Section 4.3.3.19.3</span></a>.</p>
+</div>
+<div class="section" id="tower-influence-and-aerodynamics">
+<h2><span class="section-number">4.3.3.16. </span>Tower Influence and Aerodynamics<a class="headerlink" href="#tower-influence-and-aerodynamics" title="Permalink to this heading"></a></h2>
+<p>The input parameters in this section pertain to the tower influence, tower drag,
+tower buoyancy, tower added mass, and/or tower fluid inertia calculations and are only used when <code class="docutils literal notranslate"><span class="pre">TwrPotent</span></code> &gt;
+0, <code class="docutils literal notranslate"><span class="pre">TwrShadow</span></code> &gt; 0, <code class="docutils literal notranslate"><span class="pre">TwrAero</span> <span class="pre">=</span> <span class="pre">TRUE</span></code>, <code class="docutils literal notranslate"><span class="pre">MHK</span> <span class="pre">=</span> <span class="pre">1</span></code>, or <code class="docutils literal notranslate"><span class="pre">MHK</span> <span class="pre">=</span> <span class="pre">2</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">NumTwrNds</span></code> is the user-specified number of tower analysis nodes and
+determines the number of rows in the subsequent table (after two table
+header lines). <code class="docutils literal notranslate"><span class="pre">NumTwrNds</span></code> must be greater than or equal to two; the
+higher the number, the finer the resolution and longer the computational
+time; we recommend that <code class="docutils literal notranslate"><span class="pre">NumTwrNds</span></code> be between 10 and 20 to balance
+accuracy with computational expense. For each node, <code class="docutils literal notranslate"><span class="pre">TwrElev</span></code>
+specifies the local elevation of the tower node above ground (or relative
+to MSL for offshore wind and floating MHK turbines or relative to the seabed for fixed MHK turbines),
+<code class="docutils literal notranslate"><span class="pre">TwrDiam</span></code> specifies the local tower diameter, <code class="docutils literal notranslate"><span class="pre">TwrCd</span></code> specifies the
+local tower drag-force coefficient, <code class="docutils literal notranslate"><span class="pre">TwrTI</span></code> specifies the
+turbulence intensity used in the Eames tower shadow model
+(<code class="docutils literal notranslate"><span class="pre">TwrShadow</span></code> = 2) as a fraction (rather than a percentage) of the
+wind fluctuation, <code class="docutils literal notranslate"><span class="pre">TwrCb</span></code> specifies the tower buoyancy coefficient,
+<code class="docutils literal notranslate"><span class="pre">TwrCp</span></code> specifies the tower dynamic pressure coefficient, and
+<code class="docutils literal notranslate"><span class="pre">TwrCa</span></code> specifies the tower added mass coefficient.
+<code class="docutils literal notranslate"><span class="pre">TwrElev</span></code> must be entered in monotonically increasing order—from the lowest
+(tower-base) to the highest (tower-top) elevation. For floating MHK turbines with
+the tower below MSL, tower nodes should be entered as increasingly negative values,
+from the tower-base (closest to the platform) to the tower-top (closest to the nacelle).
+Values of <code class="docutils literal notranslate"><span class="pre">TwrTI</span></code> between 0.05 and 0.4 are recommended. Values larger than 0.4 up to 1 will trigger a
+warning that the results will need to be interpreted carefully, but the code
+will allow such values for scientific investigation purposes. <code class="docutils literal notranslate"><span class="pre">TwrCb</span></code> is
+defined at each node as the cross-sectional area of the tower divided by the
+area of a circle with diameter equal to the characteristic length of the tower
+cross section (i.e., <code class="docutils literal notranslate"><span class="pre">TwrDiam</span></code>). For towers with circular cross-sections,
+<code class="docutils literal notranslate"><span class="pre">TwrCb</span></code> will likely be 1.0 at each node. To neglect buoyant loads on the
+tower, set <code class="docutils literal notranslate"><span class="pre">TwrCb</span></code> to 0. To neglect added mass loads on the
+tower, set <code class="docutils literal notranslate"><span class="pre">TwrCa</span></code> to 0. To neglect fluid inertia loads on the
+tower, set <code class="docutils literal notranslate"><span class="pre">TwrCp</span></code> to 0. See <a class="reference internal" href="#ad-tower-geom"><span class="std std-numref">Fig. 4.5</span></a>.</p>
+</div>
+<div class="section" id="outputs">
+<span id="ad-outputs"></span><h2><span class="section-number">4.3.3.17. </span>Outputs<a class="headerlink" href="#outputs" title="Permalink to this heading"></a></h2>
+<p>Specifying <code class="docutils literal notranslate"><span class="pre">SumPrint</span></code> to TRUE causes AeroDyn to generate a summary
+file with name <code class="docutils literal notranslate"><span class="pre">&lt;OutFileRoot&gt;.AD.sum</span></code>. <code class="docutils literal notranslate"><span class="pre">&lt;OutFileRoot&gt;</span></code> is either
+specified in the I/O SETTINGS section of the driver input file when
+running AeroDyn standalone, or by the OpenFAST program when running a
+coupled simulation. See <a class="reference internal" href="output.html#sec-ad-sumfile"><span class="std std-numref">Section 4.3.4.2</span></a> for summary file details.
+If <code class="docutils literal notranslate"><span class="pre">UAMod&gt;0</span></code>, the unsteady aero module will also generate a file
+called <code class="docutils literal notranslate"><span class="pre">&lt;OutFileRoot&gt;.UA.sum</span></code> that will list all of the UA parameters
+used in the airfoil tables. This allows the user to check what values
+are being used in case the code has computed the parameters
+without user input.</p>
+<p>AeroDyn can output aerodynamic and kinematic quantities at up to nine
+nodes specified along the tower and up to nine nodes along each blade.
+For outputs at every blade node, see <a class="reference internal" href="#ad-nodal-outputs"><span class="std std-numref">Section 4.3.3.18</span></a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">NBlOuts</span></code> specifies the number of blade nodes that output is
+requested for (0 to 9) and <code class="docutils literal notranslate"><span class="pre">BlOutNd</span></code> on the next line is a list
+<code class="docutils literal notranslate"><span class="pre">NBlOuts</span></code> long of node numbers between 1 and <code class="docutils literal notranslate"><span class="pre">NumBlNds</span></code>
+(corresponding to a row number in the blade analysis node table in the
+blade data input files), separated by any combination of commas,
+semicolons, spaces, and/or tabs. All blades have the same output node
+numbers. <code class="docutils literal notranslate"><span class="pre">NTwOuts</span></code> specifies the number of tower nodes that output
+is requested for (0 to 9) and <code class="docutils literal notranslate"><span class="pre">TwOutNd</span></code> on the next line is a list
+<code class="docutils literal notranslate"><span class="pre">NTwOuts</span></code> long of node numbers between 1 and <code class="docutils literal notranslate"><span class="pre">NumTwrNds</span></code>
+(corresponding to a row number in the tower analysis node table above),
+separated by any combination of commas, semicolons, spaces, and/or tabs.
+The outputs specified in the <code class="docutils literal notranslate"><span class="pre">OutList</span></code> section determine which
+quantities are actually output at these nodes.</p>
+<div class="figure align-center" id="id5">
+<span id="ad-tower-geom"></span><a class="reference internal image-reference" href="../../../_images/aerodyn_tower_geom.png"><img alt="aerodyn_tower_geom.png" src="../../../_images/aerodyn_tower_geom.png" style="width: 60%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.5 </span><span class="caption-text">AeroDyn Tower Geometry</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">OutList</span></code> section controls output quantities generated by
+AeroDyn. Enter one or more lines containing quoted strings that in turn
+contain one or more output parameter names. Separate output parameter
+names by any combination of commas, semicolons, spaces, and/or tabs. If
+you prefix a parameter name with a minus sign, “-”, underscore, “_”, or
+the characters “m” or “M”, AeroDyn will multiply the value for that
+channel by –1 before writing the data. The parameters are written in the
+order they are listed in the input file. AeroDyn allows you to use
+multiple lines so that you can break your list into meaningful groups
+and so the lines can be shorter. You may enter comments after the
+closing quote on any of the lines. Entering a line with the string “END”
+at the beginning of the line or at the beginning of a quoted string
+found at the beginning of the line will cause AeroDyn to quit scanning
+for more lines of channel names. Blade and tower node-related quantities
+are generated for the requested nodes identified through the
+<code class="docutils literal notranslate"><span class="pre">BlOutNd</span></code> and <code class="docutils literal notranslate"><span class="pre">TwOutNd</span></code> lists above. If AeroDyn encounters an
+unknown/invalid channel name, it warns the users but will remove the
+suspect channel from the output file. Please refer to Appendix E for a
+complete list of possible output parameters.</p>
+</div>
+<div class="section" id="nodal-outputs">
+<span id="ad-nodal-outputs"></span><h2><span class="section-number">4.3.3.18. </span>Nodal Outputs<a class="headerlink" href="#nodal-outputs" title="Permalink to this heading"></a></h2>
+<p>In addition to the named outputs in <a class="reference internal" href="#ad-outputs"><span class="std std-numref">Section 4.3.3.17</span></a> above, AeroDyn allows
+for outputting the full set blade node motions and loads (tower nodes
+unavailable at present). Please refer to the AeroDyn_Nodes tab in the
+Excel file <a class="reference download internal" download="" href="../../../_downloads/3f19498a5dc774461e022b671ff01ec6/OutListParameters.xlsx"><code class="xref download docutils literal notranslate"><span class="pre">OutListParameters.xlsx</span></code></a>
+for a complete list of possible output parameters.</p>
+<p>This section follows the <cite>END</cite> statement from normal Outputs section described
+above, and includes a separator description line followed by the following
+options.</p>
+<p><strong>BldNd_BladesOut</strong> specifies the number of blades to output. Possible values
+are 0 through the number of blades AeroDyn is modeling. If the value is set to
+1, only blade 1 will be output, and if the value is 2, blades 1 and 2 will be
+output.</p>
+<p><strong>BldNd_BlOutNd</strong> specifies which nodes to output (on all blades selected for
+output).  Valid entries are “ALL” (all blade nodes), “TIP” (only the last blade
+node), “ROOT”, (only the first blade node), or a list of numbers corresponding
+to the node to output; valid numbers are 1 through the number of blade nodes
+AeroDyn is modeling on each blade.</p>
+<p>The <strong>OutList</strong> section controls the nodal output quantities generated by
+AeroDyn. In this section, the user specifies the name of the channel family to
+output. The output name for each channel is then created internally by AeroDyn
+by combining the blade number, node number, and channel family name. For
+example, if the user specifies <strong>AxInd</strong> as the channel family name, the output
+channels will be named with the convention of <strong>B</strong><span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span><strong>N###AxInd</strong> where <span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span> is the blade number, and <strong>###</strong> is
+the three digit node number.</p>
+<p><strong>Sample Nodal Outputs section</strong></p>
+<p>This sample includes the <code class="docutils literal notranslate"><span class="pre">END</span></code> statement from the regular outputs section.</p>
+<div class="docutils container" id="file-adnodaloutputs">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>END of input file (the word &quot;END&quot; must appear in the first 3 columns of this last OutList line)
+<span class="linenos"> 2</span>---------------------- NODE OUTPUTS --------------------------------------------
+<span class="linenos"> 3</span>          3   BldNd_BladesOut  - Number of blades to output all node information at.  Up to number of blades on turbine. (-)
+<span class="linenos"> 4</span>      &quot;ALL&quot;   BldNd_BlOutNd   - Specify a portion of the nodes to output. {&quot;ALL&quot;, &quot;Tip&quot;, &quot;Root&quot;, or a list of node numbers} (-)
+<span class="linenos"> 5</span>              OutList     - The next line(s) contains a list of output parameters.  See OutListParameters.xlsx, AeroDyn_Nodes tab for a listing of available output channels, (-)
+<span class="linenos"> 6</span>&quot;VUndx&quot;     - x-component of undisturbed wind velocity at each node
+<span class="linenos"> 7</span>&quot;VUndy&quot;     - y-component of undisturbed wind velocity at each node
+<span class="linenos"> 8</span>&quot;VUndz&quot;     - z-component of undisturbed wind velocity at each node
+<span class="linenos"> 9</span>&quot;VDisx&quot;     - x-component of disturbed wind velocity at each node
+<span class="linenos">10</span>&quot;VDisy&quot;     - y-component of disturbed wind velocity at each node
+<span class="linenos">11</span>&quot;VDisz&quot;     - z-component of disturbed wind velocity at each node
+<span class="linenos">12</span>&quot;STVx&quot;      - x-component of structural translational velocity at each node
+<span class="linenos">13</span>&quot;STVy&quot;      - y-component of structural translational velocity at each node
+<span class="linenos">14</span>&quot;STVz&quot;      - z-component of structural translational velocity at each node
+<span class="linenos">15</span>&quot;VRel&quot;      - Relvative wind speed at each node
+<span class="linenos">16</span>&quot;DynP&quot;      - Dynamic pressure at each node
+<span class="linenos">17</span>&quot;Re&quot;        - Reynolds number (in millions) at each node
+<span class="linenos">18</span>&quot;M&quot;         - Mach number at each node
+<span class="linenos">19</span>&quot;Vindx&quot;     - Axial induced wind velocity at each node
+<span class="linenos">20</span>&quot;Vindy&quot;     - Tangential induced wind velocity at each node
+<span class="linenos">21</span>&quot;AxInd&quot;     - Axial induction factor at each node
+<span class="linenos">22</span>&quot;TnInd&quot;     - Tangential induction factor at each node
+<span class="linenos">23</span>&quot;Alpha&quot;     - Angle of attack at each node
+<span class="linenos">24</span>&quot;Theta&quot;     - Pitch+Twist angle at each node
+<span class="linenos">25</span>&quot;Phi&quot;       - Inflow angle at each node
+<span class="linenos">26</span>&quot;Curve&quot;     - Curvature angle at each node
+<span class="linenos">27</span>&quot;Cl&quot;        - Lift force coefficient at each node
+<span class="linenos">28</span>&quot;Cd&quot;        - Drag force coefficient at each node
+<span class="linenos">29</span>&quot;Cm&quot;        - Pitching moment coefficient at each node
+<span class="linenos">30</span>&quot;Cx&quot;        - Normal force (to plane) coefficient at each node
+<span class="linenos">31</span>&quot;Cy&quot;        - Tangential force (to plane) coefficient at each node
+<span class="linenos">32</span>&quot;Cn&quot;        - Normal force (to chord) coefficient at each node
+<span class="linenos">33</span>&quot;Ct&quot;        - Tangential force (to chord) coefficient at each node
+<span class="linenos">34</span>&quot;Fl&quot;        - Lift force per unit length at each node
+<span class="linenos">35</span>&quot;Fd&quot;        - Drag force per unit length at each node
+<span class="linenos">36</span>&quot;Mm&quot;        - Pitching moment per unit length at each node
+<span class="linenos">37</span>&quot;Fx&quot;        - Normal force (to plane) per unit length at each node
+<span class="linenos">38</span>&quot;Fy&quot;        - Tangential force (to plane) per unit length at each node
+<span class="linenos">39</span>&quot;Fn&quot;        - Normal force (to chord) per unit length at each node
+<span class="linenos">40</span>&quot;Ft&quot;        - Tangential force (to chord) per unit length at each node
+<span class="linenos">41</span>&quot;Clrnc&quot;     - Tower clearance at each node (based on the absolute distance to the nearest point in the tower from blade node B#N# minus the local tower radius, in the deflected configuration); please note that this clearance is only approximate because the calculation assumes that the blade is a line with no volume (however, the calculation does use the local tower radius); when blade node B#N# is above the tower top (or below the tower base), the absolute distance to the tower top (or base) minus the local tower radius, in the deflected configuration, is output
+<span class="linenos">42</span>&quot;Vx&quot;        - Local axial velocity
+<span class="linenos">43</span>&quot;Vy&quot;        - Local tangential velocity
+<span class="linenos">44</span>&quot;GeomPhi&quot;   - Geometric phi? If phi was solved using normal BEMT equations, GeomPhi = 1; otherwise, if it was solved geometrically, GeomPhi = 0.
+<span class="linenos">45</span>&quot;Chi&quot;       - Skew angle (used in skewed wake correction) -- not available for OLAF
+<span class="linenos">46</span>&quot;UA_Flag&quot;   - Flag indicating if UA is turned on for this node. -- not available for OLAF
+<span class="linenos">47</span>&quot;CpMin&quot;     - Pressure coefficient
+<span class="linenos">48</span>&quot;SgCav&quot;     - Cavitation number
+<span class="linenos">49</span>&quot;SigCr&quot;     - Critical cavitation number
+<span class="linenos">50</span>&quot;Gam&quot;       - Gamma -- circulation on blade
+<span class="linenos">51</span>&quot;Cl_Static&quot; - Static portion of lift force coefficient at each node, without  unsteady effects -- not available for BEMT/DBEMT
+<span class="linenos">52</span>&quot;Cd_Static&quot; - Static portion of drag force coefficient at each node, without unsteady effects -- not available for BEMT/DBEMT
+<span class="linenos">53</span>&quot;Cm_Static&quot; - Static portion of pitching moment coefficient at each node, without unsteady effects -- not available for BEMT/DBEMT
+<span class="linenos">54</span>&quot;Uin&quot;       - Axial induced velocity in rotating hub coordinates. Axial aligned with hub axis.     rotor plane polar hub rotating coordinates
+<span class="linenos">55</span>&quot;Uit&quot;       - Tangential induced velocity in rotating hub coordinates. Tangential to the rotation plane. Perpendicular to blade aziumth.     rotor plane polar hub rotating coordinates
+<span class="linenos">56</span>&quot;Uir&quot;       - Radial induced velocity in rotating hub coordinates. Radial outwards in rotation plane. Aligned with blade azimuth.     rotor plane polar hub rotating coordinates
+<span class="linenos">57</span>&quot;Fbn&quot;       - Buoyant force normal to chord per unit length at each node
+<span class="linenos">58</span>&quot;Fbt&quot;       - Buoyant force tangential to chord per unit length at each node
+<span class="linenos">59</span>&quot;Fbs&quot;       - Buoyant spanwise force per unit length at each node
+<span class="linenos">60</span>&quot;Mbn&quot;       - Buoyant moment normal to chord per unit length at each node
+<span class="linenos">61</span>&quot;Mbt&quot;       - Buoyant moment tangential to chord per unit length at each node
+<span class="linenos">62</span>&quot;Mbs&quot;       - Buoyant spanwise moment per unit length at each node
+<span class="linenos">63</span>END of input file (the word &quot;END&quot; must appear in the first 3 columns of this last OutList line)
+<span class="linenos">64</span>---------------------------------------------------------------------------------------
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="tail-fin-outputs">
+<h2><span class="section-number">4.3.3.19. </span>Tail fin outputs<a class="headerlink" href="#tail-fin-outputs" title="Permalink to this heading"></a></h2>
+<p>The tail fin outputs are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>TFinAlpha (deg):  Angle of attack          at the reference point of the fin</p></li>
+<li><p>TFinDynP  (Pa):   Dynamic pressure         at the reference point of the fin</p></li>
+<li><p>TFinM      (-):   Mach number              at the reference point of the fin</p></li>
+<li><p>TFinRe     (-):   Reynolds number          at the reference point of the fin</p></li>
+<li><p>TFinVrel   (m/s): Orthogonal relative velocity norm (<span class="math notranslate nohighlight">\(V_{\text{rel},\perp}\)</span>)    at the reference point of the fin</p></li>
+<li><p>TFinVdisxi (m/s): Disturbed velocity   (x)  at the reference point of the fin in the inertial coordinate system</p></li>
+<li><p>TFinVdisyi (m/s): Disturbed velocity   (y)  at the reference point of the fin in the inertial coordinate system</p></li>
+<li><p>TFinVdiszi (m/s): Disturbed velocity   (z)  at the reference point of the fin in the inertial coordinate system</p></li>
+<li><p>TFinVrelxi (m/s): Relative velocity   (x)  at the reference point of the fin in the inertial coordinate system</p></li>
+<li><p>TFinVrelyi (m/s): Relative velocity   (y)  at the reference point of the fin in the inertial coordinate system</p></li>
+<li><p>TFinVrelzi (m/s): Relative velocity   (z)  at the reference point of the fin in the inertial coordinate system</p></li>
+<li><p>TFinVundxi (m/s): Undisturbed velocity   (x)  at the reference point of the fin in the inertial coordinate system</p></li>
+<li><p>TFinVundyi (m/s): Undisturbed velocity   (y)  at the reference point of the fin in the inertial coordinate system</p></li>
+<li><p>TFinVundzi (m/s): Undisturbed velocity   (z)  at the reference point of the fin in the inertial coordinate system</p></li>
+<li><p>TFinSTVxi  (m/s): Structural velocity (x)  at the reference point of the fin in the inertial coordinate system</p></li>
+<li><p>TFinSTVyi  (m/s): Structural velocity (y)  at the reference point of the fin in the inertial coordinate system</p></li>
+<li><p>TFinSTVzi  (m/s): Structural velocity (z)  at the reference point of the fin in the inertial coordinate system</p></li>
+<li><p>TFinFxi (N) : Aerodynamic force   (x)  at the reference point of the fin in the inertial coordinate system</p></li>
+<li><p>TFinFyi (N) : Aerodynamic force   (y)  at the reference point of the fin in the inertial coordinate system</p></li>
+<li><p>TFinFzi (N) : Aerodynamic force   (z)  at the reference point of the fin in the inertial coordinate system</p></li>
+<li><p>TFinMxi (Nm): Aerodynamic moment  (x)  at the reference point of the fin in the inertial coordinate system</p></li>
+<li><p>TFinMyi (Nm): Aerodynamic moment  (y)  at the reference point of the fin in the inertial coordinate system</p></li>
+<li><p>TFinMzi (Nm): Aerodynamic moment  (z)  at the reference point of the fin in the inertial coordinate system</p></li>
+</ul>
+</div></blockquote>
+<div class="section" id="airfoil-data-input-file">
+<span id="id2"></span><h3><span class="section-number">4.3.3.19.1. </span>Airfoil Data Input File<a class="headerlink" href="#airfoil-data-input-file" title="Permalink to this heading"></a></h3>
+<p>The airfoil data input files themselves (one for each airfoil) include
+tables containing coefficients of lift force, drag force, and pitching
+moment versus AoA, as well as UA model parameters. In these files, any
+line whose first non-blank character is an exclamation point (!) is
+ignored (for inserting comment lines). The non-comment lines should
+appear within the file in order, but comment lines may be intermixed as
+desired for reading clarity. A sample airfoil data input file is given in
+<a class="reference internal" href="appendix.html#ad-appendix"><span class="std std-numref">Section 4.3.11</span></a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">InterpOrd</span></code> is the order the static airfoil data is interpolated
+when AeroDyn uses table look-up to find the lift-, drag-, and optional
+pitching-moment, and minimum pressure coefficients as a function of AoA.
+When <code class="docutils literal notranslate"><span class="pre">InterpOrd</span></code> is 1, linear interpolation is used; when
+<code class="docutils literal notranslate"><span class="pre">InterpOrd</span></code> is 3, the data will be interpolated with cubic splines;
+if the keyword <code class="docutils literal notranslate"><span class="pre">DEFAULT</span></code> is entered in place of a numerical value,
+<code class="docutils literal notranslate"><span class="pre">InterpOrd</span></code> is set to 1.</p>
+<p><code class="docutils literal notranslate"><span class="pre">RelThickness</span></code> is the non-dimensional thickness of the airfoil
+(thickness over chord ratio), expressed as a fraction (not a percentage),
+typically between 0.1 and 1.
+The parameter is currently used when <code class="docutils literal notranslate"><span class="pre">UA_Mod=7</span></code>, but might be used more in the future.
+The default value of 0.2 if provided for convenience.</p>
+<p><code class="docutils literal notranslate"><span class="pre">NonDimArea</span></code> is the nondimensional airfoil area (normalized by the
+local <code class="docutils literal notranslate"><span class="pre">BlChord</span></code> squared), but is currently unused by AeroDyn.</p>
+<p><code class="docutils literal notranslate"><span class="pre">NumCoords</span></code> is the number of points to define the exterior shape of
+the airfoil, plus one point to define the aerodynamic center, and
+determines the number of rows in the subsequent table; <code class="docutils literal notranslate"><span class="pre">NumCoords</span></code>
+must be exactly zero or greater than or equal to three. For each point,
+the nondimensional <em>X</em> and <em>Y</em> coordinates are specified in the table,
+<code class="docutils literal notranslate"><span class="pre">X_Coord</span></code> and <code class="docutils literal notranslate"><span class="pre">Y_Coord</span></code> (normalized by the local
+<code class="docutils literal notranslate"><span class="pre">BlChord</span></code>). The first point must always locate the aerodynamic
+center (reference point for the airfoil lift and drag forces, likely not
+on the surface of the airfoil); the remaining points should define the
+exterior shape of the airfoil. The airfoil shape is currently unused by
+AeroDyn, but when AeroDyn is coupled to OpenFAST, the airfoil shape will be
+used by OpenFAST for blade surface visualization when enabled.</p>
+<p><code class="docutils literal notranslate"><span class="pre">BL_file</span></code> is the name of the file containing boundary-layer characteristics
+of the profile. It is ignored if the aeroacoustic module is not used.
+This parameter may also be omitted from the file if the aeroacoustic module is not used.</p>
+<p>Specify the number of Reynolds number- or aerodynamic-control
+setting-dependent tables of data for the given airfoil via the
+<code class="docutils literal notranslate"><span class="pre">NumTabs</span></code> setting. The remaining parameters in the
+airfoil data input files are entered separately for each table.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Re</span></code> and <code class="docutils literal notranslate"><span class="pre">UserProp</span></code> are the Reynolds number (in millions) and
+aerodynamic-control (or user property) setting for the included table.
+These values are used only when the <code class="docutils literal notranslate"><span class="pre">AFTabMod</span></code> parameter in the
+primary AeroDyn input file is set to use 2D interpolation based on
+<code class="docutils literal notranslate"><span class="pre">Re</span></code> or <code class="docutils literal notranslate"><span class="pre">UserProp</span></code>. If 1D interpolation (based only on angle of attack)
+is used, only the first table in the file will be used.</p>
+<p>Set <code class="docutils literal notranslate"><span class="pre">InclUAdata</span></code> to TRUE if you are including the UA model
+parameters. If this is set to FALSE, all of the UA model parameters
+will be determined by the code. Any lines that are missing from this section
+will have their values determined by the code, either using a default value
+or calculating it based on the polar coefficient data in the airfoil table:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">alpha0</span></code> specifies the zero-lift AoA (in degrees);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">alpha1</span></code> specifies the AoA (in degrees) larger than <code class="docutils literal notranslate"><span class="pre">alpha0</span></code>
+for which <em>f</em> equals 0.7; approximately the positive stall angle;
+This parameter is used when <code class="docutils literal notranslate"><span class="pre">flookup=false</span></code> and when determining
+a default value of <code class="docutils literal notranslate"><span class="pre">Cn1</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">alpha2</span></code> specifies the AoA (in degrees) less than <code class="docutils literal notranslate"><span class="pre">alpha0</span></code>
+for which <em>f</em> equals 0.7; approximately the negative stall angle;
+This parameter is used when <code class="docutils literal notranslate"><span class="pre">flookup=false</span></code> and when determining
+a default value of <code class="docutils literal notranslate"><span class="pre">Cn2</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">alphaUpper</span></code> specifies the AoA (in degrees) of the upper boundary of
+fully-attached region of the cn or cl curve. It is used to
+compute the separation function when <code class="docutils literal notranslate"><span class="pre">UA_Mod=5</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">alphaLower</span></code> specifies the AoA (in degrees) of the lower boundary of
+fully-attached region of the cn or cl curve. It is used to
+compute the separation function when <code class="docutils literal notranslate"><span class="pre">UA_Mod=5</span></code>. (The separation function
+will have a value of 1 between <code class="docutils literal notranslate"><span class="pre">alphaUpper</span></code> and <code class="docutils literal notranslate"><span class="pre">alphaLower</span></code>.)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">eta_e</span></code> is the recovery factor and typically has a value in the
+range [0.85 to 0.95] for <code class="docutils literal notranslate"><span class="pre">UA_Mod</span> <span class="pre">=</span> <span class="pre">1</span></code>; if the keyword <code class="docutils literal notranslate"><span class="pre">DEFAULT</span></code> is
+entered in place of a numerical value, <code class="docutils literal notranslate"><span class="pre">eta_e</span></code> is set to 0.9 for
+<code class="docutils literal notranslate"><span class="pre">UA_Mod</span> <span class="pre">=</span> <span class="pre">1</span></code>, but <code class="docutils literal notranslate"><span class="pre">eta_e</span></code> is set to 1.0 for other <code class="docutils literal notranslate"><span class="pre">UA_Mod</span></code>
+values and whenever <code class="docutils literal notranslate"><span class="pre">FLookup</span> <span class="pre">=</span> <span class="pre">TRUE</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">C_nalpha</span></code> is the slope of the 2D normal force coefficient curve
+in the linear region;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">C_lalpha</span></code> is the slope of the 2D normal lift coefficient curve
+in the linear region; Used for <code class="docutils literal notranslate"><span class="pre">UA_Mod=4,6</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_f0</span></code> is the initial value of the time constant associated with
+<em>Df</em> in the expressions of <em>Df</em> and <em>f’</em>; if the keyword <code class="docutils literal notranslate"><span class="pre">DEFAULT</span></code> is
+entered in place of a numerical value, <code class="docutils literal notranslate"><span class="pre">T_f0</span></code> is set to 3.0;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_V0</span></code> is the initial value of the time constant associated with
+the vortex lift decay process, used in the expression of <code class="docutils literal notranslate"><span class="pre">Cvn</span></code>; it
+depends on Reynolds number, Mach number, and airfoil; if the keyword
+<code class="docutils literal notranslate"><span class="pre">DEFAULT</span></code> is entered in place of a numerical value, <code class="docutils literal notranslate"><span class="pre">T_V0</span></code> is
+set to 6.0;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_p</span></code> is the boundary-layer leading edge pressure gradient time
+constant in the expression for <em>Dp</em> and should be tuned based on
+airfoil experimental data; if the keyword <code class="docutils literal notranslate"><span class="pre">DEFAULT</span></code> is entered in
+place of a numerical value, <code class="docutils literal notranslate"><span class="pre">T_p</span></code> is set to 1.7;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_VL</span></code> is the time constant associated with the vortex advection
+process, representing the nondimensional time in semi-chords needed
+for a vortex to travel from the leading to trailing edges, and used
+in the expression of <em>Cvn</em>; it depends on Reynolds number, Mach
+number (weakly), and airfoil; valued values are in the range [6 to
+13]; if the keyword <code class="docutils literal notranslate"><span class="pre">DEFAULT</span></code> is entered in place of a numerical
+value, <code class="docutils literal notranslate"><span class="pre">T_VL</span></code> is set to 11.0;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">b1</span></code> is a constant in the expression of <span class="math notranslate nohighlight">\(\phi_\alpha^c\)</span> and
+<span class="math notranslate nohighlight">\(\phi_q^c\)</span>; this value is
+relatively insensitive for thin airfoils, but may be different for
+turbine airfoils; if the keyword <code class="docutils literal notranslate"><span class="pre">DEFAULT</span></code> is entered in place of a
+numerical value, <code class="docutils literal notranslate"><span class="pre">b1</span></code> is set to 0.14, based on experimental
+results;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">b2</span></code> is a constant in the expression of <span class="math notranslate nohighlight">\(\phi_\alpha^c\)</span> and
+<span class="math notranslate nohighlight">\(\phi_q^c\)</span>; this value is
+relatively insensitive for thin airfoils, but may be different for
+turbine airfoils; if the keyword <code class="docutils literal notranslate"><span class="pre">DEFAULT</span></code> is entered in place of a
+numerical value, <code class="docutils literal notranslate"><span class="pre">b2</span></code> is set to 0.53, based on experimental
+results;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">b5</span></code> is a constant in the expression of <span class="math notranslate nohighlight">\(K^{'''}_q\)</span>, <span class="math notranslate nohighlight">\(Cm_q^{nc}\)</span>, and <span class="math notranslate nohighlight">\(K_{m_q}\)</span>; if the keyword
+<code class="docutils literal notranslate"><span class="pre">DEFAULT</span></code> is entered in place of a numerical value, <code class="docutils literal notranslate"><span class="pre">b5</span></code> is set
+to 5, based on experimental results;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">A1</span></code> is a constant in the expression <span class="math notranslate nohighlight">\(\phi_\alpha^c\)</span> and <span class="math notranslate nohighlight">\(\phi_q^c\)</span>; this value is relatively insensitive for thin airfoils, but may be different for
+turbine airfoils; if the keyword <code class="docutils literal notranslate"><span class="pre">DEFAULT</span></code> is entered in place of a
+numerical value, <code class="docutils literal notranslate"><span class="pre">A1</span></code> is set to 0.3, based on experimental
+results;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">A2</span></code> is a constant in the expression <span class="math notranslate nohighlight">\(\phi_\alpha^c\)</span> and
+<span class="math notranslate nohighlight">\(\phi_q^c\)</span>; this value is
+relatively insensitive for thin airfoils, but may be different for
+turbine airfoils; if the keyword <code class="docutils literal notranslate"><span class="pre">DEFAULT</span></code> is entered in place of a
+numerical value, <code class="docutils literal notranslate"><span class="pre">A2</span></code> is set to 0.7, based on experimental
+results;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">A5</span></code> is a constant in the expression <span class="math notranslate nohighlight">\(K^{'''}_q\)</span>,
+<span class="math notranslate nohighlight">\(Cm_q^{nc}\)</span>, and <span class="math notranslate nohighlight">\(K_{m_q}\)</span>; if the keyword
+<code class="docutils literal notranslate"><span class="pre">DEFAULT</span></code> is entered in place of a numerical value, <code class="docutils literal notranslate"><span class="pre">A5</span></code> is set
+to 1, based on experimental results;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">S1</span></code> is the constant in the best fit curve of <em>f</em> for
+<code class="docutils literal notranslate"><span class="pre">alpha0</span></code> <span class="math notranslate nohighlight">\(\le\)</span> AoA <span class="math notranslate nohighlight">\(\le\)</span> <code class="docutils literal notranslate"><span class="pre">alpha1</span></code> for <code class="docutils literal notranslate"><span class="pre">UA_Mod</span> <span class="pre">=</span> <span class="pre">1</span></code> (and is unused
+otherwise); by definition, it depends on the airfoil;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">S2</span></code> is the constant in the best fit curve of <em>f</em> for AoA &gt;
+<code class="docutils literal notranslate"><span class="pre">alpha1</span></code> for <code class="docutils literal notranslate"><span class="pre">UA_Mod</span> <span class="pre">=</span> <span class="pre">1</span></code> (and is unused otherwise); by
+definition, it depends on the airfoil;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">S3</span></code> is the constant in the best fit curve of <em>f</em> for
+<code class="docutils literal notranslate"><span class="pre">alpha2</span></code> <span class="math notranslate nohighlight">\(\le\)</span> AoA <span class="math notranslate nohighlight">\(\le\)</span> <code class="docutils literal notranslate"><span class="pre">alpha0</span></code> for <code class="docutils literal notranslate"><span class="pre">UA_Mod</span> <span class="pre">=</span> <span class="pre">1</span></code> (and is unused
+otherwise); by definition, it depends on the airfoil;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">S4</span></code> is the constant in the best fit curve of <em>f</em> for AoA &lt;
+<code class="docutils literal notranslate"><span class="pre">alpha2</span></code> for <code class="docutils literal notranslate"><span class="pre">UA_Mod</span> <span class="pre">=</span> <span class="pre">1</span></code> (and is unused otherwise); by
+definition, it depends on the airfoil;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Cn1</span></code> is the critical value of <span class="math notranslate nohighlight">\(C^{\prime}_n\)</span> at leading-edge separation for
+positive AoA and should be extracted from airfoil data at a given
+Reynolds number and Mach number; <code class="docutils literal notranslate"><span class="pre">Cn1</span></code> can be calculated from
+the static value of <em>Cn</em> at either the break in the pitching moment
+or the loss of chord force at the onset of stall; <code class="docutils literal notranslate"><span class="pre">Cn1</span></code> is close
+to the condition of maximum lift of the airfoil at low Mach numbers;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Cn2</span></code> is the critical value of <span class="math notranslate nohighlight">\(C^{\prime}_n\)</span> at leading-edge separation for
+negative AoA and should be extracted from airfoil data at a given
+Reynolds number and Mach number; <code class="docutils literal notranslate"><span class="pre">Cn2</span></code> can be calculated from
+the static value of <em>Cn</em> at either the break in the pitching moment
+or the loss of chord force at the onset of stall; <code class="docutils literal notranslate"><span class="pre">Cn2</span></code> is close
+to the condition of maximum lift of the airfoil at low Mach numbers;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">St_sh</span></code> is the Strouhal’s shedding frequency; if the keyword
+<code class="docutils literal notranslate"><span class="pre">DEFAULT</span></code> is entered in place of a numerical value, <code class="docutils literal notranslate"><span class="pre">St_sh</span></code> is
+set to 0.19;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Cd0</span></code> is the drag-force coefficient at zero-lift AoA;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Cm0</span></code> is the pitching-moment coefficient about the quarter-chord
+location at zero-lift AoA, positive for nose up;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">k0</span></code> is a constant in the best fit curve of <span class="math notranslate nohighlight">\(\hat{x}_{cp}\)</span> and equals for <span class="math notranslate nohighlight">\(\hat{x}_{AC}-0.25\)</span>
+<code class="docutils literal notranslate"><span class="pre">UA_Mod</span> <span class="pre">=</span> <span class="pre">1</span></code> (and is unused otherwise);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">k1</span></code> is a constant in the best fit curve of <span class="math notranslate nohighlight">\(\hat{x}_{cp}\)</span> for <code class="docutils literal notranslate"><span class="pre">UA_Mod</span> <span class="pre">=</span> <span class="pre">1</span></code>
+(and is unused otherwise);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">k2</span></code> is a constant in the best fit curve of <span class="math notranslate nohighlight">\(\hat{x}_{cp}\)</span> for <code class="docutils literal notranslate"><span class="pre">UA_Mod</span> <span class="pre">=</span> <span class="pre">1</span></code>
+(and is unused otherwise);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">k3</span></code> is a constant in the best fit curve of <span class="math notranslate nohighlight">\(\hat{x}_{cp}\)</span> for <code class="docutils literal notranslate"><span class="pre">UA_Mod</span> <span class="pre">=</span> <span class="pre">1</span></code>
+(and is unused otherwise);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">k1_hat</span></code> is a constant in the expression of <em>Cc</em> due to
+leading-edge vortex effects for <code class="docutils literal notranslate"><span class="pre">UA_Mod</span> <span class="pre">=</span> <span class="pre">1</span></code> (and is unused
+otherwise);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x_cp_bar</span></code> is a constant in the expression of <span class="math notranslate nohighlight">\(\hat{x}_{cp}^{\nu}\)</span> for <code class="docutils literal notranslate"><span class="pre">UA_Mod</span> <span class="pre">=</span>
+<span class="pre">1</span></code> (and is unused otherwise); if the keyword <code class="docutils literal notranslate"><span class="pre">DEFAULT</span></code> is entered in
+place of a numerical value, <code class="docutils literal notranslate"><span class="pre">x_cp_bar</span></code> is set to 0.2; and</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UACutOut</span></code> is the AoA (in degrees) in absolute value above which
+UA are disabled; if the keyword <code class="docutils literal notranslate"><span class="pre">DEFAULT</span></code> is entered in place of a
+numerical value, <code class="docutils literal notranslate"><span class="pre">UACutOut</span></code> is set to 45.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UACutOut_delta</span></code> is the AoA difference (in degrees) which, together
+with <code class="docutils literal notranslate"><span class="pre">UACutOut</span></code> determines when unsteady aero begins to turn off;
+if the keyword <code class="docutils literal notranslate"><span class="pre">DEFAULT</span></code> is entered in place of a
+numerical value, <code class="docutils literal notranslate"><span class="pre">UACutOut_delta</span></code> is set to 5 degrees.
+The unsteady solution is used at angles of attack less than
+<code class="docutils literal notranslate"><span class="pre">UACutOut</span> <span class="pre">-</span> <span class="pre">UACutout_delta</span></code> degrees. Above <code class="docutils literal notranslate"><span class="pre">UACutout</span></code>, the steady solution is
+used (i.e., UA is disabled). The steady and unsteady solutions are blended between
+those two angles.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">filtCutOff</span></code> is the cut-off reduced frequency
+of the low-pass filter applied to the AoA input to UA, as
+well as to the pitch rate and pitch acceleration derived from AoA
+within UA; if the keyword <code class="docutils literal notranslate"><span class="pre">DEFAULT</span></code> is entered in place of a
+numerical value, <code class="docutils literal notranslate"><span class="pre">filtCutOff</span></code> is set to 0.5.
+This non-dimensional value corresponds to a frequency of
+<span class="math notranslate nohighlight">\(\frac{U \times \mathrm{filtCutOff}}{\pi \times \mathrm{chord}}\)</span> Hz.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">NumAlf</span></code> is the number of distinct AoA entries and determines the
+number of rows in the subsequent table of static airfoil coefficients;
+<code class="docutils literal notranslate"><span class="pre">NumAlf</span></code> must be greater than or equal to one (<code class="docutils literal notranslate"><span class="pre">NumAlf</span> <span class="pre">=</span> <span class="pre">1</span></code>
+implies constant coefficients, regardless of the AoA).</p>
+<p>AeroDyn will
+interpolate on AoA using the data provided via linear interpolation or via cubic
+splines, depending on the setting of input <code class="docutils literal notranslate"><span class="pre">InterpOrd</span></code> above.
+If <code class="docutils literal notranslate"><span class="pre">AFTabMod</span></code> is set to <code class="docutils literal notranslate"><span class="pre">1</span></code>, only the first airfoil table in each file
+will be used. If <code class="docutils literal notranslate"><span class="pre">AFTabMod</span></code> is set to <code class="docutils literal notranslate"><span class="pre">2</span></code>, AeroDyn will find the
+airfoil tables that bound the computed Reynolds number,
+and linearly interpolate between the tables, using the logarithm of the Reynolds numbers.
+If <code class="docutils literal notranslate"><span class="pre">AFTabMod</span></code> is set to <code class="docutils literal notranslate"><span class="pre">3</span></code>, it will find the bounding airfoil
+tables based on the <code class="docutils literal notranslate"><span class="pre">UserProp</span></code> field and linearly interpolate the tables
+based on it. Note that OpenFAST currently sets the <code class="docutils literal notranslate"><span class="pre">UserProp</span></code> input value to <code class="docutils literal notranslate"><span class="pre">0</span></code>
+unless the DLL controller is used and sets the value,
+so using this feature may require a code change.</p>
+<p>For each AoA, you must set the AoA (in degrees), <code class="docutils literal notranslate"><span class="pre">alpha</span></code>, the lift-force
+coefficient, <code class="docutils literal notranslate"><span class="pre">Coefs</span></code>(:,1), the drag-force coefficient,
+<code class="docutils literal notranslate"><span class="pre">Coefs(:,2)</span></code>, and optionally the pitching-moment coefficient,
+<code class="docutils literal notranslate"><span class="pre">Coefs(:,3)</span></code>, and minimum pressure coefficient,
+<code class="docutils literal notranslate"><span class="pre">Coefs(:,4)</span></code>, but the column order depends on the settings of
+<code class="docutils literal notranslate"><span class="pre">InCol_Alfa</span></code>, <code class="docutils literal notranslate"><span class="pre">InCol_Cl</span></code>, <code class="docutils literal notranslate"><span class="pre">InCol_Cd</span></code>, <code class="docutils literal notranslate"><span class="pre">InCol_Cm</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">InCol_Cpmin</span></code> in the AIRFOIL INFORMATION section of the AeroDyn
+primary input file. AoA must be entered in monotonically increasing
+order—from lowest to highest AoA; the first row should be for AoA =
+–180 degrees and the last should be for AoA = +180 (unless <code class="docutils literal notranslate"><span class="pre">NumAlf</span> <span class="pre">=</span> <span class="pre">1</span></code>, in
+which case AoA is unused). If pitching-moment terms are neglected with
+<code class="docutils literal notranslate"><span class="pre">UseBlCm</span> <span class="pre">=</span> <span class="pre">FALSE</span></code> in the ROTOR/BLADE PROPERTIES section of the
+AeroDyn primary input file, the column containing pitching-moment
+coefficients may be absent from the file. Likewise, if the cavitation
+check is neglected with <code class="docutils literal notranslate"><span class="pre">CavitCheck</span> <span class="pre">=</span> <span class="pre">FALSE</span></code> in the GENERAL OPTIONS
+section of the AeroDyn primary input file, the column containing the
+minimum pressure coefficients may be absent from the file.</p>
+</div>
+<div class="section" id="blade-data-input-file">
+<span id="id3"></span><h3><span class="section-number">4.3.3.19.2. </span>Blade Data Input File<a class="headerlink" href="#blade-data-input-file" title="Permalink to this heading"></a></h3>
+<p>The blade data input file contains the nodal discretization, geometry,
+twist, chord, airfoil identifier, and buoyancy/added mass/fluid inertia
+properties for a blade. Separate files are used for each blade, which
+permits modeling of aerodynamic imbalances.
+A sample blade data input file is given in <a class="reference internal" href="appendix.html#ad-appendix"><span class="std std-numref">Section 4.3.11</span></a>.</p>
+<p>The input file begins with two lines of header information which is for
+your use, but is not used by the software.</p>
+<p><code class="docutils literal notranslate"><span class="pre">NumBlNds</span></code> is the user-specified number of blade analysis nodes and
+determines the number of rows in the subsequent table (after two table
+header lines). <code class="docutils literal notranslate"><span class="pre">NumBlNds</span></code> must be greater than or equal to two; the
+higher the number, the finer the resolution and longer the computational
+time; we recommend that <code class="docutils literal notranslate"><span class="pre">NumBlNds</span></code> be between 10 and 20 to balance
+accuracy with computational expense. Even though <code class="docutils literal notranslate"><span class="pre">NumBlNds</span></code> is
+defined in each blade file, all blades must have the same number of
+nodes. For each node:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">BlSpn</span></code> specifies the local span of the blade node along the
+(possibly preconed) blade-pitch axis from the root; <code class="docutils literal notranslate"><span class="pre">BlSpn</span></code> must
+be entered in monotonically increasing order—from the most inboard to
+the most outboard—and the first node must be zero, and when AeroDyn
+is coupled to OpenFAST, the last node should be located at the blade tip;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BlCrvAC</span></code> specifies the local out-of-plane offset (when the
+blade-pitch angle is zero) of the aerodynamic center (reference point
+for the airfoil lift and drag forces), normal to the blade-pitch
+axis, as a result of blade curvature; <code class="docutils literal notranslate"><span class="pre">BlCrvAC</span></code> is positive
+downwind; upwind turbines have negative <code class="docutils literal notranslate"><span class="pre">BlCrvAC</span></code> for improved
+tower clearance;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BlSwpAC</span></code> specifies the local in-plane offset (when the
+blade-pitch angle is zero) of the aerodynamic center (reference point
+for the airfoil lift and drag forces), normal to the blade-pitch
+axis, as a result of blade sweep; positive <code class="docutils literal notranslate"><span class="pre">BlSwpAC</span></code> is opposite
+the direction of rotation;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BlCrvAng</span></code> specifies the local angle (in degrees) from the
+blade-pitch axis of a vector normal to the plane of the airfoil, as a
+result of blade out-of-plane curvature (when the blade-pitch angle is
+zero); <code class="docutils literal notranslate"><span class="pre">BlCrvAng</span></code> is positive downwind; upwind turbines have
+negative <code class="docutils literal notranslate"><span class="pre">BlCrvAng</span></code> for improved tower clearance;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BlTwist</span></code> specifies the local aerodynamic twist angle (in
+degrees) of the airfoil; it is the orientation of the local chord
+about the vector normal to the plane of the airfoil, positive to
+feather, leading edge upwind; the blade-pitch angle will be added to
+the local twist;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BlChord</span></code> specifies the local chord length;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BlAFID</span></code> specifies which airfoil data the local blade node is
+associated with; valid values are numbers between 1 and
+<code class="docutils literal notranslate"><span class="pre">NumAFfiles</span></code> (corresponding to a row number in the airfoil file
+table in the AeroDyn primary input file); multiple blade nodes can
+use the same airfoil data;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">t_c</span></code> specifies the blade thickness-to-chord ratio, used to calculate the
+reference cross-sectional area for added mass and fluid inertia loads, cannot be less than 0;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BlCb</span></code> specifies the blade buoyancy coefficient, defined as the local
+cross-sectional area of the blade divided by the area of a circle with
+diameter equal to <code class="docutils literal notranslate"><span class="pre">BlChord</span></code>; to neglect buoyant loads on the blade,
+set <code class="docutils literal notranslate"><span class="pre">BlCb</span></code> to 0; since the blades and hub are joined elements,
+blade buoyancy should be included if hub buoyancy is included, and vice versa;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BlCenBn</span></code> specifies the offset of the blade center of buoyancy from the
+aerodynamic center in the direction normal to the chord (positive pointing
+toward the suction side of the blade);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BlCenBt</span></code> specifies the offset of the blade center of buoyancy from the
+aerodynamic center in the direction tangential to the chord
+(positive pointing toward the trailing edge of the blade);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BlCpn</span></code> specifies the blade normal-to-chord dynamic pressure coefficient;
+to neglect normal-to-chord fluid inertia loads on the blade, set <code class="docutils literal notranslate"><span class="pre">BlCpn</span></code> to 0;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BlCpt</span></code> specifies the blade tangential-to-chord dynamic pressure coefficient;
+to neglect tangential-to-chord fluid inertia loads on the blade, set <code class="docutils literal notranslate"><span class="pre">BlCpt</span></code> to 0;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BlCan</span></code> specifies the blade normal-to-chord added mass coefficient, cannot be less than 0;
+to neglect normal-to-chord added mass loads on the blade, set <code class="docutils literal notranslate"><span class="pre">BlCan</span></code> to 0;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BlCat</span></code> specifies the blade tangential-to-chord added mass coefficient, cannot be less than 0;
+to neglect tangential-to-chord added mass loads on the blade, set <code class="docutils literal notranslate"><span class="pre">BlCat</span></code> to 0; and</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BlCam</span></code> specifies the blade pitch added mass coefficient, cannot be less than 0;
+to neglect pitch added mass loads on the blade, set <code class="docutils literal notranslate"><span class="pre">BlCam</span></code> to 0.</p></li>
+</ul>
+<p>See <a class="reference internal" href="#ad-blade-geom"><span class="std std-numref">Fig. 4.6</span></a>. Twist is shown in <a class="reference internal" href="coordsys.html#ad-blade-local-cs"><span class="std std-numref">Fig. 4.4</span></a> of <a class="reference internal" href="appendix.html#ad-appendix"><span class="std std-numref">Section 4.3.11</span></a>.</p>
+<div class="figure align-center" id="id6">
+<span id="ad-blade-geom"></span><a class="reference internal image-reference" href="../../../_images/aerodyn_blade_geom.png"><img alt="aerodyn_blade_geom.png" src="../../../_images/aerodyn_blade_geom.png" style="width: 90%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.6 </span><span class="caption-text">AeroDyn Blade Geometry – Left: Side View; Right: Front View (Looking Downwind)</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</div>
+</div>
+<div class="section" id="tail-fin-input-file">
+<span id="tf-tf-input-file"></span><h3><span class="section-number">4.3.3.19.3. </span>Tail fin input file<a class="headerlink" href="#tail-fin-input-file" title="Permalink to this heading"></a></h3>
+<p>An example of tail fin input file is given below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-------</span> <span class="n">TAIL</span> <span class="n">FIN</span> <span class="n">AERODYNAMICS</span> <span class="n">INPUT</span> <span class="n">FILE</span><span class="o">--------------------------------------------</span>
+<span class="n">Comment</span>
+<span class="o">======</span>  <span class="n">General</span> <span class="n">inputs</span> <span class="o">=============================================================</span>
+<span class="mi">1</span>         <span class="n">TFinMod</span>     <span class="o">-</span> <span class="n">Tail</span> <span class="n">fin</span> <span class="n">aerodynamics</span> <span class="n">model</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="n">none</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="n">polar</span><span class="o">-</span><span class="n">based</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="n">USB</span><span class="o">-</span><span class="n">based</span><span class="p">}</span> <span class="p">(</span><span class="n">switch</span><span class="p">)</span>
+<span class="mf">0.3</span>       <span class="n">TFinArea</span>    <span class="o">-</span> <span class="n">Tail</span> <span class="n">fin</span> <span class="n">planform</span> <span class="n">area</span> <span class="p">(</span><span class="n">m</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span>
+<span class="mf">10.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span> <span class="n">TFinRefP_n</span>  <span class="o">-</span> <span class="n">Undeflected</span> <span class="n">position</span> <span class="n">of</span> <span class="n">the</span> <span class="n">tail</span> <span class="n">fin</span> <span class="n">reference</span> <span class="n">point</span> <span class="n">wrt</span> <span class="n">the</span> <span class="n">tower</span> <span class="n">top</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span>  <span class="n">TFinAngles</span>  <span class="o">-</span> <span class="n">Tail</span> <span class="n">fin</span> <span class="n">chordline</span> <span class="n">skew</span><span class="p">,</span> <span class="n">tilt</span><span class="p">,</span> <span class="ow">and</span> <span class="n">bank</span> <span class="n">angles</span> <span class="n">about</span> <span class="n">the</span> <span class="n">reference</span> <span class="n">point</span> <span class="p">(</span><span class="n">degrees</span><span class="p">)</span>
+<span class="mi">0</span>         <span class="n">TFinIndMod</span>  <span class="o">-</span> <span class="n">Model</span> <span class="k">for</span> <span class="n">induced</span> <span class="n">velocity</span> <span class="n">calculation</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="n">none</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="n">rotor</span><span class="o">-</span><span class="n">average</span><span class="p">}</span> <span class="p">(</span><span class="n">switch</span><span class="p">)</span>
+<span class="o">======</span> <span class="n">Polar</span><span class="o">-</span><span class="n">based</span> <span class="n">model</span> <span class="o">================================</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">TFinMod</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>
+<span class="mi">1</span>         <span class="n">TFinAFID</span> <span class="o">-</span> <span class="n">Index</span> <span class="n">of</span> <span class="n">Tail</span> <span class="n">fin</span> <span class="n">airfoil</span> <span class="n">number</span> <span class="p">[</span><span class="mi">1</span> <span class="n">to</span> <span class="n">NumAFfiles</span><span class="p">]</span>
+<span class="mf">0.5</span>       <span class="n">TFinChord</span>   <span class="o">-</span> <span class="n">Tail</span> <span class="n">fin</span> <span class="n">chord</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="o">======</span> <span class="n">Unsteady</span> <span class="n">slender</span> <span class="n">body</span> <span class="n">model</span>  <span class="o">=====================</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">TFinMod</span><span class="o">=</span><span class="mi">2</span><span class="p">]</span>
+<span class="mf">0.9</span>           <span class="n">TFinKp</span>        <span class="o">-</span> <span class="n">Tail</span> <span class="n">fin</span> <span class="n">potential</span> <span class="n">flow</span> <span class="n">coefficient</span> <span class="p">(</span><span class="o">-</span><span class="p">)</span>
+<span class="mf">0.3</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.1</span>   <span class="n">TFinSigma</span>     <span class="o">-</span> <span class="n">Tail</span> <span class="n">fin</span> <span class="n">empirical</span> <span class="n">constant</span> <span class="k">for</span> <span class="n">vortex</span> <span class="n">separation</span> <span class="n">functions</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">deg</span><span class="p">)</span>
+<span class="mi">40</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="mi">60</span>      <span class="n">TFinAStar</span>     <span class="o">-</span> <span class="n">Tail</span> <span class="n">fin</span> <span class="n">initial</span> <span class="n">angles</span> <span class="k">for</span> <span class="n">vortex</span> <span class="n">separation</span> <span class="n">functions</span> <span class="p">(</span><span class="n">deg</span><span class="p">)</span>
+<span class="mf">3.1416</span>        <span class="n">TFinKv</span>        <span class="o">-</span> <span class="n">Tail</span> <span class="n">fin</span> <span class="n">vortex</span> <span class="n">lift</span> <span class="n">coefficient</span> <span class="p">(</span><span class="o">-</span><span class="p">)</span>
+<span class="mf">1.3</span>           <span class="n">TFinCDc</span>       <span class="o">-</span> <span class="n">Tail</span> <span class="n">fin</span> <span class="n">drag</span> <span class="n">coefficient</span> <span class="p">(</span><span class="o">-</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="general-inputs">
+<h2><span class="section-number">4.3.3.20. </span>General inputs<a class="headerlink" href="#general-inputs" title="Permalink to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">TFinMod</span></code> is a switch to select a model for the tail fin aerodynamics:
+0) none (the aerodynamic forces are zero), 1) polar-based, 2) USB-based (see <a class="reference internal" href="theory_tailfin.html#tf-aerotheory"><span class="std std-numref">Section 4.3.9</span></a>).
+(switch)</p>
+<p><code class="docutils literal notranslate"><span class="pre">TFinArea</span></code> is the area of the tail fin. (m^2)
+This is the plan form area of the tail fin plate used to relate the local dynamic pressure and airfoil
+coefficients to aerodynamic loads. This value must not be negative and is only used when
+TFinMod is set to 1. (m^2)</p>
+<p><code class="docutils literal notranslate"><span class="pre">TFinRefP_n</span></code> is the undeflected position (<span class="math notranslate nohighlight">\(x_{\text{ref},x_n},x_{\text{ref},y_n}, x_{\text{ref},z_n}\)</span>) of the tail fin from the tower top in nacelle coordinates.
+(formerly defined using <code class="docutils literal notranslate"><span class="pre">TFinCPxn</span></code>,  <code class="docutils literal notranslate"><span class="pre">TFinCPyn</span></code>, <code class="docutils literal notranslate"><span class="pre">TFinCPzn</span></code>).
+The distances defines the configuration for a furl angle of zero.
+For a typical upwind wind turbine,
+<span class="math notranslate nohighlight">\(x_n\)</span>, is positive downwind,
+<span class="math notranslate nohighlight">\(y_n\)</span>, is positive to the left when looking downwind, and
+<span class="math notranslate nohighlight">\(z_n\)</span>, is positive upward when looking downwind.
+See <a class="reference internal" href="../elastodyn/coordsys.html#figtfgeom"><span class="std std-numref">Fig. 4.48</span></a> and <a class="reference internal" href="theory_tailfin.html#figtfcoord1"><span class="std std-numref">Fig. 4.10</span></a>.
+(m)</p>
+<p><code class="docutils literal notranslate"><span class="pre">TFinAngles</span></code> are the angles (<span class="math notranslate nohighlight">\(\theta_\text{skew},\theta_\text{tilt}, \theta_\text{bank}\)</span>) of the tail fin
+(formerly defined as <code class="docutils literal notranslate"><span class="pre">TFinSkew</span></code>, <code class="docutils literal notranslate"><span class="pre">TFinTilt</span></code>, <code class="docutils literal notranslate"><span class="pre">TFinBank</span></code>).
+See <a class="reference internal" href="../elastodyn/coordsys.html#figtfgeom"><span class="std std-numref">Fig. 4.48</span></a> and <a class="reference internal" href="theory_tailfin.html#figtfcoord1"><span class="std std-numref">Fig. 4.10</span></a>.
+These angles define the chordline at a furl angle of zero, where the chordline is assumed to be passing through the reference point.
+<span class="math notranslate nohighlight">\(\theta_\text{skew}\)</span>  is the skew angle of the tail fin chordline in the nominally horizontal plane.
+Positive skew orients the nominal horizontal projection of the tail fin chordline about the <span class="math notranslate nohighlight">\(z_n\)</span>-axis.
+The aforementioned chordline is the chordline passing through the tail fin reference point.
+This value must be greater than -180 and less than or equal to 180 degrees.
+<span class="math notranslate nohighlight">\(\theta_\text{tilt}\)</span> is the tilt angle of the tail fin chordline from the nominally horizontal plane.
+This value must be between -90 and 90 degrees (inclusive).
+Positive tilt means that the trailing edge of the tail fin is higher than the leading edge.
+<span class="math notranslate nohighlight">\(\theta_\text{bank}\)</span> is the bank angle of the tail fin plane about the tail fin chordline.
+This value must be greater than -180 and less than or equal to 180 degrees.
+(deg)</p>
+<p><code class="docutils literal notranslate"><span class="pre">TFinIndMod</span></code>
+Switch to select a model for the calculation of the velocity induced by the rotor and its wake on the tailfin (not the induced velocity from the tailfin wing).
+The options available are:
+0) none (the induced velocity is zero)
+1) rotor-average (using the average induced velocity across all blades and blade nodes)
+(see <a class="reference internal" href="theory_tailfin.html#tf-aerotheory"><span class="std std-numref">Section 4.3.9</span></a>). (switch)</p>
+</div>
+<div class="section" id="polar-based-model-inputs">
+<h2><span class="section-number">4.3.3.21. </span>Polar-based model inputs<a class="headerlink" href="#polar-based-model-inputs" title="Permalink to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">TFinAFID</span></code>
+This integer tells AeroDyn which of the input airfoil files (<code class="docutils literal notranslate"><span class="pre">AFNames</span></code>) is assigned to the tail fin. For
+instance, a value of 2 means that the tail fin will use <code class="docutils literal notranslate"><span class="pre">AFNames(2)</span></code> for the local tail fin airfoil.
+This value must be
+between 1 and <code class="docutils literal notranslate"><span class="pre">NumAFfiles</span></code> and is only used when TFinMod is set to 1. (-)</p>
+</div>
+<div class="section" id="unsteady-slender-body-usb-model-inputs">
+<h2><span class="section-number">4.3.3.22. </span>Unsteady slender body (USB) model inputs<a class="headerlink" href="#unsteady-slender-body-usb-model-inputs" title="Permalink to this heading"></a></h2>
+<p>Refer to <a class="reference internal" href="theory_tailfin.html#tf-aerotheory"><span class="std std-numref">Section 4.3.9</span></a> and <span id="id4">[<a class="reference internal" href="zrefs.html#id14" title="Mohamed M Hammam, David Wood, and Brent Summerville. Modeling the yaw behavior of tail fins for small wind turbines: november 22, 2021-may 21, 2024. Technical Report, National Renewable Energy Laboratory (NREL), Golden, CO (United States), 2023.">ad-HWS23</a>]</span> for guidance on how to select parameters for the unsteady slender body theory based model.</p>
+<p><code class="docutils literal notranslate"><span class="pre">TFinKp</span></code>
+Potential lift coefficient for unsteady aerodynamics. <code class="docutils literal notranslate"><span class="pre">TFinKp</span></code> is used to calculate the potential flow contribution to the unsteady aerodynamic force on the tail fin.</p>
+<p><code class="docutils literal notranslate"><span class="pre">TFinSigma</span></code>
+Tail fin empirical constants characterizing the decay of separation functions used in the unsteady aerodynamic model. The separation functions and their dependence on <code class="docutils literal notranslate"><span class="pre">TFinSigma</span></code> are described in <a class="reference internal" href="theory_tailfin.html#tf-aerotheory"><span class="std std-numref">Section 4.3.9</span></a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">TFinAStar</span></code>
+Tail fin characteristics angles for separation functions used in the unsteady aerodynamic model. The separation functions and their dependence on <code class="docutils literal notranslate"><span class="pre">TFinAStar</span></code> are described in <a class="reference internal" href="theory_tailfin.html#tf-aerotheory"><span class="std std-numref">Section 4.3.9</span></a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">TFinKv</span></code>
+Vortex lift coefficient for unsteady aerodynamics. <code class="docutils literal notranslate"><span class="pre">TFinKv</span></code> is used to calculate the vortex flow contribution to the unsteady aerodynamic force on the tail fin.</p>
+<p><code class="docutils literal notranslate"><span class="pre">TFinCDc</span></code>
+Tail fin drag coefficient used for unsteady aerodynamic model. The drag on the tail fin significantly contributes to the normal force at high yaw angles.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="coordsys.html" class="btn btn-neutral float-left" title="4.3.2. Coordinate systems" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="output.html" class="btn btn-neutral float-right" title="4.3.4. Output Files" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

@@ -1,0 +1,526 @@
+<!DOCTYPE html><html class="writer-html5" lang="ko"><head><!-- Modified 2026-11-08: unofficial Korean machine translation of OpenFAST 5.0.0. Equations, code, figures, input values and attribution retained. -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.9.3. 이론 - OpenFAST v5.0.0 문서</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../../../genindex.html">
+    <link rel="search" title="검색" href="../../../search.html">
+    <link rel="next" title="4.9.4. 참고문헌" href="zrefs.html">
+    <link rel="prev" title="4.9.2. 입력 파일" href="input_files.html"> 
+<link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/extptfm/theory.html"></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+          </a>
+              <div class="version">5.0 · 한국어</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="문서 검색" aria-label="문서 검색">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.9. ExtPtfm</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="usage.html">4.9.1. 사용법</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input_files.html">4.9.2. 입력 파일</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.9.3. 이론</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#reduction-of-the-equations-of-motion">4.9.3.1. 운동 방정식의 감소</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#coupling-with-another-structure">4.9.3.2. 다른 구조와의 결합</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#state-space-representation-of-the-module-extptfm">4.9.3.3. 모듈의 상태공간 표현 <em>ExtPtfm</em></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.9.4. 참고문헌</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.9.5. 예제 파일</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. 단순화 ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. 구조 제어</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. 추가 모듈 문서</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC 서브루틴 라이브러리</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+</ul>
+
+        <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="페이지 탐색">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.9. </span>ExtPtfm</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.9.3. </span>이론</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/extptfm/theory.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+      </li>
+  </ul>
+  <hr>
+</div><aside class="ko-notice" aria-label="한국어 번역 안내"><strong>한국어 자동번역</strong> · OpenFAST v5.0.0 · 2026-11-08 기준<br>비공식 번역본입니다. 수식·명령어·입력 변수와 첨부자료는 원문을 보존합니다. <a href="https://openfast.readthedocs.io/en/main/source/user/extptfm/theory.html" target="_blank" rel="noopener noreferrer" lang="en">영문 원문 대조 ↗</a></aside>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="theory">
+<span id="ep-theory"></span><h1><span class="section-number">4.9.3. </span>이론<a class="headerlink" href="#theory" title="이 제목의 고유 링크"></a></h1>
+<p>이 섹션에서는 ExtPtfm 모듈 뒤에 있는 이론에 중점을 둡니다. 이론은 다음 기사에 게재되었습니다. <span id="id1">[<a class="reference internal" href="zrefs.html#id2" title="E. Branlard, M. Shields, B. Anderson, R. Damiani, F. Wendt, J. Jonkman, W. Musial 및 B. Foley. OpenFAST에서 순차적 부하 계산을 위한 하위 구조의 상위 요소 감소. 물리학 저널: 컨퍼런스 시리즈, 1452:012033, 2020년 1월. URL: https://doi.org/10.1088/1742-6596/1452/1/012033, doi:10.1088/1742-6596/1452/1/012033.">ep-BSA+20</a>]</span>
+(<a class="reference external" href="https://iopscience.iop.org/article/10.1088/1742-6596/1452/1/012033" target="_blank" rel="noopener noreferrer">액세스 기사는 여기에서 확인하세요.</a>)는 이 문서를 참조하는 데 사용될 수 있습니다.</p>
+<p>ExtPtfm은 Craig-Bampton(C-B) 방법을 통한 동적 시스템 감소에 의존합니다. <span id="id2">[<a class="reference internal" href="zrefs.html#id3" title="R. Craig 및 M. Bampton. 동적 해석을 위한 하위 구조의 결합. AIAA저널, 6(7):1313-1319, 1968.">ep-CB68</a>]</span>.</p>
+<div class="section" id="reduction-of-the-equations-of-motion">
+<h2><span class="section-number">4.9.3.1. </span>운동방정식의 축소<a class="headerlink" href="#reduction-of-the-equations-of-motion" title="이 제목의 고유 링크"></a></h2>
+<p>구조의 역학은 다음과 같이 정의됩니다.
+<span class="math notranslate nohighlight">\(\boldsymbol{M}\boldsymbol{\ddot{x}}+\boldsymbol{C}\boldsymbol{\dot{x}}+\boldsymbol{K}\boldsymbol{x}=\boldsymbol{f}\)</span>, 여기서 <span class="math notranslate nohighlight">\(\boldsymbol{M}\)</span>, <span class="math notranslate nohighlight">\(\boldsymbol{C}\)</span>,
+<span class="math notranslate nohighlight">\(\boldsymbol{K}\)</span> 는 질량, 감쇠 및 강성 행렬입니다.
+<span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> 는 DOF의 벡터입니다. 그리고 <span class="math notranslate nohighlight">\(\boldsymbol{f}\)</span>
+는 DOF에 작용하는 하중의 벡터입니다. 이 방정식 시스템은 일반적으로 상용 소프트웨어에 의해 지지 구조에 대해 설정됩니다. 재킷 하부 구조의 일반적인 DOF 수는 약 <span class="math notranslate nohighlight">\(10^3\)</span> 에
+액추에이터 라인 애플리케이션용
+<span class="math notranslate nohighlight">\(10^4\)</span>. DOF는 먼저 분할되어 아래 첨자로 레이블이 지정된 리더 및 팔로어 DOF 세트로 재배열됩니다. <span class="math notranslate nohighlight">\(l\)</span> 및
+<span class="math notranslate nohighlight">\(f\)</span>각각. 하부구조의 경우, 하부구조와 타워 사이의 경계점의 3개의 병진 및 회전에 해당하는 6개의 자유도가 리더 DOF로 선택됩니다. 시스템 행렬의 대칭을 가정하면 재배열된 운동 방정식은 다음과 같습니다.</p>
+<div class="math notranslate nohighlight" id="equation-reductiongeneraleq">
+<span class="eqno">(4.178)<a class="headerlink" href="#equation-reductiongeneraleq" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}\begin{aligned}
+    \begin{bmatrix}
+        \boldsymbol{M}_{{\ell\!\ell}}   &amp; \boldsymbol{M}_{{\ell\!f}} \\
+        \boldsymbol{M}_{{\ell\!f}}^t &amp; \boldsymbol{M}_{{\!f\!f}} \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        \boldsymbol{\ddot{x}}_{\ell}\\
+        \boldsymbol{\ddot{x}}_{\!f}\\
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+        \boldsymbol{C}_{{\ell\!\ell}}   &amp; \boldsymbol{C}_{{\ell\!f}} \\
+        \boldsymbol{C}_{{\ell\!f}}^t &amp; \boldsymbol{C}_{{\!f\!f}} \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        \boldsymbol{\dot{x}}_{\ell}\\
+        \boldsymbol{\dot{x}}_{\!f}\\
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+        \boldsymbol{K}_{{\ell\!\ell}}   &amp; \boldsymbol{K}_{{\ell\!f}} \\
+        \boldsymbol{K}_{{\ell\!f}}^t &amp; \boldsymbol{K}_{{\!f\!f}} \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        \boldsymbol{x}_{\ell}\\
+        \boldsymbol{x}_{\!f}\\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        \boldsymbol{f}_{\ell}\\
+        \boldsymbol{f}_{\!f}\\
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>CB 감소는 종동체의 운동이 두 부분으로 구성되어 있다고 가정합니다. (1) 종동체의 관성과 외부 힘을 무시한 경우 리더 DOF의 운동에 응답하여 발생하는 탄성 운동; (2) 내부 DOF를 직접 자극하는 외부 힘으로 인해 발생하는 내부 운동. 첫 번째 부분은 Eq. <a class="reference internal" href="#equation-reductiongeneraleq">(4.178)</a>
+는 정적을 가정하고 다음을 해결하여 <span class="math notranslate nohighlight">\(\boldsymbol{x}_{\!f}\)</span>, 다음으로 연결됩니다.</p>
+<div class="math notranslate nohighlight" id="equation-followmotion">
+<span class="eqno">(4.179)<a class="headerlink" href="#equation-followmotion" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{aligned}
+    \boldsymbol{x}_{{\!f},\text{Guyan}}
+    =  -\boldsymbol{K}_{{\!f\!f}}^{-1} \boldsymbol{K}_{{\ell\!f}}^t\,  \boldsymbol{x}_{{\ell},\text{Guyan}}
+    =  \boldsymbol{\Phi}_1  \boldsymbol{x}_{{\ell},\text{Guyan}}
+    ,\quad
+        \text{where}
+    \quad
+\boldsymbol{\Phi}_1 =-\boldsymbol{K}_{{\!f\!f}}^{-1} \boldsymbol{K}_{{\ell\!f}}^t
+\end{aligned}\]</div>
+<p>Eq. <a class="reference internal" href="#equation-followmotion">(4.179)</a> 는 Guyan 감소를 가정하여 리더 모션의 함수로 추종자 모션을 제공합니다.&nbsp;<span id="id3">[<a class="reference internal" href="zrefs.html#id4" title="R. 가이안. 강성과 질량 매트릭스가 감소합니다. AIAA 저널, 3:380, 1965.">ep-Guy65</a>]</span>.</p>
+<p>CB 방법은 종동자 DOF의 고립되고 감쇠되지 않은 고유값 문제를 추가로 고려합니다.
+<span class="math notranslate nohighlight">\(\left(\boldsymbol{K}_{{\!f\!f}}-\nu_i^2 \boldsymbol{M}_{\text{ff}}\right) \boldsymbol{\phi}_i=0\)</span>
+여기서 <span class="math notranslate nohighlight">\(\nu_i\)</span> 및 <span class="math notranslate nohighlight">\(\boldsymbol{\phi}_i\)</span> 는
+<span class="math notranslate nohighlight">\(i^{th}\)</span> 각주파수 및 모드 형상 각각; 이 문제는 본질적으로 리더 DOF가 고정되어 있다고 가정하기 때문에 "제약"됩니다(즉, 0). 다음 방법은 다음을 선택합니다. <span class="math notranslate nohighlight">\(n_\text{CB}\)</span>
+모드 모양은 이를 행렬에 열 벡터로 수집합니다.
+<span class="math notranslate nohighlight">\(\boldsymbol{\Phi}_2\)</span>. 이러한 모드 형상은 가장 낮은 주파수를 갖는 모드 형상 또는 저주파 및 고주파 모드 형상의 혼합으로 선택할 수 있습니다. 일반적으로, <span class="math notranslate nohighlight">\(n_\text{CB}\)</span> 는 원래 DOF 수보다 몇 배 더 작습니다. <span class="math notranslate nohighlight">\(\sim10^3\)</span> DOF 에
+풍력터빈 하부 구조용 <span class="math notranslate nohighlight">\(\sim 20\)</span> 모드. 모드의 스케일링은 다음과 같이 선택됩니다.
+<span class="math notranslate nohighlight">\(\boldsymbol{\Phi}_2^t\boldsymbol{M}_{{\!f\!f}}\boldsymbol{\Phi}_2 = \boldsymbol{I}\)</span>, 여기서 <span class="math notranslate nohighlight">\(\boldsymbol{I}\)</span> 는 단위 행렬입니다. 효과적으로 CB 방식은 전체 세트에서 좌표 변경을 수행하며,
+<span class="math notranslate nohighlight">\(\boldsymbol{x}=[\boldsymbol{x}_l\ \boldsymbol{x}_{\!f}]^t\)</span>, 축소 세트로,
+<span class="math notranslate nohighlight">\(\boldsymbol{x}_r=[\boldsymbol{x}_{r1}\ \boldsymbol{x}_{r2}]^t\)</span>, 여기서 <span class="math notranslate nohighlight">\(\boldsymbol{x}_{r1}\)</span> 는 리더 DOF에 직접적으로 대응되는 반면, <span class="math notranslate nohighlight">\(\boldsymbol{x}_{r2}\)</span> 는 선택된 각 모드 형상의 진폭을 정의하는 모달 좌표입니다. 변수 변경은 공식적으로 다음과 같이 작성됩니다.</p>
+<div class="math notranslate nohighlight" id="equation-craigbampton">
+<span class="eqno">(4.180)<a class="headerlink" href="#equation-craigbampton" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}\begin{aligned}
+    \begin{bmatrix}
+    \boldsymbol{x}_l \\
+    \boldsymbol{x}_{\!f}\\
+    \end{bmatrix}
+    \approx
+    \begin{bmatrix}
+        \boldsymbol{I} &amp; \boldsymbol{0} \\
+        \boldsymbol{\Phi}_1 &amp; \boldsymbol{\Phi}_2\\
+    \end{bmatrix}
+    \begin{bmatrix}
+        \boldsymbol{x}_{r1}\\
+        \boldsymbol{x}_{r2}\\
+    \end{bmatrix}
+    \quad\Leftrightarrow \quad
+    \boldsymbol{x}\approx \boldsymbol{T} \boldsymbol{x}_r
+        ,
+    \quad
+\text{with}
+    \quad
+    \boldsymbol{T}=
+    \begin{bmatrix}
+        \boldsymbol{I} &amp; \boldsymbol{0} \\
+        \boldsymbol{\Phi}_1 &amp; \boldsymbol{\Phi}_2\\
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>운동 방정식은 변환을 통해 다음 좌표로 다시 작성됩니다.
+<span class="math notranslate nohighlight">\(\boldsymbol{M}_r =\boldsymbol{T}^t \boldsymbol{M} \boldsymbol{T}\)</span>,
+<span class="math notranslate nohighlight">\(\boldsymbol{K}_r =\boldsymbol{T}^t \boldsymbol{K} \boldsymbol{T}\)</span>,
+<span class="math notranslate nohighlight">\(\boldsymbol{f}_r =\boldsymbol{T}^t \boldsymbol{f}\)</span>로 이어지는
+<span class="math notranslate nohighlight">\(\boldsymbol{M}_r \boldsymbol{\ddot{x}}_r + \boldsymbol{K_r}\boldsymbol{x}_r=\boldsymbol{f}_r\)</span>는 다음과 같이 개발된 형식으로 작성됩니다.</p>
+<div class="math notranslate nohighlight" id="equation-cbloadsreduction">
+<span class="eqno">(4.181)<a class="headerlink" href="#equation-cbloadsreduction" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}\begin{aligned}
+    &amp;
+        \qquad
+        \qquad
+        \begin{bmatrix}
+        \boldsymbol{M}_{r11} &amp; \boldsymbol{M}_{r12} \\
+        \boldsymbol{M}_{r12}^t &amp; \boldsymbol{M}_{r22} \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        \boldsymbol{\ddot{x}}_{r1}\\
+        \boldsymbol{\ddot{x}}_{r2}\\
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+        \boldsymbol{K}_{r11} &amp; \boldsymbol{0} \\
+    \boldsymbol{0} &amp; \boldsymbol{K}_{r22} \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        \boldsymbol{x}_{r1}\\
+        \boldsymbol{x}_{r2}\\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        \boldsymbol{f}_{r1}\\
+        \boldsymbol{f}_{r2}\\
+    \end{bmatrix}
+    \label{eq:CraigBampton}
+\end{aligned}\end{split}\]</div>
+<p>포함</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+   &amp; \boldsymbol{M}_{r11} = \boldsymbol{M}_{{\ell\!\ell}}
+                  + \boldsymbol{\Phi}_\text{1}^t \boldsymbol{M}_{f\!\ell}
+                  + \boldsymbol{M}_{\ell\!f}\boldsymbol{\Phi}_\text{1}
+                  + \boldsymbol{\Phi}_\text{1}^t \boldsymbol{M}_{\!f\!f}\boldsymbol{\Phi}_{1}
+,\qquad
+    \boldsymbol{M}_{r22}=\boldsymbol{\Phi}_2^t\boldsymbol{M}_{\!f\!f}\boldsymbol{\Phi}_2 =\boldsymbol{I}
+\nonumber
+\\
+   &amp; \boldsymbol{M}_{r12} = \left(\boldsymbol{M}_{\ell\!f}+ \boldsymbol{\Phi}_\text{1}^t \boldsymbol{M}_{\!f\!f}\right)\boldsymbol{\Phi}_2
+,\qquad
+    \boldsymbol{f}_{r2} = \boldsymbol{\Phi}_2^t \boldsymbol{f}_{\!f}
+,\qquad
+    \boldsymbol{f}_{r1} = \boldsymbol{f}_{\ell}+\boldsymbol{\Phi}_1^t \boldsymbol{f}_{\!f}
+\nonumber
+\\
+   &amp; \boldsymbol{K}_{r11} = \boldsymbol{K}_{{\ell\!\ell}} + \boldsymbol{K}_{\ell\!f}\boldsymbol{\Phi}_1
+,\qquad
+    \boldsymbol{K}_{r22}=\boldsymbol{\Phi}_2^t\boldsymbol{K}_{\!f\!f}\boldsymbol{\Phi}_2
+    \nonumber
+\end{aligned}\end{split}\]</div>
+<p>감소된 감쇠 행렬에 대한 표현식은,
+<span class="math notranslate nohighlight">\(\boldsymbol{C}_r=\boldsymbol{T}^t \boldsymbol{C} \boldsymbol{T}\)</span>는 다음을 제외하면 질량 행렬의 행렬과 유사합니다.
+<span class="math notranslate nohighlight">\(\boldsymbol{C}_{r22}\)</span> 는 단위 행렬과 동일하지 않습니다. 일부 도구나 실무자는 감소된 감쇠 행렬을 계산하지 않고 대신 감소된 질량 및 강성 행렬을 사용하여 레일리 감쇠 가정을 기반으로 이를 설정할 수 있습니다. 설정
+<span class="math notranslate nohighlight">\(\boldsymbol{\Phi}_2\equiv 0\)</span> . <a class="reference internal" href="#equation-craigbampton">(4.180)</a>또는 이에 상응하는
+<span class="math notranslate nohighlight">\(n_\text{CB}\equiv 0\)</span>는 Guyan 감소 방정식으로 이어집니다.</p>
+</div>
+<div class="section" id="coupling-with-another-structure">
+<h2><span class="section-number">4.9.3.2. </span>다른 구조와의 결합<a class="headerlink" href="#coupling-with-another-structure" title="이 제목의 고유 링크"></a></h2>
+<p>이 섹션에서는 슈퍼요소가 다른 구조에 결합될 때 운동 방정식이 어떻게 설정되는지 보여줍니다. 아래에 제시된 모듈식 접근 방식은 OpenFAST에서 구현된 접근 방식입니다. 여기서 초요소는 하부 구조(및 기초)를 나타내는 것으로 가정하지만 풍력터빈의 다른 부분, 특히 전체 지지 구조에 적용될 수도 있습니다. 단순화를 위해 여기서는 모든 하위 구조 리더 DOF가 구조의 나머지 부분과 인터페이스를 갖고 있다고 가정합니다. 인터페이스 DOF는 인덱스로 표시됩니다. <span class="math notranslate nohighlight">\(1\)</span>, 하위 구조 내부 DOF를 색인으로 <span class="math notranslate nohighlight">\(2\)</span>, 나머지 DOF에는 레이블이 지정되어 있습니다.
+이전 단락에서 사용된 <span class="math notranslate nohighlight">\(0\)</span>. 아래첨자 <span class="math notranslate nohighlight">\(r\)</span> 는 DOF에 대해서는 삭제되었지만 행렬에 대해서는 유지되었습니다. 이 라벨링을 통해 시스템은 <span class="math notranslate nohighlight">\(0\text{--}1\)</span> 는 타워와 로터 나셀 어셈블리, 시스템으로 구성됩니다. <span class="math notranslate nohighlight">\(1\text{--}2\)</span> 는 하위 구조이고, 벡터는, <span class="math notranslate nohighlight">\(\boldsymbol{x}_1\)</span>는 전환 부분 상단의 6개 자유도입니다. 방정식을 단순화하기 위해 감쇠 항은 생략되었지만 포함 방법은 간단합니다. 다음에는 운동 방정식을 설정하는 두 가지 방법인 모놀리식 또는 모듈식 접근 방식이 제시됩니다(예: <span id="id4">[<a class="reference internal" href="zrefs.html#id2" title="E. Branlard, M. Shields, B. Anderson, R. Damiani, F. Wendt, J. Jonkman, W. Musial 및 B. Foley. OpenFAST에서 순차적 부하 계산을 위한 하위 구조의 상위 요소 감소. 물리학 저널: 컨퍼런스 시리즈, 1452:012033, 2020년 1월. URL: https://doi.org/10.1088/1742-6596/1452/1/012033, doi:10.1088/1742-6596/1452/1/012033.">ep-BSA+20</a>]</span>).</p>
+<p><strong>모놀리식 접근 방식</strong>:</p>
+<p>이 접근 방식에서는 전체 방정식 시스템이 하나의 상태 벡터로 수집된 모든 DOF를 사용하여 해결됩니다. 방정식 시스템은 다양한 하위 시스템의 개별 질량 및 강성 행렬을 조합하여 얻습니다. 방정식을 사용하여. <a class="reference internal" href="#equation-craigbampton">(4.180)</a>, 모놀리식 형식으로 작성된 시스템의 운동 방정식은 다음과 같습니다.</p>
+<div class="math notranslate nohighlight" id="equation-monolith">
+<span class="eqno">(4.182)<a class="headerlink" href="#equation-monolith" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}\begin{aligned}
+    \begin{bmatrix}
+        \boldsymbol{M}_{00} &amp; \boldsymbol{M}_{01}             &amp; \boldsymbol{0}       \\
+                   &amp; \boldsymbol{M}_{11}+\boldsymbol{M}_{r11} &amp; \boldsymbol{M}_{r12} \\
+       \text{sym} &amp;                         &amp; \boldsymbol{M}_{r22} \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        \boldsymbol{\ddot{x}}_0\\
+        \boldsymbol{\ddot{x}}_1\\
+        \boldsymbol{\ddot{x}}_2\\
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+        \boldsymbol{K}_{00}        &amp; \boldsymbol{K}_{01}  &amp;  \boldsymbol{0} \\
+                          &amp; \boldsymbol{K}_{11} + \boldsymbol{K}_{r11} &amp;  \boldsymbol{0} \\
+        \text{sym}        &amp;             &amp; \boldsymbol{K}_{r22}\\
+    \end{bmatrix}
+    \begin{bmatrix}
+        \boldsymbol{x}_0\\
+        \boldsymbol{x}_1\\
+        \boldsymbol{x}_2\\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        \boldsymbol{f}_0\\
+        \boldsymbol{f}_1 + \boldsymbol{f}_{r1}\\
+        \boldsymbol{f}_{r2}\\
+    \end{bmatrix}
+    \end{aligned}\end{split}\]</div>
+<p><strong>모듈식 접근 방식</strong>: 이 접근 방식에서는 각 하위 시스템에 대해 운동 방정식이 작성됩니다. 다른 하위 시스템과의 결합은 외부 하중 및 제약 조건(여기에서는 필요하지 않음)을 사용하여 도입됩니다. 커플링 하중 벡터
+일반적으로 3개의 힘과 3개의 모멘트로 구성된 두 시스템 사이의 <span class="math notranslate nohighlight">\(1\)</span> 는 다음과 같이 작성됩니다.
+<span class="math notranslate nohighlight">\(\boldsymbol{f}_C\)</span> . 시스템의 운동 방정식
+<span class="math notranslate nohighlight">\(0\text{--}1\)</span> 는 다음과 같습니다.</p>
+<div class="math notranslate nohighlight" id="equation-modulea">
+<span class="eqno">(4.183)<a class="headerlink" href="#equation-modulea" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}\begin{aligned}
+    \begin{bmatrix}
+        \boldsymbol{M}_{00} &amp; \boldsymbol{M}_{01} \\
+        \text{sym} &amp; \boldsymbol{M}_{11} \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        \boldsymbol{\ddot{x}}_0\\
+        \boldsymbol{\ddot{x}}_1\\
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+        \boldsymbol{K}_{00}        &amp; \boldsymbol{K}_{01} \\
+        \text{sym}        &amp; \boldsymbol{K}_{11} \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        \boldsymbol{x}_0\\
+        \boldsymbol{x}_1\\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        \boldsymbol{f}_0\\
+        \boldsymbol{f}_1\\
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+        \boldsymbol{0}\\
+        \boldsymbol{f}_{C}\\
+    \end{bmatrix}
+    \end{aligned}\end{split}\]</div>
+<p>시스템 <span class="math notranslate nohighlight">\(1-2\)</span> 는 반대 수신, <span class="math notranslate nohighlight">\(\boldsymbol{f}_C\)</span>, 시스템에서 <span class="math notranslate nohighlight">\(0-1\)</span>, 다음과 같은 시스템 방정식 세트로 이어집니다. <span class="math notranslate nohighlight">\(1\text{--}2\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-moduleb">
+<span class="eqno">(4.184)<a class="headerlink" href="#equation-moduleb" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}\begin{aligned}
+    \begin{bmatrix}
+        \boldsymbol{M}_{r11} &amp; \boldsymbol{M}_{r12} \\
+        \text{sym}  &amp; \boldsymbol{M}_{r22} \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        \boldsymbol{\ddot{x}}_1\\
+        \boldsymbol{\ddot{x}}_2\\
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+       \boldsymbol{K}_{r11} &amp; \boldsymbol{0}       \\
+       \text{sym}  &amp; \boldsymbol{K}_{r22} \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        \boldsymbol{x}_1\\
+        \boldsymbol{x}_2\\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        \boldsymbol{f}_{r1}\\
+        \boldsymbol{f}_{r2}\\
+    \end{bmatrix}
+    -
+    \begin{bmatrix}
+        \boldsymbol{f}_{C}\\
+        \boldsymbol{0}\\
+    \end{bmatrix}
+    \end{aligned}\end{split}\]</div>
+</div>
+<div class="section" id="state-space-representation-of-the-module-extptfm">
+<h2><span class="section-number">4.9.3.3. </span>모듈의 상태공간 표현 <em>ExtPtfm</em><a class="headerlink" href="#state-space-representation-of-the-module-extptfm" title="이 제목의 고유 링크"></a></h2>
+<p>다음 섹션에서는 CB 접근 방식의 구현을 자세히 설명합니다.
+고정 바닥 하부 구조를 모델링하는
+<em>ExtPtfm</em> .</p>
+<p><em>ExtPtfm</em> 는 인터페이스에서 커플링 부하를 제공합니다.
+<span class="math notranslate nohighlight">\(\boldsymbol{f}_C\)</span>, 인터페이스 노드의 움직임이 주어지면:
+<span class="math notranslate nohighlight">\(\boldsymbol{x}_1\)</span>, <span class="math notranslate nohighlight">\(\boldsymbol{\dot{x}}_1\)</span>,
+<span class="math notranslate nohighlight">\(\boldsymbol{\ddot{x}}_1\)</span>. 여섯 가지 자유도,
+<span class="math notranslate nohighlight">\(\boldsymbol{x}_1\)</span> (Surge, Sway, Heave, Roll, Pitch, Yaw)와 인터페이스에서 사용되는 좌표계는 다음과 같습니다. <a class="reference internal" href="#epdof"><span class="std std-numref">그림 4.45</span></a>.</p>
+<div class="figure align-default" id="id7">
+<span id="epdof"></span><a class="reference internal image-reference" href="../../../_images/MasterDOFScheme.png"><img alt="../../../_images/MasterDOFScheme.png" src="../../../_images/MasterDOFScheme.png" style="width: 40%;"></a>
+<p class="caption"><span class="caption-number">그림 4.45 </span><span class="caption-text">인터페이스 자유도</span><a class="headerlink" href="#id7" title="이 이미지에 대한 영구 링크"></a></p>
+</div>
+<p><em>ExtPtfm</em> 는 상태 방정식과 출력 방정식으로 구성된 형태로 작성됩니다. 선형 시스템의 경우 이러한 방정식은 다음 형식을 취합니다.</p>
+<div class="math notranslate nohighlight" id="equation-statespaceform">
+<span class="eqno">(4.185)<a class="headerlink" href="#equation-statespaceform" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}\begin{aligned}
+    \boldsymbol{\dot{x}}&amp;=\boldsymbol{X}(\boldsymbol{x},\boldsymbol{u}, t) = \boldsymbol{A} \boldsymbol{x}+\boldsymbol{B}\boldsymbol{u} + \boldsymbol{f}_x \\
+    \boldsymbol{y} &amp;= \boldsymbol{Y}(\boldsymbol{x},\boldsymbol{u}, t) = \boldsymbol{C} \boldsymbol{x}+\boldsymbol{D}\boldsymbol{u} + \boldsymbol{f}_y
+\end{aligned}\end{split}\]</div>
+<p>여기서 <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> 는 상태 벡터이고, <span class="math notranslate nohighlight">\(\boldsymbol{u}\)</span>
+입력 벡터, 그리고 <span class="math notranslate nohighlight">\(\boldsymbol{y}\)</span> 모듈의 출력 벡터입니다. 모듈의 입력 벡터는 인터페이스 노드의 모션이며,
+<span class="math notranslate nohighlight">\(\boldsymbol{u}=[\boldsymbol{x}_1, \boldsymbol{\dot{x}}_1, \boldsymbol{\ddot{x}}_1]^t\)</span>, 출력 벡터는 인터페이스 노드의 커플링 부하인 반면,
+<span class="math notranslate nohighlight">\(\boldsymbol{y}=[\boldsymbol{f}_{C}]^t\)</span>. 상태 벡터는 CB 모드의 동작과 속도로 구성되며,
+<span class="math notranslate nohighlight">\(\boldsymbol{x}=[\boldsymbol{x}_2, \boldsymbol{\dot{x}}_2]^t\)</span>. 각 벡터의 차원은 다음과 같습니다.
+<span class="math notranslate nohighlight">\(\boldsymbol{x}(2n_\text{CB}\times 1)\)</span>,
+<span class="math notranslate nohighlight">\(\boldsymbol{u} (18\times 1)\)</span>, <span class="math notranslate nohighlight">\(\boldsymbol{y} (6\times 1)\)</span>.</p>
+<p>Eq. <a class="reference internal" href="#equation-moduleb">(4.184)</a> 는 Eq.의 상태공간 형태로 다시 작성됩니다. <a class="reference internal" href="#equation-statespaceform">(4.185)</a> 는 다음과 같습니다. 두 번째 블록 행 <a class="reference internal" href="#equation-moduleb">(4.184)</a> 는 분리하기 위해 개발되었습니다. <span class="math notranslate nohighlight">\(\boldsymbol{\ddot{x}}_2\)</span>. 사용
+<span class="math notranslate nohighlight">\(\boldsymbol{M}_{r22}=\boldsymbol{I}\)</span> 및 완전성을 위한 댐핑 매트릭스를 다시 도입하면 다음이 제공됩니다.</p>
+<div class="math notranslate nohighlight" id="equation-xddot2">
+<span class="eqno">(4.186)<a class="headerlink" href="#equation-xddot2" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{aligned}
+\boldsymbol{\ddot{x}}_2=\boldsymbol{f}_{r2}-\boldsymbol{M}_{r12}^t\boldsymbol{\ddot{x}}_1-\boldsymbol{K}_{r22} \boldsymbol{x}_2 -\boldsymbol{C}_{r12}^t\boldsymbol{\dot{x}}_1 -\boldsymbol{C}_{r22}\boldsymbol{\dot{x}}_2
+\end{aligned}\]</div>
+<p>Eq.의 상태공간 관계 행렬.
+그러면 <a class="reference internal" href="#equation-statespaceform">(4.185)</a> 는 다음과 같이 직접 식별됩니다(<span id="id5">[<a class="reference internal" href="zrefs.html#id2" title="E. Branlard, M. Shields, B. Anderson, R. Damiani, F. Wendt, J. Jonkman, W. Musial 및 B. Foley. OpenFAST에서 순차적 부하 계산을 위한 하위 구조의 상위 요소 감소. 물리학 저널: 컨퍼런스 시리즈, 1452:012033, 2020년 1월. URL: https://doi.org/10.1088/1742-6596/1452/1/012033, doi:10.1088/1742-6596/1452/1/012033.">ep-BSA+20</a>]</span>):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \boldsymbol{A}=
+    \begin{bmatrix}
+        \boldsymbol{0} &amp; \boldsymbol{I}\\
+        -\boldsymbol{K}_{r22} &amp; -\boldsymbol{C}_{r22}\\
+    \end{bmatrix}
+    ,\qquad
+    \boldsymbol{B}=
+    \begin{bmatrix}
+      \boldsymbol{0}&amp; \boldsymbol{0}&amp;  \boldsymbol{0}\\
+      \boldsymbol{0}&amp; -\boldsymbol{C}_{r12}^t&amp;   -\boldsymbol{M}_{r12}^t \\
+    \end{bmatrix}
+    ,\qquad
+    \boldsymbol{f}_x=
+    \begin{bmatrix}
+        \boldsymbol{0}  \\
+      \boldsymbol{f}_{r2}\\
+    \end{bmatrix}
+   \end{aligned}\end{split}\]</div>
+<p>분리
+Eq.의 첫 번째 블록 행에서 <span class="math notranslate nohighlight">\(\boldsymbol{f}_{C}\)</span> . <a class="reference internal" href="#equation-moduleb">(4.184)</a> 및 표현 사용
+Eq.의 <span class="math notranslate nohighlight">\(\boldsymbol{\ddot{x}}_2\)</span> . <a class="reference internal" href="#equation-xddot2">(4.186)</a> 는 다음으로 이어집니다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \boldsymbol{f}_{C}
+               =&amp; \boldsymbol{f}_{r1} - \boldsymbol{M}_{r11}\boldsymbol{\ddot{x}}_1 - \boldsymbol{C}_{r11}\boldsymbol{\dot{x}}_1 - \boldsymbol{C}_{r12}\boldsymbol{\dot{x}}_2 - \boldsymbol{K}_{r11}\boldsymbol{x}_1 \nonumber\\
+                &amp;- \boldsymbol{M}_{r12}
+(\boldsymbol{f}_{r2}-\boldsymbol{M}_{r12}^t\boldsymbol{\ddot{x}}_1 -\boldsymbol{C}_{r12}^t\boldsymbol{\dot{x}}_1 -\boldsymbol{C}_{r22}\boldsymbol{\dot{x}}_2-\boldsymbol{K}_{r22} \boldsymbol{x}_2)\end{aligned}\end{split}\]</div>
+<p>출력용 행렬
+그러면 <span class="math notranslate nohighlight">\(\boldsymbol{y}\)</span> 는 다음과 같이 식별됩니다(<span id="id6">[<a class="reference internal" href="zrefs.html#id2" title="E. Branlard, M. Shields, B. Anderson, R. Damiani, F. Wendt, J. Jonkman, W. Musial 및 B. Foley. OpenFAST에서 순차적 부하 계산을 위한 하위 구조의 상위 요소 감소. 물리학 저널: 컨퍼런스 시리즈, 1452:012033, 2020년 1월. URL: https://doi.org/10.1088/1742-6596/1452/1/012033, doi:10.1088/1742-6596/1452/1/012033.">ep-BSA+20</a>]</span>):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \boldsymbol{C}&amp;=
+    \begin{bmatrix}
+        \boldsymbol{M}_{r12}\boldsymbol{K}_{r22} &amp; \boldsymbol{M}_{r12}\boldsymbol{C}_{r22}-\boldsymbol{C}_{r12}\\
+    \end{bmatrix}
+    ,\qquad
+    \qquad
+    \boldsymbol{f}_y=
+    \begin{bmatrix}
+        \boldsymbol{f}_{r1} - \boldsymbol{M}_{r12}\boldsymbol{f}_{r2}\\
+    \end{bmatrix} \\
+    \boldsymbol{D}&amp;=
+    \begin{bmatrix}
+        -\boldsymbol{K}_{r11} &amp; -\boldsymbol{C}_{r11} + \boldsymbol{M}_{r12}\boldsymbol{C}_{r12}^t &amp; -\boldsymbol{M}_{r11}+\boldsymbol{M}_{r12}\boldsymbol{M}_{r12}^t \\
+    \end{bmatrix}
+   \end{aligned}\end{split}\]</div>
+<p>"r"로 표시된 모든 블록 행렬과 벡터는 입력 파일을 통해 모듈에 제공됩니다. 주어진 시간 단계에서 부하,
+<span class="math notranslate nohighlight">\(\boldsymbol{f}_r(t)\)</span>는 입력 파일에 주어진 하중의 선형 보간법으로 계산되며 상태 방정식 는 다음과 같이 해결됩니다.
+출력이 다음의 글루 코드로 반환된
+<span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> 글루 코드에 반환되는 출력은
+<em>OpenFAST</em>.</p>
+<p>글루 코드는 각 모듈의 상태 방정식의 야코비안을 사용하여 주어진 시간이나 작동 지점에서 전체 시스템의 선형화를 수행할 수도 있습니다. 의 공식화 이후 <em>ExtPtfm</em> 는 선형이며 모듈의 상태 및 입력에 대한 상태 및 출력 방정식의 야코비안은 다음과 같습니다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    \frac{\partial \boldsymbol{X}}{\partial \boldsymbol{x}} = \boldsymbol{A}
+    ,\quad
+    \frac{\partial \boldsymbol{Y}}{\partial \boldsymbol{x}} = \boldsymbol{C}
+    ,\quad
+    \frac{\partial \boldsymbol{X}}{\partial \boldsymbol{u}} = \boldsymbol{B}
+    ,\quad
+    \frac{\partial \boldsymbol{Y}}{\partial \boldsymbol{u}} = \boldsymbol{D}
+   \end{aligned}\]</div>
+<p>ExtPtfm의 선형화가 모듈에서 구현되었지만 전체 시스템 선형화를 허용하려면 글루 코드(OpenFAST) 수준에서 수행해야 할 일부 작업이 남아 있습니다.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="input_files.html" class="btn btn-neutral float-left" title="4.9.2. 입력 파일" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+        <a href="zrefs.html" class="btn btn-neutral float-right" title="4.9.4. 참고문헌" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>© Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    
+     
+
+
+</body></html>

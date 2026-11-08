@@ -1,0 +1,367 @@
+<!DOCTYPE html><html class="writer-html5" lang="ko"><head><!-- Modified 2026-11-08: unofficial Korean machine translation of OpenFAST 5.0.0. Equations, code, figures, input values and attribution retained. -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.11.4. 모델링 고려 사항 - OpenFAST v5.0.0 문서</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../../../genindex.html">
+    <link rel="search" title="검색" href="../../../search.html">
+    <link rel="next" title="4.11.5. 향후 개발 계획" href="future_work.html">
+    <link rel="prev" title="4.11.3. 출력 파일" href="output_files.html"> 
+<link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/hydrodyn/modeling_considerations.html"></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+          </a>
+              <div class="version">5.0 · 한국어</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="문서 검색" aria-label="문서 검색">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.11. HydroDyn</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html">4.11.1. 설치 및 시작하기</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input_files.html">4.11.2. 입력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="output_files.html">4.11.3. 출력 파일</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.11.4. 모델링 시 고려사항</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#waves">4.11.4.1. 파도</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#strip-theory-model-discretization">4.11.4.2. 스트립 이론 모델 이산화</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#domain-for-strip-theory-hydrodynamic-load-calculations">4.11.4.3. 스트립 이론 유체역학적 하중 계산을 위한 영역</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#strip-theory-hydrodynamic-coefficients">4.11.4.4. 스트립 이론 유체 역학 계수</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#impact-of-substructure-motions-on-loads">4.11.4.5. 하중에 대한 하부 구조 동작의 영향</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#platform-additional-stiffness-and-damping">4.11.4.6. 플랫폼 추가 강성 및 감쇠</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fixed-bottom-substructures">4.11.4.7. 고정 바닥 하부 구조</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#floating-platforms">4.11.4.8. 부동 플랫폼</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="future_work.html">4.11.5. 향후 개발 계획</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.11.6. 참고문헌</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.11.7. 부록 A: OC4 반잠수식 입력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html#appendix-b-oc4-semi-submersible-input-file">4.11.8. 부록 B: OC4 반잠수식 입력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html#appendix-c-list-of-output-channels">4.11.9. 부록 C. 출력 채널 목록</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. 단순화 ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. 구조 제어</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. 추가 모듈 문서</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC 서브루틴 라이브러리</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+</ul>
+
+        <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="페이지 탐색">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.11. </span>HydroDyn 사용자 가이드 및 이론 설명서</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.11.4. </span>모델링 시 고려사항</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/hydrodyn/modeling_considerations.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+      </li>
+  </ul>
+  <hr>
+</div><aside class="ko-notice" aria-label="한국어 번역 안내"><strong>한국어 자동번역</strong> · OpenFAST v5.0.0 · 2026-11-08 기준<br>비공식 번역본입니다. 수식·명령어·입력 변수와 첨부자료는 원문을 보존합니다. <a href="https://openfast.readthedocs.io/en/main/source/user/hydrodyn/modeling_considerations.html" target="_blank" rel="noopener noreferrer" lang="en">영문 원문 대조 ↗</a></aside>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="modeling-considerations">
+<span id="hd-modeling-considerations"></span><h1><span class="section-number">4.11.4. </span>모델링 시 고려사항<a class="headerlink" href="#modeling-considerations" title="이 제목의 고유 링크"></a></h1>
+<p>HydroDyn은 광범위한 유체역학적 조건과 하부 구조를 모델링하기 위한 매우 유연한 도구로 설계되었습니다. 이 섹션에서는 HydroDyn과 호환되는 모델을 구성하는 데 도움이 되는 몇 가지 일반적인 지침을 제공합니다.</p>
+<div class="section" id="waves">
+<h2><span class="section-number">4.11.4.1. </span>웨이브<a class="headerlink" href="#waves" title="이 제목의 고유 링크"></a></h2>
+<p>HydroDyn 내에서 내부적으로 생성된 파동은 규칙적(주기적) 또는 불규칙적(확률적)일 수 있으며 긴 파상(단방향) 또는 짧은 파동(파동 에너지가 다양한 방향으로 확산됨)일 수 있습니다. 내부적으로 HydroDyn은 방향성 확산을 포함하는 옵션과 함께 1차(선형 Airy) 또는 1차 및 2차 파동 이론[Sharma and Dean, 1981]을 사용하여 유한 깊이에 대해 해석적으로 파동을 생성하지만 파동 운동학은 평평한 해저와 SWL 사이의 영역에서만 계산되며 파동 신장이나 고차 파동 이론은 포함되지 않습니다. 단방향 해상 상태 모델링은 엔지니어링 설계에서 지나치게 보수적인 경우가 많습니다. 2차 항을 활성화하면 실제 표면파의 비선형성 중 일부를 캡처할 수 있어 계산 노력이 더 많이 들지만(주로 HydroDyn 초기화에서) 바다 상태 및 관련 파도 하중을 보다 정확하게 모델링할 수 있습니다. 2차 유체역학적 하중의 크기와 주파수 성분은 구조적 고유 진동수를 자극하여 1차 이론만을 사용하여 예측할 수 있는 것보다 더 큰 극한 하중과 피로 하중을 발생시킬 수 있습니다. 합주파수 효과는 견고한 고정 바닥 구조물의 하중과 TLP의 스프링 및 링잉 분석에 중요합니다. 주파수 차이(평균 드리프트 및 느린 드리프트) 효과는 현수선으로 계류된 부유 플랫폼(스파 부표 및 반잠수정)의 운동 분석 및 계류 하중을 포함하여 호환 구조물 분석에 중요합니다.</p>
+<p>불규칙한 바다 상태를 모델링할 때 다음을 권장합니다. <strong>WaveTMax</strong> 는 최소 1시간(3600초)으로 설정되어야 합니다. <strong>WaveDT</strong> 는 파동 스펙트럼 및 파동 운동학의 충분한 분해능을 보장하기 위해 0.1~1.0초 범위의 값이어야 합니다. HydroDyn이 FAST와 결합되면,
+<strong>WaveDT</strong> 는 FAST의 글루 코드 시간 단계와 독립적으로 임의로 지정할 수 있습니다. (파동 운동학 및 유체 역학 하중은 필요에 따라 시간에 맞춰 보간됩니다.)</p>
+<p>파동 방향 확산은 방향성 확산 스펙트럼이 주파수 스펙트럼과 확산 함수의 곱이라고 가정하는 등 에너지 방법을 통해 HydroDyn에서 구현됩니다. <em>S</em>(<em>ω</em>,<em>β</em>) = <em>S</em>(<em>ω</em>)<em>D</em>(<em>β</em>). 2차 차주파수 전위 흐름 부하에 대한 Newman의 근사를 사용하는 경우 방향 확산이 허용되지 않습니다.</p>
+<p>2차 항이 선택적으로 활성화되면 2차 항은 1차 파동 성분 진폭을 사용하여 계산되고 추가 에너지가 파동 스펙트럼에 추가됩니다(차이 및 주파수 합산). 2차 항은 1차 항을 포함하지 않고 계산할 수 없습니다.</p>
+<p>계산 비용을 최소화하고 파동 운동학 및 유체 역학 하중이 현실적이 되도록 하려면 적절한 파동 차단 주파수를 설정하는 것이 중요합니다. HydroDyn은 사용자에게 6개의 사용자 정의 차단 주파수를 제공합니다.<strong>WvLowCOff</strong> 및 <strong>WvHiCOff</strong> ,
+<strong>WvLowCOffD</strong> 및 <strong>WvHiCOffD</strong> 2차 차주파수 파 성분의 저주파 및 고주파 차단값에 대해, 그리고
+<strong>WvLowCOffS</strong> 및 <strong>WvHiCOffS</strong> 는 2차 합주파수 파동 구성요소의 저주파 및 고주파 차단용으로, 기본 설정이 없습니다. 2차 컷오프는 차이 및 합 주파수의 두 개별 1차 주파수 구성 요소가 아닌 물리적 차이 및 합 주파수에 직접 적용됩니다. 2차 항은 1차 파동 성분 진폭을 사용하여 계산되므로 2차 차단 주파수는 1차 차단 주파수와 함께 사용됩니다. 그러나 2차 차단 주파수는 1차 효과에서만 파생되는 2차 차주파수 전위 흐름 하중에 대한 Newman의 근사치에서는 사용되지 않습니다.</p>
+<p>1차 파동성분 차단 주파수의 경우, <strong>WvLowCOff</strong>
+는 계산 비용을 최소화하기 위해 1차 파동 스펙트럼의 낮은 에너지 한계보다 낮게 설정할 수 있습니다. 적절한 상위 차단 주파수 설정(<strong>WvHiCOff</strong>)는 또한 계산 비용을 최소화하며, 파괴파 한계에 접근할 때 비물리적 효과를 방지하고 스트립 이론 솔루션을 사용할 때 고주파수(즉, 짧은 파장)에서 비물리적 파력을 방지하는 데 중요합니다.</p>
+<p>2차 전위 흐름 이론을 활성화할 때 설정은 다음과 같습니다.
+평균 드리프트 항을 제거하지 않으려면
+<strong>WvLowCOffD</strong> = 0을 사용하는 것이 좋습니다(2차 파동 운동학에는 0이 아닌 평균이 없음). <strong>WvHiCOffD</strong>
+는 1차 파동 스펙트럼의 피크 스펙트럼 주파수보다 높게 설정할 필요가 없습니다(<em>ωp</em> = 2<em>π</em>/<strong>WaveTp</strong>) 계산 비용을 최소화합니다. <strong>WvLowCOffS</strong> 는 1차 파동 스펙트럼의 피크 스펙트럼 주파수보다 낮게 설정할 필요가 없습니다(<em>ωp</em> =
+2<em>π</em>/<strong>WaveTp</strong>) 계산 비용을 최소화합니다. 적절한 상위 차단 주파수 설정(<strong>WvHiCOffS</strong>)는 또한 계산 비용을 최소화하고 (1) 2차 합산의 수렴을 보장하고, (2) 파동 골의 비물리적 "범프"를 방지하고, (3) 파괴파 한계에 접근할 때 비물리적 효과를 방지하고, (4) 띠 이론 솔루션을 사용할 때 고주파수(즉, 짧은 파장)에서 비물리적 파력을 방지하는 데 중요합니다.</p>
+<p>내부적으로 생성된 파동 데이터가 있는 모든 모델의 경우, 주어진 경계 조건(유의한 파고 및 피크-스펙트럼 주기 등)에 대해 서로 다른 시간 영역 입사파 구현을 실행하려면 파동 시드 중 하나 또는 둘 다를 변경해야 합니다(<strong>WaveSeed(1)</strong> 및
+<strong>WavedSeed(2)</strong>) 시뮬레이션 간.</p>
+<p>파도 표고 또는 전파 운동학은 외부에서 생성하여 HydroDyn 내에서 사용할 수도 있습니다.</p>
+<p><strong>WaveMod</strong> = 5를 사용하면 외부에서 생성된 파고 시계열을 사용할 수 있습니다. 이는 HydroDyn이 파고 시계열이 선험적으로 알려진 특정 파동 과도 이벤트를 시뮬레이션하도록 하려는 경우에 유용합니다. 파도 탱크 또는 외해 테스트에서 얻은 파도 고도 측정값과 일치합니다. 내부적으로 HydroDyn은 제공된 파고 시계열의 FFT를 계산하여 각 주파수 구성요소의 진폭과 위상을 저장하고 파동 에너지 스펙트럼 및 랜덤 시드 대신 이를 사용하여 스트립 이론 솔루션에 사용되는 파동 운동학 또는 전위 흐름 솔루션의 유체역학적 부하를 내부적으로 유도합니다. 지정된 파고 시계열은 1차 및 긴 정점으로 가정되지만 물리적 정확성은 확인되지 않습니다. 시계열은 최소한 <strong>WaveTMax</strong> 의 길이는 총 시뮬레이션 시간보다 작지 않으며 시간 단계가 일치해야 합니다. <strong>WaveDT</strong>. 2차 항이 선택적으로 활성화되면 제공된 파고 시계열에서 파생된 파동 성분 진폭을 사용하여 2차 항이 계산되고 추가 에너지가 파동 에너지 스펙트럼에 추가됩니다(차이 및 주파수 합산). 고차 웨이브 데이터를 사용하면 잘못된 결과가 발생할 수 있습니다. 대안적으로, <strong>WvLowCOff</strong> 및 <strong>WvHiCOff</strong> 는 1차 파동 에너지 범위 밖의 에너지를 필터링하는 데 사용할 수 있습니다. HydroDyn의 파고 시계열 출력은 2차 항이 비활성화되고 차단 주파수가 파동 에너지 범위를 벗어나는 경우에만 지정된 시계열과 동일하게 일치합니다.</p>
+<p><strong>WaveMod</strong> =6을 사용하면 HydroDyn의 내부 파동 모델을 완전히 우회하여 스트립 이론 솔루션(전위 흐름 솔루션은 아님)과 함께 사용하기 위해 외부에서 생성된 전체 파동 운동학을 사용할 수 있습니다. 이 기능은 HydroDyn이 HydroDyn 외부에서 파생된 파동 운동학 데이터를 선험적으로 활용하도록 하려는 경우에 유용합니다. 아마도 HydroDyn의 내부 파동 모델링 제한 사항 중 일부를 우회할 수 있을 것입니다. 이 기능을 사용하려면 HydroDyn의 각 시간 단계와 해석 노드에서 파동 운동학 데이터를 생성하는 것이 사용자의 부담입니다. HydroDyn은 데이터를 보간하지 않습니다. 따라서 HydroDyn이 FAST와 결합되면, <strong>WaveDT</strong> 는 FAST의 글루 코드 시간 단계와 동일해야 합니다. 파동 운동학 데이터를 외부에서 생성하기 전에 사용자는 HydroDyn을 실행하고 요약 파일을 생성하여 모든 내부 분석 노드를 식별해야 합니다. <a class="reference internal" href="output_files.html#hd-summary-file"><span class="std std-numref">섹션 4.11.3.2</span></a>. 각 시간 단계의 유체 영역은 파동 데이터 입력 파일에서 숫자 값과 숫자가 아닌 문자열을 사용하여 지정됩니다. 지정된 파동 운동학 데이터는 평평한 해저와 SWL 사이의 영역으로 제한되지 않으며 파동 스트레칭, 고차 파동 이론 또는 고르지 않은 해저를 고려할 수 있습니다. 지정된 파동 운동학 데이터는 처리(필터링 등)되거나 물리적 정확성이 확인되지 않습니다. HydroDyn의 파동 운동학 출력은 지정된 데이터와 동일하게 일치해야 합니다.</p>
+<p>HydroDyn이 FAST에 결합된 경우 최대 9개의 파도 표고 출력(SWL 평면의 여러 지점에서)을 생성할 수 있으며 HydroDyn을 독립 실행형으로 실행할 경우 파도 표고의 큰 그리드를 생성할 수 있습니다. 활성화되면 2차 효과가 포함되지만, HydroDyn의 파도 고도 출력은 2차 파도 운동학이 활성화되면 2차 항만 포함합니다.</p>
+</div>
+<div class="section" id="strip-theory-model-discretization">
+<h2><span class="section-number">4.11.4.2. </span>스트립 이론 모델 이산화<a class="headerlink" href="#strip-theory-model-discretization" title="이 제목의 고유 링크"></a></h2>
+<p>사용자는 조인트와 멤버를 사용하여 HydroDyn에서 스트립 이론으로 모델링된 구조의 형상을 정의합니다. HydroDyn의 멤버는 직선 원형(및 테이퍼형) 실린더로 가정됩니다. 회원은 다음을 사용하여 더 세분화될 수 있습니다. <strong>MDivSize</strong>- HydroDyn이 멤버를 여러 요소(및 노드)로 세분화하기 위해 내부적으로 사용할 것입니다. HydroDyn은 자유 표면, 평평한 해저, 해양 성장 지역 및 액체가 채워진 자유 표면의 형상을 더욱 구체화할 수 있습니다.</p>
+<p>수심에 따른 유체역학적 하중이 기하급수적으로 감소하기 때문에 SWL에 대해 파도가 진동할 때 유체역학적 하중을 포착하려면 물이 없는 표면 근처에서 더 높은 해상도가 필요합니다. 예를 들어, HydroDyn 이산화는 자유 표면 영역(SWL 위와 아래 5~10m)에서 요소 길이 0.5m, 깊이 25~50m 사이에서 1.0m, 심해에서 2.0m를 초과하지 않는 것이 좋습니다. 고정 바닥 시스템의 해석을 위해 HydroDyn을 FAST를 통해 SubDyn과 결합할 때 HydroDyn과 SubDyn 요소 간의 길이 비율이 10:1을 초과하지 않는 것이 좋습니다.
+스트립 이론 유체역학적 부하 계산을 위한</p>
+</div>
+<div class="section" id="domain-for-strip-theory-hydrodynamic-load-calculations">
+<span id="hd-domain-for-strip-theory"></span><h2><span class="section-number">4.11.4.3. </span>도메인<a class="headerlink" href="#domain-for-strip-theory-hydrodynamic-load-calculations" title="이 제목의 고유 링크"></a></h2>
+<p>위 섹션에서 언급된 자동화된 형상 개선의 일부는 입력 멤버를 하위 요소로 분할하여 요소 끝의 결과 노드가 모두 다음 섹션에서 설명하는 개별 도메인 내에 놓이도록 처리합니다.</p>
+<div class="section" id="distributed-loads">
+<h3><span class="section-number">4.11.4.3.1. </span>분산 부하<a class="headerlink" href="#distributed-loads" title="이 제목의 고유 링크"></a></h3>
+<div class="section" id="inertia-added-mass-buoyancy-marine-growth-weight-marine-growth-mass-inertia">
+<h4><span class="section-number">4.11.4.3.1.1. </span>관성, 추가 질량, 부력, 해양 성장 중량, 해양 성장 질량 관성<a class="headerlink" href="#inertia-added-mass-buoyancy-marine-growth-weight-marine-growth-mass-inertia" title="이 제목의 고유 링크"></a></h4>
+<p>이러한 부하는 다음과 같은 한 노드에서 생성됩니다. <strong>PropPot</strong> = 거짓,
+<em>Z</em>-좌표가 [– 범위에 있습니다.<strong>WtrDpth</strong>,<strong>MSL2SWL</strong>], 노드가 연결된 요소는 물 속에 있습니다. 언제 <strong>WaveMod</strong> = 6, 도메인은 웨이브 데이터 입력 파일에서 숫자 값과 숫자가 아닌 문자열을 사용하여 결정됩니다.</p>
+</div>
+<div class="section" id="viscous-drag">
+<h4><span class="section-number">4.11.4.3.1.2. </span>점성 드래그<a class="headerlink" href="#viscous-drag" title="이 제목의 고유 링크"></a></h4>
+<p>이러한 부하는 노드에서 생성됩니다. <em>Z</em>-좌표가 [– 범위에 있습니다.<strong>WtrDpth</strong>, <strong>MSL2SWL</strong>] 노드가 연결된 요소는 물 속에 있습니다. 언제 <strong>WaveMod</strong> = 6, 도메인은 웨이브 데이터 입력 파일에서 숫자 값과 숫자가 아닌 문자열을 사용하여 결정됩니다.</p>
+</div>
+<div class="section" id="filled-buoyancy-filled-mass-inertia">
+<h4><span class="section-number">4.11.4.3.1.3. </span>채워진 부력, 채워진 질량 관성<a class="headerlink" href="#filled-buoyancy-filled-mass-inertia" title="이 제목의 고유 링크"></a></h4>
+<p>이러한 부하는 노드에서 생성됩니다. <em>Z</em>-좌표가 [– 범위에 있습니다.<strong>WtrDpth</strong>, <strong>FillFSLoc</strong>] 노드가 연결된 요소는 채워진 유체에 있습니다.</p>
+</div>
+</div>
+<div class="section" id="lumped-loads">
+<h3><span class="section-number">4.11.4.3.2. </span>집중 하중<a class="headerlink" href="#lumped-loads" title="이 제목의 고유 링크"></a></h3>
+<p>부재 끝의 집중 하중(축 효과)은 사용자가 지정한 조인트에서만 계산되며 조인트에서는 계산되지 않습니다. HydroDyn은 솔루션 프로세스의 일부로 자동으로 생성할 수 있습니다. 예를 들어 해양 성장 경계에서 축 효과를 원하는 경우 해당 위치에 관절을 명시적으로 설정해야 합니다.</p>
+<div class="section" id="added-mass-inertia-buoyancy">
+<h4><span class="section-number">4.11.4.3.2.1. </span>질량, 관성, 부력 추가<a class="headerlink" href="#added-mass-inertia-buoyancy" title="이 제목의 고유 링크"></a></h4>
+<p>이러한 부하는 다음과 같은 한 노드에서 생성됩니다. <strong>PropPot</strong> = 거짓이고 <em>Z</em>-좌표가 [– 범위에 있습니다.<strong>WtrDpth</strong>,<strong>MSL2SWL</strong>]. 언제
+<strong>WaveMod</strong> = 6, 도메인은 웨이브 데이터 입력 파일에서 숫자 값과 숫자가 아닌 문자열을 사용하여 결정됩니다.</p>
+</div>
+<div class="section" id="axial-drag">
+<h4><span class="section-number">4.11.4.3.2.2. </span>축방향 드래그<a class="headerlink" href="#axial-drag" title="이 제목의 고유 링크"></a></h4>
+<p>이러한 부하는 노드에서 생성됩니다. <em>Z</em>-좌표가 [– 범위에 있습니다.<strong>WtrDpth</strong>,<strong>MSL2SWL</strong>]. 언제 <strong>WaveMod</strong> = 6, 도메인은 웨이브 데이터 입력 파일에서 숫자 값과 숫자가 아닌 문자열을 사용하여 결정됩니다.</p>
+</div>
+<div class="section" id="filled-buoyancy">
+<h4><span class="section-number">4.11.4.3.2.3. </span>채워진 부력<a class="headerlink" href="#filled-buoyancy" title="이 제목의 고유 링크"></a></h4>
+<p>이러한 부하는 노드에서 생성됩니다. <em>Z</em>-좌표가 [– 범위에 있습니다.<strong>WtrDpth</strong>,<strong>FillFSLoc</strong>]</p>
+</div>
+</div>
+</div>
+<div class="section" id="strip-theory-hydrodynamic-coefficients">
+<h2><span class="section-number">4.11.4.4. </span>스트립 이론 유체 역학 계수<a class="headerlink" href="#strip-theory-hydrodynamic-coefficients" title="이 제목의 고유 링크"></a></h2>
+<p>HydroDyn의 스트립 이론 솔루션은 무엇보다도 점성 항력 계수를 포함하여 사용자가 지정한 유체 역학 계수에 따라 달라집니다. <strong>CD</strong>, 부가질량계수, <strong>캘리포니아</strong>및 동압 계수, <strong>CP</strong>, 횡방향 및 축방향용(<strong>도끼</strong>) 부재를 따라 분포된 하중과 부재 끝(접합부)의 축 집중 하중에 대한 하중입니다. HydroDyn에는 이러한 계수에 대한 기본 설정이 없습니다. 일반적으로 이러한 계수는 Reynold 수(Re), Keulegan-Carpenter 수(KC), 표면 거칠기, 하부 구조 기하학, 자유 표면에 대한 상대적인 위치 등 다양한 요인에 따라 달라집니다. 실제로 계수는 (1) 실린더를 지나는 흐름의 측정에서 파생된 테이블에서 선택되거나, (2) 충실도가 높은 전산유체역학(CFD) 솔루션을 통해 계산되거나, (3) 실험 결과와 일치하도록 조정됩니다. 1.0 값은 다른 정보가 없는 경우 모든 계수에 대한 그럴듯한 추측입니다.</p>
+<p>스트립 이론 솔루션은 원형 단면을 가정하지만 유체 역학 계수에는 모양 수정이 포함될 수 있습니다. 그러나 HydroDyn에서는 서로 다른 가로 방향 사이에 차이가 없습니다.</p>
+<p>HydroDyn의 부가질량 계수는 부가질량 하중과 유체 관성 ​​하중의 산란 성분 모두에 영향을 미칩니다. 부재를 따라 분포된 횡하중과 관련된 계수의 경우 <span class="math notranslate nohighlight">\(C_{P} + C_{A} = C_{M}\)</span>, 관성 계수. 부재에 따른 분산 하중의 경우 해양 성장이 있거나 없는 별도의 유체 역학 계수 세트가 있습니다(<strong>MG</strong>).</p>
+</div>
+<div class="section" id="impact-of-substructure-motions-on-loads">
+<h2><span class="section-number">4.11.4.5. </span>하중에 대한 하부 구조 동작의 영향<a class="headerlink" href="#impact-of-substructure-motions-on-loads" title="이 제목의 고유 링크"></a></h2>
+<p>일반적으로 HydroDyn은 (1) 구조적 회전에 작은 각도 가정이 적용되고, (2) 주파수-시간 영역 기반 전위 흐름 솔루션이 결합되지 않은 정수압, 복사 및 회절 솔루션으로 분할될 수 있으며, (3) 파동 운동학에 의존하는 유체 역학 하중(전위 흐름 솔루션의 회절 하중과 스트립 이론 솔루션의 유체 관성 및 점성 항력 하중)은 하부 구조의 변위되지 않은 위치에서 해석된 파동 운동학을 사용하여 계산할 수 있습니다(파동 운동학은 변위된 위치에서 다시 계산되지 않습니다). 그럼에도 불구하고 HydroDyn은 다음 계산에서 하부 구조 동작을 사용합니다.</p>
+<ul class="simple">
+<li><p>WRP의 구조적 변위는 전위 흐름 솔루션에서 정수압 하중(즉, 하부 구조 변위에 따른 부력의 변화)을 계산하는 데 사용됩니다.</p></li>
+<li><p>WRP의 구조적 속도와 가속도는 전위 흐름 솔루션의 파동 복사 부하(즉, 복사 메모리 효과 및 추가 질량) 계산에 사용됩니다.</p></li>
+<li><p>WRP의 구조적 변위와 속도는 추가 플랫폼 하중 계산에 사용됩니다(플랫폼 추가 강성 및 감쇠를 통해).</p></li>
+<li><p>하부 구조 노드의 구조 속도는 스트립 이론 솔루션의 점성 항력 하중 계산에 사용됩니다(예: 모리슨 방정식의 상대 형식이 적용됩니다).</p></li>
+<li><p>하부 구조 노드의 구조적 가속도는 스트립 이론 솔루션에서 추가 질량, 해양 성장 질량 관성 및 채워진 유체 질량 관성 하중을 계산하는 데 사용됩니다.</p></li>
+<li><p>FAST에 결합되면 HydroDyn에서 계산된 유체역학적 하중은 하부 구조의 변위된 위치(즉, ElastoDyn의 변위된 플랫폼 및/또는 SubDyn의 변위된 하부 구조)에 적용되지만 변위되지 않은 위치의 파동 운동학을 기반으로 합니다.</p></li>
+</ul>
+</div>
+<div class="section" id="platform-additional-stiffness-and-damping">
+<h2><span class="section-number">4.11.4.6. </span>플랫폼 추가 강성 및 감쇠<a class="headerlink" href="#platform-additional-stiffness-and-damping" title="이 제목의 고유 링크"></a></h2>
+<p>HydroDyn을 사용하면 6x1 정적 하중 벡터(예압)를 포함하여 사용자가 플랫폼에 추가 하중(HydroDyn에서 계산한 다른 유체역학적 항에 추가)을 적용할 수 있습니다(<strong>AddF0</strong>), 6x6 선형 복원 행렬(<strong>AddCLin</strong>), 6x6 선형 감쇠 매트릭스(<strong>AddBLin</strong>) 및 6x6 2차 드래그 행렬(<strong>AddBQuad</strong>). 이러한 용어는 예를 들어 선형화된 계류 시스템을 모델링하고 선형 정수압 복원 매트릭스로 스트립 이론 부재를 보강하는 데 사용될 수 있습니다(참조: <a class="reference internal" href="#hd-modeling-hydrostatic-restoring-strip-theory"><span class="std std-numref">섹션 4.11.4.8.3</span></a>) 또는 HydroDyn을 "조정"하여 자유 감쇠 테스트와 같은 실험 결과에 댐핑을 일치시킵니다. 플로팅 시스템에 가장 유용할 가능성이 높지만 이러한 매트릭스는 고정 바닥 시스템에도 사용할 수 있습니다. 두 경우 모두 결과 부하는 WRP에 적용되며, HydroDyn이 FAST에 결합되면 ElastoDyn의 플랫폼에 적용됩니다(고정 바닥 시스템의 경우 SubDyn 우회).</p>
+</div>
+<div class="section" id="fixed-bottom-substructures">
+<h2><span class="section-number">4.11.4.7. </span>고정 바닥 하부 구조<a class="headerlink" href="#fixed-bottom-substructures" title="이 제목의 고유 링크"></a></h2>
+<p>고정 바닥 시스템을 모델링할 때는 스트립 이론(Morison) 전용 모델을 사용하는 것이 좋습니다. HydroDyn이 FAST와 결합되면 SubDyn이 하부구조의 구조적 동역학에 사용됩니다.</p>
+<p>해저에 내장된 모든 부재(예: 파일 또는 흡입 버킷을 통해)에는 수심 아래에 위치하는 조인트가 있어야 합니다. 예를 들어 수심이 20m로 설정되어 있고 바닥이 고정된 모노파일을 모델링하는 경우 맨 아래 조인트에는 <em>Z</em>-m과 같은 좌표. 이 구성은 HydroDyn이 구조물 바닥에 정압 하중을 가하는 것을 방지합니다.</p>
+<p>중력 기반 기초는 가장 낮은 조인트가 규정된 수심에 정확히 위치하도록 모델링되어야 합니다. 즉, 가장 낮은 <em>Z</em>-수심이 20m로 설정된 경우 좌표는 m으로 설정되어야 합니다. 이 구성을 사용하면 중력 기반 구조의 바닥에 정압 하중을 가할 수 있습니다.</p>
+</div>
+<div class="section" id="floating-platforms">
+<h2><span class="section-number">4.11.4.8. </span>플로팅 플랫폼<a class="headerlink" href="#floating-platforms" title="이 제목의 고유 링크"></a></h2>
+<p>부동 시스템을 모델링할 때 전위 흐름 이론만 사용하거나 스트립 이론(Morison)만 사용하거나 두 가지를 모두 포함하는 하이브리드 모델을 사용할 수 있습니다.</p>
+<p>주파수-시간 영역 변환을 기반으로 한 전위 흐름 이론은 다음과 같은 경우에 활성화됩니다. <strong>PotMod</strong> 는 1로 설정됩니다. 이 경우 사전 처리 단계에서 WAMIT(또는 이에 상응하는 항목)를 실행해야 하며 HydroDyn은 WAMIT 출력 파일을 사용합니다. <a class="reference internal" href="#hd-modeling-floating-systems-potential-flow"><span class="std std-numref">섹션 4.11.4.8.4
+안내용</span></a>
+. 전위 흐름 전용 모델의 경우 입력 파일에 스트립 이론 접합 또는 멤버를 생성하지 마십시오. WAMIT 모델은 부동 하부 구조의 모든 구성원을 설명해야 하며, 이 경우 모리슨 방정식은 무시됩니다.</p>
+<p>스트립 이론 전용 모델의 경우 <strong>PotMod</strong> 를 FALSE로 설정하고 입력 파일에 하나 이상의 스트립 이론 멤버를 생성합니다. 해양 성장 및 0이 아님
+<strong>MSL2SWL</strong> (정수면과 평균 해수면 사이의 오프셋)은 띠 이론 전용 모델에만 포함될 수 있습니다.</p>
+<p>하이브리드 모델은 다음과 같은 경우에 형성됩니다. <strong>PotMod</strong> 는 TRUE이고 하나 이상의 스트립 이론 멤버를 정의했습니다. 생성된 전위 흐름 모델은 부동 하부 구조의 모든 Morison 구성원을 고려할 수 있거나 일부만 고려할 수 있습니다. 다음을 설정하여 잠재적 흐름 모델에서 구조의 특정 구성원을 고려할지 여부를 지정합니다.
+각 멤버의
+<strong>PropPot</strong> 플래그입니다. 상태 <strong>PropPot</strong> 플래그는 스트립 이론 방정식의 어떤 구성요소가 적용되는지를 결정합니다.</p>
+<p>스트립 이론 전용 접근 방식 또는 하이브리드 접근 방식을 사용하는 경우 채워진 유체(플러딩 또는 밸러스팅)가 스트립 이론 부재에 추가될 수 있습니다. 또한 스트립 이론 멤버에 대해 정수압 복원 행렬을 수동으로 입력해야 합니다.
+안내용 <a class="reference internal" href="#hd-modeling-hydrostatic-restoring-strip-theory"><span class="std std-numref">섹션 4.11.4.8.3</span></a> .</p>
+<p>전류 유도 물 속도는 스트립 이론 구성원의 점성 항력 항(분산 및 덩어리 모두)을 통해 HydroDyn의 유체역학적 부하만 유도한다는 점에 유의하십시오. 전위 흐름 솔루션에서는 전류가 사용되지 않습니다. 따라서 전류 효과를 모델링하려면 스트립 이론 전용 또는 하이브리드 접근 방식을 사용해야 합니다.</p>
+<div class="section" id="undisplaced-position-for-floating-systems">
+<h3><span class="section-number">4.11.4.8.1. </span>플로팅 시스템용 이동되지 않은 위치<a class="headerlink" href="#undisplaced-position-for-floating-systems" title="이 제목의 고유 링크"></a></h3>
+<p>HydroDyn 모델(형상 등)은 하부 구조의 변위되지 않은 위치에 대해 정의됩니다. 부유식 시스템의 경우, 바람, 파도 및 해류로 인한 하중이 없는 경우 플랫폼-상승(수직) 방향의 정적 평형 위치와 변위되지 않은 위치에 대한 솔루션 정확도가 중요합니다. 따라서 하부 구조의 변위되지 않은 위치는 아래 방정식에 따라 변위된 물의 외부 부력이 시스템 중량(로터-나셀 어셈블리, 타워 및 하부 구조의 중량 포함) 및 계류 시스템 초기 장력과 균형을 이루도록 정의되어야 합니다. 이 방정식에서 는 물 밀도, 는 중력, 는 부동 플랫폼의 변위되지 않은 부피(HydroDyn 요약 파일에서 확인), 는 시스템의 총 질량(ElastoDyn 요약에서 확인), 는 계류 시스템 장력(예: MAP 요약 파일에서 확인)입니다. 해양 성장, 채워진 유체(홍수 및/또는 밸러스트) 및 추가적인 정적 힘(<strong>AddFX0</strong>)도 고려해야 합니다.
+부동 시스템의</p>
+<div class="math notranslate nohighlight" id="equation-floatingforcebalance">
+<span class="eqno">(4.197)<a class="headerlink" href="#equation-floatingforcebalance" title="이 방정식에 대한 영구 링크"></a></span>\[\rho g V_{0} - m_{Total} g - T_{Mooring} = 0\]</div>
+</div>
+<div class="section" id="initial-conditions-for-floating-systems">
+<h3><span class="section-number">4.11.4.8.2. </span>초기 조건<a class="headerlink" href="#initial-conditions-for-floating-systems" title="이 제목의 고유 링크"></a></h3>
+<p>동적 시뮬레이션에 사용되는 초기 조건은 일반적으로 시뮬레이션 기간이 시작되는 동안 응답 통계에 영향을 미치기 때문에 모든 후처리 분석에서는 적절한 양의 초기 데이터를 고려 대상에서 제거해야 합니다. 부유식 해상 풍력터빈의 경우 이러한 초기 조건 솔루션이 더 중요합니다. 왜냐하면 부유식 시스템은 일반적으로 부유식 하부 구조의 자연 주기가 길고 감쇠가 낮기 때문입니다. 제거할 적절한 시간은 초기 수치 과도 효과가 충분히 감소하고 부유 하부 구조가 준정지 위치에 도달하도록 선택되어야 합니다. 각 시뮬레이션에서 이 초기 시간을 줄이기 위해 모델의 초기 조건(특히 블레이드 피치 각도, 로터 속도, ElastoDyn의 하부 구조 서지 및 하부 구조 피치)을 특정 널리 퍼진 바람, 파도, 전류 및 작동 조건에 따라 초기화하는 것이 좋습니다.</p>
+</div>
+<div class="section" id="hydrostatic-restoring-for-strip-theory-members-of-floating-systems">
+<span id="hd-modeling-hydrostatic-restoring-strip-theory"></span><h3><span class="section-number">4.11.4.8.3. </span>플로팅 시스템의 스트립 이론 멤버를 위한 정수압 복원<a class="headerlink" href="#hydrostatic-restoring-for-strip-theory-members-of-floating-systems" title="이 제목의 고유 링크"></a></h3>
+<p>하부 구조 모션을 활용하는 HydroDyn의 목록 계산에 주목할 만한 한 가지 누락이 있습니다. <a class="reference internal" href="#hd-domain-for-strip-theory"><span class="std std-numref">섹션 4.11.4.3</span></a>— 스트립 이론 솔루션의 하부 구조 부력이 하부 구조의 변위된 위치를 기반으로 다시 계산되지 않는다는 것입니다. 부력의 변화는 고정 바닥 시스템에서는 무시할 수 있는 반면, 스트립 이론 솔루션을 사용하여 모델링된 부유 시스템의 경우 변위에 따른 부력의 변화는 중요할 가능성이 높으므로 무시해서는 안 됩니다. 후자의 경우, 사용자는 스트립 이론 부재와 관련된 6x6 선형 정수압 복원 행렬을 수동으로 계산하고 이를 추가 선형 복원(강성) 행렬로 입력해야 합니다. <strong>AddCLin</strong>. (스트립 이론 부재의 정적 부력은 HydroDyn 내에서 자동으로 계산되어 적용됩니다.)</p>
+<p>가장 일반적인 형태에서 부유 플랫폼의 6x6 선형 정수압 복원 행렬은 아래 방정식으로 제공됩니다.</p>
+<div class="math notranslate nohighlight" id="equation-hydrostraticrestoringmatrix">
+<span class="eqno">(4.198)<a class="headerlink" href="#equation-hydrostraticrestoringmatrix" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}\text{AddCLin} =
+\left[
+   \begin{array}{cccccc}
+      0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+      0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+      0 &amp; 0 &amp; \rho g A_{0} &amp; \rho g \iint_{A_{0}} ydA &amp; -\rho g \iint_{A_{0}} xdA &amp; 0 \\
+      0 &amp; 0 &amp; \rho g \iint_{A_{0}} ydA &amp; \rho g \iint_{A_{0}} y^2dA + \rho g V_{0} z_{b} - m_{mg}gz_{mg} - m_{f}gz_{f} &amp; -\rho g \iint_{A_{0}} xydA &amp; -\rho g V_{0} x_{b} + m_{mg}gx_{mg} + m_{f}gx_{f} \\
+      0 &amp; 0 &amp; -\rho g \iint_{A_{0}} xdA &amp; -\rho g \iint_{A_{0}} xydA &amp; \rho g \iint_{A_{0}} x^2dA + \rho g V_{0} z_{b} - m_{mg}gz_{mg} - m_{f}gz_{f} &amp; -\rho g V_{0} y_{b} + m_{mg}gy_{mg} + m_{f}gy_{f} \\
+      0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0
+   \end{array}
+\right]\end{split}\]</div>
+<p>여기서:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\rho\)</span> 는 물의 밀도(kg/m<sup>3</sup>)</p></li>
+<li><p><span class="math notranslate nohighlight">\(g\)</span> 는 중력(m/s)<sup>2</sup>)</p></li>
+<li><p><span class="math notranslate nohighlight">\(A_{0}\)</span> 는 플랫폼의 변위되지 않은 수상 비행기 영역입니다(m<sup>2</sup>)</p></li>
+<li><p><span class="math notranslate nohighlight">\(V_{0}\)</span> 는 플랫폼의 대체되지 않은 볼륨(m<sup>3</sup>)</p></li>
+<li><p><span class="math notranslate nohighlight">\((x_{b}, y_{b}, z_{b})\)</span> 는 변위되지 않은 플랫폼의 부력 중심 좌표(m)입니다.</p></li>
+<li><p><span class="math notranslate nohighlight">\(m_{mg}\)</span> 는 해양 성장의 총 질량(kg)입니다.</p></li>
+<li><p><span class="math notranslate nohighlight">\((x_{mg}, y_{mg}, z_{mg})\)</span> 는 변위되지 않은 해양 성장 질량(m)의 질량 중심 좌표입니다.</p></li>
+<li><p><span class="math notranslate nohighlight">\(m_{f}\)</span> 는 밸러스트/홍수 총 질량(kg)입니다.</p></li>
+<li><p><span class="math notranslate nohighlight">\((x_{f}, y_{f}, z_{f})\)</span> 는 변위되지 않은 충전 유체(플러딩 또는 밸러스트) 질량의 질량 중심 좌표(m)입니다.</p></li>
+</ul>
+<p>위의 방정식은 부동 플랫폼에 하나 이상의 대칭면이 있는 경우 단순화될 수 있습니다. 즉,
+<span class="math notranslate nohighlight">\(\iint_{A_{0}} ydA = 0\)</span>,
+<span class="math notranslate nohighlight">\(\iint_{A_{0}} xydA = 0\)</span>,
+<span class="math notranslate nohighlight">\(y_{b} = 0\)</span>,
+<span class="math notranslate nohighlight">\(y_{mg} = 0\)</span>,
+<span class="math notranslate nohighlight">\(y_{f} = 0\)</span>, 그리고 만약
+플랫폼의 <span class="math notranslate nohighlight">\(x-z\)</span> 평면은 대칭 평면입니다. 마찬가지로,
+플랫폼의
+<span class="math notranslate nohighlight">\(\iint_{A_{0}} xdA = 0\)</span>,
+<span class="math notranslate nohighlight">\(\iint_{A_{0}} xydA = 0\)</span>,
+<span class="math notranslate nohighlight">\(x_{b} = 0\)</span>,
+<span class="math notranslate nohighlight">\(x_{mg} = 0\)</span>,
+<span class="math notranslate nohighlight">\(x_{f} = 0\)</span>, 그리고 만약
+플랫폼의 <span class="math notranslate nohighlight">\(y-z\)</span> 평면은 대칭 평면입니다.</p>
+<p>부력 중심의 변위되지 않은 좌표,
+<span class="math notranslate nohighlight">\((x_{b}, y_{b}, z_{b})\)</span>, 해양 성장 덩어리의 중심, <span class="math notranslate nohighlight">\((x_{mg}, y_{mg}, z_{mg})\)</span>및 채워진 유체 질량의 중심, <span class="math notranslate nohighlight">\((x_{f}, y_{f}, z_{f})\)</span>는 전역 관성 프레임 좌표계에 있습니다. 이러한 매개변수의 대부분은 HydroDyn 요약 파일에 있는 데이터에서 파생될 수 있습니다. 위의 방정식은 여러 면적 적분을 사용하지만, 수선면(정수 자유 표면)을 관통하는 하나 이상의 원형 부재로 구성된 플랫폼의 경우 적분을 손으로 쉽게 추정할 수 있는 경우가 많습니다.</p>
+<p>변위되지 않은 플랫폼의 수상 비행기 영역, <span class="math notranslate nohighlight">\(A_{0}\)</span>는 플랫폼 변위의 변화에 따라 유체의 변위량이 변하기 때문에 정수압 하중에 영향을 미칩니다. 마찬가지로, 플랫폼 부력 중심의 위치는 플랫폼 변위에 따라 벡터 위치가 변하고 부력과 벡터 위치의 교차 곱이 WRP 주위에 정수압 모멘트를 생성하기 때문에 정수압 하중에 영향을 줍니다. <span class="math notranslate nohighlight">\(A_{0}\)</span>, <span class="math notranslate nohighlight">\(V_{0}\)</span>및
+이 플래그 값 아래에
+<span class="math notranslate nohighlight">\((x_{b}, y_{b}, z_{b})\)</span> 는 해양 성장 두께를 포함하여 플랫폼의 외부 부피를 기반으로 해야 합니다. 해양 성장 질량과 채워진 유체 질량은 또한 WRP에 대해 생성된 모멘트로 인해 정수압 복원의 직접적인 효과를 갖습니다.</p>
+<p>고전적인 해양 정수압학에서는 정수압 복원 매트릭스를 정의할 때 체중의 영향이 정수압의 효과와 함께 일괄 처리되는 경우가 많습니다. 예를 들어, 메타중심 높이로 정의되는 경우입니다. 그러나 HydroDyn이 FAST와 결합되면 체중 항(HydroDyn 내의 해양 성장 및 채워진 유체 질량 제외)이 ElastoDyn에 의해 자동으로 계산되므로 여기에는 포함되지 않습니다.
+전위 흐름으로 모델링된</p>
+</div>
+<div class="section" id="floating-systems-modeled-with-potential-flow">
+<span id="hd-modeling-floating-systems-potential-flow"></span><h3><span class="section-number">4.11.4.8.4. </span>부유 시스템<a class="headerlink" href="#floating-systems-modeled-with-potential-flow" title="이 제목의 고유 링크"></a></h3>
+<p>다음을 사용하여 HydroDyn에서 전위 흐름 솔루션을 실행하기 전에 주파수 종속 유체 역학 계수가 필요합니다. <strong>PotMod</strong> = 1. 적절한 주파수 의존 유체역학 계수를 생성하려면 외부 전처리 도구를 사용해야 합니다. 이 설명서의 이름은 WAMIT에 중점을 두고 있습니다. <span id="id1">[<a class="reference internal" href="zrefs.html#id4" title="C. H. Lee 및 J. N. Newman. WAMIT 사용자 매뉴얼. WAMIT, Inc, Chestnut Hill, MA, 6.3, 6.3pc, 6.3s, 6.3s-pc 에디션, 2006.">LN06</a>]</span>이지만 유사한 데이터를 생성하는 다른 주파수 영역 파동체 상호 작용 패널 코드를 사용할 수 있습니다. 그러나 결국 WAMIT 형식은 HydroDyn에서 기대하는 형식입니다.</p>
+<p>1차 전위 흐름 솔루션의 경우 HydroDyn은 WAMIT 파일의 데이터가 필요합니다. <em>.1, .3</em>및
+이 플래그 값 아래에 <em>.hst</em> 확장. 이러한 파일을 생성할 때 다음 사항에 유의해야 합니다.</p>
+<ul class="simple">
+<li><p>해당 <em>.1</em> 파일은 무한 주파수(주기 = 0)의 6×6 추가 질량 행렬을 포함해야 합니다. 추가적으로, <em>.1</em> 파일은 저주파에서 고주파까지 넓은 범위에 걸쳐 6×6 감쇠 매트릭스를 포함해야 합니다(감쇠는 범위의 양쪽 끝에서 0에 가까워야 합니다). 0.05rad/s의 이산화를 통해 0.0~5.0rad/s의 범위를 제안합니다.</p></li>
+<li><p>.<em>3</em> 파일에는 파동 에너지가 있는 주파수와 방향에 걸쳐 단위 파동 진폭당 1차 파동 여기(회절) 하중(3개의 힘과 3개의 모멘트)이 포함되어야 합니다. 0.05 rad/s의 이산화로 0.0 ~ 5.0 rad/s의 범위가 제안되며 방향은 원하는 범위 전체에 걸쳐 지정되어야 합니다. 즉, 10도의 이산화로 전체 방향 범위(-180 ~ 180]도가 제안됩니다.<em>3</em> 파일에는 1차 파동 여기 하중의 크기/위상 및 실수/허수 구성 요소가 모두 포함되어 있으며 후자만 HydroDyn에서 사용됩니다.</p></li>
+<li><p>.<em>HST</em> 파일은 부력에 의해 제공되는 복원을 설명해야 하지만 체질량이나 계류에 의해 제공되는 복원은 설명하지 않습니다. (정역학 파일은 주파수에 종속되지 않습니다.) 명심해야 할 중요한 점은 부유체의 피치 및 롤 복원이 부력 중심과 신체 질량 중심 사이의 수직 거리에 따라 달라진다는 것입니다. WAMIT에서는 수직 무게 중심(VCG)을 사용하여 플랫폼 무게와 관련된 피치 및 롤 복원을 결정하며 WAMIT는 출력되는 복원 매트릭스에 이러한 효과를 포함합니다( <em>.hst</em> 파일). 그러나 FAST의 ElastoDyn 모듈은 플랫폼 무게와 질량 중심 위치가 적절하게 정의된 경우 플랫폼 무게가 피치 및 롤 복원에 미치는 영향을 본질적으로 설명합니다. 이러한 조건을 이중으로 예약하는 것을 방지하려면 WAMIT에서 이러한 조건을 무시하는 것이 중요합니다. 이는 WAMIT의 1차 문제를 풀 때 VCG를 0으로 설정함으로써 달성할 수 있습니다.</p></li>
+</ul>
+<p>2차 WAMIT 파일은 HydroDyn에서 2차 전위 흐름 옵션이 활성화된 경우에만 사전 계산하면 됩니다. 2차 평균 드리프트 솔루션 또는 평균 및 느린 드리프트 솔루션에 대한 Newman의 근사치에 대한 Standing et al.의 확장의 경우 HydroDyn에는 .<em>7</em>, .<em>8</em>. .<em>9</em>, .<em>10d</em>, .<em>11d</em>또는 .<em>12d</em> 확장. 평균 및 느린 드리프트 항의 2차 완전 차분 주파수 솔루션을 위해 HydroDyn에는 .<em>10d</em>, .<em>11d</em>또는 .<em>12d</em> 확장. 2차 전체 합 주파수 솔루션의 경우 HydroDyn에는 .<em>10s</em>, .<em>11s</em>또는 .<em>12s</em> 확장. 이러한 파일을 생성할 때 다음 사항에 유의해야 합니다.</p>
+<ul class="simple">
+<li><p>2차 주파수 영역 솔루션은 1차 신체 운동에 의존하며, 6×6 강체 질량 매트릭스와 전체 부유 풍력 시스템 및 6×6 계류 시스템 복원 매트릭스의 무게 중심을 적절하게 설정하면 정확도가 영향을 받습니다. 따라서 1차 WAMIT 파일을 생성할 때는 차체 무게중심과 계류 강성을 영점화해야 하지만, 2차 WAMIT 파일을 생성할 때는 영점화하면 안 됩니다. (따라서 1차 및 2차 WAMIT 파일을 얻으려면 별도의 WAMIT 실행이 필요합니다.)</p></li>
+<li><p>.<em>7</em>, .<em>8</em>및 .<em>9</em> 파일에는 1차 전위 흐름 솔루션을 기반으로 하는 차주파수 QTF의 대각선이 포함되어 있습니다. 파일에는 주파수 범위와 방향 쌍 범위에 걸쳐 각 1차 파동 주파수와 파동 방향 쌍에서 제곱된 단위 파동 진폭당 2차 평균 드리프트 하중(3개의 힘과 3개의 모멘트)이 포함되어 있습니다. .<em>7</em>, .<em>8</em>및 .<em>9</em> 파일에는 2차 파동 여기 하중의 크기/위상 및 실수/허수 구성 요소가 모두 포함되어 있으며 후자만 HydroDyn에서 사용됩니다.</p></li>
+<li><p>해당 <em>10d</em>, .<em>11d</em>및 .<em>12d</em>또는 .<em>10s</em>, .<em>11s</em>및 .<em>12s</em> 파일에는 1차 또는 1차 및 2차 전위 흐름 솔루션을 기반으로 하는 전체 차이 및 합 주파수 QTF가 각각 포함되어 있습니다. 파일에는 다양한 주파수 및 방향 쌍에 걸쳐 1차 파동 주파수 및 방향의 각 쌍에서 제곱된 단위 파동 진폭당 2차 파동 여기(회절) 하중(3개의 힘과 3개의 모멘트)이 포함되어 있습니다. 동안 <em>10d</em>, .<em>11d</em>,.<em>12d</em>, .<em>10s</em>, .<em>11s</em>및 .<em>12s</em>
+파일에는 2차 파동 여기 하중의 크기/위상 및 실수/허수 구성 요소가 모두 포함되어 있으며 후자만 HydroDyn에서 사용됩니다.</p></li>
+<li><p>WAMIT 파일의 주파수와 방향은 균등한 간격을 가질 필요가 없습니다.</p></li>
+<li><p>첫 번째 방향 세트의 이산화는 두 번째 방향 세트의 이산화와 동일할 필요는 없습니다. 그러나 방향 쌍의 행렬은 완전히 채워져야 합니다(희소적이지 않음). 두 방향 세트 모두 원하는 범위에 걸쳐 있어야 합니다. 전체 방향 범위(-180~180]도, 10도 분할이 제안됩니다.</p></li>
+<li><p>주파수는 1차 파동 에너지가 있는 범위에 걸쳐 있어야 하며, 주파수 이산화는 주파수 쌍 간의 차이와 합이 2차 파동 에너지가 있는 범위에 걸쳐 있어야 합니다. 0.05rad/s의 이산화를 통해 0.25~2.75rad/s의 범위를 제안합니다.</p></li>
+<li><p>2차 유체역학 이론은 차주파수 QTF가 주파수 쌍 사이에서 공액 대칭이고 합-주파수 QTF가 주파수 쌍 사이에서 대칭임을 나타냅니다. 이러한 대칭으로 인해 QTF( <em>10d</em>, .<em>11d</em>또는 .<em>12d</em>, .<em>10s</em>,
+.<em>11s</em>및 .<em>12s</em> 파일)은 상부 삼각, 하부 삼각, 상부 및 하부 삼각 항의 혼합 또는 전체일 수 있습니다. 그러나 대칭을 적용한 후에는 주파수 쌍의 행렬이 완전히 채워져야 합니다(희소적이지 않음). QTF의 요소가 대칭 페어링과 함께 제공되면 HydroDyn은 QTF가 적절하게 대칭이 아닌 경우 사용자에게 경고합니다.</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="output_files.html" class="btn btn-neutral float-left" title="4.11.3. 출력 파일" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+        <a href="future_work.html" class="btn btn-neutral float-right" title="4.11.5. 향후 개발 계획" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>© Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    
+     
+
+
+</body></html>

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.5.5. Model Verification &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.5.6. Conclusions" href="04-conclusions.html" />
+    <link rel="prev" title="4.5.4. Aeroacoustics Noise Models" href="02-noise-models.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/aerodyn-aeroacoustics/03-model-verification.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.5. Aeroacoustics</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="acronyms.html">4.5.1. List of Acronyms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbols.html">4.5.2. List of Symbols</a></li>
+<li class="toctree-l3"><a class="reference internal" href="01-introduction.html">4.5.3. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02-noise-models.html">4.5.4. Aeroacoustics Noise Models</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.5.5. Model Verification</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#reference-wind-turbine">4.5.5.1. Reference Wind Turbine</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#code-to-code-comparison">4.5.5.2. Code-to-Code Comparison</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model-usage">4.5.5.3. Model Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="04-conclusions.html">4.5.6. Conclusions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="App-usage.html">4.5.7. Using the Aeroacoustics Model in AeroDyn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="refs.html">4.5.8. References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.5. </span>Aeroacoustics Noise Model of OpenFAST</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.5.5. </span>Model Verification</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/aerodyn-aeroacoustics/03-model-verification.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="model-verification">
+<span id="aa-model-verification"></span><h1><span class="section-number">4.5.5. </span>Model Verification<a class="headerlink" href="#model-verification" title="Permalink to this heading"></a></h1>
+<div class="section" id="reference-wind-turbine">
+<h2><span class="section-number">4.5.5.1. </span>Reference Wind Turbine<a class="headerlink" href="#reference-wind-turbine" title="Permalink to this heading"></a></h2>
+<p>The noise model of OpenFAST is exercised by simulating the aeroacoustics noise
+emissions of the IEA Wind Task 37 land-based reference wind turbine
+(<span id="id1">[<a class="reference internal" href="refs.html#id3" title="Pietro Bortolotti, Helena Canet Tarres, Katherine Dykes, Karl Merz, Latha Sethuraman, David Verelst, and Frederik Zahle. Systems engineering in wind energy - wp2.1 reference wind turbines. Technical Report, IEA Technical Report, 2019. URL: https://www.nrel.gov/docs/fy19osti/73492.pdf.">aa-BTD+19</a>]</span>). The main characteristics of the reference wind
+turbine are presented in <a class="reference internal" href="#tab-ref-turb"><span class="std std-numref">Table 4.2</span></a>.</p>
+<table class="docutils align-default" id="tab-ref-turb">
+<caption><span class="caption-number">Table 4.2 </span><span class="caption-text">Main Characteristics of the IEA Wind Task 37 Land-Based Reference Wind Turbine</span><a class="headerlink" href="#tab-ref-turb" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 28%" />
+<col style="width: 24%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Data</strong></p></th>
+<th class="head"><p><strong>Value</strong></p></th>
+<th class="head"><p><strong>Data</strong></p></th>
+<th class="head"><p><strong>Value</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Wind class</p></td>
+<td><div class="line-block">
+<div class="line">International</div>
+<div class="line">Electrotechnical</div>
+<div class="line">Commision 3A</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">Rated
+electrical</div>
+<div class="line">power</div>
+</div>
+</td>
+<td><p>3.37 megawatts</p></td>
+</tr>
+<tr class="row-odd"><td><div class="line-block">
+<div class="line">Rated
+aerodynamic</div>
+<div class="line">power</div>
+</div>
+</td>
+<td><p>3.6 megawatts</p></td>
+<td><div class="line-block">
+<div class="line">Drivetrain &amp;</div>
+<div class="line">generator
+efficiency</div>
+</div>
+</td>
+<td><p>93.60%</p></td>
+</tr>
+<tr class="row-even"><td><p>Rotor diameter</p></td>
+<td><p>130 meters</p></td>
+<td><p>Hub height</p></td>
+<td><p>110 meters</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cut-in wind
+speed</p></td>
+<td><p>4
+meters/second</p></td>
+<td><p>Cut-out wind
+speed</p></td>
+<td><p>25
+meters/second</p></td>
+</tr>
+<tr class="row-even"><td><p>Rotor cone
+angle</p></td>
+<td><p>3 degrees</p></td>
+<td><p>Nacelle tilt
+angle</p></td>
+<td><p>5 degrees</p></td>
+</tr>
+<tr class="row-odd"><td><p>Max blade tip
+speed</p></td>
+<td><p>80
+meters/second</p></td>
+<td><div class="line-block">
+<div class="line">Rated
+tip-speed</div>
+<div class="line">ratio</div>
+</div>
+</td>
+<td><p>8.16</p></td>
+</tr>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">Maximum</div>
+<div class="line">aerodynamic Cp</div>
+</div>
+</td>
+<td><p>0.481</p></td>
+<td><p>Rated rotor
+speed</p></td>
+<td><div class="line-block">
+<div class="line">11.75
+revolutions per</div>
+<div class="line">minute</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The OpenFAST model of the wind turbine is available at
+<a class="reference external" href="https://github.com/OpenFAST/r-test">https://github.com/OpenFAST/r-test</a> and is optionally coupled to the
+Reference OpenSource Controller. <a class="footnote-reference brackets" href="#id6" id="id2">2</a></p>
+</div>
+<div class="section" id="code-to-code-comparison">
+<h2><span class="section-number">4.5.5.2. </span>Code-to-Code Comparison<a class="headerlink" href="#code-to-code-comparison" title="Permalink to this heading"></a></h2>
+<p>A detailed code-to-code comparison was conducted to verify the implementation of
+the noise models linked to OpenFAST with the implementation available at the
+Wind Energy Institute of the Technical University of Munich, Germany. The latter
+is described in Sucameli (<span id="id3">[<a class="reference internal" href="refs.html#id18" title="CR Sucameli, P Bortolotti, A Croce, and CL Bottasso. Comparison of some wind turbine noise emission models coupled to BEM aerodynamics. Journal of Physics: Conference Series, 1037:022038, jun 2018. doi:10.1088/1742-6596/1037/2/022038.">aa-SBCB18</a>]</span>) and is implemented in the wind
+turbine design framework Cp-Max, which adopts the multibody-based
+aeroservoelastic solver Cp-Lambda.</p>
+<p>The comparison is conducted for the main noise sources—turbulent inflow and the
+TBL-TE noise—for both the single airfoil profile and full turbine. This helped
+resolve a few implementation mistakes and small inconsistencies. The comparison
+is performed with a steady wind of 8 meters per second (m/s), no shear, a rated
+pitch angle of 1.17 degrees (deg), and a fixed rotor speed of 10.04 revolutions
+per minute (rpm). A fixed value of 0.1 is assumed for the incident turbulent
+intensity, <span class="math notranslate nohighlight">\(I_{1}\)</span>.</p>
+<p><a class="reference internal" href="#aa-fig-ti-compare"><span class="std std-numref">Fig. 4.18</span></a> shows the predictions in terms of SPL for the Amiet
+model with the angle-of-attack correction from OpenFAST, the Simplified Guidati
+model generated by OpenFAST, and the Amiet model from Cp-Max.</p>
+<div class="figure align-default" id="aa-fig-ti-compare">
+<a class="reference internal image-reference" href="../../../_images/NoiseN003.png"><img alt="Code-to-code comparison for the TI models" src="../../../_images/NoiseN003.png" style="width: 100.0%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.18 </span><span class="caption-text">Code-to-code comparison for the TI models</span><a class="headerlink" href="#aa-fig-ti-compare" title="Permalink to this image"></a></p>
+</div>
+<p>The two implementations of the turbulent inflow Amiet model return a perfect
+match between OpenFAST and Cp-Max. The chosen scenario sees the blade operating
+at optimal angles of attack and, therefore, the effect of the angle of attack
+correction is negligible. The plots also show the great difference between the
+Amiet model and the Simplified Guidati model. It may be useful to keep in mind
+that the Simplified Guidati model has, in the past, been corrected with a factor
+of +10 dB, which is applied here.</p>
+<p>For the same inflow and rotor conditions, the BPM and TNO TBL-TE noise models
+are compared in <a class="reference internal" href="#aa-fig-bpm-tno-compare"><span class="std std-numref">Fig. 4.19</span></a>. The match is again satisfactory,
+although slightly larger differences emerge that are attributed to differences
+in the angles of attack between the two aeroelastic solvers and in different
+integration schemes in the TNO formulations.</p>
+<div class="figure align-default" id="aa-fig-bpm-tno-compare">
+<a class="reference internal image-reference" href="../../../_images/NoiseN004.png"><img alt="Code-to-code comparison for the BPM and TNO TBL-TE models" src="../../../_images/NoiseN004.png" style="width: 100.0%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.19 </span><span class="caption-text">Code-to-code comparison for the BPM and TNO TBL-TE models. The
+boundary layer properties are estimated from either the BPM model (BPM
+BL) or defined by the user (Ext BL)</span><a class="headerlink" href="#aa-fig-bpm-tno-compare" title="Permalink to this image"></a></p>
+</div>
+<p>The last comparison looked at the directivity models and the overall sound
+pressure levels at various observer locations. Simulations are run distributing
+200 observers in a horizontal square of 500 meters (m) by 500 m (see
+<a class="reference internal" href="#aa-fig-obs-loc"><span class="std std-numref">Fig. 4.20</span></a>). The noise is computed from the Amiet and the BPM turbulent boundary layer-trailing edge models.
+The code-to-code comparison returns similar predictions
+between OpenFAST and Cp-Max. The comparison is shown in <a class="reference internal" href="#aa-fig-spl-obs"><span class="std std-numref">Fig. 4.21</span></a>.</p>
+<p>The main conclusion of this code-to-code comparison is that, to the best of
+authors’ knowledge, the models are now implemented correctly and generate
+similar SPL and overall SPL levels for any arbitrary observer.  Nonetheless, it
+is clear that all of the presented models are imperfect, and improvements could
+be made both at the theoretical implementation levels.</p>
+<div class="figure align-default" id="aa-fig-obs-loc">
+<a class="reference internal image-reference" href="../../../_images/NoiseN005.png"><img alt="Location and numbering of the observers" src="../../../_images/NoiseN005.png" style="width: 100.0%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.20 </span><span class="caption-text">Location and numbering of the observers</span><a class="headerlink" href="#aa-fig-obs-loc" title="Permalink to this image"></a></p>
+</div>
+<div class="figure align-default" id="aa-fig-spl-obs">
+<a class="reference internal image-reference" href="../../../_images/NoiseN006.png"><img alt="Comparison of overall sound pressure levels for the observers" src="../../../_images/NoiseN006.png" style="width: 100.0%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.21 </span><span class="caption-text">Comparison of overall sound pressure levels for the observers
+distributed, as shown in the previous figure</span><a class="headerlink" href="#aa-fig-spl-obs" title="Permalink to this image"></a></p>
+</div>
+</div>
+<div class="section" id="model-usage">
+<span id="aa-sec-modelusage"></span><h2><span class="section-number">4.5.5.3. </span>Model Usage<a class="headerlink" href="#model-usage" title="Permalink to this heading"></a></h2>
+<p>The aeroacoustics model of OpenFAST has four options for the outputs:</p>
+<ol class="arabic simple">
+<li><p>Overall sound pressure level (dB/A-weighted decibels [dBA])—one value
+per time step per observer is generated</p></li>
+<li><p>Total sound pressure level spectra (dB/dBA)—one spectrum per time
+step per observer is generated between 10 Hz and 20 kHz</p></li>
+<li><p>Mechanism-dependent sound pressure level spectra (dB/dBA)—one
+spectrum per active noise mechanism per time step per observer is
+generated between 10 Hz and 20 kHz.</p></li>
+<li><p>Overall sound pressure level (dB/A-weighted decibels [dBA])—one value per blade per node per time step per observer is generated</p></li>
+</ol>
+<p>The overall SPL from the first option can be used to plot directivity maps of the noise. An example,
+which was generated using a Python script, <a class="footnote-reference brackets" href="#id7" id="id4">3</a> is shown in
+<a class="reference internal" href="#aa-fig-spl-map"><span class="std std-numref">Fig. 4.22</span></a>. The noise map, which shows the overall SPL averaged over
+1 rotor revolution, is generated for a steady wind speed of 8 m/s, a fixed rotor
+speed of 10.04 rpm, and a 1.17-deg pitch angle. In a horizontal circle of 500 m
+in diameter, 1681 observers are placed at a 2-m height.  Only the Simplified
+Guidati and the BPM TBL-TE noise models are activated.</p>
+<div class="figure align-default" id="aa-fig-spl-map">
+<a class="reference internal image-reference" href="../../../_images/NoiseN007.png"><img alt="Map of the overall SPL of the reference wind turbine" src="../../../_images/NoiseN007.png" style="width: 100.0%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.22 </span><span class="caption-text">Map of the overall SPL of the reference wind turbine at a 2-m height from
+Simplified Guidati and BPM TBL-TE noise models. The wind turbine is located
+at x=0, y=0. A steady wind of 8 m/s blows from left (-x) to right (+x).</span><a class="headerlink" href="#aa-fig-spl-map" title="Permalink to this image"></a></p>
+</div>
+<p>The second output can be used to generate SPL spectra. These spectra can be
+computed for various observers and optionally A-weighted to account for human
+hearing. <a class="reference internal" href="#aa-fig-a-spl"><span class="std std-numref">Fig. 4.23</span></a> shows the total SPL spectra computed for the same
+rotor conditions of the previous example. The A-weight greatly reduces the curve
+at frequency below 1,000 Hz while slightly increasing those between 1 kHz and 8
+kHz.</p>
+<div class="figure align-default" id="aa-fig-a-spl">
+<a class="reference internal image-reference" href="../../../_images/NoiseN008.png"><img alt="Comparison between absolute and A-weighted SPL" src="../../../_images/NoiseN008.png" style="width: 100.0%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.23 </span><span class="caption-text">Comparison between absolute and A-weighted SPL</span><a class="headerlink" href="#aa-fig-a-spl" title="Permalink to this image"></a></p>
+</div>
+<p>The third output distinguishes the SPL spectrum per mechanism.
+<a class="reference internal" href="#aa-fig-spl-spectra"><span class="std std-numref">Fig. 4.24</span></a> shows the various SPL spectra estimated by each noise
+model for the same rotor conditions reported earlier. The total spectrum is
+visibly dominated by the turbulent inflow, TBL-TE, and trailing-edge bluntness
+noise mechanisms. Notably, the latter is extremely sensitive to its inputs,
+<span class="math notranslate nohighlight">\(\Psi\)</span> and <span class="math notranslate nohighlight">\(h\)</span>. The reference wind turbine is a purely numerical
+model, and these quantities have been arbitrarily set. Users should pay
+attention to these inputs when calling the trailing-edge bluntness model.
+Consistent with literature, the laminar boundary layer-vortex shedding and tip
+vortex noise mechanisms have negative dB values and are, therefore, not visible.
+Notably, these spectra are not A-weighted, but users can activate the flag and
+obtain A-weighted spectra.</p>
+<div class="figure align-default" id="aa-fig-spl-spectra">
+<a class="reference internal image-reference" href="../../../_images/NoiseN009.png"><img alt="Nonweighted SPL spectra of the various noise mechanisms" src="../../../_images/NoiseN009.png" style="width: 100.0%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.24 </span><span class="caption-text">Nonweighted SPL spectra of the various noise mechanisms</span><a class="headerlink" href="#aa-fig-spl-spectra" title="Permalink to this image"></a></p>
+</div>
+<p>Finally, the fourth output can be used to visualize the noise emission across the rotor.
+<a class="reference internal" href="#aa-fig-rotor-map"><span class="std std-numref">Fig. 4.25</span></a> shows the noise generation of the rotor as seen from an observer located 175 meters
+downwind at a height of 2 meters. The map is generated by plotting the overall SPL generated
+by one blade during one rotor revolution. The plot shows that higher noise is observed
+when the blade is descending (the rotor from behind is seen rotating counterclockwise).
+This effect, which matches the results shown in <span id="id5">[<a class="reference internal" href="refs.html#id9" title="Patrick J. Moriarty and Paul G. Migliore. Semi-empirical aeroacoustic noise prediction code for wind turbines. Technical Report NREL/TP-500-34478, National Renewable Energy Laboratory, Golden, CO, 2003. URL: https://www.nrel.gov/docs/fy04osti/34478.pdf.">aa-MM03</a>]</span>,
+is explained by the asymmetry of <a class="reference internal" href="02-noise-models.html#equation-aa-eq-31">(4.62)</a>. Noise is indeed higher when the observer
+faces the leading edge of an airfoil (high <span class="math notranslate nohighlight">\(\Theta_e\)</span>), than when it faces the
+trailing edge (low <span class="math notranslate nohighlight">\(\Theta_e\)</span>).</p>
+<div class="figure align-default" id="aa-fig-rotor-map">
+<a class="reference internal image-reference" href="../../../_images/NoiseN012.png"><img alt="Map of the overall SPL of the rotor of the reference wind turbine from Simplified Guidati and BPM TBL-TE noise models. The observer is located 175 meters downwind at a height of 2 meters." src="../../../_images/NoiseN012.png" style="width: 100.0%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.25 </span><span class="caption-text">Map of the overall SPL of the rotor of the reference wind turbine
+from Simplified Guidati and BPM TBL-TE noise models. The observer
+is located 175 meters downwind at a height of 2 meters.</span><a class="headerlink" href="#aa-fig-rotor-map" title="Permalink to this image"></a></p>
+</div>
+<dl class="footnote brackets">
+<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p><a class="reference external" href="https://github.com/NatLabRockies/ROSCO">https://github.com/NatLabRockies/ROSCO</a></p>
+</dd>
+<dt class="label" id="id7"><span class="brackets"><a class="fn-backref" href="#id4">3</a></span></dt>
+<dd><p><a class="reference external" href="https://github.com/OpenFAST/python-toolbox">https://github.com/OpenFAST/python-toolbox</a></p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="02-noise-models.html" class="btn btn-neutral float-left" title="4.5.4. Aeroacoustics Noise Models" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="04-conclusions.html" class="btn btn-neutral float-right" title="4.5.6. Conclusions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

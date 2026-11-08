@@ -1,0 +1,1152 @@
+<!DOCTYPE html><html class="writer-html5" lang="ko"><head><!-- Modified 2026-11-08: unofficial Korean machine translation of OpenFAST 5.0.0. Equations, code, figures, input values and attribution retained. -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.19.7. FAST.Farm 이론 — OpenFAST v5.0.0 문서</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../../../genindex.html">
+    <link rel="search" title="검색" href="../../../search.html">
+    <link rel="next" title="4.19.8. 향후 개발 계획" href="FutureWork.html">
+    <link rel="prev" title="4.19.6. 모델링 지침" href="ModelGuidance.html"> 
+<link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/fast.farm/FFarmTheory.html"></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+          </a>
+              <div class="version">5.0 · 한국어</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="문서 검색" aria-label="문서 검색">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. 단순화 ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. 구조 제어</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.19. FAST.Farm</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Nomenclature.html">4.19.1. 명명법</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Introduction.html">4.19.2. 소개</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RunningFFarm.html">4.19.3. FAST.Farm 실행</a></li>
+<li class="toctree-l3"><a class="reference internal" href="InputFiles.html">4.19.4. 입력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="OutputFiles.html">4.19.5. 출력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ModelGuidance.html">4.19.6. 모델링 지침</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.19.7. FAST.팜 이론</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#dynamic-wake-meandering-principles-and-limitations-addressed">4.19.7.1. 동적 웨이크 미앤더링 원리 및 제한 사항 해결</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fast-farm-theory-basis">4.19.7.2. FAST.팜 이론 기초</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="FutureWork.html">4.19.8. 향후 개발 계획</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.19.9. 참고문헌</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixA.html">4.19.10. FAST.Farm 기본 입력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixB.html">4.19.11. 주변 바람 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixC.html">4.19.12. 출력 채널 목록</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. 추가 모듈 문서</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC 서브루틴 라이브러리</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+</ul>
+
+        <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="페이지 탐색">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.19. </span>FAST.Farm 사용자 가이드 및 이론 설명서</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.19.7. </span>FAST.농장 이론</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/fast.farm/FFarmTheory.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+      </li>
+  </ul>
+  <hr>
+</div><aside class="ko-notice" aria-label="한국어 번역 안내"><strong>한국어 자동번역</strong> · OpenFAST v5.0.0 · 2026-11-08 기준<br>비공식 번역본입니다. 수식·명령어·입력 변수와 첨부자료는 원문을 보존합니다. <a href="https://openfast.readthedocs.io/en/main/source/user/fast.farm/FFarmTheory.html" target="_blank" rel="noopener noreferrer" lang="en">영문 원문 대조 ↗</a></aside>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="fast-farm-theory">
+<span id="ff-theory"></span><h1><span class="section-number">4.19.7. </span>FAST.농장 이론<a class="headerlink" href="#fast-farm-theory" title="이 제목의 고유 링크"></a></h1>
+<p>FAST.Farm은 풍력 발전소 내 풍력터빈의 성능과 부하를 예측하기 위한 다중물리 엔지니어링 도구입니다. FAST.Farm은 다음을 사용합니다.
+<a class="reference external" href="https://github.com/OpenFAST/openfast" target="_blank" rel="noopener noreferrer">OpenFAST</a> 는 각 개별 터빈의 공기-수력-서보-탄성 역학을 해결하지만 대기 경계층에서 풍력 발전 단지 전체의 주변 바람에 대한 추가 물리학을 고려합니다. 그리고 적자, 이류, 편향, 구불구불하고 병합을 깨울 수 있습니다. FAST.Farm은 후류 구불구불한 수동 추적 모델링을 포함하여 DWM 모델의 원리를 기반으로 하지만 이전 DWM 구현의 많은 제한 사항을 해결합니다.</p>
+<div class="section" id="dynamic-wake-meandering-principles-and-limitations-addressed">
+<span id="ff-dwmprincipals"></span><h2><span class="section-number">4.19.7.1. </span>동적 웨이크 구불구불한 원리 및 제한 사항 해결<a class="headerlink" href="#dynamic-wake-meandering-principles-and-limitations-addressed" title="이 제목의 고유 링크"></a></h2>
+<p>DWM 모델의 기본 아이디어는 후류 부족 진화(성능에 중요)와 후류 사행 및 후류 추가 난류(부하에 중요함, 참조)를 포함하여 풍력 발전 성능 및 풍력터빈 부하의 정확한 예측과 관련된 주요 후류 특징을 포착하는 것입니다. <a class="reference internal" href="#ff-wat"><span class="std std-numref">섹션 4.19.7.2.3.4</span></a>). 기본 물리 법칙이 적용되지만 계산 비용을 최소화하기 위해 적절한 단순화가 이루어졌으며 HFM 솔루션을 사용하여 하위 모델을 알리고 보정합니다. DWM 모델에서 후류 흐름 과정은 작은 난류 와류(직경 2개 미만)가 후류 부족 진화에 영향을 미치고 큰 난류 맴돌이(직경 2개 이상)가 후류 사행에 영향을 미치는 "스케일 분할"을 통해 처리됩니다.</p>
+<p>풍력터빈 로터의 추력으로 인해 풍속이 감소하고 로터의 풍상 바로 옆에 압력이 증가합니다. 로터의 바람 바로 아래에 있는 후류 영역에서 - 그림에 나와 있습니다.
+<a class="reference internal" href="#ff-nearwake"><span class="std std-numref">그림 4.66</span></a> – 응집성 와류가 파괴되고, 압력이 자유 흐름으로 회복되고, 풍속이 더 감소하고, 후류가 반경 방향으로 확장됩니다. 바람이 더 불어오는 먼 후류 지역에서 후류 부족은 대략 가우시안 수준이고 후류 전단층을 가로질러 주변 바람으로부터 후류로의 운동량의 난류 전달로 인해 자유 흐름으로 회복됩니다. 이러한 유속 감소와 자유 흐름으로의 점진적인 회복을 후류 부족 진화라고 합니다. 대부분의 DWM 구현에서 후류 부족 진화는 축 대칭 좌표의 준 정상 상태 조건에서 레이놀즈 평균 Navier-Stokes 방정식의 얇은 전단층 근사를 통해 모델링됩니다. <a class="reference internal" href="Introduction.html#ff-wakeadv"><span class="std std-numref">그림 4.58</span></a>. 난류 폐쇄는 작은 난류 소용돌이에 의존하는 와점도 공식을 사용하여 포착됩니다. 이 항적 부족 진화 솔루션은 먼 항적에서만 유효합니다. 풍력터빈은 일반적으로 밀접하게 간격을 두고 있지 않기 때문에 이 먼 후류는 풍력 발전 단지 분석에 가장 중요합니다. 그러나 후류 부족 진화 솔루션은 로터에서 시작되기 때문에 원거리 솔루션의 정확도를 향상시키기 위해 입구 경계 조건에 근접 후류 수정이 적용됩니다.</p>
+<div class="figure align-center" id="ff-nearwake">
+<a class="reference internal image-reference" href="../../../_images/NearWake.png"><img alt="근접 기상 지역." src="../../../_images/NearWake.png" style="width: 100%;"></a>
+<p class="caption"><span class="caption-number">그림 4.66 </span><span class="caption-text">근접 기상 지역.</span><a class="headerlink" href="#ff-nearwake" title="이 이미지에 대한 영구 링크"></a></p>
+</div>
+<p>후류 구불구불한 현상은 큰 난류 소용돌이에 의해 운반되는 후류 부족의 대규모 움직임입니다. 이 항적 구불구불한 과정은 DWM에서 실용적으로 처리됩니다(<span id="id1">[<a class="reference internal" href="zrefs.html#id4" title="G. C. Larsen 및 그 외 여러분. Wake Meander: 실용적인 접근 방식. 풍력 에너지, 11:337-95, 2008. doi:http://onlinelibrary.wiley.com/doi/10.1002/we.267/epdf.">ff-Leal08</a>]</span>)는 후류 부족을 가로 및 세로로 이동 기준 프레임(MFoR)으로 전달하는 수동 추적자로 구불구불한 곡선을 모델링하여 – 그림에 설명되어 있습니다.
+<a class="reference internal" href="Introduction.html#ff-wakemeandering"><span class="std std-numref">그림 4.55</span></a> – 후류 평면 전체에 걸쳐 공간적으로 평균화된 주변 바람(큰 난류 소용돌이 포함)을 기반으로 합니다.</p>
+<p>후류 추가 난류는 후류의 난류 혼합으로 인해 생성된 추가 소규모 난류입니다. 이는 종종 배경(교란되지 않은) 난류를 확대하여 DWM에서 모델링됩니다(참조: <a class="reference internal" href="#ff-wat"><span class="std std-numref">섹션 4.19.7.2.3.4</span></a>).</p>
+<p>DWM의 여러 변형이 예를 들어 덴마크 기술 대학교(<span id="id2">[<a class="reference internal" href="zrefs.html#id15" title="H. A. Madsen 및 그 외 여러분. 공탄성 코드 구현을 위한 동적 후류 사행 모델의 교정 및 검증. 태양 에너지 공학 저널, 2010년 11월. doi:https://doi.org/10.1115/1.4002555.">ff-Meal10</a>, <a class="reference internal" href="zrefs.html#id20" title="H. A. Madsen 및 그 외 여러분. 높은 풍속에서의 후류 특성. 제34회 풍력에너지 심포지엄에서. 캘리포니아주 샌디에고, 2016. AIAA. 도이:http://dx.doi.org/10.2514/6.2016-1522.">ff-Meal16</a>]</span>) 및 매사추세츠 대학교(<span id="id3">[<a class="reference internal" href="zrefs.html#id28" title="M. J. Churchfield 및 그 외 여러분. egmond aan zee 해상 풍력 발전소의 동적 후류 사행 모델, 대형 와류 시뮬레이션 및 현장 데이터 비교. 제33회 풍력에너지 심포지엄에서. 키시미, 플로리다, 2015. AIAA. 도이:http://dx.doi.org/10.2514/6.2015-0724.">ff-Ceal15</a>, <a class="reference internal" href="zrefs.html#id11" title="Y. 하오. 풍력 발전소 후류 모델링 및 풍력 발전소의 후류 영향 분석. 매사추세츠대학교, 매사추세츠주 애머스트, 박사 학위 논문, 2016년.">ff-Hao16</a>, <a class="reference internal" href="zrefs.html#id29" title="Y. Hao 및 그 외 여러분. nwtc 설계 코드에서 동적 후류 사행 모델을 구현합니다. 제32회 풍력에너지 심포지엄에서. 메릴랜드주 내셔널 하버, 2014년 1월. AIAA. 도이:http://dx.doi.org/10.2514/6.2014-1089.">ff-Heal14</a>]</span>). 기존 DWM 구현의 정확한 제한 사항은 구현에 따라 다르지만 FAST.Farm 개발 시 해결되는 구체적인 제한 사항은 다음과 같습니다. <a class="reference internal" href="#ff-tab-dwmimprovs"><span class="std std-numref">표 4.15</span></a> 에 대한 내용은 다음 섹션에서 적절하게 논의됩니다.</p>
+<table class="docutils align-default" id="ff-tab-dwmimprovs">
+<caption><span class="caption-number">표 4.15 </span><span class="caption-text">FAST.Farm이 해결하는 동적 깨우기 구불구불한 제한 사항</span><a class="headerlink" href="#ff-tab-dwmimprovs" title="이 테이블에 대한 영구 링크"></a></caption>
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>제한</strong></p></th>
+<th class="head"><p><strong>솔루션/혁신</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><ul class="simple">
+<li><p>주변 바람은 개별 로터별로 해석되고 Taylor의 동결 난류 가정을 기반으로 종합적으로 생성됩니다. 풍력 발전소 전반에 걸쳐 일관성이 없거나 중규모 조건 또는 지역 지형을 기반으로 하지 않습니다.</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>선택적으로 충실도가 높은 전구체로부터 주변 풍력 발전 단지 전체를 계산합니다.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><ul class="simple">
+<li><p>항적은 평균 주변 풍속으로 이류하며, 가까운 항적에서 먼 항적까지 가속되지 않거나 국지적인 흐름 조건의 영향을 받지 않습니다.</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>항적 이류는 지역 공간 평균 주변 풍속 및 항적 부족을 기반으로 합니다.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><ul class="simple">
+<li><p>항적 부족은 유입 스큐로 인해 왜곡되지 않습니다(즉, 바람 방향을 볼 때 항적은 타원형이 아닌 원형으로 보입니다).</p></li>
+<li><p>후류 중심선은 유입 스큐로 인해 편향되지 않습니다.</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>로터 디스크와 평행한 평면에서 웨이크 부족이 해결되었습니다.</p></li>
+<li><p>유입 스큐에 따라 편향된 웨이크 중심선.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><ul class="simple">
+<li><p>평균 조건에만 기초한 후류 부족 및 중심선은 유입, 터빈 제어 또는 풍력터빈 모션의 과도 현상에 대해 업데이트되지 않습니다(후자는 부유형 해상 풍력터빈에 특히 중요합니다).</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>저역 통과 필터링된 유입, 풍력터빈 제어 및 풍력터빈 모션을 기반으로 업데이트된 후류 부족 및 중심선.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><ul class="simple">
+<li><p>개별 풍력터빈 및 후류 역학은 양방향 후류 병합 상호 작용을 고려하지 않고 개별적으로 또는 연속적으로 해결됩니다.</p></li>
+<li><p>가장 강한 후류 부족에만 기초한 후류 충돌(여러 개의 역풍 풍력터빈의 누적 효과를 고려하지 않음) 및/또는 후류 충돌 접근 방식은 정격 풍속 이하 및 이상에서 다르게 처리됩니다(즉, 개별 변화).</p></li>
+<li><p>후류 중첩 구역에서 교란된 바람을 계산하는 데 사용할 수 있는 방법이 없습니다.</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>개별 풍력터빈 및 후류 역학이 여러 코어에서 병렬로 해결되었습니다.</p></li>
+<li><p>웨이크 병합은 웨이크 역학에 영향을 줄 수 있습니다.</p></li>
+<li><p>역풍 풍력터빈의 후류 충돌에 따른 순풍 풍력터빈의 후류 적자.</p></li>
+<li><p>RSS 방법을 기반으로 축 방향으로 중첩된 웨이크 결함.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><ul class="simple">
+<li><p>균일한 공간 평균으로 계산된 웨이크 구불구불한 속도로 인해 부적절한 주파수에서 예상보다 구불구불한 결과가 발생하지 않습니다.</p></li>
+<li><p>후류는 측면으로 구불구불하지만 축 방향으로는 그렇지 않습니다.</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>징크 함수를 기반으로 하는 선택적인 가중 공간 평균으로 계산된 웨이크 구불구불한 속도는 이상적인 저역 통과 필터링에 더 가깝습니다.</p></li>
+<li><p>웨이크는 측면 및 축 방향으로 구불구불합니다.</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="fast-farm-theory-basis">
+<span id="ff-theorybasis"></span><h2><span class="section-number">4.19.7.2. </span>FAST.농장 이론 기초<a class="headerlink" href="#fast-farm-theory-basis" title="이 제목의 고유 링크"></a></h2>
+<p>FAST.Farm은 각각 풍력 발전 단지의 서로 다른 물리 영역을 나타내는 여러 하위 모델로 구성된 비선형 시간 영역 다중 물리학 엔지니어링 도구입니다. FAST.Farm은 FAST 모듈화 프레임워크의 프로그래밍 요구 사항을 따르는 오픈 소스 소프트웨어로 구현됩니다(<span id="id4">[<a class="reference internal" href="zrefs.html#id22" title="J. 존크만. 고속 풍력터빈 CAE 도구를 위한 새로운 모듈화 프레임워크입니다. 제51차 AIAA 항공우주과학회의에서. 2013년 텍사스 주 달라스. AIAA.">ff-Jon13</a>]</span>), 하위 모델은 드라이버 코드를 통해 상호 연결된 모듈로 구현됩니다. FAST.Farm의 하위 모델 계층 구조는 다음과 같습니다.
+<a class="reference internal" href="Introduction.html#ff-ffarm"><span class="std std-numref">그림 4.56</span></a>. 항적 대류, 편향 및 사행; 깨어날 때 교정; 및 후류 부족 증가는 후류 역학의 하위 모델입니다(<em>WD</em>) 모델은 단일 모듈로 구현됩니다. 주변 바람과 후류 병합은 주변 바람과 배열 효과의 하위 모델입니다(<em>AWAE</em>) 모델은 단일 모듈로 구현됩니다. OpenFAST와 결합(<em>OF</em>) 모듈, FAST.Farm에는 3개의 모듈과 1개의 드라이버가 있습니다. 여러 가지 사례가 있습니다. <em>OF</em> 및
+<em>WD</em> 모듈 – 각 풍력터빈/로터당 하나의 인스턴스. 각 하위 모델/모듈은 아래 하위 섹션에 설명되어 있습니다.</p>
+<p>FAST.Farm은 직렬 또는 병렬 모드로 컴파일하고 실행할 수 있습니다. FAST.Farm에서는 OpenMP를 통해 병렬화가 구현되었습니다. 이를 통해 FAST.Farm은 노드 내(노드 간이 아님) 내 코어/스레드 간에 계산 작업을 나누어 단일 시뮬레이션 속도를 높이는 방식으로 멀티코어 컴퓨터를 활용할 수 있습니다. 이 프로세스는 다음에서 설명됩니다. <a class="reference internal" href="#ff-parallel"><span class="std std-numref">그림 4.67
+스레드 수가 다음인 노드의 경우</span></a> (<span class="math notranslate nohighlight">\(N_{Th}\)</span>)는 풍력터빈의 수(<span class="math notranslate nohighlight">\(N_t\)</span>). 의 사례가 하나 있습니다. <em>AWAE</em> 모듈 및
+<span class="math notranslate nohighlight">\(N_t\)</span> 인스턴스의 <em>OF</em> 및 <em>WD</em> 모듈. 초기화, 업데이트 상태, 출력 계산 및 각 모듈에 대한 호출 종료가 표시됩니다. 출력 계산 <em>AWAE</em> 는 모든 스레드에서 병렬화됩니다. 시간 행진 동안 각 인스턴스는 <em>OF</em> 는 주변 바람 데이터를 읽는 동안 병렬로 해결됩니다. <em>AWAE</em>.</p>
+<div class="figure align-center" id="ff-parallel">
+<a class="reference internal image-reference" href="../../../_images/Parallelization.png"><img alt="FAST.Farm 병렬화 프로세스." src="../../../_images/Parallelization.png" style="width: 100%;"></a>
+<p class="caption"><span class="caption-number">그림 4.67
+스레드 수가 다음인 노드의 경우 </span><span class="caption-text">FAST.Farm 병렬화 프로세스.</span><a class="headerlink" href="#ff-parallel" title="이 이미지에 대한 영구 링크"></a></p>
+</div>
+<p>풍력 발전 단지의 크기와 풍력터빈의 수는 사용 가능한 RAM에 의해서만 제한됩니다. 병렬 모드에서는 OpenFAST 하위 모델의 각 인스턴스가 별도의 스레드에서 병렬로 실행될 수 있습니다. 동시에 주변의 바람도 <em>AWAE</em> 모듈을 다른 스레드에서 메모리로 읽고 있습니다. 따라서 가장 빠른 시뮬레이션에는 풍력 발전소의 풍력터빈 수보다 적어도 하나 이상의 코어가 필요합니다. 또한, <em>AWAE</em> 모듈은 별도의 스레드로 병렬화됩니다. 대규모 풍력 발전 단지의 모델링을 지원하려면 MPI를 통한 다중 노드 HPC의 노드 간 메모리 병렬화 및 병렬화와 관련된 단일 시뮬레이션이 필요할 수 있습니다. MPI는 아직 FAST.Farm 내에서 구현되지 않았습니다. 그러나 다중 노드 HPC를 사용하면 별도의 노드에서 여러 직렬 또는 병렬 시뮬레이션을 병렬(배치 모드)로 실행할 수 있습니다. 직렬 모드에서는 여러 직렬 시뮬레이션을 별도의 코어 및/또는 노드에서 병렬(배치 모드)로 실행할 수 있습니다.</p>
+<div class="section" id="fast-farm-driver">
+<span id="ff-driver"></span><h3><span class="section-number">4.19.7.2.1. </span>FAST.Farm 드라이버<a class="headerlink" href="#fast-farm-driver" title="이 제목의 고유 링크"></a></h3>
+<p>"접착 코드"라고도 알려진 FAST.Farm 드라이버는 개별 모듈을 함께 결합하고 전체 시간 영역 솔루션을 발전시키는 코드입니다. 또한 FAST.Farm 드라이버는 시뮬레이션 매개변수의 입력 파일을 읽고, 이러한 매개변수의 유효성을 확인하고, 모듈을 초기화하고, 결과를 파일에 쓰고, 시뮬레이션이 끝나면 메모리를 해제합니다.</p>
+<p>FAST.Farm 드라이버의 결합 알고리즘을 단순화하고 계산 효율성을 보장하기 위해 모든 모듈 상태(<span class="math notranslate nohighlight">\(x^d\)</span>), 입력(<span class="math notranslate nohighlight">\(u^d\)</span>), 출력(<span class="math notranslate nohighlight">\(y^d\)</span>) 및 기능(
+상태 업데이트용<span class="math notranslate nohighlight">\(X^d\)</span> 및
+FAST.Farm의 출력용 <span class="math notranslate nohighlight">\(Y^d\)</span> )는 이산 시간으로 표현되며, <span class="math notranslate nohighlight">\(t=n\Delta t\)</span>, 여기서 <span class="math notranslate nohighlight">\(t\)</span> 는 시간이고, <span class="math notranslate nohighlight">\(n\)</span>
+는 이산 시간 단계 카운터이며, <span class="math notranslate nohighlight">\(\Delta t\)</span> 는 사용자가 지정한 이산 시간 단계(증분)입니다. 따라서 FAST.Farm의 가장 일반적인 모듈 형태는 FAST 모듈화 프레임워크에서 허용하는 것보다 더 간단합니다(<span id="id5">[<a class="reference internal" href="zrefs.html#id22" title="J. 존크만. 고속 풍력터빈 CAE 도구를 위한 새로운 모듈화 프레임워크입니다. 제51차 AIAA 항공우주과학회의에서. 2013년 텍사스 주 달라스. AIAA.">ff-Jon13</a>]</span>), 수학적으로 다음과 같이 표현됩니다. <a class="footnote-reference brackets" href="#id34" id="id6">1</a></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    x^d\left[ n+1 \right]=X^d\left( x^d\left[ n \right],u^d\left[ n \right],n \right)\\
+    y^d\left[ n \right]=Y^d\left( x^d\left[ n \right],u^d\left[ n \right],n \right)\end{aligned}\end{split}\]</div>
+<p>해당 <em>OF</em>및
+이 플래그 값 아래에 <em>WD</em> 모듈에는 입력에서 출력으로의 직접적인 피드스루가 없습니다. 즉, 해당 출력 기능이 다음과 같이 단순화됩니다.
+<span class="math notranslate nohighlight">\(y^d\left[ n \right]=Y^d\left( x^d\left[ n \right],n \right)\)</span>. 의 능력
+위의 형태로 작성하는 <em>OF</em> 모듈에 대한 설명은 <a class="reference internal" href="#ff-of"><span class="std std-numref">섹션 4.19.7.2.2</span></a>. 추가적으로, <em>AWAE</em> 모듈에는 상태가 없으므로 모듈을 피드포워드 전용 시스템으로 줄이고 다음으로 단순화하는 모듈 형태로 만듭니다.
+<span class="math notranslate nohighlight">\(y^d\left[ n \right]=Y^d\left( u^d\left[ n \right],n \right)\)</span>. 본 설명서에 포함된 기능의 경우 대괄호 <span class="math notranslate nohighlight">\(\left[\quad\right]\)</span>
+는 이산 함수와 둥근 괄호를 나타냅니다.
+<span class="math notranslate nohighlight">\(\left(\quad\right)\)</span> 는 연속 함수를 나타냅니다. 대괄호/괄호는 묵시적으로 삭제됩니다. 각 FAST.Farm 모듈의 상태, 입력 및 출력(<em>OF</em>, <em>WD</em>및
+이 플래그 값 아래에 <em>AWAE</em>)는 다음에 나열되어 있습니다. <a class="reference internal" href="#ff-tab-modules"><span class="std std-numref">표 4.16</span></a> 및 아래 섹션에서 자세히 설명합니다.
+FAST.Farm의</p>
+<table class="docutils align-default" id="ff-tab-modules">
+<caption><span class="caption-number">표 4.16 </span><span class="caption-text">모듈 상태, 입력 및 출력</span><a class="headerlink" href="#ff-tab-modules" title="이 테이블에 대한 영구 링크"></a></caption>
+<colgroup>
+<col style="width: 16%">
+<col style="width: 31%">
+<col style="width: 26%">
+<col style="width: 27%">
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>모듈</strong></p></th>
+<th class="head"><p><strong>상태(이산 시간)</strong></p></th>
+<th class="head"><p><strong>입력</strong></p></th>
+<th class="head"><p><strong>출력</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><em>오픈패스트(OF)</em></p></td>
+<td><ul class="simple">
+<li><p>OpenFAST 래퍼에는 없지만 OpenFAST 내부에는 많은 상태가 있습니다.</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>글로벌 컨트롤러 명령</p></li>
+<li><p>개별 터빈 컨트롤러에 대한 명령</p></li>
+<li><p><span class="math notranslate nohighlight">\(\vec{V}_\text{Dist}^\text{High}\)</span></p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>개별 터빈 컨트롤러의 명령/측정</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{x}^\text{Disk}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\vec{p}^\text{Hub}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(D^\text{Rotor}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\gamma^\text{YawErr}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(^\text{DiskAvg}V_x^\text{Rel}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(^\text{AzimAvg}C_t\left(r\right)\)</span></p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p><em>웨이크 다이내믹스(WD)</em></p></td>
+<td><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(^\text{FiltDiskAvg}V_x^\text{Rel}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(^\text{FiltAzimAvg}C_t\left(r\right)\)</span></p></li>
+</ul>
+<p>의 경우 <span class="math notranslate nohighlight">\(0 \le n_p \le N_p-1\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(^\text{Filt}D_{n_p}^\text{Rotor}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(^\text{Filt}\gamma_{n_p}^\text{YawErr}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(^\text{Filt}\vec{V}_{n_p}^\text{Plane}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(^\text{FiltDiskAvg}V_{x_{n_p}}^\text{Wind}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(^\text{Filt}TI_{\text{Amb}_{n_p}}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(x_{n_p}^\text{Plane}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{x}_{n_p}^\text{Plane}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\vec{p}_{n_p}^\text{Plane}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(V_{x_{n_p}}^\text{Wake}\left(r\right)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(V_{r_{n_p}}^\text{Wake}\left(r\right)\)</span></p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\hat{x}^\text{Disk}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\vec{p}^\text{Hub}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(D^\text{Rotor}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\gamma^\text{YawErr}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(^\text{DiskAvg}V_x^\text{Rel}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(^\text{AzimAvg}C_t\left(r\right)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\vec{V}_{n_p}^\text{Plane}\)</span> 용 <span class="math notranslate nohighlight">\(0\le n_p \le N_p-1\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(^\text{DiskAvg}V_x^\text{Wind}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(TI_\text{Amb}\)</span></p></li>
+</ul>
+</td>
+<td><p>의 경우 <span class="math notranslate nohighlight">\(0 \le n_p \le N_p-1\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\hat{x}_{n_p}^\text{Plane}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\vec{p}_{n_p}^\text{Plane}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(V_{x_{n_p}}^\text{Wake}\left(r\right)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(V_{r_{n_p}}^\text{Wake}\left(r\right)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(D_{n_p}^\text{Wake}\)</span></p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p><em>주변 바람 및 배열 효과(AWAE)</em></p></td>
+<td><ul class="simple">
+<li><p>없음</p></li>
+</ul>
+</td>
+<td><p>각 터빈 및 <span class="math notranslate nohighlight">\(0 \le n_p \le N_p-1\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\hat{x}_{n_p}^\text{Plane}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\vec{p}_{n_p}^\text{Plane}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(V_{x_{n_p}}^\text{Wake}\left(r\right)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(V_{r_{n_p}}^\text{Wake}\left(r\right)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(D_{n_p}^\text{Wake}\)</span></p></li>
+</ul>
+</td>
+<td><p>각 터빈의 경우:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\vec{V}_\text{Dist}^\text{High}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\vec{V}_{n_p}^\text{Plane}\)</span> 용 <span class="math notranslate nohighlight">\(0 \le n_p \le N_p-1\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(^\text{DiskAvg}V_x^\text{Wind}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(TI_\text{Amb}\)</span></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>초기화 후 각 시간 단계 내에서 각 모듈의 상태(<em>OF</em>및
+이 플래그 값 아래에 <em>WD</em>)가 업데이트되었습니다(시간부터) <span class="math notranslate nohighlight">\(t\)</span> 시간에
+<span class="math notranslate nohighlight">\(t+\Delta t\)</span>또는 이와 동등하게, <span class="math notranslate nohighlight">\(n\)</span> 에
+액추에이터 라인 애플리케이션용 <span class="math notranslate nohighlight">\(n+1\)</span>); 시간이 증가합니다. 모듈 출력은 계산되어 다른 모듈에 대한 입력으로 전송됩니다. 양식 단순화로 인해 각 모듈의 상태 업데이트를 병렬로 해결할 수 있습니다. 출력에서 입력으로의 전송에는 큰 비선형 해석이 필요하지 않습니다. 솔루션의 전체 수정 단계가 필요하지 않습니다. 수정 단계가 없다는 점은 OpenFAST 내에서 사용되는 결합 알고리즘이 크게 단순화된다는 점입니다(<span id="id7">[<a class="reference internal" href="zrefs.html#id23" title="M. A. Sprague 및 그 외 여러분. 빠른 모듈식 풍력터빈 CAE 도구: 일치하지 않는 공간적 및 시간적 메시. 제50회 AIAA 항공우주과학회의에서. 메릴랜드주 내셔널 하버, 2014년 1월. AIAA. doi:http://arc.aiaa.org/doi/pdf/10.2514/6.2014-0520.">ff-Seal14</a>, <a class="reference internal" href="zrefs.html#id24" title="M. A. Sprague 및 그 외 여러분. 풍력터빈 시뮬레이션을 위한 빠른 모듈형 프레임워크: 새로운 알고리즘 및 수치 예제. 제51회 AIAA 항공우주과학회의에서. 키시미, 플로리다, 2015. AIAA. doi:http://arc.aiaa.org/doi/pdf/10.2514/6.2014-0520.">ff-Seal15</a>]</span>). 또한, 출력 계산은 <em>OF</em>및
+이 플래그 값 아래에 <em>WD</em> 모듈을 병렬화한 다음 출력 계산을 수행할 수 있습니다.
+<em>AWAE</em> 모듈. <a class="footnote-reference brackets" href="#id37" id="id8">2</a> 병렬 모드에서는 OpenMP를 통해 FAST.Farm에서 병렬화가 구현되었습니다.</p>
+<p>작은 시간 척도와 정교한 물리학으로 인해 OpenFAST 하위 모델은 FAST.Farm 모듈 중 계산 속도가 가장 느립니다. 추가적으로, 출력 계산은 <em>AWAE</em> 모듈은 OpenFAST와 병렬로 풀 수 없는 유일한 주요 계산입니다. 이로 인해 가장 빠른 병렬화된 FAST.Farm 솔루션은 독립형 OpenFAST 시뮬레이션보다 약간만 느리게 실행될 수 있습니다. 그 결과 풍력터빈/농장 설계 및 분석에 필요한 많은 시뮬레이션을 실행할 수 있을 만큼 계산 비용이 적게 드는 시뮬레이션이 가능해졌습니다.</p>
+</div>
+<div class="section" id="openfast-of-module">
+<span id="ff-of"></span><h3><span class="section-number">4.19.7.2.2. </span>OpenFAST(OF 모듈)<a class="headerlink" href="#openfast-of-module" title="이 제목의 고유 링크"></a></h3>
+<p>FAST.Farm은 다음을 사용합니다.
+<a class="reference external" href="https://github.com/OpenFAST/openfast" target="_blank" rel="noopener noreferrer">OpenFAST</a> 는 풍력 발전 단지에 있는 개별 터빈의 역학(부하 및 동작)을 모델링합니다. OpenFAST는 환경 자극(해양 시스템의 경우 바람 유입, 파도, 해류 및 얼음)과 전체 시스템(로터, 드라이브트레인, 나셀, 타워, 컨트롤러, 해양 시스템의 경우 하부 구조 및 스테이션 유지 시스템)의 결합 시스템 응답을 캡처합니다. OpenFAST 자체는 결합된 에어로-하이드로-서보-탄성 솔루션의 서로 다른 물리적 도메인에 각각 해당하는 다양한 모듈의 상호 연결입니다. OpenFAST 솔루션의 세부 사항은 이 문서의 범위를 벗어나지만 위의 하이퍼링크 및 관련 참조에서 찾을 수 있습니다.</p>
+<p>해당 <em>OF</em> 모듈은 OpenFAST를 FAST.Farm에 결합할 수 있게 해주는 래퍼입니다. SOWFA에서 사용할 수 있는 OpenFAST 래퍼와 유사하지만 입력 및 출력이 다릅니다(아래 설명 참조). 이 래퍼는 OpenFAST 상태 업데이트의 하위 순환도 제어합니다. OpenFAST 내에서 해결되는 시간 척도는 FAST.Farm 내에서 해결되는 시간 척도보다 훨씬 작습니다. 따라서 정확성과 수치적 안정성을 위해 OpenFAST 시간 단계는 일반적으로 FAST.Farm에 필요한 단계보다 훨씬 작습니다. <a class="reference internal" href="#ff-timescales"><span class="std std-numref">그림 4.68</span></a>.</p>
+<div class="figure align-center" id="ff-timescales">
+<a class="reference internal image-reference" href="../../../_images/timescales.png"><img alt="OpenFAST(DT), FAST.Farm 고해상도 도메인(DT_High) 및 FAST.Farm 저해상도 도메인(DT_Low)의 시간 범위를 보여줍니다." src="../../../_images/timescales.png" style="width: 100%;"></a>
+<p class="caption"><span class="caption-number">그림 4.68 </span><span class="caption-text">OpenFAST(DT), FAST.Farm 고해상도 도메인(DT_High) 및 FAST.Farm 저해상도 도메인(DT_Low)의 시간 범위를 보여줍니다.</span><a class="headerlink" href="#ff-timescales" title="이 이미지에 대한 영구 링크"></a></p>
+</div>
+<p>다음의 인스턴스가 하나 있습니다.
+각 풍력터빈용 <em>OF</em> 모듈. 병렬 모드에서 이러한 인스턴스는 OpenMP를 통해 병렬화됩니다. OpenFAST 자체에는 연속시간, 이산시간, 대수 및 기타(예: 논리) 상태를 포함하여 다양한 입력, 출력, 상태 및 매개변수를 갖는 다양한 모듈이 있습니다. 그러나 OpenFAST를 FAST.Farm에 결합할 목적으로 <em>OF</em> 모듈은 입력에서 출력으로의 직접적인 피드스루 없이 이산 시간에 작동합니다. 이는 다음을 호출하여 달성됩니다.
+FAST.Farm 시간 간격에 따라 지정된 속도로 <em>OF</em> 모듈,
+<span class="math notranslate nohighlight">\(\Delta t\)</span>, 그리고 일회성 단계(<span class="math notranslate nohighlight">\(\Delta t\)</span>) 입력에 대한 출력 지연; 이 일회성 지연은 FAST.Farm 내에서 해결되는 느린 시간 척도 때문에 문제가 될 것으로 예상되지 않습니다.</p>
+<p>초기화 시 풍력터빈의 수(<span class="math notranslate nohighlight">\(N_t\)</span>와 함께
+<span class="math notranslate nohighlight">\(n_t\)</span> 터빈 카운터는 다음과 같습니다. <span class="math notranslate nohighlight">\(1\le n_t\le N_t\)</span>), 해당 OpenFAST 기본 입력 파일 및 글로벌 터빈 원본 <em>X-Y-Z</em> 관성계 좌표계는 사용자가 지정합니다. 터빈 기원은 편향되지 않은 타워 중심선과 지면 또는 해양 시스템의 경우 평균 해수면의 교차점으로 정의됩니다. 전역 관성계 좌표계는 다음과 같이 정의됩니다. <em>Z</em>
+는 수직 위쪽(반중력)을 향하고, <em>X</em> 는 수평 방향으로 명목상 풍하 방향(0도 풍향을 따라) 및 <em>Y</em>
+는 가로 방향, 가로 방향을 가리킵니다.</p>
+<p>해당 <em>OF</em> 모듈은 또한 터빈 주변의 고해상도 풍력 영역(시간 및 공간 모두에서)에 걸쳐 교란된 바람(주변 터빈의 후류와 주변 터빈의 후류)을 사용합니다. <em>AWAE</em> 모듈 – 참조
+<a class="reference internal" href="#ff-awae"><span class="std std-numref">섹션 4.19.7.2.4
+자세한 내용은</span></a> ),
+<span class="math notranslate nohighlight">\(\vec{V}_\text{Dist}^\text{High}\)</span>를 입력으로 사용하여 OpenFAST에서 계산한 개별 터빈 부하 및 응답이 후류 및 배열 효과를 포함하여 풍력 발전 단지를 통과하는 흐름에 의해 정확하게 구동되도록 합니다. 공간적으로 고해상도 풍력 영역은 로터의 요잉, 블레이드 편향 및 지지 구조물의 움직임을 포괄할 만큼 충분히 커야 합니다(후자는 부유형 해상 풍력터빈에 특히 중요합니다). OpenFAST는 4차원(3개의 공간 차원과 1개의 시간 차원) 보간을 사용하여 분석 노드에 대한 지역적 바람을 결정합니다.</p>
+<p>해당 <em>OF</em> 모듈은 웨이크 역학 계산에 필요한 여러 출력을 계산합니다(에 대한 입력). <em>WD</em> 모듈). 여기에는 다음이 포함됩니다.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\hat{x}^\text{Disk}\)</span> – 로터 중심선의 방향</p></li>
+<li><p><span class="math notranslate nohighlight">\(\vec{p}^\text{Hub}\)</span> – 로터 중심의 전역 위치</p></li>
+<li><p><span class="math notranslate nohighlight">\(D^\text{Rotor}\)</span> – 로터 직경</p></li>
+<li><p><span class="math notranslate nohighlight">\(\gamma^\text{YawErr}\)</span> – 로터의 나셀 요 오류</p></li>
+<li><p><span class="math notranslate nohighlight">\(^\text{DiskAvg}V_x^\text{Rel}\)</span> – 로터-디스크 평균 상대 풍속(주변 + 이웃 터빈의 후류 + 터빈 운동), 디스크에 수직</p></li>
+<li><p><span class="math notranslate nohighlight">\(^\text{AzimAvg}C_t\left( r \right)\)</span> – 방사형으로 분포된 방위각 평균 추력 계수(로터 디스크에 수직), 여기서 <span class="math notranslate nohighlight">\(r\)</span> 는 반경입니다.</p></li>
+</ul>
+<p>본 설명서에서는 위쪽 화살표(<span class="math notranslate nohighlight">\(\vec{\quad}\)</span>)는 3성분 벡터와 모자(<span class="math notranslate nohighlight">\(\hat{\quad}\)</span>)는 3성분 단위 벡터를 나타낸다. 이 설명서의 명확성을 위해
+<span class="math notranslate nohighlight">\(\left( r \right)\)</span> 는 방사형 의존성이 FAST.Farm 내의 개별 방사형 유한차분 그리드에 저장/계산되는 경우에도 방사형 종속성을 연속 함수로 표시하는 데 사용됩니다. 제외 <span class="math notranslate nohighlight">\(\gamma^\text{YawErr}\)</span> 및
+<span class="math notranslate nohighlight">\(^\text{AzimAvg}C_t\left( r \right)\)</span>, 나열된 모든 변수는 FAST.Farm이 개발되기 전에 OpenFAST 내에서 계산되었습니다.
+<span class="math notranslate nohighlight">\(\gamma^\text{YawErr}\)</span> 는 글로벌에 대한 각도로 정의됩니다. <em>Z</em>
+로터 중심선에서 로터-디스크 평균 상대 풍속(주변 + 이웃 터빈의 후류 + 터빈 운동)까지, 둘 다 수평 전역에 투영됩니다. <em>X-Y</em> 비행기 – 참조
+<a class="reference internal" href="Introduction.html#ff-wakedefl"><span class="std std-numref">그림 4.57
+예시용</span></a> .
+<span class="math notranslate nohighlight">\(^\text{AzimAvg}C_t\left( r \right)\)</span> 는 방정식으로 계산됩니다.&nbsp;<a class="reference internal" href="#equation-eq-ct">(4.228)</a></p>
+<div class="math notranslate nohighlight" id="equation-eq-ct">
+<span class="eqno">(4.228)<a class="headerlink" href="#equation-eq-ct" title="이 방정식에 대한 영구 링크"></a></span>\[^\text{AzimAvg}C_t\left( r \right)=
+   \frac{\sum\limits_{n_b=1}^{N_b}
+         {\left\{ \hat{x}^\text{Disk} \right\}^T}\vec{f}_{n_b}\left( r \right)}
+      {\frac{1}{2}\rho 2\pi r\left( ^\text{DiskAvg}V_x^\text{Rel} \right)^2}\]</div>
+<p>여기서:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(N_b\)</span> – 로터 블레이드 수, 포함
+블레이드 카운터로 <span class="math notranslate nohighlight">\(n_b\)</span> 블레이드 번호로 사용하며, 이때 <span class="math notranslate nohighlight">\(1\le n_b\le N_b\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\left\{ \quad \right\}^T\)</span> – 벡터 전치</p></li>
+<li><p><span class="math notranslate nohighlight">\(\rho\)</span> – 공기 밀도</p></li>
+<li><p><span class="math notranslate nohighlight">\(\vec{f}_{n_b}\left( r \right)\)</span> – 공기역학적 적용 하중 <a class="footnote-reference brackets" href="#id38" id="id9">3</a>
+는 블레이드용 로터 디스크 평면에서 반경 방향 바깥쪽으로 연장되는 선을 따라 단위 길이당 분포됩니다. <span class="math notranslate nohighlight">\(n_b\)</span>.</p></li>
+</ul>
+<p>방정식의 분자&nbsp;<a class="reference internal" href="#equation-eq-ct">(4.228)</a> 는 로터 디스크에 수직으로 투영된 단위 길이당 분포된 공기 역학적 적용 하중, 즉 반경 방향 종속 추력입니다. 분모는 주어진 반경의 원주로 구성된 반경 방향 종속 추력 계수에 대한 정규화 계수입니다. <span class="math notranslate nohighlight">\(2\pi r\)</span>, 로터-디스크 평균 상대 풍속의 동적 압력,
+<span class="math notranslate nohighlight">\(\frac{1}{2}\rho {{\left( ^\text{DiskAvg}V_x^\text{Rel} \right)}^2}\)</span>.</p>
+</div>
+<div class="section" id="wake-dynamics-wd-module">
+<span id="ff-wd"></span><h3><span class="section-number">4.19.7.2.3. </span>웨이크 다이내믹스(WD 모듈)
+FAST.Farm의<a class="headerlink" href="#wake-dynamics-wd-module" title="이 제목의 고유 링크"></a></h3>
+<p>해당 <em>WD</em> 모듈은 후류 이류, 편향 및 사행을 포함하여 개별 로터에 대한 후류 역학을 계산합니다. 깨어나기 직전 교정; 그리고 각성 부족 증가. Near-Wake 보정은 Wake 적자의 Near-Wake(압력 구배 영역) 확장을 처리합니다. 후류 부족 증가는 준정상 상태 축대칭 후류 부족을 명목상 바람 방향으로 이동시킵니다. 각 하위 모델은 아래 하위 섹션에 설명되어 있습니다. 의 사례가 하나 있습니다.
+각 로터용 <em>WD</em> 모듈.</p>
+<p>후류 역학 계산에는 실험 데이터 또는 HFM과 더 잘 일치하도록 보정할 수 있는 터빈 작동 또는 대기 조건에 따라 달라질 수 있는 많은 사용자 지정 매개변수가 포함됩니다. <a class="reference external" href="https://github.com/NatLabRockies/SOWFA" target="_blank" rel="noopener noreferrer">SOWFA</a> (또는 동급)를 벤치마크로 사용합니다. 기본값은 다음을 기반으로 교정된 각 매개변수에 대해 파생되었습니다. <a class="reference external" href="https://github.com/NatLabRockies/SOWFA" target="_blank" rel="noopener noreferrer">SOWFA</a>
+시뮬레이션(<span id="id10">[<a class="reference internal" href="zrefs.html#id19" title="P. Doubrawa 및 그 외 여러분. sofa에 대한 fast.farm 매개변수의 최적화 기반 보정. 제36회 풍력에너지 심포지엄에서. 플로리다주 키시미, 2018년 1월. AIAA. 도이:https://arc.aiaa.org/doi/pdf/10.2514/6.2018-0512.">ff-Deal18</a>]</span>), FAST.Farm 사용자가 덮어쓸 수 있습니다.</p>
+<p>후류 부족 진화는 고정된 수의 후류 평면으로 구성된 축 대칭 유한 차분 그리드에서 이산 시간에 해결됩니다.
+<span class="math notranslate nohighlight">\(N_p\)</span> (포함 <span class="math notranslate nohighlight">\(n_p\)</span> 다음과 같은 웨이크 플레인 카운터
+<span class="math notranslate nohighlight">\(0\le n_p\le N_p-1\)</span>). 후류 평면은 후류 부족이 계산되는 후류의 단면으로 생각될 수 있습니다.</p>
+<p>후류면의 진화를 위해 세 가지 후류 공식을 사용할 수 있습니다. 매개변수 <strong>Mod_Wake</strong> 는 웨이크 공식 간을 전환하는 데 사용됩니다. 다음 세 가지 옵션을 사용할 수 있습니다.</p>
+<p>1) 폴라 [<strong>Mod_Wake=1</strong>] (기본값). 후류는 축대칭이며 극격자 격자에 정의되어 있으며 암묵적 크랭크-니콜슨 방식을 사용하여 해석되었으며 전단층 근사법에서 운동량 보존 법칙과 질량 보존 법칙을 모두 만족합니다. 각 평면에는 고정된 방사형 노드 그리드가 있습니다. 후류 부족은 축대칭으로 가정되기 때문에 방사형 유한차분 그리드는 평면으로 간주될 수 있습니다.</p>
+<p>2) 컬드 웨이크 모델 [<strong>Mod_Wake=2</strong>]. 후류는 데카르트 그리드에서 정의되고, 기울어진 유입에서 컬링된 후류 와류의 효과는 직교류 속도를 도입하여 설명되며, 운동량 보존은 1차 순방향 오일러 방식을 사용하여 해결되고, 질량 보존은 강제되지 않으며, 후류 소용돌이의 효과가 설명될 수 있습니다. 각 평면에는 (구불구불한 프레임의) y 및 z 방향으로 고정된 수의 노드가 있습니다. 후류는 기울어진 유입에서 "말린" 모양을 채택합니다.</p>
+<p>3) 데카르트 [<strong>Mod_Wake=3</strong>] 이는 축 대칭 후류로 이어지는 강도가 0인 컬링 후류 와류를 갖는 모델 2에 해당합니다. 이 공식에는 소용돌이 효과가 포함될 수 있습니다.</p>
+<p>Curl 및 데카르트 구현은 1차 순방향 구조에 의존하기 때문에 구현은 Polar 구현보다 덜 견고합니다. 컬링-웨이크 모델에 대한 대략적인 안정성 기준은 다음의 방정식 20에 제공됩니다. <a class="reference external" href="https://doi.org/10.5194/wes-6-555-2021" target="_blank" rel="noopener noreferrer">종이</a>). 이 기준은 다음에 대한 지침을 제공하기 위해 채택되었습니다. <strong>박사</strong> 및 <strong>DT_Low</strong> 가 제공됨 <a class="reference internal" href="ModelGuidance.html#ff-modguidance"><span class="std std-numref">섹션 4.19.6</span></a>.</p>
+<p>컬링-웨이크 모델 구현은 다음과 같습니다. <a class="reference external" href="https://onlinelibrary.wiley.com/doi/10.1002/we.2785" target="_blank" rel="noopener noreferrer">참조
+에어포일 코드와 평행한</a>.</p>
+<p><strong>이 문서의 나머지 부분은 Polar 공식에 관한 것입니다.</strong>.</p>
+<p>에 대한 입력 <em>WD</em> 모듈 포함 <span class="math notranslate nohighlight">\(\hat{x}^\text{Disk}\)</span>,
+<span class="math notranslate nohighlight">\(\vec{p}^\text{Hub}\)</span>, <span class="math notranslate nohighlight">\(D^\text{Rotor}\)</span>,
+<span class="math notranslate nohighlight">\(\gamma^\text{YawErr}\)</span>, <span class="math notranslate nohighlight">\(^\text{DiskAvg}V_x^\text{Rel}\)</span>및
+이 플래그 값 아래에
+<span class="math notranslate nohighlight">\(^\text{AzimAvg}C_t\left( r \right)\)</span>. 추가 입력은 로터에 대한 후류 평면의 이류, 편향 및 구불구불한 속도입니다(<span class="math notranslate nohighlight">\(\vec{V}_{n_p}^\text{Plane}\)</span>); 디스크에 수직인 회전자 디스크 평균 주변 풍속(<span class="math notranslate nohighlight">\(^\text{DiskAvg}V_x^\text{Wind}\)</span>); 로터에서 바람의 주변 난류 강도(<span class="math notranslate nohighlight">\(TI_\text{Amb}\)</span>) (에서 출력
+자세한 내용은 <em>AWAE</em> 모듈 – 참조 <a class="reference internal" href="#ff-awae"><span class="std std-numref">섹션 4.19.7.2.4
+자세한 내용은</span></a> 참조).
+<span class="math notranslate nohighlight">\(\vec{V}_{n_p}^\text{Plane}\)</span> 는 다음과 같이 계산됩니다.
+교란된 바람의 공간 평균화에 의한
+<span class="math notranslate nohighlight">\(0\le n_p\le N_p-1\)</span> .</p>
+<p>해당 <em>WD</em> 모듈은 교란된 바람의 계산에 필요한 여러 출력을 계산하여 <em>AWAE</em> 모듈. 이러한 출력에는 다음이 포함됩니다.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\hat{x}_{n_p}^\text{Plane}\)</span> – 각 평면에 수직인 단위 벡터를 사용하여 정의된 후류 평면의 방향, 즉 후류 평면 중심선의 방향</p></li>
+<li><p><span class="math notranslate nohighlight">\(\vec{p}_{n_p}^\text{Plane}\)</span> – 항적 평면 중심의 전역 위치</p></li>
+<li><p><span class="math notranslate nohighlight">\(V_{x_{n_p}}^\text{Wake}\left(r\right)\)</span> 및
+<span class="math notranslate nohighlight">\(V_{r_{n_p}}^\text{Wake}\left(r\right)\)</span> – 방사형으로 분포된 후류 평면에서 각각 축방향 및 방사형 후류 속도 부족</p></li>
+<li><p><span class="math notranslate nohighlight">\(D_{n_p}^\text{Wake}\)</span> – 후류 평면의 후류 직경, 각각 <span class="math notranslate nohighlight">\(0\le n_p\le N_p-1\)</span>.</p></li>
+</ul>
+<p>이 설명서에는 세부 사항이 생략되어 있지만 시동 중에 웨이크 평면이 아직 모든 웨이크 평면을 통해 전파되지 않은 경우 웨이크 평면의 수는 입력, 출력 및 상태를 설정할 필요가 없도록 경과 시간에 따라 제한됩니다.
+웨이크가 전파된 곳 너머로 <em>WD</em> 및 <em>AWAE</em> 모듈.</p>
+<div class="section" id="wake-advection-deflection-and-meandering">
+<span id="ff-advdefmean"></span><h4><span class="section-number">4.19.7.2.3.1. </span>항적 이류, 편향 및 사행<a class="headerlink" href="#wake-advection-deflection-and-meandering" title="이 제목의 고유 링크"></a></h4>
+<p>가로(수평 및 수직) 후류 구불구불한 후류를 위한 수동 추적 솔루션에 대한 간단한 확장을 통해 FAST.Farm의 후류 역학 솔루션은 후류 편향을 설명하도록 확장됩니다.
+<a class="reference internal" href="Introduction.html#ff-wakedefl"><span class="std std-numref">그림 4.57
+예시용</span></a> – 그리고 웨이크 대류 – 그림에 나와 있는 대로
+<a class="reference internal" href="Introduction.html#ff-wakeadv"><span class="std std-numref">그림 4.58</span></a> – 기타 물리적 개선 사항 중 하나입니다. 다음 확장이 도입되었습니다.</p>
+<ol class="arabic simple">
+<li><p>웨이크 평면 속도 계산,
+<span class="math notranslate nohighlight">\(\vec{V}_{n_p}^\text{Plane}\)</span> 용 <span class="math notranslate nohighlight">\(0\le n_p\le N_p-1\)</span>, 주변 바람 대신 방해받는 바람을 공간적으로 평균화합니다(참조 <a class="reference internal" href="#ff-awae"><span class="std std-numref">섹션 4.19.7.2.4
+자세한 내용은</span></a>)</p></li>
+<li><p>풍향 대신 로터 중심선으로 후류면 방향 조정</p></li>
+<li><p>로터의 국지적 조건을 입력으로 필터링하는 저역 통과
+<em>WD</em> 모듈은 시간 평균 조건을 고려하는 대신 유입, 터빈 제어 및/또는 터빈 동작의 과도 현상을 설명합니다.</p></li>
+</ol>
+<p>이러한 확장을 통해 패시브 추적기 솔루션은 다음을 가능하게 합니다.</p>
+<ol class="arabic simple">
+<li><p>유입 스큐에 따라 편향되는 후류 중심선. 이는 기울어진 유입에서 디스크에 수직인 후류 부족으로 인해 주변 흐름과 평행하지 않은 속도 구성 요소가 발생하기 때문에 달성됩니다.</p></li>
+<li><p>후류 적자는 가까운 후류에서 더 강하고 바람이 불어오는 방향을 약화시키기 때문에 가까운 후류에서 먼 후류까지 가속되는 항적입니다.</p></li>
+<li><p>시간 평균 대신 저역 통과 시간 필터링 조건이 사용되기 때문에 로터의 조건에 따라 변경되는 후류 부족 진화가 발생합니다.</p></li>
+<li><p>후류는 국지적인 축풍을 고려하여 축방향뿐만 아니라 횡방향으로도 구불구불하게 됩니다.</p></li>
+<li><p>풍하측을 볼 때 후류 모양이 기울어진 흐름에서 원형 대신 타원형이 됩니다(후류 모양은 로터 중심선을 내려다볼 때 원형으로 유지됩니다).</p></li>
+</ol>
+<p>항목 3의 경우 후류는 회전자의 국지적 조건 변화에 천천히 반응하고 후류 전개는 준정상 상태 방식으로 처리되기 때문에 저역 통과 시간 필터링이 중요합니다. 더욱이, 항목 1에서 발생한 후류 편향에 대한 수정은 후류 회전과 전단의 물리적 결합을 설명하는 데 필요하며, 이는 항목 1에서 직접 모델링되지 않습니다. <em>WD</em> 모듈. 이는 항목 1의 후류 편향에 대한 수평 비대칭 보정을 통해 달성됩니다(참조
+그림의 경우 <a class="reference internal" href="Introduction.html#ff-wakedefl"><span class="std std-numref">그림 4.57
+예시용</span></a> ). 이 수평 후류 편향 보정은 FLORIS의 후류 모델에 구현된 보정과 유사하게 기울기와 오프셋을 포함하는 간단한 선형 보정입니다. 나셀 요 기반 후류 방향 전환(후류 조향) 풍력 발전 단지 제어의 정확한 모델링은 중요합니다.</p>
+<p>수학적으로 저역 통과 시간 필터는 지수 평활화 기능을 갖춘 재귀 단극 필터를 사용하여 구현됩니다(<span id="id11">[<a class="reference internal" href="zrefs.html#id39" title="S.W. 스미스. 디지털 신호 처리에 대한 과학자 및 엔지니어 가이드. 캘리포니아 기술 출판, 2006. ISBN 978-0966017632.">ff-Smi06</a>]</span>). 이 필터의 이산시간 재귀(차이) 방정식은 다음과 같습니다.<span id="id12">[<a class="reference internal" href="zrefs.html#id31" title="J. Jonkman 및 그 외 여러분. 해양 시스템 개발을 위한 5MW 기준 풍력터빈의 정의. 기술 보고서 NREL/TP-500-38060, 국립 재생 에너지 연구소, Golden, CO, 2009년 2월.">ff-Jeal09</a>]</span>):</p>
+<div class="math notranslate nohighlight" id="equation-eq-disc">
+<span class="eqno">(4.229)<a class="headerlink" href="#equation-eq-disc" title="이 방정식에 대한 영구 링크"></a></span>\[{x^d_{n_p}}\left[ n+1 \right]={x^d_{n_p}}
+      \left[ n \right]\alpha
+      +{u^d}\left[ n \right]\left( 1-\alpha  \right)
+      \qquad \textrm{for } n_p=0\]</div>
+<p>여기서</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x^d\)</span> – 저역 통과 시간 필터링된 입력 값을 저장하는 이산 시간 상태 <span class="math notranslate nohighlight">\(u^d\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha=e^{-2\pi \Delta t f_c}\)</span> – 0(최소 필터링)과 1(최대 필터링) 사이의 값을 갖는 저역 통과 시간 필터 매개변수(제외)</p></li>
+<li><p><span class="math notranslate nohighlight">\(f_c\)</span> – 사용자 지정 차단(코너) 주파수(저역 통과 시간 필터의 시상수는 <span class="math notranslate nohighlight">\(\frac{1}{f_c}\)</span>).</p></li>
+</ul>
+<p>아래첨자 <span class="math notranslate nohighlight">\(n_p\)</span> 는 웨이크 플레인과 관련된 상태를 나타내는 데 사용됩니다. <span class="math notranslate nohighlight">\(n_p\)</span>; 방정식&nbsp;<a class="reference internal" href="#equation-eq-disc">(4.229)</a> 는 로터 디스크에 적용됩니다. <span class="math notranslate nohighlight">\(n_p=0\)</span>.</p>
+<p>후류 부족 진화의 준정상 상태 처리와 일치합니다(참조: <a class="reference internal" href="#ff-deficit"><span class="std std-numref">섹션 4.19.7.2.3.3</span></a>), 평면이 하류로 전파됨에 따라 로터의 조건은 후류 평면의 고정 상태로 유지됩니다.</p>
+<div class="math notranslate nohighlight" id="equation-eq-propagation">
+<span class="eqno">(4.230)<a class="headerlink" href="#equation-eq-propagation" title="이 방정식에 대한 영구 링크"></a></span>\[x^d_{n_p}[n+1] = x^d_{n_p-1}[n]
+   \qquad \textrm{for } 1 \leq n_p \leq N_p-1\]</div>
+<p>방정식&nbsp;<a class="reference internal" href="#equation-eq-disc">(4.229)</a>
+및&nbsp;<a class="reference internal" href="#equation-eq-propagation">(4.230)</a> 는 다음에 직접 적용됩니다. <em>WD</em>
+모듈 입력 <span class="math notranslate nohighlight">\(D^\text{Rotor}\)</span> <a class="footnote-reference brackets" href="#id40" id="id13">4</a>,
+<span class="math notranslate nohighlight">\(\gamma^\text{YawErr}\)</span>, <span class="math notranslate nohighlight">\(^\text{DiskAvg}V_x^\text{Rel}\)</span>및
+이 플래그 값 아래에
+<span class="math notranslate nohighlight">\(TI_\text{Amb}\)</span>. 연관된 상태는 다음과 같습니다.
+<span class="math notranslate nohighlight">\(^\text{Filt}D_{n_p}^\text{Rotor}\)</span>,
+<span class="math notranslate nohighlight">\(^\text{Filt}\gamma_{n_p}^\text{YawErr}\)</span>,
+<span class="math notranslate nohighlight">\(^\text{FiltDiskAvg}V_{x_{n_p}}^\text{Wind}\)</span>및
+이 플래그 값 아래에
+<span class="math notranslate nohighlight">\(^\text{Filt}TI_{\text{Amb}_{n_p}}\)</span> 각각 (각각
+<span class="math notranslate nohighlight">\(0\le n_p\le N_p-1\)</span>). 는 <em>WD</em> 모듈 입력
+<span class="math notranslate nohighlight">\(^\text{DiskAvg}V_x^\text{Rel}\)</span> 및
+<span class="math notranslate nohighlight">\(^\text{AzimAvg}C_t\left( r \right)\)</span> 는 로터의 경계 조건에 필요하지만 후류 부족 진화 계산에서는 필요하지 않으므로 후류 평면과 함께 하류로 전파되지 않습니다. 따라서 방정식&nbsp;<a class="reference internal" href="#equation-eq-disc">(4.229)</a> 는 이러한 입력에 적용되지만 방정식&nbsp;<a class="reference internal" href="#equation-eq-propagation">(4.230)</a> 는 그렇지 않습니다. 연관된 상태는 다음과 같습니다. <span class="math notranslate nohighlight">\(^\text{FiltDiskAvg}V_x^\text{Rel}\)</span>
+및 <span class="math notranslate nohighlight">\(^\text{FiltAzimAvg}C_t\left( r \right)\)</span>. 마찬가지로 방정식만&nbsp;<a class="reference internal" href="#equation-eq-disc">(4.229)</a> 는 저역 통과 시간 필터링에 사용됩니다.
+<em>WD</em> 모듈 입력
+상태가 있는 <span class="math notranslate nohighlight">\(\vec{V}_{n_p}^\text{Plane}\)</span> 다음 상태를 갖는
+<span class="math notranslate nohighlight">\(^\text{Filt}\vec{V}_{n_p}^\text{Plane}\)</span> (용
+<span class="math notranslate nohighlight">\(0\le n_p\le N_p-1\)</span>). 방정식&nbsp;<a class="reference internal" href="#equation-eq-disc">(4.229)</a>
+및&nbsp;<a class="reference internal" href="#equation-eq-propagation">(4.230)</a> 는 수정된 형태로 적용됩니다. <em>WD</em> 모듈 입력 <span class="math notranslate nohighlight">\(\hat{x}^\text{Disk}\)</span> 및
+<span class="math notranslate nohighlight">\(\vec{p}^\text{Hub}\)</span> 는 축대칭 좌표계에서 로터로부터 각 후류면까지의 풍하방향 거리와 연관된 상태를 도출합니다(<span class="math notranslate nohighlight">\(x_{n_p}^\text{Plane}\)</span>), 그리고 평면에 수직인 후류 평면의 방향과 연관된 상태 및 출력, (<span class="math notranslate nohighlight">\(\hat{x}_{n_p}^\text{Plane}\)</span>) 및 웨이크 평면의 전역 중심 위치(<span class="math notranslate nohighlight">\(\vec{p}_{n_p}^\text{Plane}\)</span>) 다음과 같습니다:</p>
+<div class="math notranslate nohighlight" id="equation-eq-6-6">
+<span class="eqno">(4.231)<a class="headerlink" href="#equation-eq-6-6" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}\hat{x}_{n_p}^\text{Plane}\left[ n+1 \right]=
+   \begin{cases}
+      \frac{\hat{x}_{n_p}^\text{Plane}\left[ n \right]\alpha +\hat{x}^\text{Disk}\left( 1-\alpha \right)}
+         {\left\| \hat{x}_{n_p}^\text{Plane}\left[ n \right]\alpha +\hat{x}^\text{Disk}\left( 1-\alpha \right) \right\|_2}
+         &amp;\qquad\textrm{for}~n_p=0  \\
+      \\
+      \hat{x}_{n_p-1}^\text{Plane}\left[ n \right]
+         &amp;\qquad\textrm{for}~1\le n_p\le N_p-1  \\
+   \end{cases}\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-6-7">
+<span class="eqno">(4.232)<a class="headerlink" href="#equation-eq-6-7" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}x_{n_p}^\text{Plane}\left[ n+1 \right]=
+   \begin{cases}
+      0  &amp;\qquad\textrm{for}~n_p=0 \\
+      \\
+      x_{n_p-1}^\text{Plane}\left[ n \right]+|d\hat{x}_{n_p-1}|
+         &amp;\qquad\textrm{for}~1\le n_p\le N_p-1 \\
+   \end{cases}\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-6-8">
+<span class="eqno">(4.233)<a class="headerlink" href="#equation-eq-6-8" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}\vec{p}_{n_p}^\text{Plane}\left[ n+1 \right]=
+   \begin{cases}
+      \begin{aligned}[l]
+      &amp;\vec{p}_{n_p}^\text{Plane}\left[ n \right]\alpha + \left\{ \vec{p}^\text{Hub}\left[ n \right]\right. \\
+      &amp;\qquad   + \left.\left( C_\text{HWkDfl}^\text{O}+C_\text{HWkDfl}^\text{OY}~^\text{Filt}\gamma _{n_p}^\text{YawErr}\left[ n+1 \right] \right)\widehat{XY_{n_p}} \right\}\left( 1-\alpha \right)
+      \end{aligned}
+      &amp; \textrm{for}~ n_p=0 \\
+      \\
+      \begin{aligned}[l]
+      &amp;\vec{p}_{n_p-1}^\text{Plane}\left[ n \right] + \hat{x}_{n_p-1}^\text{Plane}\left[ n \right]\ d\hat{x}_{n_p-1} \\
+      &amp;\qquad   +\left[ I-\hat{x}_{n_p-1}^\text{Plane}\left[ n \right]{{\left\{ \hat{x}_{n_p-1}^\text{Plane}\left[ n \right] \right\}}^T} \right]\vec{V}_{n_p-1}^\text{Plane}\Delta t    \\
+      &amp;\qquad   +\left( \left( C_\text{HWkDfl}^\text{x}+C_\text{HWkDfl}^\text{xY}\ ^\text{Filt}\gamma _{n_p-1}^\text{YawErr}\left[ n \right] \right)d\hat{x}_{n_p-1} \right)\widehat{XY_{n_p-1}}
+      \end{aligned}
+      &amp; \textrm{for}~ 1\le n_p\le N_p-1 \\
+   \end{cases}\end{split}\]</div>
+<p>여기서:</p>
+<div class="math notranslate nohighlight" id="equation-eq-6-9">
+<span class="eqno">(4.234)<a class="headerlink" href="#equation-eq-6-9" title="이 방정식에 대한 영구 링크"></a></span>\[d\hat{x}_{n_p-1}=\left\{ \hat{x}_{n_p-1}^\text{Plane}\left[ n \right] \right\}^T\ ^\text{Filt}\vec{V}_{n_p-1}^\text{Plane}\left[ n+1 \right]\Delta t\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-6-10">
+<span class="eqno">(4.235)<a class="headerlink" href="#equation-eq-6-10" title="이 방정식에 대한 영구 링크"></a></span>\[\widehat{XY_{n_p}}=\left\{ \frac{\left( \left\{ \hat{x}_{n_p}^\text{Plane}\left[ n+1 \right] \right\}^T\hat{X} \right)\hat{Y}-\left( \left\{ \hat{x}_{n_p}^\text{Plane}\left[ n+1 \right] \right\}^T\hat{Y} \right)\hat{X}}{\left\| \left( \left\{ \hat{x}_{n_p}^\text{Plane}\left[ n+1 \right] \right\}^T\hat{X} \right)\hat{X}+\left( \left\{ \hat{x}_{n_p}^\text{Plane}\left[ n+1 \right] \right\}^T\hat{Y} \right)\hat{Y} \right\|_2} \right\}\]</div>
+<p>방정식&nbsp;<a class="reference internal" href="#equation-eq-6-6">(4.231)</a> 는 방정식과 다릅니다.
+방정식을 적용한 후&nbsp;<a class="reference internal" href="#equation-eq-disc">(4.229)</a>
+및&nbsp;<a class="reference internal" href="#equation-eq-propagation">(4.230)</a> 다음 식을 적용한 후&nbsp;<a class="reference internal" href="#equation-eq-disc">(4.229)</a> - 저역 통과 시간 필터 입력
+<span class="math notranslate nohighlight">\(\hat{x}^\text{Disk}\)</span>, 상태는 벡터가 단위 길이를 유지하도록 다시 정규화됩니다. 방정식&nbsp;<a class="reference internal" href="#equation-eq-6-6">(4.231)</a> 는 비행기가 명목상 바람 아래로 전파될 때 후류 평면 방향이 유지되도록 보장합니다. 방정식&nbsp;<a class="reference internal" href="#equation-eq-6-7">(4.232)</a> 는 각 후류 평면이 시간 단계에 걸쳐 평면 방향을 따라 투영된 저역 시간 필터링 후류 평면 속도에 의해 이동한 거리와 동일한 거리만큼 축대칭 좌표계에서 바람 아래로 전파된다는 것을 표현합니다. <a class="footnote-reference brackets" href="#id41" id="id14">5</a> 초기 웨이크 플레인(<span class="math notranslate nohighlight">\(n_p=0\)</span>)는 항상 로터 디스크에 있습니다. 방정식&nbsp;<a class="reference internal" href="#equation-eq-6-8">(4.233)</a> 는 방정식과 유사하게 패시브 트레이서 개념에 따라 웨이크 평면의 전역 중심 위치를 표현합니다.&nbsp;<a class="reference internal" href="#equation-eq-6-7">(4.232)</a>, 그러나 편향과 사행을 포함하여 후류 평면의 전체 3개 구성요소 움직임을 고려합니다. 방정식 오른쪽의 마지막 항
+각 후류 평면에 대한&nbsp;<a class="reference internal" href="#equation-eq-6-8">(4.233)</a> 는 수평 후류 편향 보정입니다. 여기서:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(C_{HWkDfl}^\text{O}\)</span> – 로터의 수평 오프셋을 정의하는 사용자 지정 매개변수</p></li>
+<li><p><span class="math notranslate nohighlight">\(C_{HWkDfl}^\text{OY}\)</span> – 나셀 요 오류로 스케일링된 로터의 수평 오프셋을 정의하는 사용자 지정 매개변수</p></li>
+<li><p><span class="math notranslate nohighlight">\(C_{HWkDfl}^\text{x}\)</span> – 하류 거리에 따라 조정된 수평 오프셋을 정의하는 사용자 지정 매개변수</p></li>
+<li><p><span class="math notranslate nohighlight">\(C_{HWkDfl}^\text{xY}\)</span> – 하류 거리 및 나셀 요 오류로 조정된 수평 오프셋을 정의하는 사용자 지정 매개변수</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{X}\)</span>, <span class="math notranslate nohighlight">\(\hat{Y}\)</span>및
+이 플래그 값 아래에 <span class="math notranslate nohighlight">\(\hat{Z}\)</span> – 관성 프레임 좌표에 평행한 단위 벡터 <em>X</em>, <em>Y</em> 그리고, <em>Z</em>
+각각</p></li>
+<li><p><span class="math notranslate nohighlight">\(\widehat{XY_{np}}\)</span> – 수평 전역의 3성분 단위 벡터 <em>X-Y</em> 평면에 직교
+<span class="math notranslate nohighlight">\(\hat{x}^\text{Plane}_{n_p}\left[ n+1 \right]\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(C_\text{HWkDfl}^\text{O}+C_\text{HWkDfl}^\text{OY} \ ^\text{Filt}\gamma _{n_p}^\text{YawErr}\left[ n+1 \right]\)</span> – 로터에서의 오프셋</p></li>
+<li><p><span class="math notranslate nohighlight">\(C_\text{HWkDfl}^\text{x}+C_\text{HWkDfl}^\text{xY} \ ^\text{Filt}\gamma _{n_p}^\text{YawErr}\left[ n+1 \right]\)</span> – 경사</p></li>
+<li><p><span class="math notranslate nohighlight">\(d\hat{x}_{n_p-1}\)</span> – 항적 평면의 명목상 순풍 증가(방정식에서)&nbsp;<a class="reference internal" href="#equation-eq-6-7">(4.232)</a>)</p></li>
+<li><p><em>I</em> – 3x3 단위 행렬</p></li>
+<li><p><span class="math notranslate nohighlight">\(\left[ I-\hat{x}_{n_p-1}^\text{Plane}\left[ n \right]\left\{ \hat{x}_{n_p-1}^\text{Plane}\left[ n \right] \right\}^T \right]\)</span> – 횡방향 구성요소를 계산하는 데 사용됩니다.
+<span class="math notranslate nohighlight">\(V^\text{Plane}_{n_p-1}\)</span> 일반 ~
+<span class="math notranslate nohighlight">\(\hat{x}^\text{Plane}_{n_p-1}\left[ n\right]\)</span>.</p></li>
+</ul>
+<p>후류면의 이류, 편향 및 사행 속도가 <span class="math notranslate nohighlight">\(\vec{V}^\text{Plane}_{n_p-1}\)</span>는 축 방향으로 필터링된 저역 통과 시간이지만 가로 방향으로는 필터링되지 않습니다. 축 방향의 저역 통과 시간 필터링은 후류 평면이 축 방향으로 이동하는 동안 서로 가까워지거나 통과하는 빈도를 최소화하는 데 유용합니다. 교란된 바람을 공간적으로 평균화함으로써 적절한 가로 구불구불한 속도가 달성되기 때문에 이 필터링은 가로 방향으로 필요하지 않습니다(참조). <a class="reference internal" href="#ff-awae"><span class="std std-numref">섹션 4.19.7.2.4
+자세한 내용은</span></a>).</p>
+<p>방정식의 저역 통과 시간 필터에 해당하는 일관된 출력 방정식&nbsp;<a class="reference internal" href="#equation-eq-disc">(4.229)</a> 는
+<span class="math notranslate nohighlight">\(y^d\left[ n \right]={x^d}\left[ n \right]\alpha +{u^d}\left[ n \right]\left( 1-\alpha \right)\)</span>,
+i.e., <span class="math notranslate nohighlight">\({Y^d(\quad)}=X^d(\quad)\)</span>또는 이와 동등하게,
+<span class="math notranslate nohighlight">\(y^d\left[ n \right]=x^d\left[ n+1 \right]\)</span>&nbsp;(<span id="id15">[<a class="reference internal" href="zrefs.html#id31" title="J. Jonkman 및 그 외 여러분. 해양 시스템 개발을 위한 5MW 기준 풍력터빈의 정의. 기술 보고서 NREL/TP-500-38060, 국립 재생 에너지 연구소, Golden, CO, 2009년 2월.">ff-Jeal09</a>]</span>). 그러나 출력은 한 시간 간격으로 지연됩니다(<span class="math notranslate nohighlight">\(\Delta t\)</span>) 내에서 입력에서 출력으로의 직접 피드스루를 방지합니다. <em>WD</em>
+모듈, 산출 <span class="math notranslate nohighlight">\(y^d\left[ n \right]=x^d\left[ n \right]\)</span>. 이 1회 단계 지연은 모든 출력에 적용됩니다. <em>WD</em> 모듈은 FAST.Farm 내에서 해결되는 느린 시간으로 인해 문제가 될 것으로 예상되지 않습니다.</p>
+</div>
+<div class="section" id="near-wake-correction">
+<span id="ff-snearwake"></span><h4><span class="section-number">4.19.7.2.3.2. </span>Near-Wake 보정<a class="headerlink" href="#near-wake-correction" title="이 제목의 고유 링크"></a></h4>
+<p>니어 웨이크 보정 하위 모델 <em>WD</em> 모듈은 다음에서 설명한 후류 부족 진화에 대한 입구 경계 조건으로 로터 디스크의 축방향 및 반경 방향 후류 속도 부족을 계산합니다.
+<a class="reference internal" href="#ff-deficit"><span class="std std-numref">섹션 4.19.7.2.3.3</span></a>. 원후류 솔루션의 정확성을 향상시키기 위해, 후류 부족 수정을 위한 솔루션에서 달리 설명되지 않는 로터 뒤의 압력 구배 영역에서 후류의 반경 방향 팽창과 풍속의 저하를 근접 후류 수정으로 설명합니다. 명확성을 위해 이 섹션의 방정식은 연속 변수를 사용하여 표현되지만 FAST.Farm 내에서는 방정식이 축대칭 유한차분 그리드에서 이산적으로 풀립니다.</p>
+<p>근접 후류 보정은 낮은 추력 조건에 대해 다르게 계산됩니다(<span class="math notranslate nohighlight">\(C_T&lt;\frac{24}{25}\)</span>), 운동량 이론이 유효하며, 높은 추력 조건(<span class="math notranslate nohighlight">\(1.1&lt;C_T \le 2\)</span>), 여기서 <span class="math notranslate nohighlight">\(C_T\)</span> 는 저역 통과 시간 필터링된 방위각 평균 추력 계수(로터 디스크에 수직)에서 파생된 로터 디스크 평균 추력 계수입니다. <span class="math notranslate nohighlight">\(^\text{FiltAzimAvg}{C_t}\left( r \right)\)</span>, 평가: <span class="math notranslate nohighlight">\(n+1\)</span>. 프로펠러 브레이크 영역은 매우 높은 추력 계수에 대해 발생합니다(<span class="math notranslate nohighlight">\(C_T \ge 2\)</span>) 고려되지 않습니다. 낮은 추력 영역과 높은 추력 영역 사이에서 두 솔루션의 선형 혼합은 다음을 기반으로 합니다. <span class="math notranslate nohighlight">\(C_T\)</span>가 구현되었습니다.</p>
+<p>낮은 추력에서 (<span class="math notranslate nohighlight">\(C_T&lt;\frac{24}{25}\)</span>) 조건, 방사형으로 분포된 로터 디스크의 축방향 유도,
+<span class="math notranslate nohighlight">\(a\left( r\right)\)</span>는 저역 통과 시간 필터링된 방위각 평균 추력 계수(로터 디스크에 수직)에서 파생됩니다.
+방정식을 사용하는 <span class="math notranslate nohighlight">\(^\text{FiltAzimAvg}{C_t}\left( r \right)\)</span>, 평가:
+<span class="math notranslate nohighlight">\(n+1\)</span> 다음 식을 사용하여&nbsp;<a class="reference internal" href="#equation-eq-ar">(4.236)</a>는 블레이드 요소 운동량(BEM) 이론의 운동량 영역을 따릅니다.</p>
+<div class="math notranslate nohighlight" id="equation-eq-ar">
+<span class="eqno">(4.236)<a class="headerlink" href="#equation-eq-ar" title="이 방정식에 대한 영구 링크"></a></span>\[a\left( r \right)=\frac{1}{2}\left( 1-\sqrt{1-MIN \Big[^\text{FiltAzimAvg}C_t\left( r \right),\frac{24}{25} \Big]} \right)\]</div>
+<p>블레이드 끝 부분에서 비현실적으로 높은 유도를 방지하려면 방정식&nbsp;<a class="reference internal" href="#equation-eq-ar">(4.236)</a> 는 허브 또는 팁 손실 수정을 직접 고려하지 않지만 OpenFAST 내에서 적용된 공기 역학적 하중 계산에서 설명될 수 있습니다(OpenFAST 내에서 활성화된 공기 역학적 옵션에 따라 다름).
+<span class="math notranslate nohighlight">\(^\text{FiltAzimAvg}C_t\left( r \right)\)</span>. 더욱이,
+<span class="math notranslate nohighlight">\(^\text{FiltAzimAvg}{C_t}\left( r \right)\)</span> 는 다음으로 제한됩니다.
+<span class="math notranslate nohighlight">\(\frac{24}{25}\)</span> 는 다음에 논의되는 방사상 후류 팽창의 잘못된 조건을 방지합니다.</p>
+<p>방사형으로 분포된 축방향 및 방사형 후류 속도 부족과 관련된 상태 및 출력(<span class="math notranslate nohighlight">\(V_{x_{n_p}}^\text{Wake}\left(r\right)\)</span> 및
+<span class="math notranslate nohighlight">\(V_{r_{n_p}}^\text{Wake}\left(r\right)\)</span>)는 로터 디스크(<span class="math notranslate nohighlight">\(n_p = 0\)</span>) 부터 <span class="math notranslate nohighlight">\(a\left( r\right)\)</span> 및 저역 시간 필터링된 로터-디스크 평균 상대 풍속(주변 + 이웃 터빈의 후류 + 터빈 운동), 디스크에 수직(<span class="math notranslate nohighlight">\(^\text{FiltDiskAvg}V_x^\text{Rel}\)</span>), 평가:
+방정식을 사용하는 <span class="math notranslate nohighlight">\(n+1\)</span>
+방정식에서&nbsp;<a class="reference internal" href="#equation-eq-vwake-xatrotor">(4.237)</a>
+및&nbsp;<a class="reference internal" href="#equation-eq-vwake-ratrotor">(4.238)</a>.</p>
+<div class="math notranslate nohighlight" id="equation-eq-vwake-xatrotor">
+<span class="eqno">(4.237)<a class="headerlink" href="#equation-eq-vwake-xatrotor" title="이 방정식에 대한 영구 링크"></a></span>\[V^\text{Wake}_{x_{n_p}}(r^\text{Plane})|_{n_p=0} = -^\text{FiltDiskAvg}V^\text{Rel}_x C_\text{NearWake} a(r)\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-vwake-ratrotor">
+<span class="eqno">(4.238)<a class="headerlink" href="#equation-eq-vwake-ratrotor" title="이 방정식에 대한 영구 링크"></a></span>\[V^\text{Wake}_{r_{n_p}}(r^\text{Plane})|_{n_p=0} = 0\]</div>
+<p>여기서</p>
+<div class="math notranslate nohighlight">
+\[r^\text{Plane}=\sqrt{2 \int\limits_0^r  \frac{1-a(r')}{1-C_\text{NearWake} a(r')} r' \ dr'}\]</div>
+<p>다음 식에서&nbsp;<a class="reference internal" href="#equation-eq-vwake-xatrotor">(4.237)</a>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(r^\text{Plane}\)</span> – 다음과 관련된 후류의 반경방향 확장
+<span class="math notranslate nohighlight">\(r\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(r'\)</span> – 더미 변수 <span class="math notranslate nohighlight">\(r\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(C_\text{NearWake}\)</span> – 1보다 크고 1보다 작은 사용자 지정 교정 매개변수 <span class="math notranslate nohighlight">\(2.5\)</span> 는 먼 후류에서 회복되기 전에 압력 구배 구역에서 풍속이 얼마나 떨어지고 후류가 반경 방향으로 확장되는지를 결정합니다. <a class="footnote-reference brackets" href="#id42" id="id16">6</a></p></li>
+</ul>
+<p>방정식의 우변&nbsp;<a class="reference internal" href="#equation-eq-vwake-xatrotor">(4.237)</a>
+는 압력 구배 영역 끝에서 축 유도 속도를 나타냅니다. 음의 부호는 축방향 후류 부족이 자유류 축풍의 반대 방향에 있기 때문에 나타납니다.
+자세한 내용은
+<a class="reference internal" href="#ff-deficit"><span class="std std-numref">섹션 4.19.7.2.3.3</span></a> 를 참조하세요. 방정식의 왼쪽에 있는 후류의 반경방향 확장&nbsp;<a class="reference internal" href="#equation-eq-vwake-xatrotor">(4.237)</a> 는 압력 구배 구역의 증분 고리 내에서 질량 보존을 적용한 결과입니다. <a class="footnote-reference brackets" href="#id43" id="id17">7</a> 방사형 후류 부족은 방정식에 주어진 대로 0으로 초기화됩니다.&nbsp;<a class="reference internal" href="#equation-eq-vwake-ratrotor">(4.238)</a>. 후류 근처 보정이 로터 디스크에 직접 적용되기 때문에, 로터의 처음 몇 직경 내에서 풍하 거리에 대한 후류 부족 진화에 대한 솔루션, 즉 근접 후류에서는 정확할 것으로 예상되지 않습니다. 결과적으로, 밀접하게 배치된 풍력 발전 단지를 정확하게 모델링하려면 FAST.Farm을 수정해야 합니다.</p>
+<p>높은 추력에서 (<span class="math notranslate nohighlight">\(1.1&lt;C_T \le 2\)</span>) 조건, 축방향 후류 속도 부족, 방사상으로 분포(<span class="math notranslate nohighlight">\(V_{x_{n_p}}^\text{Wake}\left(r\right)\)</span>)는 로터 디스크(<span class="math notranslate nohighlight">\(n_p = 0\)</span>) 방정식에 따라 높은 추력에서 LES 솔루션에 대한 가우스 적합&nbsp;<a class="reference internal" href="#equation-eq-vwake-xatrotor-high">(4.239)</a>, 다음에 의해 파생됨 <span id="id18">[<a class="reference internal" href="zrefs.html#id6" title="L. A. 마르티네즈-토사스. 풍력터빈 후류: 높은 추력 계수. 풍력 에너지(Wind Energy), 2021. 출판 보류 중.">ff-MT21</a>]</span>. 방사상 후류 부족은 다시 0으로 초기화됩니다.</p>
+<div class="math notranslate nohighlight" id="equation-eq-vwake-xatrotor-high">
+<span class="eqno">(4.239)<a class="headerlink" href="#equation-eq-vwake-xatrotor-high" title="이 방정식에 대한 영구 링크"></a></span>\[V^\text{Wake}_{x_{n_p}}(r)|_{n_p=0} = -\mu(C_T) ^\text{FiltDiskAvg}V^\text{Rel}_x e^{-\Big(\frac{r}{\sigma(C_T)^\text{Filt}D_{n_p}^\text{Rotor}|_{n_p=0}}\Big)^2}\]</div>
+<p>여기서</p>
+<div class="math notranslate nohighlight">
+\[\mu(C_T)=\frac{0.3}{2C_T^2-1}+\frac{1}{5}\]</div>
+<div class="math notranslate nohighlight">
+\[\sigma(C_T)=\frac{C_T}{2}+\frac{4}{25}\]</div>
+</div>
+<div class="section" id="wake-deficit-increment">
+<span id="ff-deficit"></span><h4><span class="section-number">4.19.7.2.3.3. </span>웨이크 부족 증가<a class="headerlink" href="#wake-deficit-increment" title="이 제목의 고유 링크"></a></h4>
+<p>대부분의 DWM 구현과 마찬가지로
+FAST.Farm의 <em>WD</em> 모듈은 축대칭 좌표의 준정상 상태 조건에서 레이놀즈 평균 Navier-Stokes 방정식의 얇은 전단층 근사를 통해 후류 부족 진화를 모델링하고 와점도 공식을 사용하여 난류 폐쇄를 포착합니다(<span id="id19">[<a class="reference internal" href="zrefs.html#id12" title="J. F. 에인슬리. 풍력터빈의 결과로 유동장을 계산합니다. 풍력 공학 및 산업 공기 역학 저널, 27:213-224, 1988. doi:https://doi.org/10.1016/0167-6105(88)90037-2.">ff-Ain88</a>]</span>). 얇은 전단층 근사법은 압력 항을 낮추고 속도 구배가 축 방향보다 반경 방향에서 훨씬 더 크다고 가정합니다. 이러한 단순화를 통해 운동량 보존에 대한 분석적 표현(식&nbsp;<a class="reference internal" href="#equation-eq-6-16">(4.240)</a>) 및 질량 보존(연속성, 방정식&nbsp;<a class="reference internal" href="#equation-eq-6-17">(4.241)</a>)는 다음과 같습니다.</p>
+<div class="math notranslate nohighlight" id="equation-eq-6-16">
+<span class="eqno">(4.240)<a class="headerlink" href="#equation-eq-6-16" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}\begin{aligned}
+&amp;   V_x\frac{\partial V_x}{\partial x}+V_r\frac{\partial V_x}{\partial r}=\frac{1}{r}\frac{\partial }{\partial r}\left( r \nu _T\frac{\partial V_x}{\partial r} \right),\\
+&amp;   \qquad\qquad \textrm{or equivalently, }\\
+&amp;   r V_x\frac{\partial V_x}{\partial x}+rV_r\frac{\partial V_x}{\partial r}={\nu_T}\frac{\partial V_x}{\partial r}+r{\nu_T}\frac{\partial^2V_x}{\partial r^2}+r\frac{\partial \nu_T}{\partial r}\frac{\partial V_x}{\partial r}
+\end{aligned}\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-6-17">
+<span class="eqno">(4.241)<a class="headerlink" href="#equation-eq-6-17" title="이 방정식에 대한 영구 링크"></a></span>\[\frac{\partial V_x}{\partial x}+\frac{1}{r}\frac{\partial}{\partial r} \left(r V_r \right)=0\quad \textrm{, or equivalently, }\quad V_r+r\frac{\partial V_r}{\partial r}+r\frac{\partial V_x}{\partial x}=0\]</div>
+<p>여기서 <span class="math notranslate nohighlight">\(V_x\)</span> 및 <span class="math notranslate nohighlight">\(V_r\)</span> 는 각각 축대칭 좌표계의 축 속도와 반경 방향 속도입니다. <span class="math notranslate nohighlight">\(\nu_T\)</span> 는 맴돌이 점도입니다(모두 다음에 따라 다름). <span class="math notranslate nohighlight">\(x\)</span> 및 <span class="math notranslate nohighlight">\(r\)</span>). 왼쪽의 방정식은 문헌에서 흔히 볼 수 있는 형식으로 작성되었습니다. 오른쪽의 등가 방정식은 FAST.Farm 내에 구현된 형태로 작성되었습니다. 명확성을 위해 이 섹션의 방정식은 먼저 연속 변수를 사용하여 표현되지만 FAST.Farm 내에서 방정식은 이 섹션의 끝 부분에 요약된 대로 고정된 수의 후류 평면으로 구성된 축대칭 유한 차분 그리드에서 개별적으로 해석됩니다. 연속형 변수의 경우 아래 첨자
+웨이크 플레인에 해당하는 <span class="math notranslate nohighlight">\(n_p\)</span>, 다음 후류 평면에 해당하는 <span class="math notranslate nohighlight">\(n_p\)</span>는 다음으로 대체됩니다.
+<span class="math notranslate nohighlight">\(\left( x \right)\)</span>. 방정식에 따라 후류가 하류로 전파될 때 일정하게 유지되는 변수에 대한 아래 첨자는 모두 삭제됩니다.&nbsp;<a class="reference internal" href="#equation-eq-propagation">(4.230)</a>. 예를 들어,
+<span class="math notranslate nohighlight">\(^\text{Filt}D_{n_p}^\text{Rotor}\)</span>,
+<span class="math notranslate nohighlight">\(^\text{FiltDiskAvg}V_{x_{n_p}}^\text{Wind}\)</span>및
+이 플래그 값 아래에
+<span class="math notranslate nohighlight">\(^\text{Filt}TI_{\text{Amb}_{n_p}}\)</span> 는 다음과 같이 작성됩니다.
+<span class="math notranslate nohighlight">\(^\text{Filt}D^\text{Rotor}\)</span>,
+<span class="math notranslate nohighlight">\(^\text{FiltDiskAvg}V_{x}^\text{Wind}\)</span>및
+이 플래그 값 아래에
+<span class="math notranslate nohighlight">\(^\text{Filt}TI_\text{Amb}\)</span>각각.</p>
+<p><span class="math notranslate nohighlight">\(V_x\)</span> 및 <span class="math notranslate nohighlight">\(V_r\)</span> 는 디스크에 수직인 저역 시간 필터링된 로터 디스크 평균 주변 풍속과 관련이 있습니다(<span class="math notranslate nohighlight">\(^\text{FiltDiskAvg}V_{x}^\text{Wind}\)</span>), 방사형으로 분포된 축 방향 및 방사상 후류 속도 부족과 관련된 상태 및 출력, <span class="math notranslate nohighlight">\(V^\text{Wake}_x(x,r)\)</span> 및
+<span class="math notranslate nohighlight">\(V^\text{Wake}_r(x,r)\)</span>는 각각 방정식으로 표현됩니다.&nbsp;<a class="reference internal" href="#equation-eq-vx">(4.242)</a>
+및&nbsp;<a class="reference internal" href="#equation-eq-vr">(4.243)</a>.</p>
+<div class="math notranslate nohighlight" id="equation-eq-vx">
+<span class="eqno">(4.242)<a class="headerlink" href="#equation-eq-vx" title="이 방정식에 대한 영구 링크"></a></span>\[V_x(x,r) =\ ^\text{FiltDiskAvg}V^\text{Wind}_x + V^\text{Wake}_x(x,r)\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-vr">
+<span class="eqno">(4.243)<a class="headerlink" href="#equation-eq-vr" title="이 방정식에 대한 영구 링크"></a></span>\[V_r(x,r) = V^\text{Wake}_r(x,r)\]</div>
+<p><span class="math notranslate nohighlight">\(V_x(x,r)\)</span> 및 <span class="math notranslate nohighlight">\(V_r(x,r)\)</span> 는 자유류에 대한 후류의 풍속 변화로 생각할 수 있습니다. 그러므로,
+<span class="math notranslate nohighlight">\(V^\text{Wake}_x(x,r)\)</span> 는 일반적으로 음수 값을 갖습니다. DWM의 이전 구현에서는 와점도 공식의 여러 변형이 사용되었습니다. 현재 FAST.Farm 내에서 구현되는 와점도 공식은 다음 방정식으로 제공됩니다.&nbsp;<a class="reference internal" href="#equation-eq-eddyviscosity">(4.244)</a>.</p>
+<div class="math notranslate nohighlight" id="equation-eq-eddyviscosity">
+<span class="eqno">(4.244)<a class="headerlink" href="#equation-eq-eddyviscosity" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}\begin{split}
+    \nu_T(x,r) = &amp;F_{\nu \text{Amb}}(x) k_{\nu \text{Amb}}\ ^\text{Filt}TI_\text{Amb}\ ^\text{FiltDiskAvg}V^\text{Wind}_x \frac{^\text{Filt}D^\text{Rotor}}{2} \\+&amp;
+    F_{\nu \text{Shr}}(x) k_{\nu \text{Shr}} MAX\Bigg[ \Bigg(\frac{D^\text{Wake}(x)}{2}\Bigg)^2 \Bigg|\frac{\partial V_x}{\partial r}(x,r)\Bigg|, \frac{D^\text{Wake}(x)}{2} MIN\Big|_r\{V_x(x,r)\} \Bigg]
+\end{split}\end{split}\]</div>
+<p>여기서:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(F_{\nu \text{Amb}}(x)\)</span> – 주변 난류와 관련된 필터 기능</p></li>
+<li><p><span class="math notranslate nohighlight">\(F_{\nu \text{Shr}}(x)\)</span> – 웨이크 전단층과 관련된 필터 기능</p></li>
+<li><p><span class="math notranslate nohighlight">\(k_{\nu \text{Amb}}\)</span> – 소용돌이 점도에 대한 주변 난류의 영향을 가중치로 적용하는 사용자 지정 교정 매개변수</p></li>
+<li><p><span class="math notranslate nohighlight">\(k_{\nu \text{Shr}}\)</span> – 맴돌이 점도에 대한 후류 전단층의 영향에 가중치를 부여하는 사용자 지정 교정 매개변수</p></li>
+<li><p><span class="math notranslate nohighlight">\(\frac{D^\text{Wake}(x)}{2}\)</span> – 웨이크 반폭</p></li>
+<li><p><span class="math notranslate nohighlight">\(|\frac{\partial V_x}{\partial r}|\)</span> – 축 속도의 반경 방향 기울기의 절대값</p></li>
+<li><p><span class="math notranslate nohighlight">\(MIN|_r(V_x(x,r))\)</span> – 최소값을 나타내는 데 사용됩니다.
+주어진 하류 거리에 대해 반경을 따라
+<span class="math notranslate nohighlight">\(V_x\)</span> .</p></li>
+</ul>
+<p>DWM의 이전 구현에서 발견된 특정 와점도 공식과 일치하지 않지만 FAST.Farm에서 선택한 구현은 적용이 간단하고 본질적으로 맞춤화 가능하므로 사용자가 알려진 솔루션에 대한 후류 진화를 적절하게 보정할 수 있습니다. 와점도 공식은 후류의 난류 응력에 대한 주변 난류(오른쪽 첫 번째 항)와 후류 전단층(두 번째 항)의 영향을 표현합니다. 에디 점도의 의존성 <span class="math notranslate nohighlight">\(x\)</span> 및 <span class="math notranslate nohighlight">\(r\)</span> 는 방정식에 명시적으로 제공됩니다.&nbsp;<a class="reference internal" href="#equation-eq-eddyviscosity">(4.244)</a> 는 어떤 용어가 풍하 방향 거리 및/또는 반경에 따라 달라지는지 명확하게 합니다. 방정식 우변의 첫 번째 항&nbsp;<a class="reference internal" href="#equation-eq-eddyviscosity">(4.244)</a> 는 다음과 유사합니다.
+로터 반경으로 간주되는 특성 길이를 갖는&nbsp;<span id="id20">[<a class="reference internal" href="zrefs.html#id15" title="H. A. Madsen 및 그 외 여러분. 공탄성 코드 구현을 위한 동적 후류 사행 모델의 교정 및 검증. 태양 에너지 공학 저널, 2010년 11월. doi:https://doi.org/10.1115/1.4002555.">ff-Meal10</a>]</span> ,
+<span class="math notranslate nohighlight">\(\frac{^\text{Filt}D^\text{Rotor}}{2}\)</span>. 두 번째 항은 다음에 의해 주어진 것과 유사합니다.&nbsp;<span id="id21">[<a class="reference internal" href="zrefs.html#id10" title="R.-E. Keck and et al. 대기 경계층의 동적 후류 사행 모델에 대한 일관된 난류 공식. 박사 논문, DTU, 덴마크, 2013.">ff-Keal13</a>]</span>, 그러나 대기 전단을 고려하지 않았습니다.
+주변 난류 정의의 <em>AWAE</em> 모듈 - 참조
+자세한 내용은 <a class="reference internal" href="#ff-awae"><span class="std std-numref">섹션 4.19.7.2.4
+자세한 내용은</span></a> 를 참조하세요. 이 두 번째 항에서, 특성 길이는 후류 반폭으로 취해지고 <span class="math notranslate nohighlight">\(MAX(\quad)\)</span> 연산자는 두 가지 후류 전단층 방법의 최대값을 나타내는 데 사용됩니다. 축 속도의 반경 방향 구배가 0에 접근하는 반경에서 첫 번째 방법의 난류 응력을 과소 예측하는 것을 방지하려면 두 번째 전단층 방법이 필요합니다.</p>
+<p>현재 FAST.Farm 내에 구현된 필터 기능은 다음 방정식으로 제공됩니다.&nbsp;<a class="reference internal" href="#equation-eq-famb">(4.245)</a> 및&nbsp;<a class="reference internal" href="#equation-eq-fshr">(4.246)</a>, 여기서
+<span class="math notranslate nohighlight">\(C_{\nu \text{Amb}}^{DMax}\)</span>, <span class="math notranslate nohighlight">\(C_{\nu \text{Amb}}^{DMin}\)</span>,
+<span class="math notranslate nohighlight">\(C_{\nu \text{Amb}}^{Exp}\)</span>, <span class="math notranslate nohighlight">\(C_{\nu \text{Amb}}^{FMin}\)</span>,
+<span class="math notranslate nohighlight">\(C_{\nu \text{Shr}}^{DMax}\)</span>, <span class="math notranslate nohighlight">\(C_{\nu \text{Shr}}^{DMin}\)</span>,
+<span class="math notranslate nohighlight">\(C_{\nu \text{Shr}}^{Exp}\)</span>및
+이 플래그 값 아래에 <span class="math notranslate nohighlight">\(C_{\nu \text{Shr}}^{FMin}\)</span>
+는 각각 주변 난류 및 후류 전단층과 관련된 기능에 대한 사용자 지정 교정 매개변수입니다.</p>
+<div class="math notranslate nohighlight" id="equation-eq-famb">
+<span class="eqno">(4.245)<a class="headerlink" href="#equation-eq-famb" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}F_{\nu \text{Amb}}\left( x \right)=
+   \begin{cases}
+      C_{\nu \text{Amb}}^\text{FMin} &amp; \textrm{for } x\le C_{\nu \text{Amb}}^\text{DMin}\ ^\text{Filt}D^\text{Rotor}  \\
+      \\
+      C_{\nu \text{Amb}}^\text{FMin}+\left( 1-C_{\nu \text{Amb}}^\text{FMin} \right){{\left[ \frac{\frac{x}{^\text{Filt}D^\text{Rotor}}-C_{\nu \text{Amb}}^\text{DMin}}{C_{\nu \text{Amb}}^\text{DMax}-C_{\nu \text{Amb}}^\text{DMin}} \right]}^{C_{\nu \text{Amb}}^\text{Exp}}} &amp; \textrm{for } C_{\nu \text{Amb}}^\text{DMin}\ ^\text{Filt}D^\text{Rotor}&lt;x&lt;C_{\nu \text{Amb}}^\text{DMax}\ ^\text{Filt}D^\text{Rotor}  \\
+      \\
+      1 &amp; \textrm{for } x\ge C_{\nu \text{Amb}}^\text{DMax}\ ^\text{Filt}D^\text{Rotor}  \\
+   \end{cases}\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-fshr">
+<span class="eqno">(4.246)<a class="headerlink" href="#equation-eq-fshr" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}F_{\nu \text{Shr}}\left( x \right)=
+   \begin{cases}
+      C_{\nu \text{Shr}}^\text{FMin} &amp; \textrm{for } x\le C_{\nu \text{Shr}}^\text{DMin}\ ^\text{Filt}D^\text{Rotor} \\
+      \\
+      C_{\nu \text{Shr}}^\text{FMin}+\left( 1-C_{\nu \text{Shr}}^\text{FMin} \right){{\left[ \frac{\frac{x}{^\text{Filt}D^\text{Rotor}}-C_{\nu \text{Shr}}^\text{DMin}}{C_{\nu \text{Shr}}^\text{DMax}-C_{\nu \text{Shr}}^\text{DMin}} \right]}^{C_{\nu \text{Shr}}^\text{Exp}}} &amp; \textrm{for } C_{\nu \text{Shr}}^\text{DMin}\ ^\text{Filt}D^\text{Rotor}&lt;x&lt;C_{\nu \text{Shr}}^\text{DMax}\ ^\text{Filt}D^\text{Rotor} \\
+      \\
+      1 &amp; \textrm{for } x\ge C_{\nu \text{Shr}}^\text{DMax}\ ^\text{Filt}D^\text{Rotor} \\
+   \end{cases}\end{split}\]</div>
+<p>방정식의 필터 기능&nbsp;<a class="reference internal" href="#equation-eq-famb">(4.245)</a>
+및&nbsp;<a class="reference internal" href="#equation-eq-fshr">(4.246)</a> 는 주변 난류에 의해 생성된 난류 응력의 지연과 후류 전단층에 의해 생성된 난류 응력의 발달을 각각 나타내며 FAST.Farm에서 일반화됩니다. 각 필터 함수는 다음을 포함하여 세 개의 다운스트림 거리 영역으로 분할됩니다.</p>
+<ol class="arabic simple">
+<li><p>로터 근처의 고정 최소값(0과 1 사이, 포함)</p></li>
+<li><p>로터에서 멀리 하류에 고정된 단위 값</p></li>
+<li><p>중간 거리에 대한 전환 영역으로, 값은 전환 영역 내 정규화된 하류 거리의 유리수 지수를 통해 또는 선형으로 전환될 수 있습니다.</p></li>
+</ol>
+<p>후류 직경의 정의는 다소 모호하며 DWM 문헌에서는 일관되게 정의되지 않습니다. FAST.Farm을 사용하면 후류 직경을 계산하는 여러 방법 중 하나를 선택할 수 있습니다.
+<span class="math notranslate nohighlight">\(D^\text{Wake}\left( x \right)\)</span>, 후류 직경을 다음과 같이 취하는 것을 포함하여:</p>
+<ol class="arabic simple">
+<li><p>로터 직경</p></li>
+<li><p>후류의 축 속도가
+<span class="math notranslate nohighlight">\(C_\text{WakeDiam}\)</span> 주변 풍속의 일부, 여기서
+<span class="math notranslate nohighlight">\(C_\text{WakeDiam}\)</span> 는 0과 사이의 사용자 지정 교정 매개변수입니다. <span class="math notranslate nohighlight">\(0.99\)</span> (독점)</p></li>
+<li><p>포착하는 직경 <span class="math notranslate nohighlight">\(C_\text{WakeDiam}\)</span> 후류 평면을 가로지르는 축방향 후류 부족의 질량 유속 비율</p></li>
+<li><p>포착하는 직경 <span class="math notranslate nohighlight">\(C_\text{WakeDiam}\)</span> 후류면을 가로지르는 축방향 후류 부족의 운동량 플럭스의 일부.</p></li>
+</ol>
+<p>사용을 통해 <span class="math notranslate nohighlight">\(MAX(\quad)\)</span> 연산자, 모델 2~4는 후류 직경 계산이 더 작은 값을 반환할 때 회전자 직경과 동일하게 설정된 하한을 갖습니다. 이는 후류 구불구불한 속도를 계산하는 데 사용되는 공간 평균에서 바람 데이터 포인트가 너무 적어서 발생하는 수치적 문제를 피하기 위해 수행됩니다.
+자세한 내용은
+<a class="reference internal" href="#ff-awae"><span class="std std-numref">섹션 4.19.7.2.4
+자세한 내용은</span></a> 를 참조하세요. FAST.Farm의 구현은 수치적이지만 이 네 가지 방법에 대한 분석 표현은 다음 방정식에 나와 있습니다.&nbsp;<a class="reference internal" href="#equation-eq-dwake">(4.247)</a>. 여기,
+<span class="math notranslate nohighlight">\(|x\)</span> 는 다음을 조건으로 한 평균을 의미합니다. <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<div class="math notranslate nohighlight" id="equation-eq-dwake">
+<span class="eqno">(4.247)<a class="headerlink" href="#equation-eq-dwake" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}D^\text{Wake}\left( x \right)=
+   \begin{cases}
+   &amp;^\text{Filt}D^\text{Rotor}\qquad\textrm{for}~\textit{method 1-rotor diameter}\\
+   \\
+   &amp;MAX\left( ^\text{Filt}D^\text{Rotor},\left\{ 2r|\left( V_x\left( x,r \right)=C_\text{WakeDiam}\ ^\text{FiltDiskAvg}V_x^\text{Wind} \right) \right\} \right)\\
+      &amp;\phantom{^\text{Filt}D^\text{Rotor}}\qquad\textrm{for}~\textit{method 2-velocity based}\\
+   \\
+   &amp;MAX\left( ^\text{Filt}D^\text{Rotor},\left\{ D^\text{Wake}\left( x \right)|\int\limits_{0}^{\frac{D^\text{Wake}\left( x \right)}{2}}{V_x^\text{Wake}\left( x,r \right)2\pi rdr}=C_\text{WakeDiam}\int\limits_{0}^{\infty }{V_x^\text{Wake}\left( x,r \right)2\pi rdr} \right\} \right)\\
+      &amp;\phantom{^\text{Filt}D^\text{Rotor}}\qquad\textrm{for}~\textit{method 3-mass-flux based}\\
+   \\
+   &amp;MAX\left( ^\text{Filt}D^\text{Rotor},\left\{ D^\text{Wake}\left( x \right)|\int\limits_{0}^{\frac{D^\text{Wake}\left( x \right)}{2}}{\left( V_x^\text{Wake}\left( x,r \right) \right)^2 2\pi rdr}=C_\text{WakeDiam}\int\limits_{0}^{\infty }{\left( V_x^\text{Wake}\left( x,r \right) \right)^2 2\pi rdr} \right\} \right)\\
+      &amp;\phantom{^\text{Filt}D^\text{Rotor}}\qquad\textrm{for}~\textit{method 4-momentum-flux based}\\
+\end{cases}\end{split}\]</div>
+<p>운동량 및 연속성 방정식은 후류 부족 증가 하위 모델에서 수치적으로 해결됩니다.
+2차 정확한 유한 차분 방법을 사용하는 <em>WD</em> 모듈 <span class="math notranslate nohighlight">\(n+\frac{1}{2}\)</span>, 암시적 Crank-Nicolson 방법(<span id="id22">[<a class="reference internal" href="zrefs.html#id13" title="J. 크랭크와 P. 니콜슨. 열전도 유형의 편미분 방정식의 해를 수치적으로 평가하는 실제 방법. 계산 수학의 발전, 6:207-226, 1996.">ff-CN96</a>]</span>). 이 방법에 따르면 모든 도함수에 대해 중심차이가 사용됩니다(예: 방정식).
+운동량 방정식의 경우&nbsp;<a class="reference internal" href="#equation-eq-fd">(4.248)</a> 입니다.</p>
+<div class="math notranslate nohighlight" id="equation-eq-fd">
+<span class="eqno">(4.248)<a class="headerlink" href="#equation-eq-fd" title="이 방정식에 대한 영구 링크"></a></span>\[\frac{\partial V_x}{\partial x}=\frac{V_{x_{n_p}}^\text{Wake}\left( r \right)\left[ n+1 \right]-V_{x_{n_p-1}}^\text{Wake}\left( r \right)\left[ n \right]}{\Delta x}\]</div>
+<p>여기,</p>
+<div class="math notranslate nohighlight">
+\[\Delta x=|x_{n_p}^\text{Plane}\left[ n+1 \right]-x_{n_p-1}^\text{Plane}\left[ n \right]|\]</div>
+<p>또는 방정식에서 동등하게&nbsp;<a class="reference internal" href="#equation-eq-6-9">(4.234)</a></p>
+<div class="math notranslate nohighlight">
+\[\Delta x=|{{\left\{ \hat{x}_{n_p-1}^\text{Plane}\left[ n \right] \right\}}^T}\ ^\text{Filt}\vec{V}_{n_p-1}^\text{Plane}\left[ n+1 \right]\Delta t| \qquad \textrm{for } 1\le n_p\le N_p-1\]</div>
+<p>운동량 방정식의 경우, 로터 하류의 각 후류면에 대해(<span class="math notranslate nohighlight">\(1\le n_p\le N_p-1\)</span>), 용어 <span class="math notranslate nohighlight">\(V_x\)</span>, <span class="math notranslate nohighlight">\(V_r\)</span>,
+<span class="math notranslate nohighlight">\(\nu_T\)</span>및
+이 플래그 값 아래에 <span class="math notranslate nohighlight">\(\frac{\partial \nu_T}{\partial r}\)</span> 는 다음과 같이 계산됩니다. <span class="math notranslate nohighlight">\(n\)</span> (또는 이에 상응하는 것)
+<span class="math notranslate nohighlight">\(x=x_{n_p-1}^\text{Plane}\left[ n \right]\)</span>), e.g.,
+<span class="math notranslate nohighlight">\(V_x=^\text{FiltDiskAvg}V_{x_{n_p-1}}^\text{Wind}\left[ n \right]+V_{x_{n_p-1}}^\text{Wake}\left( r \right)\left[ n \right]\)</span>
+및
+<span class="math notranslate nohighlight">\(V_r = V_{r_{n_p-1}}^\text{Wake}\left( r \right)\left[ n \right]\)</span>, 솔루션의 비선형성을 방지하기 위해 <span class="math notranslate nohighlight">\(n+1\)</span>. 이렇게 하면 솔루션이 2차 수렴을 달성하는 것을 방지할 수 있지만 수치적으로는 안정적으로 유지되는 것으로 나타났습니다. 각 중앙 차이의 정의는 이 문서의 범위를 벗어나지만 최종 결과는 로터 하류의 각 후류면에 대해 다음과 같습니다.
+<span class="math notranslate nohighlight">\(V_{x_{n_p}}^\text{Wake}\left( r \right)\left[ n+1 \right]\)</span> 는 다음의 알려진 해를 기준으로 선형 삼중대각 행렬 방정식 시스템을 통해 풀 수 있습니다.
+<span class="math notranslate nohighlight">\(V_{x_{n_p-1}}^\text{Wake}\left( r \right)\left[ n \right]\)</span>,
+<span class="math notranslate nohighlight">\(V_{r_{n_p-1}}^\text{Wake}\left( r \right)\left[ n \right]\)</span>및 기타 이전에 계산된 상태(예:
+<span class="math notranslate nohighlight">\(^\text{FiltDiskAvg}V_{x_{n_p-1}}^\text{Wind}\left[ n \right]\)</span>. 선형 삼중대각 행렬 방정식 시스템은 Thomas 알고리즘(<span id="id23">[<a class="reference internal" href="zrefs.html#id14" title="L. H. 토마스. 네트워크에 대한 선형 차분 방정식의 타원 문제. 기술 보고서, Watson Science Computer Laboratory, 뉴욕, 뉴욕, 1949.">ff-Tho49</a>]</span>).</p>
+<p>연속방정식의 경우, 운동량 방정식에 사용된 것과 동일한 유한차분 방식을 연속방정식에 사용할 때 생성되는 삼중대각 행렬이 대각선 우세하지 않아 수치적으로 불안정한 해가 되기 때문에 다른 유한차분 방식이 필요합니다. 대신 연속 방정식에 사용되는 유한차분 방식은 다음과 같은 2차 정확한 방식을 기반으로 합니다.
+<span class="math notranslate nohighlight">\(n+\frac{1}{2}\)</span> 및 <span class="math notranslate nohighlight">\(n_r-\frac{1}{2}\)</span>. 그러나 관련된 용어는 <span class="math notranslate nohighlight">\(V_r\)</span> 및 <span class="math notranslate nohighlight">\(\frac{\partial V_r}{\partial r}\)</span> 는 다음과 같이 계산됩니다. <span class="math notranslate nohighlight">\(n+1\)</span>, e.g.,
+<span class="math notranslate nohighlight">\(V_r=\frac{1}{2}\left(V_{r_{n_p,n_r}}^\text{Wake}\left[ n+1 \right]+V_{r_{n_p,n_r-1}}^\text{Wake}\left[ n+1 \right]\right)\)</span>, 여기서 <span class="math notranslate nohighlight">\(n_r\)</span> 는 반경 카운터입니다. <span class="math notranslate nohighlight">\(N_r\)</span> 방사형 노드(<span class="math notranslate nohighlight">\(0\le n_r\le N_r-1\)</span>). <a class="footnote-reference brackets" href="#id44" id="id24">8</a> 각 중앙 차이의 정의는 이 문서의 범위를 벗어나지만 최종 결과는 로터 하류의 각 후류 평면에 대해 다음과 같습니다.
+<span class="math notranslate nohighlight">\(V_{r_{n_p,n_r}}^\text{Wake}\left[ n+1 \right]\)</span> 는 알려진 솔루션에서 명시적으로 순차적으로 풀 수 있습니다.
+<span class="math notranslate nohighlight">\(V_{x_{n_p}}^\text{Wake}\left( r \right)\left[ n+1 \right]\)</span> (운동량 방정식의 해로부터),
+<span class="math notranslate nohighlight">\(V_{x_{n_p-1}}^\text{Wake}\left( r \right)\left[ n \right]\)</span>및
+이 플래그 값 아래에
+<span class="math notranslate nohighlight">\(V_{r_{n_p,n_r-1}}^\text{Wake}\left[ n+1 \right]\)</span> 용
+<span class="math notranslate nohighlight">\(1\le n_r\le N_r-1\)</span>. <a class="footnote-reference brackets" href="#id45" id="id25">9</a></p>
+</div>
+<div class="section" id="wake-added-turbulence-wat">
+<span id="ff-wat"></span><h4><span class="section-number">4.19.7.2.3.4. </span>후류 추가 난류(WAT)<a class="headerlink" href="#wake-added-turbulence-wat" title="이 제목의 고유 링크"></a></h4>
+<p>후류 추가 난류는 후류의 난류 혼합으로 인해 생성된 추가 소규모 난류입니다. 이는 배경(교란되지 않은) 난류를 확대하여 모델링됩니다.</p>
+<p>WAT에 대한 이론은 다음에 자세히 나와 있습니다. <span id="id26">[<a class="reference internal" href="zrefs.html#id2" title="E. Branlard, J. Jonkman, A. Platt, R. Thedin, L. A. Martinez-Tossas 및 M. Kretschmer. fast.farm에서 개선된 후류 추가 난류 모델의 개발 및 검증. TORQUE 2024. 이탈리아 피렌체, 2024년 5월. EAWE.">ff-BJP+24</a>]</span>.</p>
+<p>후류 추가 난류의 기본 원리는 다음과 같습니다. <a class="reference internal" href="#ff-watsketch"><span class="std std-numref">그림 4.69</span></a>.</p>
+<div class="figure align-center" id="ff-watsketch">
+<a class="reference internal image-reference" href="../../../_images/FFWakeAddedTurbBoxCoord.svg"><img alt="Wake 난기류 추가" src="../../../_images/FFWakeAddedTurbBoxCoord.svg" width="100%"></a>
+<p class="caption"><span class="caption-number">그림 4.69 </span><span class="caption-text">항적에 의한 난기류</span><a class="headerlink" href="#ff-watsketch" title="이 이미지에 대한 영구 링크"></a></p>
+</div>
+<p>스케일링 계수는 각 후류 평면에서 계산되며, 여기에 단위 난류 상자를 곱하고 준 정상 후류에 추가되어 후류가 추가된 난류가 있는 최종 후류를 형성합니다. 이 구현에서 스케일링 계수는 구불구불한 프레임에서 계산되지만 전역 프레임의 "전역" 단위 난류 상자와 결합됩니다. 자세한 내용은 다음과 같습니다.</p>
+<p><strong>스케일링 팩터</strong></p>
+<p>웨이크 부족으로 표현되는 스케일링 계수 <span class="math notranslate nohighlight">\(V_x^{Wake}\)</span>는 각 웨이크 플레인에서 다음과 같이 결정됩니다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+   k_{} (x,y,z) =
+       \frac{k_\text{def}^\text{WAT}  }{ \overline{U}} \left| V_x^{Wake}(x,y,z) \right|
+     + \frac{k_\text{grad}^\text{WAT}D}{2\overline{U}} \left[\left|{\frac{\partial {V_x^{Wake}(x,y,z)}}{\partial r}}\right| +  \left|{\frac{1}{r}\frac{\partial {V_x^{Wake}(x,y,z)}}{\partial \theta}}\right|  \right]
+\end{aligned}\]</div>
+<p>여기서 <span class="math notranslate nohighlight">\(D\)</span> 는 기준 직경이고, <span class="math notranslate nohighlight">\(\bar{U}\)</span> 는 로터 디스크에 수직인 터빈 위치에서 필터링된 속도로 취한 평균 속도입니다. 좌표 <span class="math notranslate nohighlight">\(x,y,z\)</span> 및 <span class="math notranslate nohighlight">\(r,\theta\)</span> 는 구불구불한 기준틀에서 촬영됩니다. 매개변수 <span class="math notranslate nohighlight">\(k_\text{def}^\text{WAT}\)</span>
+및 <span class="math notranslate nohighlight">\(k_\text{grad}^\text{WAT}\)</span> 는 준정상 후류 부족과 후류 부족의 기울기를 각각 곱하는 모델의 튜닝 매개변수입니다. 이는 하류 위치에 대한 보다 현실적인 의존성을 제공하기 위해 5개의 보정된 매개변수가 있는 와점도 필터를 기반으로 합니다. 두 가지 모두에 대한 일반적인 형식은 방정식에 나와 있습니다. <a class="reference internal" href="#equation-eq-kdefgrad">(4.249)</a>,</p>
+<div class="math notranslate nohighlight" id="equation-eq-kdefgrad">
+<span class="eqno">(4.249)<a class="headerlink" href="#equation-eq-kdefgrad" title="이 방정식에 대한 영구 링크"></a></span>\[k_\text{def/grad}^\text{WAT} \left( \tilde{x}, k_\text{c}, f_\text{min}, D_\text{min}, D_\text{max}, e \right) = k_\text{c} \left( f_\text{min} + (1 - f_\text{min}) \left[ \frac{\tilde{x} - D_\text{min}}{D_\text{max} - D_\text{min}} \right]^e \right)\]</div>
+<p>여기서 <span class="math notranslate nohighlight">\(\tilde{x} = x/D\)</span>및
+이 플래그 값 아래에 <span class="math notranslate nohighlight">\(k_\text{c}\)</span> 는 다음 중 하나입니다.
+<span class="math notranslate nohighlight">\(k_\text{def}\)</span> 또는 <span class="math notranslate nohighlight">\(k_\text{grad}\)</span>. 이 기능은 다음 사이로 제한됩니다.
+<span class="math notranslate nohighlight">\(k_\text{c} f_\text{min}\)</span> 및 <span class="math notranslate nohighlight">\(k_\text{c}\)</span> 때 <span class="math notranslate nohighlight">\(\tilde{x}\)</span> 는 사이에 없습니다 <span class="math notranslate nohighlight">\(D_\text{min}\)</span> 및 <span class="math notranslate nohighlight">\(D_\text{max}\)</span>. 튜닝 매개 변수는 다음과 같습니다. <a class="reference internal" href="#equation-eq-kdefgraddefaults">(4.250)</a>.</p>
+<div class="math notranslate nohighlight" id="equation-eq-kdefgraddefaults">
+<span class="eqno">(4.250)<a class="headerlink" href="#equation-eq-kdefgraddefaults" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}\begin{matrix}
+                            &amp; &amp; k_\text{def/grad} &amp; f_\text{min}   &amp; D_\text{min} &amp; D_\text{max}       &amp; e       \\
+                            &amp; &amp; (\gt 0)           &amp; (\ge 0, \le 1) &amp; (\ge 0)      &amp; (\gt k_\text{min}) &amp; (\gt 0) \\\hline
+   k_\text{def}^\text{WAT}  &amp; &amp; 0.6               &amp; 0              &amp; 0            &amp; 2                  &amp; 1       \\
+   k_\text{grad}^\text{WAT} &amp; &amp; 3                 &amp; 0              &amp; 0            &amp; 12                 &amp; 0.65    \\
+\end{matrix}\end{split}\]</div>
+<p>이러한 매개변수는 안정적이고 중립적인 경우에 상대적으로 잘 맞기 때문에 선택되었습니다. <a class="reference internal" href="#ff-wat-tuneparam"><span class="std std-numref">그림 4.70</span></a>.</p>
+<div class="figure align-center" id="ff-wat-tuneparam">
+<a class="reference internal image-reference" href="../../../_images/KFitDownstreamConcatNEW.png"><img alt="장착 튜닝 매개변수" src="../../../_images/KFitDownstreamConcatNEW.png" style="width: 100%;"></a>
+<p class="caption"><span class="caption-number">그림 4.70 </span><span class="caption-text">다양한 안정성 사례에 대해 하류 거리의 함수로 튜닝 매개변수를 장착했습니다. 다양한 피팅 옵션과 스무딩 값은 더 밝은 색상으로 표시되고 평균은 더 어두운 색상으로 표시됩니다. 모델 및 권장 기본값은 검은색 점선으로 표시됩니다. 그 이상의 불안정한 경우에 대한 결과에 유의하십시오. <em>8D</em> 는 강한 후류 붕괴로 인해 불확실합니다.</span><a class="headerlink" href="#ff-wat-tuneparam" title="이 이미지에 대한 영구 링크"></a></p>
+</div>
+<p>우리는 0 값을 적용하기로 선택했습니다. <span class="math notranslate nohighlight">\(\tilde{x}=0\)</span>, 이는 배경 난류 강도가 없는 경우에 예상되는 동작입니다. 점진적인 증가세 <span class="math notranslate nohighlight">\(k\)</span> 요인은 와류가 하류에서 점진적으로 분해됨에 따라 예상되는 특성의 특징입니다.
+<a class="reference internal" href="#ff-wat-noti"><span class="std std-numref">그림 4.71</span></a>.</p>
+<div class="figure align-center" id="ff-wat-noti">
+<a class="reference internal image-reference" href="../../../_images/FF-WakeNoTI.png"><img alt="WAT 유무에 따른 단일 풍력터빈" src="../../../_images/FF-WakeNoTI.png" style="width: 100%;"></a>
+<p class="caption"><span class="caption-number">그림 4.71 </span><span class="caption-text">FAST.Farm에 구현된 WAT가 없는(왼쪽) 및 WAT가 있는(오른쪽) 균일한 8m/s 유입에서 하나의 풍력터빈 후류의 순간 속도 필드.</span><a class="headerlink" href="#ff-wat-noti" title="이 이미지에 대한 영구 링크"></a></p>
+</div>
+<p><strong>유닛 난류 상자</strong></p>
+<p>3개의 난류 Mann 상자가 4D 배열로 저장됩니다.
+차원의 <span class="math notranslate nohighlight">\(\boldsymbol{u}_\text{unit}\)</span> 차원이 다음인
+<span class="math notranslate nohighlight">\((3,n_x, n_y, n_z)\)</span>. WAT에 사용되는 난류 상자는 Mann 모델을 사용하여 생성된 단위 표준 편차를 갖는 등방성 난류 상자입니다.&nbsp;<span id="id27">[<a class="reference internal" href="zrefs.html#id3" title="J. 만. 중성 대기 표면층 난류의 공간 구조. 유체역학 저널, 273:p141-168, 1994.">ff-Man94</a>]</span>. 단위 표준편차가 있는 상자를 생성하려면 소산율을 다음과 같이 설정합니다.</p>
+<div class="math notranslate nohighlight">
+\[\alpha\epsilon^{2/3}\approx \frac{1}{0.688 L^{2/3}}\]</div>
+<p>우리는 길이 척도에 대한 의존성이 없다는 것을 발견했습니다. 그럼에도 불구하고 사용자가 자신의 상자를 생성하는 경우 로터 직경으로 설정하는 것이 좋습니다.</p>
+<p><strong>사전 정의된 상자</strong></p>
+<p>FAST.Farm의 고해상도 도메인에 권장되는 방법은 블레이드의 최대 코드와 동일한 그리드 간격을 선택하는 것입니다. 다양한 풍력터빈의 데이터를 기반으로 최대 코드는 다음과 같이 근사화될 수 있습니다.
+<span class="math notranslate nohighlight">\(c_\text{max}\approx 0.03D\)</span>. 따라서 우리는 세 방향 모두에서 이 간격을 사용하는 것을 제안하고 충분한 범위와 적당한 크기의 상자를 얻기 위한 절충안으로 다음을 선택합니다. <span class="math notranslate nohighlight">\(\Delta x = \Delta y = \Delta z = 0.03D\)</span>,
+<span class="math notranslate nohighlight">\(L_x = L_y=15D\)</span>, <span class="math notranslate nohighlight">\(L_z= 2D\)</span>, <span class="math notranslate nohighlight">\(n_x=n_y=512\)</span>,
+<span class="math notranslate nohighlight">\(n_z=64\)</span>, 상자 크기로 이어지는 <span class="math notranslate nohighlight">\(65\)</span> 풍력 구성 요소당 Mb입니다.</p>
+<p>사용자는 이 단락과 위의 지침에 제시된 지침을 사용하여 자신만의 Mann 상자를 생성할 수 있습니다.</p>
+<p><strong>WAT 상자의 대류</strong></p>
+<p>전체 풍력 발전 단지에 대해 WAT 난류 상자가 하나만 저장되어 있습니다. WAT 난류 상자를 대류시키기 위해 AWAE 모듈은 각 풍력터빈의 로터 평균 속도의 평균을 사용하여 각 시간 단계에서 대류되는 수동 추적자를 추적합니다.
+<span class="math notranslate nohighlight">\((\boldsymbol{U}_\text{farm}\)</span>). 수동 추적자의 위치, <span class="math notranslate nohighlight">\(\boldsymbol{B}\)</span>는 다음과 같이 정의됩니다.</p>
+<div class="math notranslate nohighlight">
+\[\frac{d\boldsymbol{B}}{dt} = \boldsymbol{U}_\text{farm}(t)\]</div>
+<p>여기서:</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{U}_\text{farm} = \operatorname{mean}\{ \overline{V}^\text{Low}_\text{Amb}[i_w], i_w =1\cdots n_{WT}\}\]</div>
+<p>여기서 <span class="math notranslate nohighlight">\(\overline{V}^\text{Low}_\text{Amb}[i_w]\)</span> 는 로터 평균 주변 풍속입니다. 방정식은 다음과 같이 1차 순방향 오일러 방식을 사용하여 적분됩니다.</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{B}^{n+1} =  \boldsymbol{B}^{n}  + \Delta t_\text{low}\,  \boldsymbol{U}^{n}_\text{farm}\]</div>
+<p>여기서 위 첨자는 <span class="math notranslate nohighlight">\(n\)</span> 는 시간 단계를 나타내며 추적자가 원점에 있다고 가정합니다. <span class="math notranslate nohighlight">\(t=0\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{B}^{0}=(0,0,0)\]</div>
+<p>AWAE 모듈은 중간, 고해상도, 시간 단계에서 추적기의 위치가 필요합니다. 고해상도 시간 단계의 위치는 다음과 같이 계산됩니다.</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{B}^{n,j} =  \boldsymbol{B}^{n}   - (n_h-j) \, \Delta t_\text{high}\,  \boldsymbol{U}^{n-1}_\text{farm}
+,\qquad j\in{0,.., n_h-1}\]</div>
+</div>
+</div>
+<div class="section" id="ambient-wind-and-array-effects-awae-module">
+<span id="ff-awae"></span><h3><span class="section-number">4.19.7.2.4. </span>주변 바람 및 배열 효과(AWAE 모듈)
+FAST.Farm의<a class="headerlink" href="#ambient-wind-and-array-effects-awae-module" title="이 제목의 고유 링크"></a></h3>
+<p>해당 <em>AWAE</em> 모듈은 주변 바람 및 후류 병합 하위 모델을 포함하여 풍력 발전소 전체에서 주변 바람 및 후류 상호 작용을 처리합니다. 주변풍 서브모듈은 충실도가 높은 전구체 시뮬레이션이나 인터페이스에서 풍력 발전 단지 전체에 걸쳐 주변풍을 처리합니다. <em>InflowWind</em> 모듈
+<a class="reference external" href="https://github.com/OpenFAST/openfast" target="_blank" rel="noopener noreferrer">OpenFAST</a>. 후류 병합 서브모듈은 풍력 발전소 전체의 모든 후류 사이의 중첩 영역을 식별하고 후류 부족을 병합합니다. 두 하위 모델 모두 아래 하위 섹션에 설명되어 있습니다.</p>
+<p>의 계산은 <em>AWAE</em> 모듈은 후류 평면에서 시작하여 두 후류 평면의 중심을 연결하는 선을 따라 다음 인접한 후류 평면으로 확장되는 (곡선일 수도 있는) 원통으로 형성된 볼륨인 후류 볼륨을 사용합니다. 인접한 후류 평면(실린더의 상단과 하단)이 평행하지 않은 경우(예: 나셀 요 각도의 변화를 포함하는 과도 시뮬레이션의 경우) 중심선은 직선이 아닌 곡선이 됩니다.
+<a class="reference internal" href="Introduction.html#ff-ffarmdomains"><span class="std std-numref">그림 4.59</span></a> 는 아래 하위 섹션에서 자세히 설명할 몇 가지 개념을 보여줍니다. 계산은 <em>AWAE</em> 모듈은 또한 모든 풍력 데이터 포인트, 터빈 및 항적 평면을 통한 루핑이 필요합니다. 이러한 루프는 OpenMP 병렬화 구현을 통해 FAST.Farm의 병렬 모드에서 속도가 향상되었습니다.</p>
+<p>해당 <em>AWAE</em> 모듈에는 상태가 없으므로 모듈 출력이 모듈 입력에서 직접 계산되는 피드포워드 전용 시스템으로 모듈을 축소합니다(입력에서 출력으로 직접 피드스루 사용). 는 <em>AWAE</em> 모듈은 입력으로 사용
+<span class="math notranslate nohighlight">\(\hat{x}_{n_p}^\text{Plane}\)</span>, <span class="math notranslate nohighlight">\(\vec{p}_{n_p}^\text{Plane}\)</span>,
+<span class="math notranslate nohighlight">\(V_{x_{n_p}}^\text{Wake}\left(r\right)\)</span>,
+<span class="math notranslate nohighlight">\(V_{r_{n_p}}^\text{Wake}\left(r\right)\)</span>및
+이 플래그 값 아래에
+<span class="math notranslate nohighlight">\(D_{n_p}^\text{Wake}\)</span> (각각 <span class="math notranslate nohighlight">\(0\le n_p\le N_p-1\)</span>)는 각 개별 풍력터빈에 대한 후류 역학 모델로 계산됩니다( <em>WD</em> 모듈). 는 <em>AWAE</em> 모듈은 출력을 계산합니다.
+각 개별 풍력터빈에 대한 OpenFAST 계산에 필요한
+<span class="math notranslate nohighlight">\(\vec{V}_\text{Dist}^\text{High}\)</span> (입력 <em>OF</em> 모듈) 및 출력
+각 개별 풍력터빈의 후류 역학 계산에 필요한 <span class="math notranslate nohighlight">\(\vec{V}_{n_p}^\text{Plane}\)</span> 용
+<span class="math notranslate nohighlight">\(0\le n_p\le N_p-1\)</span>, <span class="math notranslate nohighlight">\(^\text{DiskAvg}V_x^\text{Wind}\)</span>및
+이 플래그 값 아래에
+<span class="math notranslate nohighlight">\(TI_\text{Amb}\)</span> (입력 <em>WD</em> 모듈).</p>
+<div class="section" id="ambient-wind">
+<span id="ff-ambwind"></span><h4><span class="section-number">4.19.7.2.4.1. </span>주변 바람<a class="headerlink" href="#ambient-wind" title="이 제목의 고유 링크"></a></h4>
+<p>FAST.Farm에서 사용하는 주변 바람 데이터는 두 가지 방법 중 하나로 생성될 수 있습니다. 의 사용 <em>InflowWind</em> 모듈
+<a class="reference external" href="https://github.com/OpenFAST/openfast" target="_blank" rel="noopener noreferrer">OpenFAST</a> 를 사용하면 균일한 바람, 개별 바람 이벤트 또는 합성으로 생성된 난류 바람 데이터와 같은 간단한 주변 바람을 사용할 수 있습니다. 합성적으로 생성된 난류는 예를 들어 TurbSim 또는 Mann 모델에서 나올 수 있으며, 여기서 바람은 Taylor의 동결 난류 가정을 사용하여 풍력 발전 단지를 통해 전파됩니다. 이 방법은 소규모 풍력 발전 단지나 대규모 풍력 발전 단지 내의 풍력터빈의 하위 집합에 가장 적합합니다. FAST.Farm은 또한 ABLSolver 전처리기와 같이 전체 풍력 발전 단지(풍력터빈 없이)에 대한 고충실도 전구체 LES 시뮬레이션에 의해 생성된 주변 바람을 사용할 수 있습니다.
+<a class="reference external" href="https://github.com/NatLabRockies/SOWFA" target="_blank" rel="noopener noreferrer">SOWFA</a>. 이 대기 전구체 시뮬레이션은 그림에서 볼 수 있듯이 합성 난류보다 더 많은 물리학을 포착합니다. <a class="reference internal" href="Introduction.html#ff-ablsolver"><span class="std std-numref">그림 4.60</span></a> – 대기 안정성, 풍력 발전 단지 전체의 난류 길이 척도 및 복잡한 지형 효과를 포함합니다. 주변 바람 모델링 옵션을 사용하는 것보다 계산 비용이 더 많이 듭니다. <em>InflowWind</em>이지만 계산 비용이 a보다 훨씬 저렴합니다.
+여러 풍력터빈이 존재하는 <a class="reference external" href="https://github.com/NatLabRockies/SOWFA" target="_blank" rel="noopener noreferrer">SOWFA</a>
+시뮬레이션.</p>
+<p>FAST.Farm을 사용하려면 주변 바람을 두 가지 다른 해상도로 사용할 수 있어야 합니다. 바람은 후류면 전체에 걸쳐 공간적으로 평균화되기 때문입니다. <em>AWAE</em> 모듈인 FAST.Farm은 풍력 단지 전체에 걸쳐 저해상도 풍력 도메인(공간 및 시간 모두)이 필요합니다. 풍력 데이터 포인트의 구조화된 3D 그리드로 구성된 저해상도 영역의 공간 해상도는 공간 평균화가 정확하도록 충분해야 합니다(예: 유틸리티 규모 풍력터빈의 경우 수십 미터 정도). 저해상도 도메인의 시간 간격은 FAST.Farm 드라이버의 시간 간격을 나타냅니다(<span class="math notranslate nohighlight">\(\Delta t\)</span>) 및 모든 FAST.Farm 모듈. 따라서 이는 후류 역학의 시간 척도와 일치해야 하며, 예를 들어 평균 풍속이 높을수록 더 작아야 합니다. OpenFAST는
+시간 단계가 더 작은 <em>OF</em> 모듈. OpenFAST의 정확한 부하 계산을 위해 FAST.Farm에는 각 풍력터빈 주변과 모든 터빈 변위를 포함하는 고해상도 풍력 도메인(공간 및 시간 모두)이 필요합니다. 각 고해상도 영역의 공간 및 시간 분해능은 정확한 공기역학적 하중 계산(예: 블레이드 코드 길이 및 1초 단위)에 충분해야 합니다.<span id="id28">[<a class="reference internal" href="zrefs.html#id25" title="K. Shaler 및 그 외 여러분. 다양한 바람 유입 기술의 Fast.farm 응답. 제37회 풍력에너지 심포지엄에서. 캘리포니아주 샌디에고, 2019. AIAA. 도이:https://arc.aiaa.org/doi/pdf/10.2514/6.2019-2086.">ff-Seal19b</a>]</span>). 고해상도 도메인은 저해상도 도메인의 일부와 겹칩니다. FAST.Farm 내에서 계산 비용을 단순화하고 최소화하기 위해 고해상도 도메인의 시간 간격은 저해상도 도메인 시간 간격의 정수 제수여야 합니다.</p>
+<p>고충실도 전구체 시뮬레이션으로 생성된 주변 바람을 사용할 때 <em>AWAE</em> 모듈은 고해상도 및 저해상도 영역에서 3가지 구성 요소의 풍속 데이터를 읽습니다.
+각 터빈에 대한 <span class="math notranslate nohighlight">\(\vec{V}_\text{Amb}^\text{High}\)</span> 및
+<span class="math notranslate nohighlight">\(\vec{V}_\text{Amb}^\text{Low}\)</span>는 각각 각 시간 단계 내에서 고충실도 솔버에 의해 계산되었습니다. 이러한 값은 지정된 드라이버 시간 단계에서 사용하기 위해 파일에 저장됩니다. 공간 이산화를 포함한 바람 데이터 파일은 VTK 형식이어야 하며 초기화 시 FAST.Farm 사용자가 지정합니다. 사용할 때
+<em>InflowWind</em> 유입 옵션, 고해상도 및 저해상도 도메인 전체의 주변 바람은 다음을 호출하여 계산됩니다. <em>InflowWind</em> 모듈. 이 경우 이러한 도메인의 공간 이산화는 FAST.Farm 기본 입력 파일 내에서 직접 지정됩니다. 특정 드라이버 시간 간격 내에서 결합된 저해상도 및 고해상도 도메인의 이러한 바람 데이터는 FAST.Farm의 가장 큰 메모리 요구 사항을 나타냅니다.</p>
+<p>주어진 시간 단계에서 주변 바람이 처리된 후 주변 바람 하위 모델은 디스크에 수직인 로터 디스크 평균 주변 풍속을 출력으로 계산합니다.<span class="math notranslate nohighlight">\(^\text{DiskAvg}V_x^\text{Wind}\)</span>, 방정식을 사용하는 각 터빈에 대해&nbsp;<a class="reference internal" href="#equation-eq-vxwind">(4.251)</a>.</p>
+<div class="math notranslate nohighlight" id="equation-eq-vxwind">
+<span class="eqno">(4.251)<a class="headerlink" href="#equation-eq-vxwind" title="이 방정식에 대한 영구 링크"></a></span>\[^\text{DiskAvg}V_x^\text{Wind}=\left. \left( \left\{ \hat{x}_{n_p}^\text{Plane} \right\}^T\left\{ \frac{1}{N_{n_p}^\text{Polar}}\sum\limits_{n^\text{Polar}=1}^{N_{n_p}^\text{Polar}}{\vec{V}_{\text{Amb}_{n^\text{Polar}}}^\text{Low}} \right\} \right) \right|_{n_p=0}\]</div>
+<p>다음 식에서&nbsp;<a class="reference internal" href="#equation-eq-vxwind">(4.251)</a>, <span class="math notranslate nohighlight">\(N_{n_p}^\text{Polar}\)</span> 는 웨이크 평면의 폴라 그리드에 있는 포인트 수입니다.
+주어진 풍력터빈의 <span class="math notranslate nohighlight">\(n_p\)</span> , <span class="math notranslate nohighlight">\(n^\text{Polar}\)</span> 는 다음과 같은 포인트 카운터입니다.
+웨이크 플레인용
+<span class="math notranslate nohighlight">\(1\le n^\text{Polar}\le N_{n_p}^\text{Polar}\)</span> 후류 평면에 대해
+<span class="math notranslate nohighlight">\(n_p\)</span>이고 방정식은 로터 디스크의 후류 평면에 대해 계산됩니다(<span class="math notranslate nohighlight">\(n_p=0\)</span>). 웨이크 평면의 극 그리드 <span class="math notranslate nohighlight">\(n_p\)</span> 는 평균과 동일한 균일한 방사형 및 방위각 이산화를 갖습니다.
+<em>X-Y-Z</em> 저해상도 영역의 공간 이산화(내부에서 사용되는 방사형 유한 차분 그리드와 무관) <em>WD</em> 모듈) 및 직경 <span class="math notranslate nohighlight">\(C_\text{Meander}D_{n_p}^\text{Wake}\)</span>;
+<span class="math notranslate nohighlight">\(C_\text{Meander}\)</span> 에 대해서는 다음에서 자세히 설명합니다.
+<a class="reference internal" href="#ff-wmerging"><span class="std std-numref">섹션 4.19.7.2.4.2
+아래</span></a> . 아래첨자 <span class="math notranslate nohighlight">\(n^\text{Polar}\)</span>
+가 다음에 추가됩니다.
+방정식의 <span class="math notranslate nohighlight">\(\vec{V}_\text{Amb}^\text{Low}\)</span> 다음 식에서&nbsp;<a class="reference internal" href="#equation-eq-vxwind">(4.251)</a> 는 저해상도 영역에서 후류 평면의 극 그리드까지 삼선형으로 보간된 바람 데이터를 식별합니다. 직관적으로 방정식&nbsp;<a class="reference internal" href="#equation-eq-vxwind">(4.251)</a>
+는 각 터빈에 대한 디스크에 수직인 로터 디스크 평균 주변 풍속이 저역 시간 필터링된 로터 중심선을 따라 투영된 로터 디스크의 후류 평면에서 주변 풍속의 균일한 공간 평균으로 계산된다고 명시합니다.</p>
+<p>주변 바람 하위 모델 <em>AWAE</em> 모듈은 또한 각 로터 주변의 주변 난류 강도를 출력으로 계산합니다.
+<span class="math notranslate nohighlight">\(TI_\text{Amb}\)</span>, 방정식 사용&nbsp;<a class="reference internal" href="#equation-eq-ti">(4.252)</a>:</p>
+<div class="math notranslate nohighlight" id="equation-eq-ti">
+<span class="eqno">(4.252)<a class="headerlink" href="#equation-eq-ti" title="이 방정식에 대한 영구 링크"></a></span>\[TI_\text{Amb}=\left. \left(
+   \frac{\sqrt{\frac{1}{3N_{n_p}^\text{Polar}}\sum\limits_{n^\text{Polar}=1}^{N_{n_p}^\text{Polar}}\left\| \vec{V}_{\text{Amb}_{n^\text{Polar}}}^\text{Low}-
+         \left\{ \frac{1}{N_{n_p}^\text{Polar}}\sum\limits_{n^\text{Polar}=1}^{N_{n_p}^\text{Polar}}{\vec{V}_{\text{Amb}_{n^\text{Polar}}}^\text{Low}} \right\} \right\|_2^2}}
+      {\left\| \left\{ \frac{1}{N_{n_p}^\text{Polar}}\sum\limits_{n^\text{Polar}=1}^{N_{n_p}^\text{Polar}}{\vec{V}_{\text{Amb}_{n^\text{Polar}}}^\text{Low}} \right\} \right\|_2}
+   \right) \right|_{n_p=0}\]</div>
+<p>방정식의 괄호 안의 항&nbsp;<a class="reference internal" href="#equation-eq-ti">(4.252)</a> 는 수식과 동일합니다.&nbsp;<a class="reference internal" href="#equation-eq-vxwind">(4.251)</a>는 로터 디스크의 후류면에서 주변 풍속의 균일한 공간 평균을 나타냅니다. 축풍 성분의 시간 평균 수량으로 구성된 풍력 산업에서 사용되는 난류 강도의 일반적인 정의와 달리, 주변 바람 하위 모델에서 계산된 난류 강도는 다음과 같습니다. <em>AWAE</em> 모듈은 세 가지 벡터 구성 요소의 균일한 공간 평균을 기반으로 합니다. 시간 평균을 사용하지 않으면 현재 시간 단계의 주변 바람만 처리되어야 하므로 메모리 요구 사항이 줄어듭니다. 또한 공간 평균의 시간 변화는 저역 통과 시간 필터에 의해 조정됩니다. <em>WD</em>
+모듈. 공간 평균화와 세 가지 벡터 구성요소를 사용하면 대기 전단, 바람 방향 및 기타 주변 바람 특성이 와류 점도 및 후류 부족 진화에 영향을 미칠 수 있습니다. <em>WD</em>
+모듈. 후류에 의한 난류는 다음에 설명되어 있습니다. <a class="reference internal" href="#ff-wat"><span class="std std-numref">섹션 4.19.7.2.3.4</span></a>. 방정식에 유의하세요.&nbsp;<a class="reference internal" href="#equation-eq-ti">(4.252)</a> 는 보간법 대신 폴라 그리드의 각 지점을 둘러싸는 저해상도 영역의 8개 바람 데이터 지점을 사용합니다. 이는 저해상도 영역에서 삼선형 보간을 통해 후류 평면의 극 그리드에서 바람 데이터를 계산하면 공간 변화를 완화하고 계산된 난류 강도를 인위적으로 줄일 수 있기 때문입니다.</p>
+</div>
+<div class="section" id="wake-merging">
+<span id="ff-wmerging"></span><h4><span class="section-number">4.19.7.2.4.2. </span>웨이크 병합<a class="headerlink" href="#wake-merging" title="이 제목의 고유 링크"></a></h4>
+<p>이전 DWM 구현에서는 풍력터빈과 후류 역학이 양방향 후류 병합 상호 작용을 고려하지 않고 개별적으로 또는 연속적으로 해석되었습니다. 또한, 후류 중첩 구역에서 교란된 바람을 계산할 수 있는 방법이 없었습니다. 웨이크 병합은 다음과 같이 설명됩니다. <a class="reference external" href="https://github.com/NatLabRockies/SOWFA" target="_blank" rel="noopener noreferrer">SOWFA</a> 시뮬레이션 <a class="reference internal" href="Introduction.html#ff-wakemerg"><span class="std std-numref">그림 4.61</span></a>. FAST.Farm에서는 웨이크 병합 하위 모델인 <em>AWAE</em> 모듈은 공간에서 겹치는 후류량을 찾아 풍력 발전소 전체의 모든 후류 사이에서 후류가 겹치는 영역을 식별합니다. 웨이크 부족은 RSS 방법을 기반으로 축 방향으로 중첩됩니다(<span id="id29">[<a class="reference internal" href="zrefs.html#id27" title="I. Kati\`c 및 외. 클러스터 효율성을 위한 간단한 모델입니다. 유럽 ​​풍력 에너지 협회 회의 및 전시회에서. 1986년 이탈리아 로마.">ff-Katiceal86</a>]</span>); 가로 구성 요소(방사형 후류 부족)는 벡터 합으로 겹쳐집니다. Katic et al. (<span id="id30">[<a class="reference internal" href="zrefs.html#id27" title="I. Kati\`c 및 외. 클러스터 효율성을 위한 간단한 모델입니다. 유럽 ​​풍력 에너지 협회 회의 및 전시회에서. 1986년 이탈리아 로마.">ff-Katiceal86</a>]</span>), RSS 방법은 후류 직경에 걸쳐 균일한 축 방향 결함이 있는 후류에 적용되며 방사형 결함은 고려되지 않습니다. 이와 대조적으로 FAST.Farm의 RSS 방법은 주어진 바람 데이터 지점에 로컬로 적용됩니다. RSS 방법은 병합된 후류에서 축 부족의 국부 운동 에너지가 주어진 바람 데이터 지점에서 각 후류에 대한 축 결손의 국부적 에너지의 합과 같다고 가정합니다. RSS 방법은 스칼라 배열에만 적용되며, 겹치는 후류가 유사한 축 방향을 가질 가능성이 높기 때문에 축 결함에 대해 잘 작동합니다. 그러나 이는 중첩에서는 벡터의 크기만이 중요하다는 것을 의미합니다. 주어진 반경방향은 축대칭 좌표계의 방위각에 의존하기 때문에 벡터 합은 횡방향 구성요소(방사형 후류 부족)에 적용됩니다.</p>
+<p>고해상도 및 저해상도 영역에 걸쳐 교란된(주변 + 후류) 풍속 - <span class="math notranslate nohighlight">\(\vec{V}_\text{Dist}^\text{High}\)</span> 및 <span class="math notranslate nohighlight">\(\vec{V}_\text{Dist}^\text{Low}\)</span>는 각각 방정식을 사용하여 계산됩니다.&nbsp;<a class="reference internal" href="#equation-eq-vdisthigh">(4.253)</a>
+및&nbsp;<a class="reference internal" href="#equation-eq-vdistlow">(4.254)</a>각각.</p>
+<div class="math notranslate nohighlight" id="equation-eq-vdisthigh">
+<span class="eqno">(4.253)<a class="headerlink" href="#equation-eq-vdisthigh" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}\begin{split}
+  &amp; \vec{V}_\text{Dist}^\text{High}=\vec{V}_\text{Amb}^\text{High} \\
+ &amp; \quad \quad \,-\left\{
+   \sqrt{\sum\limits_{n^\text{Wake}=1}^{N^\text{Wake}}{
+      \begin{cases}
+         {{\left( \left\{ \bar{\hat{x}}^{Plane} \right\}^T
+            \left\{ V_{x_{n^\text{Wake}}}^\text{Wake}\hat{x}_{n^\text{Wake}}^\text{Plane}+
+               V_{r_{n^\text{Wake}}}^\text{Wake}\hat{r}_{n^\text{Wake}}^\text{Plane} \right\} \right)}^2}
+         &amp; \textrm{for}~\left( n_{t_{n^\text{Wake}}}\ne n_t \right)  \\
+         \\
+         0 &amp; \textrm{otherwise}\\
+      \end{cases}
+      }}
+   \right\}\bar{\hat{x}}^\text{Plane} \\
+ &amp; \quad \quad \,+\sum\limits_{n^\text{Wake}=1}^{N^\text{Wake}}{
+   \begin{cases}
+      \left[ I-\bar{\hat{x}}^\text{Plane}\left\{ \bar{\hat{x}}^\text{Plane} \right\}^T \right]
+         \left\{ V_{x_{n^\text{Wake}}}^\text{Wake}\hat{x}_{n^\text{Wake}}^\text{Plane}+
+            V_{r_{n^\text{Wake}}}^\text{Wake}\hat{r}_{n^\text{Wake}}^\text{Plane} \right\}
+      &amp; \textrm{for}~\left( {n_{t_{n^\text{Wake}}}}\ne n_t \right)  \\
+      \\
+      \vec{0} &amp; \textrm{otherwise}  \\
+   \end{cases}
+   } \\
+\end{split}\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-vdistlow">
+<span class="eqno">(4.254)<a class="headerlink" href="#equation-eq-vdistlow" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}\begin{split}
+  &amp; \vec{V}_\text{Dist}^\text{Low}=\vec{V}_\text{Amb}^\text{Low} \\
+  &amp; \quad \quad \,-\left\{
+      \sqrt{\sum\limits_{n^\text{Wake}=1}^{N^\text{Wake}}{
+         {\left( {{\left\{
+         \bar{\hat{x}}^\text{Plane} \right\}}^T}
+            \left\{ V_{x_{n^\text{Wake}}}^\text{Wake}\hat{x}_{n^\text{Wake}}^\text{Plane}+
+               V_{r_{n^\text{Wake}}}^\text{Wake}\hat{r}_{n^\text{Wake}}^\text{Plane}
+            \right\}
+         \right)}^2}}
+      \right\}\bar{\hat{x}}^\text{Plane} \\
+ &amp; \quad \quad +\sum\limits_{n^\text{Wake}=1}^{N^\text{Wake}}
+      \left[ I-\bar{\hat{x}}^\text{Plane}\left\{ \bar{\hat{x}}^\text{Plane} \right\}^T \right]
+      \left\{ V_{x_{n^\text{Wake}}}^\text{Wake}\hat{x}_{n^\text{Wake}}^\text{Plane}+
+         V_{r_{n^\text{Wake}}}^\text{Wake}\hat{r}_{n^\text{Wake}}^\text{Plane}
+      \right\} \\
+\end{split}\end{split}\]</div>
+<p>여기, <span class="math notranslate nohighlight">\((n_{t_{n^\text{Wake}}}\ne n_t)\)</span> 는 깨우기를 의미합니다.
+<span class="math notranslate nohighlight">\(n^\text{Wake}\)</span> 는 해당 터빈과 연결되어 있지 않습니다.
+<span class="math notranslate nohighlight">\(n_t\)</span>. 방정식 우변의 첫 번째, 두 번째, 세 번째 항&nbsp;<a class="reference internal" href="#equation-eq-vdisthigh">(4.253)</a> 및&nbsp;<a class="reference internal" href="#equation-eq-vdistlow">(4.254)</a>
+는 각각 주변 풍속, 축 후류 속도 부족의 RSS 중첩, 횡 후류 속도 부족의 벡터 합을 나타냅니다. 많은 수학적 세부 사항은 이 문서의 범위를 벗어나지만 방정식의 명명법은&nbsp;<a class="reference internal" href="#equation-eq-vdisthigh">(4.253)</a> 및&nbsp;<a class="reference internal" href="#equation-eq-vdistlow">(4.254)</a> 는 다음과 같습니다:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(N^\text{Wake}\)</span> – 바람 영역에서 주어진 바람 데이터 포인트와 겹치는 후류량의 수</p></li>
+<li><p><span class="math notranslate nohighlight">\(n^\text{Wake}\)</span> – 웨이크 카운터
+<span class="math notranslate nohighlight">\(1\le n^\text{Wake}\le N^\text{Wake}\)</span> 는 아래 첨자로 사용될 때 후류 평면의 특정 지점을 식별하는 데 사용됩니다. <span class="math notranslate nohighlight">\(\left( r \right)\)</span> 및 아래첨자 <span class="math notranslate nohighlight">\(n_p\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(V_{x_{n^\text{Wake}}}^\text{Wake}\)</span> – 주어진 바람 데이터 포인트가 특정 후류 체적 및 해당 후류 평면 내에 있는 위치와 관련된 축 후류 속도 부족</p></li>
+<li><p><span class="math notranslate nohighlight">\(V_{r_{n^\text{Wake}}}^\text{Wake}\)</span> – 주어진 바람 데이터 포인트가 특정 후류량 및 해당 후류 평면 내에 있는 위치와 관련된 방사형 후류 속도 부족</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{x}_{n^\text{Wake}}^\text{Plane}\)</span> – 주어진 바람 데이터 포인트가 특정 후류 체적 및 해당 후류 평면 내에 있는 위치와 관련된 축 방향</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{r}_{n^\text{Wake}}^\text{Plane}\)</span> – 주어진 바람 데이터 포인트가 특정 후류 체적 및 해당 후류 평면 내에 있는 위치와 연관된 방사형 단위 벡터</p></li>
+<li><p><span class="math notranslate nohighlight">\(\overline{\hat{x}}^\text{Plane}\)</span> – 바람 공간 영역의 특정 지점과 관련된 가중 평균 축 방향</p></li>
+<li><p><span class="math notranslate nohighlight">\(\{ \overline{\hat{x}}^\text{Plane}\}^T\)</span> – 프로젝트
+<span class="math notranslate nohighlight">\(\{ V_{x_{n^\text{Wake}}}^\text{Wake}\hat{x}_{n^\text{Wake}}^\text{Plane}+V_{r_{n^\text{Wake}}}^\text{Wake}\hat{r}_{n^\text{Wake}}^\text{Plane}\}\)</span>
+함께
+다음과 같이 <span class="math notranslate nohighlight">\(\hat{r}_{n^\text{Wake}}^\text{Plane}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\left[I-\hat{x}_{n^\text{Wake}}^\text{Plane}\{ \overline{\hat{x}}^\text{Plane}\}^T\right]\)</span> – 횡방향 구성요소를 계산합니다.
+<span class="math notranslate nohighlight">\(\{ V_{x_{n^\text{Wake}}}^\text{Wake}\hat{x}_{n^\text{Wake}}^\text{Plane}+V_{r_{n^\text{Wake}}}^\text{Wake}\hat{r}_{n^\text{Wake}}^\text{Plane}\}\)</span>
+일반 ~ <span class="math notranslate nohighlight">\(\overline{\hat{x}}^\text{Plane}\)</span>.</p></li>
+</ul>
+<p>후류 체적은 모든 지점, 터빈 및 후류 평면을 반복하고 주어진 지점이 후류 평면의 반경 방향 범위와 동일한 직경을 가진 후류 체적에 있는지 공간적으로 결정함으로써 발견됩니다. 웨이크 볼륨 <span class="math notranslate nohighlight">\(n_p\)</span> (용 <span class="math notranslate nohighlight">\(0\le n_p\le N_p-2\)</span>) 웨이크 플레인에서 시작 <span class="math notranslate nohighlight">\(n_p\)</span> 및 웨이크 플레인으로 확장 <span class="math notranslate nohighlight">\(n_p+1\)</span>. 웨이크 볼륨은 다음과 같이 결정되는 중심선을 갖습니다.
+<span class="math notranslate nohighlight">\(\vec{p}_{n_p}^\text{Plane}\)</span>, <span class="math notranslate nohighlight">\(\hat{x}_{n_p}^\text{Plane}\)</span>,
+<span class="math notranslate nohighlight">\(\vec{p}_{n_p+1}^\text{Plane}\)</span>및
+이 플래그 값 아래에
+<span class="math notranslate nohighlight">\(\hat{x}_{n_p+1}^\text{Plane}\)</span> – 이 중심선은 다음과 같은 경우 곡선입니다.
+<span class="math notranslate nohighlight">\(\hat{x}_{n_p}^\text{Plane}\)</span> 및
+<span class="math notranslate nohighlight">\(\hat{x}_{n_p+1}^\text{Plane}\)</span> 는 병렬이 아닙니다. 계산 <span class="math notranslate nohighlight">\(V_{x_{n^\text{Wake}}}^\text{Wake}\)</span> 및
+<span class="math notranslate nohighlight">\(V_{r_{n^\text{Wake}}}^\text{Wake}\)</span> 는 축방향 및 방사형 방향에서 후류 결함의 이중선형 보간을 포함합니다. 인접한 후류 평면이 평행하지 않을 때 축 보간은 복잡합니다. 벡터 수량
+<span class="math notranslate nohighlight">\(\{ V_{x_{n^\text{Wake}}}^\text{Wake}\hat{x}_{n^\text{Wake}}^\text{Plane}+V_{r_{n^\text{Wake}}}^\text{Wake}\hat{r}_{n^\text{Wake}}^\text{Plane}\}\)</span>
+는 주어진 바람 데이터 포인트가 특정 후류량 및 해당 후류 평면 내에 있는 위치와 관련된 총 후류 속도 부족을 나타냅니다. 각 후류 평면은 고유한 방향을 가질 수 있기 때문에 주어진 바람 데이터 지점에서 중첩의 "축"과 "방사형"을 구성하는 것은 해당 지점과 겹치는 각 후류 체적의 방향을 가중 평균하여 결정됩니다(각 축 후류 부족의 크기로 가중). 유사한 방정식이 고해상도 영역에 걸쳐 분포된 풍속을 계산하는 데 사용됩니다(<span class="math notranslate nohighlight">\(\vec{V}_\text{Dist}^\text{High}\)</span>)는 터빈으로의 교란된 바람 유입을 계산하는 데 필요합니다. 고해상도 영역의 경우 터빈이 자체 후류와 상호작용하는 것이 방지됩니다.</p>
+<p>저해상도 영역에 걸쳐 분산된 풍속이 발견되면 후류 병합 하위 모델은 <em>AWAE</em> 모듈은 각 후류 평면의 이류, 편향 및 사행 속도를 출력으로 계산합니다. <span class="math notranslate nohighlight">\(\vec{V}_{n_p}^\text{Plane}\)</span> 용
+<span class="math notranslate nohighlight">\(0\le n_p\le N_p-1\)</span>, 각 터빈에 대해 방정식을 사용하여 후류 평면에 걸쳐 교란된 풍속의 가중 공간 평균을 구합니다.&nbsp;<a class="reference internal" href="#equation-eq-vnpplane">(4.255)</a>.</p>
+<div class="math notranslate nohighlight" id="equation-eq-vnpplane">
+<span class="eqno">(4.255)<a class="headerlink" href="#equation-eq-vnpplane" title="이 방정식에 대한 영구 링크"></a></span>\[\vec{V}_{n_p}^\text{Plane}=
+   \frac{\sum\limits_{n^\text{Polar}=1}^{N_{n_p}^\text{Polar}}w_{n^\text{Polar}}\vec{V}_{\text{Dist}_{n^\text{Polar}}}^\text{Low}}
+        {\sum\limits_{n^\text{Polar}=1}^{N_{n_p}^\text{Polar}}{w_{n^\text{Polar}}}}\]</div>
+<p>웨이크 평면의 폴라 그리드 <span class="math notranslate nohighlight">\(n_p\)</span> 는 평균과 동일한 균일한 방사형 및 방위각 이산화를 갖습니다. <em>X-Y-Z</em> 저해상도 영역의 공간 이산화(내부에서 사용되는 방사형 유한 차분 그리드와 무관) <em>WD</em> 모듈) 및 아래 설명된 로컬 직경을 참조하세요. 아래첨자 <span class="math notranslate nohighlight">\(n^\text{Polar}\)</span> 가 다음에 추가됩니다.
+방정식의
+<span class="math notranslate nohighlight">\(\vec{V}_\text{Dist}^\text{Low}\)</span> 다음 식에서&nbsp;<a class="reference internal" href="#equation-eq-vnpplane">(4.255)</a> 는 저해상도 영역에서 후류 평면의 극 그리드까지 삼선형으로 보간된 바람 데이터를 식별합니다. 방정식과 달리&nbsp;<a class="reference internal" href="#equation-eq-vxwind">(4.251)</a>, 방정식&nbsp;<a class="reference internal" href="#equation-eq-vnpplane">(4.255)</a> 에는 공간 가중치 요소가 포함되어 있습니다.
+<span class="math notranslate nohighlight">\(w_{n^\text{Polar}}\)</span>, 점의 반경 거리에 따라 다름
+웨이크 평면의 중심에서
+<span class="math notranslate nohighlight">\(n^\text{Polar}\)</span> (아래에서 설명). FAST.Farm은 웨이크 플레인의 중심이 저해상도 영역의 경계를 벗어나면 경고를 발행하고 각 웨이크 플레인의 구불구불한 속도를 설정합니다.
+<span class="math notranslate nohighlight">\(\vec{V}_{n_p}^\text{Plane}\)</span>는 저해상도 영역의 경계를 완전히 벗어난 웨이크 평면에 대해 0으로 설정됩니다. 질적으로, 방정식&nbsp;<a class="reference internal" href="#equation-eq-vnpplane">(4.255)</a> 는 각 터빈에 대한 각 후류 평면의 이류, 편향 및 사행 속도가 후류 평면에서 교란된 풍속의 가중 공간 평균으로 계산된다고 명시합니다. Larsenet al. (<span id="id31">[<a class="reference internal" href="zrefs.html#id4" title="G. C. Larsen 및 그 외 여러분. Wake Meander: 실용적인 접근 방식. 풍력 에너지, 11:337-95, 2008. doi:http://onlinelibrary.wiley.com/doi/10.1002/we.267/epdf.">ff-Leal08</a>]</span>)는 직경 원 내의 모든 점이 균일한 공간 평균을 제안했습니다.
+<span class="math notranslate nohighlight">\(2D_{n_p}^\text{Wake}\)</span> 에는 동일한 가중치가 부여됩니다. 그러나 극 공간 영역에서 원형 함수의 푸리에 변환은 다음을 초래합니다. <em>징크
+극파수 영역의</em> 함수, <a class="footnote-reference brackets" href="#id46" id="id32">10</a>
+는 컷오프 파수 아래의 에너지의 완만한 롤오프와 컷오프 파수 위의 뚜렷한 파수에서 에너지 포켓을 의미합니다. FAST.Farm 개발 경험에 따르면 이 접근 방식을 사용하면 전체적인 후류 구불구불한 현상이 줄어들고 주파수가 부적절한 것으로 나타났습니다. 따라서 FAST.Farm에는 다음 식에 정의된 세 가지 가중 공간 평균화 방법이 구현되었습니다.&nbsp;<a class="reference internal" href="#equation-eq-wn">(4.256)</a>.</p>
+<div class="math notranslate nohighlight" id="equation-eq-wn">
+<span class="eqno">(4.256)<a class="headerlink" href="#equation-eq-wn" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}w_{n^\text{Polar}}=
+\begin{cases}
+   1 &amp; \textrm{for}~\textit{method 1-uniform}\\
+   \\
+   jinc\left( \frac{r_{n^\text{Polar}}}{C_\text{Meander}D^\text{Wake}} \right)
+   &amp; \textrm{for}~\textit{method 2-truncated jinc}\\
+   \\
+   jinc\left( \frac{r_{n^\text{Polar}}}{C_\text{Meander}D^\text{Wake}} \right)jinc\left( \frac{r_{n^\text{Polar}}}{2C_\text{Meander}D^\text{Wake}} \right)
+   &amp; \textrm{for}~\textit{method 3-windowed jinc}\\
+\end{cases}\end{split}\]</div>
+<p>첫 번째 방법은 국부 극격자 직경이 다음과 같은 균일한 가중치를 갖는 공간 평균입니다.
+웨이크 비행기의 <span class="math notranslate nohighlight">\(C_\text{Meander}D_{n_p}^\text{Wake}\)</span>
+후류 평면에서 <span class="math notranslate nohighlight">\(n_p\)</span>, 컷오프 파수는 다음과 같습니다.
+<span class="math notranslate nohighlight">\(\frac{1}{C_\text{Meander}D^\text{Wake}}\)</span>. 두 번째와 세 번째 방법은 다음과 같은 형태로 공간 평균의 각 지점에 가중치를 부여합니다.
+후류 중심선으로부터 점의 반경에 따른 <em>징크
+극파수 영역의</em>
+기능,
+<span class="math notranslate nohighlight">\(r_{n^\text{Polar}}\)</span>, 다음으로 정규화됨
+<span class="math notranslate nohighlight">\(C_\text{Meander}D^\text{Wake}\)</span>. 그 결과 극파수 도메인에서 에너지를 더 예리하게 차단하고 컷오프 파수는 다음과 같은 보다 이상적인 저역 통과 필터가 됩니다.
+<span class="math notranslate nohighlight">\(\frac{1}{C_\text{Meander}D^\text{Wake}}\)</span>. 그러나, 때문에
+<em>징크
+극파수 영역의</em> 함수는 인수가 증가함에 따라 천천히 감소합니다. <em>징크
+극파수 영역의</em>
+기능을 실제로 적용하려면 윈도우화를 해야 합니다. 두 번째 방법은 <em>징크
+극파수 영역의</em> 함수는 첫 번째 제로 크로싱에서 로컬 극 격자 직경에 해당합니다.
+<span class="math notranslate nohighlight">\(1.21967C_\text{Meander}D_{n_p}^\text{Wake}\)</span> 후류 평면에서
+<span class="math notranslate nohighlight">\(n_p\)</span>. 세 번째 방법은 <em>징크
+극파수 영역의</em> 함수에
+인수 절반의 <em>징크
+극파수 영역의</em> 함수(1차원 Lanczos/sinc 창과 동등한 극 영역), 두 번째 영점 교차에서 가중치를 0으로 테이퍼링합니다(가중치는 첫 번째 영점 교차 아래에서 양수이고 첫 번째 영점 교차를 지나서 0으로 테이퍼될 때까지 음수입니다). 이는 국지적 극격자 직경에 해당합니다. <span class="math notranslate nohighlight">\(2.23313C_\text{Meander}D_{n_p}^\text{Wake}\)</span> 후류 평면에서 <span class="math notranslate nohighlight">\(n_p\)</span>. 이러한 가중 공간 평균화 방법은 더 큰 극격자 직경(즉, 절단된 <em>징크
+극파수 영역의</em> 방법은 대략적으로 <span class="math notranslate nohighlight">\(50\%\)</span>
+균일한 방법보다 폴라 그리드 내에 더 많은 포인트가 있고 윈도우가 있는 <em>징크
+극파수 영역의</em> 방법은 균일 방법보다 대략 5배 더 많은 포인트를 갖습니다. 값 <span class="math notranslate nohighlight">\(C_\text{Meander}=2\)</span>, 극격자 직경은 다음과 같습니다. <span class="math notranslate nohighlight">\(2D^\text{Wake}\)</span> 및 컷오프 파수
+<span class="math notranslate nohighlight">\(\frac{1}{2D^\text{Wake}}\)</span>는 Larsen et al.이 제안한 횡후류 사행에 중요한 특성 치수를 따릅니다. (<span id="id33">[<a class="reference internal" href="zrefs.html#id4" title="G. C. Larsen 및 그 외 여러분. Wake Meander: 실용적인 접근 방식. 풍력 에너지, 11:337-95, 2008. doi:http://onlinelibrary.wiley.com/doi/10.1002/we.267/epdf.">ff-Leal08</a>]</span>) <span class="math notranslate nohighlight">\(C_\text{Meander}\)</span> 는 FAST.Farm 사용자가 구불구불한 방법을 알려진 솔루션에 더 잘 일치시킬 수 있도록 모든 방법에 포함되어 있습니다. 값이 낮을수록 참고하세요.
+<span class="math notranslate nohighlight">\(C_\text{Meander}\)</span>, 웨이크가 더 많이 구불구불해질 것입니다.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id34"><span class="brackets"><a class="fn-backref" href="#id6">1</a></span></dt>
+<dd><p><span class="math notranslate nohighlight">\(x^d\)</span> 및 <span class="math notranslate nohighlight">\(X^d\)</span> 는 다음에 설명된 것과 동일합니다.&nbsp;<span id="id35">[<a class="reference internal" href="zrefs.html#id22" title="J. 존크만. 고속 풍력터빈 CAE 도구를 위한 새로운 모듈화 프레임워크입니다. 제51차 AIAA 항공우주과학회의에서. 2013년 텍사스 주 달라스. AIAA.">ff-Jon13</a>]</span>. <span class="math notranslate nohighlight">\(u^d\)</span>, <span class="math notranslate nohighlight">\(y^d\)</span>및
+이 플래그 값 아래에
+<span class="math notranslate nohighlight">\(Y^d\)</span> 는 다음과 동일합니다. <span class="math notranslate nohighlight">\(u\)</span>, <span class="math notranslate nohighlight">\(y\)</span>및
+이 플래그 값 아래에 <span class="math notranslate nohighlight">\(Y\)</span>
+의&nbsp;<span id="id36">[<a class="reference internal" href="zrefs.html#id22" title="J. 존크만. 고속 풍력터빈 CAE 도구를 위한 새로운 모듈화 프레임워크입니다. 제51차 AIAA 항공우주과학회의에서. 2013년 텍사스 주 달라스. AIAA.">ff-Jon13</a>]</span>이지만 이산 시간에만 평가됩니다. <span class="math notranslate nohighlight">\(t=n\Delta t\)</span>등은 여기에 위 첨자로 표시되어 있습니다. <span class="math notranslate nohighlight">\(^d\)</span>.</p>
+</dd>
+<dt class="label" id="id37"><span class="brackets"><a class="fn-backref" href="#id8">2</a></span></dt>
+<dd><p>프로파일링이 적절한 계산 속도 향상을 보여주지 않았기 때문에 이러한 가능한 병렬 작업 중 일부가 FAST.Farm 내에서 구현되지 않았습니다. 그러나 출력 계산의 계산 비용을 최소화하기 위해 <em>AWAE</em> 모듈, 주변 바람 데이터 파일은 상태 업데이트와 병렬로 읽혀집니다. <em>OF</em>및
+이 플래그 값 아래에 <em>WD</em>
+모듈. 소개를 참조하세요 <a class="reference internal" href="#ff-theorybasis"><span class="std std-numref">섹션 4.19.7.2</span></a> 를 참조하세요.</p>
+</dd>
+<dt class="label" id="id38"><span class="brackets"><a class="fn-backref" href="#id9">3</a></span></dt>
+<dd><p>FAST의 Line2-to-Line2 메시 매핑 알고리즘을 사용하여 파생됨(<span id="id39">[<a class="reference internal" href="zrefs.html#id23" title="M. A. Sprague 및 그 외 여러분. 빠른 모듈식 풍력터빈 CAE 도구: 일치하지 않는 공간적 및 시간적 메시. 제50회 AIAA 항공우주과학회의에서. 메릴랜드주 내셔널 하버, 2014년 1월. AIAA. doi:http://arc.aiaa.org/doi/pdf/10.2514/6.2014-0520.">ff-Seal14</a>, <a class="reference internal" href="zrefs.html#id24" title="M. A. Sprague 및 그 외 여러분. 풍력터빈 시뮬레이션을 위한 빠른 모듈형 프레임워크: 새로운 알고리즘 및 수치 예제. 제51회 AIAA 항공우주과학회의에서. 키시미, 플로리다, 2015. AIAA. doi:http://arc.aiaa.org/doi/pdf/10.2514/6.2014-0520.">ff-Seal15</a>]</span>)는 FAST 내에서 계산된 대로 편향/곡선 블레이드를 따라 단위 길이당 분산된 공기역학적 적용 하중을 전달합니다.</p>
+</dd>
+<dt class="label" id="id40"><span class="brackets"><a class="fn-backref" href="#id13">4</a></span></dt>
+<dd><p>로터 직경의 변화, <span class="math notranslate nohighlight">\(D^\text{Rotor}\)</span>는 블레이드 편향으로 인해 가능합니다. 이러한 변동은 작을 가능성이 높지만 이 변수는 일관성을 위해 다른 입력과 동일하게 처리됩니다.</p>
+</dd>
+<dt class="label" id="id41"><span class="brackets"><a class="fn-backref" href="#id14">5</a></span></dt>
+<dd><p>후류 진화에 관한 한, 후류 평면이 원래 전파 방향의 반대 방향으로 이동하는 경우(예: 국지적인 돌풍으로 인해) 로터로부터 순간적인 풍하 방향 거리보다는 이동한 총 풍하 방향 거리가 사용되기 때문에 절대값이 추가됩니다.</p>
+</dd>
+<dt class="label" id="id42"><span class="brackets"><a class="fn-backref" href="#id16">6</a></span></dt>
+<dd><p>값 <span class="math notranslate nohighlight">\(C_\text{NearWake}=2\)</span> 는 첫 번째 원리에서 예상되지만 FAST.Farm 사용자가 원거리 항적을 알려진 솔루션과 더 잘 일치하도록 보정할 수 있습니다.</p>
+</dd>
+<dt class="label" id="id43"><span class="brackets"><a class="fn-backref" href="#id17">7</a></span></dt>
+<dd><p>증분 질량 흐름은 다음과 같이 제공됩니다.</p>
+<div class="math notranslate nohighlight">
+\[d\dot{m} = 2\pi r dr \rho\ ^\text{FiltDiskAvg}V^\text{Rel}_x (1-a(r)) = 2\pi r^\text{Plane} dr^\text{Plane} \rho\ ^\text{FiltDiskAvg}V^\text{Rel}_x (1-C_\text{NearWake} a(r))\]</div>
+<p>이에 이어,
+<span class="math notranslate nohighlight">\(r^\text{Plane} dr^\text{Plane} = \frac{1-a\left( r\right)}{1-C_\text{NearWake} a\left( r\right)}r dr\)</span>, 반경을 따라 통합될 수 있습니다.
+여기서는</p>
+</dd>
+<dt class="label" id="id44"><span class="brackets"><a class="fn-backref" href="#id24">8</a></span></dt>
+<dd><p>아래첨자 <span class="math notranslate nohighlight">\(n_r\)</span> 가 대신 사용되었습니다.
+<span class="math notranslate nohighlight">\(\left( r\right)\)</span></p>
+</dd>
+<dt class="label" id="id45"><span class="brackets"><a class="fn-backref" href="#id25">9</a></span></dt>
+<dd><p>축 대칭 좌표계의 중심선에서 방사형 후류 속도 부족(<span class="math notranslate nohighlight">\(n_r=0\)</span>)는 항상 0(<span class="math notranslate nohighlight">\(V_{r_{n_p}}^\text{Wake}\left( r \right)|_{r=0}=0)\)</span>.</p>
+</dd>
+<dt class="label" id="id46"><span class="brackets"><a class="fn-backref" href="#id32">10</a></span></dt>
+<dd><p>이러한 맥락에서, <em>징크
+극파수 영역의</em> 함수는 다음과 같이 정의됩니다.
+<span class="math notranslate nohighlight">\(jinc(r)=\frac{J_1(2\pi r)}{r}\)</span> (원점의 제한 값 포함) <span class="math notranslate nohighlight">\(jinc(0) = \pi)\)</span>, 여기서 <span class="math notranslate nohighlight">\(J_1(r)\)</span> 는 제1종 베셀 함수이자 차수 1입니다. 는 <em>징크
+극파수 영역의</em> 기능은 다음과 같이 정규화됩니다.
+<span class="math notranslate nohighlight">\(\int\limits_{0}^{\infty }{jinc\left( r \right)2\pi rdr}=1\)</span>. 는 <em>징크
+극파수 영역의</em> 함수는 다음과 같이 정의된 1차원 sinc 함수의 극성 등가 함수입니다.
+<span class="math notranslate nohighlight">\(\text{sinc} \left( x \right)=\frac{\sin \left( \pi x \right)}{\pi x}\)</span>
+(원점의 제한 값 포함) <span class="math notranslate nohighlight">\(\text{sinc}(0)=1\)</span>는 직사각형 함수, 즉 이상적인 저역 통과 필터의 푸리에 변환이며 다음과 같이 정규화됩니다.
+<span class="math notranslate nohighlight">\(\int\limits_{-\infty }^{\infty }{\text{sinc}\left( x \right)dx}=1\)</span>.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="ModelGuidance.html" class="btn btn-neutral float-left" title="4.19.6. 모델링 지침" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+        <a href="FutureWork.html" class="btn btn-neutral float-right" title="4.19.8. 향후 개발 계획" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>© Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    
+     
+
+
+</body></html>

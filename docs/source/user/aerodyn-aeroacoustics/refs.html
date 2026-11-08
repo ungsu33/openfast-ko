@@ -1,0 +1,217 @@
+<!DOCTYPE html><html class="writer-html5" lang="ko"><head><!-- Modified 2026-11-08: unofficial Korean machine translation of OpenFAST 5.0.0. Equations, code, figures, input values and attribution retained. -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.5.8. 참고 자료 — OpenFAST v5.0.0 문서</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../../../genindex.html">
+    <link rel="search" title="검색" href="../../../search.html">
+    <link rel="next" title="4.6. 에어로디스크" href="../aerodisk/index.html">
+    <link rel="prev" title="4.5.7. AeroDyn에서 공력소음 모델 사용
+OpenFAST의" href="App-usage.html"> 
+<link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/aerodyn-aeroacoustics/refs.html"></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+          </a>
+              <div class="version">5.0 · 한국어</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="문서 검색" aria-label="문서 검색">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.5. 공력음향학</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="acronyms.html">4.5.1. 약어 목록</a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbols.html">4.5.2. 기호 목록</a></li>
+<li class="toctree-l3"><a class="reference internal" href="01-introduction.html">4.5.3. 소개</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02-noise-models.html">4.5.4. 공력소음 모델</a></li>
+<li class="toctree-l3"><a class="reference internal" href="03-model-verification.html">4.5.5. 모델 검증</a></li>
+<li class="toctree-l3"><a class="reference internal" href="04-conclusions.html">4.5.6. 결론</a></li>
+<li class="toctree-l3"><a class="reference internal" href="App-usage.html">4.5.7. AeroDyn에서 공력소음 모델 사용하기</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.5.8. 참고문헌</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. 단순화 ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. 구조 제어</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. 추가 모듈 문서</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC 서브루틴 라이브러리</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+</ul>
+
+        <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="페이지 탐색">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.5. </span>공력소음 소음 모델</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.5.8. </span>참고문헌</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/aerodyn-aeroacoustics/refs.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+      </li>
+  </ul>
+  <hr>
+</div><aside class="ko-notice" aria-label="한국어 번역 안내"><strong>한국어 자동번역</strong> · OpenFAST v5.0.0 · 2026-11-08 기준<br>비공식 번역본입니다. 수식·명령어·입력 변수와 첨부자료는 원문을 보존합니다. <a href="https://openfast.readthedocs.io/en/main/source/user/aerodyn-aeroacoustics/refs.html" target="_blank" rel="noopener noreferrer" lang="en">영문 원문 대조 ↗</a></aside>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="references">
+<h1><span class="section-number">4.5.8. </span>참고문헌<a class="headerlink" href="#references" title="이 제목의 고유 링크"></a></h1>
+</div>
+<div class="docutils container" id="id1">
+<dl class="citation">
+<dt class="label" id="id2"><span class="brackets">aa-Ami75</span></dt>
+<dd><p>Roy K. Amiet. 난류의 익형에서 발생하는 음향 방사입니다. <em>소리 및 진동 저널</em>, 41(4):407–420, 1975. <a class="reference external" href="https://doi.org/10.1016/S0022-460X(75)80105-2" target="_blank" rel="noopener noreferrer">doi:10.1016/S0022-460X(75)80105-2</a>.</p>
+</dd>
+<dt class="label" id="id3"><span class="brackets">aa-BTD+19</span></dt>
+<dd><p>Pietro Bortolotti, Helena Canet Tarres, Katherine Dykes, Karl Merz, Latha Sethuraman, David Verelst 및 Frederik Zahle. 풍력 에너지의 시스템 엔지니어링 - wp2.1 참조 풍력터빈. 기술 보고서, IEA 기술 보고서, 2019. URL: <a class="reference external" href="https://www.nrel.gov/docs/fy19osti/73492.pdf" target="_blank" rel="noopener noreferrer">https://www.nrel.gov/docs/fy19osti/73492.pdf</a>.</p>
+</dd>
+<dt class="label" id="id4"><span class="brackets">aa-BPM89</span></dt>
+<dd><p>Thomas F. Brooks, D. Stuart Pope 및 Michael A. Marcolini. 익형 자체 소음 및 예측. 참조 출판물 1218, NASA, 1989.</p>
+</dd>
+<dt class="label" id="id5"><span class="brackets">aa-DG87</span></dt>
+<dd><p>마크 드렐라(Mark Drela)와 마이클 B. 자일스(Michael B. Giles). 천음속 및 낮은 레이놀즈 수 에어포일의 점성-비점성 분석. <em>AIAA 저널</em>, 25(10):1347–1355, 1987. <a class="reference external" href="https://doi.org/10.2514/3.9789" target="_blank" rel="noopener noreferrer">doi:10.2514/3.9789</a>.</p>
+</dd>
+<dt class="label" id="id6"><span class="brackets">aa-GBW+97</span></dt>
+<dd><p>Gianfranco Guidati, Rainer Bareiss, Siegfried Wagner, Rene Parchen, Gianfranco Guidati, Rainer Bareiss, Siegfried Wagner 및 Rene Parchen. 익형의 유입 난류 소음 시뮬레이션 및 측정. 에서 <em>제3회 AIAA/CEAS 항공음향학 컨퍼런스</em>. 1997. <a class="reference external" href="https://doi.org/10.2514/6.1997-1698" target="_blank" rel="noopener noreferrer">doi:10.2514/6.1997-1698</a>.</p>
+</dd>
+<dt class="label" id="id8"><span class="brackets">aa-KGW+18</span></dt>
+<dd><p>Levin Klein, Jonas Gude, Florian Wenz, Thorsten Lutz 및 Ewald Krämer. 풍력터빈의 저주파 방출을 평가하기 위한 고급 전산유체역학(cfd)-다물체 시뮬레이션(mbs) 결합. <em>풍력 에너지 과학 저널</em>, 3:713–728, 2018. <a class="reference external" href="https://doi.org/10.5194/wes-3-713-2018" target="_blank" rel="noopener noreferrer">doi:10.5194/wes-3-713-2018</a>.</p>
+</dd>
+<dt class="label" id="id7"><span class="brackets">aa-Low70</span></dt>
+<dd><p>마틴 V. 로슨. 압축기 소음 평가의 이론적 분석. <em>미국 음향학회 저널</em>, 47:371–385, 1970. <a class="reference external" href="https://doi.org/10.1121/1.1911508" target="_blank" rel="noopener noreferrer">doi:10.1121/1.1911508</a>.</p>
+</dd>
+<dt class="label" id="id10"><span class="brackets">aa-MGM04</span></dt>
+<dd><p>패트릭 모리어티, 지안프랑코 구이다티, 폴 밀리오레. 풍력터빈에 대한 반경험적 공력음향 예측 코드의 최근 개선. 에서 <em>제10회 AIAA/CEAS 항공음향학 컨퍼런스</em>. 2004. <a class="reference external" href="https://doi.org/10.2514/6.2004-3041" target="_blank" rel="noopener noreferrer">doi:10.2514/6.2004-3041</a>.</p>
+</dd>
+<dt class="label" id="id11"><span class="brackets">aa-MGM05</span></dt>
+<dd><p>패트릭 모리어티, 지안프랑코 구이다티, 폴 밀리오레. 풍력터빈의 난류 유입 및 뒷전 소음 예측. 에서 <em>제11회 AIAA/CEAS 항공음향학 컨퍼런스</em>. 2005. <a class="reference external" href="https://doi.org/10.2514/6.2005-2881" target="_blank" rel="noopener noreferrer">doi:10.2514/6.2005-2881</a>.</p>
+</dd>
+<dt class="label" id="id13"><span class="brackets">aa-Mor05</span></dt>
+<dd><p>패트릭 J. 모리아티. 나프노이즈 사용자 가이드. 기술 보고서, 국립 재생 에너지 연구소, Golden, CO, 2005. URL: <a class="reference external" href="https://github.com/NatLabRockies/NAFNoise/blob/master/NAFNoise.pdf" target="_blank" rel="noopener noreferrer">https://github.com/NatLabRockies/NAFNoise/blob/master/NAFNoise.pdf</a>.</p>
+</dd>
+<dt class="label" id="id12"><span class="brackets">aa-MH05</span></dt>
+<dd><p>Patrick J. Moriarty 및 A. C. Hansen. 에어로딘 이론 매뉴얼. 기술 보고서 NREL/TP-500-36881, 국립 재생 에너지 연구소, Golden, CO, 2005. URL: <a class="reference external" href="https://www.nrel.gov/docs/fy05osti/36881.pdf" target="_blank" rel="noopener noreferrer">https://www.nrel.gov/docs/fy05osti/36881.pdf</a>.</p>
+</dd>
+<dt class="label" id="id9"><span class="brackets">aa-MM03</span></dt>
+<dd><p>Patrick J. Moriarty와 Paul G. Migliore. 풍력터빈에 대한 반경험적 공력소음 예측 코드. 기술 보고서 NREL/TP-500-34478, 국립 재생 에너지 연구소, Golden, CO, 2003. URL: <a class="reference external" href="https://www.nrel.gov/docs/fy04osti/34478.pdf" target="_blank" rel="noopener noreferrer">https://www.nrel.gov/docs/fy04osti/34478.pdf</a>.</p>
+</dd>
+<dt class="label" id="id16"><span class="brackets">aa-Par98</span></dt>
+<dd><p>르네 R. 파르첸. 진행 보고서 DRAW: 상세한 경계층 특성을 기반으로 한 후미 ​​잡음에 대한 예측 방식. 기술 보고서, TNO 응용 물리학 연구소, 1998.</p>
+</dd>
+<dt class="label" id="id17"><span class="brackets">aa-PA76</span></dt>
+<dd><p>R. 패터슨과 R. 아미에트. 입사 난류로 인한 익형의 음향 방사 및 표면 압력 특성. 에서 <em>제3회 항공음향학 컨퍼런스</em>. AIAA, 1976. <a class="reference external" href="https://doi.org/10.2514/6.1976-571" target="_blank" rel="noopener noreferrer">doi:10.2514/6.1976-571</a>.</p>
+</dd>
+<dt class="label" id="id18"><span class="brackets">aa-SBCB18</span></dt>
+<dd><p>CR Sucameli, P Bortolotti, A Croce 및 CL Bottasso. BEM 공기역학과 결합된 일부 풍력터빈 소음 방출 모델의 비교. <em>물리학 저널: 컨퍼런스 시리즈</em>, 1037:022038, 2018년 6월. <a class="reference external" href="https://doi.org/10.1088/1742-6596/1037/2/022038" target="_blank" rel="noopener noreferrer">doi:10.1088/1742-6596/1037/2/022038</a>.</p>
+</dd>
+<dt class="label" id="id19"><span class="brackets">aa-Vit81</span></dt>
+<dd><p>래리 A. 비테르나. 풍력터빈 로터에서 발생하는 충격 소음을 예측하는 방법. 기술 보고서 DOE/NASA/20320-36, 1981. URL: <a class="reference external" href="https://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/19820013840.pdf" target="_blank" rel="noopener noreferrer">https://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/19820013840.pdf</a>.</p>
+</dd>
+<dt class="label" id="id20"><span class="brackets">aa-ZHS05</span></dt>
+<dd><p>Wei J. Zhu, Nicolai Heilskov 및 Wen Zhong Shen. 풍력터빈에서 공기역학적으로 발생하는 소음 모델링. <em>태양 에너지 공학 저널</em>, 127(4):517–528, 2005. <a class="reference external" href="https://doi.org/10.1115/1.2035700" target="_blank" rel="noopener noreferrer">doi:10.1115/1.2035700</a>.</p>
+</dd>
+</dl>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="App-usage.html" class="btn btn-neutral float-left" title="4.5.7. AeroDyn에서 공력소음 모델 사용
+OpenFAST의" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+        <a href="../aerodisk/index.html" class="btn btn-neutral float-right" title="4.6. 에어로디스크" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>© Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    
+     
+
+
+</body></html>

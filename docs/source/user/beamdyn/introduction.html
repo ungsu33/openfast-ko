@@ -1,0 +1,177 @@
+<!DOCTYPE html><html class="writer-html5" lang="ko"><head><!-- Modified 2026-11-08: unofficial Korean machine translation of OpenFAST 5.0.0. Equations, code, figures, input values and attribution retained. -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.7.1. 소개 — OpenFAST v5.0.0 문서</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../../../genindex.html">
+    <link rel="search" title="검색" href="../../../search.html">
+    <link rel="next" title="4.7.2. BeamDyn 실행" href="running_bd.html">
+    <link rel="prev" title="4.7. BeamDyn 사용자 가이드 및 이론 설명서" href="index.html"> 
+<link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/beamdyn/introduction.html"></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+          </a>
+              <div class="version">5.0 · 한국어</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="문서 검색" aria-label="문서 검색">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.7. BeamDyn</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.7.1. 소개</a></li>
+<li class="toctree-l3"><a class="reference internal" href="running_bd.html">4.7.2. BeamDyn 실행</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input_files.html">4.7.3. 입력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="output_files.html">4.7.4. 출력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory.html">4.7.5. BeamDyn 이론</a></li>
+<li class="toctree-l3"><a class="reference internal" href="future_work.html">4.7.6. 향후 개발 계획</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.7.7. 참고문헌</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.7.8. 부록</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. 단순화 ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. 구조 제어</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. 추가 모듈 문서</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC 서브루틴 라이브러리</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+</ul>
+
+        <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="페이지 탐색">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.7. </span>BeamDyn 사용자 가이드 및 이론 설명서</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.7.1. </span>소개</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/beamdyn/introduction.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+      </li>
+  </ul>
+  <hr>
+</div><aside class="ko-notice" aria-label="한국어 번역 안내"><strong>한국어 자동번역</strong> · OpenFAST v5.0.0 · 2026-11-08 기준<br>비공식 번역본입니다. 수식·명령어·입력 변수와 첨부자료는 원문을 보존합니다. <a href="https://openfast.readthedocs.io/en/main/source/user/beamdyn/introduction.html" target="_blank" rel="noopener noreferrer" lang="en">영문 원문 대조 ↗</a></aside>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="introduction">
+<span id="bd-intro"></span><h1><span class="section-number">4.7.1. </span>소개<a class="headerlink" href="#introduction" title="이 제목의 고유 링크"></a></h1>
+<p>BeamDyn은 미국 에너지부 풍력 및 수력 프로그램과 NLR 연구소의 LDRD(Directed Research and Development) 프로그램 지원을 통해 로키산맥 국립연구소(NLR)에서 "풍력터빈 구조 역학의 고충실도 전산 모델링" 지원을 통해 생성한 날씬한 구조를 위한 시간 영역 구조 역학 모듈입니다. 참고 자료 참조 <span id="id1">[<a class="reference internal" href="zrefs.html#id9" title="Q. Wang, N. Johnson, M.A. Sprague 및 J. Jonkman. Beamdyn: 빠른 모듈식 프레임워크의 고성능 풍력터빈 블레이드 솔버입니다. 제33회 ASME 풍력 에너지 심포지엄 진행 중. 플로리다주 키시미, 2015년 1월. https://www.nrel.gov/docs/fy15osti/63165.pdf.">WJSJ15</a>, <a class="reference internal" href="zrefs.html#id7" title="Q. Wang 및 M.A. Sprague. 기하학적으로 정확한 빔 이론을 전설적으로 스펙트럼 유한 요소로 구현한 것입니다. 제54회 구조, 구조 역학 및 재료 컨퍼런스 진행 중. 2013년 4월 매사추세츠 주 보스턴.">WS13</a>, <a class="reference internal" href="zrefs.html#id8" title="Q. Wang, M.A. Sprague, J. Jonkman 및 N. Johnson. 풍력터빈 블레이드 역학을 위한 비선형 레전드 스펙트럼 유한 요소. 제32회 ASME 풍력 에너지 심포지엄 진행 중. 2014년 1월, 메릴랜드주 내셔널하버.">WSJJ14</a>, <a class="reference internal" href="zrefs.html#id6" title="Q. Wang, W. Yu 및 M.A. Sprague. wiener-milenković 매개변수를 사용한 합성보의 보석학적 비선형 분석. 제54회 구조, 구조 역학 및 재료 컨퍼런스 진행 중. 2013년 4월 매사추세츠 주 보스턴.">WYS13</a>]</span>. 이 모듈은 블레이드 구조 역학을 모델링하는 데 사용되는 FAST 에어로-하이드로-서보-탄성 풍력터빈 다중 물리 엔지니어링 도구에 결합되었습니다. BeamDyn 모듈은 FAST 모듈화 프레임워크의 요구 사항을 따릅니다. 참고 자료를 참조하세요. <span id="id2">[<a class="reference internal" href="zrefs.html#id11" title="J.M. 존크만. 고속 풍력터빈 CAE 도구를 위한 새로운 모듈화 프레임워크입니다. New Horizons 포럼 및 항공우주 박람회를 포함한 제51차 AIAA 항공우주 과학 회의 진행 중. 2013년 1월, 텍사스주 그레이프바인.">존13</a>]</span>;
+<span id="id3">[<a class="reference internal" href="zrefs.html#id12" title="A. Gasmi, M.A. Sprague 및 J.M. Jonkman. 풍력터빈 CAE 도구에서 시간적으로 결합된 다중 물리 모듈의 수치 안정성 및 정확성. New Horizons 포럼 및 항공우주 박람회를 포함한 제51차 AIAA 항공우주 과학 회의 진행 중. 2013년 1월, 텍사스주 그레이프바인.">GSJ13</a>, <a class="reference internal" href="zrefs.html#id14" title="Jason Jonkman과 Bonnie Jonkman. 빠른 v8. https://nwtc.nrel.gov/FAST8, 2013년 10월. [온라인; 2014년 10월 29일 액세스].">JJ13</a>, <a class="reference internal" href="zrefs.html#id13" title="M.A. Sprague, J.M. Jonkman 및 B.J. Jonkman. 빠른 모듈식 풍력터빈 CAE 도구: 공간적 및 시간적 메시가 일치하지 않습니다. 제32회 ASME 풍력 에너지 심포지엄 진행 중. 2014년 1월, 메릴랜드주 내셔널하버.">SJJ14</a>]</span>는 FAST 버전 8과 결합되어 대규모 변형을 겪는 초기 곡선 및 비틀림 복합 풍력터빈 블레이드를 모델링하는 새로운 기능을 제공합니다. BeamDyn은 또한 FAST에서 분리된 규정된 경계 및 적용된 하중 조건 하에서 가는 구조(블레이드 또는 기타)의 정적 및 동적 응답을 계산하기 위해 독립 실행형 코드로 구동될 수도 있습니다.</p>
+<p>BeamDyn의 기본 모델은 GEBT(기하학적으로 정확한 빔 이론)입니다. <span id="id4">[<a class="reference internal" href="zrefs.html#id2" title="듀이 H. 호지스. 비선형 복합 빔 이론. AIAA, 2006.">Hod06</a>]</span>. GEBT는 굽힘, 비틀림, 전단 및 확장 자유도(DOF)를 포함하여 완전한 기하학적 비선형성 및 큰 편향을 지원합니다. 이방성 복합 재료 커플 링 (전체 사용
+굽힘-트위스트 커플링을 포함한 <span class="math notranslate nohighlight">\(6 \times 6\)</span> 질량 및 강성 매트릭스); 직선이 아닌 블레이드를 허용하는 기준 축(내장 곡선, 스윕 및 단면 오프셋 지원)이 있습니다. GEBT 빔 방정식은 르장드르 스펙트럼 유한 요소(LSFE)를 사용하여 공간에서 이산화됩니다. LFSE는 <em>p</em>유형 요소 <em>h</em>유형 유한 요소(FE)
+<span id="id5">[<a class="reference internal" href="zrefs.html#id15" title="A. T. 파테라. 유체 역학을 위한 스펙트럼 요소 방법: 채널 확장의 층류. 전산물리학 저널, 54:468-488, 1984.">Pat84</a>]</span>. 원활한 솔루션을 위해 LSFE는 대수적 수렴을 갖는 저차 요소에 비해 지수 수렴 속도를 갖습니다. <span id="id6">[<a class="reference internal" href="zrefs.html#id17" title="M. A. Sprague 및 T. L. Geers. 캐비테이션이 발생하는 음향 유체에 대한 스펙트럼 요소 및 필드 분리. 전산물리학 저널, 184:149-162, 2003.">SG03</a>, <a class="reference internal" href="zrefs.html#id7" title="Q. Wang 및 M.A. Sprague. 기하학적으로 정확한 빔 이론을 전설적으로 스펙트럼 유한 요소로 구현한 것입니다. 제54회 구조, 구조 역학 및 재료 컨퍼런스 진행 중. 2013년 4월 매사추세츠 주 보스턴.">WS13</a>]</span> . 유한 요소 내적에 대해 두 가지 공간 수치 통합 방식, 즉 감소된 가우스 구적법과 사다리꼴 법칙 통합이 구현됩니다. 예를 들어 길이에 따라 재료 특성이 급격하게 변하는 긴 풍력터빈 블레이드와 같이 빔 축을 따라 다수의 단면 특성이 지정되는 경우 사다리꼴 규칙 통합이 적합합니다. BeamDyn 운동 방정식의 시간 통합은 암시적 일반화를 통해 달성됩니다.
+사용자 지정 수치 감쇠 기능을 갖춘 <span class="math notranslate nohighlight">\(\alpha\)</span>
+솔버. GEBT-LSFE 결합 접근 방식을 사용하면 사용자는 단일 상위 요소를 사용하여 길고 유연한 복합 풍력터빈 블레이드를 모델링할 수 있습니다. 위에 소개된 이론적 기초와 강력한 수치 도구를 바탕으로 BeamDyn은 복잡한 비선형 합성 빔 문제를 효율적인 방식으로 해결할 수 있습니다. 예를 들어, 최근에는 50m 길이의 복합 풍력터빈 블레이드와 수십 개의 단면 스테이션을 갖춘 그리드 독립적인 동적 솔루션이 단일 장치로 달성될 수 있다는 것이 밝혀졌습니다. <span class="math notranslate nohighlight">\(7^{th}\)</span>-LSFE 주문
+<span id="id7">[<a class="reference internal" href="zrefs.html#id10" title="Q. Wang, M.A. Sprague, J. Jonkman 및 B. Jonkman. Beamdyn을 사용한 풍력터빈의 분할 비선형 구조 해석. 제34회 ASME 풍력 에너지 심포지엄 진행 중. 2016년 1월, 캘리포니아주 샌디에이고.">WSJJ16</a>]</span>.</p>
+<p>FAST와 결합하면 FAST 드라이버 프로그램(글루 코드)을 통해 BeamDyn, ElastoDyn, ServoDyn 및 AeroDyn 간에 하중과 응답이 전송되어 각 결합 시간 단계에서 Aero-Elasto-Servo 상호 작용이 가능해집니다. 각 블레이드마다 별도의 BeamDyn 인스턴스가 있습니다. 루트 노드에서 BeamDyn에 대한 입력은 6개의 변위(3개의 변환 및 3개의 회전), 6개의 속도 및 6개의 가속도입니다. BeamDyn의 루트 노드 출력은 6개의 반력 하중(3개의 병진력과 3개의 모멘트)입니다. BeamDyn은 또한 BeamDyn의 입력으로 사용되는 로컬 공기역학적 하중(길이를 따라 분산됨)을 계산하기 위해 AeroDyn에서 사용되는 빔 길이에 따른 블레이드 변위, 속도 및 가속도를 출력합니다. 또한 BeamDyn은 사용자의 요청에 따라 부재 내부 반력 하중을 계산할 수 있습니다. BeamDyn과 FAST의 다른 모듈 간의 결합된 상호 작용은 그림 [그림:FlowChart]를 참조하십시오. FAST와 결합하면 BeamDyn은 여전히 ​​옵션으로 제공되지만 굽힘이 지배적인 직선형 등방성 블레이드에만 적용할 수 있는 보다 단순화된 ElastoDyn의 블레이드 구조 모델을 대체합니다. FAST에서 분리되면 루트 모션(경계 조건)과 적용된 하중이 독립형 BeamDyn 드라이버 코드를 통해 지정됩니다.</p>
+<div class="figure align-default" id="id8">
+<span id="flow-chart"></span><a class="reference internal image-reference" href="../../../_images/flow_chart.jpg"><img alt="../../../_images/flow_chart.jpg" src="../../../_images/flow_chart.jpg" style="width: 100%;"></a>
+<p class="caption"><span class="caption-number">그림 4.28 </span><span class="caption-text">BeamDyn과 FAST 간의 결합된 상호 작용</span><a class="headerlink" href="#id8" title="이 이미지에 대한 영구 링크"></a></p>
+</div>
+<p>BeamDyn 입력 파일은 블레이드 형상을 정의합니다. 단면 재료 질량, 강성 및 감쇠 특성; FE 해상도; 및 기타 시뮬레이션 및 출력 제어 매개변수. 블레이드 형상은 3차원(3D) 공간의 일련의 주요 지점과 해당 지점의 초기 비틀림 각도에 의해 곡선형 블레이드 참조 축을 통해 정의됩니다. 각각 <em>회원</em> 에는 BeamDyn에 구현된 3차 스플라인 맞춤에 대한 최소 3개의 핵심 포인트가 포함되어 있습니다. 각 멤버는 요소의 순서를 정의하는 매개변수가 있는 단일 LSFE로 구분됩니다. 멤버와 순서를 정의하는 핵심 포인트의 수(
+LSFE의<span class="math notranslate nohighlight">\(N\)</span>)는 독립적입니다. LSFE 노드는 다음 위치에 있습니다. <span class="math notranslate nohighlight">\(N+1\)</span> Gauss-Legendre-Lobatto 점은 요소를 따라 균일한 간격으로 배치되지 않습니다. 노드 위치는 메쉬 정보를 기반으로 모듈에 의해 생성됩니다. 블레이드 속성은 블레이드 참조 축을 따라 0.0에서 1.0 사이의 무차원 좌표로 지정되며 필요한 경우 공간 통합 방법에 의해 두 스테이션 사이에 선형으로 보간됩니다. BeamDyn 적용 하중은 직교 지점에 지정된 분산 하중, FE 노드에 지정된 집중 하중 또는 이 둘의 조합일 수 있습니다. BeamDyn이 FAST에 결합되면 블레이드 분석 노드 이산화는 BeamDyn과 AeroDyn 간에 독립적일 수 있습니다.</p>
+<p>이 문서는 다음과 같이 구성되어 있습니다. 섹션 <a class="reference internal" href="running_bd.html#running-beamdyn"><span class="std std-ref">러닝 BeamDyn</span></a> 에서는 BeamDyn 및 FAST 소프트웨어 아카이브를 구하고 BeamDyn의 독립 실행형 버전 또는 FAST와 결합된 BeamDyn을 실행하는 방법을 자세히 설명합니다. 섹션 <a class="reference internal" href="input_files.html#bd-input-files"><span class="std std-ref">입력 파일</span></a> 는 BeamDyn 입력 파일을 설명합니다. 섹션 <a class="reference internal" href="output_files.html#bd-output-files"><span class="std std-ref">출력 파일</span></a> 는 BeamDyn에서 생성된 출력 파일에 대해 설명합니다. 섹션 <a class="reference internal" href="theory.html#beamdyn-theory"><span class="std std-ref">BeamDyn 이론</span></a> 는 BeamDyn 이론을 요약합니다. 섹션 <a class="reference internal" href="future_work.html#bd-future-work"><span class="std std-ref">향후 개발 계획</span></a> 는 잠재적인 향후 작업을 간략하게 설명합니다. 예제 입력 파일은 부록에 나와 있습니다. <a class="reference internal" href="appendix.html#bd-input-files"><span class="std std-numref">섹션 4.7.8.1</span></a>. 사용 가능한 출력 채널 요약은 부록에 나와 있습니다. <a class="reference internal" href="appendix.html#app-output-channel"><span class="std std-ref">BeamDyn 출력 채널 목록</span></a>.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="index.html" class="btn btn-neutral float-left" title="4.7. BeamDyn 사용자 가이드 및 이론 설명서" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+        <a href="running_bd.html" class="btn btn-neutral float-right" title="4.7.2. BeamDyn 실행" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>© Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    
+     
+
+
+</body></html>

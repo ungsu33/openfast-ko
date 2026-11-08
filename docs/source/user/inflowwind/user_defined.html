@@ -1,0 +1,468 @@
+<!DOCTYPE html><html class="writer-html5" lang="ko"><head><!-- Modified 2026-11-08: unofficial Korean machine translation of OpenFAST 5.0.0. Equations, code, figures, input values and attribution retained. -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.13.5. 사용자 정의 바람 필드 — OpenFAST v5.0.0 문서</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../../../genindex.html">
+    <link rel="search" title="검색" href="../../../search.html">
+    <link rel="next" title="4.13.6. 부록" href="appendix.html">
+    <link rel="prev" title="4.13.2. InflowWind 입력 파일" href="input.html"> 
+<link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/inflowwind/user_defined.html"></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+          </a>
+              <div class="version">5.0 · 한국어</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="문서 검색" aria-label="문서 검색">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.13. InflowWind</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="driver.html">4.13.1. InflowWind 드라이버</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input.html">4.13.2. InflowWind 입력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input.html#angles-specified-in-inflowwind">4.13.3. InflowWind에 지정된 각도</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input.html#superposition-of-wave-and-current-inflow">4.13.4. 파동과 유입전류의 중첩</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.13.5. 사용자 정의 바람 필드</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#overview">4.13.5.1. 개요</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#implementation-steps">4.13.5.2. 구현 단계</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#coordinate-systems">4.13.5.3. 좌표계</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#example-implementation">4.13.5.4. 구현 예</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#common-use-cases">4.13.5.5. 일반적인 사용 사례</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#limitations-and-considerations">4.13.5.6. 제한 사항 및 고려 사항</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#best-practices">4.13.5.7. 모범 사례</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#file-locations">4.13.5.8. 파일 위치</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#additional-resources">4.13.5.9. 추가 리소스</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.13.6. 부록</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. 단순화 ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. 구조 제어</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. 추가 모듈 문서</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC 서브루틴 라이브러리</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+</ul>
+
+        <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="페이지 탐색">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.13. </span>InflowWind 사용자 가이드 및 이론 설명서</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.13.5. </span>사용자 정의 바람 필드</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/inflowwind/user_defined.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+      </li>
+  </ul>
+  <hr>
+</div><aside class="ko-notice" aria-label="한국어 번역 안내"><strong>한국어 자동번역</strong> · OpenFAST v5.0.0 · 2026-11-08 기준<br>비공식 번역본입니다. 수식·명령어·입력 변수와 첨부자료는 원문을 보존합니다. <a href="https://openfast.readthedocs.io/en/main/source/user/inflowwind/user_defined.html" target="_blank" rel="noopener noreferrer" lang="en">영문 원문 대조 ↗</a></aside>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="user-defined-wind-fields">
+<span id="ifw-user-defined"></span><h1><span class="section-number">4.13.5. </span>사용자 정의 바람 필드<a class="headerlink" href="#user-defined-wind-fields" title="이 제목의 고유 링크"></a></h1>
+<p>이 섹션에서는 다음을 사용하여 InflowWind에서 사용자 정의 바람 필드를 구현하는 방법을 설명합니다. <code class="docutils literal notranslate"><span class="pre">WindType</span> <span class="pre">=</span> <span class="pre">6</span></code>.</p>
+<div class="section" id="overview">
+<h2><span class="section-number">4.13.5.1. </span>개요<a class="headerlink" href="#overview" title="이 제목의 고유 링크"></a></h2>
+<p>사용자 정의 바람 필드 기능을 통해 개발자는 다음을 통해 사용자 정의 바람 모델을 구현할 수 있습니다.</p>
+<ol class="arabic simple">
+<li><p>바람 필드 매개변수를 보유하는 데이터 구조 정의</p></li>
+<li><p>입력 파일 또는 매개변수에서 해당 데이터 구조 초기화</p></li>
+<li><p>임의의 위치, 시간의 풍속을 반환하는 기능 구현</p></li>
+</ol>
+<p>이는 다음에 유용합니다.</p>
+<ul class="simple">
+<li><p>해석적 바람 모델(예: 소용돌이, 후류 모델)</p></li>
+<li><p>맞춤형 바람 프로필은 표준 형식으로 사용할 수 없습니다.</p></li>
+<li><p>외부 바람 솔버에 대한 커플링</p></li>
+<li><p>센서를 통한 실시간 바람 측정</p></li>
+<li><p>새로운 바람장 표현 연구 및 개발</p></li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">중요</p>
+<p>레지스트리 파일을 수정한 후(<code class="docutils literal notranslate"><span class="pre">.txt</span></code> 파일), 유형 정의 파일(<code class="docutils literal notranslate"><span class="pre">*_Types.f90</span></code>). 수정 사항은
+<code class="docutils literal notranslate"><span class="pre">.txt</span></code> 파일은 확장된 데이터 구조를 정의하지만 재생성이 완료될 때까지 사용할 수 없습니다.</p>
+</div>
+</div>
+<div class="section" id="implementation-steps">
+<h2><span class="section-number">4.13.5.2. </span>구현 단계<a class="headerlink" href="#implementation-steps" title="이 제목의 고유 링크"></a></h2>
+<div class="section" id="step-1-define-data-structure">
+<h3><span class="section-number">4.13.5.2.1. </span>1단계: 데이터 구조 정의<a class="headerlink" href="#step-1-define-data-structure" title="이 제목의 고유 링크"></a></h3>
+<p>편집 <code class="docutils literal notranslate"><span class="pre">modules/inflowwind/src/IfW_FlowField.txt</span></code> 및 필드 추가 <code class="docutils literal notranslate"><span class="pre">UserFieldType</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>typedef  ^              UserFieldType          ReKi                RefHeight           -     -         -     "reference height; used to center the wind"                   meters
+typedef  ^              ^                      IntKi               NumDataLines        -     0         -     "number of data lines (for time-varying user wind)"          -
+typedef  ^              ^                      DbKi                DTime               :     -         -     "time array for user-defined wind"                           seconds
+typedef  ^              ^                      ReKi                Data                ::    -         -     "user-defined wind data array [NumDataLines, NumDataColumns]" -
+typedef  ^              ^                      CHARACTER(1024)     FileName            -     -         -     "name of user wind file (if applicable)"                     -
+</pre></div>
+</div>
+<p>바람 모델 구현에 필요한 사용자 정의 필드를 추가합니다.</p>
+</div>
+<div class="section" id="step-2-define-initialization-inputs">
+<h3><span class="section-number">4.13.5.2.2. </span>2단계: 초기화 입력 정의<a class="headerlink" href="#step-2-define-initialization-inputs" title="이 제목의 고유 링크"></a></h3>
+<p>편집 <code class="docutils literal notranslate"><span class="pre">modules/inflowwind/src/InflowWind_IO.txt</span></code> 및 필드 추가 <code class="docutils literal notranslate"><span class="pre">User_InitInputType</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>typedef  ^              User_InitInputType    CHARACTER(1024)         WindFileName            -     -     -     "name of file containing user-defined wind data (if applicable)" -
+typedef  ^              ^                     ReKi                    RefHt                   -     -     -     "reference height for user wind field"                        meters
+typedef  ^              ^                     IntKi                   NumDataColumns          -     0     -     "number of data columns in user wind file (if applicable)"    -
+</pre></div>
+</div>
+<p>바람 모델을 초기화하는 데 필요한 매개변수를 추가하세요.</p>
+</div>
+<div class="section" id="step-3-regenerate-type-files">
+<h3><span class="section-number">4.13.5.2.3. </span>3단계: 유형 파일 재생성<a class="headerlink" href="#step-3-regenerate-type-files" title="이 제목의 고유 링크"></a></h3>
+<p>레지스트리 파일을 수정한 후 프로젝트를 다시 빌드하여 유형 정의를 다시 생성하십시오. Visual Studio를 사용하여 Windows에서 OpenFAST를 빌드하면 형식 파일이 자동으로 다시 생성됩니다. CMake를 사용하는 경우 다음 명령을 실행하여 유형 파일 생성을 활성화합니다.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>build
+cmake<span class="w"> </span>..<span class="w"> </span>-DGENERATE_TYPES<span class="o">=</span>ON
+make
+</pre></div>
+</div>
+<p>빌드 프로세스는 자동으로 <code class="docutils literal notranslate"><span class="pre">*_Types.f90</span></code> 파일은 <code class="docutils literal notranslate"><span class="pre">.txt</span></code> 레지스트리 파일.</p>
+</div>
+<div class="section" id="step-4-implement-initialization">
+<h3><span class="section-number">4.13.5.2.4. </span>4단계: 초기화 구현<a class="headerlink" href="#step-4-implement-initialization" title="이 제목의 고유 링크"></a></h3>
+<p>편집 <code class="docutils literal notranslate"><span class="pre">modules/inflowwind/src/InflowWind_IO.f90</span></code> 및 구현 <code class="docutils literal notranslate"><span class="pre">IfW_User_Init()</span></code>:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">IfW_User_Init</span><span class="p">(</span><span class="n">InitInp</span><span class="p">,</span><span class="w"> </span><span class="n">SumFileUnit</span><span class="p">,</span><span class="w"> </span><span class="n">UF</span><span class="p">,</span><span class="w"> </span><span class="n">FileDat</span><span class="p">,</span><span class="w"> </span><span class="n">ErrStat</span><span class="p">,</span><span class="w"> </span><span class="n">ErrMsg</span><span class="p">)</span>
+<span class="w">   </span><span class="c">! Initialize UF%RefHeight, read data files, allocate arrays</span>
+<span class="w">   </span><span class="c">! Set FileDat metadata (wind type, time range, spatial extent, etc.)</span>
+<span class="w">   </span><span class="c">! Write summary information to SumFileUnit if &gt; 0</span>
+<span class="k">end subroutine</span>
+</pre></div>
+</div>
+<p>이 루틴은 다음과 같습니다.</p>
+<ul class="simple">
+<li><p>에 지정된 필수 입력 파일을 읽습니다. <code class="docutils literal notranslate"><span class="pre">InitInp</span></code></p></li>
+<li><p>할당하고 채웁니다. <code class="docutils literal notranslate"><span class="pre">UserFieldType</span></code> (<code class="docutils literal notranslate"><span class="pre">UF</span></code>) 데이터 구조</p></li>
+<li><p>다음에 적절한 메타데이터를 설정합니다: <code class="docutils literal notranslate"><span class="pre">WindFileDat</span></code> 구조</p></li>
+<li><p>요약 파일에 초기화 정보를 씁니다.</p></li>
+</ul>
+</div>
+<div class="section" id="step-5-implement-velocity-function">
+<h3><span class="section-number">4.13.5.2.5. </span>5단계: 속도 기능 구현<a class="headerlink" href="#step-5-implement-velocity-function" title="이 제목의 고유 링크"></a></h3>
+<p>편집 <code class="docutils literal notranslate"><span class="pre">modules/inflowwind/src/IfW_FlowField.f90</span></code> 및 구현 <code class="docutils literal notranslate"><span class="pre">UserField_GetVel()</span></code>:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">UserField_GetVel</span><span class="p">(</span><span class="n">UF</span><span class="p">,</span><span class="w"> </span><span class="nb">Time</span><span class="p">,</span><span class="w"> </span><span class="n">Position</span><span class="p">,</span><span class="w"> </span><span class="n">Velocity</span><span class="p">,</span><span class="w"> </span><span class="n">ErrStat</span><span class="p">,</span><span class="w"> </span><span class="n">ErrMsg</span><span class="p">)</span>
+<span class="w">   </span><span class="c">! Use UF data to compute velocity at Position and Time</span>
+<span class="w">   </span><span class="c">! Position(1) = X, Position(2) = Y, Position(3) = Z (meters)</span>
+<span class="w">   </span><span class="c">! Return Velocity(1) = U, Velocity(2) = V, Velocity(3) = W (m/s)</span>
+<span class="k">end subroutine</span>
+</pre></div>
+</div>
+<p>이 함수는 시뮬레이션 중에 풍속이 필요한 각 위치에 대해 호출됩니다.</p>
+</div>
+</div>
+<div class="section" id="coordinate-systems">
+<h2><span class="section-number">4.13.5.3. </span>좌표계<a class="headerlink" href="#coordinate-systems" title="이 제목의 고유 링크"></a></h2>
+<div class="section" id="input-coordinates-position">
+<h3><span class="section-number">4.13.5.3.1. </span>입력 좌표(위치)<a class="headerlink" href="#input-coordinates-position" title="이 제목의 고유 링크"></a></h3>
+<ul class="simple">
+<li><p><strong>X</strong>: 다운스트림 방향(InflowWind에 의해 회전이 적용된 후)</p></li>
+<li><p><strong>Y</strong>: 측면/측풍 방향</p></li>
+<li><p><strong>Z</strong>: 수직 방향(지면에서 측정, Z=0은 지면 수준)</p></li>
+<li><p><strong>장치</strong>: 미터</p></li>
+</ul>
+</div>
+<div class="section" id="output-velocities-velocity">
+<h3><span class="section-number">4.13.5.3.2. </span>출력 속도(Velocity)<a class="headerlink" href="#output-velocities-velocity" title="이 제목의 고유 링크"></a></h3>
+<ul class="simple">
+<li><p><strong>U</strong>: X를 따른 속도 구성요소(양수 = 하향풍)</p></li>
+<li><p><strong>V</strong>: Y 방향의 속도 구성요소(양수 = 바람이 불어오는 방향을 볼 때 왼쪽)</p></li>
+<li><p><strong>W</strong>: Z 방향의 속도 구성요소(양수 = 위쪽)</p></li>
+<li><p><strong>장치</strong>: m/s</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">참고</p>
+<p>InflowWind는 전역 좌표와 바람 좌표 간의 회전을 처리합니다. 구현은 X가 평균 풍향과 정렬되는 바람 좌표계에서 작동해야 합니다.</p>
+</div>
+</div>
+</div>
+<div class="section" id="example-implementation">
+<h2><span class="section-number">4.13.5.4. </span>예시 구현<a class="headerlink" href="#example-implementation" title="이 제목의 고유 링크"></a></h2>
+<div class="section" id="power-law-wind-profile">
+<h3><span class="section-number">4.13.5.4.1. </span>멱법칙 바람 프로필<a class="headerlink" href="#power-law-wind-profile" title="이 제목의 고유 링크"></a></h3>
+<p>이 예에서는 간단한 거듭제곱 법칙 바람 프로필을 구현합니다.</p>
+<p><strong>속도 기능</strong> (에서 <code class="docutils literal notranslate"><span class="pre">IfW_FlowField.f90</span></code>):</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">UserField_GetVel</span><span class="p">(</span><span class="n">UF</span><span class="p">,</span><span class="w"> </span><span class="nb">Time</span><span class="p">,</span><span class="w"> </span><span class="n">Position</span><span class="p">,</span><span class="w"> </span><span class="n">Velocity</span><span class="p">,</span><span class="w"> </span><span class="n">ErrStat</span><span class="p">,</span><span class="w"> </span><span class="n">ErrMsg</span><span class="p">)</span>
+<span class="w">   </span><span class="k">type</span><span class="p">(</span><span class="n">UserFieldType</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">     </span><span class="kd">::</span><span class="w"> </span><span class="n">UF</span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="n">DbKi</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">              </span><span class="kd">::</span><span class="w"> </span><span class="nb">Time</span>
+<span class="nb">   </span><span class="kt">real</span><span class="p">(</span><span class="n">ReKi</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">              </span><span class="kd">::</span><span class="w"> </span><span class="n">Position</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="n">ReKi</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w">             </span><span class="kd">::</span><span class="w"> </span><span class="n">Velocity</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="w">   </span><span class="kt">integer</span><span class="p">(</span><span class="n">IntKi</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w">         </span><span class="kd">::</span><span class="w"> </span><span class="n">ErrStat</span>
+<span class="w">   </span><span class="kt">character</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w">           </span><span class="kd">::</span><span class="w"> </span><span class="n">ErrMsg</span>
+
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="n">ReKi</span><span class="p">)</span><span class="w">                          </span><span class="kd">::</span><span class="w"> </span><span class="n">RefSpeed</span><span class="p">,</span><span class="w"> </span><span class="nb">Exponent</span><span class="p">,</span><span class="w"> </span><span class="n">Height</span>
+
+<span class="w">   </span><span class="n">ErrStat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ErrID_None</span>
+<span class="w">   </span><span class="n">ErrMsg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span>
+
+<span class="w">   </span><span class="c">! Get reference speed and exponent from UF%Data</span>
+<span class="w">   </span><span class="n">RefSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UF</span><span class="p">%</span><span class="k">Data</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w">  </span><span class="c">! Reference wind speed (m/s)</span>
+<span class="w">   </span><span class="nb">Exponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UF</span><span class="p">%</span><span class="k">Data</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w">  </span><span class="c">! Power law exponent</span>
+<span class="w">   </span><span class="n">Height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Position</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w">       </span><span class="c">! Height above ground</span>
+
+<span class="w">   </span><span class="c">! Apply power law: U(z) = Uref * (z/zref)^alpha</span>
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Height</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.0_ReKi</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">      </span><span class="n">Velocity</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RefSpeed</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">Height</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">UF</span><span class="p">%</span><span class="n">RefHeight</span><span class="p">)</span><span class="o">**</span><span class="nb">Exponent</span>
+<span class="nb">      </span><span class="n">Velocity</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0_ReKi</span><span class="w">  </span><span class="c">! No lateral wind</span>
+<span class="w">      </span><span class="n">Velocity</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0_ReKi</span><span class="w">  </span><span class="c">! No vertical wind</span>
+<span class="w">   </span><span class="k">else</span>
+<span class="k">      </span><span class="n">Velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0_ReKi</span><span class="w">  </span><span class="c">! Below ground</span>
+<span class="w">   </span><span class="k">end if</span>
+
+<span class="k">end subroutine</span>
+</pre></div>
+</div>
+<p><strong>초기화</strong> (에서 <code class="docutils literal notranslate"><span class="pre">InflowWind_IO.f90</span></code>):</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">IfW_User_Init</span><span class="p">(</span><span class="n">InitInp</span><span class="p">,</span><span class="w"> </span><span class="n">SumFileUnit</span><span class="p">,</span><span class="w"> </span><span class="n">UF</span><span class="p">,</span><span class="w"> </span><span class="n">FileDat</span><span class="p">,</span><span class="w"> </span><span class="n">ErrStat</span><span class="p">,</span><span class="w"> </span><span class="n">ErrMsg</span><span class="p">)</span>
+<span class="w">   </span><span class="c">! ... (declarations)</span>
+
+<span class="w">   </span><span class="n">ErrStat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ErrID_None</span>
+<span class="w">   </span><span class="n">ErrMsg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span>
+
+<span class="w">   </span><span class="c">! Set reference height</span>
+<span class="w">   </span><span class="n">UF</span><span class="p">%</span><span class="n">RefHeight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">InitInp</span><span class="p">%</span><span class="n">RefHt</span>
+
+<span class="w">   </span><span class="c">! Allocate data array for [RefSpeed, Exponent]</span>
+<span class="w">   </span><span class="n">UF</span><span class="p">%</span><span class="n">NumDataLines</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">   </span><span class="k">call </span><span class="n">AllocAry</span><span class="p">(</span><span class="n">UF</span><span class="p">%</span><span class="k">Data</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s1">'User wind data'</span><span class="p">,</span><span class="w"> </span><span class="n">TmpErrStat</span><span class="p">,</span><span class="w"> </span><span class="n">TmpErrMsg</span><span class="p">)</span>
+<span class="w">   </span><span class="k">call </span><span class="n">SetErrStat</span><span class="p">(</span><span class="n">TmpErrStat</span><span class="p">,</span><span class="w"> </span><span class="n">TmpErrMsg</span><span class="p">,</span><span class="w"> </span><span class="n">ErrStat</span><span class="p">,</span><span class="w"> </span><span class="n">ErrMsg</span><span class="p">,</span><span class="w"> </span><span class="n">RoutineName</span><span class="p">)</span>
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ErrStat</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">AbortErrLev</span><span class="p">)</span><span class="w"> </span><span class="k">return</span>
+
+<span class="w">   </span><span class="c">! Set values (could read from file instead)</span>
+<span class="w">   </span><span class="n">UF</span><span class="p">%</span><span class="k">Data</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="mf">0.0_ReKi</span><span class="w">  </span><span class="c">! 10 m/s reference speed</span>
+<span class="w">   </span><span class="n">UF</span><span class="p">%</span><span class="k">Data</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.2_ReKi</span><span class="w">   </span><span class="c">! Power law exponent</span>
+
+<span class="w">   </span><span class="c">! Set metadata</span>
+<span class="w">   </span><span class="n">FileDat</span><span class="p">%</span><span class="n">WindType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span>
+<span class="w">   </span><span class="n">FileDat</span><span class="p">%</span><span class="n">RefHt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UF</span><span class="p">%</span><span class="n">RefHeight</span>
+<span class="w">   </span><span class="n">FileDat</span><span class="p">%</span><span class="n">MWS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UF</span><span class="p">%</span><span class="k">Data</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="w">   </span><span class="n">FileDat</span><span class="p">%</span><span class="n">RefHt_Set</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">true</span><span class="p">.</span>
+<span class="w">   </span><span class="c">! ... (set other FileDat fields as needed)</span>
+
+<span class="k">end subroutine</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="common-use-cases">
+<h2><span class="section-number">4.13.5.5. </span>일반적인 사용 사례<a class="headerlink" href="#common-use-cases" title="이 제목의 고유 링크"></a></h2>
+<div class="section" id="steady-analytical-wind-field">
+<h3><span class="section-number">4.13.5.5.1. </span>꾸준한 분석 바람 필드<a class="headerlink" href="#steady-analytical-wind-field" title="이 제목의 고유 링크"></a></h3>
+<p>바람을 위치의 함수로만 정의합니다(무시 <code class="docutils literal notranslate"><span class="pre">Time</span></code> 매개변수).</p>
+<p><strong>예</strong>: 로그 바람 프로필, 소용돌이 바람 필드, 전단력이 있는 균일 흐름.</p>
+</div>
+<div class="section" id="time-varying-wind-field">
+<h3><span class="section-number">4.13.5.5.2. </span>시변 바람장<a class="headerlink" href="#time-varying-wind-field" title="이 제목의 고유 링크"></a></h3>
+<p>시계열 배열에 바람 데이터를 저장하고 다음을 기반으로 보간합니다. <code class="docutils literal notranslate"><span class="pre">Time</span></code> 매개변수.</p>
+<p><strong>예</strong>: 측정된 바람 데이터, 규정된 바람 과도 현상, 항적 모델.
+외부 솔버의</p>
+</div>
+<div class="section" id="wind-from-external-solver">
+<h3><span class="section-number">4.13.5.5.3. </span>바람<a class="headerlink" href="#wind-from-external-solver" title="이 제목의 고유 링크"></a></h3>
+<p>외부 함수를 호출하여 순간적인 바람장을 얻습니다.</p>
+<p><strong>예</strong>: CFD 커플링, 외부 후류 모델, 규정 난류.</p>
+</div>
+<div class="section" id="real-time-sensor-data">
+<h3><span class="section-number">4.13.5.5.4. </span>실시간 센서 데이터<a class="headerlink" href="#real-time-sensor-data" title="이 제목의 고유 링크"></a></h3>
+<p>센서에서 측정된 바람 데이터를 로드하고 공간/시간적으로 보간합니다.</p>
+<p><strong>예</strong>: LIDAR 측정, 마스트 데이터, 현장 측정.</p>
+</div>
+</div>
+<div class="section" id="limitations-and-considerations">
+<h2><span class="section-number">4.13.5.6. </span>제한 사항 및 고려 사항<a class="headerlink" href="#limitations-and-considerations" title="이 제목의 고유 링크"></a></h2>
+<div class="section" id="current-limitations">
+<h3><span class="section-number">4.13.5.6.1. </span>전류 제한<a class="headerlink" href="#current-limitations" title="이 제목의 고유 링크"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>가속 지원 없음</strong>: 사용자 정의 바람 필드는 현재 일부 모듈(예: MHK 터빈)에 필요한 가속도 계산을 지원하지 않습니다.</p></li>
+</ol>
+</div>
+<div class="section" id="performance-considerations">
+<h3><span class="section-number">4.13.5.6.2. </span>성능 고려 사항<a class="headerlink" href="#performance-considerations" title="이 제목의 고유 링크"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">UserField_GetVel()</span></code> 는 모든 시간 단계의 모든 지점에 대해 호출됩니다.</p></li>
+<li><p>효율적으로 구현하십시오. 값을 미리 계산
+가능한 경우 <code class="docutils literal notranslate"><span class="pre">IfW_User_Init()</span></code> 가능한 경우</p></li>
+<li><p>복잡한 계산을 위한 캐싱 또는 보간 전략을 고려하십시오.</p></li>
+</ul>
+</div>
+<div class="section" id="error-handling">
+<h3><span class="section-number">4.13.5.6.3. </span>오류 처리<a class="headerlink" href="#error-handling" title="이 제목의 고유 링크"></a></h3>
+<ul class="simple">
+<li><p>항상 입력 매개변수의 유효성을 검사합니다. <code class="docutils literal notranslate"><span class="pre">IfW_User_Init()</span></code></p></li>
+<li><p>배열 경계를 확인하세요. <code class="docutils literal notranslate"><span class="pre">UserField_GetVel()</span></code></p></li>
+<li><p>위치 및 시간 값이 유효한 범위 내에 있는지 확인하십시오.
+오류를 적절하게 보고하려면</p></li>
+<li><p>사용
+디버거와 함께 사용할 디버그 기호를 추가하기 위해 활성 개발 중에 <code class="docutils literal notranslate"><span class="pre">SetErrStat()</span></code> 를 사용하세요.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="best-practices">
+<h2><span class="section-number">4.13.5.7. </span>모범 사례<a class="headerlink" href="#best-practices" title="이 제목의 고유 링크"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>간단하게 시작</strong>: 복잡한 바람장을 구현하기 전에 분석 모델부터 시작하세요.</p></li>
+<li><p><strong>문서를 철저하게 작성하세요</strong>: 구현 및 파일 형식을 설명하는 자세한 설명을 추가하세요.</p></li>
+<li><p><strong>SI 단위 사용</strong>: 항상 미터, 초, m/s를 사용합니다.</p></li>
+<li><p><strong>사전 계산</strong>: 런타임보다는 초기화 중에 최대한 많이 계산</p></li>
+<li><p><strong>검증</strong>: 생산에 사용하기 전에 알려진 분석 솔루션으로 테스트</p></li>
+<li><p><strong>핸들 경계</strong>: 유효한 도메인 외부의 포인트에 대해 적절한 동작 구현</p></li>
+<li><p><strong>보고서 메타데이터</strong>: 올바르게 채우기
+시간 범위, 공간 범위 등이 포함된 <code class="docutils literal notranslate"><span class="pre">WindFileDat</span></code> 시간 범위, 공간 범위 등의 정보를 포함하여</p></li>
+</ol>
+</div>
+<div class="section" id="file-locations">
+<h2><span class="section-number">4.13.5.8. </span>파일 위치<a class="headerlink" href="#file-locations" title="이 제목의 고유 링크"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 42%">
+<col style="width: 58%">
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>파일</p></th>
+<th class="head"><p>목적</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">modules/inflowwind/src/</span></code></p></td>
+<td><p>소스 코드 디렉토리
+유동장 데이터 구조에 대한</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">IfW_FlowField.txt</span></code></p></td>
+<td><p>유형 정의</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">InflowWind_IO.txt</span></code></p></td>
+<td><p>초기화 입력에 대한 유형 정의</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">IfW_FlowField.f90</span></code></p></td>
+<td><p>흐름장 구현(<code class="docutils literal notranslate"><span class="pre">UserField_GetVel()</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">InflowWind_IO.f90</span></code></p></td>
+<td><p>초기화 구현(<code class="docutils literal notranslate"><span class="pre">IfW_User_Init()</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">IfW_FlowField_Types.f90</span></code></p></td>
+<td><p>자동 생성된 유형 정의(.txt에서 재생성됨)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">InflowWind_IO_Types.f90</span></code></p></td>
+<td><p>자동 생성된 유형 정의(.txt에서 재생성됨)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="additional-resources">
+<h2><span class="section-number">4.13.5.9. </span>추가 리소스<a class="headerlink" href="#additional-resources" title="이 제목의 고유 링크"></a></h2>
+<ul class="simple">
+<li><p>원본 보기
+일반 InflowWind 정보에 대한 <a class="reference download internal" download="" href="../../../_downloads/a231262e7763b4d61759ebe4e0fc30b2/InflowWind_Manual.pdf"><code class="xref download docutils literal notranslate"><span class="pre">InflowWind</span> <span class="pre">Manual</span></code></a> InflowWind의 일반 정보</p></li>
+<li><p>참조용 소스 코드에서 기존 풍력 구현(Uniform, Grid3D)을 검토합니다.</p></li>
+<li><p>확인
+예제 입력 파일의 경우 <a class="reference internal" href="appendix.html#ifw-appendix"><span class="std std-ref">부록</span></a> 입력 파일 예제</p></li>
+<li><p>어레이 할당 및 오류 처리 유틸리티에 대해서는 NWTC 라이브러리 문서를 참조하십시오.
+바람 좌표계 및 회전에 대한 정보는</p></li>
+<li><p>참조
+자세한 내용은 <a class="reference internal" href="input.html#ifw-angles"><span class="std std-ref">각도</span></a> 풍속 좌표계와 회전에 관한 정보</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="input.html" class="btn btn-neutral float-left" title="4.13.2. InflowWind 입력 파일" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+        <a href="appendix.html" class="btn btn-neutral float-right" title="4.13.6. 부록" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>© Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    
+     
+
+
+</body></html>

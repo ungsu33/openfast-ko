@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5.1. Unit tests &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="5.2. Regression tests" href="regression_test.html" />
+    <link rel="prev" title="5. Testing OpenFAST" href="index.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/testing/unit_test.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">4. User Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">5. Testing OpenFAST</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5.1. Unit tests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dependencies">5.1.1. Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#compiling">5.1.2. Compiling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#executing">5.1.3. Executing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-unit-tests">5.1.4. Adding unit tests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="regression_test.html">5.2. Regression tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#obtaining-and-configuring-the-test-suite">5.3. Obtaining and configuring the test suite</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">5. </span>Testing OpenFAST</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">5.1. </span>Unit tests</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/source/testing/unit_test.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="unit-tests">
+<span id="unit-test"></span><h1><span class="section-number">5.1. </span>Unit tests<a class="headerlink" href="#unit-tests" title="Permalink to this heading"></a></h1>
+<p>In a software package as dynamic and collaborative as OpenFAST, confidence in
+multiple layers of code is best accomplished with a strong system of unit
+tests. Through robust testing practices, the entire OpenFAST community can
+understand the intention behind code blocks and debug or expand functionality
+quicker and with more confidence and stability.</p>
+<p>Unit testing in OpenFAST modules is accomplished through <a class="reference external" href="https://github.com/fortran-lang/test-drive">test-drive</a>.
+test-drive is compiled along with OpenFAST through CMake when the CMake variable <code class="docutils literal notranslate"><span class="pre">BUILD_TESTING</span></code> is
+turned on (default off) and the CMake variable <code class="docutils literal notranslate"><span class="pre">BUILD_UNIT_TESTING</span></code> is on
+(turned on by default when <code class="docutils literal notranslate"><span class="pre">BUILD_TEST</span></code> is on).</p>
+<p>The BeamDyn and NWTC Library modules contain some sample unit tests and should
+serve as a reference for future development and testing.</p>
+<div class="section" id="dependencies">
+<h2><span class="section-number">5.1.1. </span>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this heading"></a></h2>
+<p>The following packages are required for unit testing:</p>
+<ul class="simple">
+<li><p>CMake</p></li>
+<li><p>test-drive - Included in OpenFAST repo in unit_test/test-drive</p></li>
+</ul>
+</div>
+<div class="section" id="compiling">
+<h2><span class="section-number">5.1.2. </span>Compiling<a class="headerlink" href="#compiling" title="Permalink to this heading"></a></h2>
+<p>Compiling the unit tests is handled with CMake similar to compiling OpenFAST
+in general. After configuring CMake with <code class="docutils literal notranslate"><span class="pre">BUILD_TESTING</span></code> turned on, new
+build targets are created for each module included in the unit test
+framework named <code class="docutils literal notranslate"><span class="pre">[module]_utest</span></code>. Then, <code class="docutils literal notranslate"><span class="pre">make</span></code> the target to test:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>..<span class="w"> </span>-DBUILD_TESTING<span class="o">=</span>ON
+make<span class="w"> </span>beamdyn_utest
+</pre></div>
+</div>
+<p>This creates a unit test executable at
+<code class="docutils literal notranslate"><span class="pre">openfast/build/unit_tests/beamdyn_utest</span></code>.</p>
+</div>
+<div class="section" id="executing">
+<h2><span class="section-number">5.1.3. </span>Executing<a class="headerlink" href="#executing" title="Permalink to this heading"></a></h2>
+<p>To execute a module’s unit test, simply run the unit test binary. For example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt;$<span class="w"> </span>./openfast/build/unit_tests/beamdyn_utest
+All<span class="w"> </span>tests<span class="w"> </span>PASSED
+</pre></div>
+</div>
+<p>the pass or fail status is provided for each test as it’s run. An error message is output when the test fails.
+Failure cases display the following output:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt;$<span class="w"> </span>./unit_tests/beamdyn_utest
+<span class="c1"># Testing: Crv</span>
+Starting<span class="w"> </span>test_BD_CheckRotMat<span class="w"> </span>...<span class="w"> </span><span class="o">(</span><span class="m">1</span>/6<span class="o">)</span>
+<span class="w">    </span>...<span class="w"> </span>test_BD_CheckRotMat<span class="w"> </span><span class="o">[</span>PASSED<span class="o">]</span>
+Starting<span class="w"> </span>test_BD_ComputeIniNodalCrv<span class="w"> </span>...<span class="w"> </span><span class="o">(</span><span class="m">2</span>/6<span class="o">)</span>
+<span class="w">    </span>...<span class="w"> </span>test_BD_ComputeIniNodalCrv<span class="w"> </span><span class="o">[</span>PASSED<span class="o">]</span>
+Starting<span class="w"> </span>test_BD_CrvCompose<span class="w"> </span>...<span class="w"> </span><span class="o">(</span><span class="m">3</span>/6<span class="o">)</span>
+<span class="w">    </span>...<span class="w"> </span>test_BD_CrvCompose<span class="w"> </span><span class="o">[</span>PASSED<span class="o">]</span>
+Starting<span class="w"> </span>test_BD_CrvExtractCrv<span class="w"> </span>...<span class="w"> </span><span class="o">(</span><span class="m">4</span>/6<span class="o">)</span>
+<span class="w">    </span>...<span class="w"> </span>test_BD_CrvExtractCrv<span class="w"> </span><span class="o">[</span>PASSED<span class="o">]</span>
+Starting<span class="w"> </span>test_BD_CrvMatrixH<span class="w"> </span>...<span class="w"> </span><span class="o">(</span><span class="m">5</span>/6<span class="o">)</span>
+<span class="o">[</span>Fatal<span class="o">]</span><span class="w"> </span>Uncaught<span class="w"> </span>error
+Code:<span class="w"> </span><span class="m">1</span><span class="w"> </span>Message:<span class="w"> </span>A<span class="o">(</span><span class="m">1</span>,1<span class="o">)</span><span class="w"> </span>simple<span class="w"> </span>rotation<span class="w"> </span>with<span class="w"> </span>known<span class="w"> </span>parameters:<span class="w"> </span>Pi<span class="w"> </span>on<span class="w"> </span>xaxis:
+Note:<span class="w"> </span>The<span class="w"> </span>following<span class="w"> </span>floating-point<span class="w"> </span>exceptions<span class="w"> </span>are<span class="w"> </span>signalling:<span class="w"> </span>IEEE_INVALID_FLAG<span class="w"> </span>IEEE_DIVIDE_BY_ZERO
+ERROR<span class="w"> </span>STOP
+
+Error<span class="w"> </span>termination.<span class="w"> </span>Backtrace:
+<span class="c1">#0  0xffff9f70d08b in ???</span>
+<span class="c1">#1  0xffff9f70ddb3 in ???</span>
+<span class="c1">#2  0xffff9f70f333 in ???</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="adding-unit-tests">
+<h2><span class="section-number">5.1.4. </span>Adding unit tests<a class="headerlink" href="#adding-unit-tests" title="Permalink to this heading"></a></h2>
+<p>Unit tests should be included for each new, <em>testable</em> code block (subroutine
+or function). What is testable is the discretion of the developer, but an
+element of the pull request review process will be evaluating test coverage.</p>
+<p>New unit tests can be added to a <code class="docutils literal notranslate"><span class="pre">tests</span></code> directory alongside the <code class="docutils literal notranslate"><span class="pre">src</span></code>
+directory included in each module. For example, a module directory may be
+structured as</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>openfast/
+  └── modules/
+      └── sampledyn/
+          ├── src/
+          │   ├── SampleDyn.f90
+          │   └── SampleDyn_Subs.f90
+          └── tests/
+              ├── sampledyn_utest.F90
+              ├── test_SampleDyn_Feature1.F90
+              ├── test_SampleDyn_Feature2.F90
+              └── test_SampleDyn_Feature3.F90
+</pre></div>
+</div>
+<p>Each unit test file must contain a module that exports a function which populates
+a list of unit tests in accordance with the <code class="docutils literal notranslate"><span class="pre">test-drive</span></code> documentation. These modules
+contain subroutines which take an <code class="docutils literal notranslate"><span class="pre">error</span></code> argument that is populated by the <code class="docutils literal notranslate"><span class="pre">check</span></code>
+subroutine provided by <code class="docutils literal notranslate"><span class="pre">test-drive</span></code>. The <code class="docutils literal notranslate"><span class="pre">sampledyn_utest.F90</span></code> collects all of the
+unit tests lists from the adjacent modules and runs them. These programs are compiled
+via the <code class="docutils literal notranslate"><span class="pre">unit_tests/CMakeLists.txt</span></code> file so all relevant modules and programs are
+specified there.</p>
+<p>Refer to existing unit tests for the <code class="docutils literal notranslate"><span class="pre">BeamDyn</span></code> or <code class="docutils literal notranslate"><span class="pre">NWTC</span> <span class="pre">Library</span></code> unit tests for examples
+of how to structure and build the unit test drivers. Also review the <code class="docutils literal notranslate"><span class="pre">test-drive</span></code> documentation at
+<a class="reference external" href="https://github.com/fortran-lang/test-drive">test-drive</a>.</p>
+<p>Some useful topics to consider when developing and testing for OpenFAST are:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Test-driven_development#Test-driven_development_cycle">Test driven development</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Separation_of_concerns">Separation of concerns</a></p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="5. Testing OpenFAST" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="regression_test.html" class="btn btn-neutral float-right" title="5.2. Regression tests" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

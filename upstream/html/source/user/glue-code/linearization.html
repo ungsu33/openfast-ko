@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.2.5. Linearization &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.3. AeroDyn Users Guide and Theory Manual" href="../aerodyn/index.html" />
+    <link rel="prev" title="4.2.4. Solver" href="solver.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/glue-code/linearization.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.2. Glue Code</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="overview.html">4.2.1. Glue Code Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modvar.html">4.2.2. Module Variables (<code class="docutils literal notranslate"><span class="pre">ModVar</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modglue.html">4.2.3. ModGlue – Combining Modules into Global Arrays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solver.html">4.2.4. Solver</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.2.5. Linearization</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#user-inputs-for-linearization">4.2.5.1. User inputs for linearization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-support-for-linearization">4.2.5.2. Module support for linearization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#variable-selection">4.2.5.3. Variable selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#steady-state-trimming-calcsteady">4.2.5.4. Steady-state trimming (<code class="docutils literal notranslate"><span class="pre">CalcSteady</span></code>)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#linearization-at-an-operating-point">4.2.5.5. linearization at an operating point</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#output-file-format">4.2.5.6. Output file format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#variable-naming-conventions">4.2.5.7. Variable naming conventions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-developer-responsibilities">4.2.5.8. Module developer responsibilities</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.2. </span>Glue Code</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.2.5. </span>Linearization</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/glue-code/linearization.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="linearization">
+<span id="glue-code-linearization"></span><h1><span class="section-number">4.2.5. </span>Linearization<a class="headerlink" href="#linearization" title="Permalink to this heading"></a></h1>
+<p>OpenFAST can linearise the full multi-physics system about a periodic (or
+static) operating point to produce continuous-time, first-order state-space
+matrices of the form</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\dot{\mathbf{x}} &amp;= A\,\mathbf{x} + B\,\mathbf{u} \\
+\mathbf{y}       &amp;= C\,\mathbf{x} + D\,\mathbf{u}\end{split}\]</div>
+<p>together with the coupling matrices <em>dUdu</em> (input-to-input feed-through) and
+<em>dUdy</em> (output-to-input coupling).  The linearization engine lives in
+<code class="docutils literal notranslate"><span class="pre">modules/openfast-library/src/FAST_ModGlue.f90</span></code>.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#user-inputs-for-linearization" id="id1">User inputs for linearization</a></p></li>
+<li><p><a class="reference internal" href="#module-support-for-linearization" id="id2">Module support for linearization</a></p></li>
+<li><p><a class="reference internal" href="#variable-selection" id="id3">Variable selection</a></p></li>
+<li><p><a class="reference internal" href="#steady-state-trimming-calcsteady" id="id4">Steady-state trimming (<code class="docutils literal notranslate"><span class="pre">CalcSteady</span></code>)</a></p></li>
+<li><p><a class="reference internal" href="#linearization-at-an-operating-point" id="id5">linearization at an operating point</a></p></li>
+<li><p><a class="reference internal" href="#output-file-format" id="id6">Output file format</a></p></li>
+<li><p><a class="reference internal" href="#variable-naming-conventions" id="id7">Variable naming conventions</a></p></li>
+<li><p><a class="reference internal" href="#module-developer-responsibilities" id="id8">Module developer responsibilities</a></p></li>
+</ul>
+</div>
+<div class="section" id="user-inputs-for-linearization">
+<h2><a class="toc-backref" href="#id1"><span class="section-number">4.2.5.1. </span>User inputs for linearization</a><a class="headerlink" href="#user-inputs-for-linearization" title="Permalink to this heading"></a></h2>
+<p>The following parameters appear in the main OpenFAST input file (<code class="docutils literal notranslate"><span class="pre">*.fst</span></code>)
+under the <strong>Linearization</strong> section.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 12%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Linearize</span></code></p></td>
+<td><p>logical</p></td>
+<td><p>Master switch.  Set to <code class="docutils literal notranslate"><span class="pre">True</span></code> to enable all linearization
+functionality.  When <code class="docutils literal notranslate"><span class="pre">False</span></code> all other linearization parameters are
+ignored.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CalcSteady</span></code></p></td>
+<td><p>logical</p></td>
+<td><p>When <code class="docutils literal notranslate"><span class="pre">True</span></code>, OpenFAST first runs the simulation forward until the
+outputs at each target azimuth converge from one rotor revolution to the
+next (steady-state trimming), then performs linearization at each
+azimuth.  When <code class="docutils literal notranslate"><span class="pre">False</span></code>, linearization is performed at user-specified
+absolute simulation times (<code class="docutils literal notranslate"><span class="pre">LinTimes</span></code>).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">TrimCase</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>Controller degree of freedom trimmed during <code class="docutils literal notranslate"><span class="pre">CalcSteady</span></code> to achieve
+periodic steady state.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> – yaw</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> – generator torque</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">3</span></code> – collective blade pitch</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">TrimTol</span></code></p></td>
+<td><p>real</p></td>
+<td><p>RMS convergence tolerance on normalised output error across one
+rotor revolution.  Trimming stops when the error falls below this
+value.   Typical value: <code class="docutils literal notranslate"><span class="pre">1.0e-5</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">TrimGain</span></code></p></td>
+<td><p>real</p></td>
+<td><p>Proportional gain used by the built-in trim controller.
+Units are rad/(rad/s) for yaw/pitch cases and N·m/(rad/s) for
+the torque case.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Twr_Kdmp</span></code></p></td>
+<td><p>real</p></td>
+<td><p>Artificial tower damping coefficient (N/(m/s)) added during the
+<code class="docutils literal notranslate"><span class="pre">CalcSteady</span></code> run to help damp transients and reach steady state
+faster.  Set to 0 to disable.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Bld_Kdmp</span></code></p></td>
+<td><p>real</p></td>
+<td><p>Artificial blade damping coefficient (N/(m/s)) during <code class="docutils literal notranslate"><span class="pre">CalcSteady</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">NLinTimes</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>Number of linearization time points per rotor revolution (or number of
+equally spaced absolute time instants when <code class="docutils literal notranslate"><span class="pre">CalcSteady=False</span></code>).
+Must be ≥ 1.  For a periodic model at least 12 azimuths are typically
+needed to resolve the per-revolution variation.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">LinTimes</span></code></p></td>
+<td><p>real array</p></td>
+<td><p>Absolute simulation times (seconds) at which to linearise when
+<code class="docutils literal notranslate"><span class="pre">CalcSteady=False</span></code>.  Length must equal <code class="docutils literal notranslate"><span class="pre">NLinTimes</span></code>.  Ignored when
+<code class="docutils literal notranslate"><span class="pre">CalcSteady=True</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">LinInputs</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>Controls which input variables appear in the <strong>B</strong> and <strong>D</strong> matrices.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> (<code class="docutils literal notranslate"><span class="pre">LIN_NONE</span></code>) – no inputs; produces state matrix only.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> (<code class="docutils literal notranslate"><span class="pre">LIN_STANDARD</span></code>) – inputs flagged <code class="docutils literal notranslate"><span class="pre">VF_Linearize</span></code> by the
+module (default set by each module’s <code class="docutils literal notranslate"><span class="pre">InitVars</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> (<code class="docutils literal notranslate"><span class="pre">LIN_ALL</span></code>) – all module inputs including debug ones.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">LinOutputs</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>Controls which output variables appear in the <strong>C</strong> and <strong>D</strong> matrices.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> (<code class="docutils literal notranslate"><span class="pre">LIN_NONE</span></code>) – no outputs.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> (<code class="docutils literal notranslate"><span class="pre">LIN_STANDARD</span></code>) – <code class="docutils literal notranslate"><span class="pre">WriteOutput</span></code> channels only
+(<code class="docutils literal notranslate"><span class="pre">VF_WriteOut</span></code> flag).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> (<code class="docutils literal notranslate"><span class="pre">LIN_ALL</span></code>) – all module outputs.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">LinOutJac</span></code></p></td>
+<td><p>logical</p></td>
+<td><p>When <code class="docutils literal notranslate"><span class="pre">True</span></code> (requires <code class="docutils literal notranslate"><span class="pre">LinInputs=LinOutputs=2</span></code>), the full module
+Jacobian matrices are written to the linearization output file for
+debugging.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">LinOutMod</span></code></p></td>
+<td><p>logical</p></td>
+<td><p>When <code class="docutils literal notranslate"><span class="pre">True</span></code>, per-module <code class="docutils literal notranslate"><span class="pre">.lin</span></code> files are written in addition to the
+full-system file.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="module-support-for-linearization">
+<h2><a class="toc-backref" href="#id2"><span class="section-number">4.2.5.2. </span>Module support for linearization</a><a class="headerlink" href="#module-support-for-linearization" title="Permalink to this heading"></a></h2>
+<p>Modules that appear in the linearization variable ordering (set in
+<code class="docutils literal notranslate"><span class="pre">ModGlue_Init</span></code>) are:</p>
+<p>InflowWind → SeaState → ServoDyn → ElastoDyn → BeamDyn → AeroDyn →
+HydroDyn → SubDyn → MAP++ → MoorDyn</p>
+<p>A module that is not in this ordered list causes a fatal error if
+<code class="docutils literal notranslate"><span class="pre">Linearize=True</span></code>.</p>
+</div>
+<div class="section" id="variable-selection">
+<h2><a class="toc-backref" href="#id3"><span class="section-number">4.2.5.3. </span>Variable selection</a><a class="headerlink" href="#variable-selection" title="Permalink to this heading"></a></h2>
+<p>During <code class="docutils literal notranslate"><span class="pre">ModGlue_Init</span></code>, the <code class="docutils literal notranslate"><span class="pre">VF_Linearize</span></code> flag is applied to variables
+according to the <code class="docutils literal notranslate"><span class="pre">LinInputs</span></code> and <code class="docutils literal notranslate"><span class="pre">LinOutputs</span></code> settings:</p>
+<ul class="simple">
+<li><p><strong>States (x)</strong>: the <code class="docutils literal notranslate"><span class="pre">VF_Linearize</span></code> flag is always set on all continuous
+state variables of every participating module.</p></li>
+<li><p><strong>Inputs (u)</strong>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">LIN_NONE</span></code> → flag cleared on all input variables.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LIN_STANDARD</span></code> → keeps whatever <code class="docutils literal notranslate"><span class="pre">VF_Linearize</span></code> flag was set in the
+module’s <code class="docutils literal notranslate"><span class="pre">InitVars</span></code>; module developers choose the <em>standard</em> input set.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LIN_ALL</span></code> → flag set on all input variables.</p></li>
+<li><p>Variables with <code class="docutils literal notranslate"><span class="pre">VF_NoLin</span></code> always have <code class="docutils literal notranslate"><span class="pre">VF_Linearize</span></code> cleared,
+regardless of the above setting.</p></li>
+</ul>
+</li>
+<li><p><strong>Outputs (y)</strong>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">LIN_NONE</span></code> → flag cleared on all output variables.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LIN_STANDARD</span></code> → flag set only on outputs that also carry <code class="docutils literal notranslate"><span class="pre">VF_WriteOut</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LIN_ALL</span></code> → flag set on all output variables.</p></li>
+<li><p>Variables with <code class="docutils literal notranslate"><span class="pre">VF_NoLin</span></code> are always excluded.</p></li>
+</ul>
+</li>
+</ul>
+<p>The combined variable set is assembled into a <code class="docutils literal notranslate"><span class="pre">ModGlueType</span></code> named <code class="docutils literal notranslate"><span class="pre">Lin</span></code>
+via <code class="docutils literal notranslate"><span class="pre">ModGlue_CombineModules</span></code>.</p>
+</div>
+<div class="section" id="steady-state-trimming-calcsteady">
+<h2><a class="toc-backref" href="#id4"><span class="section-number">4.2.5.4. </span>Steady-state trimming (<code class="docutils literal notranslate"><span class="pre">CalcSteady</span></code>)</a><a class="headerlink" href="#steady-state-trimming-calcsteady" title="Permalink to this heading"></a></h2>
+<p>When <code class="docutils literal notranslate"><span class="pre">CalcSteady=True</span></code>, <code class="docutils literal notranslate"><span class="pre">ModGlue_CalcSteady</span></code> is called at each time step
+to detect periodicity:</p>
+<ol class="arabic">
+<li><p>The module outputs tagged <code class="docutils literal notranslate"><span class="pre">VF_Linearize</span></code> (excluding <code class="docutils literal notranslate"><span class="pre">VF_WriteOut</span></code>) are
+collected into a buffer indexed by azimuth angle.</p></li>
+<li><p>After each complete revolution the outputs at each of the <code class="docutils literal notranslate"><span class="pre">NLinTimes</span></code>
+azimuth targets are compared against the previous revolution via the
+normalised RMS error:</p>
+<div class="math notranslate nohighlight">
+\[\varepsilon = \sqrt{\frac{1}{N} \sum_{i=1}^{N}
+  \left(\frac{y_i^{\rm current} - y_i^{\rm previous}}{r_i}\right)^2}\]</div>
+<p>where <span class="math notranslate nohighlight">\(r_i = \max(y_{i,\rm max} - y_{i,\rm min},\, 0.01)\)</span> is the
+output range from the current revolution (with a floor to avoid division
+by near-zero).</p>
+</li>
+<li><p>When <span class="math notranslate nohighlight">\(\varepsilon &lt; \texttt{TrimTol}\)</span>, <code class="docutils literal notranslate"><span class="pre">FoundSteady=True</span></code> and
+linearization at all <code class="docutils literal notranslate"><span class="pre">NLinTimes</span></code> azimuths proceeds automatically.</p></li>
+<li><p>If the simulation reaches within approximately two revolutions of <code class="docutils literal notranslate"><span class="pre">TMax</span></code>
+without converging, a warning is issued and linearization is forced.</p></li>
+</ol>
+<p>The azimuth interpolation between buffer samples uses the extrapolation
+routines from <code class="docutils literal notranslate"><span class="pre">MV_ExtrapInterp</span></code> (supports constant, linear, and quadratic
+schemes depending on the number of available samples).</p>
+</div>
+<div class="section" id="linearization-at-an-operating-point">
+<h2><a class="toc-backref" href="#id5"><span class="section-number">4.2.5.5. </span>linearization at an operating point</a><a class="headerlink" href="#linearization-at-an-operating-point" title="Permalink to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">ModGlue_Linearize_OP</span></code> assembles the full-system matrices at a single
+operating point (time / azimuth):</p>
+<ol class="arabic simple">
+<li><p><strong>Module Jacobians</strong>: for each module,
+<code class="docutils literal notranslate"><span class="pre">FAST_JacobianPInput</span></code> and <code class="docutils literal notranslate"><span class="pre">FAST_JacobianPContState</span></code> are called to
+compute the per-module sub-matrices <em>dYdu</em>, <em>dXdu</em>, <em>dYdx</em>, <em>dXdx</em> by
+central-difference finite differentiation.  The perturbation magnitudes are
+taken from each variable’s <code class="docutils literal notranslate"><span class="pre">Perturb</span></code> field (see <a class="reference internal" href="modvar.html#glue-code-modvar"><span class="std std-ref">Module Variables (ModVar)</span></a>).</p></li>
+<li><p><strong>Operating point extraction</strong>: <code class="docutils literal notranslate"><span class="pre">FAST_GetOP</span></code> packs the current states,
+inputs, and outputs into the linearization arrays
+(<code class="docutils literal notranslate"><span class="pre">ModGlue%Lin%x</span></code>, <code class="docutils literal notranslate"><span class="pre">%u</span></code>, <code class="docutils literal notranslate"><span class="pre">%y</span></code>).</p></li>
+<li><p><strong>Coupling matrices</strong>: the input-output coupling matrices <em>dUdu</em> and <em>dUdy</em>
+are assembled from the mesh-mapping Jacobians to account for the fact that
+some module inputs are functions of other modules’ outputs.</p></li>
+<li><p><strong>Full-system assembly</strong>: the per-module sub-matrices are placed into the
+combined glue-level matrices using the <code class="docutils literal notranslate"><span class="pre">iGlu</span></code> index ranges stored in
+each <code class="docutils literal notranslate"><span class="pre">ModVarType</span></code>.</p></li>
+<li><p><strong>Output</strong>: <code class="docutils literal notranslate"><span class="pre">ModGlue_CalcWriteLinearMatrices</span></code> writes the <code class="docutils literal notranslate"><span class="pre">.lin</span></code> file
+containing:</p>
+<ul class="simple">
+<li><p>Operating point values (<strong>x_op</strong>, <strong>u_op</strong>, <strong>y_op</strong>)</p></li>
+<li><p>linearization channel names (from <code class="docutils literal notranslate"><span class="pre">LinNames</span></code>)</p></li>
+<li><p>Derivative order indicators (<code class="docutils literal notranslate"><span class="pre">VF_DerivOrder1</span></code>, <code class="docutils literal notranslate"><span class="pre">VF_DerivOrder2</span></code>)</p></li>
+<li><p>Rotating-frame flags (<code class="docutils literal notranslate"><span class="pre">VF_RotFrame</span></code>)</p></li>
+<li><p>Full-system matrices <strong>A</strong>, <strong>B</strong>, <strong>C</strong>, <strong>D</strong>, <strong>dUdu</strong>, <strong>dUdy</strong></p></li>
+<li><p>Per-module matrices (if <code class="docutils literal notranslate"><span class="pre">LinOutMod=True</span></code>)</p></li>
+<li><p>Full Jacobians (if <code class="docutils literal notranslate"><span class="pre">LinOutJac=True</span></code>)</p></li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="output-file-format">
+<h2><a class="toc-backref" href="#id6"><span class="section-number">4.2.5.6. </span>Output file format</a><a class="headerlink" href="#output-file-format" title="Permalink to this heading"></a></h2>
+<p>Each linearization call produces a file named
+<code class="docutils literal notranslate"><span class="pre">&lt;RootName&gt;.&lt;N&gt;.lin</span></code> where <em>N</em> is the linearization index (1 … <code class="docutils literal notranslate"><span class="pre">NLinTimes</span></code>).
+The file is a plain-text ASCII file that can be read by the
+<a class="reference external" href="https://github.com/OpenFAST/openfast_io">openfast_io</a> Python library or the
+<a class="reference external" href="https://github.com/OpenFAST/pyFAST">pyFAST</a> post-processing tools.</p>
+<p>Key fields in the file header:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Rotor_Speed</span></code> – rotor speed at linearization time (RPM)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Azimuth</span></code> – blade-1 azimuth at linearization time (deg)</p></li>
+</ul>
+</div>
+<div class="section" id="variable-naming-conventions">
+<h2><a class="toc-backref" href="#id7"><span class="section-number">4.2.5.7. </span>Variable naming conventions</a><a class="headerlink" href="#variable-naming-conventions" title="Permalink to this heading"></a></h2>
+<p>In linearization output files each channel label follows the pattern:</p>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;ModAbbr&gt;</span> <span class="pre">&lt;MeshName&gt;</span> <span class="pre">&lt;Field&gt;</span> <span class="pre">[,</span> <span class="pre">component</span> <span class="pre">[,</span> <span class="pre">node</span> <span class="pre">[,</span> <span class="pre">unit]]]</span></code></p>
+<p>Examples:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ED</span> <span class="pre">BlPitch1,</span> <span class="pre">rad</span></code> – ElastoDyn individual blade-1 pitch state</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">AD</span> <span class="pre">B1N001Fx</span> <span class="pre">force,</span> <span class="pre">node</span> <span class="pre">1,</span> <span class="pre">N</span></code> – AeroDyn blade 1 node 1 X-force input</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BD_1</span> <span class="pre">B1TipTDxr</span> <span class="pre">translation</span> <span class="pre">displacement,</span> <span class="pre">node</span> <span class="pre">10,</span> <span class="pre">m</span></code> – BeamDyn instance 1</p></li>
+</ul>
+<p>Module developers should ensure that the <code class="docutils literal notranslate"><span class="pre">Name</span></code> argument to <code class="docutils literal notranslate"><span class="pre">MV_AddVar</span></code> /
+<code class="docutils literal notranslate"><span class="pre">MV_AddMeshVar</span></code> and the entries in <code class="docutils literal notranslate"><span class="pre">LinNames</span></code> follow this convention for
+consistency with post-processing tools.</p>
+</div>
+<div class="section" id="module-developer-responsibilities">
+<h2><a class="toc-backref" href="#id8"><span class="section-number">4.2.5.8. </span>Module developer responsibilities</a><a class="headerlink" href="#module-developer-responsibilities" title="Permalink to this heading"></a></h2>
+<p>To participate in linearization a module must:</p>
+<ol class="arabic simple">
+<li><p>Call <code class="docutils literal notranslate"><span class="pre">MV_AddVar</span></code> / <code class="docutils literal notranslate"><span class="pre">MV_AddMeshVar</span></code> with appropriate <code class="docutils literal notranslate"><span class="pre">VF_Linearize</span></code>
+flags and supply <code class="docutils literal notranslate"><span class="pre">LinNames</span></code> for all variables that may appear in the
+standard linearization set.</p></li>
+<li><p>Implement <code class="docutils literal notranslate"><span class="pre">&lt;Mod&gt;_JacobianPInput</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;Mod&gt;_JacobianPContState</span></code>
+subroutines (or supply analytical Jacobians through the registry).  The
+glue code calls these via the <code class="docutils literal notranslate"><span class="pre">FAST_JacobianPInput</span></code> /
+<code class="docutils literal notranslate"><span class="pre">FAST_JacobianPContState</span></code> wrappers in <code class="docutils literal notranslate"><span class="pre">FAST_Funcs.f90</span></code>.</p></li>
+<li><p>Implement <code class="docutils literal notranslate"><span class="pre">&lt;Mod&gt;_GetOP</span></code> (via the registry) to extract the operating-point
+values of states, inputs, and outputs.</p></li>
+<li><p>Mark variables that should <strong>not</strong> participate in linearization with
+<code class="docutils literal notranslate"><span class="pre">VF_NoLin</span></code>.</p></li>
+<li><p>Mark variables in the rotating reference frame with <code class="docutils literal notranslate"><span class="pre">VF_RotFrame</span></code> so that
+multi-blade coordinate (MBC) transformations applied by post-processing
+tools are aware of these variables.</p></li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="solver.html" class="btn btn-neutral float-left" title="4.2.4. Solver" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../aerodyn/index.html" class="btn btn-neutral float-right" title="4.3. AeroDyn Users Guide and Theory Manual" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

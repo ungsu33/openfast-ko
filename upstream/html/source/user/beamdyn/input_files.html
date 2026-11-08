@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.7.3. Input Files &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.7.4. Output Files" href="output_files.html" />
+    <link rel="prev" title="4.7.2. Running BeamDyn" href="running_bd.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/beamdyn/input_files.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.7. BeamDyn</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">4.7.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="running_bd.html">4.7.2. Running BeamDyn</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.7.3. Input Files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#units">4.7.3.1. Units</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#beamdyn-driver-input-file">4.7.3.2. BeamDyn Driver Input File</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#beamdyn-primary-input-file">4.7.3.3. BeamDyn Primary Input File</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#blade-input-file">4.7.3.4. Blade Input File</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="output_files.html">4.7.4. Output Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory.html">4.7.5. BeamDyn Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="future_work.html">4.7.6. Future Work</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.7.7. References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.7.8. Appendix</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.7. </span>BeamDyn User Guide and Theory Manual</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.7.3. </span>Input Files</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/beamdyn/input_files.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="input-files">
+<span id="bd-input-files"></span><h1><span class="section-number">4.7.3. </span>Input Files<a class="headerlink" href="#input-files" title="Permalink to this heading"></a></h1>
+<p>Users specify the blade model parameters; including its geometry,
+cross-sectional properties, and FE and output control parameters; via a
+primary BeamDyn input file and a blade property input file. When used in
+stand-alone mode, an additional driver input file is required. This
+driver file specifies inputs normally provided to BeamDyn by FAST,
+including simulation range, root motions, and externally applied loads.</p>
+<p>No lines should be added or removed from the input files, except in
+tables where the number of rows is specified.</p>
+<div class="section" id="units">
+<h2><span class="section-number">4.7.3.1. </span>Units<a class="headerlink" href="#units" title="Permalink to this heading"></a></h2>
+<p>BeamDyn uses the SI system (kg, m, s, N). Angles are assumed to be in
+radians unless otherwise specified.</p>
+</div>
+<div class="section" id="beamdyn-driver-input-file">
+<span id="driver-input-file"></span><h2><span class="section-number">4.7.3.2. </span>BeamDyn Driver Input File<a class="headerlink" href="#beamdyn-driver-input-file" title="Permalink to this heading"></a></h2>
+<p>The driver input file is needed only for the stand-alone version of
+BeamDyn. It contains inputs that are normally set by FAST and that are
+necessary to control the simulation for uncoupled models.</p>
+<p>The driver input file begins with two lines of header information, which
+is for the user but is not used by the software. If BeamDyn is run in
+the stand-alone mode, the results output file will be prefixed with the
+same name of this driver input file.</p>
+<p>A sample BeamDyn driver input file is given in <a class="reference internal" href="appendix.html#bd-input-files"><span class="std std-numref">Section 4.7.8.1</span></a>.</p>
+<div class="section" id="simulation-control-parameters">
+<h3><span class="section-number">4.7.3.2.1. </span>Simulation Control Parameters<a class="headerlink" href="#simulation-control-parameters" title="Permalink to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">DynamicSolve</span></code> is a logical variable that specifies if BeamDyn should use dynamic analysis (<code class="docutils literal notranslate"><span class="pre">DynamicSolve</span> <span class="pre">=</span> <span class="pre">true</span></code>)
+or static analysis (<code class="docutils literal notranslate"><span class="pre">DynamicSolve</span> <span class="pre">=</span> <span class="pre">false</span></code>).
+<code class="docutils literal notranslate"><span class="pre">t_initial</span></code> and <code class="docutils literal notranslate"><span class="pre">t_final</span></code> specify the starting time of the simulation and ending time of the simulation, respectively.
+<code class="docutils literal notranslate"><span class="pre">dt</span></code> specifies the time step size.</p>
+</div>
+<div class="section" id="gravity-parameters">
+<h3><span class="section-number">4.7.3.2.2. </span>Gravity Parameters<a class="headerlink" href="#gravity-parameters" title="Permalink to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Gx</span></code> , <code class="docutils literal notranslate"><span class="pre">Gy</span></code> , and <code class="docutils literal notranslate"><span class="pre">Gz</span></code> specify the components of gravity vector along <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(Y\)</span>, and <span class="math notranslate nohighlight">\(Z\)</span> directions in the global coordinate system, respectively.
+In FAST, this is normally 0, 0, and -9.80665.</p>
+</div>
+<div class="section" id="inertial-frame-parameters">
+<h3><span class="section-number">4.7.3.2.3. </span>Inertial Frame Parameters<a class="headerlink" href="#inertial-frame-parameters" title="Permalink to this heading"></a></h3>
+<p>This section defines the relation between two inertial frames, the global coordinate system and initial blade reference coordinate system.
+<code class="docutils literal notranslate"><span class="pre">GlbPos(1)</span></code>, <code class="docutils literal notranslate"><span class="pre">GlbPos(2)</span></code>, and <code class="docutils literal notranslate"><span class="pre">GlbPos(3)</span></code> specify three components of the initial global position vector along <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(Y\)</span>, and <span class="math notranslate nohighlight">\(Z\)</span> directions resolved in the global coordinate system, see Figure <a class="reference internal" href="#frame"><span class="std std-numref">Fig. 4.29</span></a>.
+And the following <span class="math notranslate nohighlight">\(3 \times 3\)</span> direction cosine matrix (<code class="docutils literal notranslate"><span class="pre">GlbDCM</span></code>) relates the rotations from the global coordinate system to the initial blade reference coordinate system.</p>
+<div class="figure align-center" id="id1">
+<span id="frame"></span><a class="reference internal image-reference" href="../../../_images/frame.jpg"><img alt="../../../_images/frame.jpg" src="../../../_images/frame.jpg" style="width: 80%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.29 </span><span class="caption-text">Global and blade coordinate systems in BeamDyn.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</div>
+</div>
+<div class="section" id="blade-floating-reference-frame-parameters">
+<h3><span class="section-number">4.7.3.2.4. </span>Blade Floating Reference Frame Parameters<a class="headerlink" href="#blade-floating-reference-frame-parameters" title="Permalink to this heading"></a></h3>
+<p>This section specifies the parameters that define the blade floating reference frame, which is a body-attached floating frame; the blade root is cantilevered at the origin of this frame.
+Based on the driver input file, the floating blade reference fame is assumed to be in a constant rigid-body rotation mode about the origin of the global coordinate system, that is,</p>
+<div class="math notranslate nohighlight" id="equation-rootvelocity">
+<span class="eqno">(4.69)<a class="headerlink" href="#equation-rootvelocity" title="Permalink to this equation"></a></span>\[v_{rt} = \omega_r \times r_t\]</div>
+<p>where <span class="math notranslate nohighlight">\(v_{rt}\)</span> is the root (origin of the floating blade reference frame) translational velocity vector; <span class="math notranslate nohighlight">\(\omega_r\)</span> is the constant root (origin of the floating blade reference frame) angular velocity vector; and <span class="math notranslate nohighlight">\(r_t\)</span> is the global position vector introduced in the previous section at instant <span class="math notranslate nohighlight">\(t\)</span>, see <a class="reference internal" href="#frame"><span class="std std-numref">Fig. 4.29</span></a>.
+The floating blade reference frame coincides with the initial floating blade reference frame at the beginning <span class="math notranslate nohighlight">\(t=0\)</span>.
+<code class="docutils literal notranslate"><span class="pre">RootVel(4)</span></code>, <code class="docutils literal notranslate"><span class="pre">RootVel(5)</span></code>, and <code class="docutils literal notranslate"><span class="pre">RootVel(6)</span></code> specify the three components of the constant root angular velocity vector about <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(Y\)</span>, and <span class="math notranslate nohighlight">\(Z\)</span> axises in global coordinate system, respectively.
+<code class="docutils literal notranslate"><span class="pre">RootVel(1)</span></code>, <code class="docutils literal notranslate"><span class="pre">RootVel(2)</span></code>, and <code class="docutils literal notranslate"><span class="pre">RootVel(3)</span></code>, which are the three components of the root translational velocity vector along <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(Y\)</span>, and <span class="math notranslate nohighlight">\(Z\)</span> directions in global coordinate system, respectively, are calculated based on Eq. <a class="reference internal" href="#equation-rootvelocity">(4.69)</a>.</p>
+<p>BeamDyn can handle more complicated root motions by changing, for example, the <code class="docutils literal notranslate"><span class="pre">BD_InputSolve</span></code> subroutine in the <code class="docutils literal notranslate"><span class="pre">Driver_Beam.f90</span></code>
+(requiring a recompile of stand-alone BeamDyn).</p>
+<p>The blade is initialized in the rigid-body motion mode, i.e., based on the root velocity information defined in this section and the position information defined in the previous section, the motion of other points along the blade are initialized as</p>
+<div class="math notranslate nohighlight" id="equation-ini-rootacct-travel-angvel">
+<span class="eqno">(4.70)<a class="headerlink" href="#equation-ini-rootacct-travel-angvel" title="Permalink to this equation"></a></span>\[\begin{split}a_{0} &amp;= \omega_r \times (\omega_r \times (r_0 + P)) \\
+v_0 &amp;= v_{r0} + \omega_r \times P \\
+\omega_0 &amp;= \omega_r\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(a_{0}\)</span> is the initial translational acceleration vector along the blade; <span class="math notranslate nohighlight">\(v_0\)</span> and <span class="math notranslate nohighlight">\(\omega_0\)</span> the initial translational and angular velocity vectors along the blade, respectively; and <span class="math notranslate nohighlight">\(P\)</span> is the position vector along the blade relative to the root.
+Note that these equations are actually implemented with a call to the NWTC Library’s mesh mapping routines.</p>
+</div>
+<div class="section" id="applied-load">
+<h3><span class="section-number">4.7.3.2.5. </span>Applied Load<a class="headerlink" href="#applied-load" title="Permalink to this heading"></a></h3>
+<p>This section defines the applied loads, including distributed, point (lumped), and
+tip-concentrated loads, for the stand-alone analysis.</p>
+<p>The first six entries <code class="docutils literal notranslate"><span class="pre">DistrLoad(i)</span></code>, <span class="math notranslate nohighlight">\(i \in [1,6]\)</span>, specify three
+components of uniformly distributed force vector and three components of
+uniformly distributed moment vector in the global coordinate systems,
+respectively.</p>
+<p>The following six entries <code class="docutils literal notranslate"><span class="pre">TipLoad(i)</span></code>,
+<span class="math notranslate nohighlight">\(i \in [1,6]\)</span>, specify three components of concentrated tip force
+vector and three components of concentrated tip moment vector in the
+global coordinate system, respectively.</p>
+<p><code class="docutils literal notranslate"><span class="pre">NumPointLoads</span></code> defines how many point loads along the blade will be applied. The table
+following this input contains two header lines with seven columns and <code class="docutils literal notranslate"><span class="pre">NumPointLoads</span></code> rows.
+The first column is the non-dimensional distance along the local blade reference axis,
+ranging from <span class="math notranslate nohighlight">\([0.0,1.0]\)</span>. The next three columns, <code class="docutils literal notranslate"><span class="pre">Fx</span></code>, <code class="docutils literal notranslate"><span class="pre">Fy</span></code>, and <code class="docutils literal notranslate"><span class="pre">Fz</span></code> specify three
+components of point-force vector. The remaining three columns, <code class="docutils literal notranslate"><span class="pre">Mx</span></code>, <code class="docutils literal notranslate"><span class="pre">My</span></code>, and <code class="docutils literal notranslate"><span class="pre">Mz</span></code> specify three
+components of a moment vector.</p>
+<p>The distributed load defined in this section is assumed to be uniform along the blade and constant
+throughout the simulation. The tip load is a constant concentrated load applied at the tip of a blade.</p>
+<p>It is noted that all the loads defined in
+this section are dead loads, i.e., they are not rotating with the blade
+following the rigid-body rotation defined in the previous section.</p>
+<p>BeamDyn is capable of handling more complex loading cases, e.g.,
+time-dependent loads, through customization of the source code
+(requiring a recompile of stand-alone BeamDyn). The user can define such
+loads in the <code class="docutils literal notranslate"><span class="pre">BD_InputSolve</span></code> subroutine in the <code class="docutils literal notranslate"><span class="pre">Driver_Beam.f90</span></code> file,
+which is called every time step. The following section can be modified
+to define the concentrated load at each FE node:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">u</span><span class="p">%</span><span class="n">PointLoad</span><span class="p">%</span><span class="n">Force</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="n">u</span><span class="p">%</span><span class="n">PointLoad</span><span class="p">%</span><span class="n">NNodes</span><span class="p">)</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">u</span><span class="p">%</span><span class="n">PointLoad</span><span class="p">%</span><span class="n">Force</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="n">u</span><span class="p">%</span><span class="n">PointLoad</span><span class="p">%</span><span class="n">NNodes</span><span class="p">)</span><span class="w">  </span><span class="o">+</span><span class="w"> </span><span class="n">DvrData</span><span class="p">%</span><span class="n">TipLoad</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">u</span><span class="p">%</span><span class="n">PointLoad</span><span class="p">%</span><span class="n">Moment</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="n">u</span><span class="p">%</span><span class="n">PointLoad</span><span class="p">%</span><span class="n">NNodes</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">u</span><span class="p">%</span><span class="n">PointLoad</span><span class="p">%</span><span class="n">Moment</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="n">u</span><span class="p">%</span><span class="n">PointLoad</span><span class="p">%</span><span class="n">NNodes</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">DvrData</span><span class="p">%</span><span class="n">TipLoad</span><span class="p">(</span><span class="mi">4</span><span class="p">:</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where the first index in each array ranges from 1 to 3 for load vector
+components along three global directions and the second index of each
+array ranges from 1 to <code class="docutils literal notranslate"><span class="pre">u%PointLoad%NNodes</span></code>, where the latter is the total
+number of FE nodes. Note that <code class="docutils literal notranslate"><span class="pre">u%PointLoad%Force(1:3,:)</span></code> and <code class="docutils literal notranslate"><span class="pre">u%PointLoad%Moment(1:3,:)</span></code>
+have been populated with the point-load loads read from the BeamDyn driver input file
+using the call to <code class="docutils literal notranslate"><span class="pre">Transfer_Point_to_Point</span></code> earlier in the subroutine.</p>
+<p>For example, a time-dependent sinusoidal force
+acting along the <span class="math notranslate nohighlight">\(X\)</span> direction applied at the <span class="math notranslate nohighlight">\(2^{nd}\)</span> FE
+node can be defined as</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">u</span><span class="p">%</span><span class="n">PointLoad</span><span class="p">%</span><span class="n">Force</span><span class="p">(:,:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0D0</span>
+<span class="n">u</span><span class="p">%</span><span class="n">PointLoad</span><span class="p">%</span><span class="n">Force</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0D+03</span><span class="o">*</span><span class="nb">SIN</span><span class="p">((</span><span class="mf">2.0</span><span class="o">*</span><span class="n">pi</span><span class="p">)</span><span class="o">*</span><span class="n">t</span><span class="o">/</span><span class="mf">6.0</span><span class="w"> </span><span class="p">)</span>
+<span class="n">u</span><span class="p">%</span><span class="n">PointLoad</span><span class="p">%</span><span class="n">Moment</span><span class="p">(:,:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0D0</span>
+</pre></div>
+</div>
+<p>with <code class="docutils literal notranslate"><span class="pre">1.0D+03</span></code> being the amplitude and <code class="docutils literal notranslate"><span class="pre">6.0</span></code> being the
+period. Note that this particular implementation overrides the tip-load and point-loads
+defined in the driver input file.</p>
+<p>Similar to the concentrated load, the distributed loads can be defined
+in the same subroutine</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">DO </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">u</span><span class="p">%</span><span class="n">DistrLoad</span><span class="p">%</span><span class="n">NNodes</span>
+<span class="w">   </span><span class="n">u</span><span class="p">%</span><span class="n">DistrLoad</span><span class="p">%</span><span class="n">Force</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DvrData</span><span class="p">%</span><span class="n">DistrLoad</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">)</span>
+<span class="w">   </span><span class="n">u</span><span class="p">%</span><span class="n">DistrLoad</span><span class="p">%</span><span class="n">Moment</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="n">i</span><span class="p">)</span><span class="o">=</span><span class="w"> </span><span class="n">DvrData</span><span class="p">%</span><span class="n">DistrLoad</span><span class="p">(</span><span class="mi">4</span><span class="p">:</span><span class="mi">6</span><span class="p">)</span>
+<span class="k">ENDDO</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">u%DistrLoad%NNodes</span></code> is the number of nodes input to BeamDyn (on the quadrature points),
+and <code class="docutils literal notranslate"><span class="pre">DvrData%DistrLoad(:)</span></code> is the constant uniformly distributed load BeamDyn reads from the driver
+input file. The user can modify <code class="docutils literal notranslate"><span class="pre">DvrData%DistrLoad(:)</span></code> to define the loads based on need.</p>
+<p>We note that the distributed loads are defined at the quadrature points
+for numerical integrations. For example, if Gauss quadrature is chosen,
+then the distributed loads are defined at
+Gauss points plus the two end points of the beam (root and tip). For
+trapezoidal quadrature, <code class="docutils literal notranslate"><span class="pre">p%ngp</span></code> stores the number of trapezoidal
+quadrature points.</p>
+</div>
+<div class="section" id="primary-input-file">
+<h3><span class="section-number">4.7.3.2.6. </span>Primary Input File<a class="headerlink" href="#primary-input-file" title="Permalink to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">InputFile</span></code> is the file name of the primary BeamDyn input file. This
+name should be in quotations and can contain an absolute path or a
+relative path.</p>
+</div>
+</div>
+<div class="section" id="beamdyn-primary-input-file">
+<h2><span class="section-number">4.7.3.3. </span>BeamDyn Primary Input File<a class="headerlink" href="#beamdyn-primary-input-file" title="Permalink to this heading"></a></h2>
+<p>The BeamDyn primary input file defines the blade geometry,
+LSFE-discretization and simulation options, output channels, and name of
+the blade input file. The geometry of the blade is defined by key-point
+coordinates and initial twist angles (in units of degree) in the blade
+local coordinate system (IEC standard blade system where <span class="math notranslate nohighlight">\(Z_r\)</span>
+is along blade axis from root to tip, <span class="math notranslate nohighlight">\(X_r\)</span> directs normally
+toward the suction side, and <span class="math notranslate nohighlight">\(Y_r\)</span> directs normally toward the
+trailing edge).</p>
+<p>The file is organized into several functional sections. Each section
+corresponds to an aspect of the BeamDyn model.</p>
+<p>A sample BeamDyn primary input file is given in <a class="reference internal" href="appendix.html#bd-appendix"><span class="std std-numref">Section 4.7.8</span></a>.</p>
+<p>The primary input file begins with two lines of header information,
+which are for the user but are not used by the software.</p>
+<div class="section" id="simulation-controls">
+<h3><span class="section-number">4.7.3.3.1. </span>Simulation Controls<a class="headerlink" href="#simulation-controls" title="Permalink to this heading"></a></h3>
+<p>The user can set the <code class="docutils literal notranslate"><span class="pre">Echo</span></code> flag to <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> to have BeamDyn echo the
+contents of the BeamDyn input file (useful for debugging errors in the
+input file).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">QuasiStaticInit</span></code> flag indicates if BeamDyn should perform a quasi-static
+solution at initialization to better initialize its states. This option is only
+available when coupled to OpenFAST with dynamic analysis enabled. When set to <code class="docutils literal notranslate"><span class="pre">TRUE</span></code>,
+BeamDyn will perform a steady-state startup (SSS) solve that includes centripetal
+accelerations to reduce startup transients and improve numerical performance. This
+is particularly useful for rotating blade simulations where the initial conditions
+would otherwise cause spurious transients. The keyword “DEFAULT” sets this to <code class="docutils literal notranslate"><span class="pre">FALSE</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">rhoinf</span></code> specifies the numerical damping parameter (spectral radius
+of the amplification matrix) in the range of <span class="math notranslate nohighlight">\([0.0,1.0]\)</span> used in
+the generalized-<span class="math notranslate nohighlight">\(\alpha\)</span> time integrator implemented in BeamDyn
+for dynamic analysis. <strong>Note: This parameter is only used when BeamDyn is run
+in loose coupling mode (e.g., stand-alone with the driver or when loose coupling
+is explicitly selected in OpenFAST). When tight coupling is used in OpenFAST,
+time integration is handled by the glue code and this parameter is ignored.</strong>
+For <code class="docutils literal notranslate"><span class="pre">rhoinf</span> <span class="pre">=</span> <span class="pre">1.0</span></code>, no numerical damping is introduced and the
+generalized-<span class="math notranslate nohighlight">\(\alpha\)</span> scheme is identical to the Newmark scheme; for
+<code class="docutils literal notranslate"><span class="pre">rhoinf</span> <span class="pre">=</span> <span class="pre">0.0</span></code>, maximum numerical damping is
+introduced. Numerical damping may help produce numerically stable
+solutions.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Quadrature</span></code> specifies the spatial numerical integration scheme.
+There are two options: 1) Gauss quadrature; and 2) Trapezoidal
+quadrature. We note that in the current version, Gauss quadrature is
+implemented in reduced form to improve efficiency and avoid shear
+locking. In the trapezoidal quadrature, only one member (FE element) can
+be defined in the following GEOMETRY section of the primary input file.
+Trapezoidal quadrature is appropriate when the number of “blade input
+stations” (described below) is significantly greater than the order of
+the LSFE.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Refine</span></code> specifies a refinement parameter used in trapezoidal
+quadrature. An integer value greater than unity will split the space
+between two input stations into “Refine factor” of segments. The keyword
+“DEFAULT” may be used to set it to 1, i.e., no refinement is needed.
+This entry is not used in Gauss quadrature.</p>
+<p><code class="docutils literal notranslate"><span class="pre">N_Fact</span></code> specifies a parameter used in the modified Newton-Raphson
+scheme. <strong>Note: This parameter is only used when BeamDyn is run in loose coupling
+mode (stand-alone with the driver or when loose coupling is explicitly selected in
+OpenFAST). When tight coupling is used in OpenFAST, this parameter is ignored.</strong>
+If <code class="docutils literal notranslate"><span class="pre">N_Fact</span> <span class="pre">=</span> <span class="pre">1</span></code> a full Newton iteration scheme is used, i.e., the global tangent
+stiffness matrix is computed and factorized at each iteration; if
+<code class="docutils literal notranslate"><span class="pre">N_Fact</span> <span class="pre">&gt;</span> <span class="pre">1</span></code> a modified Newton iteration
+scheme is used, i.e., the global stiffness matrix is computed and
+factorized every <code class="docutils literal notranslate"><span class="pre">N_Fact</span></code> iterations within each time step. The
+keyword “DEFAULT” sets <code class="docutils literal notranslate"><span class="pre">N_Fact</span> <span class="pre">=</span> <span class="pre">5</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">DTBeam</span></code> specifies the constant time increment of the
+time-integration in seconds. The keyword “DEFAULT” may be used to
+indicate that the module should employ the time increment prescribed by
+the driver code (FAST/stand-alone driver program).</p>
+<p><code class="docutils literal notranslate"><span class="pre">load_retries</span></code> specifies the maximum number of load retries allowed. This option
+currently works only for static analysis. For every load retry, the applied load is
+halved to promote convergence of the Newton-Raphson scheme in iteration of smaller
+load steps as opposed to one single large load step which may cause divergence of the
+Newton-Raphson scheme. The keyword “DEFAULT” sets <code class="docutils literal notranslate"><span class="pre">load_retries</span> <span class="pre">=</span> <span class="pre">20</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">NRMax</span></code> specifies the maximum number of iterations per time step in
+the Newton-Raphson scheme. <strong>Note: This parameter is only used when BeamDyn is run
+in loose coupling mode (stand-alone with the driver or when loose coupling is explicitly
+selected in OpenFAST). When tight coupling is used in OpenFAST, this parameter is ignored.</strong>
+If convergence is not reached within this number of iterations, BeamDyn returns an error
+message and terminates the simulation. The keyword “DEFAULT” sets
+<code class="docutils literal notranslate"><span class="pre">NRMax</span> <span class="pre">=</span> <span class="pre">10</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Stop_Tol</span></code> specifies a tolerance parameter used in convergence
+criteria of a nonlinear solution that is used for the termination of the
+iteration. <strong>Note: This parameter is only used when BeamDyn is run in loose coupling
+mode (stand-alone with the driver or when loose coupling is explicitly selected in
+OpenFAST). When tight coupling is used in OpenFAST, this parameter is ignored.</strong>
+The keyword “DEFAULT” sets <code class="docutils literal notranslate"><span class="pre">Stop_Tol</span> <span class="pre">=</span> <span class="pre">1.0E-05</span></code>. Please refer to
+<a class="reference internal" href="theory.html#convergence-criterion"><span class="std std-numref">Section 4.7.5.7</span></a> for more details.</p>
+<p><code class="docutils literal notranslate"><span class="pre">tngt_stf_fd</span></code> is a boolean that sets the flag to compute the tangent stiffness
+matrix using finite differencing instead of analytical differentiation. The
+finite differencing is performed using a central scheme. The keyword “DEFAULT”
+sets <code class="docutils literal notranslate"><span class="pre">tngt_stf_fd</span> <span class="pre">=</span> <span class="pre">FALSE</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">tngt_stf_comp</span></code> is a boolean that sets the flag to compare the analytical tangent
+stiffness matrix against the finite differenced tangent stiffness matrix. Information is
+written to the terminal regarding the dof where the maximum difference is observed. If
+<code class="docutils literal notranslate"><span class="pre">tngt_stf_fd</span> <span class="pre">=</span> <span class="pre">FALSE</span></code> and <code class="docutils literal notranslate"><span class="pre">tngt_stf_comp</span> <span class="pre">=</span> <span class="pre">TRUE</span></code>, the analytical tangent stiffness
+matrix is used to solve the system of equations while the finite difference tangent stiffness
+matrix is used only to perform the comparison of the two matrices. The keyword “DEFAULT”
+sets <code class="docutils literal notranslate"><span class="pre">tngt_stf_comp</span> <span class="pre">=</span> <span class="pre">FALSE</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">tngt_stf_pert</span></code> sets the perturbation size for finite differencing. The “DEFAULT” value
+based on experience is set to <code class="docutils literal notranslate"><span class="pre">1e-06</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">tngt_stf_difftol</span></code> is the maximum allowable relative difference between the analytical
+and finite differenced tangent stiffness matrices. If for any entry in the matrices,
+the relative difference exceeds this value the simulation will terminate. The “DEFAULT” value
+is currently set to <code class="docutils literal notranslate"><span class="pre">1e-01</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">RotStates</span></code> is a flag that indicates if BeamDyn’s continuous states should be
+oriented in the rotating frame during linearization analysis when coupled to OpenFAST.
+If multi-blade coordinate (MBC3) analysis is performed, <code class="docutils literal notranslate"><span class="pre">RotStates</span></code> must be <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
+</div>
+<div class="section" id="geometry-parameter">
+<h3><span class="section-number">4.7.3.3.2. </span>Geometry Parameter<a class="headerlink" href="#geometry-parameter" title="Permalink to this heading"></a></h3>
+<p>The blade geometry is defined by a curvilinear local blade reference
+axis. The blade reference axis locates the origin and orientation of
+each a local coordinate system where the cross-sectional 6x6 stiffness
+and mass matrices are defined in the BeamDyn blade input file. It should
+not really matter where in the cross section the 6x6 stiffness and mass
+matrices are defined relative to, as long as the reference axis is
+consistently defined and closely follows the natural geometry of the
+blade.</p>
+<p>The blade beam model is composed of several <em>members</em> in contiguous
+series and each member is defined by at least three key points in
+BeamDyn. A cubic-spline-fit pre-processor implemented in BeamDyn
+automatically generates the member based on the key points and then
+interconnects the members into a blade. There is always a shared key
+point at adjacent members; therefore the total number of key points is
+related to number of members and key points in each member.</p>
+<p><code class="docutils literal notranslate"><span class="pre">member_total</span></code> specifies the total number of beam members used in
+the structure. With the LSFE discretization, a single member and a
+sufficiently high element order, <code class="docutils literal notranslate"><span class="pre">order_elem</span></code> below, may well be
+sufficient.</p>
+<p><code class="docutils literal notranslate"><span class="pre">kp_total</span></code> specifies the total number of key points used to define
+the beam members.</p>
+<p>The following section contains <code class="docutils literal notranslate"><span class="pre">member_total</span></code> lines. Each line has
+two integers providing the member number (must be 1, 2, 3, etc.,
+sequentially) and the number of key points in this member, respectively.
+It is noted that the number of key points in each member is not
+independent of the total number of key points and they should satisfy
+the following equality:</p>
+<div class="math notranslate nohighlight" id="equation-keypoint">
+<span class="eqno">(4.71)<a class="headerlink" href="#equation-keypoint" title="Permalink to this equation"></a></span>\[kp\_total = \sum_{i=1}^{member\_total} n_i - member\_total +1\]</div>
+<p>where <span class="math notranslate nohighlight">\(n_i\)</span> is the number of key points in the <span class="math notranslate nohighlight">\(i^{th}\)</span>
+member. Because cubic splines are implemented in BeamDyn, <span class="math notranslate nohighlight">\(n_i\)</span>
+must be greater than or equal to three. Figures <a class="reference internal" href="#geometry1-case1"><span class="std std-numref">Fig. 4.30</span></a> and <a class="reference internal" href="#geometry1-case2"><span class="std std-numref">Fig. 4.31</span></a> show two
+cases for member and key-point definition.</p>
+<div class="figure align-center" id="id2">
+<span id="geometry1-case1"></span><a class="reference internal image-reference" href="../../../_images/geometry_member1.png"><img alt="../../../_images/geometry_member1.png" src="../../../_images/geometry_member1.png" style="width: 60%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.30 </span><span class="caption-text">Member and key point definition: one member defined by four key points;</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</div>
+<div class="figure align-center" id="id3">
+<span id="geometry1-case2"></span><a class="reference internal image-reference" href="../../../_images/geometry_member2.png"><img alt="../../../_images/geometry_member2.png" src="../../../_images/geometry_member2.png" style="width: 60%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.31 </span><span class="caption-text">Member and key point definition: two members defined by six key points.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</div>
+<p>The next section defines the key-point information, preceded by two
+header lines. Each key point is defined by three physical coordinates
+(<code class="docutils literal notranslate"><span class="pre">kp_xr</span></code>, <code class="docutils literal notranslate"><span class="pre">kp_yr</span></code>, <code class="docutils literal notranslate"><span class="pre">kp_zr</span></code>) in the IEC standard blade
+coordinate system (the blade reference coordinate system) along with a
+structural twist angle (<code class="docutils literal notranslate"><span class="pre">initial_twist</span></code>) in the unit of degrees.
+The structural twist angle is also following the IEC standard which is
+defined as the twist about the negative <span class="math notranslate nohighlight">\(Z_l\)</span> axis. The key points
+are entered sequentially (from the root to tip) and there should be a
+total of <code class="docutils literal notranslate"><span class="pre">kp_total</span></code> lines for BeamDyn to read in the information,
+after two header lines. Please refer to <a class="reference internal" href="#blade-geometry"><span class="std std-numref">Fig. 4.32</span></a> for
+more details on the blade geometry definition.</p>
+<div class="figure align-center" id="id4">
+<span id="blade-geometry"></span><a class="reference internal image-reference" href="../../../_images/blade_geometry.jpg"><img alt="../../../_images/blade_geometry.jpg" src="../../../_images/blade_geometry.jpg" style="width: 100%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.32 </span><span class="caption-text">BeamDyn Blade Geometry - Top: Side View; Middle: Front View (Looking Downwind); Bottom: Cross Section View (Looking Toward the Tip, from the Root)</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</div>
+</div>
+<div class="section" id="mesh-parameter">
+<h3><span class="section-number">4.7.3.3.3. </span>Mesh Parameter<a class="headerlink" href="#mesh-parameter" title="Permalink to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Order_Elem</span></code> specifies the order of shape functions for each finite
+element. Each LSFE will have <code class="docutils literal notranslate"><span class="pre">Order_Elem</span></code>+1 nodes located at the
+GLL quadrature points. All LSFEs will have the same order. With the LSFE
+discretization, an increase in accuracy will, in general, be better
+achieved by increasing <code class="docutils literal notranslate"><span class="pre">Order_Elem</span></code> (i.e., <span class="math notranslate nohighlight">\(p\)</span>-refinement)
+rather than increasing the number of members (i.e.,
+<span class="math notranslate nohighlight">\(h\)</span>-refinement). For Gauss quadrature, <code class="docutils literal notranslate"><span class="pre">Order_Elem</span></code> should be
+greater than one.</p>
+</div>
+<div class="section" id="material-parameter">
+<h3><span class="section-number">4.7.3.3.4. </span>Material Parameter<a class="headerlink" href="#material-parameter" title="Permalink to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">BldFile</span></code> is the file name of the blade input file. This name should
+be in quotations and can contain an absolute path or a relative path.</p>
+</div>
+<div class="section" id="outputs">
+<span id="bd-outputs"></span><h3><span class="section-number">4.7.3.3.5. </span>Outputs<a class="headerlink" href="#outputs" title="Permalink to this heading"></a></h3>
+<p>In this section of the primary input file, the user sets flags and
+switches for the desired output behavior.</p>
+<p>Specifying <code class="docutils literal notranslate"><span class="pre">SumPrint</span> <span class="pre">=</span> <span class="pre">TRUE</span></code> causes BeamDyn to generate a
+summary file with name <code class="docutils literal notranslate"><span class="pre">InputFile.sum</span></code>. See
+<a class="reference internal" href="output_files.html#sum-file"><span class="std std-numref">Section 4.7.4.2</span></a> for summary file details.</p>
+<p><code class="docutils literal notranslate"><span class="pre">OutFmt</span></code> parameter controls the formatting of the results within the
+stand-alone BeamDyn output file. It needs to be a valid Fortran format
+string, but BeamDyn currently does not check the validity. This input is
+unused when BeamDyn is used coupled to FAST.</p>
+<p><code class="docutils literal notranslate"><span class="pre">NNodeOuts</span></code> specifies the number of nodes where output can be
+written to a file. Currently, BeamDyn can output quantities at a maximum
+of nine nodes.</p>
+<p><code class="docutils literal notranslate"><span class="pre">OutNd</span></code> is a list <code class="docutils literal notranslate"><span class="pre">NNodeOuts</span></code> long of node numbers between 1 and the number of
+nodes on the output mesh, separated by any
+combination of commas, semicolons, spaces, and/or tabs. The nodal
+positions are given in the summary file, if output.
+For Gassian quadrature, the number of nodes on the output mesh is the total number of FE nodes;
+for trapezoidal quadrature, this is the number of quadrature nodes.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">OutList</span></code> block contains a list of output parameters. Enter one
+or more lines containing quoted strings that in turn contain one or more
+output parameter names. Separate output parameter names by any
+combination of commas, semicolons, spaces, and/or tabs. If you prefix a
+parameter name with a minus sign, “-“, underscore, “_”, or the
+characters “m” or “M”, BeamDyn will multiply the value for that channel
+by -1 before writing the data. The parameters are written in the order
+they are listed in the input file. BeamDyn allows you to use multiple
+lines so that you can break your list into meaningful groups and so the
+lines can be shorter. You may enter comments after the closing quote on
+any of the lines. Entering a line with the string “END” at the beginning
+of the line or at the beginning of a quoted string found at the
+beginning of the line will cause BeamDyn to quit scanning for more lines
+of channel names. Node-related quantities are generated for the
+requested nodes identified through the OutNd list above. If BeamDyn
+encounters an unknown/invalid channel name, it warns the users but will
+remove the suspect channel from the output file. Please refer to
+Appendix <a class="reference internal" href="appendix.html#app-output-channel"><span class="std std-numref">Section 4.7.8.2</span></a> for a complete list of possible output
+parameters and their names.</p>
+</div>
+<div class="section" id="nodal-outputs">
+<span id="bd-nodal-outputs"></span><h3><span class="section-number">4.7.3.3.6. </span>Nodal Outputs<a class="headerlink" href="#nodal-outputs" title="Permalink to this heading"></a></h3>
+<p>In addition to the named outputs in <a class="reference internal" href="#bd-outputs"><span class="std std-numref">Section 4.7.3.3.5</span></a> above, BeamDyn allows
+for outputting the full set blade node motions and loads (tower nodes
+unavailable at present). Please refer to the BeamDyn_Nodes tab in the
+Excel file <a class="reference download internal" download="" href="../../../_downloads/3f19498a5dc774461e022b671ff01ec6/OutListParameters.xlsx"><code class="xref download docutils literal notranslate"><span class="pre">OutListParameters.xlsx</span></code></a>
+for a complete list of possible output parameters.</p>
+<p>This section follows the <cite>END</cite> statement from normal Outputs section described
+above, and includes a separator description line followed by the following
+optinos.</p>
+<p><strong>BldNd_BlOutNd</strong> specifies which nodes to output.  This is currently unused.</p>
+<p>The <strong>OutList</strong> section controls the nodal output quantities generated by
+BeamDyn. In this section, the user specifies the name of the channel family to
+output. The output name for each channel is then created internally by BeamDyn
+by combining the blade number, node number, and channel family name. For
+example, if the user specifies <strong>TDxr</strong> as the channel family name, the output
+channels will be named with the convention of <strong>B</strong><span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span><strong>N###TDxr</strong> where <span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span> is the blade number, and <strong>###</strong> is the
+three digit node number.</p>
+<div class="section" id="sample-nodal-outputs-section">
+<h4><span class="section-number">4.7.3.3.6.1. </span>Sample Nodal Outputs section<a class="headerlink" href="#sample-nodal-outputs-section" title="Permalink to this heading"></a></h4>
+<p>This sample includes the <code class="docutils literal notranslate"><span class="pre">END</span></code> statement from the regular outputs section.</p>
+<div class="docutils container" id="file-bdnodaloutputs">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span>END of input file (the word &quot;END&quot; must appear in the first 3 columns of this last OutList line)
+<span class="linenos">  2</span>---------------------- NODE OUTPUTS --------------------------------------------
+<span class="linenos">  3</span>         99   BldNd_BlOutNd   - Blade nodes on each blade (currently unused)
+<span class="linenos">  4</span>              OutList     - The next line(s) contains a list of output parameters.  See OutListParameters.xlsx, BeamDyn_Nodes tab for a listing of available output channels, (-)
+<span class="linenos">  5</span>&quot;FxL&quot;       - Sectional force resultants at each node expressed in l    l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos">  6</span>&quot;FyL&quot;       - Sectional force resultants at each node expressed in l    l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos">  7</span>&quot;FzL&quot;       - Sectional force resultants at each node expressed in l    l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos">  8</span>&quot;MxL&quot;       - Sectional moment resultants at each node expressed in l    l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos">  9</span>&quot;MyL&quot;       - Sectional moment resultants at each node expressed in l    l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos"> 10</span>&quot;MzL&quot;       - Sectional moment resultants at each node expressed in l    l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos"> 11</span>&quot;Fxr&quot;       - Sectional force resultants at each node expressed in r    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system    (N)
+<span class="linenos"> 12</span>&quot;Fyr&quot;       - Sectional force resultants at each node expressed in r    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system    (N)
+<span class="linenos"> 13</span>&quot;Fzr&quot;       - Sectional force resultants at each node expressed in r    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system    (N)
+<span class="linenos"> 14</span>&quot;Mxr&quot;       - Sectional moment resultants at each node expressed in r    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system    (N-m)
+<span class="linenos"> 15</span>&quot;Myr&quot;       - Sectional moment resultants at each node expressed in r    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system    (N-m)
+<span class="linenos"> 16</span>&quot;Mzr&quot;       - Sectional moment resultants at each node expressed in r    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system    (N-m)
+<span class="linenos"> 17</span>&quot;TDxr&quot;      - Sectional translational deflection (relative to the undeflected position) at each node expressed in r    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system    (m)
+<span class="linenos"> 18</span>&quot;TDyr&quot;      - Sectional translational deflection (relative to the undeflected position) at each node expressed in r    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system    (m)
+<span class="linenos"> 19</span>&quot;TDzr&quot;      - Sectional translational deflection (relative to the undeflected position) at each node expressed in r    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system    (m)
+<span class="linenos"> 20</span>&quot;RDxr&quot;      - Sectional angular/rotational deflection Wiener-Milenkovic parameter (relative to the undeflected orientation) at each node expressed in r    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system    (-)
+<span class="linenos"> 21</span>&quot;RDyr&quot;      - Sectional angular/rotational deflection Wiener-Milenkovic parameter (relative to the undeflected orientation) at each node expressed in r    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system    (-)
+<span class="linenos"> 22</span>&quot;RDzr&quot;      - Sectional angular/rotational deflection Wiener-Milenkovic parameter (relative to the undeflected orientation) at each node expressed in r    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system    (-)
+<span class="linenos"> 23</span>&quot;AbsXg&quot;     - Node position in X (global coordinate)     g: the global inertial frame coordinate system; when coupled to FAST, this is equivalent to FAST’s global inertial frame (i) coordinate system     (m)
+<span class="linenos"> 24</span>&quot;AbsYg&quot;     - Node position in Y (global coordinate)     g: the global inertial frame coordinate system; when coupled to FAST, this is equivalent to FAST’s global inertial frame (i) coordinate system     (m)
+<span class="linenos"> 25</span>&quot;AbsZg&quot;     - Node position in Z (global coordinate)     g: the global inertial frame coordinate system; when coupled to FAST, this is equivalent to FAST’s global inertial frame (i) coordinate system     (m)
+<span class="linenos"> 26</span>&quot;AbsXr&quot;     - Node position in X (relative to root)     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (m)
+<span class="linenos"> 27</span>&quot;AbsYr&quot;     - Node position in Y (relative to root)     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (m)
+<span class="linenos"> 28</span>&quot;AbsZr&quot;     - Node position in Z (relative to root)     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (m)
+<span class="linenos"> 29</span>&quot;TVxg&quot;      - Sectional translational velocities (absolute)    g: the global inertial frame coordinate system; when coupled to FAST, this is equivalent to FAST’s global inertial frame (i) coordinate system     (m/s)
+<span class="linenos"> 30</span>&quot;TVyg&quot;      - Sectional translational velocities (absolute)    g: the global inertial frame coordinate system; when coupled to FAST, this is equivalent to FAST’s global inertial frame (i) coordinate system     (m/s)
+<span class="linenos"> 31</span>&quot;TVzg&quot;      - Sectional translational velocities (absolute)    g: the global inertial frame coordinate system; when coupled to FAST, this is equivalent to FAST’s global inertial frame (i) coordinate system     (m/s)
+<span class="linenos"> 32</span>&quot;TVxl&quot;      - Sectional translational velocities (absolute)    l: a floating coordinate system local to the deflected beam    (m/s)
+<span class="linenos"> 33</span>&quot;TVyl&quot;      - Sectional translational velocities (absolute)    l: a floating coordinate system local to the deflected beam    (m/s)
+<span class="linenos"> 34</span>&quot;TVzl&quot;      - Sectional translational velocities (absolute)    l: a floating coordinate system local to the deflected beam    (m/s)
+<span class="linenos"> 35</span>&quot;TVxr&quot;      - Sectional translational velocities (absolute)    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (m/s)
+<span class="linenos"> 36</span>&quot;TVyr&quot;      - Sectional translational velocities (absolute)    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (m/s)
+<span class="linenos"> 37</span>&quot;TVzr&quot;      - Sectional translational velocities (absolute)    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (m/s)
+<span class="linenos"> 38</span>&quot;RVxg&quot;      - Sectional angular/rotational velocities (absolute)    g: the global inertial frame coordinate system; when coupled to FAST, this is equivalent to FAST’s global inertial frame (i) coordinate system     (deg/s)
+<span class="linenos"> 39</span>&quot;RVyg&quot;      - Sectional angular/rotational velocities (absolute)    g: the global inertial frame coordinate system; when coupled to FAST, this is equivalent to FAST’s global inertial frame (i) coordinate system     (deg/s)
+<span class="linenos"> 40</span>&quot;RVzg&quot;      - Sectional angular/rotational velocities (absolute)    g: the global inertial frame coordinate system; when coupled to FAST, this is equivalent to FAST’s global inertial frame (i) coordinate system     (deg/s)
+<span class="linenos"> 41</span>&quot;RVxl&quot;      - Sectional angular/rotational velocities (absolute)    l: a floating coordinate system local to the deflected beam    (deg/s)
+<span class="linenos"> 42</span>&quot;RVyl&quot;      - Sectional angular/rotational velocities (absolute)    l: a floating coordinate system local to the deflected beam    (deg/s)
+<span class="linenos"> 43</span>&quot;RVzl&quot;      - Sectional angular/rotational velocities (absolute)    l: a floating coordinate system local to the deflected beam    (deg/s)
+<span class="linenos"> 44</span>&quot;RVxr&quot;      - Sectional angular/rotational velocities (absolute)    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (deg/s)
+<span class="linenos"> 45</span>&quot;RVyr&quot;      - Sectional angular/rotational velocities (absolute)    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (deg/s)
+<span class="linenos"> 46</span>&quot;RVzr&quot;      - Sectional angular/rotational velocities (absolute)    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (deg/s)
+<span class="linenos"> 47</span>&quot;TAxl&quot;      - Sectional angular/rotational velocities (absolute)    l: a floating coordinate system local to the deflected beam    (m/s^2)
+<span class="linenos"> 48</span>&quot;TAyl&quot;      - Sectional angular/rotational velocities (absolute)    l: a floating coordinate system local to the deflected beam    (m/s^2)
+<span class="linenos"> 49</span>&quot;TAzl&quot;      - Sectional angular/rotational velocities (absolute)    l: a floating coordinate system local to the deflected beam    (m/s^2)
+<span class="linenos"> 50</span>&quot;TAxr&quot;      - Sectional angular/rotational velocities (absolute)    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (m/s^2)
+<span class="linenos"> 51</span>&quot;TAyr&quot;      - Sectional angular/rotational velocities (absolute)    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (m/s^2)
+<span class="linenos"> 52</span>&quot;TAzr&quot;      - Sectional angular/rotational velocities (absolute)    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (m/s^2)
+<span class="linenos"> 53</span>&quot;RAxl&quot;      - Sectional angular/rotational velocities (absolute)    l: a floating coordinate system local to the deflected beam    (deg/s^2)
+<span class="linenos"> 54</span>&quot;RAyl&quot;      - Sectional angular/rotational velocities (absolute)    l: a floating coordinate system local to the deflected beam    (deg/s^2)
+<span class="linenos"> 55</span>&quot;RAzl&quot;      - Sectional angular/rotational velocities (absolute)    l: a floating coordinate system local to the deflected beam    (deg/s^2)
+<span class="linenos"> 56</span>&quot;RAxr&quot;      - Sectional angular/rotational velocities (absolute)    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (deg/s^2)
+<span class="linenos"> 57</span>&quot;RAyr&quot;      - Sectional angular/rotational velocities (absolute)    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (deg/s^2)
+<span class="linenos"> 58</span>&quot;RAzr&quot;      - Sectional angular/rotational velocities (absolute)    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (deg/s^2)
+<span class="linenos"> 59</span>&quot;PFxL&quot;      - Applied point forces at each node expressed in l    l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos"> 60</span>&quot;PFyL&quot;      - Applied point forces at each node expressed in l    l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos"> 61</span>&quot;PFzL&quot;      - Applied point forces at each node expressed in l    l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos"> 62</span>&quot;PMxL&quot;      - Applied point moments at each node expressed in l    l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos"> 63</span>&quot;PMyL&quot;      - Applied point moments at each node expressed in l    l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos"> 64</span>&quot;PMzL&quot;      - Applied point moments at each node expressed in l    l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos"> 65</span>&quot;DFxL&quot;      - Applied distributed forces at each node expressed in l    l: a floating coordinate system local to the deflected beam    (N/m)
+<span class="linenos"> 66</span>&quot;DFyL&quot;      - Applied distributed forces at each node expressed in l    l: a floating coordinate system local to the deflected beam    (N/m)
+<span class="linenos"> 67</span>&quot;DFzL&quot;      - Applied distributed forces at each node expressed in l    l: a floating coordinate system local to the deflected beam    (N/m)
+<span class="linenos"> 68</span>&quot;DMxL&quot;      - Applied distributed moments at each node expressed in l    l: a floating coordinate system local to the deflected beam    (N-m/m)
+<span class="linenos"> 69</span>&quot;DMyL&quot;      - Applied distributed moments at each node expressed in l    l: a floating coordinate system local to the deflected beam    (N-m/m)
+<span class="linenos"> 70</span>&quot;DMzL&quot;      - Applied distributed moments at each node expressed in l    l: a floating coordinate system local to the deflected beam    (N-m/m)
+<span class="linenos"> 71</span>&quot;DFxR&quot;      - Applied distributed forces at each node expressed in r    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N/m)
+<span class="linenos"> 72</span>&quot;DFyR&quot;      - Applied distributed forces at each node expressed in r    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N/m)
+<span class="linenos"> 73</span>&quot;DFzR&quot;      - Applied distributed forces at each node expressed in r    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N/m)
+<span class="linenos"> 74</span>&quot;DMxR&quot;      - Applied distributed forces at each node expressed in r    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N-m/m)
+<span class="linenos"> 75</span>&quot;DMyR&quot;      - Applied distributed forces at each node expressed in r    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N-m/m)
+<span class="linenos"> 76</span>&quot;DMzR&quot;      - Applied distributed forces at each node expressed in r    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N-m/m)
+<span class="linenos"> 77</span>&quot;FFbxl&quot;     - Gyroscopic force x     l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos"> 78</span>&quot;FFbyl&quot;     - Gyroscopic force y     l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos"> 79</span>&quot;FFbzl&quot;     - Gyroscopic force z     l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos"> 80</span>&quot;FFbxr&quot;     - Gyroscopic force x     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N)
+<span class="linenos"> 81</span>&quot;FFbyr&quot;     - Gyroscopic force y     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N)
+<span class="linenos"> 82</span>&quot;FFbzr&quot;     - Gyroscopic force z     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N)
+<span class="linenos"> 83</span>&quot;MFbxl&quot;     - Gyroscopic moment about x     l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos"> 84</span>&quot;MFbyl&quot;     - Gyroscopic moment about y     l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos"> 85</span>&quot;MFbzl&quot;     - Gyroscopic moment about z     l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos"> 86</span>&quot;MFbxr&quot;     - Gyroscopic moment about x     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N-m)
+<span class="linenos"> 87</span>&quot;MFbyr&quot;     - Gyroscopic moment about y     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N-m)
+<span class="linenos"> 88</span>&quot;MFbzr&quot;     - Gyroscopic moment about z     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N-m)
+<span class="linenos"> 89</span>&quot;FFcxl&quot;     - Elastic restoring force Fc x     l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos"> 90</span>&quot;FFcyl&quot;     - Elastic restoring force Fc y     l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos"> 91</span>&quot;FFczl&quot;     - Elastic restoring force Fc z     l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos"> 92</span>&quot;FFcxr&quot;     - Elastic restoring force Fc x     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N)
+<span class="linenos"> 93</span>&quot;FFcyr&quot;     - Elastic restoring force Fc y     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N)
+<span class="linenos"> 94</span>&quot;FFczr&quot;     - Elastic restoring force Fc z     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N)
+<span class="linenos"> 95</span>&quot;MFcxl&quot;     - Elastic restoring moment Fc about x     l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos"> 96</span>&quot;MFcyl&quot;     - Elastic restoring moment Fc about y     l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos"> 97</span>&quot;MFczl&quot;     - Elastic restoring moment Fc about z     l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos"> 98</span>&quot;MFcxr&quot;     - Elastic restoring moment Fc about x     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N-m)
+<span class="linenos"> 99</span>&quot;MFcyr&quot;     - Elastic restoring moment Fc about y     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N-m)
+<span class="linenos">100</span>&quot;MFczr&quot;     - Elastic restoring moment Fc about z     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N-m)
+<span class="linenos">101</span>&quot;FFdxl&quot;     - Elastic restoring force Fd x     l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos">102</span>&quot;FFdyl&quot;     - Elastic restoring force Fd y     l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos">103</span>&quot;FFdzl&quot;     - Elastic restoring force Fd z     l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos">104</span>&quot;FFdxr&quot;     - Elastic restoring force Fd x     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N)
+<span class="linenos">105</span>&quot;FFdyr&quot;     - Elastic restoring force Fd y     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N)
+<span class="linenos">106</span>&quot;FFdzr&quot;     - Elastic restoring force Fd z     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N)
+<span class="linenos">107</span>&quot;MFdxl&quot;     - Elastic restoring moment Fd about x     l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos">108</span>&quot;MFdyl&quot;     - Elastic restoring moment Fd about y     l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos">109</span>&quot;MFdzl&quot;     - Elastic restoring moment Fd about z     l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos">110</span>&quot;MFdxr&quot;     - Elastic restoring moment Fd about x     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N-m)
+<span class="linenos">111</span>&quot;MFdyr&quot;     - Elastic restoring moment Fd about y     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N-m)
+<span class="linenos">112</span>&quot;MFdzr&quot;     - Elastic restoring moment Fd about z     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N-m)
+<span class="linenos">113</span>&quot;FFgxl&quot;     - Gravity force x     l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos">114</span>&quot;FFgyl&quot;     - Gravity force y     l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos">115</span>&quot;FFgzl&quot;     - Gravity force z     l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos">116</span>&quot;FFgxr&quot;     - Gravity force x     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N)
+<span class="linenos">117</span>&quot;FFgyr&quot;     - Gravity force y     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N)
+<span class="linenos">118</span>&quot;FFgzr&quot;     - Gravity force z     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N)
+<span class="linenos">119</span>&quot;MFgxl&quot;     - Gravity moment about x     l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos">120</span>&quot;MFgyl&quot;     - Gravity moment about y     l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos">121</span>&quot;MFgzl&quot;     - Gravity moment about z     l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos">122</span>&quot;MFgxr&quot;     - Gravity moment about x     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N-m)
+<span class="linenos">123</span>&quot;MFgyr&quot;     - Gravity moment about y     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N-m)
+<span class="linenos">124</span>&quot;MFgzr&quot;     - Gravity moment about z     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N-m)
+<span class="linenos">125</span>&quot;FFixl&quot;     - Inertial force x     l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos">126</span>&quot;FFiyl&quot;     - Inertial force y     l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos">127</span>&quot;FFizl&quot;     - Inertial force z     l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos">128</span>&quot;FFixr&quot;     - Inertial force x     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N)
+<span class="linenos">129</span>&quot;FFiyr&quot;     - Inertial force y     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N)
+<span class="linenos">130</span>&quot;FFizr&quot;     - Inertial force z     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N)
+<span class="linenos">131</span>&quot;MFixl&quot;     - Inertial moment about x     l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos">132</span>&quot;MFiyl&quot;     - Inertial moment about y     l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos">133</span>&quot;MFizl&quot;     - Inertial moment about z     l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos">134</span>&quot;MFixr&quot;     - Inertial moment about x     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N-m)
+<span class="linenos">135</span>&quot;MFiyr&quot;     - Inertial moment about y     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N-m)
+<span class="linenos">136</span>&quot;MFizr&quot;     - Inertial moment about z     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N-m)
+<span class="linenos">137</span>END of input file (the word &quot;END&quot; must appear in the first 3 columns of this last OutList line)
+<span class="linenos">138</span>---------------------------------------------------------------------------------------
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="blade-input-file">
+<h2><span class="section-number">4.7.3.4. </span>Blade Input File<a class="headerlink" href="#blade-input-file" title="Permalink to this heading"></a></h2>
+<p>The blade input file defines the cross-sectional properties at various
+stations along a blade and six damping coefficient for the whole blade.
+A sample BeamDyn blade input file is given in <a class="reference internal" href="appendix.html#bd-appendix"><span class="std std-numref">Section 4.7.8</span></a>.
+The blade input file begins with two lines of header information, which
+is for the user but is not used by the software.</p>
+<div class="section" id="blade-parameters">
+<h3><span class="section-number">4.7.3.4.1. </span>Blade Parameters<a class="headerlink" href="#blade-parameters" title="Permalink to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Station_Total</span></code> specifies the number cross-sectional stations along
+the blade axis used in the analysis.</p>
+<p><code class="docutils literal notranslate"><span class="pre">damp_type</span></code> specifies the type of structural damping to be used in the
+analysis. There are three options:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">damp_type</span> <span class="pre">=</span> <span class="pre">0</span></code>: No damping is considered in the analysis. The damping
+coefficients in the following sections will be ignored.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">damp_type</span> <span class="pre">=</span> <span class="pre">1</span></code>: Stiffness-proportional damping is applied.
+The six damping coefficients (<code class="docutils literal notranslate"><span class="pre">beta</span></code>) in the Stiffness-Proportional Damping
+section are used to scale the 6x6 stiffness matrix at each cross section.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">damp_type</span> <span class="pre">=</span> <span class="pre">2</span></code>: Modal damping is applied. The modal fractions of critical damping
+(<code class="docutils literal notranslate"><span class="pre">zeta</span></code>) for the first <code class="docutils literal notranslate"><span class="pre">n_modes</span></code> modes are used. BeamDyn internally computes
+the modal properties and applies damping in the modal coordinates.</p></li>
+</ul>
+</div>
+<div class="section" id="stiffness-proportional-damping-coefficients">
+<h3><span class="section-number">4.7.3.4.2. </span>Stiffness-Proportional Damping Coefficients<a class="headerlink" href="#stiffness-proportional-damping-coefficients" title="Permalink to this heading"></a></h3>
+<p>This section specifies six damping coefficients, <span class="math notranslate nohighlight">\(\mu_{ii}\)</span> (also called <code class="docutils literal notranslate"><span class="pre">beta</span></code>) with
+<span class="math notranslate nohighlight">\(i \in [1,6]\)</span>, for six DOFs (three translations and three
+rotations). These coefficients are only used when <code class="docutils literal notranslate"><span class="pre">damp_flag</span> <span class="pre">=</span> <span class="pre">1</span></code>.</p>
+<p>Viscous damping is implemented in BeamDyn where the damping
+forces are proportional to the strain rate. These are
+stiffness-proportional damping coefficients, whereby the
+<span class="math notranslate nohighlight">\(6\times6\)</span> damping matrix at each cross section is scaled from the
+<span class="math notranslate nohighlight">\(6 \times 6\)</span> stiffness matrix by these diagonal entries of a
+<span class="math notranslate nohighlight">\(6 \times 6\)</span> scaling matrix:</p>
+<div class="math notranslate nohighlight" id="equation-damping-force">
+<span class="eqno">(4.72)<a class="headerlink" href="#equation-damping-force" title="Permalink to this equation"></a></span>\[\mathcal{\underline{F}}^{Damp} = \underline{\underline{\mu}}~\underline{\underline{S}}~\dot{\underline{\epsilon}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathcal{\underline{F}}^{Damp}\)</span> is the damping force,
+<span class="math notranslate nohighlight">\(\underline{\underline{S}}\)</span> is the <span class="math notranslate nohighlight">\(6 \times 6\)</span>
+cross-sectional stiffness matrix, <span class="math notranslate nohighlight">\(\dot{\underline{\epsilon}}\)</span> is
+the strain rate, and <span class="math notranslate nohighlight">\(\underline{\underline{\mu}}\)</span> is the damping
+coefficient matrix defined as</p>
+<div class="math notranslate nohighlight" id="equation-damp-matrix">
+<span class="eqno">(4.73)<a class="headerlink" href="#equation-damp-matrix" title="Permalink to this equation"></a></span>\[\begin{split}\underline{\underline{\mu}} =
+\begin{bmatrix}
+    \mu_{11} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+    0 &amp; \mu_{22} &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+    0 &amp; 0 &amp; \mu_{33} &amp; 0 &amp; 0 &amp; 0 \\
+    0 &amp; 0 &amp; 0 &amp; \mu_{44} &amp; 0 &amp; 0 \\
+    0 &amp; 0 &amp; 0 &amp; 0 &amp; \mu_{55} &amp; 0 \\
+    0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \mu_{66} \\
+\end{bmatrix}\end{split}\]</div>
+</div>
+<div class="section" id="modal-damping-coefficients">
+<h3><span class="section-number">4.7.3.4.3. </span>Modal Damping Coefficients<a class="headerlink" href="#modal-damping-coefficients" title="Permalink to this heading"></a></h3>
+<p>This section specifies modal damping parameters and is only used when <code class="docutils literal notranslate"><span class="pre">damp_flag</span> <span class="pre">=</span> <span class="pre">2</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">n_modes</span></code> specifies the number of modes for which modal damping coefficients
+are provided. BeamDyn will compute the natural frequencies and mode shapes of the
+blade and apply damping in the modal coordinates.</p>
+<p><code class="docutils literal notranslate"><span class="pre">zeta</span></code> is an array of <code class="docutils literal notranslate"><span class="pre">n_modes</span></code> modal damping ratios, one for each mode.
+Each value should typically be between 0.0 (no damping) and 1.0 (critical damping),
+though higher values are permitted. Common values for composite blade structures
+are less than 0.05 (less than 5% of critical damping). The damping
+ratios are applied to modes 1 through <code class="docutils literal notranslate"><span class="pre">n_modes</span></code> in order of increasing frequency.</p>
+<p>After <code class="docutils literal notranslate"><span class="pre">n_modes</span></code> damping values are assigned that grow proportional to the modal
+natural frequency. This proportionality is assigned to match the <code class="docutils literal notranslate"><span class="pre">zeta</span></code> value
+of last mode with prescribed damping.</p>
+<p>If modal damping is selected, BeamDyn calculates nodal damping forces based on the node velocities,
+rotated to the initial node orientation, and the mode shape after quasi-static initialization has been performed,
+if it was requested. These nodal damping forces are then transformed back to the current node orientation.</p>
+<p>When using modal damping, <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> needs to be set to <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> in ElastoDyn to give BeamDyn
+a correct root pitch velocity. Otherwise, blade pitching will give spurious damping behavior.</p>
+<p>Recommendations:</p>
+<ul class="simple">
+<li><p>It is recommended to stop inputting zeta values before reaching the first axial mode (typically around 18 modes).
+Users may experiment with including more or fewer modes to observe the effect on results.</p></li>
+<li><p>Avoid prescribing a final zeta value of 1.0 (e.g., do not specify 18 modes with realistic zeta values followed by a 19th mode with zeta=1.0), as this can significantly degrade result quality.</p></li>
+<li><p>When attempting to match stiffness-proportional damping (<span class="math notranslate nohighlight">\(\mu\)</span>), the OpenFAST toolbox may fail to
+provide reliable damping values matched with mode numbers once some modes become critically damped.
+Reducing the number of modes (e.g., from 40 to 30) can help if higher modes are indexed incorrectly.</p></li>
+<li><p>In some cases, axial loads appear to be driven by the axial motion of non-axial modes.</p></li>
+<li><p>Verify that the modal frequencies and modal participation factors output in <code class="docutils literal notranslate"><span class="pre">InputFile.BD.R*.B*.modes.csv</span></code> file are consistent with the expected modes.
+This file is only output when modal damping is used.
+The number of output modes in this file is equal to the degrees of freedom of the blade.
+However, modes tend to become numerical artifacts past the first few modes of a given type.</p></li>
+</ul>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>Modal damping is experimental in OpenFAST 5.0, so should be used with care.</p></li>
+<li><p>Modal damping is mainly supported for tight coupling with OpenFAST.</p></li>
+<li><p>In some cases, when used with loose coupling or BeamDyn Driver, a much smaller time step may be needed to get reaction forces to converge with the tight coupling case and/or stiffness-proportional damping (<span class="math notranslate nohighlight">\(\mu\)</span>) case.</p></li>
+<li><p>Output forces internal forces from BeamDyn at quadrature points do not capture contributions from the modal damping forces.</p></li>
+</ul>
+</div>
+<div class="section" id="distributed-properties">
+<h3><span class="section-number">4.7.3.4.4. </span>Distributed Properties<a class="headerlink" href="#distributed-properties" title="Permalink to this heading"></a></h3>
+<p>This section specifies the cross-sectional properties at each of the
+<code class="docutils literal notranslate"><span class="pre">Station_Total</span></code> stations. For each station, a non-dimensional
+parameter <span class="math notranslate nohighlight">\(\eta\)</span> specifies the station location along the local
+blade reference axis ranging from <span class="math notranslate nohighlight">\([0.0,1.0]\)</span>. The first and last
+station parameters must be set to <span class="math notranslate nohighlight">\(0.0\)</span> (for the blade root) and
+<span class="math notranslate nohighlight">\(1.0\)</span> (for the blade tip), respectively.</p>
+<p>Following the station location parameter <span class="math notranslate nohighlight">\(\eta\)</span>, there are two
+<span class="math notranslate nohighlight">\(6 \times 6\)</span> matrices providing the structural and inertial
+properties for this cross-section. First is the stiffness matrix and
+then the mass matrix. We note that these matrices are defined in a local
+coordinate system along the blade axis with <span class="math notranslate nohighlight">\(Z_{l}\)</span> directing
+toward the unit tangent vector of the blade reference axis. For a
+cross-section without coupling effects, for example, the stiffness
+matrix is given as follows:</p>
+<div class="math notranslate nohighlight" id="equation-stiffness">
+<span class="eqno">(4.74)<a class="headerlink" href="#equation-stiffness" title="Permalink to this equation"></a></span>\[\begin{split}\begin{bmatrix}
+K_{ShrFlp} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; K_{ShrEdg} &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0&amp; EA &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; EI_{Edg} &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; EI_{Flp} &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; GJ
+\end{bmatrix}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(K_{ShrEdg}\)</span> and <span class="math notranslate nohighlight">\(K_{ShrFlp}\)</span> are the edge and flap
+shear stiffnesses, respectively; <span class="math notranslate nohighlight">\(EA\)</span> is the extension stiffness;
+<span class="math notranslate nohighlight">\(EI_{Edg}\)</span> and <span class="math notranslate nohighlight">\(EI_{Flp}\)</span> are the edge and flap stiffnesses,
+respectively; and <span class="math notranslate nohighlight">\(GJ\)</span> is the torsional stiffness. It is pointed
+out that for a generic cross-section, the sectional property matrices
+can be derived from a sectional analysis tool, e.g. VABS, BECAS, or
+NuMAD/BPE.</p>
+<p>A generalized sectional mass matrix is given by:</p>
+<div class="math notranslate nohighlight" id="equation-mass">
+<span class="eqno">(4.75)<a class="headerlink" href="#equation-mass" title="Permalink to this equation"></a></span>\[\begin{split}\begin{bmatrix}
+m &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; -m Y_{cm} \\
+0 &amp; m &amp; 0 &amp; 0 &amp; 0 &amp; m X_{cm}\\
+0 &amp; 0&amp; m &amp; m Y_{cm} &amp; -m X_{cm} &amp; 0 \\
+0 &amp; 0 &amp; m Y_{cm} &amp; i_{Edg} &amp; -i_{cp} &amp; 0 \\
+0 &amp; 0 &amp;-m X_{cm} &amp; -i_{cp} &amp; i_{Flp} &amp; 0 \\
+-m Y_{cm} &amp; m X_{cm} &amp; 0 &amp; 0 &amp; 0 &amp; i_{plr}
+\end{bmatrix}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(m\)</span> is the mass density per unit span; <span class="math notranslate nohighlight">\(X_{cm}\)</span> and
+<span class="math notranslate nohighlight">\(Y_{cm}\)</span> are the local coordinates of the sectional center of
+mass, respectively; <span class="math notranslate nohighlight">\(i_{Edg}\)</span> and <span class="math notranslate nohighlight">\(i_{Flp}\)</span> are the edge and
+flap mass moments of inertia per unit span, respectively;
+<span class="math notranslate nohighlight">\(i_{plr}\)</span> is the polar moment of inertia per unit span; and
+<span class="math notranslate nohighlight">\(i_{cp}\)</span> is the sectional cross-product of inertia per unit span.
+We note that for beam structure, the <span class="math notranslate nohighlight">\(i_{plr}\)</span> is given as
+(although this relationship is not checked by BeamDyn)</p>
+<div class="math notranslate nohighlight" id="equation-polarmoi">
+<span class="eqno">(4.76)<a class="headerlink" href="#equation-polarmoi" title="Permalink to this equation"></a></span>\[i_{plr} = i_{Edg} + i_{Flp}\]</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="running_bd.html" class="btn btn-neutral float-left" title="4.7.2. Running BeamDyn" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="output_files.html" class="btn btn-neutral float-right" title="4.7.4. Output Files" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

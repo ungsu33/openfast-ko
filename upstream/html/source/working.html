@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3. Working with OpenFAST &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4. User Documentation" href="user/index.html" />
+    <link rel="prev" title="2.8.2. Building OpenFAST on Windows with CMake and Cygwin 64-bit" href="install/install_cygwin.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/working.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. Working with OpenFAST</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#quick-start-running-openfast">3.1. Quick Start - Running OpenFAST</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#open-a-terminal">3.1.1. Open a terminal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#navigate-to-your-simulation-directory">3.1.2. Navigate to your simulation directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#run-openfast-to-check-the-version-number">3.1.3. Run OpenFAST to check the version number</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#run-your-first-openfast-simulation">3.1.4. Run your first OpenFAST simulation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting-a-simulation">3.2. Troubleshooting a simulation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#simple-troubleshooting">3.2.1. Simple troubleshooting</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#typical-errors">3.2.1.1. Typical errors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#typical-warnings">3.2.1.2. Typical warnings</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#advanced-troubleshooting">3.2.2. Advanced troubleshooting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#troubleshooting-for-specific-modules">3.2.3. Troubleshooting for specific modules</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#scripting-and-other-support-tools">3.3. Scripting and other support tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nlr-toolboxes">3.3.1. NLR toolboxes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#other-related-nlr-tools">3.3.2. Other related NLR tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#third-party-tools">3.3.3. Third party tools</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#open-source-openfast-models">3.4. Open-source OpenFAST models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#visualizing-inputs-and-outputs-files">3.5. Visualizing inputs and outputs files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-parametric-studies-and-design-load-cases-dlc">3.6. Running parametric studies and design load cases (DLC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#performing-linearization-analyses">3.7. Performing linearization analyses</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#background">3.7.1. Background</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#linearized-models-for-one-simulation-manually">3.7.2. Linearized models for one simulation (manually)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#postprocessing">3.7.3. Postprocessing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#campbell-diagrams">3.7.4. Campbell diagrams</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mode-shape-visualization">3.7.5. Mode shape visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#additional-references">3.7.6. Additional references</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user/index.html">4. User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3. </span>Working with OpenFAST</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/source/working.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="working-with-openfast">
+<span id="working-with-of"></span><h1><span class="section-number">3. </span>Working with OpenFAST<a class="headerlink" href="#working-with-openfast" title="Permalink to this heading"></a></h1>
+<p>This section provides support for some of the typical use cases of OpenFAST.
+It assumes that the user has an executable of OpenFAST available (see <a class="reference internal" href="install/index.html#installation"><span class="std std-ref">Installing OpenFAST</span></a> for installation).</p>
+<div class="section" id="quick-start-running-openfast">
+<h2><span class="section-number">3.1. </span>Quick Start - Running OpenFAST<a class="headerlink" href="#quick-start-running-openfast" title="Permalink to this heading"></a></h2>
+<p>In this Quick Start, we will explain how to run OpenFAST. OpenFAST is typically run from a terminal
+(also referred to as command prompt or command line).
+The simplest method to run OpenFAST is to copy the OpenFAST executable into your working directory, and then open a terminal into that directory.
+The steps are therefore:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Copy the OpenFAST executable to the directory where you will run your simulations</p></li>
+<li><p>Open a terminal</p></li>
+<li><p>Navigate to the folder containing the OpenFAST executable</p></li>
+<li><p>Run OpenFAST to check its version</p></li>
+<li><p>Run OpenFAST on a given input file</p></li>
+</ul>
+</div></blockquote>
+<p>The steps are detailed below.</p>
+<div class="section" id="open-a-terminal">
+<h3><span class="section-number">3.1.1. </span>Open a terminal<a class="headerlink" href="#open-a-terminal" title="Permalink to this heading"></a></h3>
+<p>To learn how open a terminal on your given operating system, you can try the following search queries:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://www.google.com/search?q=how+to+open+a+command+prompt+on+windows">On Windows</a></p></li>
+<li><p><a class="reference external" href="https://www.google.com/search?q=how+to+open+a+command+prompt+on+linux">On Linux</a></p></li>
+<li><p><a class="reference external" href="https://www.google.com/search?q=how+to+open+a+command+prompt+on+mac">On Mac</a></p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="navigate-to-your-simulation-directory">
+<h3><span class="section-number">3.1.2. </span>Navigate to your simulation directory<a class="headerlink" href="#navigate-to-your-simulation-directory" title="Permalink to this heading"></a></h3>
+<p>In the terminal, you can navigate between folders using the command <cite>cd</cite>.
+In this example, we assume that the simulation directory is <cite>simulations/test</cite>, therefore, to navigate to this directory you need to type:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>simulations
+<span class="nb">cd</span><span class="w"> </span><span class="nb">test</span>
+</pre></div>
+</div>
+<p>or:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>simulations/test
+</pre></div>
+</div>
+<p>To go to a parent directory, you can use <cite>cd ..</cite>.
+If the directory path contain spaces, use quotes around the path.
+It is usually good practice to avoid spaces in directory and file names.
+The path can also be an absolute path, e.g., <cite>cd C:/simulations/test</cite>.</p>
+</div>
+<div class="section" id="run-openfast-to-check-the-version-number">
+<h3><span class="section-number">3.1.3. </span>Run OpenFAST to check the version number<a class="headerlink" href="#run-openfast-to-check-the-version-number" title="Permalink to this heading"></a></h3>
+<p>Once your terminal is in the directory where OpenFAST is, you can try to run OpenFAST and check its version as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./openfast<span class="w"> </span>/h
+</pre></div>
+</div>
+<p>The <cite>./</cite> characters at the beginning of the command indicates that the executable is located in the current directory.
+The command above will display the version of OpenFAST, the compilation options, and display a help message on the syntax for calling the OpenFAST executable.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Try to always read the outputs of OpenFAST displayed in the terminal windows as errors and warnings will be displayed there.  In general, if an error is displayed in the terminal, you can use the guidelines given in <a class="reference internal" href="#troubleshooting"><span class="std std-ref">Simple troubleshooting</span></a> for troubleshooting.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>It is important to keep track of the version of OpenFAST you are using, since the input files format can change from version to version (see <a class="reference internal" href="user/api_change.html#api-change"><span class="std std-ref">API changes between versions</span></a>).</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To avoid having to copy the executable in your working directory, you can place the executable into a folder and add this folder to your system path. If you chose this method, and restart your terminal, you should be able to run <cite>openfast /h</cite> from any folder, and this time, <cite>./</cite> is not needed.</p>
+</div>
+</div>
+<div class="section" id="run-your-first-openfast-simulation">
+<h3><span class="section-number">3.1.4. </span>Run your first OpenFAST simulation<a class="headerlink" href="#run-your-first-openfast-simulation" title="Permalink to this heading"></a></h3>
+<p>The typical syntax to run a simulation is:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./openfast<span class="w"> </span>InputFile.fst
+</pre></div>
+</div>
+<p>where <cite>InputFile.fst</cite> is a main OpenFAST input file. The extension <cite>.fst</cite> is recommended for the main input file of OpenFAST, <cite>.dat</cite> for other inputs files.
+The input file format specifications of OpenFAST input files are given in
+<a class="reference internal" href="user/input_file_overview.html#input-file-overview"><span class="std std-ref">Input file formats</span></a>.</p>
+<p>We provide a minimal working example to get you started on your first OpenFAST run.
+This example uses the <a class="reference external" href="https://www.nrel.gov/docs/fy09osti/38060.pdf">historic NREL 5-MW</a> wind turbine, which is a fictitious but representative multi-MW wind turbine, with rated power 5 MW, rated rotor speed
+12.1 rpm, Hub Height 90 m, and rotor diameter 126 m.
+This example is for an “onshore” version of the turbine, with only the structure (no aerodynamics), where the tower is initially displaced by 3m at the tower top.  The files are located in the following
+<a class="reference external" href="https://github.com/OpenFAST/r-test/blob/main/glue-codes/openfast/MinimalExample/">github directory</a> .
+You will have to download the following files and place them in your working directory:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/OpenFAST/r-test/blob/main/glue-codes/openfast/MinimalExample/Main.fst">Main.fst</a>  : the main OpenFAST input file</p></li>
+<li><p><a class="reference external" href="https://github.com/OpenFAST/r-test/blob/main/glue-codes/openfast/MinimalExample/ElastoDyn.dat">ElastoDyn.dat</a>  : the input file for the ElastoDyn module</p></li>
+<li><p><a class="reference external" href="https://github.com/OpenFAST/r-test/blob/main/glue-codes/openfast/MinimalExample/ElastoDyn_Blade.dat">ElastoDyn_Blade.dat</a>  : the input file defining the structural properties of the blade to be used by the ElastoDyn module</p></li>
+<li><p><a class="reference external" href="https://github.com/OpenFAST/r-test/blob/main/glue-codes/openfast/MinimalExample/ElastoDyn_Tower.dat">ElastoDyn_Tower.dat</a>  : the input file defining the structural properties of the tower to be used by the ElastoDyn module</p></li>
+</ul>
+<p>Once these 4 files are placed in your working directory (where the OpenFAST executable is located and where your terminal is at), you can run the simulation as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./openfast<span class="w"> </span>Main.fst
+</pre></div>
+</div>
+<p>The simulation should run successfully and OpenFAST will generate an output file with the extension <cite>.out</cite> or <cite>.outb</cite>.
+We provide a simple Python and Matlab script in the <a class="reference external" href="https://github.com/OpenFAST/r-test/blob/main/glue-codes/openfast/MinimalExample/">github directory</a>  to display some of the output channels of this simulation. For more information on how to visualize the outputs, see <a class="reference internal" href="#visualizing-input-output-of"><span class="std std-ref">Visualizing inputs and outputs files</span></a>.
+In general, if an error is displayed in the terminal, you can use the guidelines given in <a class="reference internal" href="#troubleshooting"><span class="std std-ref">Simple troubleshooting</span></a> for troubleshooting.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>On certain platform (like Windows), you can drag and drop an input file to the OpenFAST executable in your file explorer, and this will run the simulation.  If an error occurs using this method, you will not be able to see the error message.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can use relative and aboslute path to the OpenFAST executable and to the main OpenFAST input file. Input files of OpenFAST also contain filepaths that reference other input files. These filepaths are either relative to the current file, or, can be absolute paths.</p>
+</div>
+</div>
+</div>
+<div class="section" id="troubleshooting-a-simulation">
+<h2><span class="section-number">3.2. </span>Troubleshooting a simulation<a class="headerlink" href="#troubleshooting-a-simulation" title="Permalink to this heading"></a></h2>
+<div class="section" id="simple-troubleshooting">
+<span id="troubleshooting"></span><h3><span class="section-number">3.2.1. </span>Simple troubleshooting<a class="headerlink" href="#simple-troubleshooting" title="Permalink to this heading"></a></h3>
+<p>When an error is caught during a simulation, OpenFAST will abort with a message of the following kind:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>FAST<span class="w"> </span>encountered<span class="w"> </span>an<span class="w"> </span>error<span class="w"> </span>during<span class="w"> </span>module<span class="w"> </span>initialization.
+Simulation<span class="w"> </span>error<span class="w"> </span>level:<span class="w"> </span>FATAL<span class="w"> </span>ERROR
+
+Aborting<span class="w"> </span>OpenFAST.
+</pre></div>
+</div>
+<p>The lines above this message will reveal the nature of the error, and this information can be used to troubleshoot your simulation.</p>
+<div class="section" id="typical-errors">
+<h4><span class="section-number">3.2.1.1. </span>Typical errors<a class="headerlink" href="#typical-errors" title="Permalink to this heading"></a></h4>
+<p>Some typical errors and solutions are listed below:</p>
+<ul class="simple">
+<li><p><em>The input file “FILE” was not found</em>: As indicated, the input file is not found. Linux and Mac platforms are case sensitive, and require forward slashes. OpenFAST accepts relative or absolute path. Relative paths are expressed with respect to the file where they are referenced.</p></li>
+<li><p><em>Invalid input in file “FILE” while trying to read VAR</em>: Such errors typically occurs at initialization, when reading one of the input file of OpenFAST. It can be that the variable in the input file has a wrong type (integer instead of logical, float instead of string, etc.). Very often though, such an error indicates that the input file is not formatted propertly for the version of OpenFAST your are executing. Most likely your file is outdated. Lines are often added to the OpenFAST input files. You can have a look at <a class="reference internal" href="user/api_change.html#api-change"><span class="std std-ref">API changes between versions</span></a> to see what lines have changed between versions of OpenFAST, or look at the <a class="reference external" href="https://github.com/openfast/r-test">r-test</a> to find working examples of input files for the latest release and dev version of OpenFAST.</p></li>
+<li><p><em>A fatal error occurred when parsing data from “FILE”. The variable “VAR” was not found on line #II</em>. Such errors are similar to the one described above. Check that your file has the proper format for the version of OpenFAST you are using.</p></li>
+</ul>
+<p>Similar messages indicate user-input errors (when selected options are not available or compatible).
+Such error messages are usually explicit enough. You can have a look at the comments in the input file for some guidance, and refer to the user guide for more details on individual inputs of each module: <a class="reference internal" href="user/index.html#user-guide"><span class="std std-ref">User Documentation</span></a>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>90% of the time, errors are due to a mismatch between the OpenFAST version and the input files (see second point above).</p>
+</div>
+</div>
+<div class="section" id="typical-warnings">
+<h4><span class="section-number">3.2.1.2. </span>Typical warnings<a class="headerlink" href="#typical-warnings" title="Permalink to this heading"></a></h4>
+<p>Some warnings might occasionally occur from different modules (typically the aerodynamic modules) and be reported to the command window.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><em>SkewedWakeCorrection encountered a large value of chi</em>: indicates that the turbine is highly yawed/titled. Could happen when the turbine undergoes important motions.</p></li>
+<li><p><em>The BEM solution is being turned off due to low TSR.</em>: indicate that the instantaneous rotor speed is close to zero, or the relative wind speed is large (check the outputs <cite>RtSpeed</cite> and <cite>RtVavgx</cite>).</p></li>
+</ul>
+</div></blockquote>
+<p>The warnings can sometimes be ignored, but they often indicate an issue in the model. See the next section of advanced troubleshooting.</p>
+</div>
+</div>
+<div class="section" id="advanced-troubleshooting">
+<h3><span class="section-number">3.2.2. </span>Advanced troubleshooting<a class="headerlink" href="#advanced-troubleshooting" title="Permalink to this heading"></a></h3>
+<p>In some cases, simulations may abort during the simulation (<em>FAST encountered an error at simulation time T</em>), or they may run through but have empty or “NaN” outputs after few time steps (as little as one time steps). Such errors are typically due to the model being unphysical.
+In such case, you might see error messages of the following kind in the command window:</p>
+<ul class="simple">
+<li><p><em>Small angle assumption violated</em> or <em>Angles in GetSmllRotAngs() are larger than 0.4 radians</em>: such warnings indicate that part of the structure is undergoing large rotations, whereas some module of OpenFAST are only valid under the small angle approximation.</p></li>
+<li><p><em>Denominator is zero in GetSmllRotAngs()</em></p></li>
+</ul>
+<p>Typically, when a simulation aborts or has unrealistic or NaN values, it is likely that there are errors in the model (the structure is too stiff, too soft, the inflow is incorrect, the initial conditions are incorrect, the controller is behaving unexpectedly, OLAF regularization parameters are set wrong, etc.).</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The key to troubleshooting is to simplify your model. You can chose to progressively simplify your model, until it runs and produces physical results. Or the other way around, simplify your model to the fullest, and progressively reintroduce complexity. Typical simplifications include: no aerodynamic, stiff structure, steady inflow, no controller.</p>
+</div>
+<p>Below are some steps you can take to troubleshoot your model, in particular trying to isolate the problem to a given module and then input:</p>
+<ul class="simple">
+<li><p>Simplify the model by using simple environmental conditions: steady uniform inflow, still water.</p></li>
+<li><p>Remove the controller: Turn <cite>GenDOF</cite> to False in ElastoDyn, and set <cite>CompServo</cite> to 0 in the main input file. The rotor will spin at constant RPM.</p></li>
+<li><p>Simplify your model by turning off most degrees of freedom in your ElastoDyn input file. You can start by keeping all degrees of freedom off, and progressively adding more degrees of freedom. This might indicat if the issue comes from the blade, nacelle, tower or substructure. Some degrees of freedom that are often problematic are the drive train torsion (<cite>DrTrDOF</cite>), and the yaw degree of freedom (<cite>YawDOF</cite>). The drive train stiffness and damping values in ElastoDyn are often set wrong. A common issues with yaw, is when <cite>NacYaw</cite> (in ElastoDyn) and <cite>YawNeut</cite> (in ServoDyn), are in disagreement, or, when the yaw spring and damping <cite>YawSpr</cite> and <cite>YawDamp</cite> are not physical. For offshore simulations, if <cite>YawDOF</cite> and <cite>PtfmYDOF</cite> are on, the model needs to have a realistic <cite>PtfmYIner</cite> present, otherwise these degrees of freedom will be ill-defined in ElastoDyn. PtfmYiner should contain the rotational inertia of the undeflected tower, and, if SubDyn is not used, the torsional inertia of the platform/TP (if any).</p></li>
+<li><p>Simplify the physical models: use ElastoDyn (<cite>CompElast=1</cite>) over BeamDyn, use BEM (<cite>WakeMod=1</cite>) over OLAF, use 0 Craig-Bampton modes in SubDyn.</p></li>
+<li><p>Visualize the time series outputs (see <a class="reference internal" href="#visualizing-input-output-of"><span class="std std-ref">Visualizing inputs and outputs files</span></a>). Add relevant displacement outputs to your model for instance: PtfmSurge, PtfmSway, PtfmHeave, PtfmRoll, PtfmPitch, PtfmYaw, NacYaw, TTDspFA, TTDspSS, RotSpeed, OoPDefl1, IPDefl1 and RtSkew. It is likely that the turbine has some large displacements due to some errors in the model.</p></li>
+<li><p>Adjust your initial conditions. As mentioned above, <cite>NacYaw</cite> (ElastoDyn) and <cite>YawNeut</cite> (ServoDyn) need to match when the yaw degrees of freedom is on. If the structural is at an initial position that is unrealistic given the environmental condition, it is likely to overshoot (e.g. high wind speed but pitch too low). A common error is not initializing the rotor speed and blade-pitch angles to their expected (mean) values at the initial wind speed of the simulation, which causes issues with many wind turbine controllers.</p></li>
+<li><p>Visualize the inputs (see <a class="reference internal" href="#visualizing-input-output-of"><span class="std std-ref">Visualizing inputs and outputs files</span></a>). Check that the mass and stiffness distributions of the blade and tower are as expected.</p></li>
+<li><p>Verify the masses and stiffness of your system. The Blade mass and tower-top mass are shown in the ElastoDyn summary file. The equivalent 6x6 matrix of the substructure is found in the SubDyn summary file.</p></li>
+<li><p>If you have isolated the problem to a given module, check the information provided in the summary file of this module. Most module have a flag at the end of their input file called <cite>SumPrint</cite> or similar, so that the summary file is written to disk.</p></li>
+<li><p>Reduce the time step. The simulation time step needs to be adjusted based on the frequencies that are modelled in the system (typically the time step needs to be at around a tenth of the fastest frequency). Modules like BeamDyn and SubDyn usually require fine time steps.
+Instead of reducing the time step, it is often equivalent to introduce 1 correction step (<cite>NumCrctn</cite>). When corrections are used the Jacobian need to be updated regularly, for instance setting <cite>DT_UJac</cite> to 100 time steps. For a floating system, we recommend using <cite>DT_UJac = 1/(10*f_pitch)</cite>, where <cite>f_pitch</cite> is the natural frequency of the floating wind turbine in pitch.</p></li>
+<li><p>Perform a linearization of your structure in vacuum (<cite>CompInflow=0</cite>, <cite>CompAero=0</cite>) and in standstill (<cite>RotSpeed=0</cite>) (see <a class="reference internal" href="#linearization-analysis-of"><span class="std std-ref">Performing linearization analyses</span></a>) and check that the frequencies and damping are within the range you expect. Adjust your structural inputs otherwise.</p></li>
+<li><p>Generate VTK outputs for visualization of the turbine and the various meshes used by OpenFAST. VTK outputs are activated using <cite>WrVTK=1</cite> or <cite>WrVTK=2</cite>. The VTK are written in folders <cite>vtk*</cite> in the main directory, and can be visualized using Paraview (see <a class="reference internal" href="#visualizing-input-output-of"><span class="std std-ref">Visualizing inputs and outputs files</span></a>).</p></li>
+</ul>
+</div>
+<div class="section" id="troubleshooting-for-specific-modules">
+<span id="moduletroubleshooting"></span><h3><span class="section-number">3.2.3. </span>Troubleshooting for specific modules<a class="headerlink" href="#troubleshooting-for-specific-modules" title="Permalink to this heading"></a></h3>
+<p>All modules of OpenFAST require a certain level of expertise to ensure that the simulations are physical.
+Guidelines for the different modules can be found throughout this documentation, see in particular:</p>
+<ul class="simple">
+<li><p>AeroDyn: <a class="reference internal" href="user/aerodyn/modeling.html#ad-modeling"><span class="std std-ref">Modeling Considerations</span></a></p></li>
+<li><p>HydroDyn: <a class="reference internal" href="user/hydrodyn/modeling_considerations.html#hd-modeling-considerations"><span class="std std-ref">Modeling Considerations</span></a></p></li>
+<li><p>OLAF: <a class="reference internal" href="user/aerodyn-olaf/RunningOLAF.html#guidelines-olaf"><span class="std std-ref">Guidelines</span></a></p></li>
+<li><p>SubDyn: <a class="reference internal" href="user/subdyn/modeling.html#sd-modeling-considerations"><span class="std std-ref">Modeling Considerations</span></a></p></li>
+<li><p>FAST.Farm: <a class="reference internal" href="user/fast.farm/ModelGuidance.html#ff-modguidance"><span class="std std-ref">Modeling Guidance</span></a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="scripting-and-other-support-tools">
+<h2><span class="section-number">3.3. </span>Scripting and other support tools<a class="headerlink" href="#scripting-and-other-support-tools" title="Permalink to this heading"></a></h2>
+<p>NLR maintains several repositories of scripts to work with OpenFAST.
+The scripts can for instance be used to read the input and outputs of OpenFAST, visualize them, and generate multiple simulation inputs, and postprocess them. Some of these applications will be detailed in the following sections.</p>
+<div class="section" id="nlr-toolboxes">
+<h3><span class="section-number">3.3.1. </span>NLR toolboxes<a class="headerlink" href="#nlr-toolboxes" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/OpenFAST/openfast_toolbox">openfast_toolbox</a>:  collection of low-level Python tools to work with OpenFAST and perform simple operations, with granularity.</p></li>
+<li><p><a class="reference external" href="https://github.com/OpenFAST/matlab-toolbox">matlab-toolbox</a>: collection of low-level Matlab tools to work with OpenFAST.</p></li>
+<li><p><a class="reference external" href="https://github.com/WEIS">WEIS</a> : high-level Python scripts, stands for Wind Energy with Integrated Servo-control. It can perform multifidelity co-design of wind turbines. WEIS is a framework that combines multiple NLR-developed tools to enable design optimization of floating offshore wind turbines.</p></li>
+</ul>
+<p>Users are invited to consult the documentation of the individual repositories and discuss related issues on their individual GitHub pages. Contributions by the community to the NLR repositories are welcome and encouraged.</p>
+</div>
+<div class="section" id="other-related-nlr-tools">
+<h3><span class="section-number">3.3.2. </span>Other related NLR tools<a class="headerlink" href="#other-related-nlr-tools" title="Permalink to this heading"></a></h3>
+<p>Additional repositories maintained by NLR are listed below:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/NLRWindSystems/WISDEM">WISDEM</a>: models for assessing overall wind plant cost of energy (COE), also contains file IO, (DLC) case generation, polar manipulations, visualization, and much more!</p></li>
+<li><p><a class="reference external" href="https://github.com/natlabrockies/ROSCO_toolbox">ROSCO_toolbox</a>: tools to work with the <a class="reference external" href="https://github.com/natlabrockies/ROSCO">ROSCO</a> controller that is supported by OpenFAST</p></li>
+</ul>
+</div>
+<div class="section" id="third-party-tools">
+<h3><span class="section-number">3.3.3. </span>Third party tools<a class="headerlink" href="#third-party-tools" title="Permalink to this heading"></a></h3>
+<ul>
+<li><p><a class="reference external" href="https://github.com/ebranlard/pyDatView">pyDatView</a> : tool to plot the input and output files of OpenFAST, CSV-files, and other files from other wind energy software (Hawc2, Flex, Bladed). Multiple files can be opened at once to compare results from different simulations.</p></li>
+<li><p><a class="reference external" href="https://gitlab.windenergy.dtu.dk/toolbox/WindEnergyToolbox">WindEnergyToolbox</a>: library developed by DTU, providing some support for different file formats</p></li>
+<li><p><a class="reference external" href="https://github.com/TUDelft-DataDrivenControl/FASTTool">FASTTool</a> : MATLAB GUI and Simulink integration developed by TUDelft for FASTv8</p></li>
+<li><p><a class="reference external" href="https://github.com/giovanniboscu/continuous-section-field">Continuous Section Field (CSF)</a>: a small Python utility developed by Giovanni Boscu for calculating cross-sectional properties for towers.  The tool focuses on:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Modeling non-prismatic members using ruled surfaces.</p></li>
+<li><p>Calculating sectional properties <span class="math notranslate nohighlight">\((A, I, Ip)\)</span> along the tower height.</p></li>
+<li><p>Providing a simplified estimation of torsional rigidity <span class="math notranslate nohighlight">\(( J )\)</span>.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="open-source-openfast-models">
+<span id="models-of"></span><h2><span class="section-number">3.4. </span>Open-source OpenFAST models<a class="headerlink" href="#open-source-openfast-models" title="Permalink to this heading"></a></h2>
+<p>Open-source OpenFAST wind turbine models can be found here:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/OpenFAST/r-test">r-test</a>: regression tests for OpenFAST, contains models for OpenFAST and its drivers (AeroDyn, SubDyn, HydroDyn, etc.). This repository is not intended to be used as a “database” of models, but it has the advantage that the input files are always up to date with the latest <a class="reference external" href="https://openfast.readthedocs.io/en/master/source/user/api_change.html">format specifications</a> . OpenFAST input files for previous version can be accessed via the git tags of this repository.</p></li>
+<li><p><a class="reference external" href="https://github.com/IEAWindTask37">IEA Wind Task 37 repository</a> :  contains OpenFAST models of the IEA Wind 3.4-MW, 10-MW, 15-MW, and up-and-coming 22-MW reference wind turbines.</p></li>
+<li><p><a class="reference external" href="https://github.com/natlabrockies/openfast-turbine-models">openfast-turbine-models</a>: open source wind turbine models (in development and out of date).</p></li>
+</ul>
+</div>
+<div class="section" id="visualizing-inputs-and-outputs-files">
+<span id="visualizing-input-output-of"></span><h2><span class="section-number">3.5. </span>Visualizing inputs and outputs files<a class="headerlink" href="#visualizing-inputs-and-outputs-files" title="Permalink to this heading"></a></h2>
+<p>To visualize the input and output files of OpenFAST the following graphical interface tool can be used:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/ebranlard/pyDatView">pyDatView</a> : tool to plot the input and output files of OpenFAST, CSV-files, and other files from other wind energy software (Hawc2, Flex, Bladed). Multiple files can be opened at once to compare results from different simulations.</p></li>
+</ul>
+<p>The VTK visualization files that are written by OpenFAST can be opened using:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.paraview.org/">paraview</a> : tool to open the VTK files generated by OpenFAST, i.e. velocity fields and turbine geometry.</p></li>
+</ul>
+<p>For advanced cases, the user may want to script the reading and plotting of the input files.
+Python and Matlab tools are respectively being provided in the <a class="reference external" href="https://github.com/OpenFAST/openfast_toolbox">openfast_toolbox</a> and <a class="reference external" href="https://github.com/OpenFAST/matlab-toolbox">matlab-toolbox</a>.
+In the matlab toolbox, the scripts <cite>FAST2Matlab.m</cite> and <cite>Matlab2FAST.m</cite> are used to read and write input files, the script <cite>ReadFASTbinary</cite> is used to open binary (<cite>.outb</cite>) output files.
+The README files of these repositories points to examples and more documentation.</p>
+</div>
+<div class="section" id="running-parametric-studies-and-design-load-cases-dlc">
+<span id="running-multiple-of"></span><h2><span class="section-number">3.6. </span>Running parametric studies and design load cases (DLC)<a class="headerlink" href="#running-parametric-studies-and-design-load-cases-dlc" title="Permalink to this heading"></a></h2>
+<p>Parametric studies can be run by using the scripts to read and write OpenFAST input files provided in the <a class="reference external" href="https://github.com/OpenFAST/matlab-toolbox">matlab-toolbox</a>
+and the Python
+<a class="reference external" href="https://github.com/OpenFAST/openfast_toolbox">openfast_toolbox</a>
+.  The openfast_toolbox provides dedicated Python scripts and examples to automatize the process (see the README of the repository for more).
+The <cite>AeroelasticSE</cite> module of <a class="reference external" href="https://github.com/NLRWindSystems/WEIS">WEIS</a> can generate input files for the design load cases specified in the standards.
+Consult the WEIS repository for more information.</p>
+</div>
+<div class="section" id="performing-linearization-analyses">
+<span id="linearization-analysis-of"></span><h2><span class="section-number">3.7. </span>Performing linearization analyses<a class="headerlink" href="#performing-linearization-analyses" title="Permalink to this heading"></a></h2>
+<div class="section" id="background">
+<h3><span class="section-number">3.7.1. </span>Background<a class="headerlink" href="#background" title="Permalink to this heading"></a></h3>
+<p>Many applications require a linear model of a system: eigenvalue analyses, frequency domain analysis, linear state space models for observers, etc. Most models of OpenFAST are non-linear, and a linearization of the underlying system is therefore required.
+Linearization is done about a given operating point, which corresponds to the set of values of the states and inputs of the system (typically, a given time of a simulation).
+The output of the linearization is a linear state space model (four matrices relating states, inputs and outputs) valid in the neighborhood of the operating point.</p>
+<p>Because the rotor is spinning, the equilibrium solution, if present, will likely be periodic.
+It is necessary to linearize at different operating points over a period of revolution (i.e. at different azimuthal positions).</p>
+<p>An additional complication is that some of the states of OpenFAST are in the rotating frame of reference (e.g. the ElastoDyn blade states). To obtain a linear state space model of the system that is in a fixed (non-rotating) frame of reference the multiblade coordinate transformation (MBC) is applied. For a purely periodic system, the MBC can be applied to the linearized outputs at different azimuthal positions which can be combined to form a linearized system in a fixed frame of reference.
+We note that the MBC only applies to 3 or more blades.
+Floquet theory would be needed 1 or 2 blades, although NLR does not currently have a post-processor that makes use of Floquet theory.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Our current recommended practice is to avoid periodicity and simplify the model such that the equilibrium is constant (e.g., removing tilt and gravity). The MBC is still required but it is not required to use different linearization at different azimuthal positions.</p>
+</div>
+<p>One of the outputs of the linearization is the state matrix (<cite>A</cite>) which relates the system states to their time derivatives.
+An eigenvalue analysis of <cite>A</cite> provides the full-system mode shapes, and their frequencies and damping.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Unlike a linear finite-element software, OpenFAST does not have a notion of a full-system stiffness and mass matrix (some modules have local matrices but only related to the module). The underlying system of equation is non-linear, the frequencies of the system will vary with the operating conditions (e.g. wind speed, rotational speed).</p>
+</div>
+<p>The sections below detail the process of obtaining a linear model with OpenFAST, and will focus on its application to obtain the frequencies and damping of the system modes.</p>
+</div>
+<div class="section" id="linearized-models-for-one-simulation-manually">
+<h3><span class="section-number">3.7.2. </span>Linearized models for one simulation (manually)<a class="headerlink" href="#linearized-models-for-one-simulation-manually" title="Permalink to this heading"></a></h3>
+<p>This section describes the key steps to generate a linearized model of the system with OpenFAST.</p>
+<p>The steps to perform simple linearization analysis are given below:</p>
+<ol class="arabic simple">
+<li><p>Edit the main <cite>.fst</cite> file, set <cite>Linearize=True</cite></p></li>
+<li><p>Set the output format <cite>OutFmt</cite> to “ES20.11E3”. The output files will be written with this high resolution, which is required for accurate eigenvalue analyses.</p></li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Because the linearization output files are in ASCII format, the results of the eigenvalue analyses will be sensitive to the output resolution (<cite>OutFmt</cite>). It is therefore important to set this parameter with a large precision as mentioned above.</p>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>There are two main methods to determine at which times the linearization will be made:</p>
+<ul class="simple">
+<li><p>using <cite>CalcSteady=False</cite>, the user prescribes the times where linearization is to occur using <cite>NLinTimes</cite> and <cite>LinTimes</cite>
+(it is the responsibility of the user to provide times where the system is in equilibrium or at a periodic steady state, i.e. sufficiently long time);
+- <cite>CalcSteady=True</cite> (recommended approach), OpenFAST will automatically start the linearization when the system is at a periodic steady state (based on given tolerance <cite>TrimTol</cite>) and will perform <cite>NLinTimes</cite> linearizations over a rotor revolution. When a controller is used the option <cite>CalcSteady</cite> will also adjust the controller inputs (either Pitch, Yaw, or Generator Torque, based on the input <cite>TrimCase</cite>) such as to reach the rotational speed indicated by the initial condition. The <cite>TrimGain</cite> and <cite>TrimTol</cite> might need to be adjusted. <cite>Twr_Kdmp</cite> and <cite>Bld_Kdmp</cite> can be used to add damping to the tower and blades during the steady-state calculation. These may be helpful to speed up the steady-state calculation and may be necessary if the tower and/or blades are otherwise unstable. Once the steady-state solution is found. <cite>Twr_Kdmp</cite> and <cite>Bld_Kdmp</cite> will not impact the linearization results (i..e., the linear solution will not have extra tower and blade damping).</p></li>
+</ul>
+</li>
+<li><p>Chose the number of linearizations. For a standstill case, <cite>NLinTimes=1</cite>, for a rotating case, if the equilibrium point is periodic, it is recommended to use <cite>NLinTimes=36</cite> (corresponding to on linearization every 10-degrees of azimuth rotation), otherwise <cite>NLinTimes=1</cite>. If <cite>CalcSteady=False</cite> and the user sets <cite>NLinTimes=36</cite>, the user needs to set <cite>LinTimes</cite> with values that corresponds to the rotor being at 36 unique azimuthal position based on the rotor speed.</p></li>
+<li><p>For a typical linearization, the user may set <cite>LinInputs=0</cite>, <cite>LinOutputs=0</cite>, <cite>LinOutJac=False</cite>, <cite>LinOutMod=False</cite>, <cite>Twr_Kdmp=0</cite>, <cite>Bld_Kdmp=0</cite> (see the OpenFAST input file documentation).
+Setting <cite>LinInputs = LinOutputs = 0</cite> avoids generating the B, C, and D matrices (no inputs and outputs).
+The standard set of linearization inputs inherent in the linearized system are available when <cite>LinInputs=1</cite>. This includes e.g. collective blade pitch. With <cite>LinOutputs = 1</cite>, the outputs of the <cite>OutList</cite> sections of each module are included in the linearized system. For instance, <cite>GenSpeed</cite> can be included by including <cite>GenSpeed</cite> in the <cite>OutList</cite> of ElastoDyn. Linearization about all the inputs and outputs of OpenFAST set <cite>LinInputs=2</cite>, <cite>LinOutputs=2</cite>, at the expense of having large output files.</p></li>
+<li><p>Run OpenFAST on this <cite>.fst</cite> file. OpenFAST will display a message when it is performing each individual linearization, and individual files with the <cite>.lin</cite> extension will be written to disk.</p></li>
+<li><p>It is recommended to check the regular output file <cite>.out</cite> or <cite>.outb</cite>. If <cite>CalcSteady=False</cite>, the user should look to see whether the turbine had indeed reached a steady state (or periodic steady state) at the time where linearization was run. If <cite>CalcSteady=True</cite> and a controller is used, the user can check that the rotational speed has indeed converged to the desired RPM, and potentially chose to adjust <cite>TrimGain</cite> and <cite>TrimTol</cite> for future runs.</p></li>
+</ol>
+<p>The linearization files <cite>*.lin</cite> are then to be postprocessed using the python or matlab tools provided.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Not all modules and options of OpenFAST are available when performing linearization. OpenFAST will abort with error message that will indicate which options are available. Adapt your input files accordingly.</p>
+</div>
+</div>
+<div class="section" id="postprocessing">
+<h3><span class="section-number">3.7.3. </span>Postprocessing<a class="headerlink" href="#postprocessing" title="Permalink to this heading"></a></h3>
+<p>To obtain the eigenfrequencies of the system the user can open a <cite>.lin</cite> file, extract the state matrix <cite>A</cite> and perform a eigenvalue analysis. For a spinning rotors, all lin-files generated from a simulation at different azimuthal positions need to be opened, and converted using the MBC-transformation. We provide scripts for such cases.</p>
+<p>When only one linearization file is to be used (e.g. at standstill), the script <cite>postproLin_OneLinFile_NoRotation</cite> can be used. Is is found in <cite>matlab-toolbox/Campbell/example</cite> or <cite>openfast_toolbox/openfast_toolbox/linearization/examples/</cite>.</p>
+<p>When several linearization files are to be postprocessed (in particular several files corresponding to different azimuthal positions), the script <cite>postproLin_MultiLinFile_Campbel</cite> can be used, located in the same folders mentioned above.
+The script can also be used if linearizations were performed at different wind speed and RPM (via different OpenFAST calls). Displaying the frequencies and damping at these different wind turbine operating conditions is referred to as Campbell diagram.</p>
+</div>
+<div class="section" id="campbell-diagrams">
+<h3><span class="section-number">3.7.4. </span>Campbell diagrams<a class="headerlink" href="#campbell-diagrams" title="Permalink to this heading"></a></h3>
+<p>In the near future, a dedicated tool will be provided to simplify the process of generating Campbell diagrams.</p>
+<p>Until then, to avoid the manual process of editing input files for different wind turbine operating conditions, we provide the script <cite>runCampbell</cite>, found in <cite>matlab-toolbox/Campbell/example</cite> or <cite>openfast_toolbox/openfast_toolbox/linearization/examples/</cite>.
+The script relies on a template folder which a reference “fst” file. The folder is duplicated, files are created for each wind turbine operating conditions wind speed/rpm), OpenFAST is run, and the linearization files are postprocessed.</p>
+<p>The script <cite>runCampbell</cite> generates either a set of CSV files or an Excel file. The script attempts to identify the modes (for instance 1st tower fore-aft mode, 1st flap mode, etc.), but a manual process is usually required to fully identify the mode. This process can be difficult and tedious. It is recommended to proceed first with simulations in vacuum, and with few operating points, to get familiar with the system.</p>
+<p>The manual identification process consists in changing the CSV file <cite>Campbell_ModesID.csv</cite> (or the Excel spread sheet <cite>ModesID</cite> if Excel output is used). To avoid having this file rewritten when rerunning <cite>runCampbell</cite>, it is recommended to rename this file as <cite>Campbell_ModesID_Manual.csv</cite>.  The part of the script <cite>runCampbell</cite> that plots the Campbell diagram can be adjusted so as to use the “Manual” file.
+It is recommended to use the CSV format since this is the method compatible with Python and MacOS.</p>
+<p>The manual identification process consists in attributing indexes in the table of modes, where the index corresponds to the list of sorted mode frequencies.</p>
+<p>For instance, opening the CSV file in excel, the <cite>ModeID</cite> file might look as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Mode</span> <span class="n">Number</span> <span class="n">Table</span>
+<span class="n">Wind</span> <span class="n">Speed</span> <span class="p">(</span><span class="n">mps</span><span class="p">)</span>   <span class="mf">2.0</span>   <span class="mf">5.0</span>   <span class="mf">8.0</span>
+<span class="mi">1</span><span class="n">st</span> <span class="n">Tower</span> <span class="n">FA</span>        <span class="mi">0</span>     <span class="mi">0</span>     <span class="mi">0</span>
+<span class="mi">1</span><span class="n">st</span> <span class="n">Tower</span> <span class="n">SS</span>        <span class="mi">1</span>     <span class="mi">0</span>     <span class="mi">0</span>
+</pre></div>
+</div>
+<p>In this example, we  assume that linearizations were run at 2, 5 and 8m/s. “0” in the table indicates that a mode was not identified. You can look at the file <cite>Campbell_Summary.txt</cite> to have a look at the frequencies, damping and “modal content” for each mode and operating point. For more details, you can open the individual CSV files for each operating point. (If you used the Excel format, these are in different sheets).
+You might find that for 2 and 5m/s, the tower Fore-Aft is the second frequency, and the tower side-side is the first frequency that shows up in the list of modes. At 8m/s you might find that the opposite occurs. In that case, you will edit the file such that it is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Mode</span> <span class="n">Number</span> <span class="n">Table</span>
+<span class="n">Wind</span> <span class="n">Speed</span> <span class="p">(</span><span class="n">mps</span><span class="p">)</span>   <span class="mf">2.0</span>   <span class="mf">5.0</span>   <span class="mf">8.0</span>
+<span class="mi">1</span><span class="n">st</span> <span class="n">Tower</span> <span class="n">FA</span>        <span class="mi">2</span>     <span class="mi">2</span>     <span class="mi">1</span>
+<span class="mi">1</span><span class="n">st</span> <span class="n">Tower</span> <span class="n">SS</span>        <span class="mi">1</span>     <span class="mi">1</span>     <span class="mi">2</span>
+</pre></div>
+</div>
+<p>The main question is how to determine which mode is which. There is no true solution to this question, here are some elements to help the identifications:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The system frequencies are usually easy to determine at 0 m/s and 0 rpm. The system frequencies will vary progressively from this reference point as the RPM/WS/pitch changes. Blade regressive and progressive modes will typically display a “splitting” equal to +/- the rotational speed frequency as the rotational speed increases. The collective modes in flap tend to increase in frequency with rotor speed due to centrifugal stiffening.</p></li>
+<li><p>Blade flap modes are typically highly damped (significantly more than edgewise modes) when aerodynamics are present.</p></li>
+<li><p>From an operating point to the next, the damping will not change drastically.</p></li>
+<li><p>Tower modes are not strongly affected by the change of operating conditions</p></li>
+<li><p>You will need to look at the “mode content”, to see where the energy is for each mode. The file <cite>Campbell_Summary.csv</cite> displays a summary of the mode content. In some cases, there is no clear maximum (the keyword <cite>NoMax</cite> is shown). In that case, identifying the mode might be difficult. A similar content is found in the individual operating point files.</p></li>
+<li><p>Visualization of the modes can help identify them (see the next section). The process can yet be lengthy.</p></li>
+</ul>
+</div></blockquote>
+<p>Once the identification table is set. Save the file, and plot the Campbell diagram. The process may be iterative until a satisfying diagram is obtained. There should be no need to close Excel in this process.</p>
+<p>We are aware that the process is lengthy,  we thank you for your patience while we attempt to streamline this process.</p>
+</div>
+<div class="section" id="mode-shape-visualization">
+<h3><span class="section-number">3.7.5. </span>Mode shape visualization<a class="headerlink" href="#mode-shape-visualization" title="Permalink to this heading"></a></h3>
+<p>Mode shape visualization is currently possible. It requires a generation of viz files for each simulations, and rerunning OpenFAST to generate VTK files. The matlab script <cite>runCampbell</cite> assists in this process, but for now limited support and documentation is provided.</p>
+<p>The user is invited to consult the following example:
+-  <a class="reference external" href="https://github.com/OpenFAST/r-test/tree/main/glue-codes/openfast/5MW_Land_ModeShapes">https://github.com/OpenFAST/r-test/tree/main/glue-codes/openfast/5MW_Land_ModeShapes</a></p>
+<p>And it’s associated documentation:
+- <a class="reference external" href="https://github.com/OpenFAST/r-test/blob/main/glue-codes/openfast/5MW_Land_ModeShapes/vtk-visualization.md">https://github.com/OpenFAST/r-test/blob/main/glue-codes/openfast/5MW_Land_ModeShapes/vtk-visualization.md</a></p>
+</div>
+<div class="section" id="additional-references">
+<h3><span class="section-number">3.7.6. </span>Additional references<a class="headerlink" href="#additional-references" title="Permalink to this heading"></a></h3>
+<p>Some linearization issues have been discussed in the forum and as github issues:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://wind.nrel.gov/forum/wind/">https://wind.nrel.gov/forum/wind/</a></p></li>
+<li><p><a class="reference external" href="https://github.com/OpenFAST/openfast/issues/480">https://github.com/OpenFAST/openfast/issues/480</a></p></li>
+</ul>
+<p>Thank you for your patience while we attempt to streamline the linearization and Campbell digram generation process.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="install/install_cygwin.html" class="btn btn-neutral float-left" title="2.8.2. Building OpenFAST on Windows with CMake and Cygwin 64-bit" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="user/index.html" class="btn btn-neutral float-right" title="4. User Documentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

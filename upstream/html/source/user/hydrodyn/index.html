@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.11. HydroDyn User Guide and Theory Manual &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.11.1. Installation and Getting Started" href="getting_started.html" />
+    <link rel="prev" title="4.10.5. References" href="../elastodyn/zrefs.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/hydrodyn/index.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.11. HydroDyn</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html">4.11.1. Installation and Getting Started</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input_files.html">4.11.2. Input Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="output_files.html">4.11.3. Output Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modeling_considerations.html">4.11.4. Modeling Considerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="future_work.html">4.11.5. Future Work</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.11.6. References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.11.7. Appendix A: OC4 Semi-submersible Input File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html#appendix-b-oc4-semi-submersible-input-file">4.11.8. Appendix B: OC4 Semi-submersible Input File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html#appendix-c-list-of-output-channels">4.11.9. Appendix C. List of Output Channels</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.11. </span>HydroDyn User Guide and Theory Manual</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/hydrodyn/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="hydrodyn-user-guide-and-theory-manual">
+<h1><span class="section-number">4.11. </span>HydroDyn User Guide and Theory Manual<a class="headerlink" href="#hydrodyn-user-guide-and-theory-manual" title="Permalink to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">4.11.1. Installation and Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input_files.html">4.11.2. Input Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="output_files.html">4.11.3. Output Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modeling_considerations.html">4.11.4. Modeling Considerations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="future_work.html">4.11.5. Future Work</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zrefs.html">4.11.6. References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">4.11.7. Appendix A: OC4 Semi-submersible Input File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html#appendix-b-oc4-semi-submersible-input-file">4.11.8. Appendix B: OC4 Semi-submersible Input File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html#appendix-c-list-of-output-channels">4.11.9. Appendix C. List of Output Channels</a></li>
+</ul>
+</div>
+<p>HydroDyn is a time-domain hydrodynamics module that has been coupled
+into the OpenFAST wind turbine
+multi-physics engineering tool to enable aero-hydro-servo-elastic
+simulation of offshore wind turbines. HydroDyn is applicable to both
+fixed-bottom and floating offshore substructures. The current release of
+HydroDyn integrates with OpenFAST through the FAST modularization framework.
+HydroDyn can also be driven as a standalone code to compute hydrodynamic
+loading uncoupled from OpenFAST.</p>
+<p>In addition to this documentation, the following materials including presentation slides,
+development plans, and publications are made available for reference.
+Note that some of these may be outdated and pertain to older versions
+of HydroDyn.</p>
+<ul class="simple">
+<li><p><a class="reference download external" download="" href="https://www.nlr.gov/docs/fy14osti/61161.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Computation</span> <span class="pre">of</span> <span class="pre">Wave</span> <span class="pre">Loads</span> <span class="pre">Under</span> <span class="pre">Multidirectional</span> <span class="pre">Sea</span> <span class="pre">States</span> <span class="pre">for</span> <span class="pre">Floating</span> <span class="pre">Offshore</span> <span class="pre">Wind</span> <span class="pre">Turbines</span></code></a></p></li>
+<li><p><a class="reference download external" download="" href="https://www.nlr.gov/docs/fy14osti/60966.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Effects</span> <span class="pre">of</span> <span class="pre">Second-Order</span> <span class="pre">Hydrodynamic</span> <span class="pre">Forces</span> <span class="pre">on</span> <span class="pre">Floating</span> <span class="pre">Offshore</span> <span class="pre">Wind</span> <span class="pre">Turbines</span></code></a></p></li>
+<li><p><a class="reference download external" download="" href="https://www.nlr.gov/docs/fy13osti/58099.pdf"><code class="xref download docutils literal notranslate"><span class="pre">State-Space</span> <span class="pre">Realization</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">Wave-Radiation</span> <span class="pre">Force</span> <span class="pre">within</span> <span class="pre">FAST</span></code></a></p></li>
+<li><p><a class="reference download external" download="" href="https://dx.doi.org/10.1002/we.347"><code class="xref download docutils literal notranslate"><span class="pre">Dynamics</span> <span class="pre">of</span> <span class="pre">Offshore</span> <span class="pre">Floating</span> <span class="pre">Wind</span> <span class="pre">Turbines—Model</span> <span class="pre">Development</span> <span class="pre">and</span> <span class="pre">Verification</span></code></a></p></li>
+<li><p><a class="reference download external" download="" href="https://www.nlr.gov/docs/fy08osti/41958.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Dynamics</span> <span class="pre">Modeling</span> <span class="pre">and</span> <span class="pre">Loads</span> <span class="pre">Analysis</span> <span class="pre">of</span> <span class="pre">an</span> <span class="pre">Offshore</span> <span class="pre">Floating</span> <span class="pre">Wind</span> <span class="pre">Turbine</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/39aafbb61663ae16bd1a7e80f305c20b/HydroDyn_Plan_TCF_Morison.docx"><code class="xref download docutils literal notranslate"><span class="pre">Draft</span> <span class="pre">Implementation</span> <span class="pre">Plan</span> <span class="pre">-</span> <span class="pre">Changes</span> <span class="pre">in</span> <span class="pre">HydroDyn</span> <span class="pre">to</span> <span class="pre">Support</span> <span class="pre">Time-Varying</span> <span class="pre">Buoyancy</span> <span class="pre">Loads</span> <span class="pre">on</span> <span class="pre">Morison</span> <span class="pre">Members</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/d16ee9e3b2a54dec4a25111994bd81f8/HydroDyn_Plan_TCF_NBodyStateSpace.docx"><code class="xref download docutils literal notranslate"><span class="pre">Implementation</span> <span class="pre">Plan</span> <span class="pre">-</span> <span class="pre">Modifications</span> <span class="pre">to</span> <span class="pre">State-Space</span> <span class="pre">Modules</span> <span class="pre">in</span> <span class="pre">HydroDyn</span> <span class="pre">to</span> <span class="pre">Support</span> <span class="pre">Multiple</span> <span class="pre">WAMIT</span> <span class="pre">Bodies</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/2233f99533f60b1cca3448beeddcd02c/HydroDyn_Plan_TCF_NBody.docx"><code class="xref download docutils literal notranslate"><span class="pre">Implementation</span> <span class="pre">Plan</span> <span class="pre">(Revised)</span> <span class="pre">-</span> <span class="pre">Changes</span> <span class="pre">in</span> <span class="pre">HydroDyn</span> <span class="pre">to</span> <span class="pre">Support</span> <span class="pre">Multiple</span> <span class="pre">WAMIT</span> <span class="pre">Bodies</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/ec7b205d06be5a23fd2d7de23c517805/HydroDyn_2ndOrderForces_Plan.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Implementation</span> <span class="pre">Plan</span> <span class="pre">-</span> <span class="pre">2nd-order</span> <span class="pre">Forces</span> <span class="pre">Within</span> <span class="pre">HydroDyn</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/42a2cfdae2d2df1d36eae686d87eb12d/WAVE2_document.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Implementation</span> <span class="pre">Plan</span> <span class="pre">-</span> <span class="pre">2nd-order</span> <span class="pre">Wave</span> <span class="pre">Kinematics</span> <span class="pre">Within</span> <span class="pre">HydroDyn</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/b85cd77ef3d290127768899a31912c0a/HydroDyn_WaveStretching_Plan.docx"><code class="xref download docutils literal notranslate"><span class="pre">Plan</span> <span class="pre">for</span> <span class="pre">Adding</span> <span class="pre">Wave</span> <span class="pre">Stretching</span> <span class="pre">to</span> <span class="pre">HydroDyn</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/f0a2e128f9022d2572b64707ad4c4f28/Breaking_Wave_Modeling_Approach_for_FAST.docx"><code class="xref download docutils literal notranslate"><span class="pre">Breaking</span> <span class="pre">Wave</span> <span class="pre">Modeling</span> <span class="pre">Approach</span> <span class="pre">for</span> <span class="pre">FAST</span></code></a></p></li>
+</ul>
+<p>HydroDyn allows for multiple approaches for calculating the hydrodynamic
+loads on a structure:</p>
+<ul class="simple">
+<li><p>Potential-flow theory solution</p></li>
+<li><p>Strip-theory solution</p></li>
+<li><p>Hybrid combination of the tower</p></li>
+</ul>
+<p>Waves generated internally
+within HydroDyn can be regular (periodic) or irregular (stochastic) and
+long-crested (unidirectional) or short-crested (wave energy spread
+across a range of directions). Wave elevations or full wave kinematics
+can also be generated externally and used within HydroDyn. Internally,
+HydroDyn generates waves analytically for finite depth using first-order
+(linear Airy) or first plus second-order wave theory <span id="id1">[<a class="reference internal" href="zrefs.html#id2" title="N. Sharma and R. Dean. Second-order directional seas and associated wave forces. Society of Petroleum Engineers Journal, 4:129–140, 1981.">SD81</a>]</span>
+with the option to include directional spreading, but wave
+kinematics are only computed in the domain between the flat seabed and
+still-water level (SWL) and no wave stretching or higher order wave
+theories are included. The second-order hydrodynamic implementations
+include time-domain calculations of difference- (mean- and slow-drift-)
+and sum-frequency terms. To minimize computational expense, Fast Fourier
+Transforms (FFTs) are applied in the summation of all wave frequency
+components.</p>
+<p>The potential-flow solution is applicable to substructures or members of
+substructures that are large relative to a typical wavelength. The
+potential-flow solution involves either frequency-to-time-domain
+transforms or fluid-impulse theory (FIT). In the former, potential-flow
+hydrodynamic loads include linear hydrostatic restoring, the added mass
+and damping contributions from linear wave radiation (including
+free-surface memory effects), and the incident-wave excitation from
+first- and second-order diffraction (Froude-Kriloff and scattering). The
+hydrodynamic coefficients (first and second order) required for the
+potential-flow solution are frequency dependent and must be supplied by
+a separate frequency-domain panel code (e.g., WAMIT) from a
+pre-computation step. The radiation memory effect can be calculated
+either through direct time-domain convolution or through a linear
+state-space approach, with a state-space model derived through the
+<a class="reference external" href="https://www.nlr.gov/wind/nwtc/ss-fitting.html">SS_Fitting</a>
+preprocessor. The second-order terms can be derived from the full
+difference- and sum-frequency quadratic transfer functions (QTFs) or the
+difference-frequency terms can be estimated via Standing et al.’s <span id="id2">[<a class="reference internal" href="zrefs.html#id6" title="W. J. Brending R. G. Standing and D. Wilson. Recent Developments in the Analysis of Wave Drift Forces, Low-Frequency Damping and Response. Proceedings of the 79th Annual OTC, 1987.">RGSW87</a>]</span>
+extension to Newman’s approximation, based only on first-order
+coefficients. The use of FIT is not yet documented in this manual.</p>
+<p>The strip-theory solution may be preferable for substructures or members
+of substructures that are small in diameter relative to a typical
+wavelength. Strip-theory hydrodynamic loads can be applied across
+multiple interconnected members, each with possible incline and taper,
+and are derived directly from the undisturbed wave and current
+kinematics at the undisplaced position of the substructure. The
+strip-theory loads include the relative form of Morison’s equation for
+the distributed fluid-inertia, added-mass, and viscous-drag components.
+Additional distributed load components include axial loads from tapered
+members and static buoyancy loads. Hydrodynamic loads are also applied
+as lumped loads on member endpoints (called joints). It is also possible
+to include flooding or ballasting of members, and the effects of marine
+growth. The hydrodynamic coefficients required for this solution come
+through user-specified dynamic-pressure, added-mass, and viscous-drag
+coefficients.</p>
+<p>For some substructures and sea conditions, the hydrodynamic loads from a
+potential-flow theory should be augmented with the loads brought about
+by flow separation.  For this, the viscous-drag component of the
+strip-theory solution may be included with the potential-flow theory
+solution.  Another option available is to supply a global damping matrix
+(linear or quadratic) to the system to represent this effect.</p>
+<p>When HydroDyn is coupled to OpenFAST, HydroDyn receives the position,
+orientation, velocities, and accelerations of the (rigid or flexible)
+substructure at each coupling time step and then computes the
+hydrodynamic loads and returns them back to OpenFAST. At this time,
+OpenFAST’s ElastoDyn structural-dynamics module assumes for a floating platform
+that the substructure (floating platform) is a six degree-of-freedom
+(DOF) rigid body. For fixed-bottom offshore wind turbines, OpenFAST’s SubDyn
+module allows for structural flexibility of multi-member substructures
+and the coupling to HydroDyn includes hydro-elastic effects.</p>
+<p>The primary HydroDyn input file defines the substructure geometry,
+hydrodynamic coefficients, incident wave kinematics and current,
+potential-flow solution options, flooding/ballasting and marine growth,
+and auxiliary parameters. The geometry of strip-theory members is
+defined by joint coordinates of the undisplaced substructure in the
+global reference system, with the origin at the intersection of the
+undeflected tower centerline with mean sea level (MSL). A member
+connects two joints; multiple members can use a common joint. The
+hydrodynamic loads are computed at nodes, which are the resultant of
+member refinement into multiple (<strong>MDivSize</strong> input) elements (nodes are
+located at the ends of each element), and they are calculated by the
+module. Member properties include outer diameter, thickness, and
+dynamic-pressure, added-mass and viscous-drag coefficients. Member
+properties are specified at the joints; if properties change from one
+joint to the other, they will be linearly interpolated for the inner
+nodes.</p>
+<p>See <a class="reference internal" href="getting_started.html#hd-getting-started"><span class="std std-ref">Installation and Getting Started</span></a> for details on how to download or
+compile the HydroDyn and OpenFAST software executables, as well as
+instructions for running HydroDyn standalone and coupled to OpenFAST.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../elastodyn/zrefs.html" class="btn btn-neutral float-left" title="4.10.5. References" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="getting_started.html" class="btn btn-neutral float-right" title="4.11.1. Installation and Getting Started" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

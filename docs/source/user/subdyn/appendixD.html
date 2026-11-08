@@ -1,0 +1,360 @@
+<!DOCTYPE html><html class="writer-html5" lang="ko"><head><!-- Modified 2026-11-08: unofficial Korean machine translation of OpenFAST 5.0.0. Equations, code, figures, input values and attribution retained. -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.8.12. 부록 D. 출력 채널 목록 - OpenFAST v5.0.0 문서</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../../../genindex.html">
+    <link rel="search" title="검색" href="../../../search.html">
+    <link rel="next" title="4.8.13. 부록 E. 독립형 SubDyn 컴파일하기" href="appendixE.html">
+    <link rel="prev" title="4.8.11. 부록 C. OC4 재킷 SSI 입력 파일" href="appendixC.html"> 
+<link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/subdyn/appendixD.html"></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+          </a>
+              <div class="version">5.0 · 한국어</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="문서 검색" aria-label="문서 검색">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.8. SubDyn</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">4.8.1. 소개</a></li>
+<li class="toctree-l3"><a class="reference internal" href="running_sd.html">4.8.2. SubDyn 실행</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input_files.html">4.8.3. 입력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="output_files.html">4.8.4. 출력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modeling.html">4.8.5. 모델링 시 고려사항</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory.html">4.8.6. 서브다인 이론</a></li>
+<li class="toctree-l3"><a class="reference internal" href="future_work.html">4.8.7. 알려진 한계와 향후 개발 계획</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.8.8. 참고문헌</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendixA.html">4.8.9. 부록 A. OC4 재킷 입력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendixB.html">4.8.10. 부록 B. OC4 재킷 드라이버 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendixC.html">4.8.11. 부록 C. OC4 재킷 SSI 입력 파일</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.8.12. 부록 D. 출력 채널 목록</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendixE.html">4.8.13. 부록 E. 독립형 SubDyn 컴파일하기</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendixF.html">4.8.14. 부록 F. SubDyn의 주요 변경 사항</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. 단순화 ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. 구조 제어</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. 추가 모듈 문서</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC 서브루틴 라이브러리</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+</ul>
+
+        <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="페이지 탐색">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.8. </span>SubDyn 사용자 가이드 및 이론 설명서</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.8.12. </span>부록 D. 출력 채널 목록</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/subdyn/appendixD.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+      </li>
+  </ul>
+  <hr>
+</div><aside class="ko-notice" aria-label="한국어 번역 안내"><strong>한국어 자동번역</strong> · OpenFAST v5.0.0 · 2026-11-08 기준<br>비공식 번역본입니다. 수식·명령어·입력 변수와 첨부자료는 원문을 보존합니다. <a href="https://openfast.readthedocs.io/en/main/source/user/subdyn/appendixD.html" target="_blank" rel="noopener noreferrer" lang="en">영문 원문 대조 ↗</a></aside>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="appendix-d-list-of-output-channels">
+<span id="sd-appendix-d"></span><h1><span class="section-number">4.8.12. </span>부록 D. 출력 채널 목록<a class="headerlink" href="#appendix-d-list-of-output-channels" title="이 제목의 고유 링크"></a></h1>
+<p>이것은 SubDyn 모듈에 대해 가능한 모든 출력 매개변수의 목록입니다. 이름은 의미별로 그룹화되어 있지만 사용자가 적합하다고 생각하는 대로 SubDyn 입력 파일의 OUTPUT CHANNELS 섹션에서 정렬할 수 있습니다. <span class="math notranslate nohighlight">\(M \alpha N \beta\)</span>, 노드를 나타냅니다.
+회원의 <span class="math notranslate nohighlight">\(\beta\)</span> 부재의 <span class="math notranslate nohighlight">\(\alpha\)</span>, 여기서 <span class="math notranslate nohighlight">\(\alpha\)</span> 는 [1,99] 범위의 숫자이고 행에 해당합니다.
+MEMBER OUTPUT LIST 테이블의 <span class="math notranslate nohighlight">\(\alpha\)</span> (참조: <a class="reference internal" href="input_files.html#sd-member-output"><span class="std std-numref">섹션 4.8.3.3.15</span></a>) 및
+<span class="math notranslate nohighlight">\(\beta\)</span> 는 [1,9] 범위의 숫자이고 노드에 해당합니다. <span class="math notranslate nohighlight">\(\beta\)</span> 의
+<strong>NodeCnt</strong> 목록입니다.</p>
+<p>일부 출력은 SS 참조 좌표계(전역 관성 프레임 좌표계)에 있으며 접미사로 끝납니다. <cite>ss</cite>; 다른 것들은 로컬(회원) 참조 시스템을 참조하며 접미사 "Xe", "Ye" 또는 "Ze"를 갖습니다(섹션 7 참조).</p>
+<p>표 C-1. 출력 채널 목록.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 26%">
+<col style="width: 57%">
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>채널 이름</p></th>
+<th class="head"><p>장치</p></th>
+<th class="head"><p>설명</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td colspan="3"><p><em>기본 및 인터페이스 반응 부하</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>ReactFXss, ReactFYss, ReactFZss,</p>
+<p>ReactMXss, ReactMYss, ReactMZss,</p>
+</td>
+<td><p>(N), (N), (N),</p>
+<p>(Nm), (Nm), (Nm)</p>
+</td>
+<td><p>총 기본 반력 및 모멘트
+(0.,0.,-의</p>
+<p>다음 위치에서: (0.,0.,-<strong>WtrDpth</strong>) SS 좌표계의 위치</p>
+</td>
+</tr>
+<tr class="row-even"><td><p>Intf?FXss, Intf?FYss, Intf?FZss,</p>
+<p>Intf?MXss, Intf?MYss, Intf?MZss,</p>
+</td>
+<td><p>(N), (N), (N),</p>
+<p>(Nm), (Nm), (Nm)</p>
+</td>
+<td><p>SS 좌표계의 TP 기준점(플랫폼 기준점)에서의 총 인터페이스 반력 및 모멘트입니다. ? 출력할 전환 부분을 나타내기 위해 1에서 9 사이의 숫자로 대체될 수 있습니다. 생략 ? 이전 버전과의 호환성을 위해 기본값은 전환 조각 1입니다.</p></td>
+</tr>
+<tr class="row-odd"><td colspan="3"><p><em>인터페이스 운동학</em></p></td>
+</tr>
+<tr class="row-even"><td><p>Intf?TDXss, Intf?TDYss, Intf?TDZss,</p>
+<p>Intf?RDXss, Intf?RDYss, Intf?RDZss</p>
+</td>
+<td><p>(m), (m), (m),</p>
+<p>(rad),(rad),(rad)</p>
+</td>
+<td><p>SS 좌표계에서 TP 기준점의 변위 및 회전. 회전 각도는 본질적인 요우 먼저, 피치 두 번째, 롤 마지막의 규칙을 따르는 Tait-Bryan 각도입니다. ? 출력할 전환 부분을 나타내기 위해 1에서 9 사이의 숫자로 대체될 수 있습니다. 생략 ? 이전 버전과의 호환성을 위해 기본값은 전환 조각 1입니다.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Intf?TDXe, Intf?TDYe, Intf?TDZe,</p>
+<p>Intf?RDXe, Intf?RDYe, Intf?RDZe</p>
+</td>
+<td><p>(m), (m), (m),</p>
+<p>(rad),(rad),(rad)</p>
+</td>
+<td><p>강체 좌표계에서 TP 기준점 변위 및 (작은 각도) 회전의 탄성 부분입니다. ? 출력할 전환 부분을 나타내기 위해 1에서 9 사이의 숫자로 대체될 수 있습니다. 생략 ? 이전 버전과의 호환성을 위해 기본값은 전환 조각 1입니다.</p></td>
+</tr>
+<tr class="row-even"><td><p>Intf?TAXss, Intf?TAYss, Intf?TAZss,</p>
+<p>Intf? RAXss, Intf? RAYss, Intf? RAZss</p>
+</td>
+<td><p>(<span class="math notranslate nohighlight">\({m/s^2}\)</span>), (<span class="math notranslate nohighlight">\({m/s^2}\)</span>), (<span class="math notranslate nohighlight">\({m/s^2}\)</span>),</p>
+<p>(<span class="math notranslate nohighlight">\({rad/s^2}\)</span>), (<span class="math notranslate nohighlight">\({rad/s^2}\)</span>), (<span class="math notranslate nohighlight">\({rad/s^2}\)</span>)</p>
+</td>
+<td><p>SS 좌표계에서 TP 기준점의 병진 및 회전 가속도입니다. ? 출력할 전환 부분을 나타내기 위해 1에서 9 사이의 숫자로 대체될 수 있습니다. 생략 ? 이전 버전과의 호환성을 위해 기본값은 전환 조각 1입니다.</p></td>
+</tr>
+<tr class="row-odd"><td colspan="3"><p><em>강체 운동학(부동에만 해당)</em></p></td>
+</tr>
+<tr class="row-even"><td><p>RBTDXss, RBTDYss, RBTDZss,</p>
+<p>RBRDXss, RBRDYss, RBRDZss</p>
+</td>
+<td><p>(m), (m), (m),</p>
+<p>(rad),(rad),(rad)</p>
+</td>
+<td><p>SS 좌표계에서 강체 기준점의 변위 및 회전.</p>
+<p>회전 각도는 본질적인 요우 먼저, 피치 두 번째, 롤 마지막의 규칙을 따르는 Tait-Bryan 각도입니다.</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p>RBTVXss, RBTVYss, RBTVZss,</p>
+<p>RBRVXss, RBRVYss, RBRVZss</p>
+</td>
+<td><p>(m/s), (m/s), (m/s),</p>
+<p>(rad/s), (rad/s), (rad/s)</p>
+</td>
+<td><p>SS 좌표계에서 강체 기준점의 병진 및 회전 속도입니다.</p></td>
+</tr>
+<tr class="row-even"><td><p>RBTAXss, RBTAYss, RBTAZss,</p>
+<p>RBRAXss, RBRAYss, RBRAZss</p>
+</td>
+<td><p>(<span class="math notranslate nohighlight">\({m/s^2}\)</span>), (<span class="math notranslate nohighlight">\({m/s^2}\)</span>), (<span class="math notranslate nohighlight">\({m/s^2}\)</span>),</p>
+<p>(<span class="math notranslate nohighlight">\({rad/s^2}\)</span>), (<span class="math notranslate nohighlight">\({rad/s^2}\)</span>), (<span class="math notranslate nohighlight">\({rad/s^2}\)</span>)</p>
+</td>
+<td><p>SS 좌표계에서 강체 기준점의 병진 및 회전 가속도입니다.</p></td>
+</tr>
+<tr class="row-odd"><td colspan="3"><p><em>모달 매개변수</em></p></td>
+</tr>
+<tr class="row-even"><td><p>SSqm01-SSqm99</p></td>
+<td><p>(-)</p></td>
+<td><p>C-B 모달 변수(최대 99개)</p></td>
+</tr>
+<tr class="row-odd"><td><p>SSqmd01-SSqmd99</p></td>
+<td><p>(1/s)</p></td>
+<td><p>C-B 모달 변수의 첫 번째 시간 파생(최대 처음 99개)</p></td>
+</tr>
+<tr class="row-even"><td><p>SSqmdd01-SSqmdd99</p></td>
+<td><p>(<span class="math notranslate nohighlight">\({1/s^2}\)</span>)</p></td>
+<td><p>C-B 모달 변수의 두 번째 시간 파생(최대 처음 99개)</p></td>
+</tr>
+<tr class="row-odd"><td colspan="3"><p><em>노드 운동학</em></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\({M \alpha N \beta}\)</span> TDxss,</p>
+<p><span class="math notranslate nohighlight">\(M \alpha N \beta\)</span> T디스,</p>
+<p><span class="math notranslate nohighlight">\(M \alpha N \beta\)</span> TDzss,</p>
+</td>
+<td><ol class="loweralpha simple" start="13">
+<li></li>
+</ol>
+</td>
+<td><p>절점 총 병진 변위
+SS 좌표계의 <span class="math notranslate nohighlight">\(M \alpha N \beta\)</span></p>
+<p>(최대 81개 지정 위치)</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\({M \alpha N \beta}\)</span> RDxe,</p>
+<p><span class="math notranslate nohighlight">\({M \alpha N \beta}\)</span> Rye,</p>
+<p><span class="math notranslate nohighlight">\({M \alpha N \beta}\)</span> RDze</p>
+</td>
+<td><p>(라드)</p></td>
+<td><p>절점 회전 탄성 처짐
+강체 구성과 관련된 <span class="math notranslate nohighlight">\(M \alpha N \beta\)</span> 회원 로컬 좌표계의</p>
+<p>(최대 81개 지정 위치)</p>
+</td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\({M \alpha N \beta}\)</span> 세금,</p>
+<p><span class="math notranslate nohighlight">\({M \alpha N \beta}\)</span> 타예,</p>
+<p><span class="math notranslate nohighlight">\({M \alpha N \beta}\)</span> 타제</p>
+</td>
+<td><p>(<span class="math notranslate nohighlight">\({m/s^2}\)</span>)</p></td>
+<td><p>절점 병진 가속도 <span class="math notranslate nohighlight">\(M \alpha N \beta\)</span></p>
+<p>(최대 81개 지정 위치)</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\({M \alpha N \beta}\)</span> RAxe,</p>
+<p><span class="math notranslate nohighlight">\({M \alpha N \beta}\)</span> 레이예,</p>
+<p><span class="math notranslate nohighlight">\({M \alpha N \beta}\)</span> 레이즈</p>
+</td>
+<td><p>(<span class="math notranslate nohighlight">\({rad/s^2}\)</span>)</p></td>
+<td><p>절점 회전 가속도 <span class="math notranslate nohighlight">\(M \alpha N \beta\)</span></p>
+<p>(최대 81개 지정 위치)</p>
+</td>
+</tr>
+<tr class="row-even"><td colspan="3"><p><em>노드 힘 및 모멘트</em></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\({M \alpha N \beta}\)</span> FKxe,</p>
+<p><span class="math notranslate nohighlight">\({M \alpha N \beta}\)</span> FKye,</p>
+<p><span class="math notranslate nohighlight">\({M \alpha N \beta}\)</span> FKze</p>
+<p><span class="math notranslate nohighlight">\({M \alpha N \beta}\)</span> MKxe,</p>
+<p><span class="math notranslate nohighlight">\({M \alpha N \beta}\)</span> MKye,</p>
+<p><span class="math notranslate nohighlight">\({M \alpha N \beta}\)</span> MKze</p>
+</td>
+<td><p>(N),</p>
+<p>(N),</p>
+<p>(N),</p>
+<p>(Nm),</p>
+<p>(Nm),</p>
+<p>(Nm)</p>
+</td>
+<td><p>반력 및 모멘트의 정적(탄성) 구성요소
+로컬 멤버 좌표계를 따른</p>
+<p>에 <span class="math notranslate nohighlight">\(M \alpha N \beta\)</span>  부재 국부 좌표계를 따라</p>
+</td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\({M \alpha N \beta}\)</span> FMxe,</p>
+<p><span class="math notranslate nohighlight">\({M \alpha N \beta}\)</span> FM예,</p>
+<p><span class="math notranslate nohighlight">\({M \alpha N \beta}\)</span> FMze</p>
+<p><span class="math notranslate nohighlight">\({M \alpha N \beta}\)</span> MMxe,</p>
+<p><span class="math notranslate nohighlight">\({M \alpha N \beta}\)</span> 응,</p>
+<p><span class="math notranslate nohighlight">\({M \alpha N \beta}\)</span> MMze</p>
+</td>
+<td><p>(N),</p>
+<p>(N),</p>
+<p>(N),</p>
+<p>(Nm),</p>
+<p>(Nm),</p>
+<p>(Nm)</p>
+</td>
+<td><p>반력 및 모멘트의 동적(관성) 구성요소</p>
+<p>에 <span class="math notranslate nohighlight">\(M \alpha N \beta\)</span>  부재 국부 좌표계를 따라</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="appendixC.html" class="btn btn-neutral float-left" title="4.8.11. 부록 C. OC4 재킷 SSI 입력 파일" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+        <a href="appendixE.html" class="btn btn-neutral float-right" title="4.8.13. 부록 E. 독립형 SubDyn 컴파일하기" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>© Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    
+     
+
+
+</body></html>

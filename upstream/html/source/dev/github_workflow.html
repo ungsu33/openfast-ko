@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>6.1.6.1. Working with OpenFAST on GitHub &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="6.1.6.2. Code Style" href="code_style.html" />
+    <link rel="prev" title="6. Developer Documentation" href="index.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/dev/github_workflow.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">4. User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">6. Developer Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#development-philosophy-and-guidelines">6.1. Development Philosophy and Guidelines</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html#engagement-with-nlr">6.1.1. Engagement with NLR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#development-plan-implementation-plan">6.1.2. Development Plan / Implementation Plan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#qualities-of-a-good-submission">6.1.3. Qualities of a good submission</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#submit-for-review-and-nlr-feedback">6.1.4. Submit for review and NLR feedback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#bug-fixes">6.1.5. Bug fixes</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#additional-guidance">6.1.6. Additional guidance</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">6.1.6.1. Working with OpenFAST on GitHub</a></li>
+<li class="toctree-l4"><a class="reference internal" href="code_style.html">6.1.6.2. Code Style</a></li>
+<li class="toctree-l4"><a class="reference internal" href="build_doc.html">6.1.6.3. Developing Documentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="types_files.html">6.1.6.4. Types Files and the OpenFAST Registry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="debugging.html">6.1.6.5. Debugging OpenFAST</a></li>
+<li class="toctree-l4"><a class="reference internal" href="performance.html">6.1.6.6. Performance Profiling and Tuning</a></li>
+<li class="toctree-l4"><a class="reference internal" href="versioning.html">6.1.6.7. Versioning</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#api-reference">6.2. API Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#c-api-reference">6.3. C++ API Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#other-documentation">6.4. Other Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">6. </span>Developer Documentation</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">6.1.6.1. </span>Working with OpenFAST on GitHub</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/source/dev/github_workflow.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="working-with-openfast-on-github">
+<span id="github-workflow"></span><h1><span class="section-number">6.1.6.1. </span>Working with OpenFAST on GitHub<a class="headerlink" href="#working-with-openfast-on-github" title="Permalink to this heading"></a></h1>
+<p>The majority of the collaboration and development for OpenFAST takes place
+on the <a class="reference external" href="http://github.com/openfast/openfast">GitHub repository</a>. There,
+<a class="reference external" href="http://github.com/openfast/openfast/issues">issues</a> and
+<a class="reference external" href="http://github.com/openfast/openfast/pulls">pull requests</a>
+are discussed and new versions are released. It is the best mechanism for
+engaging with the NLR OpenFAST team and other developers throughout
+the OpenFAST community.</p>
+<div class="section" id="issues-and-work-assignment">
+<h2><span class="section-number">6.1.6.1.1. </span>Issues and work assignment<a class="headerlink" href="#issues-and-work-assignment" title="Permalink to this heading"></a></h2>
+<p>Issues should be opened with proper documentation and data to fully describe
+the problem or feature gap. It is here that communication and coordination
+should happen regarding ongoing work for new development, and developers should
+make clear any intention to complete a task.</p>
+</div>
+<div class="section" id="pull-requests">
+<span id="id1"></span><h2><span class="section-number">6.1.6.1.2. </span>Pull Requests<a class="headerlink" href="#pull-requests" title="Permalink to this heading"></a></h2>
+<p>When a code modification is ready for review, a pull request should be
+submitted along with all appropriate documentation and tests. An NLR OpenFAST
+team member will assign a reviewer and work with the  developer to have the
+code merged into the main repository.</p>
+<p>New pull requests should contain the following:</p>
+<ul class="simple">
+<li><p>A description of the need for modifications</p>
+<ul>
+<li><p>If the pull request fixes a bug,
+the accompanying GitHub issue should be referenced</p></li>
+</ul>
+</li>
+<li><p>A summary of the work implemented</p></li>
+<li><p>Regression test results</p>
+<ul>
+<li><p>If all tests pass, the summary print out should be provided</p></li>
+<li><p>If any tests fail, an explanation of the failing
+cases and supporting data like plots should be included</p></li>
+</ul>
+</li>
+<li><p>Updated unit tests, if applicable</p></li>
+<li><p>Updated documentation in applicable sections ready for compilation and
+deployment to <a class="reference external" href="http://openfast.readthedocs.io">readthedocs</a>.</p></li>
+</ul>
+</div>
+<div class="section" id="git-workflow-and-interacting-with-the-main-repository">
+<h2><span class="section-number">6.1.6.1.3. </span>Git workflow and interacting with the main repository<a class="headerlink" href="#git-workflow-and-interacting-with-the-main-repository" title="Permalink to this heading"></a></h2>
+<p>OpenFAST development should follow “Git Flow” when interacting with the github
+repository. Git Flow is a well-defined and widely adopted workflow for using
+git that outlines safe methods of pushing and pulling commits to a shared
+repository. Maintaining Git Flow is critical to prevent remote changes from
+blocking your local development. This workflow is detailed nicely
+<a class="reference external" href="http://nvie.com/posts/a-successful-git-branching-model">here</a>
+and the chart below provides a high level perspective.</p>
+<a class="reference internal image-reference" href="../../_images/GitFlowFeatureBranches.png"><img alt="../../_images/GitFlowFeatureBranches.png" class="align-center" src="../../_images/GitFlowFeatureBranches.png" style="width: 70%;" /></a>
+<p>Reference: <a class="reference external" href="http://nvie.com/posts/a-successful-git-branching-model">http://nvie.com/posts/a-successful-git-branching-model</a></p>
+</div>
+<div class="section" id="openfast-specific-git-flow">
+<h2><span class="section-number">6.1.6.1.4. </span>OpenFAST Specific Git Flow<a class="headerlink" href="#openfast-specific-git-flow" title="Permalink to this heading"></a></h2>
+<p>It is important to consider how your current work will be affected by other
+developer’s commits and how your commits will affect other developers.
+On public branches, avoid using
+<a class="reference external" href="https://git-scm.com/book/en/v2/Git-Branching-Rebasing">git rebase</a>
+and never <a class="reference external" href="https://git-scm.com/docs/git-push#git-push---force">force push</a>.</p>
+<p>In OpenFAST development, the typical workflow follows this procedure:</p>
+<ol class="arabic simple">
+<li><p>Fork the OpenFAST repository on GitHub</p></li>
+<li><p>Clone your new fork</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/&lt;youruser&gt;/OpenFAST
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Add OpenFAST/OpenFAST as a remote named <code class="docutils literal notranslate"><span class="pre">upstream</span></code></p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># This adds the remote</span>
+git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>upstream<span class="w"> </span>https://github.com/OpenFAST/OpenFAST
+
+<span class="c1"># This downloads all the info in the remote, but it doesnt change</span>
+<span class="c1"># the local source code</span>
+git<span class="w"> </span>fetch<span class="w"> </span>--all
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Create a feature branch for active development starting from the OpenFAST
+<code class="docutils literal notranslate"><span class="pre">dev</span></code> branch and check it out</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>branch<span class="w"> </span>feature/a_great_feature<span class="w"> </span>upstream/dev
+git<span class="w"> </span>checkout<span class="w"> </span>feature/a_great_feature
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Add new development on <code class="docutils literal notranslate"><span class="pre">feature/a_great_feature</span></code></p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>a_file.f90
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;A message&quot;</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>feature/a_great_feature
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p>Update your feature branch with <code class="docutils literal notranslate"><span class="pre">upstream</span></code></p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>pull<span class="w"> </span>upstream<span class="w"> </span>dev
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>feature/a_great_feature
+</pre></div>
+</div>
+<ol class="arabic simple" start="7">
+<li><p>Open a new <a class="reference external" href="https://github.com/OpenFAST/openfast/compare">pull request</a>
+to merge <code class="docutils literal notranslate"><span class="pre">&lt;youruser&gt;/OpenFAST/feature/a_great_feature</span></code> into
+<code class="docutils literal notranslate"><span class="pre">OpenFAST/OpenFAST/dev</span></code></p></li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="6. Developer Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="code_style.html" class="btn btn-neutral float-right" title="6.1.6.2. Code Style" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4. User Documentation &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="4.1. General" href="general.html" />
+    <link rel="prev" title="3. Working with OpenFAST" href="../working.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/index.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. User Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4. </span>User Documentation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/source/user/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="user-documentation">
+<span id="user-guide"></span><h1><span class="section-number">4. </span>User Documentation<a class="headerlink" href="#user-documentation" title="Permalink to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We are in the process of transitioning legacy FAST v8 documentation to this online documentation. The legacy FAST v8 documentation can be found at <a class="reference external" href="https://www.nrel.gov/wind/nwtc.html">https://www.nrel.gov/wind/nwtc.html</a>.</p>
+</div>
+<p>This section contains documentation for the OpenFAST module-coupling environment and its underlying modules.  Documentation covers usage of models, underlying theory, and in some cases module verification.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="general.html">4.1. General considerations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l1"><a class="reference internal" href="moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="other/index.html">4.21. WaveTank</a></li>
+</ul>
+</div>
+<div class="section" id="additional-module-documentation">
+<h2><span class="section-number">4.22. </span>Additional module documentation<a class="headerlink" href="#additional-module-documentation" title="Permalink to this heading"></a></h2>
+<p>The following modules do not currently have formal documentation
+or are contributed to OpenFAST from organizations
+external to NLR and the core OpenFAST team. As documentation is added,
+these resources will be moved to their appropriate location. If newer versions
+of the external resources are available, please open a <a class="reference external" href="https://github.com/openfast/openfast/issues">GitHub Issue</a>
+with the information for the new documentation.</p>
+<ul class="simple">
+<li><p>MAP++</p>
+<ul>
+<li><p><a class="reference external" href="https://map-plus-plus.readthedocs.io/en/latest/index.html">Official MAP++ documentation</a></p></li>
+<li><p><a class="reference download internal" download="" href="../../_downloads/d56e52998c63414164907ea96158810c/cable_model_development.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Implementation</span> <span class="pre">of</span> <span class="pre">a</span> <span class="pre">Multi-Segmented,</span> <span class="pre">Quasi-Static</span> <span class="pre">Cable</span> <span class="pre">Model</span></code></a></p></li>
+</ul>
+</li>
+<li><p>FEAMooring</p>
+<ul>
+<li><p><a class="reference download internal" download="" href="../../_downloads/19d4325143610cde79a44af6e3aa3296/FEAM_Theory_Manual.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Theory</span> <span class="pre">Manual</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../_downloads/6b157aad32e86be28763832800d8aa2b/FEAM_Users_Guide.pdf"><code class="xref download docutils literal notranslate"><span class="pre">User's</span> <span class="pre">Guide</span></code></a></p></li>
+</ul>
+</li>
+<li><p>OrcaFlex Interface:</p>
+<ul>
+<li><p><a class="reference download internal" download="" href="../../_downloads/2a923a6787c16a4a2c68352400d9d115/User_Guide_OrcaFlexInterface.pdf"><code class="xref download docutils literal notranslate"><span class="pre">User's</span> <span class="pre">Guide</span></code></a></p></li>
+</ul>
+</li>
+<li><p>IceFloe</p>
+<ul>
+<li><p><a class="reference download internal" download="" href="../../_downloads/3759bf4ddfb4d771864e4e6c56c855f2/Ice_Load_Final_Report.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Ice</span> <span class="pre">Load</span> <span class="pre">Project</span> <span class="pre">Final</span> <span class="pre">Technical</span> <span class="pre">Report</span></code></a></p></li>
+</ul>
+</li>
+<li><p>IceDyn</p>
+<ul>
+<li><p><a class="reference download internal" download="" href="../../_downloads/640db05398b1ebb14dc902bf3ca368bb/IceDyn_Manual.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Draft:</span> <span class="pre">FAST</span> <span class="pre">Ice</span> <span class="pre">Module</span> <span class="pre">Manual</span></code></a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="nwtc-subroutine-library">
+<h2><span class="section-number">4.23. </span>NWTC Subroutine Library<a class="headerlink" href="#nwtc-subroutine-library" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference download internal" download="" href="../../_downloads/746f52d476ceff2f5fe8ce0984b1d9c1/NWTC_Library_Description.pdf"><code class="xref download docutils literal notranslate"><span class="pre">NWTC</span> <span class="pre">Library</span> <span class="pre">-</span> <span class="pre">short</span> <span class="pre">overview</span> <span class="pre">of</span> <span class="pre">subroutines</span> <span class="pre">and</span> <span class="pre">functions</span></code></a></p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../working.html" class="btn btn-neutral float-left" title="3. Working with OpenFAST" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="general.html" class="btn btn-neutral float-right" title="4.1. General" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

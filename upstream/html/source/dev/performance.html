@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>6.1.6.6. Performance Profiling and Tuning &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+        <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.12.1/dist/mermaid.esm.min.mjs";
+
+
+
+
+
+const initStyles = () => {
+    const defaultStyle = document.createElement('style');
+    defaultStyle.textContent = `pre.mermaid {
+    /* Same as .mermaid-container > pre */
+    display: block;
+    width: 100%;
+}
+
+pre.mermaid > svg {
+    /* Same as .mermaid-container > pre > svg */
+    height: 500px;
+    width: 100%;
+    max-width: 100% !important;
+}`;
+    document.head.appendChild(defaultStyle);
+
+    const fullscreenStyle = document.createElement('style');
+    fullscreenStyle.textContent = `.mermaid-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.mermaid-container > pre {
+    display: block;
+    width: 100%;
+}
+
+.mermaid-container > pre > svg {
+    height: 500px;
+    width: 100%;
+    max-width: 100% !important;
+}
+
+.mermaid-fullscreen-btn {
+    width: 28px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    line-height: 1;
+    padding: 0;
+    color: #333;
+}
+
+.mermaid-fullscreen-btn:hover {
+    opacity: 100% !important;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
+}
+
+.mermaid-fullscreen-btn.dark-theme {
+    background: rgba(50, 50, 50, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #e0e0e0;
+}
+
+.mermaid-fullscreen-btn.dark-theme:hover {
+    background: rgba(60, 60, 60, 1);
+    box-shadow: 0 3px 10px rgba(255, 255, 255, 0.2);
+}
+
+.mermaid-fullscreen-modal {
+    display: none;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 95vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.98);
+    z-index: 9999;
+    padding: 20px;
+    overflow: auto;
+}
+
+.mermaid-fullscreen-modal.dark-theme {
+    background: rgba(0, 0, 0, 0.98);
+}
+
+.mermaid-fullscreen-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen {
+    position: relative;
+    width: 95vw;
+    height: 90vh;
+    max-width: 95vw;
+    max-height: 90vh;
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen.dark-theme {
+    background: #1a1a1a;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+}
+
+.mermaid-container-fullscreen pre.mermaid {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen .mermaid svg {
+    height: 100% !important;
+    width: 100% !important;
+    cursor: grab;
+}
+
+.mermaid-fullscreen-close {
+    position: fixed !important;
+    top: 20px !important;
+    right: 20px !important;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s;
+    font-size: 24px;
+    line-height: 1;
+    color: #333;
+}
+
+.mermaid-fullscreen-close:hover {
+    background: white;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    transform: scale(1.1);
+}
+
+.mermaid-fullscreen-close.dark-theme {
+    background: rgba(50, 50, 50, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #e0e0e0;
+}
+
+.mermaid-fullscreen-close.dark-theme:hover {
+    background: rgba(60, 60, 60, 1);
+    box-shadow: 0 6px 16px rgba(255, 255, 255, 0.2);
+}
+
+.mermaid-fullscreen-modal .mermaid-fullscreen-btn {
+    display: none !important;
+}`;
+    document.head.appendChild(fullscreenStyle);
+}
+
+// Detect if page has dark background
+const isDarkTheme = () => {
+    // We use a set of heuristics:
+    // 1. Check for common dark mode classes or attributes
+    // 2. Check computed background color brightness
+    if (document.documentElement.classList.contains('dark') ||
+        document.documentElement.getAttribute('data-theme') === 'dark' ||
+        document.body.classList.contains('dark') ||
+        document.body.getAttribute('data-theme') === 'dark') {
+        // console.log("Dark theme detected via class/attribute");
+        return true;
+    }
+    if (document.documentElement.classList.contains('light') ||
+        document.documentElement.getAttribute('data-theme') === 'light' ||
+        document.body.classList.contains('light') ||
+        document.body.getAttribute('data-theme') === 'light') {
+        // console.log("Light theme detected via class/attribute");
+        return false;
+    }
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        // console.log("Dark theme detected via prefers-color-scheme");
+        return true;
+    }
+    const bgColor = window.getComputedStyle(document.body).backgroundColor;
+    const match = bgColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)/);
+    if (match) {
+        const r = parseInt(match[1]);
+        const g = parseInt(match[2]);
+        const b = parseInt(match[3]);
+        const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+        // console.log("Background color brightness:", brightness);
+        return brightness < 128;
+    }
+    // console.log("No dark or light theme detected, defaulting to light theme");
+    return false;
+};
+
+let darkTheme = isDarkTheme();
+let modal = null;
+let modalContent = null;
+let previousScrollOffset = [window.scrollX, window.scrollY];
+
+const runMermaid = async (rerun) => {
+    console.log("Running mermaid diagrams, rerun =", rerun);
+    // clear all existing mermaid charts
+    let all_mermaids = document.querySelectorAll(".mermaid");
+
+    if (rerun) {
+        all_mermaids.forEach((el) => {
+            if(!el.hasAttribute("data-original-code")) {
+                // store original code
+                // console.log(`Storing original code for first run: `, el.innerHTML);
+                el.setAttribute('data-original-code', el.innerHTML);
+            }
+            if(el.getAttribute("data-processed") === "true") {
+                // remove and restore original
+                el.removeAttribute("data-processed");
+                // console.log(`Restoring original code for re-run: `, el.getAttribute('data-original-code'));
+                el.innerHTML = el.getAttribute('data-original-code');
+            } else {
+                // store original code
+                // console.log(`Storing original code for re-run: `, el.innerHTML);
+                el.setAttribute('data-original-code', el.innerHTML);
+            }
+        });
+        await mermaid.run();
+    }
+
+    all_mermaids = document.querySelectorAll(".mermaid");
+    const mermaids_processed = document.querySelectorAll(".mermaid[data-processed='true']");
+
+    if ("False" === "True") {
+        const mermaids_to_add_zoom = -1 === -1 ? all_mermaids.length : -1;
+        if(mermaids_to_add_zoom > 0) {
+            var svgs = d3.selectAll("");
+            if(all_mermaids.length !== mermaids_processed.length) {
+                setTimeout(() => runMermaid(false), 200);
+                return;
+            } else if(svgs.size() !== mermaids_to_add_zoom) {
+                setTimeout(() => runMermaid(false), 200);
+                return;
+            } else {
+                svgs.each(function() {
+                    var svg = d3.select(this);
+                    svg.html("<g class='wrapper'>" + svg.html() + "</g>");
+                    var inner = svg.select("g");
+                    var zoom = d3.zoom().on("zoom", function(event) {
+                        inner.attr("transform", event.transform);
+                    });
+                    svg.call(zoom);
+                });
+            }
+        }
+    } else if(all_mermaids.length !== mermaids_processed.length) {
+        // Wait for mermaid to process all diagrams
+        setTimeout(() => runMermaid(false), 200);
+        return;
+    }
+
+    // Stop here if not adding fullscreen capability
+    if ("True" !== "True") return;
+
+    if (modal !== null ) {
+        // Destroy existing modal
+        modal.remove();
+        modal = null;
+        modalContent = null;
+    }
+
+    modal = document.createElement('div');
+    modal.className = 'mermaid-fullscreen-modal' + (darkTheme ? ' dark-theme' : '');
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-label', 'Fullscreen diagram viewer');
+    modal.innerHTML = `
+        <button class="mermaid-fullscreen-close${darkTheme ? ' dark-theme' : ''}" aria-label="Close fullscreen">✕</button>
+        <div class="mermaid-container-fullscreen${darkTheme ? ' dark-theme' : ''}"></div>
+    `;
+    document.body.appendChild(modal);
+
+    modalContent = modal.querySelector('.mermaid-container-fullscreen');
+    const closeBtn = modal.querySelector('.mermaid-fullscreen-close');
+
+    const closeModal = () => {
+        modal.classList.remove('active');
+        modalContent.innerHTML = '';
+        document.body.style.overflow = ''
+        window.scrollTo({left: previousScrollOffset[0], top: previousScrollOffset[1], behavior: 'instant'});
+    };
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+
+    document.querySelectorAll('.mermaid').forEach((mermaidDiv) => {
+        if (mermaidDiv.parentNode.classList.contains('mermaid-container') ||
+            mermaidDiv.closest('.mermaid-fullscreen-modal')) {
+            // Already processed, adjust button class if needed
+            const existingBtn = mermaidDiv.parentNode.querySelector('.mermaid-fullscreen-btn');
+            if (existingBtn) {
+                existingBtn.className = 'mermaid-fullscreen-btn' + (darkTheme ? ' dark-theme' : '');
+            }
+            return;
+        }
+
+        const container = document.createElement('div');
+        container.className = 'mermaid-container';
+        mermaidDiv.parentNode.insertBefore(container, mermaidDiv);
+        container.appendChild(mermaidDiv);
+
+        const fullscreenBtn = document.createElement('button');
+        fullscreenBtn.className = 'mermaid-fullscreen-btn' + (darkTheme ? ' dark-theme' : '');
+        fullscreenBtn.setAttribute('aria-label', 'View diagram in fullscreen');
+        fullscreenBtn.textContent = '⛶';
+        fullscreenBtn.style.opacity = '50%';
+
+        // Calculate dynamic position based on diagram's margin and padding
+        const diagramStyle = window.getComputedStyle(mermaidDiv);
+        const marginTop = parseFloat(diagramStyle.marginTop) || 0;
+        const marginRight = parseFloat(diagramStyle.marginRight) || 0;
+        const paddingTop = parseFloat(diagramStyle.paddingTop) || 0;
+        const paddingRight = parseFloat(diagramStyle.paddingRight) || 0;
+        fullscreenBtn.style.top = `${marginTop + paddingTop + 4}px`;
+        fullscreenBtn.style.right = `${marginRight + paddingRight + 4}px`;
+
+        fullscreenBtn.addEventListener('click', () => {
+            previousScrollOffset = [window.scroll, window.scrollY];
+            const clone = mermaidDiv.cloneNode(true);
+            modalContent.innerHTML = '';
+            modalContent.appendChild(clone);
+
+            const svg = clone.querySelector('svg');
+            if (svg) {
+                svg.removeAttribute('width');
+                svg.removeAttribute('height');
+                svg.style.width = '100%';
+                svg.style.height = 'auto';
+                svg.style.maxWidth = '100%';
+                svg.style.sdisplay = 'block';
+
+                if ("False" === "True") {
+                    setTimeout(() => {
+                        const g = svg.querySelector('g');
+                        if (g) {
+                            var svgD3 = d3.select(svg);
+                            svgD3.html("<g class='wrapper'>" + svgD3.html() + "</g>");
+                            var inner = svgD3.select("g");
+                            var zoom = d3.zoom().on("zoom", function(event) {
+                                inner.attr("transform", event.transform);
+                            });
+                            svgD3.call(zoom);
+                        }
+                    }, 100);
+                }
+            }
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        container.appendChild(fullscreenBtn);
+    });
+};
+
+const load = async () => {
+    initStyles();
+
+    await runMermaid(true);
+
+    const reRunIfThemeChanges = async () => {
+        const newDarkTheme = isDarkTheme();
+        if (newDarkTheme !== darkTheme) {
+            darkTheme = newDarkTheme;
+            console.log("Theme change detected, re-running mermaid with", darkTheme ? "dark" : "default", "theme");
+            await mermaid.initialize(
+                {...JSON.parse(
+                    `{"startOnLoad": false}`
+                ),
+                ...{ darkMode: darkTheme, theme: darkTheme ? 'dark' : 'default' },
+                }
+            );
+            await runMermaid(true);
+        }
+    };
+
+    // Update theme classes when theme changes
+    const themeObserver = new MutationObserver(reRunIfThemeChanges);
+    themeObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class', 'style', 'data-theme']
+    });
+    themeObserver.observe(document.body, {
+        attributes: true,
+        attributeFilter: ['class', 'style', 'data-theme']
+    });
+};
+
+
+
+
+
+console.log("Initializing mermaid with", darkTheme ? "dark" : "default", "theme");
+mermaid.initialize(
+    {...JSON.parse(
+        `{"startOnLoad": false}`
+    ),
+    ...{ darkMode: darkTheme, theme: darkTheme ? 'dark' : 'default' },
+    }
+);
+
+window.addEventListener("load", load);
+window.runMermaid = runMermaid;</script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="6.1.6.7. Versioning" href="versioning.html" />
+    <link rel="prev" title="6.1.6.5. Debugging OpenFAST" href="debugging.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/dev/performance.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">4. User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">6. Developer Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#development-philosophy-and-guidelines">6.1. Development Philosophy and Guidelines</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html#engagement-with-nlr">6.1.1. Engagement with NLR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#development-plan-implementation-plan">6.1.2. Development Plan / Implementation Plan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#qualities-of-a-good-submission">6.1.3. Qualities of a good submission</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#submit-for-review-and-nlr-feedback">6.1.4. Submit for review and NLR feedback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#bug-fixes">6.1.5. Bug fixes</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#additional-guidance">6.1.6. Additional guidance</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="github_workflow.html">6.1.6.1. Working with OpenFAST on GitHub</a></li>
+<li class="toctree-l4"><a class="reference internal" href="code_style.html">6.1.6.2. Code Style</a></li>
+<li class="toctree-l4"><a class="reference internal" href="build_doc.html">6.1.6.3. Developing Documentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="types_files.html">6.1.6.4. Types Files and the OpenFAST Registry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="debugging.html">6.1.6.5. Debugging OpenFAST</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">6.1.6.6. Performance Profiling and Tuning</a></li>
+<li class="toctree-l4"><a class="reference internal" href="versioning.html">6.1.6.7. Versioning</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#api-reference">6.2. API Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#c-api-reference">6.3. C++ API Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#other-documentation">6.4. Other Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">6. </span>Developer Documentation</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">6.1.6.6. </span>Performance Profiling and Tuning</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/source/dev/performance.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="performance-profiling-and-tuning">
+<h1><span class="section-number">6.1.6.6. </span>Performance Profiling and Tuning<a class="headerlink" href="#performance-profiling-and-tuning" title="Permalink to this heading"></a></h1>
+<p>A major focus of the OpenFAST team is performance-profiling and optimization
+of the OpenFAST software with the goal of improving time-to-solution performance
+for the most computationally expensive use cases. The process generally involves
+initial profiling and hotspot analysis, then identifying specific subroutines to
+target for optimization in the physics modules and glue-codes.</p>
+<p>A portion of this work was supported by Intel® through its designation of NLR as an
+<a class="reference external" href="https://software.intel.com/en-us/ipcc">Intel® Parallel Computing Center (IPCC)</a>.</p>
+<p>The procedures, findings, and recommended programming practices are presented here.
+This is a working document and will be updating as additional studies are completed.</p>
+<div class="section" id="high-performance-programming-techniques">
+<h2><span class="section-number">6.1.6.6.1. </span>High-performance programming techniques<a class="headerlink" href="#high-performance-programming-techniques" title="Permalink to this heading"></a></h2>
+<p>Being a compiled language designed for scientific and engineering
+applications, Fortran is well suited for producing very efficient
+code. However, the process of tuning code requires developers to
+understand the language as well as the tools available (compilers,
+performance libraries, etc) in order to generate the highest
+performance. This section identifies programming patterns to use
+Fortran and the Intel® Fortran compiler effectively. Developers
+should also reference the Intel® Fortran compiler documentation
+regarding <a class="reference external" href="https://software.intel.com/content/www/us/en/develop/documentation/fortran-compiler-oneapi-dev-guide-and-reference/top/optimization-and-programming-guide.html">optimization</a>,
+in general, and especially the sections on
+<a class="reference external" href="https://software.intel.com/content/www/us/en/develop/documentation/fortran-compiler-oneapi-dev-guide-and-reference/top/optimization-and-programming-guide/vectorization/automatic-vectorization.html">automatic vectorization</a>
+and <a class="reference external" href="https://software.intel.com/content/www/us/en/develop/documentation/fortran-compiler-oneapi-dev-guide-and-reference/top/optimization-and-programming-guide/coarrays-1.html">coarrays</a>.</p>
+<div class="section" id="optimization-report">
+<h3><span class="section-number">6.1.6.6.1.1. </span>Optimization report<a class="headerlink" href="#optimization-report" title="Permalink to this heading"></a></h3>
+<p>When evaluating compiler optimization performance in a complex
+software, timing tests alone are not a good indication for the
+compiler’s ability to optimize particular lines of code. For
+low-level information on the compilers attempts in optimization,
+developers should generate optimization reports to get
+line-by-line reporting on various metrics such as vectorization,
+parallelization, memory and cache usage, threading, and others.
+Developers should refer to the Intel® Fortran compiler documentation
+on <a class="reference external" href="https://software.intel.com/content/www/us/en/develop/articles/vectorization-and-optimization-reports.html">optimization reports</a>.</p>
+<p>For Linux and macOS, the OpenFAST CMake configuration has compiler
+flags for generating optimization reports available but commented
+in the <code class="docutils literal notranslate"><span class="pre">set_fast_intel_fortran_posix</span></code> macro in <code class="docutils literal notranslate"><span class="pre">openfast/cmake/OpenfastFortranOptions.cmake</span></code>.
+Primarily, the <code class="docutils literal notranslate"><span class="pre">qopt-report-phase</span></code> and <code class="docutils literal notranslate"><span class="pre">qopt-report</span></code> flags should
+be used. See the optimization report options <a class="reference external" href="https://software.intel.com/content/www/us/en/develop/documentation/fortran-compiler-developer-guide-and-reference/top/compiler-reference/compiler-options/compiler-option-details/optimization-report-options/qopt-report-qopt-report.html">documentation</a>
+for more information on additional flags and configurations.</p>
+<p>With compiler flags correctly configured, the copmiler will output
+files with the extension <code class="docutils literal notranslate"><span class="pre">.optrpt</span></code> alongside the intermediate compile
+artifacts like <code class="docutils literal notranslate"><span class="pre">.o</span></code> files. The compile process will state that
+additional files are being generated:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ifort</span><span class="p">:</span> <span class="n">remark</span> <span class="c1">#10397: optimization reports are generated in *.optrpt files in the output location</span>
+</pre></div>
+</div>
+<p>And the additional files should be located in the corresponding
+<code class="docutils literal notranslate"><span class="pre">CMakeFiles</span></code> directory for each compile target. For example,
+the optimization report for the VersionInfo module in OpenFAST
+are at:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">ls</span> <span class="o">-</span><span class="n">l</span> <span class="n">openfast</span><span class="o">/</span><span class="n">build</span><span class="o">/</span><span class="n">modules</span><span class="o">/</span><span class="n">version</span><span class="o">/</span><span class="n">CMakeFiles</span><span class="o">/</span><span class="n">versioninfolib</span><span class="o">.</span><span class="n">dir</span><span class="o">/</span><span class="n">src</span><span class="o">/</span>
+<span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--</span>  <span class="mi">2740</span> <span class="n">May</span> <span class="mi">12</span> <span class="mi">23</span><span class="p">:</span><span class="mi">10</span> <span class="n">VersionInfo</span><span class="o">.</span><span class="n">f90</span><span class="o">.</span><span class="n">o</span>
+<span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--</span>     <span class="mi">0</span> <span class="n">May</span> <span class="mi">12</span> <span class="mi">23</span><span class="p">:</span><span class="mi">10</span> <span class="n">VersionInfo</span><span class="o">.</span><span class="n">f90</span><span class="o">.</span><span class="n">o</span><span class="o">.</span><span class="n">provides</span><span class="o">.</span><span class="n">build</span>
+<span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--</span>   <span class="mi">668</span> <span class="n">May</span> <span class="mi">12</span> <span class="mi">23</span><span class="p">:</span><span class="mi">10</span> <span class="n">VersionInfo</span><span class="o">.</span><span class="n">f90</span><span class="o">.</span><span class="n">optrpt</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="operator-strength-reduction">
+<h3><span class="section-number">6.1.6.6.1.2. </span>Operator Strength Reduction<a class="headerlink" href="#operator-strength-reduction" title="Permalink to this heading"></a></h3>
+<p>Each mathematical operation has an effective “strength”, and some
+operations can be equivalently represented as a combination of multiple
+reduced-strength operations that have better performance than the
+original. As part of the code optimization step, compilers may be
+able to identify areas where a mathetical operation’s strength can
+be reduced. Compilers are not able to optimize all expensive operations. For
+example, cases where a portion of an expensive mathematical operation
+is a variable contained in a derived data type are frequently skipped.
+Therefore, it is recommended that expensive subroutines be profiled
+and searched for possible strength reduction opportunities.</p>
+<p>A concrete example of operator strength reduction is in dividing
+many elements of an array by a constant.</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">module_type</span><span class="p">%</span><span class="n">scale_factor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="mf">0.0</span>
+
+<span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">  </span><span class="k">if array</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="mf">0.0</span>
+<span class="w">    </span><span class="k">array</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">array</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">module_type</span><span class="p">%</span><span class="n">scale_factor</span>
+<span class="w">  </span><span class="k">end if</span>
+<span class="k">end do</span>
+</pre></div>
+</div>
+<p>In this case, a multiplication of real numbers is less expensive
+than a division of real numbers. The code can be factored so that
+the inverse of the scale factor is computed outside of the loop
+and the mathematical operation in the loop is converted to a
+multiplication.</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">module_type</span><span class="p">%</span><span class="n">scale_factor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="mf">0.0</span>
+<span class="n">inverse_scale_factor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">module_type</span><span class="p">%</span><span class="n">scale_factor</span>
+
+<span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">  </span><span class="k">if array</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="mf">0.0</span>
+<span class="w">    </span><span class="k">array</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">array</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">inverse_scale_factor</span>
+<span class="w">  </span><span class="k">end if</span>
+<span class="k">end do</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id1">
+<h3><span class="section-number">6.1.6.6.1.3. </span>Coarrays<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<p>Coarrays are a feature introduced to the Fortran language in the 2008
+standard to provide language-level parallelization for array operations
+in a Single Program, Multiple Data (SPMD) programming paradigm.
+The Fortran standard leaves the method of parallelization up to the
+compiler, and the Intel® Fortran compiler uses MPI.</p>
+<p>Coarrays are used to split an array operation across multiple copies
+of the program. The copies are called “images”. Each image has its
+own local variables, plus a portion of any coarrays as shared
+variables. A coarray can be thought of as having extra dimensions,
+referred to as “codimensions”. A single image (typically the 1-th
+index) controls the I/O and problem setup, and images can read
+from memory in other images.</p>
+<p>For operations on large arrays such as constructing a super-array
+from many sub-arrays (as in the construction of a Jacobian matrix),
+the coarray feature of Fortran 08 can parallelize the procedure
+improving overall computational efficiency.</p>
+</div>
+<div class="section" id="data-modeling-and-access-rules">
+<h3><span class="section-number">6.1.6.6.1.4. </span>Data modeling and access rules<a class="headerlink" href="#data-modeling-and-access-rules" title="Permalink to this heading"></a></h3>
+<p>Fortran represents arrays in column-major order. This means that a
+multidimensional array is represented in memory with column elements
+being adjacent. If a given element in an array is at a location in
+memory, one element before in memory corresponds to the element
+above it in its column.</p>
+<p>In order to make use of the single instruction, multiple data
+features of modern processors, array construction and access
+should happen in column-major order. That is, loops should loop
+over the left-most index quickest. Slicing should occur with
+the <code class="docutils literal notranslate"><span class="pre">:</span></code> also on the left-most index when possible.</p>
+<p>With this in mind, data should be represented as structures of arrays
+rather than arrays of structures. Concretely, this means that data
+types within OpenFAST should contain the underlying arrays and arrays
+should generally contain only numeric types.</p>
+<p>The short program below displays the distance in memory in units
+of bytes between elements of an array and neighboring elements.</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">memloc</span>
+
+<span class="k">implicit none</span>
+
+<span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="mi">8</span><span class="p">),</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">distance_up</span><span class="p">,</span><span class="w"> </span><span class="n">distance_left</span>
+
+<span class="c">! Take the element values as their &quot;ID&quot;</span>
+<span class="c">! r(row, column)</span>
+<span class="n">r</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">/</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">/</span><span class="p">)</span>
+<span class="n">r</span><span class="p">(</span><span class="mi">2</span><span class="p">,:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">/</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="o">/</span><span class="p">)</span>
+<span class="n">r</span><span class="p">(</span><span class="mi">3</span><span class="p">,:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">/</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="w"> </span><span class="o">/</span><span class="p">)</span>
+<span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Reference array:&quot;</span>
+<span class="k">call </span><span class="n">pretty_print_array</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+
+<span class="c">! Compute the distance between matrix elements. Inputs to the `calculate_distance` function</span>
+<span class="c">! are indices for elements in the equation loc(this_element) - loc(other_element)</span>
+<span class="n">distance_up</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">/</span><span class="w"> </span><span class="n">calculate_distance</span><span class="p">(</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">calculate_distance</span><span class="p">(</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="n">calculate_distance</span><span class="p">(</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="p">)</span>
+<span class="n">distance_up</span><span class="p">(</span><span class="mi">2</span><span class="p">,:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">/</span><span class="w"> </span><span class="n">calculate_distance</span><span class="p">(</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">calculate_distance</span><span class="p">(</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="n">calculate_distance</span><span class="p">(</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="p">)</span>
+<span class="n">distance_up</span><span class="p">(</span><span class="mi">3</span><span class="p">,:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">/</span><span class="w"> </span><span class="n">calculate_distance</span><span class="p">(</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">calculate_distance</span><span class="p">(</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="n">calculate_distance</span><span class="p">(</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="p">)</span>
+<span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Distance in memory (bytes) for between an element and the one above it (top row zeroed):&quot;</span>
+<span class="k">call </span><span class="n">pretty_print_array</span><span class="p">(</span><span class="n">distance_up</span><span class="p">)</span>
+
+<span class="n">distance_left</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">/</span><span class="w"> </span><span class="n">calculate_distance</span><span class="p">(</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">calculate_distance</span><span class="p">(</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">calculate_distance</span><span class="p">(</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="p">)</span>
+<span class="n">distance_left</span><span class="p">(</span><span class="mi">2</span><span class="p">,:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">/</span><span class="w"> </span><span class="n">calculate_distance</span><span class="p">(</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">calculate_distance</span><span class="p">(</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">calculate_distance</span><span class="p">(</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="p">)</span>
+<span class="n">distance_left</span><span class="p">(</span><span class="mi">3</span><span class="p">,:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">/</span><span class="w"> </span><span class="n">calculate_distance</span><span class="p">(</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">calculate_distance</span><span class="p">(</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">calculate_distance</span><span class="p">(</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="p">)</span>
+<span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Distance in memory (bytes) for between an element and the one to the its left (first column zeroed):&quot;</span>
+<span class="k">call </span><span class="n">pretty_print_array</span><span class="p">(</span><span class="n">distance_left</span><span class="p">)</span>
+
+<span class="k">contains</span>
+
+<span class="kt">integer</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="k">function </span><span class="n">calculate_distance</span><span class="p">(</span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">r1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="p">,</span><span class="w"> </span><span class="n">r2</span><span class="p">)</span>
+
+<span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">r1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="p">,</span><span class="w"> </span><span class="n">r2</span>
+<span class="w">    </span><span class="n">calculate_distance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">loc</span><span class="p">(</span><span class="n">r</span><span class="p">(</span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">r1</span><span class="p">))</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">loc</span><span class="p">(</span><span class="n">r</span><span class="p">(</span><span class="n">c2</span><span class="p">,</span><span class="w"> </span><span class="n">r2</span><span class="p">))</span>
+
+<span class="k">end function</span>
+
+<span class="k">subroutine </span><span class="n">pretty_print_array</span><span class="p">(</span><span class="k">array</span><span class="p">)</span>
+
+<span class="w">    </span><span class="kt">integer</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="k">array</span>
+<span class="k">    print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;[&quot;</span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(I4, I4, I4)&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">array</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="k">array</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="k">array</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(I4, I4, I4)&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">array</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="k">array</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="k">array</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(I4, I4, I4)&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">array</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="k">array</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="k">array</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;]&quot;</span>
+
+<span class="k">end subroutine</span>
+
+<span class="k">end program</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="optimization-studies">
+<h2><span class="section-number">6.1.6.6.2. </span>Optimization Studies<a class="headerlink" href="#optimization-studies" title="Permalink to this heading"></a></h2>
+<p>This section describes specific efforts to profile sections of
+OpenFAST and improve performance with the Intel® compiler suite.</p>
+<div class="section" id="beamdyn-performance-profiling-and-optimization-ipcc-year-1-and-2">
+<h3><span class="section-number">6.1.6.6.2.1. </span>BeamDyn Performance Profiling and Optimization (IPCC Year 1 and 2)<a class="headerlink" href="#beamdyn-performance-profiling-and-optimization-ipcc-year-1-and-2" title="Permalink to this heading"></a></h3>
+<p>The general mechanisms identified for performance improvements in OpenFAST were:</p>
+<ul class="simple">
+<li><p>Intel® compiler suite and Intel® Math Kernel Library (Intel® MKL)</p></li>
+<li><p>Algorithmic improvements</p></li>
+<li><p>Memory-access optimization enabling more efficient cache usage</p></li>
+<li><p>Data type alignment allowing for SIMD vectorization</p></li>
+<li><p>Multithreading with OpenMP</p></li>
+</ul>
+<p>To establish a path forward with these options, OpenFAST was first
+profiled with Intel® VTune™ Amplifier to get a clear breakdown of
+time spent in the simulation. Then, the optimization report generated from the
+Intel® Fortran compiler was analyzed to determine areas that were not
+autovectorized. Finally, Intel® Advisor was used to highlight areas of the code
+that the compiler identified as potentially improved with multithreading.</p>
+<p>Two OpenFAST test cases have been chosen to provide meaningful and
+realistic timing benchmarks. In addition to real-world turbine and
+atmospheric models, these cases are computationally expensive and expose
+the areas where performance improvements would make a difference.</p>
+<p><strong>5MW_Land_BD_DLL_WTurb</strong></p>
+<p>Download case files <a class="reference external" href="https://github.com/OpenFAST/r-test/tree/dev/glue-codes/openfast/5MW_Land_BD_DLL_WTurb">here</a>.</p>
+<p>The physics modules used in this case are:</p>
+<ul class="simple">
+<li><p>BeamDyn</p></li>
+<li><p>InflowWind</p></li>
+<li><p>AeroDyn 15</p></li>
+<li><p>ServoDyn</p></li>
+</ul>
+<p>This is a land based Jonkman 5-MW (formerly called the NREL 5-MW) turbine simulation using BeamDyn as the
+structural module. It simulates 20 seconds with a time step size of 0.001
+seconds and executes in <a class="reference external" href="https://my.cdash.org/testDetails.php?test=40171217&amp;build=1649048">3m 55s</a>
+on NLR’s former Peregrine
+supercomputer (retired).</p>
+<p><strong>5MW_OC4Jckt_DLL_WTurb_WavesIrr_MGrowth</strong></p>
+<p>Download case files <a class="reference external" href="https://github.com/OpenFAST/r-test/tree/dev/glue-codes/openfast/5MW_OC4Jckt_DLL_WTurb_WavesIrr_MGrowth">here</a>.</p>
+<p>This is an offshore, fixed-bottom Jonkman 5-MW (formerly called the NREL 5-MW) turbine simulation with the
+majority of the computational expense occurring in the HydroDyn wave-dynamics
+calculation.</p>
+<p>The physics modules used in this case are:</p>
+<ul class="simple">
+<li><p>ElastoDyn</p></li>
+<li><p>InflowWind</p></li>
+<li><p>AeroDyn 15</p></li>
+<li><p>ServoDyn</p></li>
+<li><p>HydroDyn</p></li>
+<li><p>SubDyn</p></li>
+</ul>
+<p>It simulates 60 seconds with a time step size of 0.01 seconds and executes in
+<a class="reference external" href="https://my.cdash.org/testDetails.php?test=40171219&amp;build=1649048">20m 27s</a>
+on NLR’s former Peregrine
+supercomputer (retired).</p>
+<div class="section" id="profiling">
+<h4><span class="section-number">6.1.6.6.2.1.1. </span>Profiling<a class="headerlink" href="#profiling" title="Permalink to this heading"></a></h4>
+<p>The OpenFAST test cases were profiled with Intel® VTune™ Amplifier to
+identify performance hotspots. Being that the two test cases exercise
+difference portions of the OpenFAST software, different hotspots were
+identified. In all cases and environment settings, the majority of the
+CPU time was spent in <code class="docutils literal notranslate"><span class="pre">fast_solution</span></code> loop which is a high-level subroutine
+that coordinates the solution calculation from each physics module.</p>
+<div class="section" id="lapack">
+<h5><span class="section-number">6.1.6.6.2.1.1.1. </span>LAPACK<a class="headerlink" href="#lapack" title="Permalink to this heading"></a></h5>
+<p>In the offshore case, the LAPACK usage was identified as a performance load.
+Within the <code class="docutils literal notranslate"><span class="pre">fast_solution</span></code> loop, the calls to the LAPACK function <code class="docutils literal notranslate"><span class="pre">dgetrs</span></code>
+consume 3.3% of the total CPU time.</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../../_images/offshore_lapack.png"><img alt="../../_images/offshore_lapack.png" src="../../_images/offshore_lapack.png" style="width: 100%;" /></a>
+</div>
+</div>
+<div class="section" id="beamdyn">
+<h5><span class="section-number">6.1.6.6.2.1.1.2. </span>BeamDyn<a class="headerlink" href="#beamdyn" title="Permalink to this heading"></a></h5>
+<p>While BeamDyn provides a high-fidelity blade-response calculation, it is a
+computationally expensive module. Initial profiling highlighted the
+<code class="docutils literal notranslate"><span class="pre">bd_elementmatrixga2</span></code> subroutine as a hotspot. However, initial
+attempts to improve performance in BeamDyn revealed needs for algorithmic
+improvements and refinements to the module’s data structures.</p>
+</div>
+</div>
+<div class="section" id="results">
+<h4><span class="section-number">6.1.6.6.2.1.2. </span>Results<a class="headerlink" href="#results" title="Permalink to this heading"></a></h4>
+<p>Though work is ongoing, OpenFAST time-to-solution performance has improved
+and the performance potential is better understood.</p>
+<p>Some keys outcomes from the first year of the IPCC project are as follows:</p>
+<ul class="simple">
+<li><p>Use of Intel® compiler and MKL library provides dramatic speedup over GCC
+and LAPACK</p>
+<ul>
+<li><p>Additional significant gains are possible through MKL threading for
+offshore simulations</p></li>
+</ul>
+</li>
+<li><p>Offshore-wind-turbine simulations are poorly load balanced
+across modules</p>
+<ul>
+<li><p>Land-based-turbine configuration better balanced</p></li>
+<li><p>OpenMP Tasks are employed to achieve better load-balancing</p></li>
+</ul>
+</li>
+<li><p>OpenMP module-level parallelism provides significant, but limited speed
+up due to imbalance across different module tasks</p></li>
+<li><p>Core algorithms need significant modification to enable OpenMP and SIMD
+benefits</p></li>
+</ul>
+<p>Tuning the Intel® tools to perform best on NLR’s hardware and adding high level
+multithreading yielded a maximum 3.8x time-to-solution improvement for one
+of the benchmark cases.</p>
+<div class="section" id="speedup-intel-compiler-and-mkl">
+<h5><span class="section-number">6.1.6.6.2.1.2.1. </span>Speedup - Intel® Compiler and MKL<a class="headerlink" href="#speedup-intel-compiler-and-mkl" title="Permalink to this heading"></a></h5>
+<p>By employing the standard Intel® developer tools tech stack, a performance
+improvement over GNU tools was demonstrated:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 20%" />
+<col style="width: 25%" />
+<col style="width: 45%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Compiler</p></th>
+<th class="head"><p>Math Library</p></th>
+<th class="head"><p>5MW_Land_BD_DLL_WTurb</p></th>
+<th class="head"><p>5MW_OC4Jckt_DLL_WTurb_WavesIrr_MGrowth</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>GNU</p></td>
+<td><p>LAPACK</p></td>
+<td><p>2265 s (1.0x)</p></td>
+<td><p>673 s (1.0x)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Intel® 17</p></td>
+<td><p>LAPACK</p></td>
+<td><p>1650 s (1.4x)</p></td>
+<td><p>251 s (2.7x)</p></td>
+</tr>
+<tr class="row-even"><td><p>Intel® 17</p></td>
+<td><p>MKL</p></td>
+<td><p>1235 s (1.8x)</p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-odd"><td><p>Intel® 17</p></td>
+<td><p>MKL Multithreaded</p></td>
+<td><p>722 s (3.1x)</p></td>
+<td><p>—</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="speedup-openmp-at-fast-solver">
+<h5><span class="section-number">6.1.6.6.2.1.2.2. </span>Speedup - OpenMP at FAST_Solver<a class="headerlink" href="#speedup-openmp-at-fast-solver" title="Permalink to this heading"></a></h5>
+<p>A performance improvement was domenstrated by adding OpenMP directives to the
+<code class="docutils literal notranslate"><span class="pre">FAST_Solver</span></code> module. Although the solution scheme is not well balanced,
+parallelizing mesh mapping and calculation routines resulted in the following
+speedup:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 18%" />
+<col style="width: 25%" />
+<col style="width: 46%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Compiler</p></th>
+<th class="head"><p>Math Library</p></th>
+<th class="head"><p>5MW_Land_BD_DLL_WTurb</p></th>
+<th class="head"><p>5MW_OC4Jckt_DLL_WTurb_WavesIrr_MGrowth</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Intel® 17</p></td>
+<td><p>MKL - 1 thread</p></td>
+<td><p>1073 s (2.1x)</p></td>
+<td><p>100 s (6.7x)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Intel® 17</p></td>
+<td><p>MKL - 8 threads</p></td>
+<td><p>597 s (3.8x)</p></td>
+<td><p>—</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="ongoing-work">
+<h4><span class="section-number">6.1.6.6.2.1.3. </span>Ongoing Work<a class="headerlink" href="#ongoing-work" title="Permalink to this heading"></a></h4>
+<p>The next phase of the OpenFAST performance improvements are focused in two key
+areas:</p>
+<ol class="arabic simple">
+<li><p>Implementing the outcomes from previous work throughout OpenFAST modules and
+glue codes</p></li>
+<li><p>Preparing OpenFAST for efficient execution on Intel®’s next generation
+platforms</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="linearization-routine-profiling">
+<h3><span class="section-number">6.1.6.6.2.2. </span>Linearization routine profiling<a class="headerlink" href="#linearization-routine-profiling" title="Permalink to this heading"></a></h3>
+<p>As a portion of the <a class="reference external" href="https://arpa-e.energy.gov/technologies/projects/wind-energy-integrated-servo-control-weis-toolset-enable-controls-co-design">ARPA-E WEIS</a>
+project, the linearization capability within OpenFAST has been profiled
+in an effort to characterize the performance and current bottlenecks.
+This work specifically targetted the linearization routines within the
+FAST Library, primarily in <a class="reference external" href="https://github.com/OpenFAST/openfast/blob/main/modules/openfast-library/src/FAST_Lin.f90">FAST_Lin.f90</a>,
+as well as the routines constructing the Jacobian matrices within individual
+physics modules. Because these routines require
+constructing large matrices, this is a computationally intensive process
+with a high rate of memory access.</p>
+<p>A high-level flow of data in the linearization algorithm in the
+<code class="docutils literal notranslate"><span class="pre">FAST_Linearize_OP</span></code> subroutine is given below.</p>
+<pre  class="mermaid">
+        graph TD;
+  D[Construct Module Jacobian]--&gt;A[Calculate Module OP];
+  A[Calculate Module OP]--&gt;B[Construct Glue Code Jacobians];
+  A[Calculate Module OP]--&gt;C[Construct Glue Code State Matrices];
+    </pre><p>Each enabled physics module constructs module-level matrices in their respective
+<code class="docutils literal notranslate"><span class="pre">&lt;Module&gt;_Jacobian</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;Module&gt;_GetOP</span></code> routines, and the collection of these
+are assembled into global matrices in <code class="docutils literal notranslate"><span class="pre">Glue_Jacobians</span></code> and <code class="docutils literal notranslate"><span class="pre">Glue_StateMatrices</span></code>.
+In a top-down comparison of total CPU time in <code class="docutils literal notranslate"><span class="pre">FAST_Linearize_OP</span></code>, we see that
+the construction of the glue-code state matrices is the most expensive step.
+The HydroDyn Jacobian computation also stands out relative to other module
+Jacobian computations.</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../../_images/TopDown_FAST_LinearizeOP.jpg"><img alt="../../_images/TopDown_FAST_LinearizeOP.jpg" src="../../_images/TopDown_FAST_LinearizeOP.jpg" style="width: 100%;" /></a>
+</div>
+<p>The Jacobian and state matrices are sized based on the total number of inputs, outputs,
+and continuous states. Though the size varies, these matrices generally contain thousands
+of elements in each dimension and are mostly zeroes. That is to say, the Jacobian
+and state matrices are large and sparse. To reduce the overhead of memory
+allocation and access, a sparse matrix representation is recommended.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="debugging.html" class="btn btn-neutral float-left" title="6.1.6.5. Debugging OpenFAST" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="versioning.html" class="btn btn-neutral float-right" title="6.1.6.7. Versioning" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

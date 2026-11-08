@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nodal Outputs &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/elastodyn/EDNodalOutputs.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">4. User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Nodal Outputs</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/elastodyn/EDNodalOutputs.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="nodal-outputs">
+<h1>Nodal Outputs<a class="headerlink" href="#nodal-outputs" title="Permalink to this heading"></a></h1>
+<p>In addition to the named outputs in <a class="reference internal" href="input.html#ed-outputs"><span class="std std-numref">Section 4.10.2.2.12</span></a> above, ElastoDyn allows
+for outputting the full set blade node motions and loads (tower nodes
+unavailable at present). Please refer to the ElastoDyn_Nodes tab in the
+Excel file <a class="reference download internal" download="" href="../../../_downloads/3f19498a5dc774461e022b671ff01ec6/OutListParameters.xlsx"><code class="xref download docutils literal notranslate"><span class="pre">OutListParameters.xlsx</span></code></a>
+for a complete list of possible output parameters.</p>
+<p>This section follows the <cite>END</cite> statement from normal Outputs section described
+above, and includes a separator description line followed by the following
+optinos.</p>
+<p><strong>BldNd_BladesOut</strong> specifies the number of blades to output. Possible values
+are 0 through the number of blades ElastoDyn is modeling. If the value is set to
+1, only blade 1 will be output, and if the value is 2, blades 1 and 2 will be
+output.</p>
+<p><strong>BldNd_BlOutNd</strong> specifies which nodes to output.  This is currently unused.</p>
+<p>The <strong>OutList</strong> section controls the nodal output quantities generated by
+ElastoDyn. In this section, the user specifies the name of the channel family to
+output. The output name for each channel is then created internally by ElastoDyn
+by combining the blade number, node number, and channel family name. For
+example, if the user specifies <strong>TDx</strong> as the channel family name, the output
+channels will be named with the convention of <strong>B</strong><span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span><strong>N###TDx</strong> where <span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span> is the blade number, and <strong>###</strong> is the
+three digit node number.</p>
+<div class="section" id="sample-nodal-outputs-section">
+<h2>Sample Nodal Outputs section<a class="headerlink" href="#sample-nodal-outputs-section" title="Permalink to this heading"></a></h2>
+<p>This sample includes the <code class="docutils literal notranslate"><span class="pre">END</span></code> statement from the regular outputs section.</p>
+<div class="docutils container" id="file-ednodaloutputs">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">END</span> <span class="n">of</span> <span class="nb">input</span> <span class="n">file</span> <span class="p">(</span><span class="n">the</span> <span class="n">word</span> <span class="s2">&quot;END&quot;</span> <span class="n">must</span> <span class="n">appear</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">first</span> <span class="mi">3</span> <span class="n">columns</span> <span class="n">of</span> <span class="n">this</span> <span class="n">last</span> <span class="n">OutList</span> <span class="n">line</span><span class="p">)</span>
+<span class="linenos"> 2</span><span class="o">----------------------</span> <span class="n">NODE</span> <span class="n">OUTPUTS</span> <span class="o">--------------------------------------------</span>
+<span class="linenos"> 3</span>          <span class="mi">3</span>   <span class="n">BldNd_BladesOut</span>  <span class="o">-</span> <span class="n">Blades</span> <span class="n">to</span> <span class="n">output</span>
+<span class="linenos"> 4</span>         <span class="mi">99</span>   <span class="n">BldNd_BlOutNd</span>   <span class="o">-</span> <span class="n">Blade</span> <span class="n">nodes</span> <span class="n">on</span> <span class="n">each</span> <span class="n">blade</span> <span class="p">(</span><span class="n">currently</span> <span class="n">unused</span><span class="p">)</span>
+<span class="linenos"> 5</span>              <span class="n">OutList</span>     <span class="o">-</span> <span class="n">The</span> <span class="nb">next</span> <span class="n">line</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="n">contains</span> <span class="n">a</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">output</span> <span class="n">parameters</span><span class="o">.</span>  <span class="n">See</span> <span class="n">OutListParameters</span><span class="o">.</span><span class="n">xlsx</span><span class="p">,</span> <span class="n">ElastoDyn_Nodes</span> <span class="n">tab</span> <span class="k">for</span> <span class="n">a</span> <span class="n">listing</span> <span class="n">of</span> <span class="n">available</span> <span class="n">output</span> <span class="n">channels</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="p">)</span>
+<span class="linenos"> 6</span><span class="s2">&quot;ALx&quot;</span>    <span class="o">-</span>  <span class="n">local</span> <span class="n">flapwise</span> <span class="n">acceleration</span> <span class="p">(</span><span class="n">absolute</span><span class="p">)</span> <span class="n">of</span> <span class="n">node</span>
+<span class="linenos"> 7</span><span class="s2">&quot;ALy&quot;</span>    <span class="o">-</span> <span class="n">local</span> <span class="n">flapwise</span> <span class="n">acceleration</span> <span class="p">(</span><span class="n">absolute</span><span class="p">)</span> <span class="n">of</span> <span class="n">node</span>
+<span class="linenos"> 8</span><span class="s2">&quot;ALz&quot;</span>    <span class="o">-</span> <span class="n">local</span> <span class="n">flapwise</span> <span class="n">acceleration</span> <span class="p">(</span><span class="n">absolute</span><span class="p">)</span> <span class="n">of</span> <span class="n">node</span>
+<span class="linenos"> 9</span><span class="s2">&quot;TDx&quot;</span>    <span class="o">-</span> <span class="n">local</span> <span class="n">flapwise</span> <span class="p">(</span><span class="n">translational</span><span class="p">)</span> <span class="n">deflection</span> <span class="p">(</span><span class="n">relative</span> <span class="n">to</span> <span class="n">the</span> <span class="n">undeflected</span> <span class="n">position</span><span class="p">)</span> <span class="n">of</span> <span class="n">node</span>
+<span class="linenos">10</span><span class="s2">&quot;TDy&quot;</span>    <span class="o">-</span> <span class="n">local</span> <span class="n">edgewise</span> <span class="p">(</span><span class="n">translational</span><span class="p">)</span> <span class="n">deflection</span> <span class="p">(</span><span class="n">relative</span> <span class="n">to</span> <span class="n">the</span> <span class="n">undeflected</span> <span class="n">position</span><span class="p">)</span> <span class="n">of</span> <span class="n">node</span>
+<span class="linenos">11</span><span class="s2">&quot;TDz&quot;</span>    <span class="o">-</span> <span class="n">local</span> <span class="n">axial</span> <span class="p">(</span><span class="n">translational</span><span class="p">)</span> <span class="n">deflection</span> <span class="p">(</span><span class="n">relative</span> <span class="n">to</span> <span class="n">the</span> <span class="n">undeflected</span> <span class="n">position</span><span class="p">)</span> <span class="n">of</span> <span class="n">node</span>
+<span class="linenos">12</span><span class="s2">&quot;RDx&quot;</span>    <span class="o">-</span> <span class="n">Local</span> <span class="n">rotational</span> <span class="n">displacement</span> <span class="n">about</span> <span class="n">x</span><span class="o">-</span><span class="n">axis</span> <span class="p">(</span><span class="n">relative</span> <span class="n">to</span> <span class="n">undeflected</span><span class="p">)</span>
+<span class="linenos">13</span><span class="s2">&quot;RDy&quot;</span>    <span class="o">-</span> <span class="n">Local</span> <span class="n">rotational</span> <span class="n">displacement</span> <span class="n">about</span> <span class="n">y</span><span class="o">-</span><span class="n">axis</span> <span class="p">(</span><span class="n">relative</span> <span class="n">to</span> <span class="n">undeflected</span><span class="p">)</span>
+<span class="linenos">14</span><span class="s2">&quot;RDz&quot;</span>    <span class="o">-</span> <span class="n">Local</span> <span class="n">rotational</span> <span class="n">displacement</span> <span class="n">about</span> <span class="n">z</span><span class="o">-</span><span class="n">axis</span> <span class="p">(</span><span class="n">relative</span> <span class="n">to</span> <span class="n">undeflected</span><span class="p">)</span>
+<span class="linenos">15</span><span class="s2">&quot;MLx&quot;</span>    <span class="o">-</span> <span class="n">local</span> <span class="n">edgewise</span> <span class="n">moment</span> <span class="n">at</span> <span class="n">node</span>
+<span class="linenos">16</span><span class="s2">&quot;MLy&quot;</span>    <span class="o">-</span> <span class="n">local</span> <span class="n">flapwise</span> <span class="n">moment</span> <span class="n">at</span> <span class="n">node</span>
+<span class="linenos">17</span><span class="s2">&quot;MLz&quot;</span>    <span class="o">-</span> <span class="n">local</span> <span class="n">pitching</span> <span class="n">moment</span> <span class="n">at</span> <span class="n">node</span>
+<span class="linenos">18</span><span class="s2">&quot;FLx&quot;</span>    <span class="o">-</span> <span class="n">local</span> <span class="n">flapwise</span> <span class="n">shear</span> <span class="n">force</span> <span class="n">at</span> <span class="n">node</span>
+<span class="linenos">19</span><span class="s2">&quot;FLy&quot;</span>    <span class="o">-</span> <span class="n">local</span> <span class="n">edgewise</span> <span class="n">shear</span> <span class="n">force</span> <span class="n">at</span> <span class="n">node</span>
+<span class="linenos">20</span><span class="s2">&quot;FLz&quot;</span>    <span class="o">-</span> <span class="n">local</span> <span class="n">axial</span> <span class="n">force</span> <span class="n">at</span> <span class="n">node</span>
+<span class="linenos">21</span><span class="s2">&quot;MLxNT&quot;</span>  <span class="o">-</span> <span class="n">Edgewise</span> <span class="n">moment</span> <span class="ow">in</span> <span class="n">local</span> <span class="n">coordinate</span> <span class="n">system</span> <span class="p">(</span><span class="n">initial</span> <span class="n">structural</span> <span class="n">twist</span> <span class="n">removed</span><span class="p">)</span>
+<span class="linenos">22</span><span class="s2">&quot;MlyNT&quot;</span>  <span class="o">-</span> <span class="n">Flapwise</span> <span class="n">shear</span> <span class="n">moment</span> <span class="ow">in</span> <span class="n">local</span> <span class="n">coordinate</span> <span class="n">system</span> <span class="p">(</span><span class="n">initial</span> <span class="n">structural</span> <span class="n">twist</span> <span class="n">removed</span><span class="p">)</span>
+<span class="linenos">23</span><span class="s2">&quot;FLxNT&quot;</span>  <span class="o">-</span> <span class="n">Flapwise</span> <span class="n">shear</span> <span class="n">force</span> <span class="ow">in</span> <span class="n">local</span> <span class="n">coordinate</span> <span class="n">system</span> <span class="p">(</span><span class="n">initial</span> <span class="n">structural</span> <span class="n">twist</span> <span class="n">removed</span><span class="p">)</span>
+<span class="linenos">24</span><span class="s2">&quot;FlyNT&quot;</span>  <span class="o">-</span> <span class="n">Edgewise</span> <span class="n">shear</span> <span class="n">force</span> <span class="ow">in</span> <span class="n">local</span> <span class="n">coordinate</span> <span class="n">system</span> <span class="p">(</span><span class="n">initial</span> <span class="n">structural</span> <span class="n">twist</span> <span class="n">removed</span><span class="p">)</span>
+<span class="linenos">25</span><span class="n">END</span> <span class="n">of</span> <span class="nb">input</span> <span class="n">file</span> <span class="p">(</span><span class="n">the</span> <span class="n">word</span> <span class="s2">&quot;END&quot;</span> <span class="n">must</span> <span class="n">appear</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">first</span> <span class="mi">3</span> <span class="n">columns</span> <span class="n">of</span> <span class="n">this</span> <span class="n">last</span> <span class="n">OutList</span> <span class="n">line</span><span class="p">)</span>
+<span class="linenos">26</span><span class="o">---------------------------------------------------------------------------------------</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

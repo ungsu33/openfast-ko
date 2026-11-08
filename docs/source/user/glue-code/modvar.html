@@ -1,0 +1,674 @@
+<!DOCTYPE html><html class="writer-html5" lang="ko"><head><!-- Modified 2026-11-08: unofficial Korean machine translation of OpenFAST 5.0.0. Equations, code, figures, input values and attribution retained. -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.2.2. 모듈 변수(ModVar) - OpenFAST v5.0.0 문서</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../../../genindex.html">
+    <link rel="search" title="검색" href="../../../search.html">
+    <link rel="next" title="4.2.3. ModGlue – 모듈을 글로벌 어레이로 결합" href="modglue.html">
+    <link rel="prev" title="4.2.1. 글루 코드 개요" href="overview.html"> 
+<link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/glue-code/modvar.html"></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+          </a>
+              <div class="version">5.0 · 한국어</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="문서 검색" aria-label="문서 검색">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.2. 글루 코드</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="overview.html">4.2.1. 글루 코드 개요</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.2.2. 모듈 변수(<code class="docutils literal notranslate"><span class="pre">ModVar</span></code>)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#data-structures">4.2.2.1. 데이터 구조</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#variable-flags-vf">4.2.2.2. 변수 플래그(<code class="docutils literal notranslate"><span class="pre">VF_*</span></code>)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#field-types-field">4.2.2.3. 필드 유형(<code class="docutils literal notranslate"><span class="pre">Field*</span></code>)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adding-module-variables">4.2.2.4. 모듈 변수 추가</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#perturbation-values">4.2.2.5. 섭동 값</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#orientation-representation">4.2.2.6. 방향 표현</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="modglue.html">4.2.3. ModGlue – 모듈을 글로벌 어레이로 결합</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solver.html">4.2.4. 솔버</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linearization.html">4.2.5. 선형화</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. 단순화 ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. 구조 제어</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. 추가 모듈 문서</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC 서브루틴 라이브러리</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+</ul>
+
+        <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="페이지 탐색">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.2. </span>글루 코드</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.2.2. </span>모듈 변수(<code class="docutils literal notranslate"><span class="pre">ModVar</span></code>)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/glue-code/modvar.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+      </li>
+  </ul>
+  <hr>
+</div><aside class="ko-notice" aria-label="한국어 번역 안내"><strong>한국어 자동번역</strong> · OpenFAST v5.0.0 · 2026-11-08 기준<br>비공식 번역본입니다. 수식·명령어·입력 변수와 첨부자료는 원문을 보존합니다. <a href="https://openfast.readthedocs.io/en/main/source/user/glue-code/modvar.html" target="_blank" rel="noopener noreferrer" lang="en">영문 원문 대조 ↗</a></aside>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="module-variables-modvar">
+<span id="glue-code-modvar"></span><h1><span class="section-number">4.2.2. </span>모듈 변수(<code class="docutils literal notranslate"><span class="pre">ModVar</span></code>)<a class="headerlink" href="#module-variables-modvar" title="이 제목의 고유 링크"></a></h1>
+<p>해당 <code class="docutils literal notranslate"><span class="pre">ModVar</span></code> 모듈(<code class="docutils literal notranslate"><span class="pre">modules/nwtc-library/src/ModVar.f90</span></code>)는 특정 모듈의 내부를 알지 못한 채 글루 코드가 일반적으로 조작할 수 있는 방식으로 각 물리 모듈이 연속 상태, 입력 및 출력을 선언할 수 있도록 하는 데이터 구조와 서브루틴을 제공합니다.</p>
+<p>전체 유형 계층 구조 -
+최상위 수준까지 <code class="docutils literal notranslate"><span class="pre">DatLoc</span></code> 및 <code class="docutils literal notranslate"><span class="pre">ModVarType</span></code> 를 통해
+각 풍력터빈의 고해상도 영역에 대한
+<code class="docutils literal notranslate"><span class="pre">ModVarsType</span></code> 및 <code class="docutils literal notranslate"><span class="pre">ModDataType</span></code> 최상위 수준까지 <code class="docutils literal notranslate"><span class="pre">ModGlueType</span></code>—에 설명되어 있습니다. <a class="reference internal" href="modglue.html#fig-modvar-types"><span class="std std-numref">그림 4.1</span></a>.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#data-structures" id="id1">데이터 구조</a></p>
+<ul>
+<li><p><a class="reference internal" href="#datloc" id="id2"><code class="docutils literal notranslate"><span class="pre">DatLoc</span></code></a></p></li>
+<li><p><a class="reference internal" href="#modvartype" id="id3"><code class="docutils literal notranslate"><span class="pre">ModVarType</span></code></a></p></li>
+<li><p><a class="reference internal" href="#modvarstype" id="id4"><code class="docutils literal notranslate"><span class="pre">ModVarsType</span></code></a></p></li>
+<li><p><a class="reference internal" href="#moddatatype" id="id5"><code class="docutils literal notranslate"><span class="pre">ModDataType</span></code></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#variable-flags-vf" id="id6">변수 플래그(<code class="docutils literal notranslate"><span class="pre">VF_*</span></code>)</a></p></li>
+<li><p><a class="reference internal" href="#field-types-field" id="id7">필드 유형(<code class="docutils literal notranslate"><span class="pre">Field*</span></code>)</a></p></li>
+<li><p><a class="reference internal" href="#adding-module-variables" id="id8">모듈 변수 추가</a></p>
+<ul>
+<li><p><a class="reference internal" href="#mv-addvar" id="id9"><code class="docutils literal notranslate"><span class="pre">MV_AddVar</span></code></a></p></li>
+<li><p><a class="reference internal" href="#mv-addmeshvar" id="id10"><code class="docutils literal notranslate"><span class="pre">MV_AddMeshVar</span></code></a></p></li>
+<li><p><a class="reference internal" href="#mv-addmodule" id="id11"><code class="docutils literal notranslate"><span class="pre">MV_AddModule</span></code></a></p></li>
+<li><p><a class="reference internal" href="#mv-initvarsjac" id="id12"><code class="docutils literal notranslate"><span class="pre">MV_InitVarsJac</span></code></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#perturbation-values" id="id13">섭동 값</a></p></li>
+<li><p><a class="reference internal" href="#orientation-representation" id="id14">방향 표현</a></p></li>
+</ul>
+</div>
+<div class="section" id="data-structures">
+<h2><a class="toc-backref" href="#id1"><span class="section-number">4.2.2.1. </span>데이터 구조</a><a class="headerlink" href="#data-structures" title="이 제목의 고유 링크"></a></h2>
+<div class="section" id="datloc">
+<h3><a class="toc-backref" href="#id2"><span class="section-number">4.2.2.1.1. </span><code class="docutils literal notranslate"><span class="pre">DatLoc</span></code></a><a class="headerlink" href="#datloc" title="이 제목의 고유 링크"></a></h3>
+<p>A <code class="docutils literal notranslate"><span class="pre">DatLoc</span></code> (데이터 위치)는 모듈의 파생 유형 계층 내에서 특정 변수가 있는 위치를 고유하게 식별하는 데 사용되는 작은 구조입니다.</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">TYPE</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">DatLoc</span>
+<span class="w">  </span><span class="kt">INTEGER</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">Num</span><span class="w">   </span><span class="c">! Data identification number (from _Types.f90 file)</span>
+<span class="w">  </span><span class="kt">INTEGER</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i1</span><span class="w">    </span><span class="c">! First index</span>
+<span class="w">  </span><span class="kt">INTEGER</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i2</span><span class="w">    </span><span class="c">! Second index</span>
+<span class="w">  </span><span class="kt">INTEGER</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i3</span><span class="w">    </span><span class="c">! Third index</span>
+<span class="w">  </span><span class="kt">INTEGER</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i4</span>
+<span class="w">  </span><span class="kt">INTEGER</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i5</span>
+<span class="k">END TYPE </span><span class="n">DatLoc</span>
+</pre></div>
+</div>
+<p>A <code class="docutils literal notranslate"><span class="pre">DatLoc</span></code> 값은 레지스트리 생성에 의해 변수당 한 번씩 생성됩니다.
+각 모듈 내에서
+<code class="docutils literal notranslate"><span class="pre">DatLoc()</span></code> 생성자 호출 <code class="docutils literal notranslate"><span class="pre">InitVars</span></code> 서브루틴으로 전달되었습니다. <code class="docutils literal notranslate"><span class="pre">MV_AddVar</span></code> / <code class="docutils literal notranslate"><span class="pre">MV_AddMeshVar</span></code>. 글루 코드는 이 값을 각 내부에 저장합니다. <code class="docutils literal notranslate"><span class="pre">ModVarType</span></code> 및 사용
+메시 매핑을 설정할 때 소스 및 대상 모듈 전체에서 변수를 일치시키는 <code class="docutils literal notranslate"><span class="pre">MV_EqualDL</span></code> .</p>
+</div>
+<div class="section" id="modvartype">
+<h3><a class="toc-backref" href="#id3"><span class="section-number">4.2.2.1.2. </span><code class="docutils literal notranslate"><span class="pre">ModVarType</span></code></a><a class="headerlink" href="#modvartype" title="이 제목의 고유 링크"></a></h3>
+<p>단일 변수(또는 메시 필드에 대한 변수 그룹)를 설명합니다.</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">TYPE</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ModVarType</span>
+<span class="w">  </span><span class="kt">INTEGER</span><span class="w">      </span><span class="kd">::</span><span class="w"> </span><span class="n">Field</span><span class="w">       </span><span class="c">! Field type (FieldForce, FieldTransDisp, ...)</span>
+<span class="w">  </span><span class="kt">INTEGER</span><span class="w">      </span><span class="kd">::</span><span class="w"> </span><span class="n">Nodes</span><span class="w">       </span><span class="c">! Number of nodes (mesh variables only)</span>
+<span class="w">  </span><span class="kt">INTEGER</span><span class="w">      </span><span class="kd">::</span><span class="w"> </span><span class="n">Num</span><span class="w">         </span><span class="c">! Total number of scalar values</span>
+<span class="w">  </span><span class="kt">INTEGER</span><span class="w">      </span><span class="kd">::</span><span class="w"> </span><span class="n">Flags</span><span class="w">       </span><span class="c">! Bit-mask of VF_* flags</span>
+<span class="w">  </span><span class="kt">INTEGER</span><span class="w">      </span><span class="kd">::</span><span class="w"> </span><span class="n">DerivOrder</span><span class="w">  </span><span class="c">! 0=disp/orientation, 1=velocity, 2=acceleration</span>
+<span class="w">  </span><span class="kt">INTEGER</span><span class="w">      </span><span class="kd">::</span><span class="w"> </span><span class="n">iLoc</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w">     </span><span class="c">! [start, end] in module-local array</span>
+<span class="w">  </span><span class="kt">INTEGER</span><span class="w">      </span><span class="kd">::</span><span class="w"> </span><span class="n">iGlu</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w">     </span><span class="c">! [start, end] in glue-level array</span>
+<span class="w">  </span><span class="kt">INTEGER</span><span class="w">      </span><span class="kd">::</span><span class="w"> </span><span class="n">iq</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w">       </span><span class="c">! [start, end] in solver state (q) array</span>
+<span class="w">  </span><span class="kt">INTEGER</span><span class="w">      </span><span class="kd">::</span><span class="w"> </span><span class="n">iLB</span><span class="p">,</span><span class="w"> </span><span class="n">iUB</span><span class="w">    </span><span class="c">! User array bounds (for array-valued scalars)</span>
+<span class="w">  </span><span class="kt">INTEGER</span><span class="w">      </span><span class="kd">::</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w">  </span><span class="c">! Additional user-defined indices</span>
+<span class="w">  </span><span class="kt">REAL</span><span class="p">(</span><span class="n">R8Ki</span><span class="p">)</span><span class="w">   </span><span class="kd">::</span><span class="w"> </span><span class="n">Perturb</span><span class="w">     </span><span class="c">! Perturbation size for Jacobian finite differences</span>
+<span class="w">  </span><span class="k">TYPE</span><span class="p">(</span><span class="n">DatLoc</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">DL</span><span class="w">          </span><span class="c">! Data location</span>
+<span class="w">  </span><span class="kt">CHARACTER</span><span class="w">    </span><span class="kd">::</span><span class="w"> </span><span class="n">Name</span><span class="w">        </span><span class="c">! Human-readable variable name</span>
+<span class="w">  </span><span class="kt">CHARACTER</span><span class="p">(:),</span><span class="w"> </span><span class="k">ALLOCATABLE</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">LinNames</span><span class="p">(:)</span><span class="w">  </span><span class="c">! Per-value linearization labels</span>
+<span class="k">END TYPE </span><span class="n">ModVarType</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="modvarstype">
+<h3><a class="toc-backref" href="#id4"><span class="section-number">4.2.2.1.3. </span><code class="docutils literal notranslate"><span class="pre">ModVarsType</span></code></a><a class="headerlink" href="#modvarstype" title="이 제목의 고유 링크"></a></h3>
+<p>하나의 모듈에 대한 모든 변수를 세 그룹으로 나누어 보관합니다.</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">TYPE</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ModVarsType</span>
+<span class="w">  </span><span class="kt">INTEGER</span><span class="w">                             </span><span class="kd">::</span><span class="w"> </span><span class="n">Nx</span><span class="p">,</span><span class="w"> </span><span class="n">Nu</span><span class="p">,</span><span class="w"> </span><span class="n">Ny</span>
+<span class="w">  </span><span class="k">TYPE</span><span class="p">(</span><span class="n">ModVarType</span><span class="p">),</span><span class="w"> </span><span class="k">ALLOCATABLE</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="p">(:)</span><span class="w">   </span><span class="c">! Continuous states</span>
+<span class="w">  </span><span class="k">TYPE</span><span class="p">(</span><span class="n">ModVarType</span><span class="p">),</span><span class="w"> </span><span class="k">ALLOCATABLE</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">u</span><span class="p">(:)</span><span class="w">   </span><span class="c">! Inputs</span>
+<span class="w">  </span><span class="k">TYPE</span><span class="p">(</span><span class="n">ModVarType</span><span class="p">),</span><span class="w"> </span><span class="k">ALLOCATABLE</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">y</span><span class="p">(:)</span><span class="w">   </span><span class="c">! Outputs</span>
+<span class="k">END TYPE </span><span class="n">ModVarsType</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="moddatatype">
+<h3><a class="toc-backref" href="#id5"><span class="section-number">4.2.2.1.4. </span><code class="docutils literal notranslate"><span class="pre">ModDataType</span></code></a><a class="headerlink" href="#moddatatype" title="이 제목의 고유 링크"></a></h3>
+<p>각 모듈 인스턴스에 대해 글루 코드가 보유하는 최상위 컨테이너:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">TYPE</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ModDataType</span>
+<span class="w">  </span><span class="kt">CHARACTER</span><span class="w">    </span><span class="kd">::</span><span class="w"> </span><span class="n">Abbr</span><span class="w">      </span><span class="c">! Module abbreviation ("ED", "BD", ...)</span>
+<span class="w">  </span><span class="kt">INTEGER</span><span class="w">      </span><span class="kd">::</span><span class="w"> </span><span class="n">iMod</span><span class="w">      </span><span class="c">! Index in glue module array</span>
+<span class="w">  </span><span class="kt">INTEGER</span><span class="w">      </span><span class="kd">::</span><span class="w"> </span><span class="n">ID</span><span class="w">        </span><span class="c">! Module_ED, Module_BD, ...</span>
+<span class="w">  </span><span class="kt">INTEGER</span><span class="w">      </span><span class="kd">::</span><span class="w"> </span><span class="n">Ins</span><span class="w">       </span><span class="c">! Instance number</span>
+<span class="w">  </span><span class="kt">INTEGER</span><span class="w">      </span><span class="kd">::</span><span class="w"> </span><span class="n">iRotor</span><span class="w">    </span><span class="c">! Rotor index (0 = all rotors)</span>
+<span class="w">  </span><span class="kt">INTEGER</span><span class="w">      </span><span class="kd">::</span><span class="w"> </span><span class="n">SubSteps</span><span class="w">  </span><span class="c">! Module sub-steps per solver step</span>
+<span class="w">  </span><span class="kt">INTEGER</span><span class="w">      </span><span class="kd">::</span><span class="w"> </span><span class="n">Category</span><span class="w">  </span><span class="c">! Bit-mask of MC_* coupling flags</span>
+<span class="w">  </span><span class="kt">REAL</span><span class="p">(</span><span class="n">R8Ki</span><span class="p">)</span><span class="w">   </span><span class="kd">::</span><span class="w"> </span><span class="n">DT</span><span class="w">        </span><span class="c">! Module time step</span>
+<span class="w">  </span><span class="k">TYPE</span><span class="p">(</span><span class="n">ModVarsType</span><span class="p">)</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">Vars</span>
+<span class="w">  </span><span class="k">TYPE</span><span class="p">(</span><span class="n">ModLinType</span><span class="p">)</span><span class="w">   </span><span class="kd">::</span><span class="w"> </span><span class="n">Lin</span>
+<span class="k">END TYPE </span><span class="n">ModDataType</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="variable-flags-vf">
+<h2><a class="toc-backref" href="#id6"><span class="section-number">4.2.2.2. </span>변수 플래그(<code class="docutils literal notranslate"><span class="pre">VF_*</span></code>)</a><a class="headerlink" href="#variable-flags-vf" title="이 제목의 고유 링크"></a></h2>
+<p>플래그는 다음을 통해 결합됩니다. <code class="docutils literal notranslate"><span class="pre">IOR</span></code> 로 테스트를 거쳤습니다. <code class="docutils literal notranslate"><span class="pre">MV_HasFlagsAll</span></code> /
+<code class="docutils literal notranslate"><span class="pre">MV_HasFlagsAny</span></code>.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 10%">
+<col style="width: 65%">
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>플래그</p></th>
+<th class="head"><p>값</p></th>
+<th class="head"><p>의미</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">VF_None</span></code></p></td>
+<td><p>0</p></td>
+<td><p>플래그가 설정되지 않았습니다. 모든 변수와 일치하는 와일드카드로 사용됩니다.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">VF_Mesh</span></code></p></td>
+<td><p>1</p></td>
+<td><p>변수는 메시 필드입니다(다음에 의해 자동으로 설정됨). <code class="docutils literal notranslate"><span class="pre">MV_AddMeshVar</span></code>).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">VF_Line</span></code></p></td>
+<td><p>2</p></td>
+<td><p>메쉬는 <em>라인</em> 메시(단위 길이당 하중); 선형화 레이블 가져오기
+<code class="docutils literal notranslate"><span class="pre">/m</span></code> 접미사.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">VF_RotFrame</span></code></p></td>
+<td><p>4</p></td>
+<td><p>변수는 회전하는 기준계에 존재합니다.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">VF_Linearize</span></code></p></td>
+<td><p>8</p></td>
+<td><p>변수는 전체 시스템 선형화에 포함됩니다.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">VF_ExtLin</span></code></p></td>
+<td><p>16</p></td>
+<td><p>확장 선형화 출력에는 변수가 포함됩니다.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">VF_2PI</span></code></p></td>
+<td><p>32</p></td>
+<td><p>범위가 [0, 2π]인 스칼라 각도(예: 발전기 방위각).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">VF_WriteOut</span></code></p></td>
+<td><p>64</p></td>
+<td><p>다음과 관련된 출력 변수 <code class="docutils literal notranslate"><span class="pre">WriteOutput</span></code> 채널.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">VF_Solve</span></code></p></td>
+<td><p>256</p></td>
+<td><p>변수는 긴밀 결합 야코비안 또는 입력-출력 수렴 해결에 참여합니다. 자동으로 설정 <code class="docutils literal notranslate"><span class="pre">FAST_SolverInit</span></code>; 모듈 개발자는 이 플래그를 수동으로 설정해서는 안 됩니다.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">VF_AeroMap</span></code></p></td>
+<td><p>512</p></td>
+<td><p>항공지도 계산에 사용되는 변수입니다.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">VF_Mapping</span></code></p></td>
+<td><p>1024</p></td>
+<td><p>변수는 모듈 간 전송 매핑에 참여합니다.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">VF_NoLin</span></code></p></td>
+<td><p>8192</p></td>
+<td><p>선형화와 솔버 모두에서 변수를 명시적으로 제외합니다(재정의). <code class="docutils literal notranslate"><span class="pre">VF_Linearize</span></code> 및 <code class="docutils literal notranslate"><span class="pre">VF_Solve</span></code>).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="field-types-field">
+<h2><a class="toc-backref" href="#id7"><span class="section-number">4.2.2.3. </span>필드 유형(<code class="docutils literal notranslate"><span class="pre">Field*</span></code>)</a><a class="headerlink" href="#field-types-field" title="이 제목의 고유 링크"></a></h2>
+<p>에 사용됨 <code class="docutils literal notranslate"><span class="pre">Field</span></code> 회원 <code class="docutils literal notranslate"><span class="pre">ModVarType</span></code> 및 <code class="docutils literal notranslate"><span class="pre">MV_AddMeshVar</span></code>’s
+<code class="docutils literal notranslate"><span class="pre">Fields</span></code> 인수:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 70%">
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>상수</p></th>
+<th class="head"><p>의미</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">FieldForce</span></code></p></td>
+<td><p>절점력(절점당 3개 구성요소, N)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">FieldMoment</span></code></p></td>
+<td><p>절점 모멘트(절점당 3개 부품, N·m)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">FieldTransDisp</span></code></p></td>
+<td><p>병진 변위(m)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">FieldOrientation</span></code></p></td>
+<td><p>방향, 단위 쿼터니언 매개변수(rad)로 내부적으로 저장됨</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">FieldTransVel</span></code></p></td>
+<td><p>병진 속도(m/s)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">FieldAngularVel</span></code></p></td>
+<td><p>각속도(rad/s)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">FieldTransAcc</span></code></p></td>
+<td><p>병진 가속도(m/s²)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">FieldAngularAcc</span></code></p></td>
+<td><p>각가속도(rad/s²)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">FieldAngularDisp</span></code></p></td>
+<td><p>각도 변위(rad)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">FieldScalar</span></code></p></td>
+<td><p>일반 스칼라 값</p></td>
+</tr>
+</tbody>
+</table>
+<p>편의 배열은 다음에 정의되어 있습니다. <code class="docutils literal notranslate"><span class="pre">ModVar.f90</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">LoadFields</span></code>   = <code class="docutils literal notranslate"><span class="pre">[FieldForce,</span> <span class="pre">FieldMoment]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TransFields</span></code>  = <code class="docutils literal notranslate"><span class="pre">[FieldTransDisp,</span> <span class="pre">FieldTransVel,</span> <span class="pre">FieldTransAcc]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">AngularFields``=</span> <span class="pre">``[FieldOrientation,</span> <span class="pre">FieldAngularVel,</span> <span class="pre">FieldAngularAcc,</span> <span class="pre">FieldAngularDisp]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MotionFields</span></code> = 모든 병진 및 각도 동작 필드</p></li>
+</ul>
+</div>
+<div class="section" id="adding-module-variables">
+<h2><a class="toc-backref" href="#id8"><span class="section-number">4.2.2.4. </span>모듈 변수 추가</a><a class="headerlink" href="#adding-module-variables" title="이 제목의 고유 링크"></a></h2>
+<p>글루 코드에 참여하는 각 모듈은 다음을 구현해야 합니다.
+<code class="docutils literal notranslate"><span class="pre">InitVars</span></code> (또는 이와 동등한) 서브루틴 <code class="docutils literal notranslate"><span class="pre">ModVarsType</span></code>
+구조를 호출하여 <code class="docutils literal notranslate"><span class="pre">MV_Add*</span></code> 서브루틴은 아래에 문서화되어 있습니다. 이 서브루틴은 모듈이 실행되는 동안 호출됩니다. <code class="docutils literal notranslate"><span class="pre">_Init</span></code> 루틴 및 결과
+<code class="docutils literal notranslate"><span class="pre">Vars</span></code> 는 즉시 전달됩니다. <code class="docutils literal notranslate"><span class="pre">MV_AddModule</span></code>.</p>
+<div class="section" id="mv-addvar">
+<h3><a class="toc-backref" href="#id9"><span class="section-number">4.2.2.4.1. </span><code class="docutils literal notranslate"><span class="pre">MV_AddVar</span></code></a><a class="headerlink" href="#mv-addvar" title="이 제목의 고유 링크"></a></h3>
+<p>단일(다중 요소 가능) 스칼라 변수를 변수 배열에 추가합니다.</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">MV_AddVar</span><span class="p">(</span><span class="n">VarAry</span><span class="p">,</span><span class="w"> </span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="n">Field</span><span class="p">,</span><span class="w"> </span><span class="n">DL</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">                     </span><span class="n">Num</span><span class="p">,</span><span class="w"> </span><span class="n">iAry</span><span class="p">,</span><span class="w"> </span><span class="n">jAry</span><span class="p">,</span><span class="w"> </span><span class="n">kAry</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">                     </span><span class="n">Flags</span><span class="p">,</span><span class="w"> </span><span class="n">DerivOrder</span><span class="p">,</span><span class="w"> </span><span class="n">Perturb</span><span class="p">,</span><span class="w"> </span><span class="n">LinNames</span><span class="p">,</span><span class="w"> </span><span class="n">Active</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 10%">
+<col style="width: 70%">
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>인수</p></th>
+<th class="head"><p>인텐트
+채울</p></th>
+<th class="head"><p>설명</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">VarAry</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">INOUT</span></code></p></td>
+<td><p>할당 가능한 배열 <code class="docutils literal notranslate"><span class="pre">ModVarType</span></code>; 새 변수가 추가됩니다.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Name</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">IN</span></code></p></td>
+<td><p>디버그 출력 및 선형화 레이블에 사용되는 사람이 읽을 수 있는 이름입니다.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Field</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">IN</span></code></p></td>
+<td><p>필드 유형 상수(<code class="docutils literal notranslate"><span class="pre">FieldScalar</span></code>, <code class="docutils literal notranslate"><span class="pre">FieldTransDisp</span></code>등).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DL</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">IN</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DatLoc</span></code> 는 모듈의 파생 유형에서 데이터가 어디에 있는지 식별합니다.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Num</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">IN</span></code> (옵션)</p></td>
+<td><p>스칼라 값의 수입니다. 기본값은 1입니다. 0인 경우 통화가 작동하지 않습니다.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">iAry</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">IN</span></code> (옵션)</p></td>
+<td><p>데이터가 배열에 저장된 경우 하한 인덱스를 시작합니다.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">jAry</span></code>, <code class="docutils literal notranslate"><span class="pre">kAry</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">IN</span></code> (옵션)</p></td>
+<td><p>두 번째 및 세 번째 배열 인덱스(2차원 또는 3차원 배열용).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Flags</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">IN</span></code> (옵션)</p></td>
+<td><p>이니셜 <code class="docutils literal notranslate"><span class="pre">VF_*</span></code> 플래그 비트 마스크. 기본값은 <code class="docutils literal notranslate"><span class="pre">VF_None</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DerivOrder</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">IN</span></code> (옵션)</p></td>
+<td><p>자동으로 추론된 파생 차수(0, 1 또는 2)를 재정의합니다.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Perturb</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">IN</span></code> (옵션)</p></td>
+<td><p>유한 차분 섭동 크기. 좋은 기본값은 예상되는 변수 크기의 대략 1%입니다. 메쉬 필드의 경우 기본값은 내부에서 계산됩니다.
+이를 생략할 경우에는 <code class="docutils literal notranslate"><span class="pre">ModVarType_Init</span></code> 를 사용합니다.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">LinNames</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">IN</span></code> (옵션)</p></td>
+<td><p>값별 선형화 채널 레이블 배열(길이 = <code class="docutils literal notranslate"><span class="pre">Num</span></code>).
+<strong>필수
+비 메시, 비 스칼라 변수용</strong> .</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Active</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">IN</span></code> (옵션)</p></td>
+<td><p>로 설정됨
+변수 추가를 조건부로 건너뛰려면 <code class="docutils literal notranslate"><span class="pre">.false.</span></code> 를 사용하세요.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>예</strong> – ServoDyn의 발전기 토크 입력 등록:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">MV_AddVar</span><span class="p">(</span><span class="n">Vars</span><span class="p">%</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="s1">'Generator torque command'</span><span class="p">,</span><span class="w"> </span><span class="n">FieldScalar</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">               </span><span class="n">DatLoc</span><span class="p">(</span><span class="n">SrvD_u_GenTrq</span><span class="p">),</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">               </span><span class="n">Flags</span><span class="o">=</span><span class="n">VF_Linearize</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">               </span><span class="n">Perturb</span><span class="o">=</span><span class="mf">1.0e3_R8Ki</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w">        </span><span class="c">! N*m</span>
+<span class="w">               </span><span class="n">LinNames</span><span class="o">=</span><span class="p">[</span><span class="s1">'SrvD GenTrq, N*m'</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="mv-addmeshvar">
+<h3><a class="toc-backref" href="#id10"><span class="section-number">4.2.2.4.2. </span><code class="docutils literal notranslate"><span class="pre">MV_AddMeshVar</span></code></a><a class="headerlink" href="#mv-addmeshvar" title="이 제목의 고유 링크"></a></h3>
+<p>단일에 대해 요청된 모든 메시 필드를 추가합니다. <code class="docutils literal notranslate"><span class="pre">MeshType</span></code> 를 변수 배열로 변환합니다. 주변에 편의를 제공하는 포장지입니다.
+반복하는 <code class="docutils literal notranslate"><span class="pre">MV_AddVar</span></code> 다음을 순회하는
+<code class="docutils literal notranslate"><span class="pre">Fields</span></code> 인수를 사용하고 커밋된 메시에 없는 필드를 건너뜁니다.</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">MV_AddMeshVar</span><span class="p">(</span><span class="n">VarAry</span><span class="p">,</span><span class="w"> </span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="n">Fields</span><span class="p">,</span><span class="w"> </span><span class="n">DL</span><span class="p">,</span><span class="w"> </span><span class="n">Mesh</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">                         </span><span class="n">Flags</span><span class="p">,</span><span class="w"> </span><span class="n">Perturbs</span><span class="p">,</span><span class="w"> </span><span class="n">Active</span><span class="p">,</span><span class="w"> </span><span class="n">iVar</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 10%">
+<col style="width: 70%">
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>인수</p></th>
+<th class="head"><p>인텐트
+채울</p></th>
+<th class="head"><p>설명</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">VarAry</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">INOUT</span></code></p></td>
+<td><p>새 변수를 추가할 할당 가능한 배열입니다.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Name</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">IN</span></code></p></td>
+<td><p>이 메시의 모든 필드에 대한 기본 이름입니다.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Fields</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">IN</span></code></p></td>
+<td><p>필드 유형 상수의 정수 배열. 사용하다
+적절한 경우 <code class="docutils literal notranslate"><span class="pre">LoadFields</span></code>,
+<code class="docutils literal notranslate"><span class="pre">MotionFields</span></code>등 편의 매개변수.
+모듈의 데이터 유형 내에서 이 메시에 대한</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DL</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">IN</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DatLoc</span></code> 입니다.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Mesh</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">INOUT</span></code></p></td>
+<td><p>헌신적인 <code class="docutils literal notranslate"><span class="pre">MeshType</span></code>. 그 <code class="docutils literal notranslate"><span class="pre">ID</span></code> 필드는 메시 매핑 작업에서 이를 식별하도록 설정됩니다. 메쉬가 커밋되지 않은 경우 서브루틴은 아무것도 추가하지 않고 반환됩니다.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Flags</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">IN</span></code> (옵션)</p></td>
+<td><p>엑스트라 <code class="docutils literal notranslate"><span class="pre">VF_*</span></code> 플래그가 위에 추가되었습니다. <code class="docutils literal notranslate"><span class="pre">VF_Mesh</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Perturbs</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">IN</span></code> (옵션)</p></td>
+<td><p>섭동 값 배열, 항목당 하나씩 <code class="docutils literal notranslate"><span class="pre">Fields</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Active</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">IN</span></code> (옵션)</p></td>
+<td><p>전체 메쉬 변수 등록을 조건부로 비활성화합니다.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">iVar</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">OUT</span></code> (옵션)</p></td>
+<td><p>할당된 메시를 반환합니다. <code class="docutils literal notranslate"><span class="pre">ID</span></code> 이므로 호출자가 나중에 필드 조회를 위해 이를 저장할 수 있습니다.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>예</strong> – ElastoDyn의 블레이드 루트 출력 모션 메시 등록:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">MV_AddMeshVar</span><span class="p">(</span><span class="n">Vars</span><span class="p">%</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="s1">'BladeRootMotion'</span><span class="p">,</span><span class="w"> </span><span class="n">MotionFields</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">                   </span><span class="n">DatLoc</span><span class="p">(</span><span class="n">ED_y_BladeRootMotion</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">),</span><span class="w"> </span><span class="p">&amp;</span><span class="w">   </span><span class="c">! blade i</span>
+<span class="w">                   </span><span class="n">p</span><span class="p">%</span><span class="n">BladeRootMotion</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">                   </span><span class="n">Flags</span><span class="o">=</span><span class="n">VF_Linearize</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">VF_RotFrame</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="mv-addmodule">
+<h3><a class="toc-backref" href="#id11"><span class="section-number">4.2.2.4.3. </span><code class="docutils literal notranslate"><span class="pre">MV_AddModule</span></code></a><a class="headerlink" href="#mv-addmodule" title="이 제목의 고유 링크"></a></h3>
+<p>모듈 이후 <code class="docutils literal notranslate"><span class="pre">InitVars</span></code> 서브루틴이 완료되면 호출자는 다음을 사용하여 글루 코드로 모듈을 등록합니다. <code class="docutils literal notranslate"><span class="pre">MV_AddModule</span></code>.</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">MV_AddModule</span><span class="p">(</span><span class="n">ModDataAry</span><span class="p">,</span><span class="w"> </span><span class="n">ModID</span><span class="p">,</span><span class="w"> </span><span class="n">ModAbbr</span><span class="p">,</span><span class="w"> </span><span class="n">Instance</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">                        </span><span class="n">ModDT</span><span class="p">,</span><span class="w"> </span><span class="n">SolverDT</span><span class="p">,</span><span class="w"> </span><span class="n">Vars</span><span class="p">,</span><span class="w"> </span><span class="n">Linearize</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">                        </span><span class="n">ErrStat</span><span class="p">,</span><span class="w"> </span><span class="n">ErrMsg</span><span class="p">,</span><span class="w"> </span><span class="n">iRotor</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 10%">
+<col style="width: 70%">
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>인수</p></th>
+<th class="head"><p>인텐트
+채울</p></th>
+<th class="head"><p>설명</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ModDataAry</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">INOUT</span></code></p></td>
+<td><p>할당 가능한 배열 <code class="docutils literal notranslate"><span class="pre">ModDataType</span></code>; 새 항목이 추가됩니다.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ModID</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">IN</span></code></p></td>
+<td><p>모듈 식별자 상수(<code class="docutils literal notranslate"><span class="pre">Module_ED</span></code>, <code class="docutils literal notranslate"><span class="pre">Module_BD</span></code>등).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ModAbbr</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">IN</span></code></p></td>
+<td><p>출력 라벨에 사용되는 짧은 약어 문자열(<code class="docutils literal notranslate"><span class="pre">"ED"</span></code>, <code class="docutils literal notranslate"><span class="pre">"BD"</span></code>).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Instance</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">IN</span></code></p></td>
+<td><p>인스턴스 번호(1 기반)입니다. 대부분의 모듈에는 단일 인스턴스가 있습니다.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ModDT</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">IN</span></code></p></td>
+<td><p>모듈 시간 간격(초)입니다. 다음의 정확한 정수 제수여야 합니다.
+<code class="docutils literal notranslate"><span class="pre">SolverDT</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SolverDT</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">IN</span></code></p></td>
+<td><p>솔버(전역) 시간 단계입니다.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Vars</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">IN</span></code></p></td>
+<td><p>채워짐
+모듈의 <code class="docutils literal notranslate"><span class="pre">ModVarsType</span></code> 해당 모듈의 <code class="docutils literal notranslate"><span class="pre">InitVars</span></code> 통화입니다.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Linearize</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">IN</span></code></p></td>
+<td><p>선형화 활성화 여부. 언제 <code class="docutils literal notranslate"><span class="pre">.false.</span></code>, <code class="docutils literal notranslate"><span class="pre">LinNames</span></code>
+어레이는 메모리를 절약하기 위해 할당 취소됩니다.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ErrStat</span></code> / <code class="docutils literal notranslate"><span class="pre">ErrMsg</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">OUT</span></code></p></td>
+<td><p>오류 상태 및 메시지.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">iRotor</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">IN</span></code> (옵션)</p></td>
+<td><p>멀티 로터 터빈의 로터 번호(0 = 모든 로터).</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>서브스테핑 로직</strong>: 만약 <code class="docutils literal notranslate"><span class="pre">ModDT</span> <span class="pre">&lt;</span> <span class="pre">SolverDT</span></code>, <code class="docutils literal notranslate"><span class="pre">MV_AddModule</span></code> 가 계산합니다.
+<code class="docutils literal notranslate"><span class="pre">ModData%SubSteps</span> <span class="pre">=</span> <span class="pre">NINT(SolverDT/ModDT)</span></code> 를 실행하고 모듈 DT가 솔버 DT를 정확하게 분할하는지 검증합니다. 다음과 같은 경우 오류가 반환됩니다. <code class="docutils literal notranslate"><span class="pre">ModDT</span> <span class="pre">&gt;</span> <span class="pre">SolverDT</span></code>.</p>
+<p><strong>FAST_Subs.f90 내부의 일반적인 호출 시퀀스</strong>:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="c">! Module computes its own Vars in Init</span>
+<span class="k">call </span><span class="n">ED_Init</span><span class="p">(</span><span class="n">InitInp</span><span class="p">,</span><span class="w"> </span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="n">InitOut</span><span class="p">,</span><span class="w"> </span><span class="n">ErrStat</span><span class="p">,</span><span class="w"> </span><span class="n">ErrMsg</span><span class="p">)</span>
+<span class="c">! Register with glue code</span>
+<span class="k">call </span><span class="n">MV_AddModule</span><span class="p">(</span><span class="n">m</span><span class="p">%</span><span class="n">ModData</span><span class="p">,</span><span class="w"> </span><span class="n">Module_ED</span><span class="p">,</span><span class="w"> </span><span class="s1">'ED'</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">%</span><span class="n">DT</span><span class="p">,</span><span class="w"> </span><span class="n">p_FAST</span><span class="p">%</span><span class="n">DT</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">                  </span><span class="n">InitOut</span><span class="p">%</span><span class="n">Vars</span><span class="p">,</span><span class="w"> </span><span class="n">p_FAST</span><span class="p">%</span><span class="n">Linearize</span><span class="p">,</span><span class="w"> </span><span class="n">ErrStat</span><span class="p">,</span><span class="w"> </span><span class="n">ErrMsg</span><span class="p">,</span><span class="w"> </span><span class="n">iRotor</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="mv-initvarsjac">
+<h3><a class="toc-backref" href="#id12"><span class="section-number">4.2.2.4.4. </span><code class="docutils literal notranslate"><span class="pre">MV_InitVarsJac</span></code></a><a class="headerlink" href="#mv-initvarsjac" title="이 제목의 고유 링크"></a></h3>
+<p>각 모듈 내부에서 호출됩니다.
+결국 <code class="docutils literal notranslate"><span class="pre">InitVars</span></code> 모든 처리가 끝난 후 <code class="docutils literal notranslate"><span class="pre">MV_AddVar</span></code> /
+<code class="docutils literal notranslate"><span class="pre">MV_AddMeshVar</span></code> 통화가 완료되었습니다. 모듈 로컬을 할당합니다. <code class="docutils literal notranslate"><span class="pre">iLoc</span></code>
+인덱스는 각 변수에 범위를 지정하고
+야코비안 계산 중에 사용되는 <code class="docutils literal notranslate"><span class="pre">ModJacType</span></code> 작업 배열입니다.</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">MV_InitVarsJac</span><span class="p">(</span><span class="n">Vars</span><span class="p">,</span><span class="w"> </span><span class="n">Jac</span><span class="p">,</span><span class="w"> </span><span class="n">Linearize</span><span class="p">,</span><span class="w"> </span><span class="n">ErrStat</span><span class="p">,</span><span class="w"> </span><span class="n">ErrMsg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="perturbation-values">
+<h2><a class="toc-backref" href="#id13"><span class="section-number">4.2.2.5. </span>섭동 값</a><a class="headerlink" href="#perturbation-values" title="이 제목의 고유 링크"></a></h2>
+<p>모든 변수는
+모듈 수준 야코비 행렬을 작성할 때 중심차 유한 차분에 사용되는 <code class="docutils literal notranslate"><span class="pre">Perturb</span></code> 값입니다. 는 <code class="docutils literal notranslate"><span class="pre">Perturb</span></code>
+인수에 대한 <code class="docutils literal notranslate"><span class="pre">MV_AddVar</span></code> / <code class="docutils literal notranslate"><span class="pre">MV_AddMeshVar</span></code> 는 결과적인 출력 변화가 수치적 잡음과 구별될 만큼 충분히 크지만 선형 체제를 유지할 만큼 충분히 작도록 선택해야 합니다. 일반적인 값:</p>
+<ul class="simple">
+<li><p>번역 변위: <code class="docutils literal notranslate"><span class="pre">1.0e-4</span></code> m</p></li>
+<li><p>회전(방향): <code class="docutils literal notranslate"><span class="pre">2.0e-5</span></code> 라드</p></li>
+<li><p>번역 속도: <code class="docutils literal notranslate"><span class="pre">1.0e-3</span></code> m/s</p></li>
+<li><p>각속도: <code class="docutils literal notranslate"><span class="pre">2.0e-4</span></code> rad/s</p></li>
+<li><p>변환 가속: <code class="docutils literal notranslate"><span class="pre">1.0e-2</span></code> m/s²</p></li>
+<li><p>힘: <code class="docutils literal notranslate"><span class="pre">1.0e1</span></code> N</p></li>
+<li><p>순간: <code class="docutils literal notranslate"><span class="pre">1.0e1</span></code> N·m</p></li>
+<li><p>일반 스칼라: 상황에 따라 다름</p></li>
+</ul>
+<p>해당 <code class="docutils literal notranslate"><span class="pre">UJacSclFact</span></code> 입력 매개변수(참조 <a class="reference internal" href="solver.html#glue-code-solver-inputs"><span class="std std-ref">사용자 입력 매개변수</span></a>)는 힘/모멘트 크기가 상태 크기와 매우 다를 때 매트릭스 조절을 개선하기 위해 솔버가 야코비 행렬의 부하 변수에 적용하는 전역 조절 인자입니다.</p>
+</div>
+<div class="section" id="orientation-representation">
+<h2><a class="toc-backref" href="#id14"><span class="section-number">4.2.2.6. </span>방향 표현</a><a class="headerlink" href="#orientation-representation" title="이 제목의 고유 링크"></a></h2>
+<p>방향은 다음과 같습니다. <strong>아님</strong> 는 글루 변수 배열 내부에 방향 코사인 행렬(DCM)로 저장되거나 조작됩니다. 대신, 컴팩트한 3개 구성요소 단위 쿼터니언 매개변수화가 사용됩니다.</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{q}_p = [q_1, q_2, q_3] \quad \text{where } q_0 = \sqrt{1 - q_1^2 - q_2^2 - q_3^2}\]</div>
+<p>이 매개변수화는 전체 DCM의 중복을 방지하고 쿼터니언 합성을 통해 간단한 유한 차분을 가능하게 합니다(<code class="docutils literal notranslate"><span class="pre">quat_compose</span></code>). 다음에서 내보낸 변환 유틸리티 <code class="docutils literal notranslate"><span class="pre">ModVar</span></code> 포함
+<code class="docutils literal notranslate"><span class="pre">dcm_to_quat</span></code>, <code class="docutils literal notranslate"><span class="pre">quat_to_dcm</span></code>, <code class="docutils literal notranslate"><span class="pre">quat_compose</span></code>, <code class="docutils literal notranslate"><span class="pre">quat_inv</span></code>,
+<code class="docutils literal notranslate"><span class="pre">quat_to_rvec</span></code>, <code class="docutils literal notranslate"><span class="pre">rvec_to_quat</span></code>, <code class="docutils literal notranslate"><span class="pre">wm_to_quat</span></code>및
+이 플래그 값 아래에 <code class="docutils literal notranslate"><span class="pre">quat_to_wm</span></code>.</p>
+<p>야코비안 행의 방향 차이를 계산할 때, <code class="docutils literal notranslate"><span class="pre">MV_ComputeDiff</span></code>
+는 음의 섭동 쿼터니언과 양의 섭동 쿼터니언 간의 상대 회전을 계산하고 이를 회전 벡터로 변환합니다.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="overview.html" class="btn btn-neutral float-left" title="4.2.1. 글루 코드 개요" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+        <a href="modglue.html" class="btn btn-neutral float-right" title="4.2.3. ModGlue – 모듈을 글로벌 어레이로 결합" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>© Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    
+     
+
+
+</body></html>

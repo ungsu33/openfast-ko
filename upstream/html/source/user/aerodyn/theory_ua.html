@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.3.8. Unsteady Aerodynamics &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.3.9. Tail fin Aerodynamics Theory" href="theory_tailfin.html" />
+    <link rel="prev" title="4.3.7. AeroDyn Theory" href="theory.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/aerodyn/theory_ua.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.3. AeroDyn</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">4.3.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coordsys.html">4.3.2. Coordinate systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input.html">4.3.3. Input Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="output.html">4.3.4. Output Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modeling.html">4.3.5. Modeling Considerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver.html">4.3.6. AeroDyn Driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory.html">4.3.7. AeroDyn Theory</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.3.8. Unsteady Aerodynamics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#theory">4.3.8.1. Theory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#inputs">4.3.8.2. Inputs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#calculating-default-airfoil-coefficients">4.3.8.3. Calculating Default Airfoil Coefficients</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#outputs">4.3.8.4. Outputs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#aeroelastic-simulation-of-a-2d-section">4.3.8.5. Aeroelastic simulation of a 2D section</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#driver">4.3.8.6. Driver</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="theory_tailfin.html">4.3.9. Tail fin Aerodynamics Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.3.10. References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.3.11. Appendix</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.3. </span>AeroDyn Users Guide and Theory Manual</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.3.8. </span>Unsteady Aerodynamics</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/aerodyn/theory_ua.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="unsteady-aerodynamics">
+<span id="ad-ua"></span><h1><span class="section-number">4.3.8. </span>Unsteady Aerodynamics<a class="headerlink" href="#unsteady-aerodynamics" title="Permalink to this heading"></a></h1>
+<p>The Unsteady Aerodynamic (UA) models account for flow hysteresis, including unsteady attached
+flow, trailing-edge flow separation, dynamic stall, and flow reattachment.
+<em>Dynamic stall</em> refers to rapid aerodynamic changes that may bring about
+or delay stall behavior <span id="id1">[<a class="reference internal" href="zrefs.html#id5" title="E. Branlard. Wind Turbine Aerodynamics and Vorticity-Based Methods: Fundamentals and Recent Applications. Springer International Publishing, 2017. ISBN 978-3-319-55163-0. doi:10.1007/978-3-319-55164-7.">ad-Bra17</a>]</span>. Rapid changes in wind speed (for example, when
+the blades pass through the tower shadow) cause a sudden detachment and
+then reattachment of air flow along the airfoil. Such effects at the
+blade surface cannot be predicted with steady state aerodynamics, but
+may affect turbine operation, not only when the blades encounter tower
+shadow, but also during operation in skewed flows and turbulent wind conditions. Dynamic
+stall effects occur on time scales of the order of the time for the
+relative wind at the blade to traverse the blade chord, approximately
+<span class="math notranslate nohighlight">\(c/\Omega r\)</span>. For large wind turbines, this might be on the order
+of <span class="math notranslate nohighlight">\(0.5\)</span> seconds at the blade root to <span class="math notranslate nohighlight">\(0.001\)</span> seconds at the
+blade tip. Dynamic stall can result in high transient forces as the wind
+speed increases, but stall is delayed.</p>
+<div class="section" id="theory">
+<span id="ua-theory"></span><h2><span class="section-number">4.3.8.1. </span>Theory<a class="headerlink" href="#theory" title="Permalink to this heading"></a></h2>
+<p>The different dynamic stall models implemented in AeroDyn are presented below.</p>
+<div class="section" id="notations-and-definitions">
+<span id="ua-notations"></span><h3><span class="section-number">4.3.8.1.1. </span>Notations and Definitions<a class="headerlink" href="#notations-and-definitions" title="Permalink to this heading"></a></h3>
+<p>See <a class="reference internal" href="input.html#airfoil-data-input-file"><span class="std std-numref">Section 4.3.3.19.1</span></a> for a comprehensive description of all
+the inputs present in the profile input file (including some of the ones repeated below).</p>
+<p>The airfoil section coordinate system and main variables are presented in <a class="reference internal" href="#fig-uaairfoilsystem"><span class="std std-numref">Fig. 4.9</span></a> and further described below:</p>
+<div class="figure align-default" id="fig-uaairfoilsystem">
+<a class="reference internal image-reference" href="../../../_images/UAAirfoilSystem.svg"><img alt="../../../_images/UAAirfoilSystem.svg" src="../../../_images/UAAirfoilSystem.svg" width="70%" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.9 </span><span class="caption-text">Definition of aifoil section coordinate system used in the unsteady aerodynamics module</span><a class="headerlink" href="#fig-uaairfoilsystem" title="Permalink to this image"></a></p>
+</div>
+<ul class="simple">
+<li><p>Aerodynamic Center (AC): point of the airfoil cross section where the
+aerodynamic forces and moment are assumed to act. Usually close to
+the 1/4 chord point for a regular airfoil and at the center for a
+circular cross section</p></li>
+<li><p>“3/4” chord point: in the original formulation this point refers to
+the point on the chord axis located 3/4 chord behind the leading
+edge. This concept is here generalized to the point located mid-way
+between the aerodynamic center and the trailing edge, to account for
+aerodynamic center positions that differ strongly from a 1/4 chord
+point. The notation <span class="math notranslate nohighlight">\(3/4\)</span> is kept in this document.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\omega\)</span>: rotational speed of the airfoil section
+(pitching/torsional rate) positive around z.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{v}_{ac}\)</span>: velocity vector at the aerodynamic
+center
+<span class="math notranslate nohighlight">\(\boldsymbol{v}_{ac}=[v_{x,ac}, v_{y,ac}]\)</span>
+(coordinates assumed to be expressed in the airfoil section
+coordinate system)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{v}_{34}\)</span>: velocity vector at the 3/4 chord point
+<span class="math notranslate nohighlight">\(\boldsymbol{v}_{34}=[v_{x,34}, v_{y,34}]\)</span>(coordinates
+assumed to be expressed in the airfoil section coordinate system)
+The velocity is obtained from the velocity at the 1/4 chord point and the
+rotational speed of the section:
+<span class="math notranslate nohighlight">\(\boldsymbol{v}_{34}=\boldsymbol{v}_{ac}+\omega d_{34} \hat{\boldsymbol{x}}_s\)</span>
+where <span class="math notranslate nohighlight">\(d_{34}\)</span> is the distance between the aerodynamic center
+and the 3/4 chord point.</p></li>
+<li><p><span class="math notranslate nohighlight">\(U_{ac}\)</span>: velocity norm at the aerodynamic center.
+<span class="math notranslate nohighlight">\(U_{ac}=\lVert\boldsymbol{v}_{ac}\rVert=\sqrt{v_{x,ac}^2 + v_{y,ac}^2}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha_{ac}\)</span>: angle of attack at the aerodynamic center
+<span class="math notranslate nohighlight">\(\alpha_{ac}=\operatorname{atan2}(v_{x,ac},v_{y,ac})\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha_{34}\)</span>: angle of attack at the 3/4 chord point
+<span class="math notranslate nohighlight">\(\alpha_{34}=\operatorname{atan2}(v_{x,34},v_{y,34})\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span>: the vector of states used by the continuous formulations</p></li>
+<li><p><span class="math notranslate nohighlight">\(c\)</span>: airfoil chord</p></li>
+<li><p><span class="math notranslate nohighlight">\(C_l^{st}, C_d^{st}, C_m^{st}\)</span>: static airfoil coefficients</p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha_0\)</span>: angle of attack at zero lift, <span class="math notranslate nohighlight">\(C_l^{st}(\alpha_0)=0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha_1\)</span>: angle of attack close to positive stall.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha_2\)</span>: angle of attack close to negative stall.</p></li>
+<li><p><span class="math notranslate nohighlight">\(C_{l,\alpha}\)</span>:  slope of the steady lift curve about <span class="math notranslate nohighlight">\(\alpha_0\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(f^{st}_s(\alpha)\)</span>: is the steady separation function, determined from the lift curve <span class="math notranslate nohighlight">\(C_l^{st}(\alpha)\)</span> (see below, and e.g. <span id="id2">[<a class="reference internal" href="zrefs.html#id9" title="M.H. Hansen, Mac Gaunaa, and Helge Aagaard Madsen. A beddoes-leishman type dynamic stall model in state-space and indicial formulations. Technical Report, Risø National Laboratory, Roskilde, Denmark, 2004.">ad-HGAM04</a>]</span>)</p></li>
+<li><p><span class="math notranslate nohighlight">\(A_1\)</span>, <span class="math notranslate nohighlight">\(A_2\)</span>, <span class="math notranslate nohighlight">\(b_1\)</span>, <span class="math notranslate nohighlight">\(b_2\)</span>: are four constants, characteristic of the propagation of the wake vorticity (Wagner constants)</p></li>
+</ul>
+<p><strong>Time constants:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(T_u(t) = \frac{c}{2U_{ac}(t)} \in [0.001, 50]\)</span>: Time for the flow to go over half the airfoil section. The value is plateaued to avoid unphysical values.</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_{f,0}\)</span>: Dimensionless time constant associated with leading edge separation. Default is 3.</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_{p,0}\)</span>: Dimensionless time constant for the boundary-layer,leading edge pressure gradient. Default is 1.7</p></li>
+</ul>
+</div></blockquote>
+<p><strong>Separation function:</strong></p>
+<p>The steady separation function, <span class="math notranslate nohighlight">\(f_s^{st}\)</span>, is defined as the separation
+point on a flat plate for a potential Kirchhoff flow <span id="id3">[<a class="reference internal" href="zrefs.html#id9" title="M.H. Hansen, Mac Gaunaa, and Helge Aagaard Madsen. A beddoes-leishman type dynamic stall model in state-space and indicial formulations. Technical Report, Risø National Laboratory, Roskilde, Denmark, 2004.">ad-HGAM04</a>]</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+\text{Close to $\alpha_0$},
+f_s^{st}(\alpha) &amp;= \operatorname{min}\left\{\left[2 \sqrt{ \frac{C_l^{st}(\alpha)}{C_{l,\alpha}(\alpha-\alpha_0) } } -1 \right]^2 , 1 \right\}
+,\quad
+\text{away from $\alpha_0$},
+f_s^{st}(\alpha)=0
+\end{aligned}\]</div>
+<p>When <span class="math notranslate nohighlight">\(\alpha=\alpha_0\)</span>, <span class="math notranslate nohighlight">\(f_s^{st}(\alpha_0)=1\)</span>. Away from
+<span class="math notranslate nohighlight">\(\alpha_0\)</span>, the function drops progressively to <span class="math notranslate nohighlight">\(0\)</span>. As soon
+as the function reaches <span class="math notranslate nohighlight">\(0\)</span> on both sides of <span class="math notranslate nohighlight">\(\alpha_0\)</span>,
+then <span class="math notranslate nohighlight">\(f_s^{st}\)</span> is kept at the constant value <span class="math notranslate nohighlight">\(0\)</span>.</p>
+<p><strong>Note that for UAMod=5, a different separation function is formed.</strong>
+We define an offset for the <span class="math notranslate nohighlight">\(C_n\)</span> function, <code class="docutils literal notranslate"><span class="pre">cn_offset</span></code>, where
+<span class="math notranslate nohighlight">\(C_{n,offset}=\frac{C_n\left(\alpha^{Lower}\right)+C_n\left(\alpha^{Upper}\right)}{2}\)</span>. Then, the separation function
+is a value between 0 and 1, given by the following equation:</p>
+<div class="math notranslate nohighlight">
+\[f_s^{st}(\alpha) = \left[ 2 \max\left\{\frac{1}{4} , \sqrt{\frac{C_n^{st}(\alpha) - C_{n,offset}}{C_n^{fullyAttached}(\alpha)-C_{n,offset}}} \right\} -1 \right]^2\]</div>
+<p>with the fully-attached <span class="math notranslate nohighlight">\(C_n\)</span> curve defined as <span class="math notranslate nohighlight">\(C_n\)</span> between <span class="math notranslate nohighlight">\(alpha^{Lower}\)</span> and <span class="math notranslate nohighlight">\(alpha^{Upper}\)</span> and linear functions outside of that range:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}C_n^{fullyAttached}(\alpha) =  \begin{cases} C_n\left(\alpha^{Upper}\right) + C_n^{slope}\left(\alpha^{Upper}\right) \cdot \left(\alpha-\alpha^{Upper}\right)          &amp; \alpha&gt;\alpha^{Upper} \\
+                                                     C_n(\alpha)                                                                                                       &amp; \alpha^{Lower}&lt;=\alpha&lt;=\alpha^{Upper} \\
+                                                     C_n\left(\alpha^{Lower}\right) + C_n^{slope}\left(\alpha^{Lower}\right) \cdot  \left(\alpha-\alpha^{Lower}\right) &amp; \alpha&lt;\alpha^{Lower} \end{cases}\end{split}\]</div>
+<p>Note that to avoid numerical issues at the <span class="math notranslate nohighlight">\(\pm180\)</span> degree boundary, this function changes slope when the separation function is 0 above <span class="math notranslate nohighlight">\(alpha^{Upper}\)</span> and below <span class="math notranslate nohighlight">\(alpha^{Lower}\)</span>.
+This allow the fully-attached linear sections to be periodic and avoid numerical issues with large magnitudes of angle of attack.</p>
+<p><strong>Inviscid and fully separated lift coefficient:</strong></p>
+<p>The inviscid lift coefficient is
+<span class="math notranslate nohighlight">\(C_{l,\text{inv}}= C_{l,\alpha} (\alpha-\alpha_0)\)</span>.
+The fully separated lift coefficient may
+be modelled in different ways (<span id="id4">[<a class="reference internal" href="zrefs.html#id5" title="E. Branlard. Wind Turbine Aerodynamics and Vorticity-Based Methods: Fundamentals and Recent Applications. Springer International Publishing, 2017. ISBN 978-3-319-55163-0. doi:10.1007/978-3-319-55164-7.">ad-Bra17</a>]</span>).
+In most engineering models, the slope of
+the fully separated lift coefficient around <span class="math notranslate nohighlight">\(\alpha_0\)</span> is
+<span class="math notranslate nohighlight">\(C_{l,\alpha}/2\)</span>. In the Unsteady AeroDynamics sub-module,
+the fully separated lift coefficient is derived from the steady separation
+function as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+   C_{l,\text{fs}}(\alpha) = \frac{C_l^{st}(\alpha) - C_{l,\alpha}(\alpha-\alpha_0)f_s^{st}(\alpha)}{1-f_s^{st}(\alpha)}
+  \text{when $f_s^{st}\neq 1$}
+   , \qquad
+   C_{l,\text{fs}}(\alpha) =\frac{C_l^{st}(\alpha)}{2}
+ \text{when $f_s^{st}=1$}\end{aligned}\]</div>
+</div>
+<div class="section" id="beddoes-leishman-type-models-uamod-2-3">
+<h3><span class="section-number">4.3.8.1.2. </span>Beddoes-Leishman type models (UAMod=2,3)<a class="headerlink" href="#beddoes-leishman-type-models-uamod-2-3" title="Permalink to this heading"></a></h3>
+<p>The Beddoes-Leishman model account for attached flows and trailing edge stall <span id="id5">[<a class="reference internal" href="zrefs.html#id11" title="J. G. Leishman and T.S. Beddoes. A semi-empirical model for dynamic stall. Journal of the American Helicopter Society, 34(3):p3-17, 1989.">ad-LB89</a>]</span>.</p>
+<p>Two variants are implemented in the Unsteady Aerodynamic module. These two (compressible) models are currently described in the following reference: <span id="id6">[<a class="reference internal" href="zrefs.html#id3" title="R. Damiani and G. Hayman. The unsteady aerodynamics module for fast 8. Technical Report, National Renewable Energy Laboratory, 2019. NREL/TP-5000-66347.">ad-DH19</a>]</span>. The models use <span class="math notranslate nohighlight">\(C_n\)</span> and <span class="math notranslate nohighlight">\(C_c\)</span> as main physical quantities.  The models use discrete states and cannot be used with linearization.</p>
+</div>
+<div class="section" id="beddoes-leishman-4-states-model-uamod-4">
+<h3><span class="section-number">4.3.8.1.3. </span>Beddoes-Leishman 4-states model (UAMod=4)<a class="headerlink" href="#beddoes-leishman-4-states-model-uamod-4" title="Permalink to this heading"></a></h3>
+<p>The 4-states (incompressible) dynamic stall model as implemented in OpenFAST is described in <span id="id7">[<a class="reference internal" href="zrefs.html#id6" title="E Branlard, B Jonkman, G R Pirrung, K Dixon, and J Jonkman. Dynamic inflow and unsteady aerodynamics models for modal and stability analyses in OpenFAST. Journal of Physics: Conference Series, 2265(3):032044, 2022. doi:10.1088/1742-6596/2265/3/032044.">ad-BJP+22</a>]</span> (the model differs slithgly from the original formulation from Hansen-Gaunaa-Madsen (HGM) <span id="id8">[<a class="reference internal" href="zrefs.html#id9" title="M.H. Hansen, Mac Gaunaa, and Helge Aagaard Madsen. A beddoes-leishman type dynamic stall model in state-space and indicial formulations. Technical Report, Risø National Laboratory, Roskilde, Denmark, 2004.">ad-HGAM04</a>]</span>).
+The model is enabled using <code class="docutils literal notranslate"><span class="pre">UAMod=4</span></code>.  The model uses <span class="math notranslate nohighlight">\(C_l\)</span> as main physical quantity.
+Linearization of the model is available.</p>
+<p>NOTE: this model might require smaller time steps until a stiff integrator is implemented in AeroDyn-UA.</p>
+<p><strong>State equation:</strong>
+The state equation of the model is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \dot{x}_1 &amp;= - T_u^{-1}  b_1\, x_1  +  T_u^{-1} b_1 A_1  \alpha_{34}\nonumber \\
+    \dot{x}_2 &amp;= - T_u^{-1}  b_2\, x_2  +  T_u^{-1} b_2 A_2  \alpha_{34}\nonumber \\
+    \dot{x}_3 &amp;= - T_p^{-1} x_3  +  T_p^{-1} C_l^p                \nonumber \\
+    \dot{x}_4 &amp;= - T_f^{-1} x_4  +  T_f^{-1} f_s^{st}(\alpha_F)      ,\qquad x_4 \in[0,1]
+    \nonumber
+\end{aligned}\end{split}\]</div>
+<p>with</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+ \alpha_E(t) &amp; =\alpha_{34}(t)(1-A_1-A_2)+ x_1(t) + x_2(t)                                      \nonumber \\
+ C_{L}^p(t)  &amp; =C_{l,\alpha} \, \left(\alpha_E(t)-\alpha_0\right) + \pi T_u(t) \omega(t) \nonumber \\
+ \alpha_F(t) &amp; =\frac{x_3(t)}{C_{l,\alpha}}+\alpha_0                                     \nonumber
+ \end{aligned}\end{split}\]</div>
+<p><strong>Output equation:</strong>
+The unsteady airfoil coefficients
+<span class="math notranslate nohighlight">\(C_{l,\text{dyn}}\)</span>, <span class="math notranslate nohighlight">\(C_{d,\text{dyn}}\)</span>,
+<span class="math notranslate nohighlight">\(C_{m,\text{dyn}}\)</span> are obtained from the states as follows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    C_{l,\text{dyn}}(t) &amp;= C_{l,\text{circ}} + \pi T_u \omega   \\
+%   C_{d,\text{dyn}}(t) &amp;=  C_d(\alpha_E) + (\alpha_{ac}-\alpha_E) C_{l,\text{dyn}} + \left[ C_d(\alpha_E)-C_d(\alpha_0)\right ] \Delta C_{d,f}'' \\
+   C_{d,\text{dyn}}(t)  &amp;=  C_d(\alpha_E) + \left[(\alpha_{ac}-\alpha_E) +T_u \omega \right]C_{l,\text{circ}} + \left[ C_d(\alpha_E)-C_d(\alpha_0)\right ] \Delta C_{d,f}'' \\
+%     C_{m,\text{dyn}}(t) &amp;=  C_m(\alpha_E) + C_{l,\text{dyn}} \Delta C_{m,f}'' - \frac{\pi}{2} T_u \omega\\
+    C_{m,\text{dyn}}(t) &amp;=  C_m(\alpha_E) - \frac{\pi}{2} T_u \omega\\
+\end{aligned}\end{split}\]</div>
+<p>with:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \Delta C_{d,f}'' &amp;= \frac{\sqrt{f_s^{st}(\alpha_E)}-\sqrt{x_4}}{2} - \frac{f_s^{st}(\alpha_E)-x_4}{4}
+,\qquad
+    x_4\ge 0  \\
+ C_{l,\text{circ}}&amp;= x_4 (\alpha_E-\alpha_0) C_{l,\alpha} +  (1-x_4) C_{l,{\text{fs}}}(\alpha_E)
+\end{aligned}\end{split}\]</div>
+</div>
+<div class="section" id="beddoes-leishman-5-states-model-uamod-5">
+<h3><span class="section-number">4.3.8.1.4. </span>Beddoes-Leishman 5-states model (UAMod=5)<a class="headerlink" href="#beddoes-leishman-5-states-model-uamod-5" title="Permalink to this heading"></a></h3>
+<p>The 5-states (incompressible) dynamic stall model is similar to the Beddoes-Leishman 4-states model (UAMod=4), but
+adds a 5th state to represent vortex generation.
+It is enabled using <code class="docutils literal notranslate"><span class="pre">UAMod=5</span></code>. The model uses <span class="math notranslate nohighlight">\(C_n\)</span> and <span class="math notranslate nohighlight">\(C_c\)</span> as main physical quantities.
+Linearization of the model is available.</p>
+</div>
+<div class="section" id="oye-model-uamod-6">
+<span id="ua-oye"></span><h3><span class="section-number">4.3.8.1.5. </span>Oye model (UAMod=6)<a class="headerlink" href="#oye-model-uamod-6" title="Permalink to this heading"></a></h3>
+<p>Oye’s dynamic stall model is a one-state (continuous) model, formulated in <span id="id9">[<a class="reference internal" href="zrefs.html#id10" title="S. Øye. Dynamic stall, simulated as a time lag of separation. Proceedings of the 4th IEA Symposium on the Aerodynamics of Wind Turbines, 1991.">ad-Oye91</a>]</span> and described e.g. in <span id="id10">[<a class="reference internal" href="zrefs.html#id5" title="E. Branlard. Wind Turbine Aerodynamics and Vorticity-Based Methods: Fundamentals and Recent Applications. Springer International Publishing, 2017. ISBN 978-3-319-55163-0. doi:10.1007/978-3-319-55164-7.">ad-Bra17</a>]</span>.
+The model attempts to capture trailing edge stall.
+Linearization of the model is available.</p>
+<p><strong>State equation:</strong>
+Oye’s dynamic stall model uses one state, <span class="math notranslate nohighlight">\(\boldsymbol{x}=[f_s]\)</span>
+where <span class="math notranslate nohighlight">\(f_s\)</span> is the unsteady separation function.
+The state equation is a first-order differential equation:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+  \frac{df_s(t)}{dt} =- \frac{1}{T_f} f_s(t)  + \frac{1}{T_f} f_s^{st}(\alpha_{34}(t))
+ \end{aligned}\]</div>
+<p>where <span class="math notranslate nohighlight">\(T_f=T_{f,0} T_u\)</span> is the time constant of
+the flow separation and <span class="math notranslate nohighlight">\(f_s^{st}\)</span> is the steady state separation function described in <a class="reference internal" href="#ua-notations"><span class="std std-numref">Section 4.3.8.1.1</span></a>.
+The value <span class="math notranslate nohighlight">\(T_{f,0}\)</span> is usually chosen around 6 (different from the default value).
+It is readily seen that <span class="math notranslate nohighlight">\(f_s\)</span>
+reaches the value <span class="math notranslate nohighlight">\(f_s^{st}\)</span> when the system is in a steady state
+(i.e. when <span class="math notranslate nohighlight">\(\frac{df_s(t)}{dt}=0\)</span>).</p>
+<p><strong>Output equation:</strong>
+The unsteady lift coefficient is computed as a linear combination of the inviscid lift
+coefficient, <span class="math notranslate nohighlight">\(C_{l, \text{inv}}\)</span>, and the fully separated lift
+coefficient <span class="math notranslate nohighlight">\(C_{l,\text{fs}}\)</span>. Both of these lift coefficients are
+determined from the steady lift coefficient, usually provided as
+tabulated data, noted <span class="math notranslate nohighlight">\(C_l^{st}(\alpha)\)</span>, where the superscript
+<span class="math notranslate nohighlight">\(st\)</span> stands for “steady”.
+The unsteady lift coefficient is
+modelled as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    C_{l,\text{dyn}}(\alpha_{34} ,t) = f_s(t)\; C_{l,\text{inv}}(\alpha_{34}) + (1-f_s(t))\; C_{l,\text{fs}}(\alpha_{34})
+    \end{aligned}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\alpha_{34}\)</span> is the instantaneous angle of attack at the 3/4 chord.
+<span class="math notranslate nohighlight">\(f_s\)</span> is seen to act as a relaxation factor between the two flow situations.</p>
+</div>
+<div class="section" id="boeing-vertol-model-uamod-7">
+<h3><span class="section-number">4.3.8.1.6. </span>Boeing-Vertol model (UAMod=7)<a class="headerlink" href="#boeing-vertol-model-uamod-7" title="Permalink to this heading"></a></h3>
+<p>The Boeing-Vertol is mentioned in the following paper <span id="id11">[<a class="reference internal" href="zrefs.html#id12" title="J. Murray and M. Barone. The development of cactus : a wind and marine turbine performance simulation code. Technical Report, 49th AIAA Aerospace Sciences Meeting, Orlando, Florida, 2011.">ad-MB11</a>]</span>.  Details of the model were omitted in this reference, so the documentation presented here is inspired from the implementation done in the vortex code CACTUS, which was reproduced to quasi-identity in AeroDyn. Linearization is not possible with this model.</p>
+<p>The model as presented in <span id="id12">[<a class="reference internal" href="zrefs.html#id12" title="J. Murray and M. Barone. The development of cactus : a wind and marine turbine performance simulation code. Technical Report, 49th AIAA Aerospace Sciences Meeting, Orlando, Florida, 2011.">ad-MB11</a>]</span> is an output-only model, where the dynamic angle of attack is determined using the quasi steady angle of attack and the rate of change of the angle of attack:</p>
+<div class="math notranslate nohighlight">
+\[\alpha_{dyn} = \alpha_{34} - k_1 \gamma \sqrt{\left| \dot{\alpha} T_u\right|}\]</div>
+<p>where <span class="math notranslate nohighlight">\(k_1\)</span> and <span class="math notranslate nohighlight">\(\gamma\)</span> are constants of the model. In practice, the implementation is different for the lift and drag coefficients, and for negative and positive stall. The model needs a discrete state to calculate the rate of change of the angle of attack and two discrete states to keep track of whether the model is activated or not.</p>
+<p><strong>Airfoil constants:</strong></p>
+<p>The constants <span class="math notranslate nohighlight">\(k_1\)</span>, for positive and negative rates of angle of attack, are set to:</p>
+<div class="math notranslate nohighlight">
+\[k_{1,p}= 1 ,\quad k_{1,n} = 1/2\]</div>
+<p>The extent of the transition region is computed as:</p>
+<div class="math notranslate nohighlight">
+\[\Delta \alpha_\text{max} = \frac{0.9 \operatorname{min}\left(|\alpha_1-\alpha_0|, |\alpha_2-\alpha_0|\right)}{\operatorname{max}(k_{1,p},k_{1,n})}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\alpha_1\)</span> and <span class="math notranslate nohighlight">\(\alpha_2\)</span> are the angle of attack at positive and negative stall respectively (taken as the values from the airfoil input file).
+The factor 0.9 is a margin to prevent the effective angle of attack to reach <span class="math notranslate nohighlight">\(\alpha_0\)</span> during stall.</p>
+<p><strong>Intermediate variables:</strong></p>
+<p>The variables <span class="math notranslate nohighlight">\(\gamma\)</span> for the lift and drag are computed as function of the thickness to chord ratio of the airfoil <span class="math notranslate nohighlight">\(t_c\)</span> and the Mach number <span class="math notranslate nohighlight">\(M_a\)</span> (assumed to be 0 in the current implementation):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+  \gamma_L &amp;= (1.4-6\delta)\left[1-\frac{\text{Ma}-(0.4+5\delta)}{0.9+2.5\delta-(0.4+5\delta)}\right] &amp;&amp;\\
+  \gamma_D &amp;= (1-2.5\delta) ,&amp;&amp;\text{if}\ \text{Ma} &lt; 0.2  \\
+  \gamma_D &amp;= (1-2.5\delta)\left[1-\frac{\text{Ma}-0.2}{(0.7+2.5\delta-0.2)}\right] ,&amp;&amp; \text{otherwise}
+\end{aligned}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\delta = 0.06-t_c\)</span>.</p>
+<p><strong>Update of discrete states (and intermediate variables):</strong></p>
+<p>The rate of change of the angle of attack is computed as:</p>
+<div class="math notranslate nohighlight">
+\[\dot{\alpha} = \frac{\alpha_{34}(t+\Delta t) - \alpha_{34}(t)}{\Delta t}\]</div>
+<p>An additional state was introduced to avoid sudden jump of <span class="math notranslate nohighlight">\(\dot{\alpha}\)</span>, by storing its value. Rates that are beyond a fraction of <span class="math notranslate nohighlight">\(\pi \Delta t\)</span> are replaced with the values at the previous time step. This feature is not present in the CACTUS implementation.</p>
+<p>The dynamic angle of attack offsets (lags) for the lift and drag are computed as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \Delta \alpha_L &amp;= k_1 \operatorname{min} \left(\gamma_L \sqrt{\dot{|\alpha}T_u|} , \Delta \alpha_\text{max}\right)\\
+    \Delta \alpha_D &amp;= k_1 \operatorname{min}\left(\gamma_D \sqrt{\dot{|\alpha}T_u|}, \Delta \alpha_\text{max} \right)
+\end{aligned}\end{split}\]</div>
+<p>The value of <span class="math notranslate nohighlight">\(k_1\)</span> is taken as <span class="math notranslate nohighlight">\(k_{1,n}\)</span> if <span class="math notranslate nohighlight">\(\dot{\alpha}(\alpha_{34}-\alpha_0)&lt;0\)</span>, and taken as <span class="math notranslate nohighlight">\(k_{1,p}\)</span> otherwise.
+The lagged angle of attacks for the lift and drag are:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \alpha_{\text{Lag},L} &amp;= \alpha_{34} - \Delta \alpha_L\operatorname{sign}(\dot{\alpha}) \\
+    \alpha_{\text{Lag},D} &amp;= \alpha_{34} - \Delta \alpha_D\operatorname{sign}(\dot{\alpha})
+\end{aligned}\end{split}\]</div>
+<p>The distances to positive and negative stall are computed as follows.
+If <span class="math notranslate nohighlight">\(\dot{\alpha}(\alpha_{34}-\alpha_0)&lt;0\)</span> and the dynamic stall is active:</p>
+<div class="math notranslate nohighlight">
+\[\Delta_n = \alpha_2  - \alpha_{\text{Lag},D} , \quad \Delta_p = \alpha_{\text{Lag},D} - \alpha_1\]</div>
+<p>If <span class="math notranslate nohighlight">\(\dot{\alpha}(\alpha_{34}-\alpha_0)&lt;0\)</span> and the dynamic stall is not active:</p>
+<div class="math notranslate nohighlight">
+\[\Delta_n = 0 , \quad \Delta_p = 0\]</div>
+<p>If <span class="math notranslate nohighlight">\(\dot{\alpha}(\alpha_{34}-\alpha_0)\ge0\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\Delta_n = \alpha_2 - \alpha_{34}, \qquad
+\Delta_p = \alpha_{34} - \alpha_1\]</div>
+<p>The effective angle of attack for the lift coefficient is taken as the lagged angle of attack:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{aligned}
+    \alpha_{e,L}  &amp;= \alpha_{\text{Lag},L}
+\end{aligned}\]</div>
+<p>The effective angle of attack for the drag coefficient is obtained from the lagged angle of attack and the deltas to stall:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{aligned}
+    \alpha_{e,D}  &amp;= \alpha_{\text{Lag},D},                                                &amp;&amp;\text{if}\ \Delta_n&gt;T \ \text{or} \  \Delta_p &gt; T \\
+    \alpha_{e,D}  &amp;= \alpha_{34}+(\alpha_{\text{Lag},D}-\alpha_{34}) \frac{\Delta_n}{T}  , &amp;&amp;\text{if}\ \Delta_n&gt;0 \ \text{and}\  \Delta_n &lt; T \\
+    \alpha_{e,D}  &amp;= \alpha_{34}+(\alpha_{\text{Lag},D}-\alpha_{34}) \frac{\Delta_p}{T}  , &amp;&amp;\text{if}\ \Delta_p&gt;0 \ \text{and}\  \Delta_p &lt; T \\
+    \alpha_{e,D}  &amp;= \alpha_{34} ,                                                         &amp;&amp;\text{otherwise}
+\end{aligned}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(T=2\Delta\alpha_\text{max}\)</span> is the extent of the “transition” region.</p>
+<p>The lift dynamic stall state is activated if <span class="math notranslate nohighlight">\(\dot{\alpha}(\alpha_{34}-\alpha_0) \ge 0\)</span>
+and if the angle of attack is above <span class="math notranslate nohighlight">\(\alpha_1\)</span> or below <span class="math notranslate nohighlight">\(\alpha_2\)</span>.
+The state is turned off if <span class="math notranslate nohighlight">\(\dot{\alpha}(\alpha_{34}-\alpha_0) &lt; 0\)</span>
+and the effective angle of attack is below <span class="math notranslate nohighlight">\(\alpha_1\)</span> and above <span class="math notranslate nohighlight">\(\alpha_2\)</span>.</p>
+<p>The drag dynamic stall state is activated if any of the condition below are true:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    &amp;\Delta_n &gt; T \  \text{or }\  \Delta_p &gt; T \\
+    &amp;\Delta_n &gt; 0 \  \text{and}\  \Delta_n &lt; T \\
+    &amp;\Delta_p &gt; 0 \  \text{and}\  \Delta_p &lt; T
+\end{aligned}\end{split}\]</div>
+<p>The state is turned off otherwise.</p>
+<p><strong>Calculation of outputs:</strong>
+The calculation of the dynamic lift and drag coefficients is done as follows</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    C_{l,\text{dyn}}&amp;=\frac{C_l^{st}(\alpha_{e,L})}{\alpha_{e,L}-\alpha_0} ,\quad  \text{if dynamic stall active for $C_l$}\  \\
+    C_{l,\text{dyn}}&amp;=C_l^{st}(\alpha_{34}) ,\quad\quad  \text{otherwise} \\
+    C_{d,\text{dyn}}&amp;=C_d^{st}(\alpha_{e,D})
+\end{aligned}\end{split}\]</div>
+<p>Recalculation of intermediate variables are necessary to obtain <span class="math notranslate nohighlight">\(\alpha_{e,L}\)</span> and <span class="math notranslate nohighlight">\(\alpha_{e,D}\)</span>.
+The moment coefficient is calculated based on values at the aerodynamic center and mid-chord (“50”):</p>
+<div class="math notranslate nohighlight">
+\[C_{m,\text{dyn}} = C_m^{st}(\alpha_{ac}) + \cos\alpha_{50}  \left[C_l^{st}(\alpha_{34}) - C_l^{st}(\alpha_{50})\right]/4\]</div>
+<p>where <span class="math notranslate nohighlight">\(\alpha_{50}\)</span> is computed the same way as <span class="math notranslate nohighlight">\(\alpha_{34}\)</span> (using the velocity at the aerodynamic center and the rotational rate of the airfoil) but using the distance from the aerodynamic center to the mid-chord (see <a class="reference internal" href="#ua-notations"><span class="std std-numref">Section 4.3.8.1.1</span></a>).</p>
+</div>
+</div>
+<div class="section" id="inputs">
+<span id="ua-inputs"></span><h2><span class="section-number">4.3.8.2. </span>Inputs<a class="headerlink" href="#inputs" title="Permalink to this heading"></a></h2>
+<p>See <a class="reference internal" href="input.html#ad-ua-inputs"><span class="std std-numref">Section 4.3.3.10</span></a> for a description of the inputs necessary in the AeroDyn primary file (e.g. <code class="docutils literal notranslate"><span class="pre">UAMod</span></code>)</p>
+<p>See <a class="reference internal" href="input.html#airfoil-data-input-file"><span class="std std-numref">Section 4.3.3.19.1</span></a> for a more comprehensive description of all the inputs present in the profile input file.
+Their default values are described in <a class="reference internal" href="#ua-afi-defaults"><span class="std std-numref">Section 4.3.8.3</span></a></p>
+<p>See <a class="reference internal" href="#ua-notations"><span class="std std-numref">Section 4.3.8.1.1</span></a> for a list of notations and definitions specific to unsteady aerodynamic inputs.</p>
+<p>An example of profile data (containing some of the unsteady aerodynamic parameters) is available here
+<a class="reference download internal" download="" href="../../../_downloads/5ba9cfc7b0b53c6530f7032f44cb4874/ad_polar_example.dat"><code class="xref download docutils literal notranslate"><span class="pre">(here)</span></code></a>.</p>
+<p>The unsteady aerodynamic driver inputs are documented in <a class="reference internal" href="#ua-driver"><span class="std std-numref">Section 4.3.8.6</span></a>.</p>
+</div>
+<div class="section" id="calculating-default-airfoil-coefficients">
+<span id="ua-afi-defaults"></span><h2><span class="section-number">4.3.8.3. </span>Calculating Default Airfoil Coefficients<a class="headerlink" href="#calculating-default-airfoil-coefficients" title="Permalink to this heading"></a></h2>
+<p>The default value for <code class="docutils literal notranslate"><span class="pre">cd0</span></code> is the minimum value of the <span class="math notranslate nohighlight">\(C_d\)</span> curve between <span class="math notranslate nohighlight">\(\pm20\)</span> degrees angle of attack.
+<span class="math notranslate nohighlight">\(\alpha_{c_{d0}}\)</span> is defined to be the angle of attack where <code class="docutils literal notranslate"><span class="pre">cd0</span></code> occurs.</p>
+<p>After computing <code class="docutils literal notranslate"><span class="pre">cd0</span></code>, the <span class="math notranslate nohighlight">\(C_n\)</span> curve is computed by</p>
+<div class="math notranslate nohighlight">
+\[C_{n}(\alpha) = C_l(\alpha) \cos\alpha + \left(C_d(\alpha) - c_{d0}\right) \sin\alpha\]</div>
+<p>The slope of the <span class="math notranslate nohighlight">\(C_n\)</span> curve is computed as follows:</p>
+<div class="math notranslate nohighlight">
+\[C_{n}^{Slope}\left(\frac{\alpha_{i+1} + \alpha_i}{2}\right) = \frac{C_n(\alpha_{i+1}) - C_n(\alpha_i)}{\alpha_{i+1} - \alpha_i}\]</div>
+<p><span class="math notranslate nohighlight">\(C_{n,smooth}^{Slope}\)</span> is a smoothed version of <span class="math notranslate nohighlight">\(C_{n}^{Slope}\)</span>, calculated using a triweight kernel with a window of 2 degrees.</p>
+<div class="math notranslate nohighlight">
+\[C_{l}^{Slope}\left(\frac{\alpha_{i+1} + \alpha_i}{2}\right) = \frac{C_l(\alpha_{i+1}) - C_l(\alpha_i)}{\alpha_{i+1} - \alpha_i}\]</div>
+<p>Using <span class="math notranslate nohighlight">\(C_{n,smooth}^{Slope}\)</span>, <code class="docutils literal notranslate"><span class="pre">alphaUpper</span></code> and <code class="docutils literal notranslate"><span class="pre">alphaLower</span></code> are computed:</p>
+<p><code class="docutils literal notranslate"><span class="pre">alphaUpper</span></code> is the smallest angle of attack value between <span class="math notranslate nohighlight">\(\alpha_{c_{d0}}\)</span> and 20 degrees where the <span class="math notranslate nohighlight">\(C_{n,smooth}^{Slope}\)</span> curve has started to decrease to 90% of its maximum slope.</p>
+<div class="math notranslate nohighlight">
+\[C_{n,smooth}^{Slope}\left(\alpha^{Upper}\right) &lt; 0.9 \max_{\alpha \in \left[\alpha_{c_{d0}}, \alpha^{Upper}\right]}  C_{n,smooth}^{Slope}\left( \alpha \right)\]</div>
+<p><code class="docutils literal notranslate"><span class="pre">alphaLower</span></code> is the largest angle of attack value between -20 degrees and <span class="math notranslate nohighlight">\(\alpha_{c_{d0}}\)</span> where the <span class="math notranslate nohighlight">\(C_{n,smooth}^{Slope}\)</span> curve has started to decrease to 90% of its maximum slope.</p>
+<div class="math notranslate nohighlight">
+\[C_{n,smooth}^{Slope}\left(\alpha^{Lower}\right) &lt; 0.9 \max_{\alpha \in \left[\alpha^{Lower}, \alpha_{c_{d0}}\right]}  C_{n,smooth}^{Slope}\left( \alpha \right)\]</div>
+<p><code class="docutils literal notranslate"><span class="pre">Cn1</span></code> is the value of <span class="math notranslate nohighlight">\(C_n(\alpha)\)</span> at the smallest value of <span class="math notranslate nohighlight">\(\alpha\)</span> where <span class="math notranslate nohighlight">\(\alpha &gt;= \alpha^{Upper}\)</span> and the separation function, <span class="math notranslate nohighlight">\(f_{st}(\alpha)\)</span> = 0.7.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Cn2</span></code> is the value of <span class="math notranslate nohighlight">\(C_n(\alpha)\)</span> at the largest value of <span class="math notranslate nohighlight">\(\alpha\)</span> where <span class="math notranslate nohighlight">\(\alpha &lt;= \alpha^{Lower}\)</span> and the separation function, <span class="math notranslate nohighlight">\(f_{st}(\alpha)\)</span>  = 0.7.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Cn_offset</span></code> is the average value of the <span class="math notranslate nohighlight">\(C_n\)</span> curve at <code class="docutils literal notranslate"><span class="pre">alphaUpper</span></code> and <code class="docutils literal notranslate"><span class="pre">alphaLower</span></code>:</p>
+<div class="math notranslate nohighlight">
+\[C_{n}^{offset} = \frac{C_n\left(\alpha^{Lower}\right) + C_n\left(\alpha^{Upper}\right)}{2}\]</div>
+<p><code class="docutils literal notranslate"><span class="pre">C_nalpha</span></code> is defined as the maximum slope of the smoothed <span class="math notranslate nohighlight">\(C_n\)</span> curve, <span class="math notranslate nohighlight">\(C_{n,smooth}^{Slope}\)</span> between <span class="math notranslate nohighlight">\(\pm20\)</span> degrees angle of attack.</p>
+<p><code class="docutils literal notranslate"><span class="pre">C_lalpha</span></code> is defined as the maximum slope of the (un-smoothed) <span class="math notranslate nohighlight">\(C_l\)</span> curve, <span class="math notranslate nohighlight">\(C_{l}^{Slope}\)</span> between <span class="math notranslate nohighlight">\(\pm20\)</span> degrees angle of attack.</p>
+<p>The default <code class="docutils literal notranslate"><span class="pre">alpha0</span></code> is computed as the zero-crossing of a line with a slope equal to <code class="docutils literal notranslate"><span class="pre">C_lalpha</span></code> that goes through the <span class="math notranslate nohighlight">\(C_l\)</span> curve at <span class="math notranslate nohighlight">\(\alpha = \frac{\alpha^{Upper} + \alpha^{Lower}}{2}\)</span></p>
+<div class="math notranslate nohighlight">
+\[\alpha_0 = \frac{\alpha^{Upper} + \alpha^{Lower}}{2} - \frac{C_l\left(\frac{\alpha^{Upper} + \alpha^{Lower}}{2}\right) }{C_{l,\alpha}}\]</div>
+<p><code class="docutils literal notranslate"><span class="pre">Cm0</span></code> is the value of the <span class="math notranslate nohighlight">\(C_m\)</span> curve at <code class="docutils literal notranslate"><span class="pre">alpha0</span></code>: <span class="math notranslate nohighlight">\(C_{m,0} = C_m\left(\alpha_0\right)\)</span>. If the <span class="math notranslate nohighlight">\(C_m\)</span> polar values have not been included, <span class="math notranslate nohighlight">\(C_{m,0} =0\)</span>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">alpha1</span></code> is the angle of attack above <code class="docutils literal notranslate"><span class="pre">alphaUpper</span></code> where the separation function, <span class="math notranslate nohighlight">\(f_s^{st}\)</span> is 0.7.</p>
+<p><code class="docutils literal notranslate"><span class="pre">alpha2</span></code> is the angle of attack below <code class="docutils literal notranslate"><span class="pre">alphaLower</span></code> where the separation function, <span class="math notranslate nohighlight">\(f_s^{st}\)</span> is 0.7.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Cn1</span></code> is the value of the <span class="math notranslate nohighlight">\(C_n\)</span> curve at <code class="docutils literal notranslate"><span class="pre">alpha1</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Cn2</span></code> is the value of the <span class="math notranslate nohighlight">\(C_n\)</span> curve at <code class="docutils literal notranslate"><span class="pre">alpha2</span></code>.</p>
+</div>
+<div class="section" id="outputs">
+<h2><span class="section-number">4.3.8.4. </span>Outputs<a class="headerlink" href="#outputs" title="Permalink to this heading"></a></h2>
+<p>Outputting variables of the dynamic stall models is possible, but requires
+to set preprocessor variable <code class="docutils literal notranslate"><span class="pre">UA_OUTS</span></code> and recompile the program (OpenFAST, AeroDyn Driver, or Unsteady Aero driver).
+The outputs are written in output files with extension <cite>*.UA.out</cite>.
+To activate these outputs with <cite>cmake</cite>, compile using <code class="docutils literal notranslate"><span class="pre">-DCMAKE_Fortran_FLAGS=&quot;-DUA_OUTS=ON&quot;</span></code></p>
+<p>When using the driver, there is no need to use this preprocessor variable.</p>
+</div>
+<div class="section" id="aeroelastic-simulation-of-a-2d-section">
+<span id="ua-aeroelasttheory"></span><h2><span class="section-number">4.3.8.5. </span>Aeroelastic simulation of a 2D section<a class="headerlink" href="#aeroelastic-simulation-of-a-2d-section" title="Permalink to this heading"></a></h2>
+<p>Aeroelastic simulations of an isolated 2D section are possible using the driver in order to use the unsteady aerodynamic model in a simplified context.
+See <a class="reference internal" href="#ua-driver"><span class="std std-numref">Section 4.3.8.6</span></a>.
+The theory and description for the aeroelastic simulation can be found in
+<span id="id13">[<a class="reference internal" href="zrefs.html#id4" title="E. Branlard, J.Jonkman, B. Jonkman, M. Singh, E. Mayda, K.Dixon, J H. Porter, and G. Vijayakumar. Aeroelastic stability of a generalized wind turbine cross-section including unsteady airfoil aerodynamic and dynamic inflow. Jounal of Physics: Conference Series, 2024.">ad-BJJonkmanJ+24</a>]</span>.</p>
+</div>
+<div class="section" id="driver">
+<span id="ua-driver"></span><h2><span class="section-number">4.3.8.6. </span>Driver<a class="headerlink" href="#driver" title="Permalink to this heading"></a></h2>
+<p>A driver is available to run simulations for a single airfoil.</p>
+<p>Different kind of simulations are possible:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>using sinusoidal variation of the angle of attack,</p></li>
+<li><p>user defined time series of angle of attack, relative wind speed and pitch rate.</p></li>
+<li><p>aero elastic simulations with 3 degrees of freedom for the elastic motion of the section in it’s 2D plane (flap, edge and torsion), with possibility to prescribe time series of the wind speed, or prescribe the motion of the section.</p></li>
+</ul>
+</div></blockquote>
+<p>The theory and description for the aeroelastic simulation can be found in <span id="id14">[<a class="reference internal" href="zrefs.html#id4" title="E. Branlard, J.Jonkman, B. Jonkman, M. Singh, E. Mayda, K.Dixon, J H. Porter, and G. Vijayakumar. Aeroelastic stability of a generalized wind turbine cross-section including unsteady airfoil aerodynamic and dynamic inflow. Jounal of Physics: Conference Series, 2024.">ad-BJJonkmanJ+24</a>]</span>.</p>
+<div class="section" id="compilation">
+<h3><span class="section-number">4.3.8.6.1. </span>Compilation<a class="headerlink" href="#compilation" title="Permalink to this heading"></a></h3>
+<p>Using <cite>cmake</cite>, the driver is compiled using <cite>make unsteadyaero_driver</cite>, resulting as an executable in the <cite>aerodyn</cite> folder.</p>
+</div>
+<div class="section" id="driver-inputs">
+<h3><span class="section-number">4.3.8.6.2. </span>Driver Inputs<a class="headerlink" href="#driver-inputs" title="Permalink to this heading"></a></h3>
+<p>An example of input file for the unsteady aerodynamic driver can be found in the <a class="reference external" href="https://github.com/OpenFAST/r-test/blob/main/modules/unsteadyaero/ua_redfreq/UA2.dvr">r-test repository</a>.</p>
+<p>The differente inputs are described below.</p>
+<p><strong>Environmental conditions</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">FldDens</span></code>: Density of working fluid (kg/m^3)</p>
+<p><code class="docutils literal notranslate"><span class="pre">KinVisc</span></code>: Kinematic viscosity of working fluid (m^2/s)</p>
+<p><code class="docutils literal notranslate"><span class="pre">SpdSound</span></code>: Speed of sound of working fluid (m/s)</p>
+<p><strong>Unsteady aerodynamics options</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">UAMod</span></code>     : Unsteady Aero Model Switch (switch) {2=B-L Gonzalez, 3=B-L Minnema/Pierce, 4=B-L HGM 4-states, 5=B-L 5 states, 6=Oye, 7=Boeing-Vertol} [used only when AFAeroMod=2]</p>
+<p><code class="docutils literal notranslate"><span class="pre">FLookup</span></code>   : Flag to indicate whether a lookup for f’ will be calculated (TRUE) or whether best-fit exponential equations will be used (FALSE); if FALSE S1-S4 must be provided in airfoil input files (flag) [used only when AFAeroMod=2]</p>
+<p><strong>Airfoil properties</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">AirFoil</span></code>: Airfoil table (Column 1: Angle of Attack (AoA), column 2: Lift coeff, column 3: Drag coeff).</p>
+<p><code class="docutils literal notranslate"><span class="pre">Chord</span></code> : Chord length (m)</p>
+<p><code class="docutils literal notranslate"><span class="pre">Vec_AQ</span></code> : Vector from reference point “A” to aerodynamic center (~quarter chord) “Q” in airfoil coordinates and in chord length. If “A” is at mid chord values are likely (0, -0.25) (-)</p>
+<p><code class="docutils literal notranslate"><span class="pre">Vec_AT</span></code> : Vector from reference point “A” to three-quarter chord point           “T” in airfoil coordinates and in chord length. If “A” is at mid chord values are likely (0,  0.25) (-)</p>
+<p><code class="docutils literal notranslate"><span class="pre">UseCm</span></code> : Use Cm (moment coefficient) data in airfoil table {true/false}</p>
+<p><strong>Simulation control</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">SimMod</span></code>: Simulation model {1=reduced frequency model, 2=prescribed-aero time series, 3=elastic cross section}</p>
+<p><strong>Reduced-frequency simulation</strong> (<code class="docutils literal notranslate"><span class="pre">SimMod=1</span></code>)</p>
+<p><code class="docutils literal notranslate"><span class="pre">InflowVel</span></code>      : Inflow velocity (m/s)</p>
+<p><code class="docutils literal notranslate"><span class="pre">NCycles</span></code>        : Number of angle-of-attack oscillations over the length of the simulation (-)</p>
+<p><code class="docutils literal notranslate"><span class="pre">StepsPerCycle</span></code>  : Number of timesteps per cycle (-)</p>
+<p><code class="docutils literal notranslate"><span class="pre">Frequency</span></code>      : Frequency for the airfoil oscillations (Hz)</p>
+<p><code class="docutils literal notranslate"><span class="pre">Amplitude</span></code>      : Amplitude of the angle of attack oscillations (deg)</p>
+<p><code class="docutils literal notranslate"><span class="pre">Mean</span></code>           : Cycle mean (deg)</p>
+<p><code class="docutils literal notranslate"><span class="pre">Phase</span></code>          : Initial phase (num steps).</p>
+<p><strong>Prescribed aerodynamic simulation inputs</strong>  (<code class="docutils literal notranslate"><span class="pre">SimMod=2</span></code>)</p>
+<p><code class="docutils literal notranslate"><span class="pre">TMax_PA</span></code>   : Total run time (s)</p>
+<p><code class="docutils literal notranslate"><span class="pre">DT_PA</span></code>     : Recommended module time step (s)</p>
+<p><code class="docutils literal notranslate"><span class="pre">AeroTSFile</span></code>: Time series data in delimited input file (e.g. csv) with 1 header line, 4 columns: Time (s), angle-of-attack (deg), InflowVel (m/s), Pitch rate (rad/s)</p>
+<p><strong>Aeroelastic simulation</strong> (<code class="docutils literal notranslate"><span class="pre">SimMod=3</span></code>)</p>
+<p>The theory for the aeroelastic simulation can be found in <a class="reference internal" href="#ua-aeroelasttheory"><span class="std std-numref">Section 4.3.8.5</span></a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">TMax</span></code>        : Total run time (s)</p>
+<p><code class="docutils literal notranslate"><span class="pre">DT</span></code>          : Time step (s).</p>
+<p><code class="docutils literal notranslate"><span class="pre">ActiveDOF</span></code>   : List of Degrees of freedom that are active (true or false)</p>
+<p><code class="docutils literal notranslate"><span class="pre">InitPos</span></code>     : List of initial positions for the elastic degrees of freedom (m, m and rad)</p>
+<p><code class="docutils literal notranslate"><span class="pre">InitVel</span></code>     : List of initial velocities for the elastic degrees of freedom  (m/s, m/s, and rad/s)</p>
+<p><code class="docutils literal notranslate"><span class="pre">GFScalingL1</span></code> : Generalized force scaling factors to convert from section loads to generalized loads (3x3). Three values per line.</p>
+<p><code class="docutils literal notranslate"><span class="pre">MassMatrixL1</span></code> :  Mass matrix (3x3). Three values per line.</p>
+<p><code class="docutils literal notranslate"><span class="pre">DampMatrixL1</span></code> :  Damping matrix (3x3). Three values per line.</p>
+<p><code class="docutils literal notranslate"><span class="pre">StifMatrixL1</span></code> :  Stiffness matrix (3x3). Three values per line.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Twist</span></code>        : Fixed twist of the section when torsion degree of freedom is zero (deg)</p>
+<p><code class="docutils literal notranslate"><span class="pre">InflowMod</span></code>    : Model for the inflow velocity. {1: constant velocity, 2: time series}</p>
+<p><code class="docutils literal notranslate"><span class="pre">Inflow</span></code>      : Inflow velocity in x and y direction [used only when InflowMod=1]</p>
+<p><code class="docutils literal notranslate"><span class="pre">InflowTSFile</span></code> : Input file for inflow velocity. Delimited file (e.g. csv) with one header line, three columns: Time (s), Ux (m/s), Uy (m/s). [used only when InflowMod=2]</p>
+<p><code class="docutils literal notranslate"><span class="pre">MotionMod</span></code>    :  Model for the motion of the degrees of freedom {1: dynamic, 2: prescribed}</p>
+<p><code class="docutils literal notranslate"><span class="pre">MotionTSFile</span></code> :  Input file for prescribed motion. Delimited file (e.g. csv) with one header line, 10 columns: Time (s), x (m), y (m), th (rad), velocities, and accelerations. [used only when InflowMod=2]</p>
+<p><strong>Output control</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">SumPrint</span></code> : Write unsteady aerodynamics summary file (flag)</p>
+<p><code class="docutils literal notranslate"><span class="pre">WrAFITables</span></code> : Write back the aerodynamic coefficients used internally (flag)</p>
+<p><strong>Example CSV input files</strong></p>
+<p>The unsteady aerodyn driver now relies on CSV files for it’s input time series.
+The time column does not need to be at a constant time step, but needs to be monotonously increasing.</p>
+<p>Prescribed aero input (<code class="docutils literal notranslate"><span class="pre">SimMod=2</span></code>):</p>
+<p>Inflow file input (<code class="docutils literal notranslate"><span class="pre">SimMod=3</span></code>, <code class="docutils literal notranslate"><span class="pre">InflowMod=2</span></code>):</p>
+<p>Motion file input (<code class="docutils literal notranslate"><span class="pre">SimMod=3</span></code>, <code class="docutils literal notranslate"><span class="pre">MotionMod=2</span></code>) (note in this dummy exmaple velocities and accelerations are not provided, but preferably they should be):</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="theory.html" class="btn btn-neutral float-left" title="4.3.7. AeroDyn Theory" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="theory_tailfin.html" class="btn btn-neutral float-right" title="4.3.9. Tail fin Aerodynamics Theory" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

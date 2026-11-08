@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-08",
+  "passed": true,
+  "stats": {
+    "indexedDocuments": 158,
+    "htmlPages": 162,
+    "checkedCodeElements": 2415,
+    "checkedMathElements": 3239,
+    "checkedTables": 99,
+    "checkedFigures": 81,
+    "checkedIds": 2452,
+    "checkedLinks": 13733,
+    "checkedBinaryAssets": 338
+  },
+  "errors": [],
+  "warnings": [],
+  "upstreamUnavailable": [
+    {
+      "path": "html/index.html",
+      "error": "Error: HTTP 404",
+      "candidates": []
+    },
+    {
+      "path": "html/files.html",
+      "error": "Error: HTTP 404",
+      "candidates": []
+    },
+    {
+      "path": "html/classes.html",
+      "error": "Error: HTTP 404",
+      "candidates": []
+    }
+  ],
+  "limits": [
+    "No OpenFAST executable simulations run",
+    "Machine translation is not a professional full-text technical review",
+    "Original images and binary attachments are not translated",
+    "External links are retained, not recursively mirrored",
+    "Missing upstream anchors are recorded as warnings, not silently rewritten"
+  ]
+}

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.13.2. InflowWind Input Files &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.13.5. User-Defined Wind Fields" href="user_defined.html" />
+    <link rel="prev" title="4.13.1. InflowWind Driver" href="driver.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/inflowwind/input.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.13. InflowWind</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="driver.html">4.13.1. InflowWind Driver</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.13.2. InflowWind Input Files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#native-bladed-wind-file-support-in-inflowwind">4.13.2.1. Native Bladed wind file support in InflowWind</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#angles-specified-in-inflowwind">4.13.3. Angles Specified in InflowWind</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#superposition-of-wave-and-current-inflow">4.13.4. Superposition of Wave and Current Inflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_defined.html">4.13.5. User-Defined Wind Fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.13.6. Appendix</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.13. </span>InflowWind Users Guide and Theory Manual</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.13.2. </span>InflowWind Input Files</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/inflowwind/input.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="inflowwind-input-files">
+<span id="ifw-input"></span><h1><span class="section-number">4.13.2. </span>InflowWind Input Files<a class="headerlink" href="#inflowwind-input-files" title="Permalink to this heading"></a></h1>
+<p>For fixed and floating MHK turbines, all InflowWind parameters should be defined relative to the seabed.
+To maintain consistency between the turbine and inflow coordinate systems for MHK turbines, the query points
+passed to InflowWind are adjusted at the glue code/driver level to place the origin at the seabed.</p>
+<div class="section" id="native-bladed-wind-file-support-in-inflowwind">
+<span id="ifw-native-bladed"></span><h2><span class="section-number">4.13.2.1. </span>Native Bladed wind file support in InflowWind<a class="headerlink" href="#native-bladed-wind-file-support-in-inflowwind" title="Permalink to this heading"></a></h2>
+<p>The ability to read native Bladed wind files (without scaling) has been added to InflowWind.
+To use this feature, the <code class="docutils literal notranslate"><span class="pre">WindType</span></code> must be set to <code class="docutils literal notranslate"><span class="pre">7</span></code> on line 5 of the primary
+InflowWind input file. An example of this file is given inAn example of this Native Bladed scaling file is included in
+<a class="reference internal" href="appendix.html#ifw-appendix"><span class="std std-numref">Section 4.13.6</span></a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">7</span>                  <span class="n">WindType</span>       <span class="o">-</span> <span class="n">switch</span> <span class="k">for</span> <span class="n">wind</span> <span class="n">file</span> <span class="nb">type</span> <span class="p">(</span><span class="mi">1</span><span class="o">=</span><span class="n">steady</span><span class="p">;</span> <span class="mi">2</span><span class="o">=</span><span class="n">uniform</span><span class="p">;</span> <span class="mi">3</span><span class="o">=</span><span class="n">binary</span> <span class="n">TurbSim</span> <span class="n">FF</span><span class="p">;</span> <span class="mi">4</span><span class="o">=</span><span class="n">binary</span> <span class="n">Bladed</span><span class="o">-</span><span class="n">style</span> <span class="n">FF</span><span class="p">;</span> <span class="mi">5</span><span class="o">=</span><span class="n">HAWC</span> <span class="nb">format</span><span class="p">;</span> <span class="mi">6</span><span class="o">=</span><span class="n">User</span> <span class="n">defined</span><span class="p">;</span> <span class="mi">7</span><span class="o">=</span><span class="n">Bladed</span> <span class="n">native</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In the section for <code class="docutils literal notranslate"><span class="pre">WindType</span> <span class="pre">=</span> <span class="pre">4</span></code>, the name of an intermediate Bladed
+wind file should be given (including the file extension). The tower file
+flag is ignored.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">==================</span> <span class="n">Parameters</span> <span class="k">for</span> <span class="n">Binary</span> <span class="n">Bladed</span><span class="o">-</span><span class="n">style</span> <span class="n">Full</span><span class="o">-</span><span class="n">Field</span> <span class="n">files</span>   <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="k">for</span> <span class="n">WindType</span> <span class="o">=</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=========</span>
+<span class="s2">&quot;tw06_80hh_s200.BladedWind.ipt&quot;</span>  <span class="n">FilenameRoot</span>   <span class="o">-</span> <span class="n">Name</span> <span class="n">of</span> <span class="n">the</span> <span class="n">Full</span> <span class="n">field</span> <span class="n">wind</span> <span class="n">file</span> <span class="n">to</span> <span class="n">use</span> <span class="p">(</span><span class="o">.</span><span class="n">wnd</span><span class="p">,</span> <span class="o">.</span><span class="n">sum</span><span class="p">)</span>
+ <span class="n">F</span>                               <span class="n">TowerFile</span>      <span class="o">-</span> <span class="n">Have</span> <span class="n">tower</span> <span class="n">file</span> <span class="p">(</span><span class="o">.</span><span class="n">twr</span><span class="p">)</span> <span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The intermediate Bladed wind scaling file must contain the following information, which can be retrieved
+directly from the Bladed project simulation file from the
+<code class="docutils literal notranslate"><span class="pre">MSTART</span> <span class="pre">WINDSEL</span></code> and <code class="docutils literal notranslate"><span class="pre">MSTART</span> <span class="pre">WINDV</span></code> sections. Additionally, the file
+may include an <code class="docutils literal notranslate"><span class="pre">XOFFSET</span></code> line, which allows the wind to be shifted by
+a given distance. If not included, <code class="docutils literal notranslate"><span class="pre">XOFFSET</span></code> is assumed to be 0.
+An example of this Native Bladed scaling file is included in
+<a class="reference internal" href="appendix.html#ifw-appendix"><span class="std std-numref">Section 4.13.6</span></a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">UBAR</span>  <span class="mi">12</span>
+<span class="n">REFHT</span>  <span class="mi">90</span>
+<span class="n">TI</span>  <span class="mf">0.033333</span>
+<span class="n">TI_V</span>  <span class="mf">0.026667</span>
+<span class="n">TI_W</span>  <span class="mf">0.016667</span>
+<span class="n">WDIR</span>  <span class="mi">0</span>
+<span class="n">FLINC</span>  <span class="mf">.139626222222222</span>
+<span class="n">WINDF</span>    <span class="s2">&quot;../tw06_80hh_s200.wnd&quot;</span>
+<span class="n">WSHEAR</span>    <span class="mf">.2</span>
+<span class="n">XOFFSET</span>  <span class="mi">0</span>
+</pre></div>
+</div>
+<p>In the above file, the names correspond to the following:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 4%" />
+<col style="width: 9%" />
+<col style="width: 5%" />
+<col style="width: 81%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Line</p></th>
+<th class="head"><p>Variable Name</p></th>
+<th class="head"><p>Units</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">UBAR</span></code></p></td>
+<td><p>(m/s)</p></td>
+<td><p>Mean wind speed</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">REFHT</span></code></p></td>
+<td><ol class="loweralpha simple" start="13">
+<li></li>
+</ol>
+</td>
+<td><p>Reference height (turbine hub height)</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TI</span></code></p></td>
+<td><p>(-)</p></td>
+<td><p>Turbulence intensity in longitudinal (mean wind flow) direction</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TI_V</span></code></p></td>
+<td><p>(-)</p></td>
+<td><p>Turbulence intensity in horizontal direction (orthogonal to mean flow direction)</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TI_W</span></code></p></td>
+<td><p>(-)</p></td>
+<td><p>Turbulence intensity in vertical direction (orthogonal to mean flow direction)</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">WDIR</span></code></p></td>
+<td><p>(rad)</p></td>
+<td><p>Wind direction (meteorological rotation direction)</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">FLINC</span></code></p></td>
+<td><p>(rad)</p></td>
+<td><p>Upflow angle (positive is up)</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">WINDF</span></code></p></td>
+<td><p>(-)</p></td>
+<td><p>Name of native Bladed wind file (absolute or relative path, 200 character limit)</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">WSHEAR</span></code></p></td>
+<td><p>(-)</p></td>
+<td><p>Power law wind shear exponent</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">XOFFSET</span></code></p></td>
+<td><ol class="loweralpha simple" start="13">
+<li></li>
+</ol>
+</td>
+<td><p>Turbulence box offset in the X direction (how far ahead of the turbine the turbulence box starts). If missing, this value is assumed to be 0.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Limitations: - Wind file is centered on hub height (“Best fit for rotor
+and tower” not implemented) - Always allow wind file to wrap around
+(unchecked box not implemented) - Only power-law wind profile is
+implemented (not logarithmic, none, or user-defined)</p>
+</div>
+</div>
+<div class="section" id="angles-specified-in-inflowwind">
+<span id="ifw-angles"></span><h1><span class="section-number">4.13.3. </span>Angles Specified in InflowWind<a class="headerlink" href="#angles-specified-in-inflowwind" title="Permalink to this heading"></a></h1>
+<p>Wind direction and upflow angles can be specified in the InflowWind input file.
+When using Native Bladed wind file support in InflowWind, the angles from the InflowWind input are overwritten
+with the values specified in the Native Bladed Input Files.
+InflowWind rotates the wind box about the hub-height tower center line by these wind direction and upflow angles.</p>
+<p>The uniform wind files also specify wind direction and upflow angles.
+The angles specified in uniform wind files DO NOT rotate the wind box, but just convert the local wind speed into global coordinates.</p>
+<p>When converting from local <code class="docutils literal notranslate"><span class="pre">[u</span> <span class="pre">v</span> <span class="pre">w]</span></code> to global <code class="docutils literal notranslate"><span class="pre">[U</span> <span class="pre">V</span> <span class="pre">W]</span></code> reference systems, the upflow rotation, <code class="docutils literal notranslate"><span class="pre">R(upflow)</span></code> occurs
+before the wind direction rotation, <code class="docutils literal notranslate"><span class="pre">R(wind</span> <span class="pre">direction)</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">U</span> <span class="n">V</span> <span class="n">W</span><span class="p">]</span> <span class="o">=</span> <span class="n">R</span><span class="p">(</span><span class="n">wind</span> <span class="n">direction</span><span class="p">)</span> <span class="o">*</span> <span class="n">R</span><span class="p">(</span><span class="n">upflow</span><span class="p">)</span> <span class="o">*</span> <span class="p">[</span><span class="n">u</span> <span class="n">v</span> <span class="n">w</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>When using a combination of angles in InflowWind and UniformWind files, the UniformWind angles are applied first.</p>
+<p>Note: This means that if you have upflow specified in InflowWind and wind direction specified in UniformWind, the rotation will
+be performed in a different order than if both angles are specified in the same file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">U</span> <span class="n">V</span> <span class="n">W</span><span class="p">]</span> <span class="o">=</span> <span class="n">R</span><span class="p">(</span><span class="n">wind</span> <span class="n">direction</span><span class="p">:</span> <span class="n">InflowWind</span><span class="p">)</span> <span class="o">*</span> <span class="n">R</span><span class="p">(</span><span class="n">upflow</span><span class="p">:</span> <span class="n">InflowWind</span><span class="p">)</span> <span class="o">*</span> <span class="n">R</span><span class="p">(</span><span class="n">wind</span> <span class="n">direction</span><span class="p">:</span> <span class="n">UniformWind</span><span class="p">)</span> <span class="o">*</span> <span class="n">R</span><span class="p">(</span><span class="n">upflow</span><span class="p">:</span> <span class="n">UniformWind</span><span class="p">)</span> <span class="o">*</span> <span class="p">[</span><span class="n">u</span> <span class="n">v</span> <span class="n">w</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="superposition-of-wave-and-current-inflow">
+<span id="inflow-superposition"></span><h1><span class="section-number">4.13.4. </span>Superposition of Wave and Current Inflow<a class="headerlink" href="#superposition-of-wave-and-current-inflow" title="Permalink to this heading"></a></h1>
+<p>For MHK turbines, wave and current velocities and accelerations are superimposed (i.e., summed) such that all submerged components are exposed
+to the same inflow field. Both AeroDyn and HydroDyn can query SeaState for wave field information. SeaState then queries InflowWind for the current
+field, sums the velocities and accelerations, and returns the superimposed flow field information. This has several implications for modeling
+MHK turbines, which are listed below. Note that dynamic pressure contributions from InflowWind are neglected.</p>
+<p>When modeling a rotor or rotor/tower only (i.e., hydrodynamics modeled in AeroDyn only):</p>
+<ul class="simple">
+<li><p>SeaState must be used when defining a flow field with waves</p></li>
+<li><p>Current definition in SeaState must always be set to 0</p></li>
+<li><p>If SeaState is activated, InflowWind must also be activated, though the current can be set to 0</p></li>
+<li><p>InflowWind must be used when defining a flow field with currents</p></li>
+<li><p>For combined wave and current flow fields, SeaState will query InflowWind</p></li>
+</ul>
+<p>When modeling a rotor or rotor/tower and support structure (i.e., hydrodynamics modeled in AeroDyn and HydroDyn):</p>
+<ul class="simple">
+<li><p>SeaState must always be used, even when defining a flow field with no waves</p></li>
+<li><p>Current definition in SeaState must always be set to 0</p></li>
+<li><p>If SeaState is activated, InflowWind must also be activated, though the current can be set to 0</p></li>
+<li><p>InflowWind must be used when defining a flow field with currents</p></li>
+<li><p>For current only cases, set the SeaState wave field to 0; current information will be passed through SeaState from InflowWind</p></li>
+<li><p>For combined wave and current flow fields, SeaState will query InflowWind</p></li>
+</ul>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="driver.html" class="btn btn-neutral float-left" title="4.13.1. InflowWind Driver" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="user_defined.html" class="btn btn-neutral float-right" title="4.13.5. User-Defined Wind Fields" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

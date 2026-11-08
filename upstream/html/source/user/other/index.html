@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.21. WaveTank &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.21.2.1. Input File" href="wavetank_input.html" />
+    <link rel="prev" title="4.20. C++ API Users Guide" href="../cppapi/index.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/other/index.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.21. WaveTank</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#restrictions">4.21.1. Restrictions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#input-file">4.21.2. Input File</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="wavetank_input.html">4.21.2.1. Input File</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wavetank_input.html#conventions-and-units">4.21.2.2. Conventions and Units</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wavetank_input.html#file-and-simulation-control">4.21.2.3. File and Simulation Control</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wavetank_input.html#froude-scaling-disabled">4.21.2.4. Froude Scaling (disabled)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wavetank_input.html#environment">4.21.2.5. Environment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wavetank_input.html#sea-state">4.21.2.6. Sea State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wavetank_input.html#moordyn">4.21.2.7. MoorDyn</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wavetank_input.html#aerodyn-and-inflowwind">4.21.2.8. AeroDyn and InflowWind</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wavetank_input.html#turbine-geometry-and-reference-frames">4.21.2.9. Turbine Geometry and Reference Frames</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wavetank_input.html#turbine-initial-conditions">4.21.2.10. Turbine Initial Conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wavetank_input.html#wave-buoy">4.21.2.11. Wave Buoy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wavetank_input.html#output">4.21.2.12. Output</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wavetank_input.html#vtk-visualization-output">4.21.2.13. VTK Visualization Output</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wavetank_input.html#implementation-notes-and-best-practices">4.21.2.14. Implementation Notes and Best Practices</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.21. </span>WaveTank</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/other/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="wavetank">
+<span id="id1"></span><h1><span class="section-number">4.21. </span>WaveTank<a class="headerlink" href="#wavetank" title="Permalink to this heading"></a></h1>
+<p>The WaveTank glue-code is an experimental code for coupling hardware-in-the-loop
+MHK models in a wavetank to software simulating the MHK turbine loads that
+cannot be physically modeled in the wave tank.  The  <em>OpenFAST</em> modules
+<em>SeaState</em>, <em>AeroDyn</em>, <em>MoorDyn</em>, and <em>InflowWind</em> are statically linked into a
+single dynamic library (<code class="docutils literal notranslate"><span class="pre">cmake</span></code> target <code class="docutils literal notranslate"><span class="pre">wavetanktesting_c_binding</span></code>) with a
+c-binding based interface.  This library can be called from <em>LabView</em> or another
+code.</p>
+<p>Inputs to the library include the time and motions, including the velocities and
+accelerations, located at a single reference poitn at each time step.  The
+resulting forces and moments are returned to the calling code.</p>
+<div class="section" id="restrictions">
+<h2><span class="section-number">4.21.1. </span>Restrictions<a class="headerlink" href="#restrictions" title="Permalink to this heading"></a></h2>
+<p>The current setup WaveTank library has several restrictions:</p>
+<ul class="simple">
+<li><p>rigid structure including platform, tower, and nacelle</p></li>
+<li><p>no yaw DOF</p></li>
+<li><p>rigid rotor</p></li>
+<li><p>constant rotor RPM for entire simulation</p></li>
+<li><p>no option for controller interfacing at present</p></li>
+<li><p>visualization limitted to <em>AeroDyn</em> and <em>SeaState</em></p></li>
+<li><p>Current implementation only supports floating MHK turbines (<code class="docutils literal notranslate"><span class="pre">MHK</span> <span class="pre">=</span> <span class="pre">2</span></code>). Other modes are present but not fully implemented.</p></li>
+</ul>
+</div>
+<div class="section" id="input-file">
+<h2><span class="section-number">4.21.2. </span>Input File<a class="headerlink" href="#input-file" title="Permalink to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="wavetank_input.html">4.21.2.1. Input File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wavetank_input.html#conventions-and-units">4.21.2.2. Conventions and Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wavetank_input.html#file-and-simulation-control">4.21.2.3. File and Simulation Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wavetank_input.html#froude-scaling-disabled">4.21.2.4. Froude Scaling (disabled)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wavetank_input.html#environment">4.21.2.5. Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wavetank_input.html#sea-state">4.21.2.6. Sea State</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wavetank_input.html#moordyn">4.21.2.7. MoorDyn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wavetank_input.html#aerodyn-and-inflowwind">4.21.2.8. AeroDyn and InflowWind</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wavetank_input.html#turbine-geometry-and-reference-frames">4.21.2.9. Turbine Geometry and Reference Frames</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wavetank_input.html#turbine-initial-conditions">4.21.2.10. Turbine Initial Conditions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wavetank_input.html#wave-buoy">4.21.2.11. Wave Buoy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wavetank_input.html#output">4.21.2.12. Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wavetank_input.html#vtk-visualization-output">4.21.2.13. VTK Visualization Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wavetank_input.html#implementation-notes-and-best-practices">4.21.2.14. Implementation Notes and Best Practices</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../cppapi/index.html" class="btn btn-neutral float-left" title="4.20. C++ API Users Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="wavetank_input.html" class="btn btn-neutral float-right" title="4.21.2.1. Input File" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

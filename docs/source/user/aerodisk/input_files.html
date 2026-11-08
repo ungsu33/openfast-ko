@@ -1,0 +1,284 @@
+<!DOCTYPE html><html class="writer-html5" lang="ko"><head><!-- Modified 2026-11-08: unofficial Korean machine translation of OpenFAST 5.0.0. Equations, code, figures, input values and attribution retained. -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.6.1. 입력 및 출력 파일 - OpenFAST v5.0.0 문서</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../../../genindex.html">
+    <link rel="search" title="검색" href="../../../search.html">
+    <link rel="next" title="4.7. BeamDyn 사용자 가이드 및 이론 설명서" href="../beamdyn/index.html">
+    <link rel="prev" title="4.6. 에어로디스크" href="index.html"> 
+<link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/aerodisk/input_files.html"></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+          </a>
+              <div class="version">5.0 · 한국어</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="문서 검색" aria-label="문서 검색">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.6. AeroDisk</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.6.1. 입력 및 출력 파일</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#units">4.6.1.1. 단위</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#input-file">4.6.1.2. 입력 파일</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#outputs">4.6.1.3. 출력</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. 단순화 ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. 구조 제어</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. 추가 모듈 문서</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC 서브루틴 라이브러리</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+</ul>
+
+        <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="페이지 탐색">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.6. </span>AeroDisk</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.6.1. </span>입력 및 출력 파일</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/aerodisk/input_files.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+      </li>
+  </ul>
+  <hr>
+</div><aside class="ko-notice" aria-label="한국어 번역 안내"><strong>한국어 자동번역</strong> · OpenFAST v5.0.0 · 2026-11-08 기준<br>비공식 번역본입니다. 수식·명령어·입력 변수와 첨부자료는 원문을 보존합니다. <a href="https://openfast.readthedocs.io/en/main/source/user/aerodisk/input_files.html" target="_blank" rel="noopener noreferrer" lang="en">영문 원문 대조 ↗</a></aside>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="input-and-output-files">
+<span id="adsk-input-files"></span><h1><span class="section-number">4.6.1. </span>입력 및 출력 파일<a class="headerlink" href="#input-and-output-files" title="이 제목의 고유 링크"></a></h1>
+<div class="section" id="units">
+<h2><span class="section-number">4.6.1.1. </span>장치<a class="headerlink" href="#units" title="이 제목의 고유 링크"></a></h2>
+<p>AeroDisk는 SI 시스템(kg, m, s, N)을 사용합니다.</p>
+</div>
+<div class="section" id="input-file">
+<span id="adsk-input-file"></span><h2><span class="section-number">4.6.1.2. </span>입력 파일<a class="headerlink" href="#input-file" title="이 제목의 고유 링크"></a></h2>
+<p>AeroDisk 입력 파일은 액추에이터 디스크 계산에 필요한 일반 입력을 정의합니다. 원하는 동작을 달성하기 위해 사용자가 다음 입력을 변경할 수 있습니다.</p>
+<div class="section" id="simulation-control">
+<h3><span class="section-number">4.6.1.2.1. </span>시뮬레이션 제어<a class="headerlink" href="#simulation-control" title="이 제목의 고유 링크"></a></h3>
+<p><strong>에코</strong> [스위치]</p>
+<blockquote>
+<div><p>입력 파일 내용을 &lt;RootName&gt;.ADsk.ech 파일에 씁니다. 이는 입력 파일에 대해 보고된 오류를 진단하는 데 유용합니다.</p>
+</div></blockquote>
+<p><strong>DT</strong> [초]</p>
+<blockquote>
+<div><p>AeroDisk가 사용할 통합 시간 단계 또는 글루 코드 시간 단계를 사용하는 _”기본값”_입니다.</p>
+</div></blockquote>
+</div>
+<div class="section" id="environmental-conditions">
+<h3><span class="section-number">4.6.1.2.2. </span>환경 조건<a class="headerlink" href="#environmental-conditions" title="이 제목의 고유 링크"></a></h3>
+<p><strong>AirDens</strong> [kg/m^3]</p>
+<blockquote>
+<div><p>공기 밀도 또는 글루 코드의 공기 밀도를 사용하는 _”기본값”_</p>
+</div></blockquote>
+</div>
+<div class="section" id="actuator-disk-properties">
+<h3><span class="section-number">4.6.1.2.3. </span>액추에이터 디스크 속성<a class="headerlink" href="#actuator-disk-properties" title="이 제목의 고유 링크"></a></h3>
+<p><strong>RotorRad</strong> [m]</p>
+<blockquote>
+<div><p>로터의 반경 또는 글루 코드에서 전달된 값을 사용하는 _”기본값”_</p>
+</div></blockquote>
+<p>디스크 액츄에이터 힘과 모멘트에 대한 조회 테이블은 다음과 같습니다. 이 테이블의 데이터는 단일 변수(<strong>TSR</strong> ) 또는 최대 4개의 변수입니다. 테이블의 마지막 6개 열에는 첫 번째 열 세트에 제공된 조건 세트에 해당하는 6개의 힘 및 모멘트 계수가 포함되어야 합니다.</p>
+<p><strong>InColNames</strong> [-]</p>
+<blockquote>
+<div><p>쉼표로 구분된 입력 파일의 변수 열에 해당하는 열 이름 목록입니다. 옵션은 아래를 참조하세요.</p>
+</div></blockquote>
+<p><strong>InColDims</strong> [-]</p>
+<blockquote>
+<div><p>명명된 각 변수 열 이름에 대한 고유 항목 수를 쉼표로 구분한 목록입니다. 테이블의 행 수는 주어진 모든 숫자의 곱과 같아야 합니다. 에 명시된 항목 수와 동일해야 합니다.
+<strong>InColNames</strong></p>
+</div></blockquote>
+<p>테이블의 입력 변수 열에는 최소한 하나의 열이 제공되어야 하며 아래 나열된 5개 중 최대 4개(<strong>TSR</strong> 및 <strong>RtSpd</strong> 는 상호 배타적입니다.</p>
+<p><strong>TSR</strong> [-]</p>
+<blockquote>
+<div><p>팁 속도 비율은 _RtSpd_와 함께 사용할 수 없습니다.</p>
+</div></blockquote>
+<p><strong>RtSpd</strong> [rpm]</p>
+<blockquote>
+<div><p>로터 속도는 _TSR_과 함께 사용할 수 없습니다.</p>
+</div></blockquote>
+<p><strong>VRel</strong> [m/s]</p>
+<blockquote>
+<div><p>로터에 수직인 풍속의 상대 속도</p>
+</div></blockquote>
+<p><strong>피치</strong> [도]</p>
+<blockquote>
+<div><p>집단 블레이드 피치</p>
+</div></blockquote>
+<p><strong>스큐</strong> [도]</p>
+<blockquote>
+<div><p>유입의 경사 각도. 이것이 제공되지 않으면 왜곡의 영향은 다음과 같이 모델링됩니다. <span class="math notranslate nohighlight">\((cos(\chi))^2\)</span></p>
+</div></blockquote>
+<p>테이블의 나머지 6개 열에는 힘과 모멘트 계수가 포함되어야 합니다. 아래의 예시 표를 참조하세요.</p>
+</div>
+<div class="section" id="sample-input-file">
+<h3><span class="section-number">4.6.1.2.4. </span>샘플 입력 파일<a class="headerlink" href="#sample-input-file" title="이 제목의 고유 링크"></a></h3>
+<p>아래 표는 형식을 설명하기 위한 것이며 특정 터빈을 나타내지는 않습니다.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---</span> <span class="n">AERO</span> <span class="n">DISK</span> <span class="n">INPUT</span> <span class="n">FILE</span> <span class="o">-------</span>
+<span class="n">Sample</span> <span class="n">actuator</span> <span class="n">disk</span> <span class="nb">input</span> <span class="n">file</span>
+<span class="o">---</span> <span class="n">SIMULATION</span> <span class="n">CONTROL</span> <span class="o">---------</span>
+ <span class="n">FALSE</span>        <span class="n">echo</span>            <span class="o">-</span> <span class="n">Echo</span> <span class="nb">input</span> <span class="n">data</span> <span class="n">to</span> <span class="s2">"&lt;RootName&gt;.ADsk.ech"</span> <span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+  <span class="s2">"default"</span>   <span class="n">DT</span>              <span class="o">-</span> <span class="n">Integration</span> <span class="n">time</span> <span class="n">step</span> <span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="o">---</span> <span class="n">ENVIRONMENTAL</span> <span class="n">CONDITIONS</span> <span class="o">---</span>
+      <span class="mf">1.225</span>   <span class="n">AirDens</span>         <span class="o">-</span> <span class="n">Air</span> <span class="n">density</span> <span class="p">(</span><span class="n">kg</span><span class="o">/</span><span class="n">m</span><span class="o">^</span><span class="mi">3</span><span class="p">)</span> <span class="p">(</span><span class="ow">or</span> <span class="s2">"default"</span><span class="p">)</span>
+<span class="o">---</span> <span class="n">ACTUATOR</span> <span class="n">DISK</span> <span class="n">PROPERTIES</span> <span class="o">---</span>
+     <span class="mf">63.0</span>     <span class="n">RotorRad</span>        <span class="o">-</span> <span class="n">Rotor</span> <span class="n">radius</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="p">(</span><span class="ow">or</span> <span class="s2">"default"</span><span class="p">)</span>
+<span class="s2">"RtSpd,VRel"</span>  <span class="n">InColNames</span>      <span class="o">-</span> <span class="n">Input</span> <span class="n">column</span> <span class="n">headers</span> <span class="p">(</span><span class="n">string</span><span class="p">)</span> <span class="p">{</span><span class="n">may</span> <span class="n">include</span> <span class="n">a</span> <span class="n">combination</span> <span class="n">of</span> <span class="s2">"TSR, RtSpd, VRel, Pitch, Skew"</span><span class="p">}</span> <span class="p">(</span><span class="n">up</span> <span class="n">to</span> <span class="mi">4</span> <span class="n">columns</span><span class="p">)</span> <span class="p">[</span><span class="n">choose</span> <span class="n">TSR</span> <span class="ow">or</span> <span class="n">RtSpd</span><span class="p">,</span><span class="n">VRel</span><span class="p">;</span> <span class="k">if</span> <span class="n">Skew</span> <span class="ow">is</span> <span class="n">absent</span><span class="p">,</span> <span class="n">Skew</span> <span class="ow">is</span> <span class="n">modeled</span> <span class="k">as</span> <span class="p">(</span><span class="n">COS</span><span class="p">(</span><span class="n">Skew</span><span class="p">))</span><span class="o">^</span><span class="mi">2</span><span class="p">]</span>
+<span class="mi">9</span><span class="p">,</span><span class="mi">2</span>           <span class="n">InColDims</span>       <span class="o">-</span> <span class="n">Number</span> <span class="n">of</span> <span class="n">unique</span> <span class="n">values</span> <span class="ow">in</span> <span class="n">each</span> <span class="n">column</span> <span class="p">(</span><span class="o">-</span><span class="p">)</span> <span class="p">(</span><span class="n">must</span> <span class="n">have</span> <span class="n">same</span> <span class="n">number</span> <span class="n">of</span> <span class="n">columns</span> <span class="k">as</span> <span class="n">InColName</span><span class="p">)</span> <span class="p">[</span><span class="n">each</span> <span class="o">&gt;=</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">RtSpd</span>     <span class="n">VRel</span>      <span class="n">C_Fx</span>   <span class="n">C_Fy</span>   <span class="n">C_Fz</span>   <span class="n">C_Mx</span>   <span class="n">C_My</span>   <span class="n">C_Mz</span>
+<span class="p">(</span><span class="n">rpm</span><span class="p">)</span>     <span class="p">(</span><span class="n">m</span><span class="o">/</span><span class="n">s</span><span class="p">)</span>     <span class="p">(</span><span class="o">-</span><span class="p">)</span>    <span class="p">(</span><span class="o">-</span><span class="p">)</span>    <span class="p">(</span><span class="o">-</span><span class="p">)</span>    <span class="p">(</span><span class="o">-</span><span class="p">)</span>    <span class="p">(</span><span class="o">-</span><span class="p">)</span>    <span class="p">(</span><span class="o">-</span><span class="p">)</span>
+  <span class="mf">3.0</span>      <span class="mf">9.0</span>     <span class="mf">0.2347</span>  <span class="mf">0.0</span>    <span class="mf">0.0</span>   <span class="mf">0.0306</span>  <span class="mf">0.0</span>    <span class="mf">0.0</span>
+  <span class="mf">4.0</span>      <span class="mf">9.0</span>     <span class="mf">0.2349</span>  <span class="mf">0.0</span>    <span class="mf">0.0</span>   <span class="mf">0.0314</span>  <span class="mf">0.0</span>    <span class="mf">0.0</span>
+  <span class="mf">5.0</span>      <span class="mf">9.0</span>     <span class="mf">0.2350</span>  <span class="mf">0.0</span>    <span class="mf">0.0</span>   <span class="mf">0.0322</span>  <span class="mf">0.0</span>    <span class="mf">0.0</span>
+  <span class="mf">6.0</span>      <span class="mf">9.0</span>     <span class="mf">0.2351</span>  <span class="mf">0.0</span>    <span class="mf">0.0</span>   <span class="mf">0.0330</span>  <span class="mf">0.0</span>    <span class="mf">0.0</span>
+  <span class="mf">7.0</span>      <span class="mf">9.0</span>     <span class="mf">0.2352</span>  <span class="mf">0.0</span>    <span class="mf">0.0</span>   <span class="mf">0.0338</span>  <span class="mf">0.0</span>    <span class="mf">0.0</span>
+  <span class="mf">8.0</span>      <span class="mf">9.0</span>     <span class="mf">0.2352</span>  <span class="mf">0.0</span>    <span class="mf">0.0</span>   <span class="mf">0.0346</span>  <span class="mf">0.0</span>    <span class="mf">0.0</span>
+  <span class="mf">9.0</span>      <span class="mf">9.0</span>     <span class="mf">0.2351</span>  <span class="mf">0.0</span>    <span class="mf">0.0</span>   <span class="mf">0.0353</span>  <span class="mf">0.0</span>    <span class="mf">0.0</span>
+ <span class="mf">10.0</span>      <span class="mf">9.0</span>     <span class="mf">0.2350</span>  <span class="mf">0.0</span>    <span class="mf">0.0</span>   <span class="mf">0.0361</span>  <span class="mf">0.0</span>    <span class="mf">0.0</span>
+ <span class="mf">11.0</span>      <span class="mf">9.0</span>     <span class="mf">0.2349</span>  <span class="mf">0.0</span>    <span class="mf">0.0</span>   <span class="mf">0.0368</span>  <span class="mf">0.0</span>    <span class="mf">0.0</span>
+  <span class="mf">3.0</span>     <span class="mf">12.0</span>     <span class="mf">0.7837</span>  <span class="mf">0.0</span>    <span class="mf">0.0</span>   <span class="mf">0.0663</span>  <span class="mf">0.0</span>    <span class="mf">0.0</span>
+  <span class="mf">4.0</span>     <span class="mf">12.0</span>     <span class="mf">0.7733</span>  <span class="mf">0.0</span>    <span class="mf">0.0</span>   <span class="mf">0.0663</span>  <span class="mf">0.0</span>    <span class="mf">0.0</span>
+  <span class="mf">5.0</span>     <span class="mf">12.0</span>     <span class="mf">0.7628</span>  <span class="mf">0.0</span>    <span class="mf">0.0</span>   <span class="mf">0.0663</span>  <span class="mf">0.0</span>    <span class="mf">0.0</span>
+  <span class="mf">6.0</span>     <span class="mf">12.0</span>     <span class="mf">0.7520</span>  <span class="mf">0.0</span>    <span class="mf">0.0</span>   <span class="mf">0.0662</span>  <span class="mf">0.0</span>    <span class="mf">0.0</span>
+  <span class="mf">7.0</span>     <span class="mf">12.0</span>     <span class="mf">0.7409</span>  <span class="mf">0.0</span>    <span class="mf">0.0</span>   <span class="mf">0.0660</span>  <span class="mf">0.0</span>    <span class="mf">0.0</span>
+  <span class="mf">8.0</span>     <span class="mf">12.0</span>     <span class="mf">0.7297</span>  <span class="mf">0.0</span>    <span class="mf">0.0</span>   <span class="mf">0.0658</span>  <span class="mf">0.0</span>    <span class="mf">0.0</span>
+  <span class="mf">9.0</span>     <span class="mf">12.0</span>     <span class="mf">0.7182</span>  <span class="mf">0.0</span>    <span class="mf">0.0</span>   <span class="mf">0.0656</span>  <span class="mf">0.0</span>    <span class="mf">0.0</span>
+ <span class="mf">10.0</span>     <span class="mf">12.0</span>     <span class="mf">0.7066</span>  <span class="mf">0.0</span>    <span class="mf">0.0</span>   <span class="mf">0.0653</span>  <span class="mf">0.0</span>    <span class="mf">0.0</span>
+ <span class="mf">11.0</span>     <span class="mf">12.0</span>     <span class="mf">0.6947</span>  <span class="mf">0.0</span>    <span class="mf">0.0</span>   <span class="mf">0.0649</span>  <span class="mf">0.0</span>    <span class="mf">0.0</span>
+<span class="o">---</span> <span class="n">OUTPUTS</span> <span class="o">--------------------</span>
+              <span class="n">OutList</span>         <span class="o">-</span> <span class="n">The</span> <span class="nb">next</span> <span class="n">line</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="n">contains</span> <span class="n">a</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">output</span> <span class="n">parameters</span><span class="o">.</span>  <span class="n">See</span> <span class="n">OutListParameters</span><span class="o">.</span><span class="n">xlsx</span> <span class="k">for</span> <span class="n">a</span> <span class="n">listing</span> <span class="n">of</span> <span class="n">available</span> <span class="n">output</span> <span class="n">channels</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="p">)</span>
+<span class="n">END</span> <span class="n">of</span> <span class="nb">input</span> <span class="n">file</span> <span class="p">(</span><span class="n">the</span> <span class="n">word</span> <span class="s2">"END"</span> <span class="n">must</span> <span class="n">appear</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">first</span> <span class="mi">3</span> <span class="n">columns</span> <span class="n">of</span> <span class="n">this</span> <span class="n">last</span> <span class="n">OutList</span> <span class="n">line</span><span class="p">)</span>
+<span class="o">--------------------------------</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="outputs">
+<span id="adsk-outputs"></span><h2><span class="section-number">4.6.1.3. </span>출력<a class="headerlink" href="#outputs" title="이 제목의 고유 링크"></a></h2>
+<dl class="simple">
+<dt>쓰기 출력은 다음과 같습니다.</dt><dd><ul class="simple">
+<li><p>"ADSpeed": 액추에이터 디스크 회전 속도(rpm)</p></li>
+<li><p>"ADTSR": 액추에이터 디스크 팁 속도 비율(-)</p></li>
+<li><p>"ADPitch": 액추에이터-디스크 집단 블레이드-피치 각도(deg)</p></li>
+<li><p>"ADVWindx, ADVWindy, ADVWindz": 로컬 좌표계의 액추에이터 디스크 평균 풍속(m/s)</p></li>
+<li><p>"ADSTVx, ADSTVy, ADSTVz": 로컬 좌표계의 액추에이터 디스크 구조 변환 속도(m/s)</p></li>
+<li><p>"ADVRel": 액추에이터 디스크 평균 상대 풍속(m/s)</p></li>
+<li><p>"ADSKew": 액추에이터 디스크 유입 스큐 각도(deg)</p></li>
+<li><p>"ADCp, ADCt, ADCq": 액추에이터 디스크 전력, 추력 및 토크 계수(-)</p></li>
+<li><p>"ADFx, ADFy, ADFz": 로컬 좌표계(N)의 액추에이터 디스크 공기역학적 힘 하중</p></li>
+<li><p>"ADMx, ADMy, ADMz": 로컬 좌표계의 액추에이터 디스크 공기역학적 모멘트 하중(N-m)</p></li>
+<li><p>“ADPower”: 액추에이터 디스크 전력(W)</p></li>
+</ul>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="index.html" class="btn btn-neutral float-left" title="4.6. 에어로디스크" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+        <a href="../beamdyn/index.html" class="btn btn-neutral float-right" title="4.7. BeamDyn 사용자 가이드 및 이론 설명서" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>© Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    
+     
+
+
+</body></html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html><html class="writer-html5" lang="ko"><head><!-- Modified 2026-11-08: unofficial Korean machine translation of OpenFAST 5.0.0. Equations, code, figures, input values and attribution retained. -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.11.3. 출력 파일 - OpenFAST v5.0.0 문서</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../../../genindex.html">
+    <link rel="search" title="검색" href="../../../search.html">
+    <link rel="next" title="4.11.4. 모델링 시 고려사항" href="modeling_considerations.html">
+    <link rel="prev" title="4.11.2. 입력 파일" href="input_files.html"> 
+<link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/hydrodyn/output_files.html"></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+          </a>
+              <div class="version">5.0 · 한국어</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="문서 검색" aria-label="문서 검색">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.11. HydroDyn</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html">4.11.1. 설치 및 시작하기</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input_files.html">4.11.2. 입력 파일</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.11.3. 출력 파일</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#echo-files">4.11.3.1. 에코 파일</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#summary-file">4.11.3.2. 요약 파일</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#results-file">4.11.3.3. 결과 파일</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="modeling_considerations.html">4.11.4. 모델링 시 고려사항</a></li>
+<li class="toctree-l3"><a class="reference internal" href="future_work.html">4.11.5. 향후 개발 계획</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.11.6. 참고문헌</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.11.7. 부록 A: OC4 반잠수식 입력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html#appendix-b-oc4-semi-submersible-input-file">4.11.8. 부록 B: OC4 반잠수식 입력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html#appendix-c-list-of-output-channels">4.11.9. 부록 C. 출력 채널 목록</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. 단순화 ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. 구조 제어</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. 추가 모듈 문서</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC 서브루틴 라이브러리</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+</ul>
+
+        <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="페이지 탐색">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.11. </span>HydroDyn 사용자 가이드 및 이론 설명서</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.11.3. </span>출력 파일</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/hydrodyn/output_files.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+      </li>
+  </ul>
+  <hr>
+</div><aside class="ko-notice" aria-label="한국어 번역 안내"><strong>한국어 자동번역</strong> · OpenFAST v5.0.0 · 2026-11-08 기준<br>비공식 번역본입니다. 수식·명령어·입력 변수와 첨부자료는 원문을 보존합니다. <a href="https://openfast.readthedocs.io/en/main/source/user/hydrodyn/output_files.html" target="_blank" rel="noopener noreferrer" lang="en">영문 원문 대조 ↗</a></aside>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="output-files">
+<span id="hd-output"></span><h1><span class="section-number">4.11.3. </span>출력 파일<a class="headerlink" href="#output-files" title="이 제목의 고유 링크"></a></h1>
+<p>HydroDyn은 에코 파일, 요약 파일 및 시계열 파일의 세 가지 유형의 출력 파일을 생성합니다. 다음 섹션에서는 이러한 파일의 목적과 내용을 자세히 설명합니다.
+HydroDyn 드라이버 파일 또는 HydroDyn 기본 입력 파일에서</p>
+<div class="section" id="echo-files">
+<h2><span class="section-number">4.11.3.1. </span>에코 파일<a class="headerlink" href="#echo-files" title="이 제목의 고유 링크"></a></h2>
+<p>다음을 설정하면 <strong>에코</strong> 플래그를 TRUE로 설정하면 해당 파일의 내용이 명명 규칙을 사용하여 파일에 반영됩니다. <strong>OutRootName</strong><em>.dvr.ech
+HydroDyn 기본 입력 파일용</em> 및 <strong>OutRootName</strong><em>.HD.ech</em> . <strong>OutRootName</strong> 는 드라이버 입력 파일의 HYDRODYN 섹션에 지정되거나 OpenFAST 프로그램에 의해 지정됩니다. 에코 파일은 입력 파일을 디버깅하는 데 유용합니다. HydroDyn이 입력 파일을 구문 분석하는 동안 오류가 발생하면 에코 파일의 내용이 잘립니다. 오류는 일반적으로 마지막으로 성공적으로 에코된 줄 다음 줄에 해당합니다.</p>
+</div>
+<div class="section" id="summary-file">
+<span id="hd-summary-file"></span><h2><span class="section-number">4.11.3.2. </span>요약 파일<a class="headerlink" href="#summary-file" title="이 제목의 고유 링크"></a></h2>
+<p>HydroDyn은 명명 규칙을 사용하여 요약 파일을 생성합니다.
+<strong>OutRootName</strong><em>.HD.sum</em> 경우 <strong>HDSum</strong> 매개변수는 TRUE로 설정됩니다. 이 파일에는 부력, 하부구조 체적, 해양 성장 중량, 시뮬레이션 메쉬 및 해당 속성, 전위 흐름체에 대한 복사 커널을 포함하여 유체 역학 모델에 대한 주요 정보가 요약되어 있습니다.</p>
+<p>텍스트가 인덱스를 참조하는 경우 이는 테이블의 특정 행을 참조하는 것입니다. 인덱싱은 1부터 시작하여 행 아래로 연속적으로 증가합니다.</p>
+<div class="section" id="wamit-model-volume-and-buoyancy-information">
+<h3><span class="section-number">4.11.3.2.1. </span>WAMIT-모델 볼륨 및 부력 정보<a class="headerlink" href="#wamit-model-volume-and-buoyancy-information" title="이 제목의 고유 링크"></a></h3>
+<p>이 섹션은 변위되지 않은 위치에서 각 전위 흐름 몸체의 부력을 요약합니다. 하이브리드 전위 흐름/스트립 이론 모델의 경우 플랫폼의 전체 부력을 얻으려면 후속 섹션에 보고된 스트립 이론 부재 부력에 이러한 부력 값을 추가해야 합니다.</p>
+</div>
+<div class="section" id="strip-theory-volume-calculations">
+<h3><span class="section-number">4.11.3.2.2. </span>스트립 이론 볼륨 계산<a class="headerlink" href="#strip-theory-volume-calculations" title="이 제목의 고유 링크"></a></h3>
+<p>이 섹션에는 이동되지 않은 위치에서 모든 스트립 이론 구성원의 결합된 총 부피, 수중 부피, 해양 성장 부피 및 유체 충전(침수/평형수) 부피에 대한 요약이 포함되어 있습니다. 수액 충전량 값을 제외하고 보고된 용량은 다음과 같은 회원에게만 해당됩니다. <strong>PropPot</strong> 플래그가 FALSE로 설정되었습니다. 침수/밸러스트 용량은 유체가 채워진 모든 부재에 적용됩니다. <strong>PropPot</strong> 플래그입니다.</p>
+</div>
+<div class="section" id="total-buoyancy-loads">
+<h3><span class="section-number">4.11.3.2.3. </span>총 부력 하중<a class="headerlink" href="#total-buoyancy-loads" title="이 제목의 고유 링크"></a></h3>
+<p>이 섹션에서는 (0,0,0)에 대해 합산할 때 변위되지 않은 하부 구조의 부력 하중을 자세히 설명합니다. 외부 부력에는 해양 성장의 효과가 포함되며 다음과 같은 구성원에게만 적용됩니다. <strong>PropPot</strong>
+플래그가 FALSE로 설정되었습니다. 내부 부력은 범람이나 평형수로 인한 부력에 대한 부정적인 영향이며,
+<strong>PropPot</strong> 플래그입니다.</p>
+</div>
+<div class="section" id="integrated-marine-growth-weights">
+<h3><span class="section-number">4.11.3.2.4. </span>통합 해양 성장 가중치<a class="headerlink" href="#integrated-marine-growth-weights" title="이 제목의 고유 링크"></a></h3>
+<p>이 섹션에서는 (0,0,0)에 대해 합산할 때 변위되지 않은 하부 구조의 해양 성장 중량 하중을 자세히 설명합니다.</p>
+</div>
+<div class="section" id="strip-theory-node-table">
+<h3><span class="section-number">4.11.3.2.5. </span>스트립 이론 노드 테이블<a class="headerlink" href="#strip-theory-node-table" title="이 제목의 고유 링크"></a></h3>
+<p>이 표에는 HydroDyn에서 생성된 모든 사용자 정의 조인트 및 내부 분석 노드에 대한 변위되지 않은 스트립 이론 노드 정보 및 속성이 자세히 설명되어 있습니다. 내부 노드는 요구 사항을 충족하기 위해 길이를 따라 어딘가에 입력 멤버를 분할하여 생성됩니다.
+기본 입력 파일 멤버 테이블의 <strong>MDivSize</strong> 매개변수입니다. 노드 인덱스는 첫 번째 열에 제공됩니다. 두 번째 열은 입력 멤버 인덱스를 제공합니다( <strong>MemberID</strong>) 각 내부 노드가 속해 있습니다. 사용자 정의 접합은 반드시 특정 멤버에 속할 필요가 없으므로 이 열에는 이러한 접합에 대한 정보가 제공되지 않습니다. <strong>Nxi</strong>, <strong>니이</strong>및
+이 플래그 값 아래에 <strong>Nzi</strong>
+는 (<em>X</em>,<em>Y</em>,<em>Z</em>)는 전역 관성 프레임 좌표계의 좌표입니다. <strong>R</strong> 는 노드에서 부재의 외부 반경(해양 성장 제외)이고, <strong>t</strong> 는 노드의 부재 벽 두께입니다.
+<strong>tMG</strong> 는 해양 성장 두께이고, <strong>MGDens</strong> 는 해양 성장 밀도입니다. <strong>PropPot</strong> 는 이 노드에 부착된 요소가 전위 흐름 이론을 사용하여 모델링되었는지 여부를 나타냅니다. 만약에 <strong>FilledFlag</strong> 가 TRUE이면 <strong>FillMass</strong>
+는 노드에 할당된 채워진 유체 질량을 제공합니다. <strong>CD</strong>, <strong>캘리포니아</strong>, <strong>CP</strong>, <strong>Cb</strong>, <strong>AxCd</strong>, <strong>AxCa</strong>,
+<strong>AxCp</strong>, <strong>JAxCd</strong>, <strong>JAxCa</strong>및
+이 플래그 값 아래에 <strong>JAxCp</strong> 는 각각 횡방향 항력, 횡부가 질량, 횡동압력, 부력 스케일링, 축방향 항력, 축방향 부가질량, 축방향 동압력, 엔드플레이트 축방향 항력, 엔드플레이트 축방향 부가질량, 엔드플레이트 축방향 동압 계수입니다. 일부 열은 사용자 정의 접합에 대해서만 채워지고 다른 열은 단일 멤버에 속하는 내부 분석 노드에 대해서만 채워집니다.</p>
+</div>
+<div class="section" id="strip-theory-member-table">
+<h3><span class="section-number">4.11.3.2.6. </span>스트립 이론 멤버 테이블<a class="headerlink" href="#strip-theory-member-table" title="이 제목의 고유 링크"></a></h3>
+<p>이 섹션에서는 대체되지 않은 스트립 이론 멤버 및 관련 속성에 대해 자세히 설명합니다. 열 머리글의 접미사 1 또는 2는 각각 멤버의 시작 노드 또는 끝 노드를 나타냅니다. 첫 번째 열은 멤버 인덱스입니다. <strong>조인트1</strong> 및 <strong>조인트2</strong> 는 이전 섹션의 노드 테이블에서 찾은 노드 인덱스를 참조합니다. 다음은 회원입니다
+<strong>길이</strong>, 세분화된 요소의 수 <strong>NElem</strong> 를 충족
+<strong>MDivSize</strong> 요구 사항 및 외관 <strong>볼륨</strong>. 이 외부 부피 계산에는 부재의 해양 성장 부피가 포함됩니다. <strong>MG볼륨</strong> 는 해양 성장으로 인한 물량 기여를 제공합니다. <strong>볼륨</strong> 및 <strong>MG볼륨</strong> 는 잠재적 흐름에 의해 모델링된 구성원의 경우 0이 됩니다. <strong>PropPot</strong> = T는 TRUE입니다. 각 노드의 외부 반경(해양 성장 포함)의 단면 특성과 벽 두께는 다음과 같이 지정됩니다. <strong>R1</strong>, <strong>t1</strong>, <strong>R2</strong>및
+이 플래그 값 아래에 <strong>t2</strong>각각. <strong>PropPot</strong> 는 부재가 전위 흐름 이론을 사용하여 모델링되었는지 여부를 나타냅니다. 요소가 유체로 채워진 경우(침수 또는 밸러스트가 있는 경우) <strong>FilledFlag</strong> 는 TRUE의 경우 T로 설정됩니다. <strong>FillDensity</strong> 및 <strong>FillFSLoc</strong> 는 채워진 유체 밀도와 자유 표면 위치(<em>Z</em>- 전역 관성 프레임 좌표계의 좌표). <strong>FillMass</strong> 는 다음을 곱하여 계산됩니다. <strong>FillDensity</strong> 값은 요소 내부 부피에 따른 값입니다. 마지막으로 두 끝 조인트의 유체 역학 계수가 나열됩니다. 이는 위의 노드 테이블에 나열된 것과 동일한 계수입니다.</p>
+</div>
+<div class="section" id="summary-of-user-requested-outputs">
+<h3><span class="section-number">4.11.3.2.7. </span>사용자 요청 출력 요약<a class="headerlink" href="#summary-of-user-requested-outputs" title="이 제목의 고유 링크"></a></h3>
+<p>요약 파일에는 요청된 모든 구성원 및 공동 출력 채널에 대한 정보가 포함됩니다.</p>
+<div class="section" id="member-outputs">
+<h4><span class="section-number">4.11.3.2.7.1. </span>회원 출력<a class="headerlink" href="#member-outputs" title="이 제목의 고유 링크"></a></h4>
+<p>첫 번째 열에는 HydroDyn 입력 파일의 OUTPUT CHANNELS 섹션에 입력된 대로 데이터 채널의 문자열 레이블이 나열됩니다. <strong>자이</strong>, <strong>이</strong>및
+이 플래그 값 아래에 <strong>지</strong> 는 구조가 변위되지 않을 때 전역 관성 프레임 시스템에서 출력 위치의 좌표를 제공합니다. 다음 칼럼은,
+<strong>MemberID</strong>는 해당 입력 멤버 인덱스를 알려줍니다. 다음은 시작점의 좌표입니다(<strong>StartXi</strong>, <strong>StartYi</strong>, <strong>StartZi</strong>) 및 종료(<strong>EndXi</strong>, <strong>EndYi</strong>, <strong>EndZi</strong>) 이 출력 위치를 포함하는 멤버의 노드입니다. <strong>Loc</strong> 는 이 멤버의 시작 노드로부터 정규화된 거리입니다.</p>
+</div>
+<div class="section" id="joint-outputs">
+<h4><span class="section-number">4.11.3.2.7.2. </span>공동 출력<a class="headerlink" href="#joint-outputs" title="이 제목의 고유 링크"></a></h4>
+<p>첫 번째 열에는 HydroDyn 입력 파일의 OUTPUT CHANNELS 섹션에 입력된 대로 데이터 채널의 문자열 레이블이 나열됩니다. <strong>자이</strong>, <strong>이</strong>및
+이 플래그 값 아래에 <strong>지</strong> 는 구조가 변위되지 않을 때 전역 관성 프레임 시스템에서 출력 조인트의 좌표를 제공합니다. <strong>InpJointID</strong>
+는 다음을 지정합니다. <strong>JointID</strong> 입니다.</p>
+</div>
+</div>
+<div class="section" id="radiation-memory-effect-convolution-kernel">
+<h3><span class="section-number">4.11.3.2.8. </span>방사선 메모리 효과 컨볼루션 커널<a class="headerlink" href="#radiation-memory-effect-convolution-kernel" title="이 제목의 고유 링크"></a></h3>
+<p>주파수-시간 영역 변환을 기반으로 하는 전위 흐름 솔루션에서 HydroDyn은 방사 문제로부터 주파수 종속 유체 역학 감쇠 행렬의 코사인 변환을 통해 방사 메모리 효과를 계산하기 위한 컨볼루션 방법에서 사용되는 방사 커널을 계산합니다. 시간 종속 행렬인 시간 영역 복사 커널(방사 임펄스-응답 함수)이 이 섹션에 제공됩니다. <strong>n</strong> 및 <strong>t</strong> 는 시간 단계 인덱스와 시간을 제공하며, 그 뒤에 행렬 항목이 표시됩니다(<strong>K11</strong>, <strong>K12</strong>등) 그 시간과 관련된 방사선 커널. 주파수 의존 유체 역학 감쇠 행렬은 대칭이므로 복사 커널도 대칭입니다. 따라서 행렬의 대각선 부분과 위쪽 삼각형 부분만 제공됩니다. 방사선 커널은 짧은 시간이 지나면 0으로 감소해야 하며 이는 적절한 값을 선택하는 데 도움이 됩니다. <strong>RdtnTMax</strong>. 복사 커널 매트릭스의 크기는 존재하는 전위 흐름체의 수에 따라 달라집니다(
+HydroDyn 기본 입력 파일의<strong>N바디</strong>) 및 <strong>NBodyMod</strong> . 만약에
+<strong>NBodyMod</strong> = 1(완전 유체역학적 커플링), 요약 파일에는 단일 6에 대한 데이터가 포함됩니다.<strong>N바디</strong>-by-6<strong>N바디</strong> 매트릭스. 만약에 <strong>NBodyMod</strong> &gt; 1(유체역학적 커플링 없음), 요약 파일에는 다음에 대한 데이터가 포함됩니다. <strong>N바디</strong>
+6x6 복사 커널 매트릭스.</p>
+</div>
+</div>
+<div class="section" id="results-file">
+<h2><span class="section-number">4.11.3.3. </span>결과 파일<a class="headerlink" href="#results-file" title="이 제목의 고유 링크"></a></h2>
+<p>HydroDyn 시계열 결과는 명명 규칙을 사용하여 텍스트 기반 파일에 기록됩니다. <code class="docutils literal notranslate"><span class="pre">OutRootName.HD.out</span></code> 때 <strong>OutSwtch</strong> 는 1 또는 3으로 설정됩니다. HydroDyn이 OpenFAST에 결합되고 <strong>OutSwtch</strong> 가 2 또는 3으로 설정된 경우 OpenFAST는 HydroDyn 결과가 포함된 마스터 결과 파일을 생성합니다. 결과는 표 형식으로 되어 있으며, 각 열은 데이터 채널이고(첫 번째 열은 항상 시뮬레이션 시간임), 각 행은 시뮬레이션 출력 시간 단계에 해당합니다. 데이터 채널은 HydroDyn 기본 입력 파일의 OUTPUT CHANNELS 섹션에 지정됩니다. HydroDyn에서 생성된 파일의 열 형식은 다음을 사용하여 지정됩니다.
+기본 입력 파일의 <strong>OutFmt</strong> 및
+<strong>OutSFmt</strong> 매개변수입니다.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="input_files.html" class="btn btn-neutral float-left" title="4.11.2. 입력 파일" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+        <a href="modeling_considerations.html" class="btn btn-neutral float-right" title="4.11.4. 모델링 시 고려사항" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>© Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    
+     
+
+
+</body></html>

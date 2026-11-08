@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.21.2.1. Input File &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="5. Testing OpenFAST" href="../../testing/index.html" />
+    <link rel="prev" title="4.21. WaveTank" href="index.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/other/wavetank_input.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.21. WaveTank</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html#restrictions">4.21.1. Restrictions</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#input-file">4.21.2. Input File</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">4.21.2.1. Input File</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#conventions-and-units">4.21.2.2. Conventions and Units</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#file-and-simulation-control">4.21.2.3. File and Simulation Control</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#froude-scaling-disabled">4.21.2.4. Froude Scaling (disabled)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#environment">4.21.2.5. Environment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sea-state">4.21.2.6. Sea State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#moordyn">4.21.2.7. MoorDyn</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#aerodyn-and-inflowwind">4.21.2.8. AeroDyn and InflowWind</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#turbine-geometry-and-reference-frames">4.21.2.9. Turbine Geometry and Reference Frames</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#turbine-initial-conditions">4.21.2.10. Turbine Initial Conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#wave-buoy">4.21.2.11. Wave Buoy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#output">4.21.2.12. Output</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#vtk-visualization-output">4.21.2.13. VTK Visualization Output</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#implementation-notes-and-best-practices">4.21.2.14. Implementation Notes and Best Practices</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.21. </span>WaveTank</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.21.2.1. </span>Input File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/other/wavetank_input.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="input-file">
+<span id="wavetank-input"></span><h1><span class="section-number">4.21.2.1. </span>Input File<a class="headerlink" href="#input-file" title="Permalink to this heading"></a></h1>
+<p>This document describes the WaveTank configuration input file (<code class="docutils literal notranslate"><span class="pre">wavetankconfig_input.txt</span></code>) used to set up and run the WaveTank model for marine hydrokinetic (MHK) turbine testing.</p>
+<ul class="simple">
+<li><p>The file is read by the WaveTank library during initialization.</p></li>
+</ul>
+</div>
+<div class="section" id="conventions-and-units">
+<h1><span class="section-number">4.21.2.2. </span>Conventions and Units<a class="headerlink" href="#conventions-and-units" title="Permalink to this heading"></a></h1>
+<ul class="simple">
+<li><p>SI units are used throughout: m, s, kg, N, Pa.</p></li>
+<li><p>Angles are in degrees unless otherwise specified.</p></li>
+<li><p>Rotational speed is in rpm where noted.</p></li>
+<li><p>Positions and heights are referenced to Mean Sea Level (MSL) unless otherwise noted.</p></li>
+<li><p>Input files for modules may be relative or absolute paths.</p></li>
+</ul>
+</div>
+<div class="section" id="file-and-simulation-control">
+<h1><span class="section-number">4.21.2.3. </span>File and Simulation Control<a class="headerlink" href="#file-and-simulation-control" title="Permalink to this heading"></a></h1>
+<dl>
+<dt>OutRootName (string)</dt><dd><p>Root name used when writing summary or other files.
+Example: <code class="docutils literal notranslate"><span class="pre">FRM1Q_Floating_tank_test</span></code>.</p>
+</dd>
+<dt>DT (s)</dt><dd><p>Nominal timestep for WaveTank internal scheduling. Currently unused/reserved.</p>
+</dd>
+<dt>TMax (s)</dt><dd><p>Maximum simulation time for WaveTank internal scheduling. Currently unused/reserved.</p>
+</dd>
+<dt>MHK (switch)</dt><dd><p>MHK turbine type switch:</p>
+<ul class="simple">
+<li><p>0: Not an MHK turbine</p></li>
+<li><p>1: Fixed MHK turbine</p></li>
+<li><p>2: Floating MHK turbine</p></li>
+</ul>
+<p>Only the floating option (2) is supported at present.</p>
+</dd>
+<dt>InterpOrd (-)</dt><dd><p>Interpolation order for internal data interpolation. Currently unused/reserved.</p>
+</dd>
+<dt>DebugLevel (switch)</dt><dd><p>Controls logging and visualization detail:</p>
+<ul class="simple">
+<li><p>0: none</p></li>
+<li><p>1: I/O summary</p></li>
+<li><p>2: + positions/orientations passed</p></li>
+<li><p>3: + input file</p></li>
+<li><p>4: + all meshes</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Parameters marked “unused” are reserved for future development and are currently ignored by the code path.</p>
+</div>
+</div>
+<div class="section" id="froude-scaling-disabled">
+<h1><span class="section-number">4.21.2.4. </span>Froude Scaling (disabled)<a class="headerlink" href="#froude-scaling-disabled" title="Permalink to this heading"></a></h1>
+<p>The following parameters may appear but are typically commented out. Froude scaling is not complete in the current code. Do not use unless explicitly enabled.</p>
+<dl class="simple">
+<dt>ScaleFact (-)</dt><dd><p>Froude scaling factor λ = (full-size dimension) / (model-size dimension). Expected &gt; 1 for scale-model testing.</p>
+</dd>
+<dt>DensFact (-)</dt><dd><p>Density ratio ρ_full / ρ_model, used with Froude scaling of forces/moments.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="environment">
+<h1><span class="section-number">4.21.2.5. </span>Environment<a class="headerlink" href="#environment" title="Permalink to this heading"></a></h1>
+<dl class="simple">
+<dt>Gravity (m/s^2)</dt><dd><p>Gravitational acceleration.</p>
+</dd>
+<dt>WtrDens (kg/m^3)</dt><dd><p>Water (working fluid) density.</p>
+</dd>
+<dt>WtrVisc (m^2/s)</dt><dd><p>Kinematic viscosity of the working fluid.</p>
+</dd>
+<dt>SpdSound (m/s)</dt><dd><p>Speed of sound in the working fluid.</p>
+</dd>
+<dt>Patm (Pa)</dt><dd><p>Atmospheric pressure. Used for cavitation checks.</p>
+</dd>
+<dt>Pvap (Pa)</dt><dd><p>Vapor pressure of the working fluid. Used for cavitation checks.</p>
+</dd>
+<dt>WtrDpth (m)</dt><dd><p>Water depth.</p>
+</dd>
+<dt>MSL2SWL (m)</dt><dd><p>Offset between still-water level (SWL) and mean sea level (MSL); positive upward.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="sea-state">
+<h1><span class="section-number">4.21.2.6. </span>Sea State<a class="headerlink" href="#sea-state" title="Permalink to this heading"></a></h1>
+<dl class="simple">
+<dt>SS_InputFile (string)</dt><dd><p>Path to SeaState input file defining wave conditions. Ensure path is valid relative to the run directory or use an absolute path.</p>
+</dd>
+<dt>WaveTimeShift (s)</dt><dd><p>Time shift applied to the SeaState wave time series to adjust phase and match tank conditions.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="moordyn">
+<h1><span class="section-number">4.21.2.7. </span>MoorDyn<a class="headerlink" href="#moordyn" title="Permalink to this heading"></a></h1>
+<dl class="simple">
+<dt>MD_InputFile (string)</dt><dd><p>Path to MoorDyn input file defining mooring system properties and connections.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="aerodyn-and-inflowwind">
+<h1><span class="section-number">4.21.2.8. </span>AeroDyn and InflowWind<a class="headerlink" href="#aerodyn-and-inflowwind" title="Permalink to this heading"></a></h1>
+<dl class="simple">
+<dt>AD_InputFile (string)</dt><dd><p>Path to AeroDyn input file defining aerodynamic model configuration (used for hydro/aero coupling as applicable in MHK context).</p>
+</dd>
+<dt>IfW_InputFile (string)</dt><dd><p>Path to InflowWind input file defining inflow conditions for the rotor (e.g., currents or wind, depending on model setup).</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="turbine-geometry-and-reference-frames">
+<h1><span class="section-number">4.21.2.9. </span>Turbine Geometry and Reference Frames<a class="headerlink" href="#turbine-geometry-and-reference-frames" title="Permalink to this heading"></a></h1>
+<dl class="simple">
+<dt>NumBl (-)</dt><dd><p>Number of blades on the rotor.</p>
+</dd>
+<dt>HubRad (m)</dt><dd><p>Distance from the rotor apex to the blade root.</p>
+</dd>
+<dt>PreCone (deg)</dt><dd><p>Blade cone angle.</p>
+</dd>
+<dt>OverHang (m)</dt><dd><p>Distance from the yaw axis (tower centerline) to the rotor apex. Negative values indicate rotor apex aft of the yaw axis under the model’s convention.</p>
+</dd>
+<dt>ShftTilt (deg)</dt><dd><p>Rotor shaft tilt angle.</p>
+</dd>
+<dt>Twr2Shft (m)</dt><dd><p>Vertical distance from tower-top to the rotor shaft center (nacelle center). Negative values are below tower-top.</p>
+</dd>
+<dt>TowerHt (m)</dt><dd><p>Height of the tower relative to MSL. Tower is vertically aligned with <code class="docutils literal notranslate"><span class="pre">TowerBsPt</span></code> (sloped towers not supported).</p>
+</dd>
+<dt>TowerBsPt (m, m, m)</dt><dd><p>Tower base location relative to the platform reference position in x and y, and relative to MSL in z:</p>
+<ul class="simple">
+<li><p>x: along surge axis</p></li>
+<li><p>y: along sway axis</p></li>
+<li><p>z: height relative to MSL</p></li>
+</ul>
+</dd>
+<dt>PtfmRefPos (m, m, m)</dt><dd><p>Platform reference point position relative to MSL. All platform motions and loads connect at this point.</p>
+</dd>
+<dt>PtfmRefOrient (deg, deg, deg)</dt><dd><p>Platform reference orientation given as Euler angles [roll, pitch, yaw].</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="turbine-initial-conditions">
+<h1><span class="section-number">4.21.2.10. </span>Turbine Initial Conditions<a class="headerlink" href="#turbine-initial-conditions" title="Permalink to this heading"></a></h1>
+<dl class="simple">
+<dt>RotSpeed (rpm)</dt><dd><p>Initial rotational speed of the rotor (in rotor coordinates).</p>
+</dd>
+<dt>NacYaw (deg)</dt><dd><p>Initial or fixed nacelle yaw angle.</p>
+</dd>
+<dt>BldPitch (deg)</dt><dd><p>Initial blade 1 pitch angle. If a multi-blade model is used, blade pitch control typically applies per blade in other modules; here this initializes blade 1.</p>
+</dd>
+<dt>Azimuth (deg)</dt><dd><p>Initial rotor azimuth angle.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="wave-buoy">
+<h1><span class="section-number">4.21.2.11. </span>Wave Buoy<a class="headerlink" href="#wave-buoy" title="Permalink to this heading"></a></h1>
+<dl class="simple">
+<dt>WaveBuoyLoc (m, m)</dt><dd><p>Location of the wave elevation measurement buoy in the tank coordinate frame. SeaState data is returned at each timestep at this location.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="output">
+<h1><span class="section-number">4.21.2.12. </span>Output<a class="headerlink" href="#output" title="Permalink to this heading"></a></h1>
+<dl class="simple">
+<dt>SendScreenToFile (flag)</dt><dd><p>If true, send screen output to a file named <code class="docutils literal notranslate"><span class="pre">&lt;OutRootName&gt;.screen.log</span></code>.</p>
+</dd>
+<dt>OutFile (switch)</dt><dd><p>Controls tabular output of channels:</p>
+<ul class="simple">
+<li><p>0: no output file of channels</p></li>
+<li><p>1: output file in text format (written at default DT)</p></li>
+</ul>
+</dd>
+<dt>OutFmt (string)</dt><dd><p>Format specifier for text tabular output channels (excluding the time channel). Uses a Fortran-like format string.
+Example: <code class="docutils literal notranslate"><span class="pre">ES20.6E2</span></code>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="vtk-visualization-output">
+<h1><span class="section-number">4.21.2.13. </span>VTK Visualization Output<a class="headerlink" href="#vtk-visualization-output" title="Permalink to this heading"></a></h1>
+<dl class="simple">
+<dt>WrVTK_Dir (string)</dt><dd><p>Output directory for VTK visualization files.</p>
+</dd>
+<dt>WrVTK (switch)</dt><dd><p>VTK visualization data output:</p>
+<ul class="simple">
+<li><p>0: none</p></li>
+<li><p>1: initialization data only</p></li>
+<li><p>2: animation</p></li>
+<li><p>3: mode shapes</p></li>
+</ul>
+</dd>
+<dt>WrVTK_type (switch)</dt><dd><p>Type of VTK visualization data:</p>
+<ul class="simple">
+<li><p>1: surfaces</p></li>
+<li><p>2: basic meshes (lines/points)</p></li>
+<li><p>3: all meshes (debug)</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Only lines/points may be supported in some builds. If surfaces are not
+supported, use <code class="docutils literal notranslate"><span class="pre">WrVTK_type</span> <span class="pre">=</span> <span class="pre">2</span></code> to visualize line/point data.</p>
+</div>
+<dl class="simple">
+<dt>WrVTK_DT (s)</dt><dd><p>Timestep for writing VTK files.</p>
+</dd>
+<dt>VTKNacDim (m, m, m, m, m, m)</dt><dd><p>Nacelle dimensions for VTK surface rendering in the format <code class="docutils literal notranslate"><span class="pre">[x0,</span> <span class="pre">y0,</span> <span class="pre">z0,</span> <span class="pre">Lx,</span> <span class="pre">Ly,</span> <span class="pre">Lz]</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">x0,</span> <span class="pre">y0,</span> <span class="pre">z0</span></code>: nacelle origin offsets</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Lx,</span> <span class="pre">Ly,</span> <span class="pre">Lz</span></code>: nacelle extents along x, y, z</p></li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="implementation-notes-and-best-practices">
+<h1><span class="section-number">4.21.2.14. </span>Implementation Notes and Best Practices<a class="headerlink" href="#implementation-notes-and-best-practices" title="Permalink to this heading"></a></h1>
+<ul class="simple">
+<li><p>Only floating MHK (<code class="docutils literal notranslate"><span class="pre">MHK</span> <span class="pre">=</span> <span class="pre">2</span></code>) is currently supported; other MHK modes will
+not perform as expected.</p></li>
+<li><p>Ensure external file paths (<em>SeaState</em>, <em>MoorDyn</em>, <em>AeroDyn</em>, <em>InflowWind</em>)
+are valid relative to the working directory or specify absolute paths.</p></li>
+<li><p>Coordinate conventions:</p>
+<ul>
+<li><p>Positions and heights are referenced to MSL unless otherwise noted.</p></li>
+<li><p>The platform reference point (<code class="docutils literal notranslate"><span class="pre">PtfmRefPos</span></code>) is the coupling point for
+motions and loads.</p></li>
+<li><p>The tower base is defined relative to <code class="docutils literal notranslate"><span class="pre">PtfmRefPos</span></code> in x and y, and to MSL
+in z.</p></li>
+</ul>
+</li>
+<li><p>Choose <code class="docutils literal notranslate"><span class="pre">OutFmt</span></code> to balance precision and file size. The example <code class="docutils literal notranslate"><span class="pre">ES20.6E2</span></code>
+is suitable for scientific notation with fixed width.</p></li>
+</ul>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="4.21. WaveTank" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../testing/index.html" class="btn btn-neutral float-right" title="5. Testing OpenFAST" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

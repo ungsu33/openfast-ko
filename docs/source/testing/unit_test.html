@@ -1,0 +1,219 @@
+<!DOCTYPE html><html class="writer-html5" lang="ko"><head><!-- Modified 2026-11-08: unofficial Korean machine translation of OpenFAST 5.0.0. Equations, code, figures, input values and attribution retained. -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>5.1. 단위 테스트 - OpenFAST v5.0.0 문서</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css">
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css">
+      <link rel="stylesheet" type="text/css" href="../../_static/css/math_eq.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../../genindex.html">
+    <link rel="search" title="검색" href="../../search.html">
+    <link rel="next" title="5.2. 회귀 테스트" href="regression_test.html">
+    <link rel="prev" title="5. OpenFAST 테스트" href="index.html"> 
+<link rel="stylesheet" href="../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/testing/unit_test.html"></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../_static/openfastlogo.jpg" class="logo" alt="로고">
+          </a>
+              <div class="version">5.0 · 한국어</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="문서 검색" aria-label="문서 검색">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">2. OpenFAST 설치</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">4. 사용자 문서</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">5. OpenFAST 테스트</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5.1. 단위 테스트</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dependencies">5.1.1. 종속성</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#compiling">5.1.2. 컴파일 중</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#executing">5.1.3. 실행 중</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-unit-tests">5.1.4. 단위 테스트 추가</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="regression_test.html">5.2. 회귀 테스트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#obtaining-and-configuring-the-test-suite">5.3. 테스트 스위트 확보 및 구성</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/index.html">6. 개발자 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../help.html">8. 도움 받기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. 감사의 글</a></li>
+</ul>
+
+        <ul class="ko-tools"><li><a href="../../review.html">문서 상세 리뷰</a></li><li><a href="../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="페이지 탐색">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">5. </span>OpenFAST 테스트</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">5.1. </span>단위 테스트</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/source/testing/unit_test.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+      </li>
+  </ul>
+  <hr>
+</div><aside class="ko-notice" aria-label="한국어 번역 안내"><strong>한국어 자동번역</strong> · OpenFAST v5.0.0 · 2026-11-08 기준<br>비공식 번역본입니다. 수식·명령어·입력 변수와 첨부자료는 원문을 보존합니다. <a href="https://openfast.readthedocs.io/en/main/source/testing/unit_test.html" target="_blank" rel="noopener noreferrer" lang="en">영문 원문 대조 ↗</a></aside>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="unit-tests">
+<span id="unit-test"></span><h1><span class="section-number">5.1. </span>단위 테스트<a class="headerlink" href="#unit-tests" title="이 제목의 고유 링크"></a></h1>
+<p>OpenFAST처럼 동적이고 협업적인 소프트웨어 패키지에서는 강력한 단위 테스트 시스템을 통해 여러 계층의 코드에 대한 신뢰도를 가장 잘 달성할 수 있습니다. 강력한 테스트 방식을 통해 전체 OpenFAST 커뮤니티는 코드 블록 뒤에 숨은 의도를 이해하고 기능을 더욱 빠르고 확실하고 안정적으로 디버깅하거나 확장할 수 있습니다.
+OpenFAST 모듈의</p>
+<p>단위 테스트는 다음을 통해 수행됩니다. <a class="reference external" href="https://github.com/fortran-lang/test-drive" target="_blank" rel="noopener noreferrer">시운전</a>. 테스트 드라이브는 CMake 변수가 있을 때 CMake를 통해 OpenFAST와 함께 컴파일됩니다. <code class="docutils literal notranslate"><span class="pre">BUILD_TESTING</span></code> 가 켜져 있고(기본값은 꺼져 있음) CMake 변수 <code class="docutils literal notranslate"><span class="pre">BUILD_UNIT_TESTING</span></code> 가 켜져 있습니다. <code class="docutils literal notranslate"><span class="pre">BUILD_TEST</span></code> 가 켜져 있습니다).</p>
+<p>BeamDyn 및 NWTC 라이브러리 모듈에는 일부 샘플 단위 테스트가 포함되어 있으며 향후 개발 및 테스트를 위한 참조 역할을 해야 합니다.</p>
+<div class="section" id="dependencies">
+<h2><span class="section-number">5.1.1. </span>종속성<a class="headerlink" href="#dependencies" title="이 제목의 고유 링크"></a></h2>
+<p>단위 테스트에는 다음 패키지가 필요합니다.</p>
+<ul class="simple">
+<li><p>CMake</p></li>
+<li><p>테스트 드라이브 - unit_test/test-drive의 OpenFAST 저장소에 포함됨</p></li>
+</ul>
+</div>
+<div class="section" id="compiling">
+<h2><span class="section-number">5.1.2. </span>컴파일 중<a class="headerlink" href="#compiling" title="이 제목의 고유 링크"></a></h2>
+<p>단위 테스트 컴파일은 일반적으로 OpenFAST 컴파일과 유사하게 CMake로 처리됩니다. CMake를 구성한 후 <code class="docutils literal notranslate"><span class="pre">BUILD_TESTING</span></code> 가 켜져 있으면 단위 테스트 프레임워크에 포함된 각 모듈에 대해 새 빌드 대상이 생성됩니다. <code class="docutils literal notranslate"><span class="pre">[module]_utest</span></code>. 그런 다음, <code class="docutils literal notranslate"><span class="pre">make</span></code> 테스트 대상:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>..<span class="w"> </span>-DBUILD_TESTING<span class="o">=</span>ON
+make<span class="w"> </span>beamdyn_utest
+</pre></div>
+</div>
+<p>이것은 다음에 실행 가능한 단위 테스트를 생성합니다.
+<code class="docutils literal notranslate"><span class="pre">openfast/build/unit_tests/beamdyn_utest</span></code>.</p>
+</div>
+<div class="section" id="executing">
+<h2><span class="section-number">5.1.3. </span>실행 중<a class="headerlink" href="#executing" title="이 제목의 고유 링크"></a></h2>
+<p>모듈의 단위 테스트를 실행하려면 단위 테스트 바이너리를 실행하기만 하면 됩니다. 예를 들면:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt;$<span class="w"> </span>./openfast/build/unit_tests/beamdyn_utest
+All<span class="w"> </span>tests<span class="w"> </span>PASSED
+</pre></div>
+</div>
+<p>각 테스트가 실행될 때마다 통과 또는 실패 상태가 제공됩니다. 테스트가 실패하면 오류 메시지가 출력됩니다. 실패 사례에는 다음 출력이 표시됩니다.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt;$<span class="w"> </span>./unit_tests/beamdyn_utest
+<span class="c1"># Testing: Crv</span>
+Starting<span class="w"> </span>test_BD_CheckRotMat<span class="w"> </span>...<span class="w"> </span><span class="o">(</span><span class="m">1</span>/6<span class="o">)</span>
+<span class="w">    </span>...<span class="w"> </span>test_BD_CheckRotMat<span class="w"> </span><span class="o">[</span>PASSED<span class="o">]</span>
+Starting<span class="w"> </span>test_BD_ComputeIniNodalCrv<span class="w"> </span>...<span class="w"> </span><span class="o">(</span><span class="m">2</span>/6<span class="o">)</span>
+<span class="w">    </span>...<span class="w"> </span>test_BD_ComputeIniNodalCrv<span class="w"> </span><span class="o">[</span>PASSED<span class="o">]</span>
+Starting<span class="w"> </span>test_BD_CrvCompose<span class="w"> </span>...<span class="w"> </span><span class="o">(</span><span class="m">3</span>/6<span class="o">)</span>
+<span class="w">    </span>...<span class="w"> </span>test_BD_CrvCompose<span class="w"> </span><span class="o">[</span>PASSED<span class="o">]</span>
+Starting<span class="w"> </span>test_BD_CrvExtractCrv<span class="w"> </span>...<span class="w"> </span><span class="o">(</span><span class="m">4</span>/6<span class="o">)</span>
+<span class="w">    </span>...<span class="w"> </span>test_BD_CrvExtractCrv<span class="w"> </span><span class="o">[</span>PASSED<span class="o">]</span>
+Starting<span class="w"> </span>test_BD_CrvMatrixH<span class="w"> </span>...<span class="w"> </span><span class="o">(</span><span class="m">5</span>/6<span class="o">)</span>
+<span class="o">[</span>Fatal<span class="o">]</span><span class="w"> </span>Uncaught<span class="w"> </span>error
+Code:<span class="w"> </span><span class="m">1</span><span class="w"> </span>Message:<span class="w"> </span>A<span class="o">(</span><span class="m">1</span>,1<span class="o">)</span><span class="w"> </span>simple<span class="w"> </span>rotation<span class="w"> </span>with<span class="w"> </span>known<span class="w"> </span>parameters:<span class="w"> </span>Pi<span class="w"> </span>on<span class="w"> </span>xaxis:
+Note:<span class="w"> </span>The<span class="w"> </span>following<span class="w"> </span>floating-point<span class="w"> </span>exceptions<span class="w"> </span>are<span class="w"> </span>signalling:<span class="w"> </span>IEEE_INVALID_FLAG<span class="w"> </span>IEEE_DIVIDE_BY_ZERO
+ERROR<span class="w"> </span>STOP
+
+Error<span class="w"> </span>termination.<span class="w"> </span>Backtrace:
+<span class="c1">#0  0xffff9f70d08b in ???</span>
+<span class="c1">#1  0xffff9f70ddb3 in ???</span>
+<span class="c1">#2  0xffff9f70f333 in ???</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="adding-unit-tests">
+<h2><span class="section-number">5.1.4. </span>단위 테스트 추가<a class="headerlink" href="#adding-unit-tests" title="이 제목의 고유 링크"></a></h2>
+<p>단위 테스트는 각각의 새로운, <em>테스트 가능</em> 코드 블록(서브루틴 또는 함수). 테스트 가능한 것은 개발자의 재량이지만 풀 요청 검토 프로세스의 한 요소는 테스트 적용 범위를 평가하는 것입니다.</p>
+<p>새로운 단위 테스트를 <code class="docutils literal notranslate"><span class="pre">tests</span></code> 디렉토리와 함께
+각 모듈에 포함된 <code class="docutils literal notranslate"><span class="pre">src</span></code>
+디렉토리. 예를 들어, 모듈 디렉토리는 다음과 같이 구성될 수 있습니다.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>openfast/
+  └── modules/
+      └── sampledyn/
+          ├── src/
+          │   ├── SampleDyn.f90
+          │   └── SampleDyn_Subs.f90
+          └── tests/
+              ├── sampledyn_utest.F90
+              ├── test_SampleDyn_Feature1.F90
+              ├── test_SampleDyn_Feature2.F90
+              └── test_SampleDyn_Feature3.F90
+</pre></div>
+</div>
+<p>각 단위 테스트 파일에는 다음에 따라 단위 테스트 목록을 채우는 함수를 내보내는 모듈이 포함되어야 합니다. <code class="docutils literal notranslate"><span class="pre">test-drive</span></code> 문서. 이 모듈에는 다음을 수행하는 서브루틴이 포함되어 있습니다.
+다음으로 채워지는 <code class="docutils literal notranslate"><span class="pre">error</span></code> 인수 <code class="docutils literal notranslate"><span class="pre">check</span></code>
+서브루틴 제공 <code class="docutils literal notranslate"><span class="pre">test-drive</span></code>. 는 <code class="docutils literal notranslate"><span class="pre">sampledyn_utest.F90</span></code> 는 인접한 모듈에서 모든 단위 테스트 목록을 수집하고 실행합니다. 이러한 프로그램은 다음을 통해 컴파일됩니다. <code class="docutils literal notranslate"><span class="pre">unit_tests/CMakeLists.txt</span></code> 파일이므로 모든 관련 모듈과 프로그램이 여기에 지정됩니다.</p>
+<p>기존 단위 테스트를 참조하세요.
+단위 테스트 드라이버를 구성하고 구축하는 방법에 대한 예를 보여주는 <code class="docutils literal notranslate"><span class="pre">BeamDyn</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">NWTC</span> <span class="pre">Library</span></code> 단위 테스트입니다. 또한 <code class="docutils literal notranslate"><span class="pre">test-drive</span></code> 문서는 다음 위치에 있습니다.
+<a class="reference external" href="https://github.com/fortran-lang/test-drive" target="_blank" rel="noopener noreferrer">시운전</a>.</p>
+<p>OpenFAST를 개발하고 테스트할 때 고려해야 할 몇 가지 유용한 주제는 다음과 같습니다.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Test-driven_development#Test-driven_development_cycle" target="_blank" rel="noopener noreferrer">테스트 중심 개발</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Separation_of_concerns" target="_blank" rel="noopener noreferrer">우려의 분리</a></p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="index.html" class="btn btn-neutral float-left" title="5. OpenFAST 테스트" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+        <a href="regression_test.html" class="btn btn-neutral float-right" title="5.2. 회귀 테스트" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>© Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    
+     
+
+
+</body></html>

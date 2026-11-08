@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.7.5. BeamDyn Theory &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.7.6. Future Work" href="future_work.html" />
+    <link rel="prev" title="4.7.4. Output Files" href="output_files.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/beamdyn/theory.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.7. BeamDyn</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">4.7.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="running_bd.html">4.7.2. Running BeamDyn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input_files.html">4.7.3. Input Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="output_files.html">4.7.4. Output Files</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.7.5. BeamDyn Theory</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#coordinate-systems">4.7.5.1. Coordinate Systems</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#geometrically-exact-beam-theory">4.7.5.2. Geometrically Exact Beam Theory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#numerical-implementation-with-legendre-spectral-finite-elements">4.7.5.3. Numerical Implementation with Legendre Spectral Finite Elements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#wiener-milenkovic-rotation-parameter">4.7.5.4. Wiener-Milenković Rotation Parameter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#linearization-process">4.7.5.5. Linearization Process</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#damping-forces-and-linearization">4.7.5.6. Damping Forces and Linearization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#convergence-criterion-and-generalized-alpha-time-integrator">4.7.5.7. Convergence Criterion and Generalized-<span class="math notranslate nohighlight">\(\alpha\)</span> Time Integrator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#calculation-of-reaction-loads">4.7.5.8. Calculation of Reaction Loads</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#calculation-of-blade-loads">4.7.5.9. Calculation of Blade Loads</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="future_work.html">4.7.6. Future Work</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.7.7. References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.7.8. Appendix</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.7. </span>BeamDyn User Guide and Theory Manual</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.7.5. </span>BeamDyn Theory</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/beamdyn/theory.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="beamdyn-theory">
+<span id="id1"></span><h1><span class="section-number">4.7.5. </span>BeamDyn Theory<a class="headerlink" href="#beamdyn-theory" title="Permalink to this heading"></a></h1>
+<p>This section focuses on the theory behind the BeamDyn module. The
+theoretical foundation, numerical tools, and some special handling in
+the implementation will be introduced. References will be provided in
+each section detailing the theories and numerical tools.</p>
+<p>In this chapter, matrix notation is used to denote vectorial or
+vectorial-like quantities. For example, an underline denotes a vector
+<span class="math notranslate nohighlight">\(\underline{u}\)</span>, an over bar denotes unit vector <span class="math notranslate nohighlight">\(\bar{n}\)</span>,
+and a double underline denotes a tensor
+<span class="math notranslate nohighlight">\(\underline{\underline{\Delta}}\)</span>. Note that sometimes the
+underlines only denote the dimension of the corresponding matrix.</p>
+<div class="section" id="coordinate-systems">
+<h2><span class="section-number">4.7.5.1. </span>Coordinate Systems<a class="headerlink" href="#coordinate-systems" title="Permalink to this heading"></a></h2>
+<p><a class="reference internal" href="input_files.html#blade-geometry"><span class="std std-numref">Fig. 4.32</span></a> (in <a class="reference internal" href="input_files.html#bd-input-files"><span class="std std-numref">Section 4.7.3</span></a>) and
+<a class="reference internal" href="#bd-frame"><span class="std std-numref">Fig. 4.33</span></a> show the coordinate system used in BeamDyn.</p>
+<div class="figure align-center" id="id13">
+<span id="bd-frame"></span><a class="reference internal image-reference" href="../../../_images/bd_frame.png"><img alt="../../../_images/bd_frame.png" src="../../../_images/bd_frame.png" style="width: 100%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.33 </span><span class="caption-text">Global, blade reference, and internal coordinate systems in BeamDyn. Illustration by Al Hicks, NLR.</span><a class="headerlink" href="#id13" title="Permalink to this image"></a></p>
+</div>
+<div class="section" id="global-coordinate-system">
+<h3><span class="section-number">4.7.5.1.1. </span>Global Coordinate System<a class="headerlink" href="#global-coordinate-system" title="Permalink to this heading"></a></h3>
+<p>The global coordinate system is denoted as <code class="docutils literal notranslate"><span class="pre">X</span></code>, <code class="docutils literal notranslate"><span class="pre">Y</span></code>, and <code class="docutils literal notranslate"><span class="pre">Z</span></code>
+in <a class="reference internal" href="#bd-frame"><span class="std std-numref">Fig. 4.33</span></a>. This is an inertial frame and in FAST its
+origin is usually placed at the bottom of the tower as shown.</p>
+</div>
+<div class="section" id="bd-coordinate-system">
+<h3><span class="section-number">4.7.5.1.2. </span>BD Coordinate System<a class="headerlink" href="#bd-coordinate-system" title="Permalink to this heading"></a></h3>
+<p>The BD coordinate system is denoted as <span class="math notranslate nohighlight">\(x_1\)</span>, <span class="math notranslate nohighlight">\(x_2\)</span>, and
+<span class="math notranslate nohighlight">\(x_3\)</span> respectively in <a class="reference internal" href="#bd-frame"><span class="std std-numref">Fig. 4.33</span></a>. This is an inertial
+frame used internally in BeamDyn (i.e., doesn’t rotate with the rotor)
+and its origin is placed at the initial position of the blade root
+point.</p>
+</div>
+<div class="section" id="blade-reference-coordinate-system">
+<h3><span class="section-number">4.7.5.1.3. </span>Blade Reference Coordinate System<a class="headerlink" href="#blade-reference-coordinate-system" title="Permalink to this heading"></a></h3>
+<p>The blade reference coordinate system is denoted as
+<span class="math notranslate nohighlight">\(X_{rt}\)</span>, <span class="math notranslate nohighlight">\(Y_{rt}\)</span>, and
+<span class="math notranslate nohighlight">\(Z_{rt}\)</span> in <a class="reference internal" href="#bd-frame"><span class="std std-numref">Fig. 4.33</span></a> at initialization
+(<span class="math notranslate nohighlight">\(t = 0\)</span>). The blade reference coordinate system is a floating
+frame that attaches at the blade root and is rotating with the blade.
+Its origin is at the blade root and the directions of axes following the
+IEC standard, i.e., <span class="math notranslate nohighlight">\(Z_r\)</span> is pointing along the blade axis
+from root to tip; <span class="math notranslate nohighlight">\(Y_r\)</span> pointing nominally towards the
+trailing edge of the blade and parallel with the chord line at the
+zero-twist blade station; and <span class="math notranslate nohighlight">\(X_r\)</span> is orthogonal with the
+<span class="math notranslate nohighlight">\(Y_r\)</span> and <span class="math notranslate nohighlight">\(Z_r\)</span> axes, such that they form a
+right-handed coordinate system (pointing nominally downwind). We note
+that the initial blade reference coordinate system, denoted by subscript
+<span class="math notranslate nohighlight">\(r0\)</span>, coincides with the BD coordinate system, which is used
+internally in BeamDyn and introduced in the previous section. The axis
+convention relations between the initial blade reference coordinate
+system and the BD coordinate system can be found in <a class="reference internal" href="#iecbd"><span class="std std-numref">Table 4.3</span></a>.</p>
+<span id="iecbd"></span><table class="docutils align-default" id="id14">
+<caption><span class="caption-number">Table 4.3 </span><span class="caption-text">Transformation between blade coordinate system and BD coordinate system.</span><a class="headerlink" href="#id14" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 22%" />
+<col style="width: 26%" />
+<col style="width: 26%" />
+<col style="width: 26%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Blade Frame</p></td>
+<td><p><span class="math notranslate nohighlight">\(X_{r0}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(Y_{r0}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(Z_{r0}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>BD Frame</p></td>
+<td><p><span class="math notranslate nohighlight">\(x_2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(x_3\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(x_1\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="local-blade-coordinate-system">
+<h3><span class="section-number">4.7.5.1.4. </span>Local blade coordinate system<a class="headerlink" href="#local-blade-coordinate-system" title="Permalink to this heading"></a></h3>
+<p>The local blade coordinate system is used for some input and output
+quantities, for example, the cross-sectional mass and stiffness matrices
+and the sectional force and moment resultants. This coordinate
+system is different from the blade reference coordinate system in that
+its <span class="math notranslate nohighlight">\(Z_l\)</span> axis is always tangent to the blade axis as the blade
+deflects. Note that a subscript <span class="math notranslate nohighlight">\(l\)</span> denotes the local blade
+coordinate system.</p>
+</div>
+</div>
+<div class="section" id="geometrically-exact-beam-theory">
+<h2><span class="section-number">4.7.5.2. </span>Geometrically Exact Beam Theory<a class="headerlink" href="#geometrically-exact-beam-theory" title="Permalink to this heading"></a></h2>
+<p>The theoretical foundation of BeamDyn is the geometrically exact beam
+theory. This theory features the capability of beams that are initially
+curved and twisted and subjected to large displacement and rotations.
+Along with a proper two-dimensional (2D) cross-sectional analysis, the
+coupling effects between all six DOFs, including extension, bending,
+shear, and torsion, can be captured by GEBT as well . The term,
+“geometrically exact” refer to the fact that there is no approximation
+made on the geometries, including both initial and deformed geometries,
+in formulating the equations <span id="id2">[<a class="reference internal" href="zrefs.html#id2" title="Dewey H. Hodges. Nonlinear Composite Beam Theory. AIAA, 2006.">Hod06</a>]</span>.</p>
+<p>The governing equations of motion for geometrically exact beam theory
+can be written as <span id="id3">[<a class="reference internal" href="zrefs.html#id3" title="O. A. Bauchau. Flexible Multibody Dynamics. Springer, 2010. doi:10.1007/978-94-007-0335-3.">Bau10</a>]</span></p>
+<div class="math notranslate nohighlight" id="equation-governgebt-1-2">
+<span class="eqno">(4.77)<a class="headerlink" href="#equation-governgebt-1-2" title="Permalink to this equation"></a></span>\[\begin{split}\dot{\underline{h}} - \underline{F}^\prime &amp;= \underline{f} \\
+\dot{\underline{g}} + \dot{\tilde{u}} \underline{h} - \underline{M}^\prime + (\tilde{x}_0^\prime + \tilde{u}^\prime)^T \underline{F} &amp;= \underline{m}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\({\underline{h}}\)</span> and <span class="math notranslate nohighlight">\({\underline{g}}\)</span> are the
+linear and angular momenta resolved in the inertial coordinate system,
+respectively; <span class="math notranslate nohighlight">\({\underline{F}}\)</span> and <span class="math notranslate nohighlight">\({\underline{M}}\)</span> are
+the beam’s sectional force and moment resultants, respectively;
+<span class="math notranslate nohighlight">\({\underline{u}}\)</span> is the one-dimensional (1D) displacement of a
+point on the reference line; <span class="math notranslate nohighlight">\({\underline{x}}_0\)</span> is the position
+vector of a point along the beam’s reference line; and
+<span class="math notranslate nohighlight">\({\underline{f}}\)</span> and <span class="math notranslate nohighlight">\({\underline{m}}\)</span> are the distributed
+force and moment applied to the beam structure. The notation
+<span class="math notranslate nohighlight">\((\bullet)^\prime\)</span> indicates a derivative with respect to beam
+axis <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(\dot{(\bullet)}\)</span> indicates a derivative with
+respect to time. The tilde operator <span class="math notranslate nohighlight">\(({\widetilde{\bullet}})\)</span>
+defines a skew-symmetric tensor corresponding to the given vector. In
+the literature, it is also termed as “cross-product matrix”. For
+example,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}{\widetilde{n}} =
+             \begin{bmatrix}
+             0 &amp; -n_3 &amp; n_2 \\
+             n_3 &amp; 0 &amp; -n_1 \\
+             -n_2 &amp; n_1 &amp; 0\\
+             \end{bmatrix}\end{split}\]</div>
+<p>The constitutive equations relate the velocities to the momenta and the
+1D strain measures to the sectional resultants as</p>
+<div class="math notranslate nohighlight" id="equation-constitutivemass-stiff">
+<span class="eqno">(4.78)<a class="headerlink" href="#equation-constitutivemass-stiff" title="Permalink to this equation"></a></span>\[ \begin{align}\begin{aligned}\begin{split}\begin{Bmatrix}
+\underline{h} \\
+\underline{g}
+\end{Bmatrix}
+= \underline{\underline{\mathcal{M}}} \begin{Bmatrix}
+\dot{\underline{u}} \\
+\underline{\omega}
+\end{Bmatrix} \\\end{split}\\\begin{split}\begin{Bmatrix}
+\underline{F} \\
+\underline{M}
+\end{Bmatrix}
+= \underline{\underline{\mathcal{C}}} \begin{Bmatrix}
+\underline{\epsilon} \\
+\underline{\kappa}
+\end{Bmatrix}\end{split}\end{aligned}\end{align} \]</div>
+<p>where <span class="math notranslate nohighlight">\(\underline{\underline{\mathcal{M}}}\)</span> and
+<span class="math notranslate nohighlight">\(\underline{\underline{\mathcal{C}}}\)</span> are the <span class="math notranslate nohighlight">\(6 \times 6\)</span>
+sectional mass and stiffness matrices, respectively (note that they are
+not really tensors); <span class="math notranslate nohighlight">\(\underline{\epsilon}\)</span> and
+<span class="math notranslate nohighlight">\(\underline{\kappa}\)</span> are the 1D strains and curvatures,
+respectively; and, <span class="math notranslate nohighlight">\(\underline{\omega}\)</span> is the angular velocity
+vector that is defined by the rotation tensor
+<span class="math notranslate nohighlight">\(\underline{\underline{R}}\)</span> as <span class="math notranslate nohighlight">\(\underline{\omega} =
+axial(\dot{\underline{\underline{R}}}~\underline{\underline{R}}^T)\)</span>. The
+axial vector <span class="math notranslate nohighlight">\({\underline{a}}\)</span> associated with a second-order
+tensor <span class="math notranslate nohighlight">\({\underline{\underline{A}}}\)</span> is denoted
+<span class="math notranslate nohighlight">\({\underline{a}}=axial({\underline{\underline{A}}})\)</span> and its
+components are defined as</p>
+<div class="math notranslate nohighlight" id="equation-axial">
+<span class="eqno">(4.79)<a class="headerlink" href="#equation-axial" title="Permalink to this equation"></a></span>\[\begin{split}{\underline{a}} = axial({\underline{\underline{A}}})=\begin{Bmatrix}
+a_1 \\
+a_2 \\
+a_3
+\end{Bmatrix}
+=\frac{1}{2}
+\begin{Bmatrix}
+A_{32}-A_{23} \\
+A_{13}-A_{31} \\
+A_{21}-A_{12}
+\end{Bmatrix}\end{split}\]</div>
+<p>The 1D strain measures are defined as</p>
+<div class="math notranslate nohighlight" id="equation-1dstrain">
+<span class="eqno">(4.80)<a class="headerlink" href="#equation-1dstrain" title="Permalink to this equation"></a></span>\[\begin{split}\begin{Bmatrix}
+   {\underline{\epsilon}} \\
+   {\underline{\kappa}}
+\end{Bmatrix}
+=
+\begin{Bmatrix}
+        {\underline{x}}^\prime_0 + {\underline{u}}^\prime - ({\underline{\underline{R}}} ~{\underline{\underline{R}}}_0) \bar{\imath}_1 \\
+        {\underline{k}}
+\end{Bmatrix}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\({\underline{k}} = axial [({\underline{\underline{R R_0}}})^\prime ({\underline{\underline{R R_0}}})^T]\)</span> is the sectional curvature vector resolved in the inertial basis; <span class="math notranslate nohighlight">\({\underline{\underline{R}}}_0\)</span> is the initial rotation tensor; and <span class="math notranslate nohighlight">\(\bar{\imath}_1\)</span> is the unit vector along <span class="math notranslate nohighlight">\(x_1\)</span> direction in the inertial basis. These three sets of equations, including equations of motion Eq. <a class="reference internal" href="#equation-governgebt-1-2">(4.77)</a>, constitutive equations Eq. <a class="reference internal" href="#equation-constitutivemass-stiff">(4.78)</a>, and kinematical equations Eq. <a class="reference internal" href="#equation-1dstrain">(4.80)</a>, provide a full mathematical description of the beam elasticity problems.</p>
+</div>
+<div class="section" id="numerical-implementation-with-legendre-spectral-finite-elements">
+<span id="num-imp"></span><h2><span class="section-number">4.7.5.3. </span>Numerical Implementation with Legendre Spectral Finite Elements<a class="headerlink" href="#numerical-implementation-with-legendre-spectral-finite-elements" title="Permalink to this heading"></a></h2>
+<p>For a displacement-based finite element implementation, there are six
+degree-of-freedoms at each node: three displacement components and three
+rotation components. Here we use <span class="math notranslate nohighlight">\({\underline{q}}\)</span> to denote the
+elemental displacement array as <span class="math notranslate nohighlight">\(\underline{q}=\left[
+\underline{u}^T~~\underline{c}^T\right]\)</span> where <span class="math notranslate nohighlight">\({\underline{u}}\)</span>
+is the displacement and <span class="math notranslate nohighlight">\({\underline{c}}\)</span> is the
+rotation-parameter vector. The acceleration array can thus be defined as
+<span class="math notranslate nohighlight">\(\underline{a}=\left[ \ddot{\underline{u}}^T~~ \dot{\underline{\omega}}^T \right]\)</span>.
+For nonlinear finite-element analysis, the discretized and incremental
+forms of displacement, velocity, and acceleration are written as</p>
+<div class="math notranslate nohighlight" id="equation-discretized">
+<span class="eqno">(4.81)<a class="headerlink" href="#equation-discretized" title="Permalink to this equation"></a></span>\[\begin{split}\underline{q} (x_1) &amp;= \underline{\underline{N}} ~\hat{\underline{q}}~~~~\Delta \underline{q}^T = \left[ \Delta \underline{u}^T~~\Delta \underline{c}^T \right] \\
+\underline{v}(x_1) &amp;= \underline{\underline{N}}~\hat{\underline{v}}~~~~\Delta \underline{v}^T = \left[\Delta \underline{\dot{u}}^T~~\Delta \underline{\omega}^T \right] \\
+\underline{a}(x_1) &amp;= \underline{\underline{N}}~ \hat{\underline{a}}~~~~\Delta \underline{a}^T = \left[ \Delta \ddot{\underline{u}}^T~~\Delta \dot{\underline{\omega}}^T \right]\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\({\underline{\underline{N}}}\)</span> is the shape function matrix
+and <span class="math notranslate nohighlight">\((\hat{\cdot})\)</span> denotes a column matrix of nodal values.</p>
+<p>The displacement fields in an element are approximated as</p>
+<div class="math notranslate nohighlight" id="equation-interpolatedisp">
+<span class="eqno">(4.82)<a class="headerlink" href="#equation-interpolatedisp" title="Permalink to this equation"></a></span>\[\begin{split}{\underline{u}}(\xi) &amp;=  h^k(\xi) {\underline{\hat{u}}}^k \\
+{\underline{u}}^\prime(\xi) &amp;=  h^{k\prime}(\xi) {\underline{\hat{u}}}^k\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(h^k(\xi)\)</span>, the component of shape function matrix
+<span class="math notranslate nohighlight">\({\underline{\underline{N}}}\)</span>, is the <span class="math notranslate nohighlight">\(p^{th}\)</span>-order
+polynomial Lagrangian-interpolant shape function of node <span class="math notranslate nohighlight">\(k\)</span>,
+<span class="math notranslate nohighlight">\(k=\{1,2,...,p+1\}\)</span>, <span class="math notranslate nohighlight">\({\underline{\hat{u}}}^k\)</span> is the
+<span class="math notranslate nohighlight">\(k^{th}\)</span> nodal value, and <span class="math notranslate nohighlight">\(\xi \in \left[-1,1\right]\)</span> is the
+element natural coordinate. However, as discussed in
+<span id="id4">[<a class="reference internal" href="zrefs.html#id4" title="O.A. Bauchau, A. Epple, and S.D. Heo. Interpolation of finite rotations in flexible multibody dynamics simulations. Proceedings of the Institution of Mechanical Engineers, Part K: Journal of Multi-body Dynamics, 222:353–366, 2008.">BEH08</a>]</span>, the 3D rotation field cannot
+simply be interpolated as the displacement field in the form of</p>
+<div class="math notranslate nohighlight" id="equation-interpolaterot">
+<span class="eqno">(4.83)<a class="headerlink" href="#equation-interpolaterot" title="Permalink to this equation"></a></span>\[\begin{split}{\underline{c}}(\xi) &amp;= h^k(\xi) {\underline{\hat{c}}}^k \\
+{\underline{c}}^\prime(\xi) &amp;= h^{k \prime}(\xi) {\underline{\hat{c}}}^k\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\({\underline{c}}\)</span> is the rotation field in an element and
+<span class="math notranslate nohighlight">\({\underline{\hat{c}}}^k\)</span> is the nodal value at the <span class="math notranslate nohighlight">\(k^{th}\)</span>
+node, for three reasons:</p>
+<ol class="arabic simple">
+<li><p>rotations do not form a linear space so that they must be “composed” rather than added;</p></li>
+<li><p>a rescaling operation is needed to eliminate the singularity existing in the vectorial rotation parameters;</p></li>
+<li><p>the rotation field lacks objectivity, which, as defined by <span id="id5">[<a class="reference internal" href="zrefs.html#id5" title="G. Jelenić and M. A. Crisfield. Geometrically exact 3d beam theory: implementation of a strain-invariant finite element for statics and dynamics. Computer Methods in Applied Mechanics and Engineering, 171:141–171, 1999.">JelenicC99</a>]</span>, refers to the invariance of strain measures computed through interpolation to the addition of a rigid-bodymotion.</p></li>
+</ol>
+<p>Therefore, we adopt the more robust interpolation approach
+proposed by <span id="id6">[<a class="reference internal" href="zrefs.html#id5" title="G. Jelenić and M. A. Crisfield. Geometrically exact 3d beam theory: implementation of a strain-invariant finite element for statics and dynamics. Computer Methods in Applied Mechanics and Engineering, 171:141–171, 1999.">JelenicC99</a>]</span> to deal with the finite
+rotations. Our approach is described as follows</p>
+<dl>
+<dt>Step 1:</dt><dd><p>Compute the nodal relative rotations,
+<span class="math notranslate nohighlight">\({\underline{\hat{r}}}^k\)</span>, by removing the reference rotation,
+<span class="math notranslate nohighlight">\({\underline{\hat{c}}}^1\)</span>, from the finite rotation at each
+node,
+<span class="math notranslate nohighlight">\({\underline{\hat{r}}}^k = ({\underline{\hat{c}}}^{1-}) \oplus
+{\underline{\hat{c}}}^k\)</span>. It is noted that the minus sign on
+<span class="math notranslate nohighlight">\({\underline{\hat{c}}}^1\)</span> denotes that the relative rotation
+is calculated by removing the reference rotation from each node. The
+composition in that equation is an equivalent of
+<span class="math notranslate nohighlight">\({\underline{\underline{R}}}({\underline{\hat{r}}}^k) = {\underline{\underline{R}}}^T({\underline{\hat{c}}}^1)~{\underline{\underline{R}}}({\underline{{\underline{c}}}}^k).\)</span></p>
+</dd>
+<dt>Step 2:</dt><dd><p>Interpolate the relative-rotation field:
+<span class="math notranslate nohighlight">\({\underline{r}}(\xi) = h^k(\xi) {\underline{\hat{r}}}^k\)</span> and
+<span class="math notranslate nohighlight">\({\underline{r}}^\prime(\xi) = h^{k \prime}(\xi) {\underline{\hat{r}}}^k\)</span>.
+Find the curvature field
+<span class="math notranslate nohighlight">\({\underline{\kappa}}(\xi) = {\underline{\underline{R}}}({\underline{\hat{c}}}^1) {\underline{\underline{H}}}({\underline{r}}) {\underline{r}}^\prime\)</span>,
+where <span class="math notranslate nohighlight">\({\underline{\underline{H}}}\)</span> is the tangent tensor that
+relates the curvature vector <span class="math notranslate nohighlight">\({\underline{k}}\)</span> and rotation
+vector <span class="math notranslate nohighlight">\({\underline{c}}\)</span> as</p>
+<div class="math notranslate nohighlight" id="equation-tensor">
+<span class="eqno">(4.84)<a class="headerlink" href="#equation-tensor" title="Permalink to this equation"></a></span>\[    {\underline{k}} = {\underline{\underline{H}}}~ {\underline{c}}^\prime\]</div>
+</dd>
+<dt>Step 3:</dt><dd><p>Restore the rigid-body rotation removed in Step 1:
+<span class="math notranslate nohighlight">\({\underline{c}}(\xi) = {\underline{\hat{c}}}^1 \oplus {\underline{r}}(\xi)\)</span>.</p>
+</dd>
+</dl>
+<p>Note that the relative-rotation field can be computed with respect to
+any of the nodes of the element; we choose node 1 as the reference node
+for convenience. In the LSFE approach, shape functions (i.e., those
+composing <span class="math notranslate nohighlight">\({\underline{\underline{N}}}\)</span>) are <span class="math notranslate nohighlight">\(p^{th}\)</span>-order
+Lagrangian interpolants, where nodes are located at the <span class="math notranslate nohighlight">\(p+1\)</span>
+Gauss-Lobatto-Legendre (GLL) points in the <span class="math notranslate nohighlight">\([-1,1]\)</span> element
+natural-coordinate domain. <a class="reference internal" href="#n4-lsfe"><span class="std std-numref">Fig. 4.34</span></a> shows representative
+LSFE basis functions for fourth- and eighth-order elements. Note that
+nodes are clustered near element endpoints. More details on the LSFE and
+its applications can be found in
+References <span id="id7">[<a class="reference internal" href="zrefs.html#id15" title="A. T. Patera. A spectral element method for fluid dynamics: laminar flow in a channel expansion. Journal of Computational Physics, 54:468–488, 1984.">Pat84</a>, <a class="reference internal" href="zrefs.html#id16" title="E. M. Ronquist and A. T. Patera. A legendre spectral element method for the stefan problem. International Journal for Numerical Methods in Engineering, 24:2273–2299, 1987.">RP87</a>, <a class="reference internal" href="zrefs.html#id17" title="M. A. Sprague and T. L. Geers. Spectral elements and field separation for an acoustic fluid subject to cavitation. Journal of Computational Physics, 184:149–162, 2003.">SG03</a>, <a class="reference internal" href="zrefs.html#id18" title="M. A. Sprague and T. L. Geers. A spectral-element method for modeling cavitation in transient fluid-structure interaction. International Journal for Numerical Methods in Engineering, 60:2467–2499, 2004.">SG04</a>]</span>.</p>
+<div class="figure align-center" id="id15">
+<span id="n4-lsfe"></span><a class="reference internal image-reference" href="../../../_images/n4.png"><img alt="../../../_images/n4.png" src="../../../_images/n4.png" style="width: 47%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.34 </span><span class="caption-text">Representative <span class="math notranslate nohighlight">\(p+1\)</span> Lagrangian-interpolant shape functions in the element natural coordinates for a fourth-order LSFEs, where nodes are located at the Gauss-Lobatto-Legendre points.</span><a class="headerlink" href="#id15" title="Permalink to this image"></a></p>
+</div>
+<div class="figure align-center" id="id16">
+<span id="n8-lsfe"></span><a class="reference internal image-reference" href="../../../_images/n8.png"><img alt="../../../_images/n8.png" src="../../../_images/n8.png" style="width: 47%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.35 </span><span class="caption-text">Representative <span class="math notranslate nohighlight">\(p+1\)</span> Lagrangian-interpolant shape functions in the element natural coordinates for a eighth-order LSFEs, where nodes are located at the Gauss-Lobatto-Legendre points.</span><a class="headerlink" href="#id16" title="Permalink to this image"></a></p>
+</div>
+</div>
+<div class="section" id="wiener-milenkovic-rotation-parameter">
+<h2><span class="section-number">4.7.5.4. </span>Wiener-Milenković Rotation Parameter<a class="headerlink" href="#wiener-milenkovic-rotation-parameter" title="Permalink to this heading"></a></h2>
+<p>In BeamDyn, the 3D rotations are represented as Wiener-Milenković
+parameters defined in the following equation:</p>
+<div class="math notranslate nohighlight" id="equation-wmparameter">
+<span class="eqno">(4.85)<a class="headerlink" href="#equation-wmparameter" title="Permalink to this equation"></a></span>\[{\underline{c}} = 4 \tan\left(\frac{\phi}{4} \right) \bar{n}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\phi\)</span> is the rotation angle and <span class="math notranslate nohighlight">\(\bar{n}\)</span> is the
+unit vector of the rotation axis. It can be observed that the valid
+range for this parameter is <span class="math notranslate nohighlight">\(|\phi| &lt; 2 \pi\)</span>. The singularities
+existing at integer multiples of <span class="math notranslate nohighlight">\(\pm 2 \pi\)</span> can be removed by a
+rescaling operation at <span class="math notranslate nohighlight">\(\pi\)</span> as:</p>
+<div class="math notranslate nohighlight" id="equation-rescaledwm">
+<span class="eqno">(4.86)<a class="headerlink" href="#equation-rescaledwm" title="Permalink to this equation"></a></span>\[\begin{split}{\underline{r}} = \begin{cases}
+4(q_0{\underline{p}} + p_0 {\underline{q}} + \tilde{p} {\underline{q}} ) / (\Delta_1 + \Delta_2), &amp; \text{if } \Delta_2 \geq 0 \\
+-4(q_0{\underline{p}} + p_0 {\underline{q}} + \tilde{p} {\underline{q}} ) / (\Delta_1 - \Delta_2), &amp; \text{if } \Delta_2 &lt; 0
+\end{cases}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\({\underline{p}}\)</span>, <span class="math notranslate nohighlight">\({\underline{q}}\)</span>, and
+<span class="math notranslate nohighlight">\({\underline{r}}\)</span> are the vectorial parameterization of three
+finite rotations such that
+<span class="math notranslate nohighlight">\({\underline{\underline{R}}}({\underline{r}}) = {\underline{\underline{R}}}({\underline{p}}) {\underline{\underline{R}}}({\underline{q}})\)</span>,
+<span class="math notranslate nohighlight">\(p_0 = 2 - {\underline{p}}^T {\underline{p}}/8\)</span>,
+<span class="math notranslate nohighlight">\(q_0 = 2 - {\underline{q}}^T {\underline{q}}/8\)</span>,
+<span class="math notranslate nohighlight">\(\Delta_1 = (4-p_0)(4-q_0)\)</span>, and
+<span class="math notranslate nohighlight">\(\Delta_2 = p_0 q_0 - {\underline{p}}^T {\underline{q}}\)</span>. It is
+noted that the rescaling operation could cause a discontinuity of the
+interpolated rotation field; therefore a more robust interpolation
+algorithm has been introduced in Section <a class="reference internal" href="#num-imp"><span class="std std-ref">Numerical Implementation with Legendre Spectral Finite Elements</span></a> where the
+rescaling-independent relative-rotation field is interpolated.</p>
+<p>The rotation tensor expressed in terms of Wiener-Milenković parameters is</p>
+<div class="math notranslate nohighlight" id="equation-eqn-rottensorwm">
+<span class="eqno">(4.87)<a class="headerlink" href="#equation-eqn-rottensorwm" title="Permalink to this equation"></a></span>\[\begin{split}{\underline{\underline{R}}} ({\underline{c}}) = \frac{1}{(4-c_0)^2}
+\begin{bmatrix}
+c_0^2 + c_1^2 - c_2^2 - c_3^2 &amp; 2(c_1 c_2 - c_0 c_3) &amp; 2(c_1 c_3 + c_0 c_2) \\
+2(c_1 c_2 + c_0 c_3) &amp; c_0^2 - c_1^2 + c_2^2 - c_3^2 &amp; 2(c_2 c_3 - c_0 c_1) \\
+2(c_1 c_3 - c_0 c_2)  &amp; 2(c_2 c_3 + c_0 c_1) &amp; c_0^2 - c_1^2 - c_2^2 + c_3^2 \\
+\end{bmatrix}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\({\underline{c}} = \left[ c_1~~c_2~~c_3\right]^T\)</span> is the
+Wiener-Milenković parameter and
+<span class="math notranslate nohighlight">\(c_0 = 2 - \frac{1}{8}{\underline{c}}^T {\underline{c}}\)</span>. The
+relation between rotation tensor and direction cosine matrix (DCM) is</p>
+<div class="math notranslate nohighlight" id="equation-rt2dcm">
+<span class="eqno">(4.88)<a class="headerlink" href="#equation-rt2dcm" title="Permalink to this equation"></a></span>\[{\underline{\underline{R}}} = ({\underline{\underline{DCM}}})^T\]</div>
+<p>Interested users are referred to <span id="id8">[<a class="reference internal" href="zrefs.html#id4" title="O.A. Bauchau, A. Epple, and S.D. Heo. Interpolation of finite rotations in flexible multibody dynamics simulations. Proceedings of the Institution of Mechanical Engineers, Part K: Journal of Multi-body Dynamics, 222:353–366, 2008.">BEH08</a>]</span>
+and <span id="id9">[<a class="reference internal" href="zrefs.html#id6" title="Q. Wang, W. Yu, and M.A. Sprague. Gemoetrically nonlinear analysis of composite beams using wiener-milenković parameters. In Proceedings of the 54th Structures, Structural Dynamics, and Materials Conference. Boston, Massachusetts, April 2013.">WYS13</a>]</span> for more details on the rotation
+parameter and its implementation with GEBT.</p>
+</div>
+<div class="section" id="linearization-process">
+<h2><span class="section-number">4.7.5.5. </span>Linearization Process<a class="headerlink" href="#linearization-process" title="Permalink to this heading"></a></h2>
+<p>The nonlinear governing equations introduced in the previous section are
+solved by Newton-Raphson method, where a linearization process is
+needed. The linearization of each term in the governing equations are
+presented in this section.</p>
+<p>According to <span id="id10">[<a class="reference internal" href="zrefs.html#id3" title="O. A. Bauchau. Flexible Multibody Dynamics. Springer, 2010. doi:10.1007/978-94-007-0335-3.">Bau10</a>]</span>, the linearized governing
+equations in Eq.  <a class="reference internal" href="#equation-governgebt-1-2">(4.77)</a> are in the form of</p>
+<div class="math notranslate nohighlight" id="equation-linearizedeqn">
+<span class="eqno">(4.89)<a class="headerlink" href="#equation-linearizedeqn" title="Permalink to this equation"></a></span>\[\hat{\underline{\underline{M}}} \Delta \hat{\underline{a}} +\hat{\underline{\underline{G}}} \Delta \hat{\underline{v}}+ \hat{\underline{\underline{K}}} \Delta \hat{\underline{q}} = \hat{\underline{F}}^{ext} - \hat{\underline{F}}\]</div>
+<p>where the <span class="math notranslate nohighlight">\(\hat{{\underline{\underline{M}}}}\)</span>,
+<span class="math notranslate nohighlight">\(\hat{{\underline{\underline{G}}}}\)</span>, and
+<span class="math notranslate nohighlight">\(\hat{{\underline{\underline{K}}}}\)</span> are the elemental mass,
+gyroscopic, and stiffness matrices, respectively;
+<span class="math notranslate nohighlight">\(\hat{{\underline{F}}}\)</span> and <span class="math notranslate nohighlight">\(\hat{{\underline{F}}}^{ext}\)</span>
+are the elemental forces and externally applied loads, respectively.
+They are defined for an element of length <span class="math notranslate nohighlight">\(l\)</span> along <span class="math notranslate nohighlight">\(x_1\)</span> as
+follows</p>
+<div class="math notranslate nohighlight" id="equation-hatmgkffext">
+<span class="eqno">(4.90)<a class="headerlink" href="#equation-hatmgkffext" title="Permalink to this equation"></a></span>\[\begin{split}\hat{{\underline{\underline{M}}}}&amp;= \int_0^l \underline{\underline{N}}^T \mathcal{\underline{\underline{M}}} ~\underline{\underline{N}} dx_1 \\
+\hat{{\underline{\underline{G}}}} &amp;= \int_0^l {\underline{\underline{N}}}^T {\underline{\underline{\mathcal{G}}}}^I~{\underline{\underline{N}}} dx_1\\
+\hat{{\underline{\underline{K}}}}&amp;=\int_0^l \left[ {\underline{\underline{N}}}^T ({\underline{\underline{\mathcal{K}}}}^I + \mathcal{{\underline{\underline{Q}}}})~ {\underline{\underline{N}}} + {\underline{\underline{N}}}^T \mathcal{{\underline{\underline{P}}}}~ {\underline{\underline{N}}}^\prime + {\underline{\underline{N}}}^{\prime T} \mathcal{{\underline{\underline{C}}}}~ {\underline{\underline{N}}}^\prime + {\underline{\underline{N}}}^{\prime T} \mathcal{{\underline{\underline{O}}}}~ {\underline{\underline{N}}} \right] d x_1 \\
+\hat{{\underline{F}}} &amp;= \int_0^l ({\underline{\underline{N}}}^T {\underline{\mathcal{F}}}^I + {\underline{\underline{N}}}^T \mathcal{{\underline{F}}}^D + {\underline{\underline{N}}}^{\prime T} \mathcal{{\underline{F}}}^C)dx_1 \\
+\hat{{\underline{F}}}^{ext}&amp; = \int_0^l {\underline{\underline{N}}}^T \mathcal{{\underline{F}}}^{ext} dx_1\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathcal{{\underline{F}}}^{ext}\)</span> is the applied load
+vector. The new matrix notations in Eqs. <a class="reference internal" href="#equation-hatmgkffext">(4.90)</a> to are briefly introduced
+here. <span class="math notranslate nohighlight">\(\mathcal{{\underline{F}}}^C\)</span> and
+<span class="math notranslate nohighlight">\(\mathcal{{\underline{F}}}^D\)</span> are elastic forces obtained from
+Eq. <a class="reference internal" href="#equation-governgebt-1-2">(4.77)</a> as</p>
+<div class="math notranslate nohighlight" id="equation-fcd">
+<span class="eqno">(4.91)<a class="headerlink" href="#equation-fcd" title="Permalink to this equation"></a></span>\[\begin{split}\mathcal{{\underline{F}}}^C &amp;= \begin{Bmatrix}
+    {\underline{F}} \\
+{\underline{M}}
+\end{Bmatrix} = {\underline{\underline{\mathcal{C}}}} \begin{Bmatrix}
+{\underline{\epsilon}} \\
+{\underline{\kappa}}
+\end{Bmatrix} \\
+\mathcal{{\underline{F}}}^D &amp; = \begin{bmatrix}
+\underline{\underline{0}} &amp; \underline{\underline{0}}\\
+(\tilde{x}_0^\prime+\tilde{u}^\prime)^T &amp; \underline{\underline{0}}
+\end{bmatrix}
+\mathcal{{\underline{F}}}^C \equiv {\underline{\underline{\Upsilon}}}~ \mathcal{{\underline{F}}}^C\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\underline{\underline{0}}\)</span> denotes a <span class="math notranslate nohighlight">\(3 \times 3\)</span>
+null matrix. The <span class="math notranslate nohighlight">\({\underline{\underline{\mathcal{G}}}}^I\)</span>,
+<span class="math notranslate nohighlight">\({\underline{\underline{\mathcal{K}}}}^I\)</span>,
+<span class="math notranslate nohighlight">\(\mathcal{{\underline{\underline{O}}}}\)</span>,
+<span class="math notranslate nohighlight">\(\mathcal{{\underline{\underline{P}}}}\)</span>,
+<span class="math notranslate nohighlight">\(\mathcal{{\underline{\underline{Q}}}}\)</span>, and
+<span class="math notranslate nohighlight">\({\underline{\mathcal{F}}}^I\)</span> in Eqs. <a class="reference internal" href="#equation-hatmgkffext">(4.90)</a>  are defined as</p>
+<div class="math notranslate nohighlight" id="equation-mathcalgkopfi">
+<span class="eqno">(4.92)<a class="headerlink" href="#equation-mathcalgkopfi" title="Permalink to this equation"></a></span>\[\begin{split}{\underline{\underline{\mathcal{G}}}}^I &amp;= \begin{bmatrix}
+{\underline{\underline{0}}} &amp; (\widetilde{\tilde{\omega} m {\underline{\eta}}})^T+\tilde{\omega} m \tilde{\eta}^T  \\
+{\underline{\underline{0}}} &amp; \tilde{\omega} {\underline{\underline{\varrho}}}-\widetilde{{\underline{\underline{\varrho}}} {\underline{\omega}}}
+\end{bmatrix} \\
+{\underline{\underline{\mathcal{K}}}}^I &amp;= \begin{bmatrix}
+{\underline{\underline{0}}} &amp; \dot{\tilde{\omega}}m\tilde{\eta}^T + \tilde{\omega} \tilde{\omega}m\tilde{\eta}^T  \\
+{\underline{\underline{0}}} &amp; \ddot{\tilde{u}}m\tilde{\eta} + {\underline{\underline{\varrho}}} \dot{\tilde{\omega}}-\widetilde{{\underline{\underline{\varrho}}} {\underline{\dot{\omega}}}}+\tilde{\omega} {\underline{\underline{\varrho}}} \tilde{\omega} - \tilde{\omega}  \widetilde{{\underline{\underline{\varrho}}} {\underline{\omega}}}
+\end{bmatrix}\\
+\mathcal{{\underline{\underline{O}}}} &amp;= \begin{bmatrix}
+{\underline{\underline{0}}} &amp; {\underline{\underline{C}}}_{11} \tilde{E_1} - \tilde{F} \\
+{\underline{\underline{0}}}&amp; {\underline{\underline{C}}}_{21} \tilde{E_1} - \tilde{M}
+\end{bmatrix} \\
+\mathcal{{\underline{\underline{P}}}} &amp;= \begin{bmatrix}
+{\underline{\underline{0}}} &amp; {\underline{\underline{0}}} \\
+\tilde{F} +  ({\underline{\underline{C}}}_{11} \tilde{E_1})^T &amp; ({\underline{\underline{C}}}_{21} \tilde{E_1})^T
+\end{bmatrix}  \\
+\mathcal{{\underline{\underline{Q}}}} &amp;= {\underline{\underline{\Upsilon}}}~ \mathcal{{\underline{\underline{O}}}} \\
+{\underline{\mathcal{F}}}^I &amp;= \begin{Bmatrix}
+m \ddot{{\underline{u}}} + (\dot{\tilde{\omega}} + \tilde{\omega} \tilde{\omega})m {\underline{\eta}} \\
+m \tilde{\eta} \ddot{{\underline{u}}} +{\underline{\underline{\varrho}}}\dot{{\underline{\omega}}}+\tilde{\omega}{\underline{\underline{\varrho}}}{\underline{\omega}}
+\end{Bmatrix}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(m\)</span> is the mass density per unit length,
+<span class="math notranslate nohighlight">\({\underline{\eta}}\)</span> is the location of the sectional center of
+mass, <span class="math notranslate nohighlight">\({\underline{\underline{\varrho}}}\)</span> is the moment of inertia
+tensor, and the following notations were introduced to simplify the
+above expressions</p>
+<div class="math notranslate nohighlight" id="equation-e1-partc">
+<span class="eqno">(4.93)<a class="headerlink" href="#equation-e1-partc" title="Permalink to this equation"></a></span>\[\begin{split}{\underline{E}}_1 &amp;= {\underline{x}}_0^\prime + {\underline{u}}^\prime \\
+{\underline{\underline{\mathcal{C}}}} &amp;= \begin{bmatrix}
+{\underline{\underline{C}}}_{11} &amp; {\underline{\underline{C}}}_{12} \\
+{\underline{\underline{C}}}_{21} &amp; {\underline{\underline{C}}}_{22}
+\end{bmatrix}\end{split}\]</div>
+</div>
+<div class="section" id="damping-forces-and-linearization">
+<h2><span class="section-number">4.7.5.6. </span>Damping Forces and Linearization<a class="headerlink" href="#damping-forces-and-linearization" title="Permalink to this heading"></a></h2>
+<p>A viscous damping model has been implemented into BeamDyn to account for
+the structural damping effect. The damping force is defined as</p>
+<div class="math notranslate nohighlight" id="equation-damping">
+<span class="eqno">(4.94)<a class="headerlink" href="#equation-damping" title="Permalink to this equation"></a></span>\[\begin{split}{\underline{f}}_d = {\underline{\underline{\mu}}}~ {\underline{\underline{\mathcal{C}}}} \begin{Bmatrix}
+\dot{\epsilon} \\
+\dot{\kappa}
+\end{Bmatrix}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\({\underline{\underline{\mu}}}\)</span> is a user-defined
+damping-coefficient diagonal matrix. The damping force can be recast in
+two separate parts, like <span class="math notranslate nohighlight">\({\underline{\mathcal{F}}}^C\)</span> and
+<span class="math notranslate nohighlight">\({\underline{\mathcal{F}}}^D\)</span> in the elastic force, as</p>
+<div class="math notranslate nohighlight" id="equation-dampingforce-1-2">
+<span class="eqno">(4.95)<a class="headerlink" href="#equation-dampingforce-1-2" title="Permalink to this equation"></a></span>\[\begin{split}{\underline{\mathcal{F}}}^C_d &amp;= \begin{Bmatrix}
+{\underline{F}}_d \\
+{\underline{M}}_d
+\end{Bmatrix} \\
+{\underline{\mathcal{F}}}^D_d &amp;= \begin{Bmatrix}
+ {\underline{0}} \\
+ (\tilde{x}^\prime_0 + \tilde{u}^\prime)^T \underline{F}_d
+ \end{Bmatrix}\end{split}\]</div>
+<p>The linearization of the structural damping forces are as follows:</p>
+<div class="math notranslate nohighlight" id="equation-dampingforcelinear-1-2">
+<span class="eqno">(4.96)<a class="headerlink" href="#equation-dampingforcelinear-1-2" title="Permalink to this equation"></a></span>\[\begin{split}\Delta {\underline{\mathcal{F}}}^C_d &amp;= {\underline{\underline{\mathcal{S}}}}_d \begin{Bmatrix}
+\Delta {\underline{u}}^\prime \\
+\Delta {\underline{c}}^\prime
+\end{Bmatrix} + {\underline{\underline{\mathcal{O}}}}_d \begin{Bmatrix}
+\Delta {\underline{u}} \\
+\Delta {\underline{c}}
+\end{Bmatrix} + {\underline{\underline{\mathcal{G}}}}_d \begin{Bmatrix}
+\Delta {\underline{\dot{u}}} \\
+\Delta {\underline{\omega}}
+\end{Bmatrix}     + {\underline{\underline{\mu}}} ~{\underline{\underline{C}}} \begin{Bmatrix}
+\Delta {\underline{\dot{u}}}^\prime \\
+\Delta {\underline{\omega}}^\prime
+\end{Bmatrix} \\
+\Delta {\underline{\mathcal{F}}}^D_d &amp;= {\underline{\underline{\mathcal{P}}}}_d \begin{Bmatrix}
+\Delta {\underline{u}}^\prime \\
+\Delta {\underline{c}}^\prime
+\end{Bmatrix} + {\underline{\underline{\mathcal{Q}}}}_d \begin{Bmatrix}
+\Delta {\underline{u}} \\
+\Delta {\underline{c}}
+\end{Bmatrix} + {\underline{\underline{\mathcal{X}}}}_d \begin{Bmatrix}
+\Delta {\underline{\dot{u}}} \\
+\Delta {\underline{\omega}}
+\end{Bmatrix}     + {\underline{\underline{\mathcal{Y}}}}_d \begin{Bmatrix}
+\Delta {\underline{\dot{u}}}^\prime \\
+\Delta {\underline{\omega}}^\prime
+\end{Bmatrix}\end{split}\]</div>
+<p>where the newly introduced matrices are defined as</p>
+<div class="math notranslate nohighlight" id="equation-dampingsd-od-gd-pd-qd-xd-yd">
+<span class="eqno">(4.97)<a class="headerlink" href="#equation-dampingsd-od-gd-pd-qd-xd-yd" title="Permalink to this equation"></a></span>\[\begin{split}{\underline{\underline{\mathcal{S}}}}_d &amp;=
+{\underline{\underline{\mu}}} {\underline{\underline{\mathcal{C}}}} \begin{bmatrix}
+\tilde{\omega}^T &amp; {\underline{\underline{0}}} \\
+{\underline{\underline{0}}} &amp; \tilde{\omega}^T
+\end{bmatrix} \\
+{\underline{\underline{\mathcal{O}}}}_d &amp;=
+\begin{bmatrix}
+{\underline{\underline{0}}} &amp; {\underline{\underline{\mu}}} {\underline{\underline{C}}}_{11} (\dot{\tilde{u}}^\prime - \tilde{\omega} \tilde{E}_1) - \tilde{F}_d \\
+{\underline{\underline{0}}} &amp;{\underline{\underline{\mu}}} {\underline{\underline{C}}}_{21} (\dot{\tilde{u}}^\prime - \tilde{\omega} \tilde{E}_1) - \tilde{M}_d
+\end{bmatrix} \\
+{\underline{\underline{\mathcal{G}}}}_d &amp;=
+\begin{bmatrix}
+{\underline{\underline{0}}} &amp; {\underline{\underline{C}}}_{11}^T {\underline{\underline{\mu}}}^T \tilde{E}_1 \\
+{\underline{\underline{0}}} &amp; {\underline{\underline{C}}}_{12}^T {\underline{\underline{\mu}}}^T \tilde{E}_1
+\end{bmatrix} \\
+{\underline{\underline{\mathcal{P}}}}_d &amp;=
+\begin{bmatrix}
+{\underline{\underline{0}}} &amp; {\underline{\underline{0}}}  \\
+\tilde{F}_d + \tilde{E}_1^T {\underline{\underline{\mu}}} {\underline{\underline{C}}}_{11} \tilde{\omega}^T &amp;  \tilde{E}_1^T {\underline{\underline{\mu}}} {\underline{\underline{C}}}_{12} \tilde{\omega}^T
+\end{bmatrix} \\
+{\underline{\underline{\mathcal{Q}}}}_d &amp;=
+\begin{bmatrix}
+{\underline{\underline{0}}} &amp; {\underline{\underline{0}}}  \\
+{\underline{\underline{0}}} &amp;  \tilde{E}_1^T {\underline{\underline{O}}}_{12}
+\end{bmatrix} \\
+{\underline{\underline{\mathcal{X}}}}_d &amp;=
+\begin{bmatrix}
+{\underline{\underline{0}}} &amp; {\underline{\underline{0}}}  \\
+ {\underline{\underline{0}}} &amp;  \tilde{E}_1^T {\underline{\underline{G}}}_{12}
+\end{bmatrix} \\
+{\underline{\underline{\mathcal{Y}}}}_d &amp;=
+\begin{bmatrix}
+{\underline{\underline{0}}} &amp; {\underline{\underline{0}}}  \\
+  \tilde{E}_1^T {\underline{\underline{\mu}}} {\underline{\underline{C}}}_{11} &amp;   \tilde{E}_1^T {\underline{\underline{\mu}}} {\underline{\underline{C}}}_{12}
+\end{bmatrix} \\\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\({\underline{\underline{O}}}_{12}\)</span> and
+<span class="math notranslate nohighlight">\({\underline{\underline{G}}}_{12}\)</span> are the <span class="math notranslate nohighlight">\(3 \times 3\)</span> sub
+matrices of <span class="math notranslate nohighlight">\(\mathcal{{\underline{\underline{O}}}}\)</span> and
+<span class="math notranslate nohighlight">\(\mathcal{{\underline{\underline{G}}}}\)</span> as
+<span class="math notranslate nohighlight">\({\underline{\underline{C}}}_{12}\)</span> in Eq. <a class="reference internal" href="#equation-e1-partc">(4.93)</a>.
+Modal Damping
+————-</p>
+<p>In addition to the stiffness-proportional viscous damping described above, BeamDyn
+also supports modal damping. This is currently only supported when run in tight coupling
+with OpenFAST. When modal damping is selected (<code class="docutils literal notranslate"><span class="pre">damp_flag</span> <span class="pre">=</span> <span class="pre">2</span></code>),
+BeamDyn computes the natural frequencies and mode shapes of the blade and applies
+damping in the modal coordinates.</p>
+<p>The modal damping approach constructs a damping matrix <span class="math notranslate nohighlight">\({\underline{\underline{C}}}_{modal}\)</span>
+based on user-specified modal damping ratios <span class="math notranslate nohighlight">\(\zeta_i\)</span> for modes <span class="math notranslate nohighlight">\(i = 1, 2, \ldots, n_{modes}\)</span>.
+Past the user-specified <span class="math notranslate nohighlight">\(n_{modes}\)</span>, BeamDyn assigns <span class="math notranslate nohighlight">\(\zeta_i\)</span> to grow proportional to the
+modal natural frequency and match the last prescribed <span class="math notranslate nohighlight">\(\zeta_i\)</span> value.
+The modal damping matrix is defined in terms of the modal properties:</p>
+<div class="math notranslate nohighlight" id="equation-modaldamping">
+<span class="eqno">(4.98)<a class="headerlink" href="#equation-modaldamping" title="Permalink to this equation"></a></span>\[{\underline{\underline{C}}}_{modal} = {\underline{\underline{\Phi}}}^{-T} {\underline{\underline{Z}}} {\underline{\underline{\Phi}}}^{-1}
+= {\underline{\underline{M}}} {\underline{\underline{\Phi}}} {\underline{\underline{Z}}} {\underline{\underline{\Phi}}}^T {\underline{\underline{M}}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\underline{\underline{Z}}\)</span> is a diagonal matrix with diagonal entry <span class="math notranslate nohighlight">\(i\)</span> equal to
+<span class="math notranslate nohighlight">\(2 \omega_i \zeta_i\)</span> for natural frequency in rad/s of <span class="math notranslate nohighlight">\(\omega_i\)</span>.
+Additionally, <span class="math notranslate nohighlight">\(\underline{\underline{\Phi}}\)</span> is the matrix of mass-normalized mode shapes
+(each as a column).
+<span class="math notranslate nohighlight">\(\underline{\underline{M}}\)</span> is the mass matrix after the quasi-static initialization.</p>
+<p>At each time step, a vector of nodal velocities is calculated subtracting off the rigid body motion of the root.
+This vector of velocities is rotated at each node to be aligned with the beam as initialized.
+Damping forces at nodes are then simply the product of the damping matrix and the vector of velocities.
+These forces are then rotated back to the global coordinates with the inverse of the velocity rotation.
+The extra rotations appear to give better modal damping results than fixing the damping matrix in the
+root frame.</p>
+<p>Modal damping gives the user mode-specific control of damping levels to better match
+experiments or theoretical damping predictions.
+Furthermore, modal damping need not grow proportional to frequency (as prescribed by
+stiffness proportional damping). Rather, more constant damping factors across frequency
+can be used as have been observed in some experiments and model predictions.</p>
+</div>
+<div class="section" id="convergence-criterion-and-generalized-alpha-time-integrator">
+<span id="convergence-criterion"></span><h2><span class="section-number">4.7.5.7. </span>Convergence Criterion and Generalized-<span class="math notranslate nohighlight">\(\alpha\)</span> Time Integrator<a class="headerlink" href="#convergence-criterion-and-generalized-alpha-time-integrator" title="Permalink to this heading"></a></h2>
+<p>The system of nonlinear equations in Eqs. <a class="reference internal" href="#equation-governgebt-1-2">(4.77)</a> are solved using the
+Newton-Raphson method with the linearized form in Eq. <a class="reference internal" href="#equation-linearizedeqn">(4.89)</a>. In the present
+implementation, an energy-like stopping criterion has been chosen, which
+is calculated as</p>
+<div class="math notranslate nohighlight" id="equation-stoppingcriterion">
+<span class="eqno">(4.99)<a class="headerlink" href="#equation-stoppingcriterion" title="Permalink to this equation"></a></span>\[| \Delta \mathbf{U}^{(i)T} \left( {^{t+\Delta t}} \mathbf{R} -  {^{t+\Delta t}} \mathbf{F}^{(i-1)}  \right) | \leq | \epsilon_E \left( \Delta \mathbf{U}^{(1)T} \left( {^{t+\Delta t}} \mathbf{R} - {^t}\mathbf{F} \right) \right) |\]</div>
+<p>where <span class="math notranslate nohighlight">\(|\cdot|\)</span> denotes the absolute value,
+<span class="math notranslate nohighlight">\(\Delta \mathbf{U}\)</span> is the incremental displacement vector,
+<span class="math notranslate nohighlight">\(\mathbf{R}\)</span> is the vector of externally applied nodal point
+loads, <span class="math notranslate nohighlight">\(\mathbf{F}\)</span> is the vector of nodal point forces
+corresponding to the internal element stresses, and <span class="math notranslate nohighlight">\(\epsilon_E\)</span>
+is the user-defined energy tolerance. The superscript on the left side
+of a variable denotes the time-step number (in a dynamic analysis),
+while the one on the right side denotes the Newton-Raphson iteration
+number. As pointed out by <span id="id11">[<a class="reference internal" href="zrefs.html#id19" title="K. J. Bathe and A. P. Cimento. Some practical procedures for the solution of nonlinear finite element equations. Computer Methods in Applied Mechanics and Engineering, 22:59–85, 1980. http://web.mit.edu/kjb/www/Publications_Prior_to_1998/Some_Practical_Procedures_for_the_Solution_of_Nonlinear_Finite_Element_Equations.pdf. doi:10.1016/0045-7825(80)90051-1.">BC80</a>]</span>, this
+criterion provides a measure of when both the displacements and the
+forces are near their equilibrium values.</p>
+<p>Time integration is performed using the generalized-<span class="math notranslate nohighlight">\(\alpha\)</span>
+scheme in BeamDyn, which is an unconditionally stable (for linear
+systems), second-order accurate algorithm. The scheme allows for users
+to choose integration parameters that introduce high-frequency numerical
+dissipation. The amount of numerical dissipation is controlled by the user-specified
+spectral radius at infinity, <span class="math notranslate nohighlight">\(\rho_{\infty}\)</span>. More details regarding the generalized-<span class="math notranslate nohighlight">\(\alpha\)</span>
+method can be found in <span id="id12">[<a class="reference internal" href="zrefs.html#id3" title="O. A. Bauchau. Flexible Multibody Dynamics. Springer, 2010. doi:10.1007/978-94-007-0335-3.">Bau10</a>, <a class="reference internal" href="zrefs.html#id20" title="J. Chung and G. M. Hulbert. A time integration algorithm for structural dynamics with improved numerical dissipation: the generalized-α method. Journal of Applied Mechanics, 60:371–375, 1993. doi:10.1115/1.2900803.">CH93</a>]</span>.</p>
+</div>
+<div class="section" id="calculation-of-reaction-loads">
+<h2><span class="section-number">4.7.5.8. </span>Calculation of Reaction Loads<a class="headerlink" href="#calculation-of-reaction-loads" title="Permalink to this heading"></a></h2>
+<p>Since the root motion of the wind turbine blade, including displacements
+and rotations, translational and angular velocities, and translational
+and angular accelerates, are prescribed as inputs to BeamDyn either by
+the driver (in stand-alone mode) or by FAST glue code (in FAST-coupled
+mode), the reaction loads at the root are needed to satisfy equality of
+the governing equations. The reaction loads at the root are also the
+loads passing from blade to hub in a full turbine analysis.</p>
+<p>The governing equations in Eq. <a class="reference internal" href="#equation-governgebt-1-2">(4.77)</a> can be recast in a compact form</p>
+<div class="math notranslate nohighlight" id="equation-compactgovern">
+<span class="eqno">(4.100)<a class="headerlink" href="#equation-compactgovern" title="Permalink to this equation"></a></span>\[{\underline{\mathcal{F}}}^I - {\underline{\mathcal{F}}}^{C\prime} + {\underline{\mathcal{F}}}^D = {\underline{\mathcal{F}}}^{ext}\]</div>
+<p>with all the vectors defined in Section [sec:LinearProcess]. At the
+blade root, the governing equation is revised as</p>
+<div class="math notranslate nohighlight" id="equation-compactgovernroot">
+<span class="eqno">(4.101)<a class="headerlink" href="#equation-compactgovernroot" title="Permalink to this equation"></a></span>\[{\underline{\mathcal{F}}}^I - {\underline{\mathcal{F}}}^{C\prime} + {\underline{\mathcal{F}}}^D = {\underline{\mathcal{F}}}^{ext}+{\underline{\mathcal{F}}}^R\]</div>
+<p>where <span class="math notranslate nohighlight">\({\underline{\mathcal{F}}}^R = \left[ {\underline{F}}^R~~~{\underline{M}}^R\right]^T\)</span>
+is the reaction force vector and it can be solved from
+Eq. <a class="reference internal" href="#equation-compactgovernroot">(4.101)</a> given that the motion fields are known at this
+point.</p>
+</div>
+<div class="section" id="calculation-of-blade-loads">
+<h2><span class="section-number">4.7.5.9. </span>Calculation of Blade Loads<a class="headerlink" href="#calculation-of-blade-loads" title="Permalink to this heading"></a></h2>
+<p>BeamDyn can also calculate the blade loads at each finite element node
+along the blade axis. The governing equation in Eq. <a class="reference internal" href="#equation-compactgovern">(4.100)</a> are
+recast as</p>
+<div class="math notranslate nohighlight" id="equation-governbf">
+<span class="eqno">(4.102)<a class="headerlink" href="#equation-governbf" title="Permalink to this equation"></a></span>\[{\underline{\mathcal{F}}}^A + {\underline{\mathcal{F}}}^V - {\underline{\mathcal{F}}}^{C\prime} + {\underline{\mathcal{F}}}^D = {\underline{\mathcal{F}}}^{ext}\]</div>
+<p>where the inertial force vector <span class="math notranslate nohighlight">\({\underline{\mathcal{F}}}^I\)</span> is
+split into <span class="math notranslate nohighlight">\({\underline{\mathcal{F}}}^A\)</span> and <span class="math notranslate nohighlight">\({\underline{\mathcal{F}}}^V\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-mathcalfa-fv">
+<span class="eqno">(4.103)<a class="headerlink" href="#equation-mathcalfa-fv" title="Permalink to this equation"></a></span>\[\begin{split}{\underline{\mathcal{F}}}^A &amp;= \begin{Bmatrix}
+m \ddot{{\underline{u}}} + \dot{\tilde{\omega}}m {\underline{\eta}}\\
+m \tilde{\eta} \ddot{{\underline{u}}} + {\underline{\underline{\rho}}} \dot{{\underline{\omega}}}
+\end{Bmatrix} \\
+{\underline{\mathcal{F}}}^V &amp;= \begin{Bmatrix}
+\tilde{\omega} \tilde{\omega} m {\underline{\eta}}\\
+ \tilde{\omega} {\underline{\underline{\rho}}} {\underline{\omega}}
+\end{Bmatrix} \\\end{split}\]</div>
+<p>The blade loads are thus defined as</p>
+<div class="math notranslate nohighlight" id="equation-bladeforce">
+<span class="eqno">(4.104)<a class="headerlink" href="#equation-bladeforce" title="Permalink to this equation"></a></span>\[{\underline{\mathcal{F}}}^{BF} \equiv {\underline{\mathcal{F}}}^V - {\underline{\mathcal{F}}}^{C\prime} + {\underline{\mathcal{F}}}^D\]</div>
+<p>We note that if structural damping is considered in the analysis, the
+<span class="math notranslate nohighlight">\({\underline{\mathcal{F}}}^{C}_d\)</span> and
+<span class="math notranslate nohighlight">\({\underline{\mathcal{F}}}^D_d\)</span> are incorporated into the internal
+elastic forces, <span class="math notranslate nohighlight">\({\underline{\mathcal{F}}}^C\)</span> and
+<span class="math notranslate nohighlight">\({\underline{\mathcal{F}}}^D\)</span>, for calculation.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="output_files.html" class="btn btn-neutral float-left" title="4.7.4. Output Files" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="future_work.html" class="btn btn-neutral float-right" title="4.7.6. Future Work" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

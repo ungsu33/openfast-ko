@@ -1,0 +1,560 @@
+<!DOCTYPE html><html class="writer-html5" lang="ko"><head><!-- Modified 2026-11-08: unofficial Korean machine translation of OpenFAST 5.0.0. Equations, code, figures, input values and attribution retained. -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.17.1. 입력 파일 - OpenFAST v5.0.0 문서</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../../../genindex.html">
+    <link rel="search" title="검색" href="../../../search.html">
+    <link rel="next" title="4.17.2. OpenFAST의 Tuned Mass Damper 모듈에 대한 이론 매뉴얼" href="StC_Theory.html">
+    <link rel="prev" title="4.17. 구조적 제어(SrvD)" href="StC_index.html"> 
+<link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/servodyn-stc/StC_input.html"></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+          </a>
+              <div class="version">5.0 · 한국어</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="문서 검색" aria-label="문서 검색">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. 단순화 ElastoDyn</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="StC_index.html">4.17. 구조 제어</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.17.1. 입력 파일</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#units">4.17.1.1. 단위</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structural-control-locations">4.17.1.2. 구조적 제어 위치</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structural-control-input-file">4.17.1.3. 구조 제어 입력 파일</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#stc-degrees-of-freedom">4.17.1.4. StC 자유도</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#stc-location">4.17.1.5. StC 위치</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#stc-initial-conditions">4.17.1.6. StC 초기 조건</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#stc-configuration">4.17.1.7. StC 구성</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#stc-mass-stiffness-damping">4.17.1.8. StC 질량, 강성 및 감쇠</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#stc-user-defined-spring-forces">4.17.1.9. StC 사용자 정의 스프링 힘</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structctrl-control">4.17.1.10. StructCtrl 컨트롤</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tlcd-tuned-liquid-column-damper">4.17.1.11. TLCD – 튜닝된 액체 컬럼 댐퍼</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prescribed-time-series">4.17.1.12. 규정된 시계열</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="StC_Theory.html">4.17.2. OpenFAST의 Tuned Mass Damper 모듈에 대한 이론 매뉴얼</a></li>
+<li class="toctree-l3"><a class="reference internal" href="StC_TLCD_Theory.html">4.17.3. TLCD: 운동 방정식의 유도</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.17.4. 참고문헌</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. 추가 모듈 문서</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC 서브루틴 라이브러리</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+</ul>
+
+        <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="페이지 탐색">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
+          <li class="breadcrumb-item"><a href="StC_index.html"><span class="section-number">4.17. </span>구조 제어(SrvD)</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.17.1. </span>입력 파일</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/servodyn-stc/StC_input.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+      </li>
+  </ul>
+  <hr>
+</div><aside class="ko-notice" aria-label="한국어 번역 안내"><strong>한국어 자동번역</strong> · OpenFAST v5.0.0 · 2026-11-08 기준<br>비공식 번역본입니다. 수식·명령어·입력 변수와 첨부자료는 원문을 보존합니다. <a href="https://openfast.readthedocs.io/en/main/source/user/servodyn-stc/StC_input.html" target="_blank" rel="noopener noreferrer" lang="en">영문 원문 대조 ↗</a></aside>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="input-files">
+<span id="stc-input"></span><h1><span class="section-number">4.17.1. </span>입력 파일<a class="headerlink" href="#input-files" title="이 제목의 고유 링크"></a></h1>
+<p>사용자는 별도의 입력 파일을 사용하여 각 StC 인스턴스를 구성합니다. 이 입력 파일은 장착 위치를 기준으로 StC의 위치를 ​​정의하고 속성을 정의합니다. 또한 해당 위치에 시계열 하중을 적용하기 위해 외부 힘 파일과 함께 사용할 수도 있습니다(주로 진단 목적으로 사용됨).</p>
+<div class="section" id="units">
+<h2><span class="section-number">4.17.1.1. </span>장치<a class="headerlink" href="#units" title="이 제목의 고유 링크"></a></h2>
+<p>구조 제어는 SI 시스템(kg, m, s, N)을 사용합니다. 별도로 지정하지 않는 한 각도는 라디안 단위로 간주됩니다.</p>
+<hr></div>
+<div class="section" id="structural-control-locations">
+<span id="stc-locations"></span><h2><span class="section-number">4.17.1.2. </span>구조 제어 위치<a class="headerlink" href="#structural-control-locations" title="이 제목의 고유 링크"></a></h2>
+<p>구조 제어 입력 파일은 StC 인스턴스의 위치와 속성을 정의합니다. 위치는 기본 ServoDyn 입력 파일에 제공된 StC 유형과 관련이 있습니다(참조: <a class="reference internal" href="../servodyn/input.html#srvd-stc-inputs"><span class="std std-numref">섹션 4.15.1.2.11</span></a>). 네 가지 위치 유형은 Nacelle, Tower, Blade 및 Platform입니다.</p>
+<p>StC에 대한 매핑 정보는 기본 OpenFAST 요약 파일에 제공됩니다.</p>
+<div class="section" id="nacelle-stc">
+<h3><span class="section-number">4.17.1.2.1. </span>나셀 StC<a class="headerlink" href="#nacelle-stc" title="이 제목의 고유 링크"></a></h3>
+<p>이 StC 장착 위치는 나셀 기준점을 기준으로 부착됩니다. 모든 나셀 모션(요, 타워 플렉스 및 플랫폼 모션으로 인한 모션 포함)을 추적합니다.</p>
+</div>
+<div class="section" id="tower-stc">
+<h3><span class="section-number">4.17.1.2.2. </span>타워 StC<a class="headerlink" href="#tower-stc" title="이 제목의 고유 링크"></a></h3>
+<p>이 StC 장착 위치는 타워 베이스 위에 지정된 높이의 타워 메시에 부착됩니다. 이 StC 부착물은 해당 높이에서 라인 메시와 함께 이동합니다. 예를 들어, 90m 타워의 85m 높이에 장착된 StC는 타워 중심선의 85m 높이 위치에 해당하는 메쉬 라인으로 이동합니다.</p>
+</div>
+<div class="section" id="blade-stc">
+<h3><span class="section-number">4.17.1.2.3. </span>블레이드 StC<a class="headerlink" href="#blade-stc" title="이 제목의 고유 링크"></a></h3>
+<p>이 StC 장착 위치는 블레이드의 z축(IEC 블레이드 좌표계)을 따라 블레이드 루트로부터 지정된 거리에 있는 블레이드 구조 중심에 부착됩니다. 이 위치는 모든 블레이드 변형 및 모션(BeamDyn과 함께 사용할 경우 블레이드 비틀림 포함)을 따릅니다. 이 옵션은 BeamDyn 및 ElastoDyn 블레이드 표현 모두에서 사용할 수 있습니다.</p>
+<p>이 옵션을 사용하면 동일한 StC가 각 블레이드에 부착됩니다. StC가 장착된 각 블레이드의 응답은 개별적으로 추적되며 ServoDyn 탭에 제공된 출력 채널에서 사용할 수 있습니다.
+<a class="reference download internal" download="" href="../../../_downloads/3f19498a5dc774461e022b671ff01ec6/OutListParameters.xlsx"><code class="xref download docutils literal notranslate"><span class="pre">OutListParameters.xlsx</span></code></a>.</p>
+</div>
+<div class="section" id="platform-stc">
+<h3><span class="section-number">4.17.1.2.4. </span>플랫폼 StC<a class="headerlink" href="#platform-stc" title="이 제목의 고유 링크"></a></h3>
+<p>이 StC 장착 위치는 플랫폼 기준점을 기준으로 위치합니다. 강체 플랫폼이 모델링되면(예: 강체 반잠수정) 플랫폼 기준점에 부착됩니다. 유연한 부유체가 모델링되면 StC가 SubDyn 메쉬에 부착됩니다.</p>
+<hr></div>
+</div>
+<div class="section" id="structural-control-input-file">
+<span id="stc-input-file"></span><h2><span class="section-number">4.17.1.3. </span>구조 제어 입력 파일<a class="headerlink" href="#structural-control-input-file" title="이 제목의 고유 링크"></a></h2>
+<p>입력 파일에는 임의 개수의 주석 처리된 헤더 행과 입력 파일의 임의 위치에 주석 처리된 행이 있을 수 있습니다.
+<a class="reference download internal" download="" href="../../../_downloads/fe83ade92c9ec1626b16a08db2708da4/NRELOffshrBsline5MW_StC.dat"><code class="xref download docutils literal notranslate"><span class="pre">(Example</span> <span class="pre">Structural</span> <span class="pre">Control</span> <span class="pre">input</span> <span class="pre">file</span> <span class="pre">for</span> <span class="pre">tuned</span> <span class="pre">mass</span> <span class="pre">damper</span> <span class="pre">on</span>
+<span class="pre">tower</span> <span class="pre">for</span> <span class="pre">NREL</span> <span class="pre">5</span> <span class="pre">MW</span> <span class="pre">TLP)</span></code></a>:</p>
+<div class="section" id="simulation-control">
+<h3><span class="section-number">4.17.1.3.1. </span>시뮬레이션 제어<a class="headerlink" href="#simulation-control" title="이 제목의 고유 링크"></a></h3>
+<p><strong>에코</strong> [플래그]</p>
+<blockquote>
+<div><p>&lt;RootName&gt;.ech에 대한 입력 데이터 에코</p>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="stc-degrees-of-freedom">
+<h2><span class="section-number">4.17.1.4. </span>StC 자유도<a class="headerlink" href="#stc-degrees-of-freedom" title="이 제목의 고유 링크"></a></h2>
+<p><strong>StC_DOF_MODE</strong> [스위치]</p>
+<blockquote>
+<div><p>DOF 모드 {0: StC 또는 TLCD DOF 없음; 1: StC_X_DOF, StC_Y_DOF 및/또는 StC_Z_DOF(3개의 독립적인 StC DOF); 2: StC_XY_DOF(2DOF 전방향 StC); 3: StC_XYZ_DOF(3DOF 전방향 StC); 5: TLCD; 6: 규정된 힘/모멘트 시계열; 7: 외부 DLL에 의해 결정된 강제}</p>
+</div></blockquote>
+<p><strong>StC_X_DOF</strong> [플래그]</p>
+<blockquote>
+<div><p>DOF 켜기 또는 끄기   <em>[다음 경우에만 사용됩니다.</em> <strong>StC_DOF_MODE==1</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>StC_Y_DOF</strong> [플래그]</p>
+<blockquote>
+<div><p>DOF 켜기 또는 끄기   <em>[다음 경우에만 사용됩니다.</em> <strong>StC_DOF_MODE==1</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>StC_Z_DOF</strong> [플래그]</p>
+<blockquote>
+<div><p>StC Z에 대한 DOF 켜기 또는 끄기   <em>[다음 경우에만 사용됩니다.</em> <strong>StC_DOF_MODE==1</strong> <em>]</em></p>
+</div></blockquote>
+</div>
+<div class="section" id="stc-location">
+<h2><span class="section-number">4.17.1.5. </span>StC 위치<a class="headerlink" href="#stc-location" title="이 제목의 고유 링크"></a></h2>
+<p>StC의 위치는 StC가 연결된 구성 요소에 따라 다릅니다. 이는 기본 ServoDyn 입력 파일에 지정됩니다. 위의 설명을 참조하세요.</p>
+<p><strong>StC_P_X</strong> [m]</p>
+<blockquote>
+<div><p>StC의 정지 X 위치</p>
+</div></blockquote>
+<p><strong>StC_P_Y</strong> [m]</p>
+<blockquote>
+<div><p>StC의 정지 Y 위치</p>
+</div></blockquote>
+<p><strong>StC_P_Z</strong> [m]</p>
+<blockquote>
+<div><p>StC의 정지 Z 위치</p>
+</div></blockquote>
+</div>
+<div class="section" id="stc-initial-conditions">
+<h2><span class="section-number">4.17.1.6. </span>StC 초기 조건<a class="headerlink" href="#stc-initial-conditions" title="이 제목의 고유 링크"></a></h2>
+<p><em>는 다음과 같은 경우에만 사용됩니다.</em> <strong>StC_DOF_MODE==1, 2 또는 3</strong></p>
+<p><strong>StC_X_DSP</strong> [m]</p>
+<blockquote>
+<div><p>StC X 초기 변위   <em>[정지 위치 기준]</em></p>
+</div></blockquote>
+<p><strong>StC_Y_DSP</strong> [m]</p>
+<blockquote>
+<div><p>StC Y 초기 변위   <em>[정지 위치 기준]</em></p>
+</div></blockquote>
+<p><strong>StC_Z_DSP</strong> [m]</p>
+<blockquote>
+<div><p>StC Z 초기 변위   <em>[정지 위치에 상대적; 경우에만 사용</em>
+<strong>StC_DOF_MODE==1</strong> <em>및</em> <strong>StC_Z_DOF==TRUE</strong> <em>또는 언제</em> <strong>StC_DOF_MODE==3</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>StC_Z_PreLd</strong> [N]</p>
+<blockquote>
+<div><p>StC Z 스프링 예압. 뉴턴 단위의 스프링 예압에 대한 직접적인 값 또는 <strong>"중력"
+다음을 사용하여 중력이 작용할 때 StC Z 질량의 휴지 위치를 이동하는 예압 스프링용</strong> 중력이 작용할 때 StC Z 질량의 정지 위치를 다음과 같이 이동시키도록 스프링에 예하중을 가하기 위한
+<span class="math notranslate nohighlight">\(F_{Z_{PreLoad}} = M_Z * G\)</span>또는 <strong>"없음"</strong> 는 스프링 예압을 비활성화합니다. 참조 <a class="reference internal" href="StC_Theory.html#srvd-stcz-preload"><span class="std std-numref">섹션 4.17.2.1.4.2
+구현에 대한 자세한 내용은</span></a> 를 참조하세요.
+<em>[다음 경우에만 사용됨</em> <strong>StC_DOF_MODE==1</strong> <em>및</em> <strong>StC_Z_DOF==TRUE</strong> <em>또는 언제</em>
+<strong>StC_DOF_MODE==3</strong> <em>]</em></p>
+</div></blockquote>
+</div>
+<div class="section" id="stc-configuration">
+<h2><span class="section-number">4.17.1.7. </span>StC 구성<a class="headerlink" href="#stc-configuration" title="이 제목의 고유 링크"></a></h2>
+<p><em>는 다음과 같은 경우에만 사용됩니다.</em> <strong>StC_DOF_MODE==1, 2 또는 3</strong></p>
+<p><strong>StC_X_PSP</strong> [m]</p>
+<blockquote>
+<div><p>포지티브 정지 위치 – 최대 X 질량 변위</p>
+</div></blockquote>
+<p><strong>StC_X_NSP</strong> [m]</p>
+<blockquote>
+<div><p>네거티브 정지 위치 – 최소 X 질량 변위</p>
+</div></blockquote>
+<p><strong>StC_Y_PSP</strong> [m]</p>
+<blockquote>
+<div><p>포지티브 정지 위치 – 최대 Y 질량 변위</p>
+</div></blockquote>
+<p><strong>StC_Y_NSP</strong> [m]</p>
+<blockquote>
+<div><p>네거티브 정지 위치 – 최소 Y 질량 변위</p>
+</div></blockquote>
+<p><strong>StC_Z_PSP</strong> [m]</p>
+<blockquote>
+<div><p>포지티브 정지 위치 – 최대 Z 질량 변위 <em>[다음 경우에만 사용됨</em>
+<strong>StC_DOF_MODE==1</strong> <em>및</em> <strong>StC_Z_DOF==TRUE</strong> <em>또는 언제</em> <strong>StC_DOF_MODE==3</strong>
+<em>]</em></p>
+</div></blockquote>
+<p><strong>StC_Z_NSP</strong> [m]</p>
+<blockquote>
+<div><p>네거티브 정지 위치 – 최소 Z 질량 변위 <em>[다음 경우에만 사용됨</em>
+<strong>StC_DOF_MODE==1</strong> <em>및</em> <strong>StC_Z_DOF==TRUE</strong> <em>또는 언제</em> <strong>StC_DOF_MODE==3</strong>
+<em>]</em></p>
+</div></blockquote>
+</div>
+<div class="section" id="stc-mass-stiffness-damping">
+<h2><span class="section-number">4.17.1.8. </span>StC 질량, 강성 및 감쇠<a class="headerlink" href="#stc-mass-stiffness-damping" title="이 제목의 고유 링크"></a></h2>
+<p><em>는 다음과 같은 경우에만 사용됩니다.</em> <strong>StC_DOF_MODE==1, 2 또는 3</strong></p>
+<p><strong>StC_X_M</strong> [kg]</p>
+<blockquote>
+<div><p>StC X 질량   <em>[다음 경우에만 사용됨</em> <strong>StC_DOF_MODE==1</strong> <em>및</em> <strong>StC_X_DOF==TRUE</strong>
+<em>]</em></p>
+</div></blockquote>
+<p><strong>StC_Y_M</strong> [kg]</p>
+<blockquote>
+<div><p>StC Y 질량   <em>[다음 경우에만 사용됨</em> <strong>StC_DOF_MODE==1</strong> <em>및</em> <strong>StC_Y_DOF==TRUE</strong>
+<em>]</em></p>
+</div></blockquote>
+<p><strong>StC_Z_M</strong> [kg]</p>
+<blockquote>
+<div><p>StC Z 질량   <em>[다음 경우에만 사용됨</em> <strong>StC_DOF_MODE==1</strong> <em>및</em> <strong>StC_Z_DOF==TRUE</strong>
+<em>]</em></p>
+</div></blockquote>
+<p><strong>StC_Omni_M</strong> [kg]</p>
+<blockquote>
+<div><p>StC 옴니 매스   <em>[다음 경우에만 사용됨</em> <strong>StC_DOF_MODE==2 또는 3</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>StC_X_K</strong> [N/m]</p>
+<blockquote>
+<div><p>StC X 강성</p>
+</div></blockquote>
+<p><strong>StC_Y_K</strong> [N/m]</p>
+<blockquote>
+<div><p>StC Y 강성</p>
+</div></blockquote>
+<p><strong>StC_Z_K</strong> [N/m]</p>
+<blockquote>
+<div><p>StC Z 강성   <em>[다음 경우에만 사용됨</em> <strong>StC_DOF_MODE==1</strong> <em>및</em>
+<strong>StC_Z_DOF==TRUE</strong> <em>또는 언제</em> <strong>StC_DOF_MODE==3</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>StC_X_C</strong> [N/(m/s)]</p>
+<blockquote>
+<div><p>StC X 댐핑</p>
+</div></blockquote>
+<p><strong>StC_Y_C</strong> [N/(m/s)]</p>
+<blockquote>
+<div><p>StC Y 댐핑</p>
+</div></blockquote>
+<p><strong>StC_Z_C</strong> [N/(m/s)]</p>
+<blockquote>
+<div><p>StC Z 댐핑   <em>[다음 경우에만 사용됨</em> <strong>StC_DOF_MODE==1</strong> <em>및</em>
+<strong>StC_Z_DOF==TRUE</strong> <em>또는 언제</em> <strong>StC_DOF_MODE==3</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>StC_X_KS</strong> [N/m]</p>
+<blockquote>
+<div><p>스톱 스프링 X 강성</p>
+</div></blockquote>
+<p><strong>StC_Y_KS</strong> [N/m]</p>
+<blockquote>
+<div><p>스톱 스프링 Y 강성</p>
+</div></blockquote>
+<p><strong>StC_Z_KS</strong> [N/m]</p>
+<blockquote>
+<div><p>스톱 스프링 Z 강성   <em>[다음 경우에만 사용됨</em> <strong>StC_DOF_MODE==1</strong> <em>및</em>
+<strong>StC_Z_DOF==TRUE</strong> <em>또는 언제</em> <strong>StC_DOF_MODE==3</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>StC_X_CS</strong> [N/(m/s)]</p>
+<blockquote>
+<div><p>스톱 스프링 X 댐핑</p>
+</div></blockquote>
+<p><strong>StC_Y_CS</strong> [N/(m/s)]</p>
+<blockquote>
+<div><p>스톱 스프링 Y 댐핑</p>
+</div></blockquote>
+<p><strong>StC_Z_CS</strong> [N/(m/s)]</p>
+<blockquote>
+<div><p>스톱 스프링 Z 댐핑   <em>[다음 경우에만 사용됨</em> <strong>StC_DOF_MODE==1</strong> <em>및</em>
+<strong>StC_Z_DOF==TRUE</strong> <em>또는 언제</em> <strong>StC_DOF_MODE==3</strong> <em>]</em></p>
+</div></blockquote>
+</div>
+<div class="section" id="stc-user-defined-spring-forces">
+<h2><span class="section-number">4.17.1.9. </span>StC 사용자 정의 스프링 힘<a class="headerlink" href="#stc-user-defined-spring-forces" title="이 제목의 고유 링크"></a></h2>
+<p><em>는 다음과 같은 경우에만 사용됩니다.</em> <strong>StC_DOF_MODE==1, 2 또는 3</strong></p>
+<p><strong>Use_F_TBL</strong> [플래그]</p>
+<blockquote>
+<div><p>사용자 정의 테이블의 스프링 힘 사용</p>
+</div></blockquote>
+<p><strong>NKInpSt</strong> [-]</p>
+<blockquote>
+<div><p>스프링력 입력 스테이션 수</p>
+</div></blockquote>
+<p>테이블에는 변위 및 동등한 스프린트 힘에 대한 6개의 열이 포함될 것으로 예상됩니다. <strong>X</strong>, <strong>F_X</strong>, <strong>Y</strong>, <strong>F_Y</strong>, <strong>Z</strong>및
+이 플래그 값 아래에 <strong>F_Z</strong>. 변위는 미터(m) 단위이고 힘은 뉴턴(N) 단위입니다.</p>
+<p>스프링 힘 표의 예:</p>
+<div class="docutils container" id="tab-springforce">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    X                F_X               Y              F_Y              Z              F_Z
+   (m)               (N)              (m)             (N)             (m)             (N)
+-6.0000000E+00  -4.8000000E+06  -6.0000000E+00  -4.8000000E+06  -6.0000000E+00  -4.8000000E+06
+-5.0000000E+00  -2.4000000E+06  -5.0000000E+00  -2.4000000E+06  -5.0000000E+00  -2.4000000E+06
+-4.5000000E+00  -1.2000000E+06  -4.5000000E+00  -1.2000000E+06  -4.5000000E+00  -1.2000000E+06
+-4.0000000E+00  -6.0000000E+05  -4.0000000E+00  -6.0000000E+05  -4.0000000E+00  -6.0000000E+05
+-3.5000000E+00  -3.0000000E+05  -3.5000000E+00  -3.0000000E+05  -3.5000000E+00  -3.0000000E+05
+-3.0000000E+00  -1.5000000E+05  -3.0000000E+00  -1.5000000E+05  -3.0000000E+00  -1.5000000E+05
+-2.5000000E+00  -1.0000000E+05  -2.5000000E+00  -1.0000000E+05  -2.5000000E+00  -1.0000000E+05
+-2.0000000E+00  -6.5000000E+04  -2.0000000E+00  -6.5000000E+04  -2.0000000E+00  -6.5000000E+04
+ 0.0000000E+00   0.0000000E+00   0.0000000E+00   0.0000000E+00   0.0000000E+00   0.0000000E+00
+ 2.0000000E+00   6.5000000E+04   2.0000000E+00   6.5000000E+04   2.0000000E+00   6.5000000E+04
+ 2.5000000E+00   1.0000000E+05   2.5000000E+00   1.0000000E+05   2.5000000E+00   1.0000000E+05
+ 3.0000000E+00   1.5000000E+05   3.0000000E+00   1.5000000E+05   3.0000000E+00   1.5000000E+05
+ 3.5000000E+00   3.0000000E+05   3.5000000E+00   3.0000000E+05   3.5000000E+00   3.0000000E+05
+ 4.0000000E+00   6.0000000E+05   4.0000000E+00   6.0000000E+05   4.0000000E+00   6.0000000E+05
+ 4.5000000E+00   1.2000000E+06   4.5000000E+00   1.2000000E+06   4.5000000E+00   1.2000000E+06
+ 5.0000000E+00   2.4000000E+06   5.0000000E+00   2.4000000E+06   5.0000000E+00   2.4000000E+06
+ 6.0000000E+00   4.8000000E+06   6.0000000E+00   4.8000000E+06   6.0000000E+00   4.8000000E+06
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="structctrl-control">
+<h2><span class="section-number">4.17.1.10. </span>StructCtrl 제어<a class="headerlink" href="#structctrl-control" title="이 제목의 고유 링크"></a></h2>
+<p><em>는 다음과 같은 경우에만 사용됩니다.</em> <strong>StC_DOF_MODE==1, 2, 3 또는 7</strong></p>
+<p><strong>StC_CMODE</strong> [스위치]</p>
+<blockquote>
+<div><p>제어 모드 {0:없음; 1: 반능동 제어 모드; 3: 사용자 서브루틴을 통한 활성 제어 모드; 5: 블레이드 인터페이스를 통한 활성 제어 모드}. StC_DOF_MODE==7을 사용하는 경우 StC_CMODE는 3 또는 5여야 합니다.</p>
+</div></blockquote>
+<p><strong>StC_CChan</strong> [-]</p>
+<blockquote>
+<div><p>강성과 감쇠를 위한 제어 채널 그룹(1:10) <em>[다음 경우에만 사용됨</em>
+<strong>StC_DOF_MODE=1, 2, 3 또는 7</strong> <em>및</em> <strong>StC_CMODE=5</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>StC_SA_MODE</strong> [-]</p>
+<blockquote>
+<div><p>세미액티브 제어 모드 {1: 속도 기반 그라운드 후크 제어; 2: 역속도 기반 그라운드 훅 제어; 3: 변위 기반 그라운드 후크 제어 4: 마찰력을 이용한 위상차 알고리즘 5: 감쇠력을 이용한 위상차 알고리즘}</p>
+</div></blockquote>
+<p><strong>StC_X_C_HIGH</strong> [-]</p>
+<blockquote>
+<div><p>StC X 그라운드 훅 제어를 위한 높은 댐핑</p>
+</div></blockquote>
+<p><strong>StC_X_C_LOW</strong> [-]</p>
+<blockquote>
+<div><p>StC X 그라운드 훅 제어를 위한 낮은 댐핑</p>
+</div></blockquote>
+<p><strong>StC_Y_C_HIGH</strong> [-]</p>
+<blockquote>
+<div><p>StC Y 그라운드 훅 제어를 위한 높은 댐핑</p>
+</div></blockquote>
+<p><strong>StC_Y_C_LOW</strong> [-]</p>
+<blockquote>
+<div><p>StC Y 그라운드 훅 제어를 위한 낮은 댐핑</p>
+</div></blockquote>
+<p><strong>StC_Z_C_HIGH</strong> [-]</p>
+<blockquote>
+<div><p>StC Z 그라운드 훅 제어를 위한 높은 댐핑 <em>[다음 경우에만 사용됨</em>
+<strong>StC_DOF_MODE==1</strong> <em>및</em> <strong>StC_Z_DOF==TRUE</strong> <em>또는 언제</em> <strong>StC_DOF_MODE==3</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>StC_Z_C_LOW</strong> [-]</p>
+<blockquote>
+<div><p>StC Z 그라운드 훅 제어를 위한 낮은 댐핑  <em>[다음 경우에만 사용됨</em>
+<strong>StC_DOF_MODE==1</strong> <em>및</em> <strong>StC_Z_DOF==TRUE</strong> <em>또는 언제</em> <strong>StC_DOF_MODE==3</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>StC_X_C_BRAKE</strong> [-]</p>
+<blockquote>
+<div><p>StC X StC 제동을 위한 높은 댐핑 <em>[현재 미사용. 0으로 설정]</em></p>
+</div></blockquote>
+<p><strong>StC_Y_C_BRAKE</strong> [-]</p>
+<blockquote>
+<div><p>StC Y StC 제동을 위한 높은 댐핑 <em>[현재 미사용. 0으로 설정]</em></p>
+</div></blockquote>
+<p><strong>StC_Z_C_BRAKE</strong> [-]</p>
+<blockquote>
+<div><p>StC Z StC 제동을 위한 높은 댐핑 <em>[다음 경우에만 사용됨</em> <strong>StC_DOF_MODE==1</strong>
+<em>및</em> <strong>StC_Z_DOF==TRUE</strong> <em>또는 언제</em> <strong>StC_DOF_MODE==3</strong> <em>]</em> <em>[현재 미사용. 0으로 설정]</em></p>
+</div></blockquote>
+</div>
+<div class="section" id="tlcd-tuned-liquid-column-damper">
+<h2><span class="section-number">4.17.1.11. </span>TLCD – 조정된 액체 컬럼 댐퍼<a class="headerlink" href="#tlcd-tuned-liquid-column-damper" title="이 제목의 고유 링크"></a></h2>
+<p><em>는 다음과 같은 경우에만 사용됩니다.</em> <strong>StC_DOF_MODE==5</strong></p>
+<p><strong>L_X</strong> [m]</p>
+<blockquote>
+<div><p>X TLCD 전체 길이</p>
+</div></blockquote>
+<p><strong>B_X</strong> [m]</p>
+<blockquote>
+<div><p>X TLCD 가로 길이</p>
+</div></blockquote>
+<p><strong>area_X</strong> [m^2]</p>
+<blockquote>
+<div><p>X TLCD 수직기둥 단면적</p>
+</div></blockquote>
+<p><strong>area_ratio_X</strong> [-]</p>
+<blockquote>
+<div><p>X TLCD 단면적 비율  <em>[가로 열 영역으로 나눈 세로 열 영역]</em></p>
+</div></blockquote>
+<p><strong>headLossCoeff_X</strong> [-]</p>
+<blockquote>
+<div><p>X TLCD 수두 손실 계수</p>
+</div></blockquote>
+<p><strong>rho_X</strong> [kg/m^3]</p>
+<blockquote>
+<div><p>X TLCD 액체 밀도</p>
+</div></blockquote>
+<p><strong>L_Y</strong> [m]</p>
+<blockquote>
+<div><p>Y TLCD 전체 길이</p>
+</div></blockquote>
+<p><strong>B_Y</strong> [m]</p>
+<blockquote>
+<div><p>Y TLCD 가로 길이</p>
+</div></blockquote>
+<p><strong>area_Y</strong>        [m^2]</p>
+<blockquote>
+<div><p>Y TLCD 수직 기둥의 단면적</p>
+</div></blockquote>
+<p><strong>area_ratio_Y</strong>  [-]</p>
+<blockquote>
+<div><p>Y TLCD 단면적 비율 <em>[가로 열 영역으로 나눈 세로 열 영역]</em></p>
+</div></blockquote>
+<p><strong>headLossCoeff_Y</strong> [-]</p>
+<blockquote>
+<div><p>Y TLCD 수두 손실 계수</p>
+</div></blockquote>
+<p><strong>rho_Y</strong> [kg/m^3]</p>
+<blockquote>
+<div><p>Y TLCD 액체 밀도</p>
+</div></blockquote>
+</div>
+<div class="section" id="prescribed-time-series">
+<h2><span class="section-number">4.17.1.12. </span>규정된 시계열<a class="headerlink" href="#prescribed-time-series" title="이 제목의 고유 링크"></a></h2>
+<p>StC 댐퍼 대신에 미리 정의된 힘과 모멘트의 시계열을 적용할 수 있습니다. 힘과 모멘트는 전체 좌표계 또는 로컬(후속) 좌표계에 적용될 수 있습니다. 이 기능은 <em>는 다음과 같은 경우에만 사용됩니다.</em> <strong>StC_DOF_MODE==6</strong>.</p>
+<p><strong>PrescribedForcesCoord</strong> [스위치]</p>
+<blockquote>
+<div><p>규정된 힘은 글로벌 또는 로컬 좌표에 있습니다. {1: 글로벌; 2: 로컬}. StC_DOF_MODE==7을 사용하는 경우 PrescribedForcesCoord는 1이어야 합니다.</p>
+</div></blockquote>
+<p><strong>PrescribedForcesFile</strong> [-]</p>
+<blockquote>
+<div><p>규정된 힘에 대한 파일 이름입니다. 예상되는 형식은 time, FX, FY, FZ, MX, MY, MZ의 7개 열입니다. 값은 지정된 시간 단계와 값 세트 사이의 파일에서 보간됩니다. 입력 파일에는 임의 개수의 주석 처리된 헤더 행과 입력 파일의 임의 위치에 주석 처리된 행이 있을 수 있습니다.</p>
+<p>블레이드 장착 StC의 경우 각 블레이드에 대해 서로 다른 시간 시리즈 입력 파일이 제공될 수 있습니다(새 줄에 추가 파일 이름 추가). 하나의 파일만 제공되면 모든 블레이드에 사용됩니다. 회귀 테스트의 예를 참조하세요. <cite>StC_test_OC4Semi_blade2</cite> 입니다.</p>
+</div></blockquote>
+<p>규정된 시계열 파일의 예 <a class="reference download internal" download="" href="../../../_downloads/105e0c0af92d2357e643b6d04a3f67b5/PrescribedForce.txt"><code class="xref download docutils literal notranslate"><span class="pre">(example</span> <span class="pre">prescribed</span> <span class="pre">force</span>
+<span class="pre">timeseries)</span></code></a>:</p>
+<div class="docutils container" id="tab-prescribedforce">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># This is an input file for the tower top force time-series in the TMD module of ServoDyn
+#
+# it has an arbitrary number of header lines denoted with #!% characters
+!  Another comment line
+#
+# Time,     Fx,      Fy,      Fz,      Mx,      My,      Mz
+# (s)       (N)      (N)      (N)      (N-m)    (N-m)    (N-m)
+0.0         0.0      0.0      0.0      0.0      0.0      0.0
+4.0         1.0e5    0.0      0.0      0.0      0.0      0.0      # Start ramp -- this is a comment
+40.0        1.0e5    0.0      0.0      0.0      0.0      0.0
+# 40.0001     0.0      0.0      0.0      0.0      0.0      0.0    # This is a commented line
+90.         0.0      0.0      0.0      0.0      0.0      0.0
+
+
+
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="StC_index.html" class="btn btn-neutral float-left" title="4.17. 구조적 제어(SrvD)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+        <a href="StC_Theory.html" class="btn btn-neutral float-right" title="4.17.2. OpenFAST의 Tuned Mass Damper 모듈에 대한 이론 매뉴얼" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>© Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    
+     
+
+
+</body></html>

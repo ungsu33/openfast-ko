@@ -1,0 +1,324 @@
+<!DOCTYPE html><html class="writer-html5" lang="ko"><head><!-- Modified 2026-11-08: unofficial Korean machine translation of OpenFAST 5.0.0. Equations, code, figures, input values and attribution retained. -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.5.5. 모델 검증 — OpenFAST v5.0.0 문서</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../../../genindex.html">
+    <link rel="search" title="검색" href="../../../search.html">
+    <link rel="next" title="4.5.6. 결론" href="04-conclusions.html">
+    <link rel="prev" title="4.5.4. 공력소음 모델" href="02-noise-models.html"> 
+<link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/aerodyn-aeroacoustics/03-model-verification.html"></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+          </a>
+              <div class="version">5.0 · 한국어</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="문서 검색" aria-label="문서 검색">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.5. 공력음향학</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="acronyms.html">4.5.1. 약어 목록</a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbols.html">4.5.2. 기호 목록</a></li>
+<li class="toctree-l3"><a class="reference internal" href="01-introduction.html">4.5.3. 소개</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02-noise-models.html">4.5.4. 공력소음 모델</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.5.5. 모델 검증</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#reference-wind-turbine">4.5.5.1. 참조 풍력터빈</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#code-to-code-comparison">4.5.5.2. 코드 간 비교</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model-usage">4.5.5.3. 모델 사용법</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="04-conclusions.html">4.5.6. 결론</a></li>
+<li class="toctree-l3"><a class="reference internal" href="App-usage.html">4.5.7. AeroDyn에서 공력소음 모델 사용하기</a></li>
+<li class="toctree-l3"><a class="reference internal" href="refs.html">4.5.8. 참고문헌</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. 단순화 ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. 구조 제어</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. 추가 모듈 문서</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC 서브루틴 라이브러리</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+</ul>
+
+        <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="페이지 탐색">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.5. </span>공력소음 소음 모델</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.5.5. </span>모델 검증</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/aerodyn-aeroacoustics/03-model-verification.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+      </li>
+  </ul>
+  <hr>
+</div><aside class="ko-notice" aria-label="한국어 번역 안내"><strong>한국어 자동번역</strong> · OpenFAST v5.0.0 · 2026-11-08 기준<br>비공식 번역본입니다. 수식·명령어·입력 변수와 첨부자료는 원문을 보존합니다. <a href="https://openfast.readthedocs.io/en/main/source/user/aerodyn-aeroacoustics/03-model-verification.html" target="_blank" rel="noopener noreferrer" lang="en">영문 원문 대조 ↗</a></aside>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="model-verification">
+<span id="aa-model-verification"></span><h1><span class="section-number">4.5.5. </span>모델 검증<a class="headerlink" href="#model-verification" title="이 제목의 고유 링크"></a></h1>
+<div class="section" id="reference-wind-turbine">
+<h2><span class="section-number">4.5.5.1. </span>기준 풍력터빈<a class="headerlink" href="#reference-wind-turbine" title="이 제목의 고유 링크"></a></h2>
+<p>OpenFAST의 소음 모델은 IEA Wind Task 37 육상 기반 기준 풍력터빈(<span id="id1">[<a class="reference internal" href="refs.html#id3" title="Pietro Bortolotti, Helena Canet Tarres, Katherine Dykes, Karl Merz, Latha Sethuraman, David Verelst 및 Frederik Zahle. 풍력 에너지의 시스템 엔지니어링 - wp2.1 참조 풍력터빈. 기술 보고서, IEA 기술 보고서, 2019. URL: https://www.nrel.gov/docs/fy19osti/73492.pdf.">aa-BTD+19</a>]</span>). 기준 풍력터빈의 주요 특성은 다음과 같습니다. <a class="reference internal" href="#tab-ref-turb"><span class="std std-numref">표 4.2</span></a>.</p>
+<table class="docutils align-default" id="tab-ref-turb">
+<caption><span class="caption-number">표 4.2 </span><span class="caption-text">IEA 풍력 과제 37 육상 기반 기준 풍력터빈의 주요 특징</span><a class="headerlink" href="#tab-ref-turb" title="이 테이블에 대한 영구 링크"></a></caption>
+<colgroup>
+<col style="width: 24%">
+<col style="width: 28%">
+<col style="width: 24%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>데이터</strong></p></th>
+<th class="head"><p><strong>값</strong></p></th>
+<th class="head"><p><strong>데이터</strong></p></th>
+<th class="head"><p><strong>값</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>바람 등급</p></td>
+<td><div class="line-block">
+<div class="line">인터내셔널</div>
+<div class="line">전기기술</div>
+<div class="line">커미션 3A</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">정격 전기</div>
+<div class="line">전원</div>
+</div>
+</td>
+<td><p>3.37메가와트</p></td>
+</tr>
+<tr class="row-odd"><td><div class="line-block">
+<div class="line">정격 공기 역학</div>
+<div class="line">전원</div>
+</div>
+</td>
+<td><p>3.6메가와트</p></td>
+<td><div class="line-block">
+<div class="line">구동계 및</div>
+<div class="line">발전기 효율</div>
+</div>
+</td>
+<td><p>93.60%</p></td>
+</tr>
+<tr class="row-even"><td><p>로터 직경</p></td>
+<td><p>130미터</p></td>
+<td><p>허브 높이</p></td>
+<td><p>110미터</p></td>
+</tr>
+<tr class="row-odd"><td><p>컷인 풍속</p></td>
+<td><p>4미터/초</p></td>
+<td><p>컷아웃 풍속</p></td>
+<td><p>25미터/초</p></td>
+</tr>
+<tr class="row-even"><td><p>로터 콘 각도</p></td>
+<td><p>3도</p></td>
+<td><p>나셀 틸트 각도</p></td>
+<td><p>5도</p></td>
+</tr>
+<tr class="row-odd"><td><p>최대 블레이드 팁 속도</p></td>
+<td><p>80미터/초</p></td>
+<td><div class="line-block">
+<div class="line">정격 팁 속도</div>
+<div class="line">비율</div>
+</div>
+</td>
+<td><p>8.16</p></td>
+</tr>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">최대</div>
+<div class="line">공기역학적 Cp</div>
+</div>
+</td>
+<td><p>0.481</p></td>
+<td><p>정격 로터 속도</p></td>
+<td><div class="line-block">
+<div class="line">11.75회전</div>
+<div class="line">분</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>풍력터빈의 OpenFAST 모델은 다음에서 구입할 수 있습니다.
+<a class="reference external" href="https://github.com/OpenFAST/r-test" target="_blank" rel="noopener noreferrer">https://github.com/OpenFAST/r-test</a> 이며 선택적으로 Reference OpenSource 컨트롤러에 연결됩니다. <a class="footnote-reference brackets" href="#id6" id="id2">2</a></p>
+</div>
+<div class="section" id="code-to-code-comparison">
+<h2><span class="section-number">4.5.5.2. </span>코드 간 비교<a class="headerlink" href="#code-to-code-comparison" title="이 제목의 고유 링크"></a></h2>
+<p>독일 뮌헨 기술 대학의 풍력 에너지 연구소에서 사용 가능한 구현을 사용하여 OpenFAST에 연결된 노이즈 모델의 구현을 검증하기 위해 상세한 코드 간 비교가 수행되었습니다. 후자는 Sucameli(<span id="id3">[<a class="reference internal" href="refs.html#id18" title="CR Sucameli, P Bortolotti, A Croce 및 CL Bottasso. BEM 공기역학과 결합된 일부 풍력터빈 소음 방출 모델의 비교. 물리학 저널: 컨퍼런스 시리즈, 1037:022038, 2018년 6월. doi:10.1088/1742-6596/1037/2/022038.">aa-SBCB18</a>]</span>)는 다물체 기반 공력탄성 솔버 Cp-Lambda를 채택한 풍력터빈 설계 프레임워크 Cp-Max에서 구현되었습니다.</p>
+<p>단일 익형 프로파일과 전체 터빈 모두에 대해 주요 소음원(난류 유입 및 TBL-TE 소음)에 대한 비교가 수행되었습니다. 이는 몇 가지 구현 실수와 작은 불일치를 해결하는 데 도움이 되었습니다. 비교는 초당 8미터(m/s)의 정풍, 전단 없음, 정격 피치 각도 1.17도(deg), 고정 로터 속도 10.04rpm(분당 회전수)으로 수행됩니다. 입사 난류 강도에 대해 0.1의 고정 값이 가정됩니다. <span class="math notranslate nohighlight">\(I_{1}\)</span>.</p>
+<p><a class="reference internal" href="#aa-fig-ti-compare"><span class="std std-numref">그림 4.18</span></a> 는 OpenFAST의 공격 각도 보정이 포함된 Amiet 모델, OpenFAST에서 생성된 Simplified Guidati 모델 및 Cp-Max의 Amiet 모델에 대한 SPL 측면의 예측을 보여줍니다.</p>
+<div class="figure align-default" id="aa-fig-ti-compare">
+<a class="reference internal image-reference" href="../../../_images/NoiseN003.png"><img alt="TI 모델의 코드 간 비교" src="../../../_images/NoiseN003.png" style="width: 100.0%;"></a>
+<p class="caption"><span class="caption-number">그림 4.18 </span><span class="caption-text">TI 모델의 코드 간 비교</span><a class="headerlink" href="#aa-fig-ti-compare" title="이 이미지에 대한 영구 링크"></a></p>
+</div>
+<p>난류 유입 Amiet 모델의 두 가지 구현은 OpenFAST와 Cp-Max 간의 완벽한 일치를 반환합니다. 선택한 시나리오에서는 블레이드가 최적의 받음각에서 작동하는 것을 확인하므로 받음각 수정의 효과는 무시할 수 있습니다. 플롯은 또한 Amiet 모델과 단순화된 Guidati 모델 간의 큰 차이를 보여줍니다. 과거에는 단순화된 Guidati 모델이 여기에 적용된 +10dB 계수로 수정되었다는 점을 기억하는 것이 유용할 수 있습니다.</p>
+<p>동일한 유입 및 회전자 조건에 대해 BPM 및 TNO TBL-TE 소음 모델을 비교합니다. <a class="reference internal" href="#aa-fig-bpm-tno-compare"><span class="std std-numref">그림 4.19</span></a>. 두 공탄성 솔버 간의 받음각 차이와 TNO 공식의 서로 다른 통합 방식으로 인해 약간 더 큰 차이가 발생하기는 하지만 일치는 다시 만족스럽습니다.</p>
+<div class="figure align-default" id="aa-fig-bpm-tno-compare">
+<a class="reference internal image-reference" href="../../../_images/NoiseN004.png"><img alt="BPM 및 TNO TBL-TE 모델에 대한 코드 간 비교" src="../../../_images/NoiseN004.png" style="width: 100.0%;"></a>
+<p class="caption"><span class="caption-number">그림 4.19 </span><span class="caption-text">BPM 및 TNO TBL-TE 모델에 대한 코드 간 비교. 경계층 속성은 BPM 모델(BPM BL) 또는 사용자가 정의한(Ext BL)로부터 추정됩니다.</span><a class="headerlink" href="#aa-fig-bpm-tno-compare" title="이 이미지에 대한 영구 링크"></a></p>
+</div>
+<p>마지막 비교에서는 다양한 관찰자 위치에서 지향성 모델과 전체 음압 레벨을 살펴보았습니다. 시뮬레이션은 500m x 500m의 수평 정사각형에 200명의 관찰자를 배포하여 실행됩니다(참조:
+<a class="reference internal" href="#aa-fig-obs-loc"><span class="std std-numref">그림 4.20</span></a>). 소음은 Amiet 및 BPM 난류 경계층 트레일링 에지 모델에서 계산됩니다. 코드 간 비교는 OpenFAST와 Cp-Max 간에 유사한 예측을 반환합니다. 비교는 다음과 같습니다. <a class="reference internal" href="#aa-fig-spl-obs"><span class="std std-numref">그림 4.21</span></a>.</p>
+<p>이 코드 간 비교의 주요 결론은 작성자가 아는 한 모델이 이제 올바르게 구현되었으며 임의의 관찰자에 대해 유사한 SPL 및 전체 SPL 수준을 생성한다는 것입니다. 그럼에도 불구하고 제시된 모든 모델은 불완전하며 이론적 구현 수준 모두에서 개선이 이루어질 수 있다는 것이 분명합니다.</p>
+<div class="figure align-default" id="aa-fig-obs-loc">
+<a class="reference internal image-reference" href="../../../_images/NoiseN005.png"><img alt="관찰자의 위치 및 번호 지정" src="../../../_images/NoiseN005.png" style="width: 100.0%;"></a>
+<p class="caption"><span class="caption-number">그림 4.20 </span><span class="caption-text">관찰자의 위치 및 번호 지정</span><a class="headerlink" href="#aa-fig-obs-loc" title="이 이미지에 대한 영구 링크"></a></p>
+</div>
+<div class="figure align-default" id="aa-fig-spl-obs">
+<a class="reference internal image-reference" href="../../../_images/NoiseN006.png"><img alt="관찰자의 전체 음압 수준 비교
+참조 풍력터빈의 전체 SPL에 대한" src="../../../_images/NoiseN006.png" style="width: 100.0%;"></a>
+<p class="caption"><span class="caption-number">그림 4.21 </span><span class="caption-text">이전 그림과 같이 분포된 관찰자의 전체 음압 레벨 비교</span><a class="headerlink" href="#aa-fig-spl-obs" title="이 이미지에 대한 영구 링크"></a></p>
+</div>
+</div>
+<div class="section" id="model-usage">
+<span id="aa-sec-modelusage"></span><h2><span class="section-number">4.5.5.3. </span>모델 사용법<a class="headerlink" href="#model-usage" title="이 제목의 고유 링크"></a></h2>
+<p>OpenFAST의 항공음향 모델에는 출력에 대한 4가지 옵션이 있습니다.</p>
+<ol class="arabic simple">
+<li><p>전체 음압 수준(dB/A 가중 데시벨[dBA]) - 관찰자당 시간 단계당 하나의 값이 생성됩니다.</p></li>
+<li><p>총 음압 레벨 스펙트럼(dB/dBA) - 관찰자당 시간 단계당 하나의 스펙트럼이 10Hz ~ 20kHz 사이에서 생성됩니다.</p></li>
+<li><p>메커니즘 종속 음압 레벨 스펙트럼(dB/dBA) - 관찰자당 시간 단계당 활성 소음 메커니즘당 하나의 스펙트럼이 10Hz~20kHz에서 생성됩니다.</p></li>
+<li><p>전체 음압 수준(dB/A 가중 데시벨[dBA]) - 관찰자당 시간 단계당 노드당 블레이드당 하나의 값이 생성됩니다.</p></li>
+</ol>
+<p>첫 번째 옵션의 전체 SPL을 사용하여 노이즈의 지향성 맵을 그릴 수 있습니다. Python 스크립트를 사용하여 생성된 예는 다음과 같습니다. <a class="footnote-reference brackets" href="#id7" id="id4">3</a> 는 다음과 같습니다.
+<a class="reference internal" href="#aa-fig-spl-map"><span class="std std-numref">그림 4.22</span></a>. 로터 1회전에 대한 평균 전체 SPL을 보여주는 노이즈 맵은 일정한 풍속 8m/s, 고정 로터 속도 10.04rpm, 피치 각도 1.17도에 대해 생성되었습니다. 직경 500m의 수평 원 안에 1681명의 관찰자가 2m 높이에 배치되어 있습니다. Simplified Guidati 및 BPM TBL-TE 소음 모델만 활성화됩니다.</p>
+<div class="figure align-default" id="aa-fig-spl-map">
+<a class="reference internal image-reference" href="../../../_images/NoiseN007.png"><img alt="맵" src="../../../_images/NoiseN007.png" style="width: 100.0%;"></a>
+<p class="caption"><span class="caption-number">그림 4.22 </span><span class="caption-text">단순화된 Guidati 및 BPM TBL-TE 소음 모델의 2m 높이 기준 풍력터빈의 전체 SPL 맵입니다. 풍력터빈은 x=0, y=0에 위치합니다. 8m/s의 일정한 바람이 왼쪽(-x)에서 오른쪽(+x)으로 분다.</span><a class="headerlink" href="#aa-fig-spl-map" title="이 이미지에 대한 영구 링크"></a></p>
+</div>
+<p>두 번째 출력은 SPL 스펙트럼을 생성하는 데 사용될 수 있습니다. 이러한 스펙트럼은 다양한 관찰자를 위해 계산될 수 있으며 선택적으로 인간의 청력을 설명하기 위해 A-가중치를 적용할 수 있습니다. <a class="reference internal" href="#aa-fig-a-spl"><span class="std std-numref">그림 4.23</span></a> 는 이전 예와 동일한 로터 조건에 대해 계산된 총 SPL 스펙트럼을 보여줍니다. A-가중치는 1,000Hz 미만의 주파수에서 곡선을 크게 줄이는 반면, 1kHz와 8kHz 사이에서는 곡선을 약간 증가시킵니다.</p>
+<div class="figure align-default" id="aa-fig-a-spl">
+<a class="reference internal image-reference" href="../../../_images/NoiseN008.png"><img alt="절대 SPL과 A-가중 SPL 비교" src="../../../_images/NoiseN008.png" style="width: 100.0%;"></a>
+<p class="caption"><span class="caption-number">그림 4.23 </span><span class="caption-text">절대 SPL과 A-가중 SPL 비교</span><a class="headerlink" href="#aa-fig-a-spl" title="이 이미지에 대한 영구 링크"></a></p>
+</div>
+<p>세 번째 출력은 메커니즘별로 SPL 스펙트럼을 구별합니다.
+<a class="reference internal" href="#aa-fig-spl-spectra"><span class="std std-numref">그림 4.24</span></a> 는 이전에 보고된 동일한 로터 조건에 대해 각 잡음 모델로 추정된 다양한 SPL 스펙트럼을 보여줍니다. 전체 스펙트럼은 난류 유입, TBL-TE 및 뒷전 무딘 소음 메커니즘에 의해 가시적으로 지배됩니다. 특히 후자는 입력에 매우 민감합니다.
+<span class="math notranslate nohighlight">\(\Psi\)</span> 및 <span class="math notranslate nohighlight">\(h\)</span>. 기준 풍력터빈은 순전히 수치 모델이며 이러한 수량은 임의로 설정되었습니다. 사용자는 뒷전 무뚝뚝함 모델을 호출할 때 이러한 입력에 주의를 기울여야 합니다. 문헌에 따르면 층류 경계층-와류 발산 및 팁 와류 소음 메커니즘은 음의 dB 값을 가지므로 표시되지 않습니다. 특히 이러한 스펙트럼은 A 가중치가 아니지만 사용자는 플래그를 활성화하여 A 가중치 스펙트럼을 얻을 수 있습니다.</p>
+<div class="figure align-default" id="aa-fig-spl-spectra">
+<a class="reference internal image-reference" href="../../../_images/NoiseN009.png"><img alt="다양한 노이즈 메커니즘의 비가중 SPL 스펙트럼" src="../../../_images/NoiseN009.png" style="width: 100.0%;"></a>
+<p class="caption"><span class="caption-number">그림 4.24 </span><span class="caption-text">다양한 노이즈 메커니즘의 비가중 SPL 스펙트럼</span><a class="headerlink" href="#aa-fig-spl-spectra" title="이 이미지에 대한 영구 링크"></a></p>
+</div>
+<p>마지막으로 네 번째 출력을 사용하여 로터 전체의 소음 방출을 시각화할 수 있습니다.
+<a class="reference internal" href="#aa-fig-rotor-map"><span class="std std-numref">그림 4.25</span></a> 는 풍하향 175m, 높이 2m에 위치한 관찰자가 본 로터의 소음 발생을 보여줍니다. 맵은 로터 1회전 동안 블레이드 1개에서 생성된 전체 SPL을 플로팅하여 생성됩니다. 플롯은 블레이드가 하강할 때 더 높은 소음이 관찰됨을 보여줍니다(뒤에서 로터가 시계 반대 방향으로 회전하는 것으로 보입니다). 이 효과는 에 표시된 결과와 일치합니다. <span id="id5">[<a class="reference internal" href="refs.html#id9" title="Patrick J. Moriarty와 Paul G. Migliore. 풍력터빈에 대한 반경험적 공력소음 예측 코드. 기술 보고서 ​​NREL/TP-500-34478, 국립 재생 에너지 연구소, Golden, CO, 2003. URL: https://www.nrel.gov/docs/fy04osti/34478.pdf.">aa-MM03</a>]</span>는 비대칭으로 설명됩니다. <a class="reference internal" href="02-noise-models.html#equation-aa-eq-31">(4.62)</a>. 관찰자가 익형의 앞쪽 가장자리를 향할 때 소음은 실제로 더 높습니다(높음). <span class="math notranslate nohighlight">\(\Theta_e\)</span>), 후미를 향할 때보다 (낮음 <span class="math notranslate nohighlight">\(\Theta_e\)</span>).</p>
+<div class="figure align-default" id="aa-fig-rotor-map">
+<a class="reference internal image-reference" href="../../../_images/NoiseN012.png"><img alt="단순화된 Guidati 및 BPM TBL-TE 소음 모델에서 얻은 기준 풍력터빈 로터의 전체 SPL 맵입니다. 관찰자는 바람이 불어오는 방향으로 175m, 높이 2m에 위치해 있습니다." src="../../../_images/NoiseN012.png" style="width: 100.0%;"></a>
+<p class="caption"><span class="caption-number">그림 4.25 </span><span class="caption-text">단순화된 Guidati 및 BPM TBL-TE 소음 모델에서 얻은 기준 풍력터빈 로터의 전체 SPL 맵입니다. 관찰자는 바람이 불어오는 방향으로 175m, 높이 2m에 위치해 있습니다.</span><a class="headerlink" href="#aa-fig-rotor-map" title="이 이미지에 대한 영구 링크"></a></p>
+</div>
+<dl class="footnote brackets">
+<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p><a class="reference external" href="https://github.com/NatLabRockies/ROSCO" target="_blank" rel="noopener noreferrer">https://github.com/NatLabRockies/ROSCO</a></p>
+</dd>
+<dt class="label" id="id7"><span class="brackets"><a class="fn-backref" href="#id4">3</a></span></dt>
+<dd><p><a class="reference external" href="https://github.com/OpenFAST/python-toolbox" target="_blank" rel="noopener noreferrer">https://github.com/OpenFAST/python-toolbox</a></p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="02-noise-models.html" class="btn btn-neutral float-left" title="4.5.4. 공력소음 모델" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+        <a href="04-conclusions.html" class="btn btn-neutral float-right" title="4.5.6. 결론" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>© Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    
+     
+
+
+</body></html>

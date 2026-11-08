@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.13.1. InflowWind Driver &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.13.2. InflowWind Input Files" href="input.html" />
+    <link rel="prev" title="4.13. InflowWind Users Guide and Theory Manual" href="index.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/inflowwind/driver.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.13. InflowWind</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.13.1. InflowWind Driver</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#specifying-the-inflowwind-input-file">4.13.1.1. Specifying the InflowWind Input File</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#wind-file-output-formats">4.13.1.2. Wind-file output formats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#converting-uniform-wind-to-full-field-wind-format">4.13.1.3. Converting uniform wind to full-field wind format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#converting-from-a-full-field-wind-format-to-uniform-wind-format">4.13.1.4. Converting from a full-field wind format to uniform wind format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#accel-flag">4.13.1.5. accel flag</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#boxexceedallow-flag">4.13.1.6. BoxExceedAllow flag</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="input.html">4.13.2. InflowWind Input Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input.html#angles-specified-in-inflowwind">4.13.3. Angles Specified in InflowWind</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input.html#superposition-of-wave-and-current-inflow">4.13.4. Superposition of Wave and Current Inflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_defined.html">4.13.5. User-Defined Wind Fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.13.6. Appendix</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.13. </span>InflowWind Users Guide and Theory Manual</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.13.1. </span>InflowWind Driver</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/inflowwind/driver.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="inflowwind-driver">
+<h1><span class="section-number">4.13.1. </span>InflowWind Driver<a class="headerlink" href="#inflowwind-driver" title="Permalink to this heading"></a></h1>
+<p>Example input files are
+included in <a class="reference internal" href="appendix.html#ifw-appendix"><span class="std std-numref">Section 4.13.6</span></a>.</p>
+<p>Command-line syntax for InflowWind driver:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">InflowWind_Driver</span> <span class="o">&lt;</span><span class="n">filename</span><span class="o">&gt;</span> <span class="p">[</span><span class="n">options</span><span class="p">]</span>
+
+      <span class="n">where</span><span class="p">:</span>  <span class="o">&lt;</span><span class="n">filename</span><span class="o">&gt;</span>     <span class="o">--</span>   <span class="n">Name</span> <span class="n">of</span> <span class="n">driver</span> <span class="nb">input</span> <span class="n">file</span> <span class="n">to</span> <span class="n">use</span>
+    <span class="n">options</span><span class="p">:</span>  <span class="o">/</span><span class="n">ifw</span>           <span class="o">--</span>   <span class="n">treat</span> <span class="o">&lt;</span><span class="n">filename</span><span class="o">&gt;</span> <span class="k">as</span> <span class="n">name</span> <span class="n">of</span> <span class="n">InflowWind</span> <span class="nb">input</span> <span class="n">file</span> <span class="p">(</span><span class="n">no</span> <span class="n">driver</span> <span class="nb">input</span> <span class="n">file</span><span class="p">)</span>
+
+    <span class="n">The</span> <span class="n">following</span> <span class="n">options</span> <span class="n">will</span> <span class="n">override</span> <span class="n">values</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">driver</span> <span class="nb">input</span> <span class="n">file</span><span class="p">:</span>
+              <span class="o">/</span><span class="n">DT</span><span class="p">[</span><span class="c1">#]          --  timestep</span>
+              <span class="o">/</span><span class="n">TStart</span><span class="p">[</span><span class="c1">#]      --  start time</span>
+              <span class="o">/</span><span class="n">TSteps</span><span class="p">[</span><span class="c1">#]      --  number of timesteps</span>
+              <span class="o">/</span><span class="n">xrange</span><span class="p">[</span><span class="c1">#:#]    --  range of x (#&#39;s are reals)</span>
+              <span class="o">/</span><span class="n">yrange</span><span class="p">[</span><span class="c1">#:#]    --  range of y</span>
+              <span class="o">/</span><span class="n">zrange</span><span class="p">[</span><span class="c1">#:#]    --  range in z (ground = 0.0)</span>
+              <span class="o">/</span><span class="n">Dx</span><span class="p">[</span><span class="c1">#]          --  spacing in x</span>
+              <span class="o">/</span><span class="n">Dy</span><span class="p">[</span><span class="c1">#]          --  spacing in y</span>
+              <span class="o">/</span><span class="n">Dz</span><span class="p">[</span><span class="c1">#]          --  spacing in z</span>
+              <span class="o">/</span><span class="n">points</span><span class="p">[</span><span class="n">FILE</span><span class="p">]</span>   <span class="o">--</span>  <span class="n">calculates</span> <span class="n">at</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="n">coordinates</span> <span class="n">specified</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">white</span> <span class="n">space</span> <span class="n">delimited</span> <span class="n">FILE</span>
+              <span class="o">/</span><span class="n">v</span>              <span class="o">--</span>  <span class="n">verbose</span> <span class="n">output</span>
+              <span class="o">/</span><span class="n">vv</span>             <span class="o">--</span>  <span class="n">very</span> <span class="n">verbose</span> <span class="n">output</span>
+              <span class="o">/</span><span class="n">hawc</span>           <span class="o">--</span>  <span class="n">convert</span> <span class="n">wind</span> <span class="n">file</span> <span class="n">specified</span> <span class="ow">in</span> <span class="n">InflowWind</span> <span class="n">to</span> <span class="n">HAWC</span> <span class="nb">format</span>
+              <span class="o">/</span><span class="n">bladed</span>         <span class="o">--</span>  <span class="n">convert</span> <span class="n">wind</span> <span class="n">file</span> <span class="n">specified</span> <span class="ow">in</span> <span class="n">InflowWind</span> <span class="n">to</span> <span class="n">Bladed</span> <span class="nb">format</span>
+              <span class="o">/</span><span class="n">vtk</span>            <span class="o">--</span>  <span class="n">convert</span> <span class="n">wind</span> <span class="n">file</span> <span class="n">specified</span> <span class="ow">in</span> <span class="n">InflowWind</span> <span class="n">to</span> <span class="n">VTK</span> <span class="nb">format</span>
+              <span class="o">/</span><span class="n">accel</span>          <span class="o">--</span>  <span class="n">output</span> <span class="n">acceleration</span> <span class="n">when</span> <span class="n">processing</span> <span class="n">a</span> <span class="n">points</span> <span class="n">file</span>
+              <span class="o">/</span><span class="n">BoxExceedAllow</span> <span class="o">--</span>  <span class="nb">set</span> <span class="n">flag</span> <span class="n">to</span> <span class="n">extrapolate</span> <span class="n">values</span> <span class="n">of</span> <span class="n">points</span> <span class="n">outside</span> <span class="n">FF</span> <span class="n">wind</span> <span class="n">box</span>
+              <span class="o">/</span><span class="n">help</span>           <span class="o">--</span>  <span class="nb">print</span> <span class="n">this</span> <span class="n">help</span> <span class="n">menu</span> <span class="ow">and</span> <span class="n">exit</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Notes</span><span class="p">:</span>
+<span class="o">-</span>   <span class="n">Unspecified</span> <span class="n">ranges</span> <span class="ow">and</span> <span class="n">resolutions</span> <span class="n">default</span> <span class="n">to</span> <span class="n">what</span> <span class="ow">is</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">file</span><span class="o">.</span>
+<span class="o">-</span>   <span class="n">If</span> <span class="n">no</span> <span class="n">XRange</span> <span class="ow">is</span> <span class="n">specified</span><span class="p">,</span> <span class="n">assumed</span> <span class="n">to</span> <span class="n">be</span> <span class="n">only</span> <span class="n">at</span> <span class="n">X</span><span class="o">=</span><span class="mi">0</span>
+<span class="o">-</span>   <span class="n">Options</span> <span class="n">are</span> <span class="ow">not</span> <span class="n">case</span> <span class="n">sensitive</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>The <a class="reference external" href="https://wind.nrel.gov/nwtc/docs/InflowWind_Manual.pdf">InflowWind Manual</a>
+contains a description of file formats that it can read.</p>
+<div class="section" id="specifying-the-inflowwind-input-file">
+<h2><span class="section-number">4.13.1.1. </span>Specifying the InflowWind Input File<a class="headerlink" href="#specifying-the-inflowwind-input-file" title="Permalink to this heading"></a></h2>
+<p>The InflowWind driver input file requires that an InflowWind input file
+be specified within it. See an example InflowWind input
+file in <a class="reference internal" href="appendix.html#ifw-appendix"><span class="std std-numref">Section 4.13.6</span></a>.</p>
+<p>Within the InflowWind input file, if the wind file being specified is
+Bladed native format (<code class="docutils literal notranslate"><span class="pre">WindType</span> <span class="pre">=</span> <span class="pre">7</span></code>), please also see
+<a class="reference internal" href="input.html#ifw-native-bladed"><span class="std std-numref">Section 4.13.2.1</span></a>.</p>
+</div>
+<div class="section" id="wind-file-output-formats">
+<h2><span class="section-number">4.13.1.2. </span>Wind-file output formats<a class="headerlink" href="#wind-file-output-formats" title="Permalink to this heading"></a></h2>
+<p>The InflowWind driver is capable of writing the wind data read from the
+input wind file into wind files of various formats.</p>
+<div class="section" id="hawc2">
+<h3><span class="section-number">4.13.1.2.1. </span>HAWC2<a class="headerlink" href="#hawc2" title="Permalink to this heading"></a></h3>
+<p>This format generates the following files:</p>
+<ul class="simple">
+<li><p>three binary files, one for each component:
+<code class="docutils literal notranslate"><span class="pre">&lt;RootName&gt;-HAWC.u</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;RootName&gt;-HAWC.v</span></code>, and <code class="docutils literal notranslate"><span class="pre">&lt;RootName&gt;-HAWC.w</span></code></p></li>
+<li><p>a text summary file in the style of HAWC2 input files:
+<code class="docutils literal notranslate"><span class="pre">&lt;RootName&gt;-HAWC.sum</span></code></p></li>
+</ul>
+<p>In the conversion script, the u component will have the (approximate)
+mean removed at each height. The mean value that was removed is
+displayed as comments in the text summary file. The turbulence is not
+scaled, so it will have the same scaling as the original file.</p>
+</div>
+<div class="section" id="bladed">
+<h3><span class="section-number">4.13.1.2.2. </span>Bladed<a class="headerlink" href="#bladed" title="Permalink to this heading"></a></h3>
+<p>This format generates a packed binary file and a text summary file.</p>
+<p>This output format is in the Bladed-style format that TurbSim generates. That
+means that <strong>the shear is included</strong> in the file.</p>
+</div>
+<div class="section" id="vtk">
+<h3><span class="section-number">4.13.1.2.3. </span>VTK<a class="headerlink" href="#vtk" title="Permalink to this heading"></a></h3>
+<p>This format creates files in a subdirectory called <code class="docutils literal notranslate"><span class="pre">vtk</span></code>. There is one
+vtk file for each time in the full-field data structure, and the entire
+Y-Z grid is printed in each file. This format can be used to visualize
+the wind field using a viewer such as ParaView.</p>
+</div>
+<div class="section" id="uniform-wind">
+<h3><span class="section-number">4.13.1.2.4. </span>Uniform Wind<a class="headerlink" href="#uniform-wind" title="Permalink to this heading"></a></h3>
+<p>This format generates a text file in the uniform wind format. Converting to this format will
+generally lose information in the file because it specifies the wind speed and direction
+at only one point and approximates the shear as a power-law exponent.</p>
+</div>
+</div>
+<div class="section" id="converting-uniform-wind-to-full-field-wind-format">
+<h2><span class="section-number">4.13.1.3. </span>Converting uniform wind to full-field wind format<a class="headerlink" href="#converting-uniform-wind-to-full-field-wind-format" title="Permalink to this heading"></a></h2>
+<p>When converting from a uniform wind file to a full-field wind format,
+the following assumptions are used: - The advection speed is the
+time-averaged horizontal wind speed in the uniform wind file (it does
+not include the gust speed). - The constant time-step used in the output
+file is the smallest difference between any two entries in the
+hub-height file. - The maximum time in the uniform wind file will be
+used as the maximum time in the FF binary file. - The grid is generated
+with 5-m resolution in the lateral (Y) and horizontal (Z) directions. -
+The size of the grid is based on the <code class="docutils literal notranslate"><span class="pre">RefLength</span></code> parameter in the
+InflowWind input file. The converter adds approximately 10% to the grid
+width, with the exact size determined by achieving the desired grid
+resolution. The grid is centered in the lateral direction; it extends
+vertically above <code class="docutils literal notranslate"><span class="pre">RefHt</span></code> by the same distance as the grid width, and
+extends below <code class="docutils literal notranslate"><span class="pre">RefHt</span></code> to the ground (or within one grid point of the
+ground).</p>
+<p>Note that there is a potential time shift between the uniform and
+full-field wind files, equal to the time it takes to travel the distance
+of half the grid width. When using the resulting full-field files, care
+must be taken that the aeroelastic code does not treat it as periodic.</p>
+</div>
+<div class="section" id="converting-from-a-full-field-wind-format-to-uniform-wind-format">
+<h2><span class="section-number">4.13.1.4. </span>Converting from a full-field wind format to uniform wind format<a class="headerlink" href="#converting-from-a-full-field-wind-format-to-uniform-wind-format" title="Permalink to this heading"></a></h2>
+<p>When converting from a full-field wind format to a uniform wind file, the following assumptions are used:</p>
+<ul class="simple">
+<li><p>The gust speed, horizontal shear, and vertical linear shear are all 0.</p></li>
+<li><p>The Uniform Wind reference height is on a full-field grid point.</p></li>
+<li><p>The upflow is calculated using the mean upflow value at the reference point.</p></li>
+<li><p>The mean wind direction and upflow are removed from the reference grid point before writing the velocities to the Uniform Wind file.</p></li>
+<li><p>The wind direction in the file is the sum of the mean wind direction and the instantaneous direction calculated between instantaneous U and V wind components.</p></li>
+<li><p>The power law exponent is either</p>
+<ol class="arabic simple">
+<li><p>The power-law exponent specified in InflowWind (if a power law wind profile is used to add to the turbulence with native-Bladed or HAWC2 files), or</p></li>
+<li><p>Calculated by using the mean wind speeds at two points: the reference (hub) height and the uppermost height on the grid.</p></li>
+</ol>
+</li>
+</ul>
+</div>
+<div class="section" id="accel-flag">
+<h2><span class="section-number">4.13.1.5. </span>accel flag<a class="headerlink" href="#accel-flag" title="Permalink to this heading"></a></h2>
+<p>The ability to calculate the acceleration of the flow field was added to
+InflowWind to support the analysis of MHK, underwater, turbines. The
+acceleration is needed to calculate the fluid-inertia effects of the fluid
+interacting with the rotor. Calculation of the acceleration is supported for
+Uniform/Steady Wind and grid based wind profiles (Turbsim, HAWC, and Bladed
+files). Enabling this flag causes the driver to output the flow field
+acceleration for points defined in the Points file in addition to the velocities
+at those same points.</p>
+</div>
+<div class="section" id="boxexceedallow-flag">
+<h2><span class="section-number">4.13.1.6. </span>BoxExceedAllow flag<a class="headerlink" href="#boxexceedallow-flag" title="Permalink to this heading"></a></h2>
+<p>A feature was added to InflowWind to allow some requested points to lie
+outside the full field wind grid. This allows for a continuous exptrapolation of
+values beyond the grid that approaches an average level.</p>
+<div class="section" id="purpose">
+<h3><span class="section-number">4.13.1.6.1. </span>Purpose<a class="headerlink" href="#purpose" title="Permalink to this heading"></a></h3>
+<p>When InflowWind is coupled to OpenFAST, wind points corresponding to the free
+vortex wake module (OLAF) in AeroDyn 15 and LidarSim module may be outside the
+full-field wind data.  No other wind data points may be outside the grid
+(AeroDyn blades must be within the wind box).  The wake from OLAF may over
+time stray outside the full-field wind box, in which case it should be
+sufficiently far from the turbine that any inacuracies in the reported wind
+value should have little to no effect on the turbine.  The method employed here
+should allow the wake to continue evolving without flow reversals or other
+oddities due to a discontinuity at the wind grid boundary.  However, to limit
+the impact of the approximation used, the wake should not be allowed to exit the
+box until far from the turbine.</p>
+<p>The other use case is when the LidarSim requests data far from the turbine that
+may lie outside the wind box, such as a yawed, or floating turbine where the
+sensing beam periodically exits the wind box.</p>
+</div>
+<div class="section" id="method">
+<h3><span class="section-number">4.13.1.6.2. </span>Method<a class="headerlink" href="#method" title="Permalink to this heading"></a></h3>
+<p>During initialization, a flag and corresponding index are passed to tell IfW to
+allow points in the requested position array to lie outside the full-field wind
+and tower grids starting at this index.  The values for these points are then
+extrapolated using the data from the full-field wind as follows:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>The average wind value at each Z height at each timestep is calculated and
+stored during initialization (averaged across the Y dimension).</p></li>
+<li><p>Wind above the full field wind grid is linearly interpolated between the
+value at the top of the grid the average of the top of the grid.  This
+linear interpolation zone extends from the top of grid to the top of the
+grid + one half grid height (<code class="docutils literal notranslate"><span class="pre">FFZHWid</span></code>).  Values beyond that are held
+constant.</p></li>
+<li><p>Values beyond the +/-Y grid edges are linearly interpolated between the
+value at the edge of the grid and the average for that Z elevation in the
+grid.  The interpolation zone is between the edge of the grid and one half
+grid width further along Y at <code class="docutils literal notranslate"><span class="pre">+/-2*FFYHWid</span></code>.</p></li>
+<li><p>When no tower data is present, the values below the grid are linearly
+interpolated between the bottom of the grid and 0 at the ground.</p></li>
+<li><p>When tower data is present, points below the grid are interpolated between
+the tower and grid and the ground (0 value at <code class="docutils literal notranslate"><span class="pre">+/-2*FFYHWid</span></code>).  Linear
+interpolation is then used beyond the edge of the grid.</p></li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="testing-with-driver">
+<h3><span class="section-number">4.13.1.6.3. </span>Testing with driver<a class="headerlink" href="#testing-with-driver" title="Permalink to this heading"></a></h3>
+<p>To test this feature, the driver accepts the flag <code class="docutils literal notranslate"><span class="pre">BoxExceedAllow</span></code> and will
+signal to InflowWind that all windgrid points may be beyond the edge of the
+grid.  To use this, setup a driver input file with an output wind grid that is
+larger than the full-field grid from the wind file referenced in the
+corresponding InflowWind input file.  Then the following command can be used
+(Linux syntax, Windows is slightly different):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;<span class="w"> </span>inflowwind_driver<span class="w"> </span>-BoxExceedAllow<span class="w"> </span>MyDriverFile.inp
+</pre></div>
+</div>
+<p>For a single YZ plane from the resulting wind grid output file at time T, the
+results for extrapolated data points can be plotted and should show
+characteristics similar to the following plots.</p>
+<div class="figure align-default" id="id1">
+<a class="reference internal image-reference" href="../../../_images/FFWindExtrap--NoTower.png"><img alt="../../../_images/FFWindExtrap--NoTower.png" src="../../../_images/FFWindExtrap--NoTower.png" style="width: 90%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.51 </span><span class="caption-text">Extrapolation of wind values beyond the full field wind grid when no tower data is present. The semi-transparent red planes indicate the edges of the full-field wind grid, and the red points are the locations of wind grid data in this example case. All other points shown on the surface are interpolated/extrapolated.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</div>
+<div class="figure align-default" id="id2">
+<a class="reference internal image-reference" href="../../../_images/FFWindExtrap--Tower.png"><img alt="../../../_images/FFWindExtrap--Tower.png" src="../../../_images/FFWindExtrap--Tower.png" style="width: 90%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.52 </span><span class="caption-text">Extrapolation of wind values beyond the full field wind grid when tower data is present. The semi-transparent red planes indicate the edges of th e full-field wind grid, blue semi-transparent plane indicates the tower grid, and the red points indcate the data points from the wind grid and tower.  All other points shown on the surface are interpolated/extrapolated.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="4.13. InflowWind Users Guide and Theory Manual" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="input.html" class="btn btn-neutral float-right" title="4.13.2. InflowWind Input Files" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

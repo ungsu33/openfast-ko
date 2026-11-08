@@ -1,0 +1,175 @@
+<!DOCTYPE html><html class="writer-html5" lang="ko"><head><!-- Modified 2026-11-08: unofficial Korean machine translation of OpenFAST 5.0.0. Equations, code, figures, input values and attribution retained. -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.5.3. 소개 — OpenFAST v5.0.0 문서</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../../../genindex.html">
+    <link rel="search" title="검색" href="../../../search.html">
+    <link rel="next" title="4.5.4. 공력소음 모델" href="02-noise-models.html">
+    <link rel="prev" title="4.5.2. 기호 목록" href="symbols.html"> 
+<link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/aerodyn-aeroacoustics/01-introduction.html"></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+          </a>
+              <div class="version">5.0 · 한국어</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="문서 검색" aria-label="문서 검색">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.5. 공력음향학</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="acronyms.html">4.5.1. 약어 목록</a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbols.html">4.5.2. 기호 목록</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.5.3. 소개</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02-noise-models.html">4.5.4. 공력소음 모델</a></li>
+<li class="toctree-l3"><a class="reference internal" href="03-model-verification.html">4.5.5. 모델 검증</a></li>
+<li class="toctree-l3"><a class="reference internal" href="04-conclusions.html">4.5.6. 결론</a></li>
+<li class="toctree-l3"><a class="reference internal" href="App-usage.html">4.5.7. AeroDyn에서 공력소음 모델 사용하기</a></li>
+<li class="toctree-l3"><a class="reference internal" href="refs.html">4.5.8. 참고문헌</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. 단순화 ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. 구조 제어</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. 추가 모듈 문서</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC 서브루틴 라이브러리</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+</ul>
+
+        <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="페이지 탐색">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.5. </span>공력소음 소음 모델</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.5.3. </span>소개</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/aerodyn-aeroacoustics/01-introduction.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+      </li>
+  </ul>
+  <hr>
+</div><aside class="ko-notice" aria-label="한국어 번역 안내"><strong>한국어 자동번역</strong> · OpenFAST v5.0.0 · 2026-11-08 기준<br>비공식 번역본입니다. 수식·명령어·입력 변수와 첨부자료는 원문을 보존합니다. <a href="https://openfast.readthedocs.io/en/main/source/user/aerodyn-aeroacoustics/01-introduction.html" target="_blank" rel="noopener noreferrer" lang="en">영문 원문 대조 ↗</a></aside>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="introduction">
+<span id="aa-introduction"></span><h1><span class="section-number">4.5.3. </span>소개<a class="headerlink" href="#introduction" title="이 제목의 고유 링크"></a></h1>
+<p>지금까지 대부분 육상에 설치되어 있던 설치 용량이 지속적으로 증가했기 때문에 전력 믹스에 풍력 에너지가 점점 더 많이 침투할 수 있었습니다. 그러나 육상 기반 설치는 지역 조례와 최대 허용 소음 수준을 구성하는 제한 요소에 의해 점점 더 제한되고 있습니다. 육상 기반 설치 수를 더욱 늘리려면 풍력터빈에서 발생하는 소음을 추정하기 위한 정확한 모델링 도구를 개발하는 것이 중요합니다. 이를 통해 소음 방출을 보다 정확하게 평가하고 보다 조용한 풍력터빈을 설계할 수 있습니다.</p>
+<p>풍력터빈은 두 가지 주요 소음원을 방출합니다.</p>
+<ul class="simple">
+<li><p>로터 블레이드와 난류 대기 경계층 사이의 상호 작용으로 인한 공력소음</p></li>
+<li><p>나셀 구성 요소(주로 기어박스, 발전기 및 요 메커니즘)에서 기계적 소음이 발생합니다.</p></li>
+</ul>
+<p>이 작업은 소음 발생의 첫 번째 클래스를 목표로 하며 임의의 풍력터빈 로터에서 생성되는 공력소음을 추정하기 위한 오픈 소스 모델 세트를 제공하는 것을 목표로 합니다. 이 모델은 Fortran으로 구현되었으며 공력탄성 풍력터빈 시뮬레이터 OpenFAST와 완전히 결합되어 있습니다. 코드는 OpenFAST의 GitHub 리포지토리에서 사용할 수 있습니다. <a class="footnote-reference brackets" href="#id5" id="id1">1</a> 이 코드는 NAFNoise 구현과 다음에 제시된 문서를 기반으로 구축되었습니다. <span id="id2">[<a class="reference internal" href="refs.html#id9" title="Patrick J. Moriarty와 Paul G. Migliore. 풍력터빈에 대한 반경험적 공력소음 예측 코드. 기술 보고서 ​​NREL/TP-500-34478, 국립 재생 에너지 연구소, Golden, CO, 2003. URL: https://www.nrel.gov/docs/fy04osti/34478.pdf.">aa-MM03</a>]</span>
+및 <span id="id3">[<a class="reference internal" href="refs.html#id13" title="패트릭 J. 모리아티. 나프노이즈 사용자 가이드. 기술 보고서, 국립 재생 에너지 연구소, Golden, CO, 2005. URL: https://github.com/NatLabRockies/NAFNoise/blob/master/NAFNoise.pdf.">aa-Mor05</a>]</span>. OpenFAST는 모듈화 프레임워크로 구현되고, 항공음향 모델은 AeroDyn의 하위 모듈로 구현됩니다(<span id="id4">[<a class="reference internal" href="refs.html#id12" title="Patrick J. Moriarty 및 A. C. Hansen. 에어로딘 이론 매뉴얼. 기술 보고서 ​​NREL/TP-500-36881, 국립 재생 에너지 연구소, Golden, CO, 2005. URL: https://www.nrel.gov/docs/fy05osti/36881.pdf.">aa-MH05</a>]</span>).</p>
+<p>모델 세트는 다음에 설명되어 있습니다. <a class="reference internal" href="02-noise-models.html#aa-noise-models"><span class="std std-numref">섹션 4.5.4</span></a> 를 사용하여 국제에너지기구(IEA) 육상 기반 기준 풍력터빈의 소음 추정치를 시험했습니다. <a class="reference internal" href="03-model-verification.html#aa-model-verification"><span class="std std-numref">섹션 4.5.5</span></a>. 에서
+<a class="reference internal" href="03-model-verification.html#aa-model-verification"><span class="std std-numref">섹션 4.5.5</span></a>에서는 뮌헨 공과 대학에서 구현된 소음 모델을 실행하여 얻은 결과와의 비교도 보여줍니다. 이 문서는 결론, 향후 작업에 대한 전망 및 OpenFAST에 대한 입력 파일이 제공되는 부록으로 마무리됩니다.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p><a class="reference external" href="https://github.com/OpenFAST/openfast" target="_blank" rel="noopener noreferrer">https://github.com/OpenFAST/openfast</a></p>
+</dd>
+</dl>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="symbols.html" class="btn btn-neutral float-left" title="4.5.2. 기호 목록" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+        <a href="02-noise-models.html" class="btn btn-neutral float-right" title="4.5.4. 공력소음 모델" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>© Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    
+     
+
+
+</body></html>

@@ -1,0 +1,405 @@
+<!DOCTYPE html><html class="writer-html5" lang="ko"><head><!-- Modified 2026-11-08: unofficial Korean machine translation of OpenFAST 5.0.0. Equations, code, figures, input values and attribution retained. -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.2.3. ModGlue – 모듈을 전역 배열로 결합 — OpenFAST v5.0.0 문서</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../../../genindex.html">
+    <link rel="search" title="검색" href="../../../search.html">
+    <link rel="next" title="4.2.4. 솔버" href="solver.html">
+    <link rel="prev" title="4.2.2. 모듈 변수(ModVar)" href="modvar.html"> 
+<link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/glue-code/modglue.html"></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+          </a>
+              <div class="version">5.0 · 한국어</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="문서 검색" aria-label="문서 검색">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.2. 글루 코드</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="overview.html">4.2.1. 글루 코드 개요</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modvar.html">4.2.2. 모듈 변수(<code class="docutils literal notranslate"><span class="pre">ModVar</span></code>)</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.2.3. ModGlue – 모듈을 글로벌 어레이로 결합</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#the-modgluetype-structure">4.2.3.1. 해당 <code class="docutils literal notranslate"><span class="pre">ModGlueType</span></code> 구조</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-iloc-index-range">4.2.3.2. 해당 <code class="docutils literal notranslate"><span class="pre">iLoc</span></code> 지수 범위</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#what-modglue-combinemodules-does">4.2.3.3. 무엇 <code class="docutils literal notranslate"><span class="pre">ModGlue_CombineModules</span></code> 는 않습니다</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#where-modglue-combinemodules-is-called">4.2.3.4. 어디에 <code class="docutils literal notranslate"><span class="pre">ModGlue_CombineModules</span></code> 가 호출됩니다.</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#how-the-global-index-enables-matrix-assembly">4.2.3.5. 글로벌 인덱스를 사용하여 매트릭스 어셈블리를 구현하는 방법</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="solver.html">4.2.4. 솔버</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linearization.html">4.2.5. 선형화</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. 단순화 ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. 구조 제어</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. 추가 모듈 문서</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC 서브루틴 라이브러리</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+</ul>
+
+        <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="페이지 탐색">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.2. </span>글루 코드</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.2.3. </span>ModGlue – 모듈을 글로벌 어레이로 결합</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/glue-code/modglue.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+      </li>
+  </ul>
+  <hr>
+</div><aside class="ko-notice" aria-label="한국어 번역 안내"><strong>한국어 자동번역</strong> · OpenFAST v5.0.0 · 2026-11-08 기준<br>비공식 번역본입니다. 수식·명령어·입력 변수와 첨부자료는 원문을 보존합니다. <a href="https://openfast.readthedocs.io/en/main/source/user/glue-code/modglue.html" target="_blank" rel="noopener noreferrer" lang="en">영문 원문 대조 ↗</a></aside>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="modglue-combining-modules-into-global-arrays">
+<span id="glue-code-modglue"></span><h1><span class="section-number">4.2.3. </span>ModGlue – 모듈을 글로벌 어레이로 결합<a class="headerlink" href="#modglue-combining-modules-into-global-arrays" title="이 제목의 고유 링크"></a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">ModGlue_CombineModules</span></code> 는 다음에 의해 등록된 모듈별 변수 설명을 변환하는 단일 루틴입니다. <code class="docutils literal notranslate"><span class="pre">MV_AddVar</span></code> /
+<code class="docutils literal notranslate"><span class="pre">MV_AddMeshVar</span></code> / <code class="docutils literal notranslate"><span class="pre">MV_AddModule</span></code> (참조 <a class="reference internal" href="modvar.html#glue-code-modvar"><span class="std std-ref">모듈 변수(ModVar)</span></a>)를
+<em>모놀리식
+결합된 시스템의</em> 보기. 루틴의 출력은 다음과 같습니다.
+<code class="docutils literal notranslate"><span class="pre">ModGlueType</span></code> 구조 <code class="docutils literal notranslate"><span class="pre">Vars</span></code> 멤버는 지정된 모듈 세트에 속하는 모든 상태, 입력 및 출력 변수에 대해 전역적으로 인덱스된 배열을 보유합니다. 이러한 전역 배열은 솔버 야코비안 구성(<a class="reference internal" href="solver.html#glue-code-solver"><span class="std std-ref">솔버</span></a>) 및 선형화 절차(<a class="reference internal" href="linearization.html#glue-code-linearization"><span class="std std-ref">선형화</span></a>).</p>
+<div class="figure align-center" id="id1">
+<span id="fig-modvar-types"></span><a class="reference internal image-reference" href="../../../_images/ModVar.svg"><img alt="ModVar 데이터 구조 계층" src="../../../_images/ModVar.svg" width="100%"></a>
+<p class="caption"><span class="caption-number">그림 4.1 </span><span class="caption-text">글루 코드에서 사용되는 완전한 데이터 구조 계층 구조입니다. 왼쪽에 표시된 유형(<code class="docutils literal notranslate"><span class="pre">DatLoc</span></code>, <code class="docutils literal notranslate"><span class="pre">Field</span> <span class="pre">ID</span></code>, <code class="docutils literal notranslate"><span class="pre">Variable</span> <span class="pre">Flag</span></code>)는 각각에서 참조됩니다. <code class="docutils literal notranslate"><span class="pre">ModVarType</span></code>.  <code class="docutils literal notranslate"><span class="pre">ModDataType</span></code> (중앙, 모듈당)는 최상위 레벨로 수집됩니다. <code class="docutils literal notranslate"><span class="pre">ModGlueType</span></code> (오른쪽) <code class="docutils literal notranslate"><span class="pre">ModGlue_CombineModules</span></code>.</span><a class="headerlink" href="#id1" title="이 이미지에 대한 영구 링크"></a></p>
+</div>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#the-modgluetype-structure" id="id2">해당 <code class="docutils literal notranslate"><span class="pre">ModGlueType</span></code> 구조</a></p></li>
+<li><p><a class="reference internal" href="#the-iloc-index-range" id="id3">해당 <code class="docutils literal notranslate"><span class="pre">iLoc</span></code> 지수 범위</a></p></li>
+<li><p><a class="reference internal" href="#what-modglue-combinemodules-does" id="id4">무엇 <code class="docutils literal notranslate"><span class="pre">ModGlue_CombineModules</span></code> 는 않습니다</a></p></li>
+<li><p><a class="reference internal" href="#where-modglue-combinemodules-is-called" id="id5">어디에 <code class="docutils literal notranslate"><span class="pre">ModGlue_CombineModules</span></code> 가 호출됩니다.</a></p>
+<ul>
+<li><p><a class="reference internal" href="#m-mod-the-solver-glue-module-in-fast-solverinit" id="id6"><code class="docutils literal notranslate"><span class="pre">m%Mod</span></code> – 솔버 글루 모듈(in <code class="docutils literal notranslate"><span class="pre">FAST_SolverInit</span></code>)</a></p></li>
+<li><p><a class="reference internal" href="#m-fast-modglue-the-linearization-glue-module-in-modglue-init" id="id7"><code class="docutils literal notranslate"><span class="pre">m_FAST%ModGlue</span></code> – 선형화 글루 모듈(in <code class="docutils literal notranslate"><span class="pre">ModGlue_Init</span></code>)</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#how-the-global-index-enables-matrix-assembly" id="id8">글로벌 인덱스를 통해 매트릭스 어셈블리를 구현하는 방법</a></p></li>
+</ul>
+</div>
+<div class="section" id="the-modgluetype-structure">
+<h2><a class="toc-backref" href="#id2"><span class="section-number">4.2.3.1. </span>해당 <code class="docutils literal notranslate"><span class="pre">ModGlueType</span></code> 구조</a><a class="headerlink" href="#the-modgluetype-structure" title="이 제목의 고유 링크"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">ModGlueType</span></code> 는 다음에 정의되어 있습니다. <code class="docutils literal notranslate"><span class="pre">modules/openfast-library/src/Glue_Types.f90</span></code>:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">type </span><span class="n">ModGlueType</span>
+<span class="w">   </span><span class="kt">character</span><span class="p">(</span><span class="n">ChanLen</span><span class="p">)</span><span class="w">                    </span><span class="kd">::</span><span class="w"> </span><span class="n">Name</span><span class="w">     </span><span class="c">! Label (e.g. 'Solver', 'Lin')</span>
+<span class="w">   </span><span class="k">type</span><span class="p">(</span><span class="n">ModDataType</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w">        </span><span class="kd">::</span><span class="w"> </span><span class="n">ModData</span><span class="p">(:)</span><span class="w"> </span><span class="c">! Per-module view</span>
+<span class="w">   </span><span class="k">type</span><span class="p">(</span><span class="n">ModVarsType</span><span class="p">)</span><span class="w">                     </span><span class="kd">::</span><span class="w"> </span><span class="n">Vars</span><span class="w">       </span><span class="c">! Combined variable arrays</span>
+<span class="w">   </span><span class="k">type</span><span class="p">(</span><span class="n">ModLinType</span><span class="p">)</span><span class="w">                      </span><span class="kd">::</span><span class="w"> </span><span class="n">Lin</span><span class="w">        </span><span class="c">! Linearization matrices</span>
+<span class="w">   </span><span class="k">type</span><span class="p">(</span><span class="n">VarMapType</span><span class="p">),</span><span class="w">  </span><span class="k">allocatable</span><span class="w">        </span><span class="kd">::</span><span class="w"> </span><span class="n">VarMaps</span><span class="p">(:)</span><span class="w"> </span><span class="c">! Relevant mappings</span>
+<span class="k">end type </span><span class="n">ModGlueType</span>
+</pre></div>
+</div>
+<p>주요 구성원:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 80%">
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>회원</p></th>
+<th class="head"><p>설명</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ModData(:)</span></code></p></td>
+<td><p>이 글루 인스턴스에 포함된 모듈당 하나의 항목입니다. 각 항목은 원본의 필터링된 사본입니다. <code class="docutils literal notranslate"><span class="pre">ModDataType</span></code>, 다음에 의해 선택된 변수 하위 집합만 포함 <code class="docutils literal notranslate"><span class="pre">FlagFilter</span></code>. 인덱스 순서가 다음과 일치합니다.
+<code class="docutils literal notranslate"><span class="pre">iModAry</span></code> 인수가 전달되었습니다. <code class="docutils literal notranslate"><span class="pre">ModGlue_CombineModules</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Vars%x(:)</span></code></p></td>
+<td><p>연결된 배열
+모든 <code class="docutils literal notranslate"><span class="pre">ModVarType</span></code> 설명자 <em>연속 상태
+선택한 모듈 전체의</em>
+변수.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Vars%u(:)</span></code></p></td>
+<td><p>연결된 배열
+모든 <code class="docutils literal notranslate"><span class="pre">ModVarType</span></code> 설명자 <em>입력</em> 변수.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Vars%y(:)</span></code></p></td>
+<td><p>연결된 배열
+모든 <code class="docutils literal notranslate"><span class="pre">ModVarType</span></code> 설명자 <em>출력</em> 변수.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Vars%Nx</span> <span class="pre">/</span> <span class="pre">%Nu</span> <span class="pre">/</span> <span class="pre">%Ny</span></code></p></td>
+<td><p>각 그룹의 총 스칼라 값 수(합계)
+모든 변수에 걸쳐 <code class="docutils literal notranslate"><span class="pre">Var%Num</span></code> 각각 <code class="docutils literal notranslate"><span class="pre">Vars%x</span> <span class="pre">/</span> <span class="pre">%u</span> <span class="pre">/</span> <span class="pre">%y</span></code> ). 이는 전역 데이터 배열과 야코비안 행렬의 행/열 차원입니다.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Lin</span></code></p></td>
+<td><p>선형화 작동 지점 배열 보유(<code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">dx</span></code>, <code class="docutils literal notranslate"><span class="pre">u</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code>) 및 전체 시스템 행렬(<code class="docutils literal notranslate"><span class="pre">dXdx</span></code>, <code class="docutils literal notranslate"><span class="pre">dXdu</span></code>, <code class="docutils literal notranslate"><span class="pre">dYdx</span></code>, <code class="docutils literal notranslate"><span class="pre">dYdu</span></code>,
+<code class="docutils literal notranslate"><span class="pre">dUdu</span></code>, <code class="docutils literal notranslate"><span class="pre">dUdy</span></code>). 다음 경우에만 할당됩니다. <code class="docutils literal notranslate"><span class="pre">Linearize=.true.</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">VarMaps(:)</span></code></p></td>
+<td><p>글로벌의 필터링된 하위 집합
+소스가 다음과 같은 매핑만 포함하는 <code class="docutils literal notranslate"><span class="pre">Mappings</span></code> 배열 <strong>및</strong> 대상 모듈은 모두
+<code class="docutils literal notranslate"><span class="pre">iModAry</span></code>. 출력-입력 결합을 설명하기 위해 야코비안 유한 차분 중에 사용됩니다.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="the-iloc-index-range">
+<h2><a class="toc-backref" href="#id3"><span class="section-number">4.2.3.2. </span>해당 <code class="docutils literal notranslate"><span class="pre">iLoc</span></code> 지수 범위</a><a class="headerlink" href="#the-iloc-index-range" title="이 제목의 고유 링크"></a></h2>
+<p>이후 <code class="docutils literal notranslate"><span class="pre">ModGlue_CombineModules</span></code> 는 다음을 반환합니다.
+<code class="docutils literal notranslate"><span class="pre">ModGlue%Vars%x</span> <span class="pre">/</span> <span class="pre">%u</span> <span class="pre">/</span> <span class="pre">%y</span></code> 는
+내부에 위치한 <code class="docutils literal notranslate"><span class="pre">iLoc(1:2)</span></code> 범위 <em>글루레벨</em> 데이터 벡터. 특히 위치에 있는 변수의 경우
+<em>k</em> 인 <code class="docutils literal notranslate"><span class="pre">ModGlue%Vars%x</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">iLoc(1)</span></code> – 길이의 첫 번째 스칼라 값 인덱스<code class="docutils literal notranslate"><span class="pre">Vars%Nx</span></code> 어레이.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iLoc(2)</span></code> – 마지막 스칼라 값의 인덱스입니다.</p></li>
+</ul>
+<p>이것은 <em>접착제 로컬
+여과 후</em> 지수; 해당 모듈별 위치는 변수의 <code class="docutils literal notranslate"><span class="pre">iGlu</span></code> 범위(이전에 설정됨) <code class="docutils literal notranslate"><span class="pre">FAST_SolverInit</span> <span class="pre">→</span> <span class="pre">CalcVarGlobalIndices</span></code>). 는 <code class="docutils literal notranslate"><span class="pre">iLoc</span> <span class="pre">/</span> <span class="pre">iGlu</span></code> 분리는 동일한 변수 설명자가 모듈별로 동시에 존재할 수 있음을 의미합니다. <code class="docutils literal notranslate"><span class="pre">ModData</span></code> 뷰, 솔버 <code class="docutils literal notranslate"><span class="pre">m%Mod</span></code>
+보기 및 선형화
+각 컨텍스트에서 일관되고 겹치지 않는 인덱스 범위가 있는 <code class="docutils literal notranslate"><span class="pre">m%ModGlue</span></code> 뷰입니다.</p>
+</div>
+<div class="section" id="what-modglue-combinemodules-does">
+<h2><a class="toc-backref" href="#id4"><span class="section-number">4.2.3.3. </span>무엇 <code class="docutils literal notranslate"><span class="pre">ModGlue_CombineModules</span></code> 는 않습니다</a><a class="headerlink" href="#what-modglue-combinemodules-does" title="이 제목의 고유 링크"></a></h2>
+<p>서브루틴 서명은 다음과 같습니다.</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">ModGlue_CombineModules</span><span class="p">(</span><span class="n">ModGlue</span><span class="p">,</span><span class="w"> </span><span class="n">ModDataAry</span><span class="p">,</span><span class="w"> </span><span class="n">Mappings</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">                                   </span><span class="n">iModAry</span><span class="p">,</span><span class="w"> </span><span class="n">FlagFilter</span><span class="p">,</span><span class="w"> </span><span class="n">Linearize</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">                                   </span><span class="n">ErrStat</span><span class="p">,</span><span class="w"> </span><span class="n">ErrMsg</span><span class="p">,</span><span class="w"> </span><span class="n">Name</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 12%">
+<col style="width: 66%">
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>인수</p></th>
+<th class="head"><p>인텐트
+채울</p></th>
+<th class="head"><p>설명</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ModGlue</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">out</span></code></p></td>
+<td><p>해당 <code class="docutils literal notranslate"><span class="pre">ModGlueType</span></code> 구조입니다.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ModDataAry(:)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">in</span></code></p></td>
+<td><p>글루 코드로 등록된 모듈별 데이터의 전체 배열입니다.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Mappings(:)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">in</span></code></p></td>
+<td><p>메시 및 변수 매핑의 전체 배열입니다.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">iModAry(:)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">in</span></code></p></td>
+<td><p>정렬된 인덱스 목록 <code class="docutils literal notranslate"><span class="pre">ModDataAry</span></code> 지정 <em>포함할</em> 모듈 <em>무슨 순서야?</em>. 순서에 따라 전역 벡터와 야코비 행렬의 행/열 레이아웃이 결정됩니다.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">FlagFilter</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">in</span></code></p></td>
+<td><p>비트마스크 <code class="docutils literal notranslate"><span class="pre">VF_*</span></code> 플래그. 다음을 갖는 변수만 <strong>적어도 하나
+이 플래그의</strong> 가 설정되었습니다(예: <code class="docutils literal notranslate"><span class="pre">MV_HasFlagsAny(Var,</span> <span class="pre">FlagFilter)</span></code> 는 사실임) 접착제에 복사됩니다. <code class="docutils literal notranslate"><span class="pre">Vars</span></code> 어레이.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Linearize</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">in</span></code></p></td>
+<td><p>언제 <code class="docutils literal notranslate"><span class="pre">.true.</span></code>, 할당 <code class="docutils literal notranslate"><span class="pre">Lin</span></code> 동작점 배열 및 전체 시스템 야코비 행렬.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Name</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">in</span></code> (옵션)</p></td>
+<td><p>사람이 읽을 수 있는 라벨이 다음에 저장됨 <code class="docutils literal notranslate"><span class="pre">ModGlue%Name</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">'Solver'</span></code>,
+<code class="docutils literal notranslate"><span class="pre">'Lin'</span></code>).</p></td>
+</tr>
+</tbody>
+</table>
+<p>내부적으로 수행되는 네 가지 주요 단계는 다음과 같습니다.</p>
+<ol class="arabic simple">
+<li><p><strong>계산 및 할당</strong>. 각 모듈을 반복합니다. <code class="docutils literal notranslate"><span class="pre">iModAry</span></code> 및 변수 설명자 수(및 총 스칼라 값 수)가 몇 개를 통과하는지 계산합니다.
+각각에 대한
+<code class="docutils literal notranslate"><span class="pre">FlagFilter</span></code> 테스트 <em>x</em>, <em>u</em>, <em>y</em> 그룹. 할당하다
+<code class="docutils literal notranslate"><span class="pre">ModGlue%Vars%x</span> <span class="pre">/</span> <span class="pre">%u</span> <span class="pre">/</span> <span class="pre">%y</span></code> 는 정확히 그 크기입니다.</p></li>
+<li><p><strong>복사 및 재인덱싱</strong>. 각 모듈에 대해 필터링된 내용을 복사합니다.
+<code class="docutils literal notranslate"><span class="pre">ModVarType</span></code> 설명자를 <code class="docutils literal notranslate"><span class="pre">ModGlue%Vars</span></code> 및 연속 할당
+<code class="docutils literal notranslate"><span class="pre">iLoc</span></code> 범위는 글루 수준 인덱스가 모든 모듈에서 연속적임을 나타냅니다. 모듈별 <code class="docutils literal notranslate"><span class="pre">ModGlue%ModData(i)%Vars</span></code> 하위 어레이는 동일한 설명자를 수신합니다. <code class="docutils literal notranslate"><span class="pre">iLoc</span></code> 를 사용하면 분산/수집 루틴이 전역 벡터에서 직접 작동할 수 있습니다. 선형 이름 접두사(예: <code class="docutils literal notranslate"><span class="pre">"ED</span> <span class="pre">"</span></code>, <code class="docutils literal notranslate"><span class="pre">"BD_1</span> <span class="pre">"</span></code>)가 앞에 추가됩니다.
+이 단계에서
+<code class="docutils literal notranslate"><span class="pre">LinNames</span></code> 는 전 세계적으로 고유한 채널 라벨을 생성합니다.</p></li>
+<li><p><strong>필터 매핑</strong>. 전체를 반복 <code class="docutils literal notranslate"><span class="pre">Mappings</span></code> 어레이를 사용하고 둘 다 있는 것만 유지합니다. <code class="docutils literal notranslate"><span class="pre">iModSrc</span></code> 및 <code class="docutils literal notranslate"><span class="pre">iModDst</span></code> 가 다음에 나타납니다. <code class="docutils literal notranslate"><span class="pre">iModAry</span></code>. 로컬 항목에 대해 보관된 항목을 다시 색인화합니다. <code class="docutils literal notranslate"><span class="pre">ModData</span></code> 위치(글로벌 위치 아님) <code class="docutils literal notranslate"><span class="pre">ModDataAry</span></code> 위치)에 저장합니다.
+<code class="docutils literal notranslate"><span class="pre">ModGlue%VarMaps</span></code>.</p></li>
+<li><p><strong>선형화 스토리지 할당</strong> (경우에만 <code class="docutils literal notranslate"><span class="pre">Linearize=.true.</span></code>). 할당하다 <code class="docutils literal notranslate"><span class="pre">Lin</span></code> 동작점 벡터(<code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">dx</span></code>, <code class="docutils literal notranslate"><span class="pre">u</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code>) 및 6개의 야코비 행렬 모두(<code class="docutils literal notranslate"><span class="pre">dXdx</span></code>, <code class="docutils literal notranslate"><span class="pre">dXdu</span></code>, <code class="docutils literal notranslate"><span class="pre">dYdx</span></code>, <code class="docutils literal notranslate"><span class="pre">dYdu</span></code>,
+<code class="docutils literal notranslate"><span class="pre">dUdu</span></code>, <code class="docutils literal notranslate"><span class="pre">dUdy</span></code>) 치수 <code class="docutils literal notranslate"><span class="pre">Vars%Nx</span></code> 및 <code class="docutils literal notranslate"><span class="pre">Vars%Nu</span> <span class="pre">/</span> <span class="pre">Ny</span></code>.</p></li>
+</ol>
+</div>
+<div class="section" id="where-modglue-combinemodules-is-called">
+<h2><a class="toc-backref" href="#id5"><span class="section-number">4.2.3.4. </span>어디에 <code class="docutils literal notranslate"><span class="pre">ModGlue_CombineModules</span></code> 가 호출됩니다.</a><a class="headerlink" href="#where-modglue-combinemodules-is-called" title="이 제목의 고유 링크"></a></h2>
+<p>OpenFAST 초기화 중에 루틴이 두 번 호출되어 두 개의 고유한 생성
+다양한 변수 선택이 가능한 <code class="docutils literal notranslate"><span class="pre">ModGlueType</span></code> 인스턴스:</p>
+<div class="section" id="m-mod-the-solver-glue-module-in-fast-solverinit">
+<h3><a class="toc-backref" href="#id6"><span class="section-number">4.2.3.4.1. </span><code class="docutils literal notranslate"><span class="pre">m%Mod</span></code> – 솔버 글루 모듈(in <code class="docutils literal notranslate"><span class="pre">FAST_SolverInit</span></code>)</a><a class="headerlink" href="#m-mod-the-solver-glue-module-in-fast-solverinit" title="이 제목의 고유 링크"></a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">iMod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">p</span><span class="p">%</span><span class="n">iModTC</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">%</span><span class="n">iModOpt1</span><span class="p">]</span><span class="w">   </span><span class="c">! TC + Option-1 indices</span>
+
+<span class="k">call </span><span class="n">ModGlue_CombineModules</span><span class="p">(</span><span class="n">m</span><span class="p">%</span><span class="nb">Mod</span><span class="p">,</span><span class="w"> </span><span class="n">GlueModData</span><span class="p">,</span><span class="w"> </span><span class="n">GlueModMaps</span><span class="p">,</span><span class="w"> </span><span class="n">iMod</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">                            </span><span class="n">VF_Solve</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">true</span><span class="p">.,</span><span class="w"> </span><span class="n">ErrStat2</span><span class="p">,</span><span class="w"> </span><span class="n">ErrMsg2</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">                            </span><span class="n">Name</span><span class="o">=</span><span class="s1">'Solver'</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>모듈 포함</strong>: 밀착 결합(TC) 모듈과 옵션-1 모듈.</p></li>
+<li><p><strong>가변 필터</strong>: <code class="docutils literal notranslate"><span class="pre">VF_Solve</span></code>. 이 플래그는 다음에 의해 설정됩니다.
+뉴턴 반복에 나타나야 하는 모든 변수에 대한
+<code class="docutils literal notranslate"><span class="pre">FAST_SolverInit</span> <span class="pre">→</span> <span class="pre">SetVarSolveFlags</span></code> : TC 연속 상태, 모듈 간 결합과 관련된 동작/부하 메쉬 입력/출력 및 변수 간 매핑된 입력/출력(참조
+전체 선택 기준은 <a class="reference internal" href="solver.html#glue-code-solver"><span class="std std-ref">솔버</span></a>
+).</p></li>
+<li><p><strong>선형화</strong>: <code class="docutils literal notranslate"><span class="pre">.true.</span></code> — 솔버의 뉴턴 선형 시스템이 작동점 선형화와 동일한 저장 공간을 재사용하기 때문에 야코비안 행렬이 여기에 할당됩니다.</p></li>
+<li><p><strong>결과</strong>: <code class="docutils literal notranslate"><span class="pre">m%Mod%Vars%Nx</span></code> 는 TC 변위/속도 스칼라의 수와 같습니다(<code class="docutils literal notranslate"><span class="pre">p%NumQ</span></code>); <code class="docutils literal notranslate"><span class="pre">m%Mod%Vars%Nu</span></code> 는 플래그가 지정된 모든 TC 및 옵션-1 입력을 포괄합니다. <code class="docutils literal notranslate"><span class="pre">VF_Solve</span></code>. 야코비안 차원 <code class="docutils literal notranslate"><span class="pre">p%NumJ</span> <span class="pre">=</span> <span class="pre">p%NumQ</span> <span class="pre">+</span> <span class="pre">p%NumU</span></code>
+가 직접 이어집니다.</p></li>
+</ul>
+</div>
+<div class="section" id="m-fast-modglue-the-linearization-glue-module-in-modglue-init">
+<h3><a class="toc-backref" href="#id7"><span class="section-number">4.2.3.4.2. </span><code class="docutils literal notranslate"><span class="pre">m_FAST%ModGlue</span></code> – 선형화 글루 모듈(in <code class="docutils literal notranslate"><span class="pre">ModGlue_Init</span></code>)</a><a class="headerlink" href="#m-fast-modglue-the-linearization-glue-module-in-modglue-init" title="이 제목의 고유 링크"></a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">LinFlags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">VF_Linearize</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">VF_Mapping</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">VF_Mesh</span>
+
+<span class="k">call </span><span class="n">ModGlue_CombineModules</span><span class="p">(</span><span class="n">m</span><span class="p">%</span><span class="n">ModGlue</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">%</span><span class="n">ModData</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">%</span><span class="n">Mappings</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">                            </span><span class="n">p</span><span class="p">%</span><span class="n">Lin</span><span class="p">%</span><span class="n">iMod</span><span class="p">,</span><span class="w"> </span><span class="n">LinFlags</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">                            </span><span class="n">p_FAST</span><span class="p">%</span><span class="n">Linearize</span><span class="p">,</span><span class="w"> </span><span class="n">ErrStat2</span><span class="p">,</span><span class="w"> </span><span class="n">ErrMsg2</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">                            </span><span class="n">Name</span><span class="o">=</span><span class="s2">"Lin"</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>모듈 포함</strong>: 선형화에 참여하는 모든 모듈은 다음에 의해 설정된 표준 순서로 나타납니다. <code class="docutils literal notranslate"><span class="pre">p%Lin%iMod</span></code> (InflowWind → SeaState → ServoDyn → ElastoDyn → BeamDyn → AeroDyn → HydroDyn → SubDyn → MAP++ → MoorDyn).</p></li>
+<li><p><strong>가변 필터</strong>: <code class="docutils literal notranslate"><span class="pre">VF_Linearize</span> <span class="pre">+</span> <span class="pre">VF_Mapping</span> <span class="pre">+</span> <span class="pre">VF_Mesh</span></code>. 는
+<code class="docutils literal notranslate"><span class="pre">VF_Linearize</span></code> 플래그는 다음에 따라 변수별로 적용됩니다.
+입력 파일의
+<code class="docutils literal notranslate"><span class="pre">LinInputs</span></code> / <code class="docutils literal notranslate"><span class="pre">LinOutputs</span></code> 설정;
+<code class="docutils literal notranslate"><span class="pre">VF_Mapping</span></code> / <code class="docutils literal notranslate"><span class="pre">VF_Mesh</span></code> 는 변수가 정식 선형화 출력이 아닌 경우에도 결합 야코비 행렬을 조합할 수 있도록 메시 결합 변수가 항상 포함되도록 보장합니다.</p></li>
+<li><p><strong>선형화</strong>: <code class="docutils literal notranslate"><span class="pre">p_FAST%Linearize</span></code> — 선형화가 요청될 때만 전체 전체 시스템 행렬을 할당합니다.</p></li>
+<li><p><strong>결과</strong>: <code class="docutils literal notranslate"><span class="pre">m%ModGlue%Vars%Nx</span> <span class="pre">/</span> <span class="pre">%Nu</span> <span class="pre">/</span> <span class="pre">%Ny</span></code> 는
+<strong>A</strong>, <strong>B</strong>, <strong>C</strong>, <strong>D</strong>, <strong>dUdu</strong>, <strong>dUdy</strong> 행렬이
+<code class="docutils literal notranslate"><span class="pre">.lin</span></code> 파일입니다.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="how-the-global-index-enables-matrix-assembly">
+<h2><a class="toc-backref" href="#id8"><span class="section-number">4.2.3.5. </span>글로벌 인덱스를 통해 매트릭스 어셈블리를 구현하는 방법</a><a class="headerlink" href="#how-the-global-index-enables-matrix-assembly" title="이 제목의 고유 링크"></a></h2>
+<p>모든 변수 설명자는
+접착제의 <code class="docutils literal notranslate"><span class="pre">iLoc</span></code> 범위
+<code class="docutils literal notranslate"><span class="pre">Vars</span></code> 전역 데이터 벡터에 대한 배열, 분산 및 수집 작업은 간단한 인덱스 범위 할당이 됩니다. 예를 들어, 모듈의 상태 벡터를 전역 솔버 벡터로 압축하려면 <code class="docutils literal notranslate"><span class="pre">x_global</span></code>:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">do </span><span class="n">iVar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">ModData</span><span class="p">%</span><span class="n">Vars</span><span class="p">%</span><span class="n">x</span><span class="p">)</span>
+<span class="w">   </span><span class="k">associate</span><span class="w"> </span><span class="p">(</span><span class="n">Var</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">ModData</span><span class="p">%</span><span class="n">Vars</span><span class="p">%</span><span class="n">x</span><span class="p">(</span><span class="n">iVar</span><span class="p">))</span>
+<span class="w">      </span><span class="n">x_global</span><span class="p">(</span><span class="n">Var</span><span class="p">%</span><span class="n">iLoc</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span><span class="n">Var</span><span class="p">%</span><span class="n">iLoc</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x_mod</span><span class="p">(</span><span class="n">Var</span><span class="p">%</span><span class="n">iGlu</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span><span class="n">Var</span><span class="p">%</span><span class="n">iGlu</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="w">   </span><span class="k">end associate</span>
+<span class="k">end do</span>
+</pre></div>
+</div>
+<p>그리고 전역 야코비안 열에서 모듈별 하위 열로 해당 수집에는 오프셋 산술이 필요하지 않습니다. <code class="docutils literal notranslate"><span class="pre">iLoc</span></code> 인덱스는 이미 올바른 전역 위치를 인코딩합니다.</p>
+<p>마찬가지로, <code class="docutils literal notranslate"><span class="pre">VarMaps</span></code> 어레이에 저장됨 <code class="docutils literal notranslate"><span class="pre">ModGlueType</span></code> 는 야코비안 결합 항을 독립적으로 만듭니다. 동안
+<code class="docutils literal notranslate"><span class="pre">BuildJacobianTC</span></code> / <code class="docutils literal notranslate"><span class="pre">BuildJacobianIO</span></code> (에서 <code class="docutils literal notranslate"><span class="pre">FAST_Solver.f90</span></code>) 및
+<code class="docutils literal notranslate"><span class="pre">ModGlue_Linearize_OP</span></code> (에서 <code class="docutils literal notranslate"><span class="pre">FAST_ModGlue.f90</span></code>) 루프는 간단합니다.</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">ModGlue</span><span class="p">%</span><span class="n">VarMaps</span><span class="p">)</span>
+<span class="w">   </span><span class="c">! perturb source output, evaluate destination input change</span>
+<span class="w">   </span><span class="c">! scatter result into J(iVarDst%iLoc, iVarSrc%iLoc)</span>
+<span class="k">end do</span>
+</pre></div>
+</div>
+<p>이 수준에서는 모듈 관련 지식이 필요하지 않습니다. <code class="docutils literal notranslate"><span class="pre">ModGlueType</span></code>
+인스턴스는 완전히 자기 설명적입니다.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="modvar.html" class="btn btn-neutral float-left" title="4.2.2. 모듈 변수(ModVar)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+        <a href="solver.html" class="btn btn-neutral float-right" title="4.2.4. 솔버" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>© Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    
+     
+
+
+</body></html>

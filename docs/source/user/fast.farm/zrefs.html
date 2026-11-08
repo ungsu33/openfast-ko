@@ -1,0 +1,237 @@
+<!DOCTYPE html><html class="writer-html5" lang="ko"><head><!-- Modified 2026-11-08: unofficial Korean machine translation of OpenFAST 5.0.0. Equations, code, figures, input values and attribution retained. -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.19.9. 참고 자료 — OpenFAST v5.0.0 문서</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../../../genindex.html">
+    <link rel="search" title="검색" href="../../../search.html">
+    <link rel="next" title="4.19.10. FAST.Farm 기본 입력 파일" href="AppendixA.html">
+    <link rel="prev" title="4.19.8. 향후 개발 계획" href="FutureWork.html"> 
+<link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/fast.farm/zrefs.html"></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+          </a>
+              <div class="version">5.0 · 한국어</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="문서 검색" aria-label="문서 검색">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. 단순화 ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. 구조 제어</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.19. FAST.Farm</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Nomenclature.html">4.19.1. 명명법</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Introduction.html">4.19.2. 소개</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RunningFFarm.html">4.19.3. FAST.Farm 실행</a></li>
+<li class="toctree-l3"><a class="reference internal" href="InputFiles.html">4.19.4. 입력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="OutputFiles.html">4.19.5. 출력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ModelGuidance.html">4.19.6. 모델링 지침</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FFarmTheory.html">4.19.7. FAST.팜 이론</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FutureWork.html">4.19.8. 향후 개발 계획</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.19.9. 참고문헌</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixA.html">4.19.10. FAST.Farm 기본 입력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixB.html">4.19.11. 주변 바람 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixC.html">4.19.12. 출력 채널 목록</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. 추가 모듈 문서</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC 서브루틴 라이브러리</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+</ul>
+
+        <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="페이지 탐색">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.19. </span>FAST.Farm 사용자 가이드 및 이론 설명서</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.19.9. </span>참고문헌</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/fast.farm/zrefs.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+      </li>
+  </ul>
+  <hr>
+</div><aside class="ko-notice" aria-label="한국어 번역 안내"><strong>한국어 자동번역</strong> · OpenFAST v5.0.0 · 2026-11-08 기준<br>비공식 번역본입니다. 수식·명령어·입력 변수와 첨부자료는 원문을 보존합니다. <a href="https://openfast.readthedocs.io/en/main/source/user/fast.farm/zrefs.html" target="_blank" rel="noopener noreferrer" lang="en">영문 원문 대조 ↗</a></aside>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="references">
+<h1><span class="section-number">4.19.9. </span>참고문헌<a class="headerlink" href="#references" title="이 제목의 고유 링크"></a></h1>
+</div>
+<div class="docutils container" id="id1">
+<dl class="citation">
+<dt class="label" id="id12"><span class="brackets">ff-Ain88</span></dt>
+<dd><p>J. F. 에인슬리. 풍력터빈의 결과로 유동장을 계산합니다. <em>풍력 공학 및 산업 공기 역학 저널</em>, 27:213–224, 1988. <a class="reference external" href="https://doi.org/https://doi.org/10.1016/0167-6105(88)90037-2" target="_blank" rel="noopener noreferrer">도이:https://doi.org/10.1016/0167-6105(88)90037-2</a>.</p>
+</dd>
+<dt class="label" id="id2"><span class="brackets">ff-BJP+24</span></dt>
+<dd><p>E. Branlard, J. Jonkman, A. Platt, R. Thedin, L. A. Martinez-Tossas 및 M. Kretschmer. fast.farm에서 개선된 후류 추가 난류 모델의 개발 및 검증. TORQUE 2024. 이탈리아 피렌체, 2024년 5월. EAWE.</p>
+</dd>
+<dt class="label" id="id28"><span class="brackets">ff-Ceal15</span></dt>
+<dd><p>M. J. Churchfield 및 그 외 여러분. egmond aan zee 해상 풍력 발전소의 동적 후류 사행 모델, 대형 와류 시뮬레이션 및 현장 데이터 비교. 제33회 풍력에너지 심포지엄에서. 키시미, 플로리다, 2015. AIAA. <a class="reference external" href="https://doi.org/http://dx.doi.org/10.2514/6.2015-0724" target="_blank" rel="noopener noreferrer">doi:http://dx.doi.org/10.2514/6.2015-0724</a>.</p>
+</dd>
+<dt class="label" id="id13"><span class="brackets">ff-CN96</span></dt>
+<dd><p>J. 크랭크와 P. 니콜슨. 열전도 유형의 편미분 방정식의 해를 수치적으로 평가하는 실제 방법. <em>전산 수학의 발전</em>, 6:207–226, 1996.</p>
+</dd>
+<dt class="label" id="id19"><span class="brackets">ff-Deal18</span></dt>
+<dd><p>P. Doubrawa 및 그 외 여러분. sofa에 대한 fast.farm 매개변수의 최적화 기반 보정. 제36회 풍력에너지 심포지엄에서. 플로리다주 키시미, 2018년 1월. AIAA. <a class="reference external" href="https://doi.org/https://arc.aiaa.org/doi/pdf/10.2514/6.2018-0512" target="_blank" rel="noopener noreferrer">doi:https://arc.aiaa.org/doi/pdf/10.2514/6.2018-0512</a>.</p>
+</dd>
+<dt class="label" id="id11"><span class="brackets">ff-Hao16</span></dt>
+<dd><p>Y. 하오. <em>풍력 발전소 후류 모델링 및 풍력 발전소의 후류 영향 분석</em>. 매사추세츠대학교, 매사추세츠주 애머스트, 박사 학위 논문, 2016년.</p>
+</dd>
+<dt class="label" id="id29"><span class="brackets">ff-Heal14</span></dt>
+<dd><p>Y. Hao 및 그 외 여러분. nwtc 설계 코드에서 동적 후류 사행 모델을 구현합니다. 제32회 풍력에너지 심포지엄에서. 메릴랜드주 내셔널 하버, 2014년 1월. AIAA. <a class="reference external" href="https://doi.org/http://dx.doi.org/10.2514/6.2014-1089" target="_blank" rel="noopener noreferrer">doi:http://dx.doi.org/10.2514/6.2014-1089</a>.</p>
+</dd>
+<dt class="label" id="id33"><span class="brackets">ff-Jon14</span></dt>
+<dd><p>B. 존크만. Turbsim 사용자 가이드 v2.00.00. 기술 보고서 NREL/TP-xxxx-xxxxx, 국립 재생 에너지 연구소, Golden, CO, 2014년 10월.</p>
+</dd>
+<dt class="label" id="id22"><span class="brackets">ff-Jon13</span></dt>
+<dd><p>J. 존크만. 고속 풍력터빈 CAE 도구를 위한 새로운 모듈화 프레임워크입니다. 제51차 AIAA 항공우주과학회의에서. 2013년 텍사스 주 달라스. AIAA.</p>
+</dd>
+<dt class="label" id="id31"><span class="brackets">ff-Jeal09</span></dt>
+<dd><p>J. Jonkman 및 그 외 여러분. 해양 시스템 개발을 위한 5MW 기준 풍력터빈의 정의. 기술 보고서 NREL/TP-500-38060, 국립 재생 에너지 연구소, Golden, CO, 2009년 2월.</p>
+</dd>
+<dt class="label" id="id27"><span class="brackets">ff-Katiceal86</span></dt>
+<dd><p>I. Kati\`c 및 외. 클러스터 효율성을 위한 간단한 모델입니다. 유럽 ​​풍력 에너지 협회 회의 및 전시회에서. 1986년 이탈리아 로마.</p>
+</dd>
+<dt class="label" id="id10"><span class="brackets">ff-Keal13</span></dt>
+<dd><p>R.-E. Keck and et al. <em>대기 경계층의 동적 후류 사행 모델에 대한 일관된 난류 공식</em>. 박사 논문, DTU, 덴마크, 2013.</p>
+</dd>
+<dt class="label" id="id4"><span class="brackets">ff-Leal08</span></dt>
+<dd><p>G. C. Larsen 및 et al. Wake Meander: 실용적인 접근 방식. <em>풍력 에너지</em>, 11:337–95, 2008. <a class="reference external" href="https://doi.org/http://onlinelibrary.wiley.com/doi/10.1002/we.267/epdf" target="_blank" rel="noopener noreferrer">doi:http://onlinelibrary.wiley.com/doi/10.1002/we.267/epdf</a>.</p>
+</dd>
+<dt class="label" id="id15"><span class="brackets">ff-Meal10</span></dt>
+<dd><p>H. A. Madsen 및 et al. 공탄성 코드 구현을 위한 동적 후류 사행 모델의 교정 및 검증. <em>태양 에너지 공학 저널</em>, 2010년 11월. <a class="reference external" href="https://doi.org/https://doi.org/10.1115/1.4002555" target="_blank" rel="noopener noreferrer">doi:https://doi.org/10.1115/1.4002555</a>.</p>
+</dd>
+<dt class="label" id="id20"><span class="brackets">ff-Meal16</span></dt>
+<dd><p>H. A. Madsen 및 그 외 여러분. 높은 풍속에서의 후류 특성. 제34회 풍력에너지 심포지엄에서. 캘리포니아주 샌디에고, 2016. AIAA. <a class="reference external" href="https://doi.org/http://dx.doi.org/10.2514/6.2016-1522." target="_blank" rel="noopener noreferrer">doi:http://dx.doi.org/10.2514/6.2016-1522.</a></p>
+</dd>
+<dt class="label" id="id3"><span class="brackets">ff-Man94</span></dt>
+<dd><p>J. 만. 중성 대기 표면층 난류의 공간 구조. <em>유체역학 저널</em>, 273:p141–168, 1994.</p>
+</dd>
+<dt class="label" id="id6"><span class="brackets">ff-MT21</span></dt>
+<dd><p>L. A. 마르티네즈-토사스. 풍력터빈 후류: 높은 추력 계수. <em>풍력 에너지</em>, 2021. 출판 보류 중.</p>
+</dd>
+<dt class="label" id="id16"><span class="brackets">ff-Seal19a</span></dt>
+<dd><p>K. Shaler 및 그 외 여러분. fast.farm을 이용한 후류 사행 및 터빈 구조 응답에 대한 유입 시공간 이산화의 영향. <em>물리학 저널: 컨퍼런스 시리즈</em>, 2019년 5월. <a class="reference external" href="https://doi.org/10.1088/1742-6596/1256/1/012023" target="_blank" rel="noopener noreferrer">doi:10.1088/1742-6596/1256/1/012023</a>.</p>
+</dd>
+<dt class="label" id="id25"><span class="brackets">ff-Seal19b</span></dt>
+<dd><p>K. Shaler 및 그 외 여러분. 다양한 바람 유입 기술의 Fast.farm 응답. 제37회 풍력에너지 심포지엄에서. 캘리포니아주 샌디에고, 2019. AIAA. <a class="reference external" href="https://doi.org/https://arc.aiaa.org/doi/pdf/10.2514/6.2019-2086" target="_blank" rel="noopener noreferrer">doi:https://arc.aiaa.org/doi/pdf/10.2514/6.2019-2086</a>.</p>
+</dd>
+<dt class="label" id="id39"><span class="brackets">ff-Smi06</span></dt>
+<dd><p>S.W. 스미스. <em>디지털 신호 처리에 대한 과학자 및 엔지니어 가이드</em>. 캘리포니아 기술 출판, 2006. ISBN 978-0966017632.</p>
+</dd>
+<dt class="label" id="id23"><span class="brackets">ff-Seal14</span></dt>
+<dd><p>M. A. Sprague 및 그 외 여러분. 빠른 모듈식 풍력터빈 CAE 도구: 일치하지 않는 공간적 및 시간적 메시. 제50회 AIAA 항공우주과학회의에서. 메릴랜드주 내셔널 하버, 2014년 1월. AIAA. <a class="reference external" href="https://doi.org/http://arc.aiaa.org/doi/pdf/10.2514/6.2014-0520" target="_blank" rel="noopener noreferrer">doi:http://arc.aiaa.org/doi/pdf/10.2514/6.2014-0520</a>.</p>
+</dd>
+<dt class="label" id="id24"><span class="brackets">ff-Seal15</span></dt>
+<dd><p>M. A. Sprague 및 그 외 여러분. 풍력터빈 시뮬레이션을 위한 빠른 모듈형 프레임워크: 새로운 알고리즘 및 수치 예제. 제51회 AIAA 항공우주과학회의에서. 키시미, 플로리다, 2015. AIAA. <a class="reference external" href="https://doi.org/http://arc.aiaa.org/doi/pdf/10.2514/6.2014-0520" target="_blank" rel="noopener noreferrer">doi:http://arc.aiaa.org/doi/pdf/10.2514/6.2014-0520</a>.</p>
+</dd>
+<dt class="label" id="id14"><span class="brackets">ff-Tho49</span></dt>
+<dd><p>L. H. 토마스. 네트워크에 대한 선형 차분 방정식의 타원 문제. 기술 보고서, Watson Science Computer Laboratory, 뉴욕, 뉴욕, 1949.</p>
+</dd>
+</dl>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="FutureWork.html" class="btn btn-neutral float-left" title="4.19.8. 향후 개발 계획" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+        <a href="AppendixA.html" class="btn btn-neutral float-right" title="4.19.10. FAST.Farm 기본 입력 파일" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>© Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    
+     
+
+
+</body></html>

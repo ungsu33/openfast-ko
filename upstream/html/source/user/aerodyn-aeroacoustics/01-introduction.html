@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.5.3. Introduction &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.5.4. Aeroacoustics Noise Models" href="02-noise-models.html" />
+    <link rel="prev" title="4.5.2. List of Symbols" href="symbols.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/aerodyn-aeroacoustics/01-introduction.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.5. Aeroacoustics</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="acronyms.html">4.5.1. List of Acronyms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbols.html">4.5.2. List of Symbols</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.5.3. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02-noise-models.html">4.5.4. Aeroacoustics Noise Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="03-model-verification.html">4.5.5. Model Verification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="04-conclusions.html">4.5.6. Conclusions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="App-usage.html">4.5.7. Using the Aeroacoustics Model in AeroDyn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="refs.html">4.5.8. References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.5. </span>Aeroacoustics Noise Model of OpenFAST</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.5.3. </span>Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/aerodyn-aeroacoustics/01-introduction.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="introduction">
+<span id="aa-introduction"></span><h1><span class="section-number">4.5.3. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h1>
+<p>The increasing penetration of wind energy into the electricity mix has
+been possible thanks to a constantly growing installed capacity, which
+has so far been mostly located on land. Land-based installations are,
+however, increasingly constrained by local ordinances and an
+often-limiting factor that comprises maximum allowable levels of noise.
+To further increase the number of land-based installations, it is
+important to develop accurate modeling tools to estimate the noise
+generated by wind turbines. This allows for a more accurate assessment
+of the noise emissions and the possibility to design quieter wind
+turbines.</p>
+<p>Wind turbines emit two main sources of noise:</p>
+<ul class="simple">
+<li><p>Aeroacoustics noise from the interaction between rotor blades and the
+turbulent atmospheric boundary layer</p></li>
+<li><p>Mechanical noise from the nacelle component, mostly the gearbox,
+generator, and yaw mechanism.</p></li>
+</ul>
+<p>This work targets the first class of noise generation and aims at
+providing a set of open-source models to estimate the aeroacoustics
+noise generated by an arbitrary wind turbine rotor. The models are
+implemented in Fortran and are fully coupled to the aeroservoelastic
+wind turbine simulator OpenFAST. The code is available in the GitHub
+repository of OpenFAST. <a class="footnote-reference brackets" href="#id5" id="id1">1</a> The code builds on the implementation of
+NAFNoise and the documentation presented in <span id="id2">[<a class="reference internal" href="refs.html#id9" title="Patrick J. Moriarty and Paul G. Migliore. Semi-empirical aeroacoustic noise prediction code for wind turbines. Technical Report NREL/TP-500-34478, National Renewable Energy Laboratory, Golden, CO, 2003. URL: https://www.nrel.gov/docs/fy04osti/34478.pdf.">aa-MM03</a>]</span>
+and <span id="id3">[<a class="reference internal" href="refs.html#id13" title="Patrick J. Moriarty. Nafnoise user's guide. Technical Report, National Renewable Energy Laboratory, Golden, CO, 2005. URL: https://github.com/NatLabRockies/NAFNoise/blob/master/NAFNoise.pdf.">aa-Mor05</a>]</span>. OpenFAST is implemented as a modularization
+framework and the aeroacoustics model is implemented as a submodule of
+AeroDyn (<span id="id4">[<a class="reference internal" href="refs.html#id12" title="Patrick J. Moriarty and A. C. Hansen. Aerodyn theory manual. Technical Report NREL/TP-500-36881, National Renewable Energy Laboratory, Golden, CO, 2005. URL: https://www.nrel.gov/docs/fy05osti/36881.pdf.">aa-MH05</a>]</span>).</p>
+<p>The set of models is described in <a class="reference internal" href="02-noise-models.html#aa-noise-models"><span class="std std-numref">Section 4.5.4</span></a> and exercised on the
+noise estimate of the International Energy Agency (IEA) land-based reference
+wind turbine in <a class="reference internal" href="03-model-verification.html#aa-model-verification"><span class="std std-numref">Section 4.5.5</span></a>. In
+<a class="reference internal" href="03-model-verification.html#aa-model-verification"><span class="std std-numref">Section 4.5.5</span></a>, we also show a comparison to results obtained
+running the noise models implemented at the Technical University of Munich. This
+documentation closes with conclusions, an outlook on future work, and
+appendices, where the input files to OpenFAST are presented.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p><a class="reference external" href="https://github.com/OpenFAST/openfast">https://github.com/OpenFAST/openfast</a></p>
+</dd>
+</dl>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="symbols.html" class="btn btn-neutral float-left" title="4.5.2. List of Symbols" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="02-noise-models.html" class="btn btn-neutral float-right" title="4.5.4. Aeroacoustics Noise Models" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

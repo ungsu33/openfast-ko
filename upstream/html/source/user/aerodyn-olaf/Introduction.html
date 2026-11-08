@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.4.1. Introduction &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.4.2. List of Symbols" href="Acronyms.html" />
+    <link rel="prev" title="4.4. OLAF User’s Guide and Theory Manual (Free Vortex Wake in AeroDyn)" href="index.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/aerodyn-olaf/Introduction.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.4. OLAF</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.4.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Acronyms.html">4.4.2. List of Symbols</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RunningOLAF.html">4.4.3. Working with OLAF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="InputFiles.html">4.4.4. Input Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="OutputFiles.html">4.4.5. Output Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="OLAFTheory.html">4.4.6. OLAF Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="StateSpace.html">4.4.7. State-Space Representation and Integration with OpenFAST</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FutureWork.html">4.4.8. Future Work</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.4.9. References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixA.html">4.4.10. Appendix A: OLAF Primary Input File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixB.html">4.4.11. Appendix B: Prescribed Circulation Input File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixC.html">4.4.12. Appendix C: OLAF List of Output Channels</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.4. </span>OLAF User’s Guide and Theory Manual (Free Vortex Wake in AeroDyn)</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.4.1. </span>Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/aerodyn-olaf/Introduction.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="introduction">
+<span id="id1"></span><h1><span class="section-number">4.4.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h1>
+<p>Over the past few decades, substantial reductions in the cost of wind energy
+have come from large increases in rotor size. One important consideration for
+such large turbines is increased blade flexibility. In particular, large blade
+deflections may lead to a swept area that deviates significantly from the rotor
+plane. Such deviations violate assumptions used by common aerodynamic models,
+such as the blade element momentum (BEM) method. Such methods rely on
+actuator-disk assumptions that are only valid for axisymmetric rotor loads
+contained in a plane. Large blade deflections may also cause near wake of the
+turbine to diverge from a uniform helical shape. Further, interactions between
+turbine blades and the local near wake may increase, thus violating assumptions
+of models that do not account for the position and dynamics of the near wake.
+Additionally, highly flexible blades will likely cause increased unsteadiness
+and three-dimensionality of aerodynamic effects, increasing the importance of
+accurate and robust dynamic stall models. There are many other complex wind
+turbine situations that violate simple engineering assumptions. Such situations
+include obtaining accurate aerodynamic loads for nonstraight blade geometries
+(e.g., built-in curvature or sweep); skewed flow caused by yawed inflow or
+turbine tilt; and large rotor motion as a result of placing the turbine atop a
+compliant offshore floating platform.</p>
+<p>Higher-fidelity aerodynamic models are necessary to account for the increased
+complexity of flexible and floating rotors. Although computational fluid
+dynamics (CFD) methods are able to capture such features, their computational
+cost limits the number of simulations that can be feasibly performed, which is
+an important consideration in load analysis for turbine design. FVW methods are
+less computationally expensive than CFD methods while modeling similarly complex
+physics. As opposed to the BEM methods, FVW methods do not rely on ad-hoc
+engineering models to account for dynamic inflow, skewed wake, tip losses, or
+ground effects. These effects are inherently part of the model. Numerous
+vorticity-based tools have been implemented, ranging from the early treatments
+by Rosenhead (<span id="id2">[<a class="reference internal" href="zrefs.html#id43" title="L. Rosenhead. The formation of vortices from a surface of discontinuity. Proceedings of the Royal Society of London. Series A, Containing Papers of a Mathematical and Physical Character, 134(823):170-192, 1931. URL: http://www.jstor.org/stable/95835.">olaf-Ros31</a>]</span>), the formulation of vortex particle methods
+by Winckelmans and Leonard (<span id="id3">[<a class="reference internal" href="zrefs.html#id44" title="G. S. Winckelmans and A. Leonard. Contributions to vortex particle methods for the computation of 3-dimensional incompressible unsteady flows. Journal Of Computational Physics, 109(2):247-273, 1993.">olaf-WL93</a>]</span>), to the recent mixed
+Eulerian-Lagrangian compressible formulations of
+Papadakis (<span id="id4">[<a class="reference internal" href="zrefs.html#id41" title="G. Papadakis. Development of a hybrid compressible vortex particle method and application to external problems including helicopter flows. PhD thesis, National Technical University of Athens, 2014.">olaf-Pap14</a>]</span>). Examples of long-standing codes that have been
+applied in the field of wind energy are GENUVP (<span id="id5">[<a class="reference internal" href="zrefs.html#id42" title="S. G. Voutsinas. Vortex methods in aeronautics: how to make things work. International Journal of Computational Fluid Dynamics, 2006.">olaf-Vou06</a>]</span>), using
+vortex particles methods, and AWSM (<span id="id6">[<a class="reference internal" href="zrefs.html#id47" title="A. van Garrel. Development of a wind turbine aerodynamics simulation module. Technical Report ECN-C–03-079, ECN, 2003.">olaf-vG03</a>]</span>), using vortex filament
+methods. Both tools have successfully been coupled to structural solvers. The
+method was extended by Branlard et al. (<span id="id7">[<a class="reference internal" href="zrefs.html#id45" title="E. Branlard, G. Papadakis, M. Gaunaa, G. Winckelmans, and T. J. Larsen. Aeroelastic large eddy simulations using vortex methods: unfrozen turbulent and sheared inflow. Journal of Physics: Conference Series (Online), 2015. doi:10.1088/1742-6596/625/1/012019.">olaf-BPG+15</a>]</span>) to consistently use
+vortex methods to perform aero-elastic simulations of wind turbines in sheared
+and turbulent inflow. Most formulations rely on a lifting-line representation of
+the blades, but recently, a viscous-inviscid representation was used in
+combination with a structural solver (<span id="id8">[<a class="reference internal" href="zrefs.html#id39" title="M. Sessarego, N. Ramos García, J. N. Sørensen, and W. Z. Shen. Development of an aeroelastic code based on three-dimensional viscous-inviscid method for wind turbine computations. Wind Energy, 20(7):1145-1170, 2017. doi:10.1002/we.2085.">olaf-SGarciaSorensenS17</a>]</span>).</p>
+<p>cOnvecting LAgrangian Filaments (OLAF) is a free vortex wake (FVW) module used
+to compute the aerodynamic forces on moving two- or three-bladed horizontal-axis
+wind turbines.  This module has been incorporated into the National Renewable
+Energy Laboratory physics-based engineering tool, OpenFAST, which solves the
+aero-hydro-servo-elastic dynamics of individual wind turbines. OLAF is
+incorporated into the OpenFAST module, <em>AeroDyn</em>, as an alternative to the
+traditional blade-element momentum (BEM) option, as shown in
+Figures <a class="reference internal" href="#figopenfast-a"><span class="std std-numref">Fig. 4.12</span></a> and <a class="reference internal" href="#figopenfast-b"><span class="std std-numref">Fig. 4.13</span></a>.</p>
+<div class="figure align-center" id="id15">
+<span id="figopenfast-a"></span><a class="reference internal image-reference" href="../../../_images/OpenFAST.png"><img alt="OpenFAST schematic" src="../../../_images/OpenFAST.png" style="width: 100%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.12 </span><span class="caption-text">OpenFAST schematic</span><a class="headerlink" href="#id15" title="Permalink to this image"></a></p>
+</div>
+<div class="figure align-center" id="id16">
+<span id="figopenfast-b"></span><a class="reference internal image-reference" href="../../../_images/FVWwithOpenFAST.png"><img alt="OpenFAST overview schematic and OLAF integration" src="../../../_images/FVWwithOpenFAST.png" style="width: 100%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.13 </span><span class="caption-text">OLAF and BEM integration with <em>AeroDyn</em></span><a class="headerlink" href="#id16" title="Permalink to this image"></a></p>
+</div>
+<p>Incorporating the OLAF module within OpenFAST allows for the modeling of
+highly flexible turbines along with the aero-hydro-servo-elastic
+response capabilities of OpenFAST. The OLAF module follows the
+requirements of the OpenFAST modularization framework
+(<span id="id9">[<a class="reference internal" href="zrefs.html#id11" title="J. Jonkman. The new modularization framework for the fast wind turbine cae tool. Technical report NREL/CP-5000-57228, National Renewable Energy Laboratory, 2013.">olaf-Jon13</a>, <a class="reference internal" href="zrefs.html#id38" title="Michael A. Sprague, Jason M. Jonkman, and Bonnie J. Jonkman. Fast modular framework for wind turbine simulation: new algorithms and numerical examples. Technical Report NREL/CP-2C00-63203, National Renewable Energy Laboratory, 2015.">olaf-SJJ15</a>]</span>).</p>
+<p>The OLAF module uses a lifting-line representation of the blades, which
+is characterized by a distribution of bound circulation. The spatial and
+time variation of the bound circulation results in free vorticity being
+emitted in the wake. OLAF solves for the turbine wake in a time-accurate
+manner, which allows the vortices to convect, stretch, and diffuse. The
+OLAF model is based on a Lagrangian approach, in which the turbine wake
+is discretized into Lagrangian markers. There are many methods of
+representing the wake with Lagrangian
+markers (<span id="id10">[<a class="reference internal" href="zrefs.html#id46" title="E. Branlard. Wind Turbine Aerodynamics and Vorticity-Based Methods: Fundamentals and Recent Applications. Springer International Publishing, 2017. ISBN 978-3-319-55163-0. doi:10.1007/978-3-319-55164-7.">olaf-Bra17</a>]</span>). In this work, a hybrid
+lattice/filament method is used, as depicted in
+Figure <a class="reference internal" href="#lagrangian"><span class="std std-numref">Fig. 4.14</span></a>.</p>
+<div class="figure align-center" id="lagrangian">
+<a class="reference internal image-reference" href="../../../_images/LagrangianMarkers.png"><img alt="Evolution of near-wake lattice, blade-tip vortex, and Lagrangian markers" src="../../../_images/LagrangianMarkers.png" style="width: 100%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.14 </span><span class="caption-text">Evolution of near-wake lattice, blade-tip vortex, and Lagrangian
+markers</span><a class="headerlink" href="#lagrangian" title="Permalink to this image"></a></p>
+</div>
+<p>Here, the position of the Lagrangian markers is defined in terms of wake
+age, <span class="math notranslate nohighlight">\(\zeta\)</span>, and azimuthal position, <span class="math notranslate nohighlight">\(\psi\)</span>. A lattice
+method is used in the near wake of the blade. The near wake spans over a
+user-specified angle or distance for nonrotating cases. Though past
+research has indicated that a near-wake region of <span class="math notranslate nohighlight">\(30^\circ\)</span> is
+sufficient (<span id="id11">[<a class="reference internal" href="zrefs.html#id32" title="S. Ananthan, J. G. Leishman, and M. Ramasamy. The role of filament stretching in the free-vortex modeling of rotor wakes. In 58th Annual Forum and Technology Display of the American Helicopter Society International. Montreal, Canada, 2002.">olaf-ALR02</a>, <a class="reference internal" href="zrefs.html#id29" title="J. Leishman. Principles of Helicopter Aerodynamics. Cambridge Univ. Press, Cambridge, MA, 2006.">olaf-Lei06</a>]</span>), it has been shown that a larger
+near wake is required for high thrust and other challenging conditions. After
+the near wake region, the wake is assumed to instantaneously roll up into a tip
+vortex and a root vortex, which are assumed to be the most dominant features for
+the remainder of the wake (<span id="id12">[<a class="reference internal" href="zrefs.html#id31" title="J. G. Leishman, M. J. Bhagwat, and A. Bagai. Free-vortex filament methods for the analysis of helicopter rotor wakes. Journal of Aircraft, 39(5):759-775, 2002.">olaf-LBB02</a>]</span>). Each Lagrangian marker is
+connected to adjacent markers by straight-line vortex filaments, approximated to
+second-order accuracy (<span id="id13">[<a class="reference internal" href="zrefs.html#id33" title="S. Gupta and J. G. Leishman. Free-vortex filament methods for the analysis of helicopter rotor wakes. Journal of Aircraft, 39(5):759-775, 2002.">olaf-GL02</a>]</span>). The wake is discretized based on the
+spanwise location of the blade sections and a specified time step (<span class="math notranslate nohighlight">\(dt\)</span>),
+which may be different from the time step of AeroDyn.  After an optional
+initialization period, the wake is allowed to move and distort, thus changing
+the wake structure as the markers are convected downstream.  To limit
+computational expense, the root and tip vortices are truncated after a specified
+distance (taken as a number of panels <strong>nNWPanels</strong>) downstream from the turbine.
+The wake truncation
+violates Helmholtz’s first law and hence introduces an erroneous boundary
+condition. To alleviate this, the wake is “frozen” in a buffer zone between a
+specified buffer distance, <strong>nFWPanelsFree</strong>, and <strong>nFWPanels</strong>.
+In this
+buffer zone, the markers convect at the average ambient velocity. In this way,
+truncation error is minimized~(<span id="id14">[<a class="reference internal" href="zrefs.html#id31" title="J. G. Leishman, M. J. Bhagwat, and A. Bagai. Free-vortex filament methods for the analysis of helicopter rotor wakes. Journal of Aircraft, 39(5):759-775, 2002.">olaf-LBB02</a>]</span>). The buffer zone is
+typically chosen as the convected distance over one rotor revolution.</p>
+<p>As part of OpenFAST, induced velocities at the lifting line/blade are
+transferred to <em>AeroDyn</em> and used to compute the effective blade angle of
+attack at each blade section, which is then used to compute the aerodynamic
+forces on the blades. The OLAF method returns the same information as the BEM
+method, but allows for more accurate calculations in areas where BEM assumptions
+are violated, such as those discussed above. As the OLAF method is more
+computationally expensive than BEM, both methods remain available in OpenFAST,
+and the user may specify in the <em>AeroDyn</em> input file which method is
+used.</p>
+<p>The OLAF input file defines the wake convection and circulation solution
+methods; wake size and length options; Lagrangian marker regularization (viscous
+core) method; and other simulation and output parameters. The extents of the
+near and far wakes are specified by a nondimensional length in terms of rotor
+diameter. Different regularization functions for the vortex elements are
+available. Additionally, different methods to compute the regularization
+parameters of the bound and wake vorticity may be selected. In particular,
+viscous diffusion may be accounted for by dynamically changing the
+regularization parameter. Wake visualization output options are also available.</p>
+<p>This document is organized as follows. <a class="reference internal" href="RunningOLAF.html#running-olaf"><span class="std std-numref">Section 4.4.3.1</span></a> covers
+downloading, compiling, and running OLAF. <a class="reference internal" href="InputFiles.html#olaf-input-files"><span class="std std-numref">Section 4.4.4</span></a> describes the
+OLAF input file and modifications to the <em>AeroDyn</em> input file.
+<a class="reference internal" href="OutputFiles.html#output-files"><span class="std std-numref">Section 4.4.5</span></a> details the OLAF output file.  <a class="reference internal" href="OLAFTheory.html#olaf-theory"><span class="std std-numref">Section 4.4.6</span></a>
+provides an overview of the OLAF theory, including the free vortex wake method
+as well as integration into the <em>AeroDyn</em> module. Example input files and a
+list of output channels are detailed in Appendices A, B, and C.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="4.4. OLAF User’s Guide and Theory Manual (Free Vortex Wake in AeroDyn)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Acronyms.html" class="btn btn-neutral float-right" title="4.4.2. List of Symbols" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

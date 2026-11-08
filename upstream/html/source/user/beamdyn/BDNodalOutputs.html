@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nodal Outputs &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/beamdyn/BDNodalOutputs.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">4. User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Nodal Outputs</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/beamdyn/BDNodalOutputs.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="nodal-outputs">
+<h1>Nodal Outputs<a class="headerlink" href="#nodal-outputs" title="Permalink to this heading"></a></h1>
+<p>In addition to the named outputs in <a class="reference internal" href="input_files.html#bd-outputs"><span class="std std-numref">Section 4.7.3.3.5</span></a> above, BeamDyn allows
+for outputting the full set blade node motions and loads (tower nodes
+unavailable at present). Please refer to the BeamDyn_Nodes tab in the
+Excel file <a class="reference download internal" download="" href="../../../_downloads/3f19498a5dc774461e022b671ff01ec6/OutListParameters.xlsx"><code class="xref download docutils literal notranslate"><span class="pre">OutListParameters.xlsx</span></code></a>
+for a complete list of possible output parameters.</p>
+<p>This section follows the <cite>END</cite> statement from normal Outputs section described
+above, and includes a separator description line followed by the following
+optinos.</p>
+<p><strong>BldNd_BlOutNd</strong> specifies which nodes to output.  This is currently unused.</p>
+<p>The <strong>OutList</strong> section controls the nodal output quantities generated by
+BeamDyn. In this section, the user specifies the name of the channel family to
+output. The output name for each channel is then created internally by BeamDyn
+by combining the blade number, node number, and channel family name. For
+example, if the user specifies <strong>TDxr</strong> as the channel family name, the output
+channels will be named with the convention of <strong>B</strong><span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span><strong>N###TDxr</strong> where <span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span> is the blade number, and <strong>###</strong> is the
+three digit node number.</p>
+<div class="section" id="sample-nodal-outputs-section">
+<h2>Sample Nodal Outputs section<a class="headerlink" href="#sample-nodal-outputs-section" title="Permalink to this heading"></a></h2>
+<p>This sample includes the <code class="docutils literal notranslate"><span class="pre">END</span></code> statement from the regular outputs section.</p>
+<div class="docutils container" id="file-bdnodaloutputs">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span>END of input file (the word &quot;END&quot; must appear in the first 3 columns of this last OutList line)
+<span class="linenos">  2</span>---------------------- NODE OUTPUTS --------------------------------------------
+<span class="linenos">  3</span>         99   BldNd_BlOutNd   - Blade nodes on each blade (currently unused)
+<span class="linenos">  4</span>              OutList     - The next line(s) contains a list of output parameters.  See OutListParameters.xlsx, BeamDyn_Nodes tab for a listing of available output channels, (-)
+<span class="linenos">  5</span>&quot;FxL&quot;       - Sectional force resultants at each node expressed in l    l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos">  6</span>&quot;FyL&quot;       - Sectional force resultants at each node expressed in l    l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos">  7</span>&quot;FzL&quot;       - Sectional force resultants at each node expressed in l    l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos">  8</span>&quot;MxL&quot;       - Sectional moment resultants at each node expressed in l    l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos">  9</span>&quot;MyL&quot;       - Sectional moment resultants at each node expressed in l    l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos"> 10</span>&quot;MzL&quot;       - Sectional moment resultants at each node expressed in l    l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos"> 11</span>&quot;Fxr&quot;       - Sectional force resultants at each node expressed in r    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system    (N)
+<span class="linenos"> 12</span>&quot;Fyr&quot;       - Sectional force resultants at each node expressed in r    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system    (N)
+<span class="linenos"> 13</span>&quot;Fzr&quot;       - Sectional force resultants at each node expressed in r    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system    (N)
+<span class="linenos"> 14</span>&quot;Mxr&quot;       - Sectional moment resultants at each node expressed in r    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system    (N-m)
+<span class="linenos"> 15</span>&quot;Myr&quot;       - Sectional moment resultants at each node expressed in r    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system    (N-m)
+<span class="linenos"> 16</span>&quot;Mzr&quot;       - Sectional moment resultants at each node expressed in r    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system    (N-m)
+<span class="linenos"> 17</span>&quot;TDxr&quot;      - Sectional translational deflection (relative to the undeflected position) at each node expressed in r    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system    (m)
+<span class="linenos"> 18</span>&quot;TDyr&quot;      - Sectional translational deflection (relative to the undeflected position) at each node expressed in r    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system    (m)
+<span class="linenos"> 19</span>&quot;TDzr&quot;      - Sectional translational deflection (relative to the undeflected position) at each node expressed in r    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system    (m)
+<span class="linenos"> 20</span>&quot;RDxr&quot;      - Sectional angular/rotational deflection Wiener-Milenkovic parameter (relative to the undeflected orientation) at each node expressed in r    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system    (-)
+<span class="linenos"> 21</span>&quot;RDyr&quot;      - Sectional angular/rotational deflection Wiener-Milenkovic parameter (relative to the undeflected orientation) at each node expressed in r    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system    (-)
+<span class="linenos"> 22</span>&quot;RDzr&quot;      - Sectional angular/rotational deflection Wiener-Milenkovic parameter (relative to the undeflected orientation) at each node expressed in r    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system    (-)
+<span class="linenos"> 23</span>&quot;AbsXg&quot;     - Node position in X (global coordinate)     g: the global inertial frame coordinate system; when coupled to FAST, this is equivalent to FAST’s global inertial frame (i) coordinate system     (m)
+<span class="linenos"> 24</span>&quot;AbsYg&quot;     - Node position in Y (global coordinate)     g: the global inertial frame coordinate system; when coupled to FAST, this is equivalent to FAST’s global inertial frame (i) coordinate system     (m)
+<span class="linenos"> 25</span>&quot;AbsZg&quot;     - Node position in Z (global coordinate)     g: the global inertial frame coordinate system; when coupled to FAST, this is equivalent to FAST’s global inertial frame (i) coordinate system     (m)
+<span class="linenos"> 26</span>&quot;AbsXr&quot;     - Node position in X (relative to root)     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (m)
+<span class="linenos"> 27</span>&quot;AbsYr&quot;     - Node position in Y (relative to root)     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (m)
+<span class="linenos"> 28</span>&quot;AbsZr&quot;     - Node position in Z (relative to root)     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (m)
+<span class="linenos"> 29</span>&quot;TVxg&quot;      - Sectional translational velocities (absolute)    g: the global inertial frame coordinate system; when coupled to FAST, this is equivalent to FAST’s global inertial frame (i) coordinate system     (m/s)
+<span class="linenos"> 30</span>&quot;TVyg&quot;      - Sectional translational velocities (absolute)    g: the global inertial frame coordinate system; when coupled to FAST, this is equivalent to FAST’s global inertial frame (i) coordinate system     (m/s)
+<span class="linenos"> 31</span>&quot;TVzg&quot;      - Sectional translational velocities (absolute)    g: the global inertial frame coordinate system; when coupled to FAST, this is equivalent to FAST’s global inertial frame (i) coordinate system     (m/s)
+<span class="linenos"> 32</span>&quot;TVxl&quot;      - Sectional translational velocities (absolute)    l: a floating coordinate system local to the deflected beam    (m/s)
+<span class="linenos"> 33</span>&quot;TVyl&quot;      - Sectional translational velocities (absolute)    l: a floating coordinate system local to the deflected beam    (m/s)
+<span class="linenos"> 34</span>&quot;TVzl&quot;      - Sectional translational velocities (absolute)    l: a floating coordinate system local to the deflected beam    (m/s)
+<span class="linenos"> 35</span>&quot;TVxr&quot;      - Sectional translational velocities (absolute)    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (m/s)
+<span class="linenos"> 36</span>&quot;TVyr&quot;      - Sectional translational velocities (absolute)    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (m/s)
+<span class="linenos"> 37</span>&quot;TVzr&quot;      - Sectional translational velocities (absolute)    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (m/s)
+<span class="linenos"> 38</span>&quot;RVxg&quot;      - Sectional angular/rotational velocities (absolute)    g: the global inertial frame coordinate system; when coupled to FAST, this is equivalent to FAST’s global inertial frame (i) coordinate system     (deg/s)
+<span class="linenos"> 39</span>&quot;RVyg&quot;      - Sectional angular/rotational velocities (absolute)    g: the global inertial frame coordinate system; when coupled to FAST, this is equivalent to FAST’s global inertial frame (i) coordinate system     (deg/s)
+<span class="linenos"> 40</span>&quot;RVzg&quot;      - Sectional angular/rotational velocities (absolute)    g: the global inertial frame coordinate system; when coupled to FAST, this is equivalent to FAST’s global inertial frame (i) coordinate system     (deg/s)
+<span class="linenos"> 41</span>&quot;RVxl&quot;      - Sectional angular/rotational velocities (absolute)    l: a floating coordinate system local to the deflected beam    (deg/s)
+<span class="linenos"> 42</span>&quot;RVyl&quot;      - Sectional angular/rotational velocities (absolute)    l: a floating coordinate system local to the deflected beam    (deg/s)
+<span class="linenos"> 43</span>&quot;RVzl&quot;      - Sectional angular/rotational velocities (absolute)    l: a floating coordinate system local to the deflected beam    (deg/s)
+<span class="linenos"> 44</span>&quot;RVxr&quot;      - Sectional angular/rotational velocities (absolute)    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (deg/s)
+<span class="linenos"> 45</span>&quot;RVyr&quot;      - Sectional angular/rotational velocities (absolute)    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (deg/s)
+<span class="linenos"> 46</span>&quot;RVzr&quot;      - Sectional angular/rotational velocities (absolute)    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (deg/s)
+<span class="linenos"> 47</span>&quot;TAxl&quot;      - Sectional angular/rotational velocities (absolute)    l: a floating coordinate system local to the deflected beam    (m/s^2)
+<span class="linenos"> 48</span>&quot;TAyl&quot;      - Sectional angular/rotational velocities (absolute)    l: a floating coordinate system local to the deflected beam    (m/s^2)
+<span class="linenos"> 49</span>&quot;TAzl&quot;      - Sectional angular/rotational velocities (absolute)    l: a floating coordinate system local to the deflected beam    (m/s^2)
+<span class="linenos"> 50</span>&quot;TAxr&quot;      - Sectional angular/rotational velocities (absolute)    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (m/s^2)
+<span class="linenos"> 51</span>&quot;TAyr&quot;      - Sectional angular/rotational velocities (absolute)    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (m/s^2)
+<span class="linenos"> 52</span>&quot;TAzr&quot;      - Sectional angular/rotational velocities (absolute)    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (m/s^2)
+<span class="linenos"> 53</span>&quot;RAxl&quot;      - Sectional angular/rotational velocities (absolute)    l: a floating coordinate system local to the deflected beam    (deg/s^2)
+<span class="linenos"> 54</span>&quot;RAyl&quot;      - Sectional angular/rotational velocities (absolute)    l: a floating coordinate system local to the deflected beam    (deg/s^2)
+<span class="linenos"> 55</span>&quot;RAzl&quot;      - Sectional angular/rotational velocities (absolute)    l: a floating coordinate system local to the deflected beam    (deg/s^2)
+<span class="linenos"> 56</span>&quot;RAxr&quot;      - Sectional angular/rotational velocities (absolute)    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (deg/s^2)
+<span class="linenos"> 57</span>&quot;RAyr&quot;      - Sectional angular/rotational velocities (absolute)    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (deg/s^2)
+<span class="linenos"> 58</span>&quot;RAzr&quot;      - Sectional angular/rotational velocities (absolute)    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (deg/s^2)
+<span class="linenos"> 59</span>&quot;PFxL&quot;      - Applied point forces at each node expressed in l    l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos"> 60</span>&quot;PFyL&quot;      - Applied point forces at each node expressed in l    l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos"> 61</span>&quot;PFzL&quot;      - Applied point forces at each node expressed in l    l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos"> 62</span>&quot;PMxL&quot;      - Applied point moments at each node expressed in l    l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos"> 63</span>&quot;PMyL&quot;      - Applied point moments at each node expressed in l    l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos"> 64</span>&quot;PMzL&quot;      - Applied point moments at each node expressed in l    l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos"> 65</span>&quot;DFxL&quot;      - Applied distributed forces at each node expressed in l    l: a floating coordinate system local to the deflected beam    (N/m)
+<span class="linenos"> 66</span>&quot;DFyL&quot;      - Applied distributed forces at each node expressed in l    l: a floating coordinate system local to the deflected beam    (N/m)
+<span class="linenos"> 67</span>&quot;DFzL&quot;      - Applied distributed forces at each node expressed in l    l: a floating coordinate system local to the deflected beam    (N/m)
+<span class="linenos"> 68</span>&quot;DMxL&quot;      - Applied distributed moments at each node expressed in l    l: a floating coordinate system local to the deflected beam    (N-m/m)
+<span class="linenos"> 69</span>&quot;DMyL&quot;      - Applied distributed moments at each node expressed in l    l: a floating coordinate system local to the deflected beam    (N-m/m)
+<span class="linenos"> 70</span>&quot;DMzL&quot;      - Applied distributed moments at each node expressed in l    l: a floating coordinate system local to the deflected beam    (N-m/m)
+<span class="linenos"> 71</span>&quot;DFxR&quot;      - Applied distributed forces at each node expressed in r    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N/m)
+<span class="linenos"> 72</span>&quot;DFyR&quot;      - Applied distributed forces at each node expressed in r    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N/m)
+<span class="linenos"> 73</span>&quot;DFzR&quot;      - Applied distributed forces at each node expressed in r    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N/m)
+<span class="linenos"> 74</span>&quot;DMxR&quot;      - Applied distributed forces at each node expressed in r    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N-m/m)
+<span class="linenos"> 75</span>&quot;DMyR&quot;      - Applied distributed forces at each node expressed in r    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N-m/m)
+<span class="linenos"> 76</span>&quot;DMzR&quot;      - Applied distributed forces at each node expressed in r    r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N-m/m)
+<span class="linenos"> 77</span>&quot;FFbxl&quot;     - Gyroscopic force x     l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos"> 78</span>&quot;FFbyl&quot;     - Gyroscopic force y     l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos"> 79</span>&quot;FFbzl&quot;     - Gyroscopic force z     l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos"> 80</span>&quot;FFbxr&quot;     - Gyroscopic force x     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N)
+<span class="linenos"> 81</span>&quot;FFbyr&quot;     - Gyroscopic force y     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N)
+<span class="linenos"> 82</span>&quot;FFbzr&quot;     - Gyroscopic force z     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N)
+<span class="linenos"> 83</span>&quot;MFbxl&quot;     - Gyroscopic moment about x     l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos"> 84</span>&quot;MFbyl&quot;     - Gyroscopic moment about y     l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos"> 85</span>&quot;MFbzl&quot;     - Gyroscopic moment about z     l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos"> 86</span>&quot;MFbxr&quot;     - Gyroscopic moment about x     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N-m)
+<span class="linenos"> 87</span>&quot;MFbyr&quot;     - Gyroscopic moment about y     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N-m)
+<span class="linenos"> 88</span>&quot;MFbzr&quot;     - Gyroscopic moment about z     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N-m)
+<span class="linenos"> 89</span>&quot;FFcxl&quot;     - Elastic restoring force Fc x     l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos"> 90</span>&quot;FFcyl&quot;     - Elastic restoring force Fc y     l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos"> 91</span>&quot;FFczl&quot;     - Elastic restoring force Fc z     l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos"> 92</span>&quot;FFcxr&quot;     - Elastic restoring force Fc x     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N)
+<span class="linenos"> 93</span>&quot;FFcyr&quot;     - Elastic restoring force Fc y     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N)
+<span class="linenos"> 94</span>&quot;FFczr&quot;     - Elastic restoring force Fc z     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N)
+<span class="linenos"> 95</span>&quot;MFcxl&quot;     - Elastic restoring moment Fc about x     l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos"> 96</span>&quot;MFcyl&quot;     - Elastic restoring moment Fc about y     l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos"> 97</span>&quot;MFczl&quot;     - Elastic restoring moment Fc about z     l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos"> 98</span>&quot;MFcxr&quot;     - Elastic restoring moment Fc about x     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N-m)
+<span class="linenos"> 99</span>&quot;MFcyr&quot;     - Elastic restoring moment Fc about y     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N-m)
+<span class="linenos">100</span>&quot;MFczr&quot;     - Elastic restoring moment Fc about z     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N-m)
+<span class="linenos">101</span>&quot;FFdxl&quot;     - Elastic restoring force Fd x     l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos">102</span>&quot;FFdyl&quot;     - Elastic restoring force Fd y     l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos">103</span>&quot;FFdzl&quot;     - Elastic restoring force Fd z     l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos">104</span>&quot;FFdxr&quot;     - Elastic restoring force Fd x     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N)
+<span class="linenos">105</span>&quot;FFdyr&quot;     - Elastic restoring force Fd y     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N)
+<span class="linenos">106</span>&quot;FFdzr&quot;     - Elastic restoring force Fd z     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N)
+<span class="linenos">107</span>&quot;MFdxl&quot;     - Elastic restoring moment Fd about x     l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos">108</span>&quot;MFdyl&quot;     - Elastic restoring moment Fd about y     l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos">109</span>&quot;MFdzl&quot;     - Elastic restoring moment Fd about z     l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos">110</span>&quot;MFdxr&quot;     - Elastic restoring moment Fd about x     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N-m)
+<span class="linenos">111</span>&quot;MFdyr&quot;     - Elastic restoring moment Fd about y     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N-m)
+<span class="linenos">112</span>&quot;MFdzr&quot;     - Elastic restoring moment Fd about z     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N-m)
+<span class="linenos">113</span>&quot;FFgxl&quot;     - Gravity force x     l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos">114</span>&quot;FFgyl&quot;     - Gravity force y     l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos">115</span>&quot;FFgzl&quot;     - Gravity force z     l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos">116</span>&quot;FFgxr&quot;     - Gravity force x     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N)
+<span class="linenos">117</span>&quot;FFgyr&quot;     - Gravity force y     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N)
+<span class="linenos">118</span>&quot;FFgzr&quot;     - Gravity force z     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N)
+<span class="linenos">119</span>&quot;MFgxl&quot;     - Gravity moment about x     l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos">120</span>&quot;MFgyl&quot;     - Gravity moment about y     l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos">121</span>&quot;MFgzl&quot;     - Gravity moment about z     l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos">122</span>&quot;MFgxr&quot;     - Gravity moment about x     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N-m)
+<span class="linenos">123</span>&quot;MFgyr&quot;     - Gravity moment about y     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N-m)
+<span class="linenos">124</span>&quot;MFgzr&quot;     - Gravity moment about z     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N-m)
+<span class="linenos">125</span>&quot;FFixl&quot;     - Inertial force x     l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos">126</span>&quot;FFiyl&quot;     - Inertial force y     l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos">127</span>&quot;FFizl&quot;     - Inertial force z     l: a floating coordinate system local to the deflected beam    (N)
+<span class="linenos">128</span>&quot;FFixr&quot;     - Inertial force x     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N)
+<span class="linenos">129</span>&quot;FFiyr&quot;     - Inertial force y     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N)
+<span class="linenos">130</span>&quot;FFizr&quot;     - Inertial force z     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N)
+<span class="linenos">131</span>&quot;MFixl&quot;     - Inertial moment about x     l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos">132</span>&quot;MFiyl&quot;     - Inertial moment about y     l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos">133</span>&quot;MFizl&quot;     - Inertial moment about z     l: a floating coordinate system local to the deflected beam    (N-m)
+<span class="linenos">134</span>&quot;MFixr&quot;     - Inertial moment about x     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N-m)
+<span class="linenos">135</span>&quot;MFiyr&quot;     - Inertial moment about y     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N-m)
+<span class="linenos">136</span>&quot;MFizr&quot;     - Inertial moment about z     r: a floating reference coordinate system fixed to the root of the moving beam; when coupled to FAST for blades, this is equivalent to the IEC blade (b) coordinate system     (N-m)
+<span class="linenos">137</span>END of input file (the word &quot;END&quot; must appear in the first 3 columns of this last OutList line)
+<span class="linenos">138</span>---------------------------------------------------------------------------------------
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

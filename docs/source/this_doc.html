@@ -1,0 +1,140 @@
+<!DOCTYPE html><html class="writer-html5" lang="ko"><head><!-- Modified 2026-11-08: unofficial Korean machine translation of OpenFAST 5.0.0. Equations, code, figures, input values and attribution retained. -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1. 이 문서 — OpenFAST v5.0.0 문서</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css">
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css">
+      <link rel="stylesheet" type="text/css" href="../_static/css/math_eq.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../genindex.html">
+    <link rel="search" title="검색" href="../search.html">
+    <link rel="next" title="2. OpenFAST 설치" href="install/index.html">
+    <link rel="prev" title="OpenFAST 문서" href="../index.html"> 
+<link rel="stylesheet" href="../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/this_doc.html"></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../_static/openfastlogo.jpg" class="logo" alt="로고">
+          </a>
+              <div class="version">5.0 · 한국어</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="문서 검색" aria-label="문서 검색">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install/index.html">2. OpenFAST 설치</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/index.html">4. 사용자 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing/index.html">5. OpenFAST 테스트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dev/index.html">6. 개발자 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="help.html">8. 도움 받기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgements.html">9. 감사의 글</a></li>
+</ul>
+
+        <ul class="ko-tools"><li><a href="../review.html">문서 상세 리뷰</a></li><li><a href="../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="페이지 탐색">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="홈"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">1. </span>이 문서에 대하여</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/source/this_doc.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+      </li>
+  </ul>
+  <hr>
+</div><aside class="ko-notice" aria-label="한국어 번역 안내"><strong>한국어 자동번역</strong> · OpenFAST v5.0.0 · 2026-11-08 기준<br>비공식 번역본입니다. 수식·명령어·입력 변수와 첨부자료는 원문을 보존합니다. <a href="https://openfast.readthedocs.io/en/main/source/this_doc.html" target="_blank" rel="noopener noreferrer" lang="en">영문 원문 대조 ↗</a></aside>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="this-documentation">
+<span id="this-doc"></span><h1><span class="section-number">1. </span>이 문서에 대하여<a class="headerlink" href="#this-documentation" title="이 제목의 고유 링크"></a></h1>
+<p>OpenFAST 문서는 다음에서 호스팅됩니다.
+<a class="reference external" href="http://readthedocs.org/" target="_blank" rel="noopener noreferrer">문서 읽기</a>이며 두 가지 모두에서 자동으로 생성됩니다.
+<a class="reference external" href="http://github.com/openfast/openfast/tree/main/" target="_blank" rel="noopener noreferrer">메인</a> 및
+<a class="reference external" href="http://github.com/openfast/openfast/tree/dev/" target="_blank" rel="noopener noreferrer">개발</a> 는 새 커밋이 추가될 때마다 분기됩니다. 페이지 왼쪽 하단에 있는 막대를 클릭하면 저장소 분기 선택, 문서 다른 형식(PDF, HTML, EPub) 다운로드 및 기타 관련 웹사이트 링크 옵션이 포함된 패널(아래 이미지 참조)이 표시됩니다.</p>
+<a class="reference internal image-reference" href="../_images/docs_options.png"><img alt="../_images/docs_options.png" class="align-center" src="../_images/docs_options.png" style="width: 30%;"></a>
+<p>여기에서 OpenFAST 개발자 문서가 향상되는 동안 개발자는 레거시 FAST v8을 참조하는 것이 좋습니다.
+<a class="reference download internal" download="" href="../_downloads/2a9110b5e2a2b531c7dc05ea1fc86b89/NWTC_Programmers_Handbook.pdf"><code class="xref download docutils literal notranslate"><span class="pre">NWTC</span> <span class="pre">Programmer's</span> <span class="pre">Handbook</span></code></a>. OpenFAST를 구하고 설치하는 방법은 다음에서 확인할 수 있습니다.
+<a class="reference internal" href="install/index.html#installation"><span class="std std-ref">OpenFAST 설치</span></a>및 자동화된 테스트를 통한 설치 확인을 위한 문서는 다음 위치에 있습니다. <a class="reference internal" href="testing/index.html#testing"><span class="std std-ref">OpenFAST 테스트</span></a>.</p>
+<p>이 문서의 대부분은 두 부분으로 나누어져 있습니다.</p>
+<p><a class="reference internal" href="user/index.html#user-guide"><span class="std std-ref">사용자 문서</span></a></p>
+<blockquote>
+<div><p>최종 사용자를 대상으로 하는 이 부분에서는 OpenFAST 및 해당 기본 모듈의 사용에 관한 자세한 문서와 이론 및 검증 문서를 제공합니다.</p>
+</div></blockquote>
+<p><a class="reference internal" href="dev/index.html#dev-guide"><span class="std std-ref">개발자 문서</span></a></p>
+<blockquote>
+<div><p>개발자 가이드는 OpenFAST에서 제공되는 기능을 확장하려는 사용자를 대상으로 합니다. 여기서는 코드 구조, 다양한 클래스에서 지원하는 API, Doxygen을 사용하여 추출한 소스 코드 문서에 대한 링크에 대한 세부 정보를 찾을 수 있습니다.</p>
+</div></blockquote>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="../index.html" class="btn btn-neutral float-left" title="OpenFAST 문서" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+        <a href="install/index.html" class="btn btn-neutral float-right" title="2. OpenFAST 설치" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>© Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    
+     
+
+
+</body></html>

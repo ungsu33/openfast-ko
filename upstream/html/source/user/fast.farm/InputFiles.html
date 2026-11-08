@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.19.4. Input Files &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.19.5. Output Files" href="OutputFiles.html" />
+    <link rel="prev" title="4.19.3. Running FAST.Farm" href="RunningFFarm.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/fast.farm/InputFiles.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.19. FAST.Farm</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Nomenclature.html">4.19.1. Nomenclature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Introduction.html">4.19.2. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RunningFFarm.html">4.19.3. Running FAST.Farm</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.19.4. Input Files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#units">4.19.4.1. Units</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fast-farm-primary-input-file">4.19.4.2. FAST.Farm Primary Input File</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ambient-wind-precursor-files-in-visualization-toolkit-format">4.19.4.3. Ambient Wind Precursor Files in Visualization Toolkit Format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ambient-wind-with-inflowwind-module-input-files">4.19.4.4. Ambient Wind with InflowWind Module Input Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ambient-wind-precursor-files-in-amrex-plot-file-format">4.19.4.5. Ambient Wind Precursor Files in AMReX Plot File Format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#openfast-input-files">4.19.4.6. OpenFAST Input Files</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="OutputFiles.html">4.19.5. Output Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ModelGuidance.html">4.19.6. Modeling Guidance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FFarmTheory.html">4.19.7. FAST.Farm Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FutureWork.html">4.19.8. Future Work</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.19.9. References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixA.html">4.19.10. FAST.Farm Primary Input File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixB.html">4.19.11. Ambient Wind File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixC.html">4.19.12. List of Output Channels</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.19. </span>FAST.Farm User’s Guide and Theory Manual</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.19.4. </span>Input Files</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/fast.farm/InputFiles.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="input-files">
+<span id="ff-input"></span><h1><span class="section-number">4.19.4. </span>Input Files<a class="headerlink" href="#input-files" title="Permalink to this heading"></a></h1>
+<p>The primary FAST.Farm input file defines ambient wind, the wind turbine
+layout within the wind farm, the wake axisymmetric finite-difference
+grid, calibrated parameters for wake dynamics, visualization output,
+output file specifications, and auxiliary parameters. Ambient wind data
+optionally generated from the high-fidelity precursor atmospheric
+simulation are stored in separate files referenced in the primary
+FAST.Farm input file. Properties for each wind turbine in the wind farm
+are stored in the standard OpenFAST input files, referenced by their
+primary OpenFAST input file (one for each wind turbine) in the primary
+FAST.Farm input file.</p>
+<p>No lines should be added or removed from the input files, except in
+tables where the number of rows is specified.</p>
+<div class="section" id="units">
+<h2><span class="section-number">4.19.4.1. </span>Units<a class="headerlink" href="#units" title="Permalink to this heading"></a></h2>
+<p>FAST.Farm uses the SI system (kg, m, s, N).</p>
+</div>
+<div class="section" id="fast-farm-primary-input-file">
+<span id="ff-sec-ffarminputfile"></span><h2><span class="section-number">4.19.4.2. </span>FAST.Farm Primary Input File<a class="headerlink" href="#fast-farm-primary-input-file" title="Permalink to this heading"></a></h2>
+<p>The FAST.Farm primary input file is organized into several functional
+sections:</p>
+<ul class="simple">
+<li><p>Simulation Control</p></li>
+<li><p>Shared Moorings</p></li>
+<li><p>Ambient Wind</p></li>
+<li><p>Wind Turbines</p></li>
+<li><p>Wake Dynamics</p></li>
+<li><p>Visualization</p></li>
+<li><p>Output.</p></li>
+</ul>
+<p>Each section corresponds to an aspect of the FAST.Farm model – see the
+subsections below. A sample FAST.Farm primary input file is given in
+<a class="reference internal" href="AppendixA.html#ff-app-input"><span class="std std-numref">Section 4.19.10</span></a>. Where there is a one-to-one equivalency between an input
+parameter and a variable in the FAST.Farm theory documented in
+<a class="reference internal" href="FFarmTheory.html#ff-theory"><span class="std std-numref">Section 4.19.7</span></a>, the variable in
+<a class="reference internal" href="FFarmTheory.html#ff-theory"><span class="std std-numref">Section 4.19.7</span></a> is shown in parentheses after the input
+parameter in the subsections below.</p>
+<p>The input file begins with two lines of header information that is for
+your use, but is not used by the software.</p>
+<div class="section" id="simulation-control">
+<h3><span class="section-number">4.19.4.2.1. </span>Simulation Control<a class="headerlink" href="#simulation-control" title="Permalink to this heading"></a></h3>
+<p><strong>Echo</strong> [flag] specifies if you wish to have FAST.Farm echo the
+contents of the FAST.Farm primary input file (useful for debugging
+errors in the input file). If <strong>Echo</strong> = TRUE, an echo file will be
+generated. The echo file has the naming convention of
+&lt;<em>RootName</em>&gt;<em>.ech</em>, where &lt;<em>RootName</em>&gt; is the name of the FAST.Farm
+primary input file, excluding its file extension.</p>
+<p><strong>AbortLevel</strong> [quoted string] indicating what error level should cause
+an abort. Options are: “WARNING,” “SEVERE,” or “FATAL.” <strong>AbortLevel</strong>
+in FAST.Farm is used the same way as the level set in stand-alone
+OpenFAST, but the <strong>AbortLevel</strong> set in FAST.Farm will override the
+levels set in the OpenFAST primary input file of each wind turbine in
+the wind farm. Setting FAST.Farm to abort on fatal errors is typical,
+but see the FAST v8 ReadMe document  for additional guidance.</p>
+<p><strong>TMax</strong> [sec] is the total length of the simulation to be run. The
+first output is calculated at <span class="math notranslate nohighlight">\(t=0\)</span>; the last output is calculated
+at <span class="math notranslate nohighlight">\(t\)</span> = <strong>TMax</strong>. The <strong>TMax</strong> set in FAST.Farm will override the
+simulation length set in the OpenFAST primary input file of each wind
+turbine in the wind farm.</p>
+<p><strong>Mod_AmbWind</strong> [switch] indicates the ambient wind source. There are
+four options: 1) use ambient wind data generated by a high-fidelity
+precursor simulation in VTK format <strong>[Mod_AmbWind=1]</strong>, 2) use ambient
+wind data as defined by the FAST.Farm interface to the <em>InflowWind</em>
+module, with one instance of <em>InflowWind</em> <strong>[Mod_AmbWind=2]</strong>, 3) use
+ambient wind data as defined by the FAST.Farm interface to the
+<em>InflowWind</em> module, with multiple instances of <em>InflowWind</em>
+<strong>[Mod_AmbWind=3]</strong>, or 4) use ambient wind data generated by a
+high-fidelity precursor simulation stored in AMReX plot file format
+<strong>[Mod_AmbWind=4]</strong>. The distinct Ambient Wind subsections below pertain
+to each option. Note that <strong>Mod_AmbWind</strong> = 4 requires FAST.Farm to be
+compiled with AMReX support (<code class="docutils literal notranslate"><span class="pre">-DAMREX_READER=ON</span></code> in CMake, not available when
+compiling with Visual Studio).</p>
+<p><strong>Mod_WaveField</strong> [switch] indicates how the wave field should be treated.  The
+two options are: 1) use individual HydroDyn inputs at each turbine without
+adjustment, 2) adjust wave phases based on turbine offsets from wind farm
+origin.</p>
+<p><strong>Mod_SharedMooring</strong> [switch] indicates if a farm level mooring line system
+interconnects turbines.  There are presently two options: 0) No shared moorings,
+3) MoorDyn.</p>
+</div>
+<div class="section" id="shared-moorings">
+<h3><span class="section-number">4.19.4.2.2. </span>Shared Moorings<a class="headerlink" href="#shared-moorings" title="Permalink to this heading"></a></h3>
+<p>Shared mooring lines running between platforms introduce a coupling between the
+platforms that operates on the same time scales as a platform’s interaction with
+a regular mooring system (typically resolved at a time step of 10–30 ms in
+OpenFAST simulations).  See <a class="reference internal" href="../moordyn/index.html#moordyn"><span class="std std-numref">Section 4.14</span></a> for more information.</p>
+<p><strong>SharedMoorFile</strong> [quoted string] sets the name and location of the MoorDyn
+input file for the mooring lines in the wind farm. It is only used if
+<strong>Mod_SharedMooring</strong> = 3.  <strong>The file name must be in quotations</strong> and can
+contain an absolute or a relative path.  The mooring lines then connect to each
+of the wind turbines in the farm.  See <a class="reference external" href="https://moordyn.readthedocs.io/en/latest/usage.html#moordyn-with-fast-farm">MoorDyn with FAST.Farm</a>
+documentation for details on the input file at the farm level.</p>
+<p><strong>DT_Mooring</strong> (sec) sets the timestep for the shared mooring connections with
+MoorDyn.</p>
+<p><strong>WrMooringVis</strong> [swithch]   Write shared mooring line visualization, at
+the global FAST.Farm time step</p>
+</div>
+<div class="section" id="ambient-wind-precursor-in-visualization-toolkit-format">
+<span id="ff-input-vtk"></span><h3><span class="section-number">4.19.4.2.3. </span>Ambient Wind: Precursor in Visualization Toolkit Format<a class="headerlink" href="#ambient-wind-precursor-in-visualization-toolkit-format" title="Permalink to this heading"></a></h3>
+<p>The input parameters in this section are only used when <strong>Mod_AmbWind</strong>
+= 1, indicating the use of ambient wind generated by a high-fidelity
+precursor simulation. In this case, the ambient wind, including their
+spatial discretization, must be stored in VTK format – as described in
+<a class="reference internal" href="#ff-ambwindvtk"><span class="std std-numref">Section 4.19.4.3</span></a> – and is used directly without modification
+by FAST.Farm.</p>
+<p><strong>DT_Low-VTK</strong> [sec] (<span class="math notranslate nohighlight">\(t\)</span>) sets the time step of the
+low-resolution ambient wind data files and calculation, as well as the
+global (driver/glue-code) time step of FAST.Farm. <strong>DT_Low-VTK</strong> is the
+same as <strong>DT_Low</strong> in this documentation. The modules of FAST.Farm are
+called every <strong>DT_Low</strong> seconds, although OpenFAST and its modules may
+use a time step that is an integer multiple smaller than or equal to
+<strong>DT_Low</strong>.</p>
+<p><strong>DT_High-VTK</strong> [sec] sets the time step of the high-resolution ambient
+wind data files and calculation and <strong>must be an integer multiple
+smaller than or equal to DT_Low</strong>. <strong>DT_High-VTK</strong> is the same as
+<strong>DT_High</strong> in this documentation. It is essential that <strong>DT_Low</strong> and
+<strong>DT_High</strong> are small enough to ensure solution accuracy and match the
+time resolution used when generating the ambient wind data from the
+high-fidelity precursor simulation. <strong>DT_Low</strong> should be consistent with
+the timescales of wake dynamics, e.g., on the order of seconds and
+smaller for higher mean wind speeds. <strong>DT_High</strong> should be sufficient
+for accurate aerodynamic load calculations, e.g., on the order of
+fractions of a second. Further guidance on choosing appropriate time
+steps is given in <a class="reference internal" href="ModelGuidance.html#ff-modguidance"><span class="std std-numref">Section 4.19.6</span></a>.</p>
+<p><strong>WindFilePath</strong> [quoted string] specifies the path to the directory
+where the low- and high-resolution ambient wind data files are stored.
+The path can be specified relative to the location of the FAST.Farm
+primary input file or with an absolute path. It is recommended to use
+quotes around the path. If there are spaces in the file or path names,
+these quotes are required. <strong>FAST.Farm requires that the ambient wind
+data files be stored in specific subdirectories of the directory
+specified by WindFilePath and with specific filenames.</strong> The
+low-resolution ambient wind data files must be named
+<em>Amb.t&lt;n</em><sub>low</sub><em>&gt;.vtk</em> and stored in a subdirectory named
+<em>Low</em>. In the file names, <em>&lt;n</em><sub>low</sub><em>&gt;</em> is an integer
+(without leading zeros) between <em>0</em> (at <span class="math notranslate nohighlight">\(t=0\)</span>) and <em>N-1</em>, where
+<span class="math notranslate nohighlight">\(N=FLOOR\left( \frac{\textbf{TMax}}{\textbf{DT_Low}} \right)+1\)</span> is the number
+of low-resolution time steps. The high-resolution ambient wind data
+files must be named <em>Amb.t&lt;n</em><sub>high</sub><em>&gt;.vtk</em>, where
+<em>&lt;n</em><sub>high</sub><em>&gt;</em> is an integer (without leading zeros)
+between 0 (at <span class="math notranslate nohighlight">\(t=0\)</span>) and
+<span class="math notranslate nohighlight">\(\frac{\textbf{DT_Low}}{\textbf{DT_High}}\left( N-1 \right)\)</span>. The files must
+be stored in a subdirectory named <em>HighT&lt;n</em><sub>t</sub><em>&gt;</em>, where
+<em>&lt;n</em><sub>t</sub><em>&gt;</em> is an integer (without leading zeros) between 1 and
+the total number of wind turbines (<strong>NumTurbines</strong>). Subdirectory
+<em>HighT&lt;n</em><sub>t</sub><em>&gt;</em> must contain the high-resolution ambient wind
+data corresponding to wind turbine <em>&lt;n</em><sub>t</sub><em>&gt;</em>, specified in the
+Wind Turbines section of the FAST.Farm primary input file – see
+<a class="reference internal" href="#ff-input-wt"><span class="std std-numref">Section 4.19.4.2.6</span></a>. The VTK format of each ambient wind data
+file – for both the low-resolution and high-resolution domains – is
+identical, as described in <a class="reference internal" href="#ff-ambwindvtk"><span class="std std-numref">Section 4.19.4.3</span></a>.</p>
+<p><strong>ChkWndFiles</strong> [flag] specifies if FAST.Farm should check the ambient
+wind data files for consistency before running the simulation
+(preventing a possible crash later). As this check is time intensive, it
+is recommended that <strong>ChkWndFiles</strong> be set to FALSE (to disable the
+check) if the ambient wind data have previously been checked, such as in
+a prior simulation. If set to TRUE, FAST.Farm will check to ensure that:</p>
+<ul class="simple">
+<li><p>The number of low-resolution ambient wind data files is sufficient to
+run the entire simulation (up to <span class="math notranslate nohighlight">\(t =\)</span><strong>TMax</strong>). If more
+files are in the subdirectory, only the first <em>N</em> will be used.</p></li>
+<li><p>The number of high-resolution ambient wind data files is sufficient
+to run the entire simulation (up to <span class="math notranslate nohighlight">\(t =\)</span><strong>TMax</strong>) for all
+wind turbines. If there are more subdirectories, only the first
+<strong>NumTurbines</strong> will be used. If more files are in each subdirectory,
+only the first
+<span class="math notranslate nohighlight">\(\frac{\textbf{DT_Low}}{\textbf{DT_High}}\left( N-1 \right)+1\)</span> will be
+used.</p></li>
+<li><p>The spatial resolution (number of grid points, origin, and spacing)
+of each low-resolution ambient wind data file is the same.</p></li>
+<li><p>The spatial resolution (number of grid points, origin, and spacing)
+of each high-resolution ambient wind data file is the same for a
+given wind turbine.</p></li>
+<li><p>The number of grid points in each high-resolution domain is the same
+for all wind turbines in the wind farm.</p></li>
+</ul>
+</div>
+<div class="section" id="ambient-wind-inflowwind-module">
+<h3><span class="section-number">4.19.4.2.4. </span>Ambient Wind: InflowWind Module<a class="headerlink" href="#ambient-wind-inflowwind-module" title="Permalink to this heading"></a></h3>
+<p>The input parameters in this section are only used when <strong>Mod_AmbWind</strong>
+= 2 or 3, indicating the use of ambient wind through one or multiple
+instances of the <em>InflowWInd</em> module. In this case, the ambient wind
+specified within <em>InflowWInd</em> is interpolated to the low- and
+high-resolution domains for use within FAST.Farm.</p>
+<p><strong>DT_Low</strong> [sec] (<span class="math notranslate nohighlight">\(\Delta t\)</span>) sets the time step of the
+low-resolution ambient wind calculation, as well as the global
+(driver/glue-code) time step of FAST.Farm. The modules of FAST.Farm are
+called every <strong>DT_Low</strong> seconds, although OpenFAST and its modules may
+choose to use a time step that is an integer multiple smaller than or
+equal to <strong>DT_Low</strong>.
+When <strong>Wake_Mod=2,3</strong>, the stability of the algorithm will depend on the choice
+of <strong>dr</strong> and <strong>DT_Low</strong>.
+(typically  <span class="math notranslate nohighlight">\(\textbf{DT_Low}&lt;\textbf{dr}/(2V_\text{Hub})\)</span>,
+see <a class="reference internal" href="ModelGuidance.html#ff-modguidance"><span class="std std-numref">Section 4.19.6</span></a>)</p>
+<p><strong>DT_High</strong> [sec] sets the time step of the high-resolution ambient wind
+data calculation and must be an integer multiple smaller than or equal
+to <strong>DT_Low</strong>. It is essential that <strong>DT_Low</strong> and <strong>DT_High</strong> are small
+enough to ensure solution accuracy. <strong>DT_Low</strong> should be consistent with
+the timescales of wake dynamics, e.g., on the order of seconds and
+smaller for higher mean wind speeds. <strong>DT_High</strong> should be sufficient
+for accurate aerodynamic load calculations, e.g., on the order of
+fractions of a second. Further guidance on choosing appropriate time
+steps is given in <a class="reference internal" href="ModelGuidance.html#ff-modguidance"><span class="std std-numref">Section 4.19.6</span></a>.</p>
+<p>The next nine input parameters set the spatial discretization of the
+low-resolution ambient wind domain. The low-resolution domain is stored
+as a structured 3D grid of wind data points (representing the corners of
+3D cells) in the global <em>X-Y-Z</em> inertial-frame coordinate system, as
+illustrated generically in <a class="reference internal" href="#ff-strucdomains"><span class="std std-numref">Fig. 4.62</span></a>.</p>
+<div class="figure align-center" id="ff-strucdomains">
+<a class="reference internal image-reference" href="../../../_images/StrucDomains.png"><img alt="Structured 3D grid for the low- or high-resolution domains." src="../../../_images/StrucDomains.png" style="width: 100%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.62 </span><span class="caption-text">Structured 3D grid for the low- or high-resolution domains.</span><a class="headerlink" href="#ff-strucdomains" title="Permalink to this image"></a></p>
+</div>
+<p><strong>NX_Low</strong>, <strong>NY_Low</strong>, and <strong>NZ_Low</strong> [integer] set the number of wind
+data points in each direction.</p>
+<p><strong>X0_Low</strong>, <strong>Y0_Low</strong>, and <strong>Z0_Low</strong> [m] set the origin of the grid
+(lowest-most <em>X-Y-Z</em> coordinate).</p>
+<p><strong>dX_Low</strong>, <strong>dY_Low</strong>, and <strong>dZ_Low</strong> [m] set the spatial
+discretization in each direction.</p>
+<p>The total low-resolution domain size has dimensions
+(<strong>NX_Low</strong>-1)<strong>dX_Low</strong> <span class="math notranslate nohighlight">\(\times\)</span> (<strong>NY_Low</strong>-1)<strong>dY_Low</strong>
+<span class="math notranslate nohighlight">\(\times\)</span> (<strong>NZ_Low</strong>-1)<strong>dZ_Low</strong>. The low-resolution domain
+should extend throughout the wind farm wherever turbines and wakes may
+potentially reside with a resolution sufficient so that the spatial
+averaging is accurate, e.g., on the order of tens of meters for
+utility-scale wind turbines. Further guidance on choosing appropriate
+spatial discretization is given in
+<a class="reference internal" href="ModelGuidance.html#ff-modguidance"><span class="std std-numref">Section 4.19.6</span></a>.</p>
+<p>Like the low-resolution domain, each high-resolution domain is stored as
+a structured 3D grid of wind data points in the global <em>X-Y-Z</em>
+inertial-frame coordinate system – as illustrated generically in
+<a class="reference internal" href="#ff-strucdomains"><span class="std std-numref">Fig. 4.62</span></a>.</p>
+<p><strong>NX_High</strong>, <strong>NY_High</strong>, and <strong>NZ_High</strong> [integer] set the number of
+wind data points in each direction. These values are the same for each
+wind turbine and so only need to be set once.</p>
+<p>The origin and spatial discretization for the high-resolution wind
+domain for each turbine are specified in the Wind Turbines section of
+the FAST.Farm primary input file below.</p>
+<p><strong>InflowFile</strong> [quoted string] specifies the name of the primary input
+file for the <em>InflowWind</em> module, which can be specified relative to the
+location of the FAST.Farm primary input file or specified with an
+absolute path. It is recommended to use quotes around the file name. If
+there are spaces in the file or path names, these quotes are required.
+See <a class="reference internal" href="#ff-ambwindifw"><span class="std std-numref">Section 4.19.4.4</span></a> for information on the contents of
+this file.</p>
+</div>
+<div class="section" id="ambient-wind-precursor-in-amrex-format">
+<span id="ff-input-amrex"></span><h3><span class="section-number">4.19.4.2.5. </span>Ambient Wind: Precursor in AMReX Format<a class="headerlink" href="#ambient-wind-precursor-in-amrex-format" title="Permalink to this heading"></a></h3>
+<p>The input parameters in this section are only used when <strong>Mod_AmbWind</strong>
+= 4, indicating the use of ambient wind from a high-fidelity precursor
+simulation stored in <a class="reference external" href="https://amrex-codes.github.io">AMReX</a> plot file
+format. This option requires FAST.Farm to be compiled with the AMReX
+library enabled (<code class="docutils literal notranslate"><span class="pre">-DAMREX_READER=ON</span></code> with CMake). The grid dimensions, origin,
+and spatial discretization are read directly from the AMReX plot file
+headers and do not need to be specified in the input file.</p>
+<p><strong>WindDirPrefix</strong> [quoted string] specifies the path prefix for the
+AMReX wind sub-volume directories. Sub-volume directories follow the
+naming convention <em>&lt;WindDirPrefix&gt;_&lt;sv&gt;_&lt;index&gt;</em>, where <em>&lt;sv&gt;</em> is the
+sub-volume number (0 for the low-resolution domain; 1 through
+<strong>NumTurbines</strong> for the high-resolution domain of each turbine) and
+<em>&lt;index&gt;</em> is a zero-padded integer directory index. The path can be
+specified relative to the location of the FAST.Farm primary input file
+or with an absolute path. It is recommended to use quotes around the
+path. See <a class="reference internal" href="#ff-ambwindamrex"><span class="std std-numref">Section 4.19.4.5</span></a> for further details on the expected
+directory structure.</p>
+<p><strong>DirStartIndex</strong> [quoted string] specifies the directory index suffix
+(e.g., <code class="docutils literal notranslate"><span class="pre">&quot;00000&quot;</span></code>) corresponding to the simulation start time
+<span class="math notranslate nohighlight">\(t=0\)</span>. The string length determines the zero-padding width applied
+to all directory index numbers; the number of leading zeros in
+<strong>DirStartIndex</strong> sets the total field width used when constructing
+subsequent directory names. FAST.Farm automatically searches for all
+available time steps beginning from this index. It is recommended to use
+quotes around this value.</p>
+<p><strong>DT_Low-AMReX</strong> [sec] sets the time step of the low-resolution ambient
+wind data and the global (driver/glue-code) time step of FAST.Farm. All
+FAST.Farm modules are called every <strong>DT_Low-AMReX</strong> seconds, although
+OpenFAST and its modules may use a time step that is an integer multiple
+smaller than or equal to <strong>DT_Low-AMReX</strong>. The value must match the time
+step used when generating the precursor simulation data.</p>
+<p><strong>DT_High-AMReX</strong> [sec] sets the time step of the high-resolution
+ambient wind data and <strong>must be an integer multiple smaller than or
+equal to DT_Low-AMReX</strong>. It must match the time resolution of the
+high-resolution sub-volumes in the precursor data. <strong>DT_Low-AMReX</strong>
+should be consistent with the timescales of wake dynamics (e.g., on the
+order of seconds), and <strong>DT_High-AMReX</strong> should be sufficient for
+accurate aerodynamic load calculations (e.g., on the order of fractions
+of a second). Further guidance is given in <a class="reference internal" href="ModelGuidance.html#ff-modguidance"><span class="std std-numref">Section 4.19.6</span></a>.</p>
+</div>
+<div class="section" id="wind-turbines">
+<span id="ff-input-wt"></span><h3><span class="section-number">4.19.4.2.6. </span>Wind Turbines<a class="headerlink" href="#wind-turbines" title="Permalink to this heading"></a></h3>
+<p><strong>NumTurbines</strong> [integer] (<span class="math notranslate nohighlight">\(N_t\)</span>) is the number of wind turbines
+in the wind farm and determines the number of rows in the subsequent
+table (after two table header lines).</p>
+<p>For each wind turbine:</p>
+<ul class="simple">
+<li><p><strong>WT_X</strong>, <strong>WT_Y</strong>, and <strong>WT_Z</strong> [m] specify the origin in the global
+<em>X-Y-Z</em> inertial-frame coordinate system. The origin is defined as
+the intersection of the undeflected tower centerline and the ground
+or, for offshore systems, mean sea level.</p></li>
+<li><p><strong>WT_FASTInFile</strong> [quoted string] specifies the name of the OpenFAST
+primary input file associated with each turbine. Each wind turbine is
+numbered within FAST.Farm as an integer (<span class="math notranslate nohighlight">\(n_t\)</span>) between 1 and
+<strong>NumTurbines</strong> corresponding to the row in the table. The OpenFAST
+primary input file name can be specified relative to the location of
+the FAST.Farm primary input file or with an absolute path. It is
+recommended to use quotes around the file name. Identical wind
+turbines can use the same OpenFAST primary input file, except if the
+corresponding OpenFAST model makes use of a Bladed-style controller
+in DLL format or, for offshore wind turbines, if different wave
+conditions are required for each turbine. If a Bladed-style DLL
+controller is being used, distinct Bladed-style controller DLLs must
+be used (each with a unique name). This requires the need for
+distinct <em>ServoDyn</em> primary input files, referencing the appropriate
+DLL name, and distinct OpenFAST primary input files, each referencing
+the appropriate <em>ServoDyn</em> primary input file name. If different wave
+conditions are required for each turbine, the distinct wave
+conditions (e.g., based on unique random wave seeds) for each wind
+turbine must be set in the <em>HydroDyn</em> primary input file and distinct
+OpenFAST primary input files must be used, each referencing the
+appropriate <em>HydroDyn</em> primary input file name. See
+<a class="reference internal" href="#ff-input-ofinput"><span class="std std-numref">Section 4.19.4.6</span></a> for information on the contents of
+the OpenFAST input files.</p></li>
+<li><p>When <strong>Mod_AmbWind</strong> = 2 or 3, the Wind Turbines table has six
+additional columns to complete the spatial discretization of the
+high-resolution wind domain for each wind turbine:</p>
+<ul>
+<li><p><strong>X0_High</strong>, <strong>Y0_High</strong>, and <strong>Z0_High</strong> [m] set the origin of
+the grid.</p></li>
+<li><p><strong>dX_High</strong>, <strong>dY_High</strong>, <strong>dZ_High</strong> [m] set spatial
+discretization in each direction.</p></li>
+</ul>
+</li>
+</ul>
+<p>The total high-resolution domain size has dimensions
+(<strong>NX_High</strong>-1)<strong>dX_High</strong> <span class="math notranslate nohighlight">\(\times\)</span> (<strong>NY_High</strong>-1)<strong>dY_High</strong>
+<span class="math notranslate nohighlight">\(\times\)</span> (<strong>NZ_High</strong>-1)<strong>dZ_High</strong>. Each high-resolution domain
+must extend around the corresponding wind turbine, encompassing any
+turbine displacement. The domains should have a resolution sufficient
+for accurate aerodynamic load calculations, e.g., on the order of the
+blade chord length. The high-resolution domains will occupy the same
+space as portions of the low-resolution domain, requiring domains
+overlap.</p>
+</div>
+<div class="section" id="wake-dynamics">
+<h3><span class="section-number">4.19.4.2.7. </span>Wake Dynamics<a class="headerlink" href="#wake-dynamics" title="Permalink to this heading"></a></h3>
+<p>With FAST.Farm, each wake plane is treated as a radial finite-difference
+grid, as shown in <a class="reference internal" href="#ff-radialfd"><span class="std std-numref">Fig. 4.63</span></a>.</p>
+<div class="figure align-center" id="ff-radialfd">
+<a class="reference internal image-reference" href="../../../_images/RadialFD.png"><img alt="Radial finite-difference grid. For clarity of the illustration, the number and size of the wake planes are shown smaller than they should be." src="../../../_images/RadialFD.png" style="width: 100%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.63 </span><span class="caption-text">Radial finite-difference grid. For clarity of the illustration, the
+number and size of the wake planes are shown smaller than they should
+be.</span><a class="headerlink" href="#ff-radialfd" title="Permalink to this image"></a></p>
+</div>
+<p>Three wake formulations are available (see <a class="reference internal" href="FFarmTheory.html#ff-theory"><span class="std std-numref">Section 4.19.7</span></a> for more details):</p>
+<p><strong>Mod_Wake</strong> [switch] is used to switch between wake formulations.
+There are three options available:
+1) Polar [<strong>Mod_Wake=1</strong>] (default);
+the wake is axi-symmetric, defined on a polar grid,
+solved using an implicit Crank-Nicolson scheme,
+satisfying both the momentum and mass conservation laws under a shear layer approximation.
+2) Curled-wake model [<strong>Mod_Wake=2</strong>];
+the wake is defined on a Cartesian grid,
+the effect of curled wake vorticies in skewed inflow is accounted for by introducing cross-flow velocities, the momentum conservation is solved using a first-order forward Euler scheme,
+mass conservation is not enforced, the effect of wake swirl may be accounted for.
+The wake will adopt a “curled” shape in skewed inflow.
+3) Cartesian [<strong>Mod_Wake=3</strong>]; corresponds to model 2 with curled-wake vortices of zero intensities, leading to an axi-symmetric wake.</p>
+<p>When Wake_Mod=2,3, the stability of the algorithm will depend on the choice of <strong>dr</strong> and <strong>DT_Low</strong> (see the guidelines (see the guidelines given in <a class="reference internal" href="ModelGuidance.html#ff-modguidance"><span class="std std-numref">Section 4.19.6</span></a>).</p>
+<p><strong>RotorDiamRef</strong> [float, in m]: Reference turbine rotor diameter for wake calculations.</p>
+<p>The wake planes are defined by the following parameters:</p>
+<ul class="simple">
+<li><p><strong>dr</strong> [m] sets the radial increment. To ensure the wake deficits are
+accurately computed by FAST.Farm, <strong>dr</strong> should be set so that
+FAST.Farm sufficiently resolves the wake deficit within each plane.
+When a cartesian grid is used (<strong>Mod_Wake=2 or 2</strong>), <strong>dr</strong> represents the
+spacing in the y and z direction of the plane.
+When <strong>Wake_Mod=2,3</strong>, the stability of the algorithm will depend on the choice
+of <strong>dr</strong> and <strong>DT_Low</strong> (see the guidelines given in <a class="reference internal" href="ModelGuidance.html#ff-modguidance"><span class="std std-numref">Section 4.19.6</span></a>).</p></li>
+<li><p><strong>NumRadii</strong> [integer] (<span class="math notranslate nohighlight">\(N_r\)</span>) sets the number of radii. To
+ensure the wake deficits are accurately computed by FAST.Farm,
+<strong>NumRadii</strong> should be set so that the diameter of each wake plane,
+2(<strong>NumRadii</strong>-1)<strong>dr</strong>, is large relative to the rotor diameter.
+When a Cartesian grid is used, the y and z coordinates extend from
+(-NumRaddi+1)*dr to  (NumRadii-1)*dr.</p></li>
+<li><p><strong>NumPlanes</strong> [integer] (<span class="math notranslate nohighlight">\(N_p\)</span>) sets the number of wake planes.
+To ensure the wake deficits are accurately captured by FAST.Farm,
+<strong>NumPlanes</strong> should be set so that the wake planes propagate a
+sufficient distance downstream, preferably until the wake deficit
+decays away.</p></li>
+</ul>
+<p>The next <span class="math notranslate nohighlight">\(20\)</span> inputs are user-specified calibration parameters and
+options that influence the wake-dynamics calculations. The parameters
+may depend, e.g., on turbine operation or atmospheric conditions that
+can be calibrated to better match experimental data or by using an HFM
+benchmark. Default values have been derived for each calibrated
+parameter based on <a class="reference external" href="https://nwtc.nrel.gov/SOWFA">SOWFA</a> simulations
+( <span id="id1">[<a class="reference internal" href="zrefs.html#id19" title="P. Doubrawa and et al. Optimization-based calibration of fast.farm parameters against sowfa. In 36th Wind Energy Symposium. Kissimmee, FL, January 2018. AIAA. doi:https://arc.aiaa.org/doi/pdf/10.2514/6.2018-0512.">ff-Deal18</a>]</span>), but these can be overwritten by the
+user.</p>
+<p><strong>f_c</strong> [Hz] (<span class="math notranslate nohighlight">\(f_c\)</span>) is the cutoff (corner) frequency of the
+low-pass time filter for the wake advection, deflection, and meandering
+model and must be greater than zero.
+Preferably the filter constant should be set as follows:</p>
+<div class="math notranslate nohighlight" id="equation-fffc">
+<span class="eqno">(4.220)<a class="headerlink" href="#equation-fffc" title="Permalink to this equation"></a></span>\[\tau_1=\frac{1.1}{1-1.3 \operatorname{min}(a_\text{avg}, 0.5)} \frac{R}{U_\infty} , \qquad f_c = \frac{2.4}{\tau_1}\]</div>
+<p>where
+<span class="math notranslate nohighlight">\(\tau_1\)</span> is a time scale similar to the one used in the Oye dynamic inflow model and
+<span class="math notranslate nohighlight">\(a_\text{avg}\)</span> is the average axial induction factor across the rotor disk.
+If the DEFAULT keyword is specified in place of a numerical value, <strong>f_c</strong> is set to <span class="math notranslate nohighlight">\(12.5/R_\text{est}\)</span> Hz
+which corresponds to <span class="math notranslate nohighlight">\(U=10\)</span> m/s, <span class="math notranslate nohighlight">\(a=1/3\)</span> in the equation above, and
+where the estimated rotor radius is obtained as: <span class="math notranslate nohighlight">\(R_\text{est} = (dr * NumRadii) / 3\)</span>.
+Changing the grid resolution will change the estimated radius, therefore it is recommended to set a numerical
+value for <strong>f_c</strong> directly instead of using DEFAULT.
+If numerical issues occur, you may attempt to lower the value of <strong>f_c</strong> to introduce more filtering of high frequencies.
+In previous release, the default value was excessively small, set to <span class="math notranslate nohighlight">\(0.0007\)</span> Hz.</p>
+<p><strong>C_HWkDfl_O</strong> [m] (<span class="math notranslate nohighlight">\(C_{HWkDfl}^{O}\)</span>) is the calibrated parameter
+for the wake deflection correction defining the horizontal offset at the
+rotor. If the DEFAULT keyword is specified in place of a numerical
+value, <strong>C_HWkDfl_O</strong> is set to <span class="math notranslate nohighlight">\(0.0\)</span>.</p>
+<p><strong>C_HWkDfl_OY</strong> [m/deg] (<span class="math notranslate nohighlight">\(C_{HWkDfl}^{OY}\)</span>) is the calibrated
+parameter for the wake deflection correction defining the horizontal
+offset at the rotor scaled with yaw error. If the DEFAULT keyword is
+specified in place of a numerical value,
+<strong>C_HWkDfl_OY</strong> is set to <span class="math notranslate nohighlight">\(0\)</span> when <strong>Mod_Wake=2</strong>
+<strong>C_HWkDfl_OY</strong> is set to <span class="math notranslate nohighlight">\(0.3\)</span> otherwise.</p>
+<p><strong>C_HWkDfl_x</strong> [-] (<span class="math notranslate nohighlight">\(C_{HWkDfl}^{x}\)</span>) is the calibrated parameter
+for the wake deflection correction defining the horizontal offset scaled
+with downstream distance. If the DEFAULT keyword is specified in place
+of a numerical value, <strong>C_HWkDfl_x</strong> is set to <span class="math notranslate nohighlight">\(0.0\)</span>.</p>
+<p><strong>C_HWkDfl_xY</strong> [1/deg] (<span class="math notranslate nohighlight">\(C_{HWkDfl}^{xY}\)</span>) is the calibrated
+parameter for the wake deflection correction defining the horizontal
+offset scaled with downstream distance and yaw error. If the DEFAULT
+keyword is specified in place of a numerical value,
+<strong>C_HWkDfl_xY</strong> is set to <span class="math notranslate nohighlight">\(0.0\)</span> when <strong>Mod_Wake=2</strong>.
+<strong>C_HWkDfl_xY</strong> is set to <span class="math notranslate nohighlight">\(-0.004\)</span> otherwise.</p>
+<p><strong>C_NearWake</strong> (<span class="math notranslate nohighlight">\(C_{NearWake}\)</span>) [-] is the calibrated parameter
+for the near-wake correction and must be greater than one. If the
+DEFAULT keyword is specified in place of a numerical value,
+<strong>C_NearWake</strong> is set to <span class="math notranslate nohighlight">\(1.8\)</span>.</p>
+<p><strong>k_vAmb</strong> [five floats, comma separated] <span class="math notranslate nohighlight">\([k_{\nu Amb}, C_{\nu Amb}^{FMin}, C_{\nu Amb}^{DMin}, C_{\nu Amb}^{DMax}, C_{\nu Amb}^{Exp}]\)</span>
+Tuning parameters for the ambient turbulence influence in the eddy viscosity. If
+the DEFAULT keyword is specified, all five parameters will be set to the default
+values specified below. The five parameters in order are:</p>
+<blockquote>
+<div><ul>
+<li><dl>
+<dt><span class="math notranslate nohighlight">\(k_{\nu Amb}\)</span> [-] (<span class="math notranslate nohighlight">\(\gt 0\)</span>)</dt><dd><div class="line-block">
+<div class="line">DEFAULT value: <span class="math notranslate nohighlight">\(k_{\nu Amb} = 0.05\)</span></div>
+<div class="line">Calibrated coefficient for the maximum value of <strong>k_vAmb</strong>.</div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><span class="math notranslate nohighlight">\(C_{\nu Amb}^{FMin}\)</span> [-]  (<span class="math notranslate nohighlight">\(\ge 0\)</span>, <span class="math notranslate nohighlight">\(\le 1\)</span>)</dt><dd><div class="line-block">
+<div class="line">DEFAULT value: <span class="math notranslate nohighlight">\(C_{\nu Amb}^{FMin} = 1.0\)</span>.</div>
+<div class="line">Calibrated parameter defining defines the value at the minimum region.</div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><span class="math notranslate nohighlight">\(C_{\nu Amb}^{DMin}\)</span> [-] (<span class="math notranslate nohighlight">\(\ge 0\)</span>)</dt><dd><div class="line-block">
+<div class="line">DEFAULT value: <span class="math notranslate nohighlight">\(C_{\nu Amb}^{DMin} = 0.0\)</span>.</div>
+<div class="line">Calibrated parameter defining the transitional diameter fraction
+between the minimum and exponential regions.</div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><span class="math notranslate nohighlight">\(C_{\nu Amb}^{DMax}\)</span> [-] (<span class="math notranslate nohighlight">\(\ge k_\text{DMin}\)</span>)</dt><dd><div class="line-block">
+<div class="line">DEFAULT value: <span class="math notranslate nohighlight">\(C_{\nu Amb}^{DMax} = 1.0\)</span>.</div>
+<div class="line">Calibrated parameter defining the transitional diameter fraction
+between the exponential and maximum regions.</div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><span class="math notranslate nohighlight">\(C_{\nu Amb}^{Exp}\)</span> [-] (<span class="math notranslate nohighlight">\(\gt 0\)</span>)</dt><dd><div class="line-block">
+<div class="line">DEFAULT value: <span class="math notranslate nohighlight">\(C_{\nu Amb}^{Exp} = 0.01\)</span>.</div>
+<div class="line">Calibrated parameter defining the exponent in the exponential region.</div>
+</div>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p><strong>k_vShr</strong> [five floats, comma separated] <span class="math notranslate nohighlight">\([k_{\nu Shr}, C_{\nu Shr}^{FMin}, C_{\nu Shr}^{DMin}, C_{\nu Shr}^{DMax}, C_{\nu Shr}^{Exp}]\)</span>
+Tuning parameters for the wake shear layer influence in the eddy viscosity. If
+the DEFAULT keyword is specified, all five parameters will be set to the default
+values specified below. The five parameters in order are:</p>
+<blockquote>
+<div><ul>
+<li><dl>
+<dt><span class="math notranslate nohighlight">\(k_{\nu Shr}\)</span> [-] (<span class="math notranslate nohighlight">\(\gt 0\)</span>)</dt><dd><div class="line-block">
+<div class="line">DEFAULT value: <span class="math notranslate nohighlight">\(k_{\nu Shr} = 0.016\)</span></div>
+<div class="line">Calibrated coefficient for the maximum value of <strong>k_vShr</strong>.</div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><span class="math notranslate nohighlight">\(C_{\nu Shr}^{FMin}\)</span> [-]  (<span class="math notranslate nohighlight">\(\ge 0\)</span>, <span class="math notranslate nohighlight">\(\le 1\)</span>)</dt><dd><div class="line-block">
+<div class="line">DEFAULT value: <span class="math notranslate nohighlight">\(C_{\nu Shr}^{FMin} = 0.2\)</span>.</div>
+<div class="line">Calibrated parameter defining defines the value at the minimum region.</div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><span class="math notranslate nohighlight">\(C_{\nu Shr}^{DMin}\)</span> [-] (<span class="math notranslate nohighlight">\(\ge 0\)</span>)</dt><dd><div class="line-block">
+<div class="line">DEFAULT value: <span class="math notranslate nohighlight">\(C_{\nu Shr}^{DMin} = 3.0\)</span>.</div>
+<div class="line">Calibrated parameter defining the transitional diameter fraction
+between the minimum and exponential regions.</div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><span class="math notranslate nohighlight">\(C_{\nu Shr}^{DMax}\)</span> [-] (<span class="math notranslate nohighlight">\(\ge k_\text{DMin}\)</span>)</dt><dd><div class="line-block">
+<div class="line">DEFAULT value: <span class="math notranslate nohighlight">\(C_{\nu Shr}^{DMax} = 25.0\)</span>.</div>
+<div class="line">Calibrated parameter defining the transitional diameter fraction
+between the exponential and maximum regions.</div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><span class="math notranslate nohighlight">\(C_{\nu Shr}^{Exp}\)</span> [-] (<span class="math notranslate nohighlight">\(\gt 0\)</span>)</dt><dd><div class="line-block">
+<div class="line">DEFAULT value: <span class="math notranslate nohighlight">\(C_{\nu Shr}^{Exp} = 0.1\)</span>.</div>
+<div class="line">Calibrated parameter defining the exponent in the exponential region.</div>
+</div>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p><strong>Mod_WakeDiam</strong> [switch] specifies the wake diameter calculation model
+(method). There are four options: 1) use the rotor diameter
+[<strong>Mod_WakeDiam=1</strong>]; 2) use a velocity-based method
+[<strong>Mod_WakeDiam=2</strong>]; 3) use a mass-flux based method
+[<strong>Mod_WakeDiam=3</strong>]; or 4) use a momentum-flux based method
+[<strong>Mod_WakeDiam=4</strong>]. If the DEFAULT keyword is specified in place of a
+numerical value, <strong>Mod_WakeDiam</strong> is set to <span class="math notranslate nohighlight">\(1\)</span>.</p>
+<p><strong>C_WakeDiam</strong> [-] (<span class="math notranslate nohighlight">\(C_{WakeDiam}\)</span>) is the calibrated parameter
+for the wake diameter calculation and must be greater than zero and less
+than <span class="math notranslate nohighlight">\(0.99\)</span>. It is unused when <strong>Mod_WakeDiam=1</strong>. If the DEFAULT
+keyword is specified in place of a numerical value, <strong>C_WakeDiam</strong> is
+set to <span class="math notranslate nohighlight">\(0.95\)</span>.</p>
+<p><strong>Mod_Meander</strong> [switch] specifies the spatial filter model (method) for
+wake meandering. There are three options: 1) use a uniform spatial
+average [<strong>Mod_Meander=1</strong>]; 2) use a truncated <em>jinc</em>
+[<strong>Mod_Meander=2</strong>]; or 3) use a windowed <em>jinc</em> [<strong>Mod_Meander=3</strong>]. If
+the DEFAULT keyword is specified in place of a numerical value,
+<strong>Mod_Meander</strong> is set to <span class="math notranslate nohighlight">\(3\)</span>.</p>
+<p><strong>C_Meander</strong> [-] (<span class="math notranslate nohighlight">\(C_{Meander}\)</span>) is the calibrated parameter for
+the wake meandering and must be greater than or equal to one. If the
+DEFAULT keyword is specified in place of a numerical value,
+<strong>C_Meander</strong> is set to <span class="math notranslate nohighlight">\(1.9\)</span>.</p>
+</div>
+<div class="section" id="curled-wake-parameters">
+<h3><span class="section-number">4.19.4.2.8. </span>Curled wake parameters<a class="headerlink" href="#curled-wake-parameters" title="Permalink to this heading"></a></h3>
+<p><strong>Swirl</strong> [switch]
+Include swirl velocities in wake [only used if [<strong>Mod_Wake=2</strong>]
+or [<strong>Mod_Wake=3</strong>].</p>
+<p><strong>k_VortexDecay</strong> [-] This constant specifies the decay rate of the
+spanwise velocity components from the curled wake model.
+DEFAULT is 0.0.</p>
+<p><strong>NumVortices</strong> [-] The number of vortices in the curled wake model.
+DEFAULT is 100.</p>
+<p><strong>sigma_D</strong> [-] The width of the vortex core in the curled wake model
+non-dimesionalized by rotor diameter.  If the DEFAULT keyword is
+specified in place of a numerical value, <strong>sigma_D</strong> is set to
+<span class="math notranslate nohighlight">\(0.2\)</span>.</p>
+<p><strong>FilterInit</strong> [switch] The number of grid points (in the <cite>y</cite> and <cite>z</cite> directions)
+used to filter the initial wake plane deficit in the curled wake model.
+A value of zero corresponds to no filter. The filter is used to remove strong gradients
+in the wake, and stabilize the solution.
+DEFAULT is 1.</p>
+<p><strong>k_vCurl</strong> [-] Calibrated parameter for scaling the eddy viscosity in the
+curled-wake model.
+This value is a tuning parameters to increase or decrease the diffusion in the curled wake model.
+We have found that this value may be a function of the thrust coefficient, with higher values recommended for higher thrust coefficients.
+The following guidelines are suggested:
+<span class="math notranslate nohighlight">\(k_v=0.9\)</span> for <span class="math notranslate nohighlight">\(C_T=0.4\)</span>,
+<span class="math notranslate nohighlight">\(k_v=2.0\)</span> for <span class="math notranslate nohighlight">\(C_T=0.7\)</span>,
+<span class="math notranslate nohighlight">\(k_v=3.0\)</span> for <span class="math notranslate nohighlight">\(C_T=0.9\)</span>.
+These guidelines may change in the future.
+The DEFAULT value is 2.0.</p>
+<p><strong>Mod_Projection</strong> [switch] Select how the wake plane velocity is
+projected in AWAE. There are two options:
+1) keep all components
+2) project against plane normal.
+If DEFAULT is used, then <strong>Mod_Projection=2</strong> when <strong>Mod_Wake=2</strong>,
+and <strong>Mod_Projection=1</strong> otherwise.</p>
+</div>
+<div class="section" id="wake-added-turbulence-wat">
+<h3><span class="section-number">4.19.4.2.9. </span>Wake-Added Turbulence (WAT)<a class="headerlink" href="#wake-added-turbulence-wat" title="Permalink to this heading"></a></h3>
+<p>The wake-added turbulence model is described in <a class="reference internal" href="FFarmTheory.html#ff-wat"><span class="std std-numref">Section 4.19.7.2.3.4</span></a>.</p>
+<p><strong>WAT</strong> [switch] Select whether the wake-added turbulence is included.
+There are three options:
+0) no wake-added turbulence,
+1) use predefined turbulence box for the background turbulence,
+2) use a user defined turbulence box.
+When <strong>WAT=1</strong>, the number of points of the box are inferred from the filename,
+and the dimensions in each directions are taken as <span class="math notranslate nohighlight">\(dx=dy=dz=0.03*\text{RotorDiamRef}\)</span>.</p>
+<p><strong>WAT_BoxFile</strong>: [quoted string]
+Filepath to the file containing the u-component of the turbulence box
+(either predefined or user-defined). This turbulence box is expected to be
+in the Mann box format.
+The filename should be of the form “Label_1024x32x16.u” where the extension “.u”
+is required. FAST.Farm will assume that files with extensions “.v” and “.w” are present,
+and these files will also be read.
+When <strong>WAT=1</strong>, the three digits separated by “x” in the filename are assumed to be
+the number of points in the x y and z dimension of the box.</p>
+<p><strong>WAT_NxNyNz</strong>: [three integers, comma separated]
+Number of points in the x, y, and z directions of the WAT_BoxFile.
+These are used only if WAT=2.</p>
+<p><strong>WAT_DxDyDz</strong>: [three floats, comma separated]
+Distances (in meters) between points in the x, y, and z directions of the WAT_BoxFile
+These are used only if WAT=2.
+When <strong>WAT=1</strong> the dimensions will be set to <strong>[dX_high, dY_high, dZ_high]</strong> if
+that is the same for all turbines, otherwise the dimeinaiona will be calculated
+using the guidance with <span class="math notranslate nohighlight">\(dx=dy=dz=0.03*\text{RotorDiamRef}\)</span>.</p>
+<p><strong>WAT_ScaleBox</strong>: [flag]
+When set to True, the input turbulence box is scaled so that it has zero mean and unit standard deviation at every node.
+DEFAULT is True.</p>
+<p><strong>WAT_k_Def</strong> [five floats, comma separated] <span class="math notranslate nohighlight">\([k_\text{def}, k_\text{FMin}, k_\text{DMin}, k_\text{DMax}, e]\)</span>
+Tuning parameters for quasi-steady wake deficit effect in the wake-added
+turbulence scaling factor.  This tuning paramater is a function of the
+downstream position from the rotor using a set of five parameters.  See equation
+<a class="reference internal" href="FFarmTheory.html#equation-eq-kdefgraddefaults">(4.250)</a> in section <a class="reference internal" href="FFarmTheory.html#ff-wat"><span class="std std-numref">Section 4.19.7.2.3.4</span></a> (FAST.Farm theory) for
+details on the function used for <strong>WAT_k_Def</strong>. If the DEFAULT keyword is
+specified, all five parameters will be set to the default values specified
+below. The five parameters in order are:</p>
+<blockquote>
+<div><ul>
+<li><dl>
+<dt><span class="math notranslate nohighlight">\(k_\text{def}\)</span> [-] (<span class="math notranslate nohighlight">\(\gt 0\)</span>)</dt><dd><div class="line-block">
+<div class="line">DEFAULT value: <span class="math notranslate nohighlight">\(k_\text{def} = 0.6\)</span>.</div>
+<div class="line">Calibrated coefficient for the maximum value of <strong>WAT_k_Def</strong>.</div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><span class="math notranslate nohighlight">\(k_\text{FMin}\)</span> [-]  (<span class="math notranslate nohighlight">\(\ge 0\)</span>, <span class="math notranslate nohighlight">\(\le 1\)</span>)</dt><dd><div class="line-block">
+<div class="line">DEFAULT value: <span class="math notranslate nohighlight">\(k_\text{FMin} = 0.0\)</span>.</div>
+<div class="line">Calibrated parameter defining defines the value at the minimum region.</div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><span class="math notranslate nohighlight">\(k_\text{DMin}\)</span> [-] (<span class="math notranslate nohighlight">\(\ge 0\)</span>)</dt><dd><div class="line-block">
+<div class="line">DEFAULT value: <span class="math notranslate nohighlight">\(k_\text{DMin} = 0.0\)</span>.</div>
+<div class="line">Calibrated parameter defining the transitional diameter fraction
+between the minimum and exponential regions.</div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><span class="math notranslate nohighlight">\(k_\text{DMax}\)</span> [-] (<span class="math notranslate nohighlight">\(\ge k_\text{DMin}\)</span>)</dt><dd><div class="line-block">
+<div class="line">DEFAULT value: <span class="math notranslate nohighlight">\(k_\text{DMax} = 2.0\)</span>.</div>
+<div class="line">Calibrated parameter defining the transitional diameter fraction
+between the exponential and maximum regions.</div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><span class="math notranslate nohighlight">\(e\)</span> [-] (<span class="math notranslate nohighlight">\(\gt 0\)</span>)</dt><dd><div class="line-block">
+<div class="line">DEFAULT value: <span class="math notranslate nohighlight">\(e = 1.0\)</span>.</div>
+<div class="line">Calibrated parameter defining the exponent in the exponential region.</div>
+</div>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p><strong>WAT_k_Grad</strong> [five floats, comma separated] <span class="math notranslate nohighlight">\([k_\text{Grad}, k_\text{FMin}, k_\text{DMin}, k_\text{DMax}, e]\)</span>
+Tuning parameters for gradient of the wake deficit in the wake-added turbulence
+scaling factor.  This tuning paramater is a function of the downstream position
+from the rotor using a set of five parameters.  See equation
+<a class="reference internal" href="FFarmTheory.html#equation-eq-kdefgraddefaults">(4.250)</a> in section <a class="reference internal" href="FFarmTheory.html#ff-wat"><span class="std std-numref">Section 4.19.7.2.3.4</span></a> (FAST.Farm theory) for
+details on the function used for <strong>WAT_k_Grad</strong>. If the DEFAULT keyword is
+specified, all five parameters will be set to the default values specified
+below. The five parameters in order are:</p>
+<blockquote>
+<div><ul>
+<li><dl>
+<dt><span class="math notranslate nohighlight">\(k_\text{grad}\)</span> [-] (<span class="math notranslate nohighlight">\(\gt 0\)</span>)</dt><dd><div class="line-block">
+<div class="line">DEFAULT value: <span class="math notranslate nohighlight">\(k_\text{grad} = 3.0\)</span>.</div>
+<div class="line">Calibrated coefficient for the maximum value of <strong>WAT_k_Grad</strong>.</div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><span class="math notranslate nohighlight">\(k_\text{FMin}\)</span> [-]  (<span class="math notranslate nohighlight">\(\ge 0\)</span>, <span class="math notranslate nohighlight">\(\le 1\)</span>)</dt><dd><div class="line-block">
+<div class="line">DEFAULT value: <span class="math notranslate nohighlight">\(k_\text{FMin} = 0.0\)</span>.</div>
+<div class="line">Calibrated parameter defining defines the value at the minimum region.</div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><span class="math notranslate nohighlight">\(k_\text{DMin}\)</span> [-] (<span class="math notranslate nohighlight">\(\ge 0\)</span>)</dt><dd><div class="line-block">
+<div class="line">DEFAULT value: <span class="math notranslate nohighlight">\(k_\text{DMin} = 0.0\)</span>.</div>
+<div class="line">Calibrated parameter defining the transitional diameter fraction
+between the minimum and exponential regions.</div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><span class="math notranslate nohighlight">\(k_\text{DMax}\)</span> [-] (<span class="math notranslate nohighlight">\(\ge k_\text{DMin}\)</span>)</dt><dd><div class="line-block">
+<div class="line">DEFAULT value: <span class="math notranslate nohighlight">\(k_\text{DMax} = 12.0\)</span>.</div>
+<div class="line">Calibrated parameter defining the transitional diameter fraction
+between the exponential and maximum regions.</div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><span class="math notranslate nohighlight">\(e\)</span> [-] (<span class="math notranslate nohighlight">\(\gt 0\)</span>)</dt><dd><div class="line-block">
+<div class="line">DEFAULT value: <span class="math notranslate nohighlight">\(e = 0.65\)</span>.</div>
+<div class="line">Calibrated parameter defining the exponent in the exponential region.</div>
+</div>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="visualize">
+<h3><span class="section-number">4.19.4.2.10. </span>Visualize<a class="headerlink" href="#visualize" title="Permalink to this heading"></a></h3>
+<p><strong>WrDisWind</strong> [flag] specifies whether full 3D low- and high-resolution
+disturbed wind data output files will be generated. These files show the
+ambient wind and wake interactions across the wind farm for
+visualization and are generated if <strong>WrDisWind</strong>=TRUE. The VTK data
+format and spatial resolutions (number of grid points, origin, and
+spacing) of these output files match those of the corresponding low- and
+high-resolution ambient wind data used by the FAST.Farm simulation. The
+VTK files are written to a directory named <em>vtk_ff</em> where the FAST.Farm
+primary file is stored. The naming conventions of these output files are
+<em>&lt;RootName&gt;.Low.Dis.&lt;n</em><sub>low</sub><em>&gt;.vtk</em> and
+<em>&lt;RootName&gt;.HighT&lt;n</em><sub>t</sub><em>&gt;*.Dis.&lt;n</em><sub>t</sub><em>&gt;.vtk</em> for
+the low- and high-resolution disturbed wind data files, respectively,
+where <em>&lt;RootName&gt;</em> is the name of the FAST.Farm primary input file,
+excluding its file extension, where <em>&lt;n</em><sub>t</sub><em>&gt;</em> and
+<em>&lt;n</em><sub>low</sub><em>&gt;</em> are as specified in
+<a class="reference internal" href="#ff-input-vtk"><span class="std std-numref">Section 4.19.4.2.3</span></a>, but include leading zeros.</p>
+<p>For visualization, FAST.Farm can also output low-resolution disturbed (including
+wakes) wind data output files that are two-dimensional (2D) slices of the full
+low-resolution domain, specified by the following 7 inputs. Up to ninety-nine 2D
+slices parallel to the <em>X-Y</em>, <em>Y-Z</em>, and/or <em>X-Z</em> planes can be output.</p>
+<ul class="simple">
+<li><p><strong>NOutDisWindXY</strong> [integer] specifies the number of 2D slices
+parallel to the <em>X-Y</em> plane where low-resolution disturbed wind data
+output files are output (<span class="math notranslate nohighlight">\(0\)</span> to <span class="math notranslate nohighlight">\(99\)</span>).</p></li>
+<li><p><strong>OutDisWindZ</strong> [m] is a list <strong>NOutDisWindXY</strong> values long of the
+<em>Z</em> coordinates of each plane that will be output. These values are
+in the <strong>global inertial-frame coordinate system</strong>, separated by any
+combination of commas, semicolons, spaces, and/or tabs.</p></li>
+<li><p><strong>NOutDisWindYZ</strong> [integer] specifies the number of 2D slices
+parallel to the <em>Y-Z</em> plane where low-resolution disturbed wind data
+output files are output (<span class="math notranslate nohighlight">\(0\)</span> to <span class="math notranslate nohighlight">\(99\)</span>).</p></li>
+<li><p><strong>OutDisWindX</strong> [m] is a list <strong>NOutDisWindYZ</strong> values long of the
+<em>X</em> coordinates of each plane that will be output. These values are
+in the <strong>global inertial-frame coordinate system</strong>, separated by any
+combination of commas, semicolons, spaces, and/or tabs.</p></li>
+<li><p><strong>NOutDisWindXZ</strong> [integer] specifies the number of 2D slices
+parallel to the <em>X-Z</em> plane where low-resolution disturbed wind data
+output files are output (<span class="math notranslate nohighlight">\(0\)</span> to <span class="math notranslate nohighlight">\(99\)</span>).</p></li>
+<li><p><strong>OutDisWindY</strong> [m] is a list <strong>NOutDisWindXZ</strong> values long of the
+<em>Y</em> coordinates of each plane that will be output. These values are
+in the <strong>global inertial-frame coordinate system</strong>, separated by any
+combination of commas, semicolons, spaces, and/or tabs.</p></li>
+</ul>
+<p>The VTK files are written to a directory named <em>vtk_ff</em> where the FAST.Farm
+primary file is stored. The naming conventions of these output files are
+<em>&lt;RootName&gt;.Low.DisXY&lt;n</em><sub>Out</sub><em>&gt;.&lt;n</em><sub>low</sub><em>&gt;.vtk</em>,
+<em>&lt;RootName&gt;.Low.DisYZ&lt;n</em><sub>Out</sub><em>&gt;.&lt;n</em><sub>low</sub><em>&gt;.vtk</em>, and
+<em>&lt;RootName&gt;.Low.DisXZ&lt;n</em><sub>Out</sub><em>&gt;.&lt;n</em><sub>low</sub><em>&gt;.vtk</em> for the <em>X-Y</em>,
+<em>Y-Z</em>, and <em>X-Z</em> slices, respectively, where <em>&lt;n</em><sub>Out</sub><em>&gt;</em> is an integer
+between <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(9\)</span> corresponding to which slice is output.
+<em>&lt;RootName&gt;</em> and <em>&lt;n</em><sub>low</sub><em>&gt;</em> are as defined in <a class="reference internal" href="#ff-input-vtk"><span class="std std-numref">Section 4.19.4.2.3</span></a>,
+but include leading zeros.</p>
+<p><strong>WrDisDT</strong> [sec] specifies the time step (inverse of the frame rate) of
+all disturbed wind data output files and must be an integer multiple
+larger than or equal to <strong>DT_Low</strong>. This input is unused when
+<strong>WrDisWind</strong> = FALSE and when <strong>NOutDisWindXY</strong>, <strong>NOutDisWindYZ</strong>, and
+<strong>NOutDisWindXZ</strong> are set to zero. If the DEFAULT keyword is specified
+in place of a numerical value, <strong>WrDisDT</strong> is set to <strong>DT_Low</strong>. Note
+that the full high-resolution disturbed wind data output files are not
+output at a frame rate of 1/<strong>DT_High</strong>, but are only output every
+<strong>WrDisDT</strong> seconds.</p>
+<p>Visualizing the ambient wind and wake interactions can be useful for
+interpreting results and debugging problems. However, FAST.Farm will
+generate <span class="math notranslate nohighlight">\(n+1\)</span> files per output option when <strong>WrDisWind</strong> = TRUE
+and/or when <strong>NOutDisWindXY</strong>, <strong>NOutDisWindYZ</strong>, and/or
+<strong>NOutDisWindXZ</strong> are set greater than zero. This file generation will
+slow down FAST.Farm and take up a lot of disk space, especially when
+generating full low- and high-resolution disturbed wind data files.
+Therefore, disabling visualization is recommended when running many
+FAST.Farm simulations. See <a class="reference internal" href="OutputFiles.html#ff-output-vis"><span class="std std-numref">Section 4.19.5.3</span></a> for
+visualization output file details.</p>
+</div>
+<div class="section" id="output">
+<h3><span class="section-number">4.19.4.2.11. </span>Output<a class="headerlink" href="#output" title="Permalink to this heading"></a></h3>
+<p><strong>SumPrint</strong> [flag] specifies if a summary file is generated. The file
+is generated if <strong>SumPrint</strong>=TRUE, with the name &lt;<em>RootName</em>&gt;<em>.sum</em>,
+where &lt;<em>RootName</em>&gt; is as defined above. See
+<a class="reference internal" href="OutputFiles.html#ff-output-sum"><span class="std std-numref">Section 4.19.5.2</span></a> for summary file details.</p>
+<p><strong>ChkptTime</strong> [sec] specifies how frequently checkpoint files are
+written for a potential restart, but <strong>is currently unused by
+FAST.Farm.</strong></p>
+<p><strong>TStart</strong> [sec] specifies the simulation time at which FAST.Farm will
+begin writing data in the time-series results output file. Note that
+output files may not be generated at <strong>TStart</strong> seconds if <strong>TStart</strong> is
+not an integer multiple of <strong>DT_Low</strong>.</p>
+<p><strong>OutFileFmt</strong> [switch] specifies which type of time-series results
+output file will be generated. Three options are available, and are the
+same as those in OpenFAST: 1) generates an ASCII text file
+[<strong>OutFileFmt=1</strong>]; 2) generates a binary file [<strong>OutFileFmt=2</strong>]; or 3)
+generates both ASCII text and binary files [<strong>OutFileFmt=3</strong>].
+<strong>However, FAST.Farm currently only supports text-based output files.
+Therefore, OutFileFmt must be set to 1</strong>.</p>
+<p><strong>TabDelim</strong> [flag] specifies how columns in the ASCII text output
+time-series results are delimited. If <strong>TabDelim</strong> = TRUE, the columns
+are tab-delimited. Otherwise, the columns are delimited with spaces.
+<strong>TabDelim</strong> is not used when <strong>OutFileFmt</strong> = 2.</p>
+<p><strong>OutFmt</strong> [string] specifies the ASCII text-based output file channel
+format (excluding the time channel). Values printed in the time-series
+results output file should result in a field that is 10 characters long;
+“ES10.3E2” is a common setting for <strong>OutFmt</strong>. The time channel is
+printed using the “F10.4” format. <strong>OutFmt</strong> is not used when
+<strong>OutFileFmt</strong> = 2. See <a class="reference internal" href="OutputFiles.html#ff-output-time"><span class="std std-numref">Section 4.19.5.5</span></a> for
+details on time-series results files.</p>
+<p><strong>OutAllPlanes</strong> [-] Output all wake planes in VTK at all time steps.
+Note: this option requires intensive writing to disk and will drastically slow down the simulation.
+DEFAULT is False.</p>
+<p>FAST.Farm can output wake-related quantities for up to 9 individual
+turbines, not considering the effects of wake merging, at up to 20
+radial nodes and up to 9 downstream distances. These outputs are
+specified with the 4 following inputs:</p>
+<ul class="simple">
+<li><p><strong>NOutRadii</strong> [integer] specifies the number of radial nodes to be
+outputted (0 to 20).</p></li>
+<li><p><strong>OutRadii</strong> [integer] specifies the node numbers between 0 (at the
+wake center) and <strong>NumRadii</strong>-1 (at the outer extent of the radial
+finite-difference grid). Values are a list of length <strong>NOutRadii</strong>,
+separated by any combination of commas, semicolons, spaces, and/or
+tabs.</p></li>
+<li><p><strong>NOutDist</strong> [integer] specifies the number of downstream distances
+that output is requested for (0 to 9).</p></li>
+<li><p><strong>OutDist</strong> [m] specifies the downstream distances (not wake-plane
+numbers) and each must be greater or equal to zero. Values are a list
+of length <strong>NOutDist</strong>, separated by any combination of commas,
+semicolons, spaces, and/or tabs. The downstream distances are
+measured normal to the wake planes and <strong>an OutDist of zero
+corresponds to the rotor plane</strong>. Wake output quantities are linearly
+interpolated between wake planes. Only wake-related quantities for
+the first 9 turbines can be output and all wakes have the same output
+radial node numbers and downstream distances. The outputs specified
+in the <strong>OutList</strong> section determine which quantities are actually
+output at these output radial node numbers and downstream distances.</p></li>
+</ul>
+<p>FAST.Farm can also output ambient wind velocities (not including wakes)
+and disturbed wind velocities (including wakes) at up to nine points
+(positions) in the low-resolution wind domain, defined with the
+following inputs:</p>
+<ul class="simple">
+<li><p><strong>NWindVel</strong> [integer] specifies the number of points where wind will
+be output (0 to 9).</p></li>
+<li><p><strong>WindVelX</strong>, <strong>WindVelY</strong>, and <strong>WindVelZ</strong> [m] specifies <em>X</em>, <em>Y</em>,
+<em>Z</em> and coordinates, respectively, in the <strong>global inertial-frame
+coordinate system</strong>. Values are lists of length <strong>NWindVel</strong>
+separated by any combination of commas, semicolons, spaces, and/or
+tabs. The outputs specified in the <strong>OutList</strong> section determine
+which wind velocities are actually output at these points.</p></li>
+<li><p><strong>OutList</strong> [quoted strings] controls output quantities generated by
+FAST.Farm. Enter one or more lines containing quoted strings that in
+turn contain one or more output parameter names. Separate output
+parameter names by any combination of commas, semicolons, spaces,
+and/or tabs. If you prefix a parameter name with a minus sign, “-”;
+underscore, “_”; or the characters “m” or “M”, FAST.Farm will
+multiply the value for that channel by <span class="math notranslate nohighlight">\(-1\)</span> before writing the
+data. The output columns are written in the order they are listed in
+the input file. FAST.Farm allows for the use of multiple lines so
+that lists can be broken into meaningful groups and so the lines can
+be shorter. Comments may be entered after the closing quote on any of
+the lines. Entering a line with the string “END” at the beginning of
+the line or at the beginning of a quoted string found at the
+beginning of the line will cause FAST.Farm to quit scanning for more
+lines of channel names. Wake-related output quantities are generated
+for the requested output radial node numbers and downstream distances
+through the <strong>OutRadii</strong> and <strong>OutDist</strong> lists above. Ambient and
+disturbed wind velocities are generated for the requested points
+through the <strong>WindVelX</strong>, <strong>WindVelY</strong>, and <strong>WindVelZ</strong> lists above.
+If FAST.Farm encounters an unknown/invalid channel name, it warns the
+users but will remove the suspect channel from the output file.
+Please refer to <a class="reference internal" href="AppendixC.html#ff-app-output"><span class="std std-numref">Section 4.19.12</span></a> for a complete list of possible output
+parameters.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="ambient-wind-precursor-files-in-visualization-toolkit-format">
+<span id="ff-ambwindvtk"></span><h2><span class="section-number">4.19.4.3. </span>Ambient Wind Precursor Files in Visualization Toolkit Format<a class="headerlink" href="#ambient-wind-precursor-files-in-visualization-toolkit-format" title="Permalink to this heading"></a></h2>
+<p>When using ambient wind generated by a high-fidelity precursor
+simulation with <strong>Mod_AmbWind</strong> = 1, ambient wind data files for both
+the low- and high-resolution domains must be pre-generated. Each of
+these ambient wind data files must follow the <a class="reference external" href="https://www.vtk.org/wp-content/uploads/2015/04/file-formats.pdf">simple legacy serial VTK
+file
+format</a>.
+A sample VTK-formatted file is given in <a class="reference internal" href="AppendixB.html#ff-app-wind"><span class="std std-numref">Section 4.19.11</span></a>.</p>
+<p>FAST.Farm requires that the ambient wind data files be stored in
+specific subdirectories of the directory specified by <strong>WindFilePath</strong>
+and with specific file names. The low-resolution ambient wind data files
+must be stored in a subdirectory named <em>Low</em> and be named
+<em>Amb.t&lt;n</em><sub>low</sub><em>&gt;.vtk</em>, where <em>&lt;n</em><sub>low</sub><em>&gt;</em> is
+as specified in <a class="reference internal" href="#ff-input-vtk"><span class="std std-numref">Section 4.19.4.2.3</span></a>. The high-resolution
+ambient wind data files must be stored in a subdirectory named
+<em>HighT&lt;n</em><sub>t</sub><em>&gt;</em> and be named
+<em>Amb.t&lt;n</em><sub>high</sub><em>&gt;.vtk</em>, where <em>&lt;n</em><sub>t</sub><em>&gt;</em> and
+<em>&lt;n</em><sub>high</sub><em>&gt;</em> are as specified in
+<a class="reference internal" href="#ff-input-vtk"><span class="std std-numref">Section 4.19.4.2.3</span></a>. Subdirectory <em>HighT&lt;n</em><sub>t</sub><em>&gt;</em>
+should contain the high-resolution ambient wind data corresponding to
+wind turbine <em>n</em><sub>t</sub> specified in the Wind Turbines section of
+the FAST.Farm primary input file – see <a class="reference internal" href="#ff-input-wt"><span class="std std-numref">Section 4.19.4.2.6</span></a>.</p>
+<p>Each VTK-formatted input file begins with a file version and identifier,
+but is not checked by FAST.Farm. The second line is the header
+information that is for identifying specific cases, but is not used by
+FAST.Farm. The third line must include the single word ASCII,
+designating the file format currently supported by FAST.Farm.</p>
+<p>The fourth line must contain the words <em>DATASET STRUCTURED_POINTS</em>,
+designating the data set structure currently supported by FAST.Farm. The
+next three lines set the spatial discretization of the domain. Each
+domain is stored as a structured 3D grid of wind data points
+(representing the corners of 3D cells) in the global <em>X-Y-Z</em>
+inertial-frame coordinate system – as illustrated generically in
+<a class="reference internal" href="#ff-strucdomains"><span class="std std-numref">Fig. 4.62</span></a>. The number of wind data points in each
+direction are set by DIMENSIONS followed by three integers separated by
+white space representing <strong>NX</strong>, <strong>NY</strong>, and <strong>NZ</strong>; the origin of the
+grid (lowest-most <em>X-Y-Z</em> coordinate) is set by ORIGIN followed by three
+floating real numbers separated by white space representing <strong>X0</strong>,
+<strong>Y0</strong>, and <strong>Z0</strong>; and the spatial discretization in each direction are
+set by SPACING followed by three floating real numbers separated by
+white space representing <strong>dX</strong>, <strong>dY</strong>, and <strong>dZ</strong>. The total domain
+size has dimensions (<strong>NX</strong>-1)<strong>dX</strong> <span class="math notranslate nohighlight">\(\times\)</span> (<strong>NY</strong>-1)<strong>dY</strong>
+<span class="math notranslate nohighlight">\(\times\)</span> (<strong>NZ</strong>-1)<strong>dZ</strong>.</p>
+<p>The eighth line must contain the word <em>POINT_DATA</em> followed by an
+integer number specifying the number of wind data points, i.e., <strong>NX</strong>
+<span class="math notranslate nohighlight">\(\times\)</span> <strong>NY</strong> <span class="math notranslate nohighlight">\(\times\)</span> <strong>NZ</strong>. The ninth line must contain
+the word <em>VECTORS</em> followed by the data name (not used by FAST.Farm) and
+<em>FLOAT</em>, which defines the format of the data stored on the grid.
+Alternatively, the ninth line must contain the word <em>FIELD</em> followed by
+the data name (not used by FAST.Farm) and 1 and the tenth line must
+contain the array name (not used by FAST.Farm) followed by 3, the number
+of wind data points, i.e., <strong>NX</strong> <span class="math notranslate nohighlight">\(\times\)</span> <strong>NY</strong> <span class="math notranslate nohighlight">\(\times\)</span>
+<strong>NZ</strong>, and <em>FLOAT</em>. The remaining <strong>NX</strong> <span class="math notranslate nohighlight">\(\times\)</span> <strong>NY</strong>
+<span class="math notranslate nohighlight">\(\times\)</span> <strong>NZ</strong> lines of the file contain the <em>X-Y-Z</em> components
+of the ambient wind velocity at each wind data point stored as three
+floating real numbers separated by white space. The first data point
+corresponds to the <em>ORIGIN</em> and the remaining points involve looping
+through <em>X</em>, then <em>Y</em>, and then <em>Z</em>. For a ground or wave surface that
+is not flat and level – e.g., complex terrain or time-varying sea-surface
+elevation for offshore systems – the wind velocity components at a given
+wind data point should be written as NaN (not a number) <a class="footnote-reference brackets" href="#id4" id="id2">1</a> if that
+point is below the surface (not exposed to the atmosphere).</p>
+</div>
+<div class="section" id="ambient-wind-with-inflowwind-module-input-files">
+<span id="ff-ambwindifw"></span><h2><span class="section-number">4.19.4.4. </span>Ambient Wind with InflowWind Module Input Files<a class="headerlink" href="#ambient-wind-with-inflowwind-module-input-files" title="Permalink to this heading"></a></h2>
+<p>When using ambient wind through the interface to the <em>InflowWind</em> module
+with <strong>Mod_AmbWind</strong> = 2 or 3, the ambient wind is specified within
+standard <em>InflowWind</em> input files described in the OpenFAST
+documentation. The name of the primary <em>InflowWind</em> input file is
+specified by input parameter <strong>InflowFile</strong> in FAST.Farm. Please note
+that <strong>InflowFile</strong> is independent of the <em>InflowWind</em> primary input
+file used by the OpenFAST model of each wind turbine.</p>
+<p>The <em>InflowWind</em> primary input file is processed the same when running
+FAST.Farm simulations as it would when running simulations in
+stand-alone OpenFAST. The only difference is that input parameter
+<strong>OutList</strong> in the <em>InflowWind</em> primary input file is ignored and
+replaced with equivalent output settings in FAST.Farm. All wind file
+type options and their associated input options are supported by
+FAST.Farm. Wind file type options are specified with input parameter
+<strong>WindType</strong> in the <em>InflowWind</em> primary input file. The available input
+options include steady wind, uniform time-varying wind, e.g., discrete
+gusts, and, full-field turbulent wind (in TurbSim, Bladed, and HAWC
+formats).</p>
+<p>The wind data specified within <em>InflowWind</em> must encompass the entire
+low- and high-resolution domains defined within FAST.Farm for the entire
+simulation. This is because the ambient wind data specified within
+<em>InflowWind</em> will be interpolated to low- and high-resolution domains
+for use within FAST.Farm. To ensure this when using full-field turbulent
+wind data in <em>InflowWind</em>, it is recommend that:</p>
+<ul class="simple">
+<li><p>The full-field wind data files be generated periodically so that the
+wind domain in <em>InflowWind</em> effectively extends forever along the
+wind propagation direction.</p></li>
+<li><p>The input parameter <strong>PropagationDir</strong> in the <em>InflowWind</em> primary
+input file be set to <span class="math notranslate nohighlight">\(0\)</span>, <span class="math notranslate nohighlight">\(\pm90\)</span>, or <span class="math notranslate nohighlight">\(180\)</span> degrees
+so that the wind propagates along the <span class="math notranslate nohighlight">\(\pm X\)</span> or <span class="math notranslate nohighlight">\(\pm Y\)</span>
+axes of the FAST.Farm inertial-frame coordinate system (the exact
+direction should depend on the orientation of the wind turbines and
+farm).</p></li>
+</ul>
+<p>When using full-field turbulent wind data in <em>InflowWind</em>, it is
+recommended that the 2D grid where the full-field turbulent wind data
+are defined be coincident with either the <em>Y-Z</em> grid of the
+high-resolution domain when <strong>PropogationDir</strong> = <span class="math notranslate nohighlight">\(0\)</span> or
+<span class="math notranslate nohighlight">\(180\)</span> degrees or the <em>X-Z</em> grid of the high-resolution domain when
+<strong>PropogationDir</strong> = <span class="math notranslate nohighlight">\(\pm90\)</span> degrees for each wind turbine. This
+is done to avoid doubly interpolating the wind data (once by FAST.Farm
+when generating the high-resolution domain and once by OpenFAST when
+accessing high-resolution wind at turbine analysis nodes).</p>
+<p>When using ambient wind through multiple instances of the <em>InflowWind</em>
+module, i.e, when <strong>Mod_AmbWind</strong> = 3, only one <em>InflowWind</em> input file
+is specified. However, multiple wind data files are used, each with a
+different name. Specifically, the file name in the <em>InflowWind</em> input
+file in this case specifically refers only to the directory path of the
+wind files. The wind file root names are required to be <em>Low</em> for the
+low-resolution domain and <em>HighT&lt;n</em><sub>t</sub><em>&gt;</em> for the
+high-resolution domain associated with turbine <span class="math notranslate nohighlight">\(n_\text{t}\)</span>.  <a class="footnote-reference brackets" href="#id5" id="id3">2</a>
+Setting <strong>Mod_AmbWind</strong> to 2 or 3 has no influence when steady inflow is
+used (<strong>WindType</strong> = 1). When using full-field turbulent wind data in
+<em>InflowWind</em> with <strong>Mod_AmbWind</strong> = 3, it is required that:</p>
+<ul class="simple">
+<li><p>The full-field wind data files be generated periodically. This
+effectively extends the wind domain forever along the wind
+propagation direction.</p></li>
+<li><p>The input parameter <strong>PropagationDir</strong> in the <em>InflowWind</em> input file
+be set to <span class="math notranslate nohighlight">\(0\)</span> degrees so that the wind propagates along the <em>X</em>
+axis of the FAST.Farm inertial-frame coordinate system.</p></li>
+<li><p>The wind data files associated with the high-resolution ambient wind
+be spatially and temporally synchronized with the low-resolution wind
+data file. The spatial synchronization must be based on the global
+<em>X-Y-Z</em> offsets of each turbine origin relative to the origin of the
+inertial frame coordinate system.</p></li>
+</ul>
+</div>
+<div class="section" id="ambient-wind-precursor-files-in-amrex-plot-file-format">
+<span id="ff-ambwindamrex"></span><h2><span class="section-number">4.19.4.5. </span>Ambient Wind Precursor Files in AMReX Plot File Format<a class="headerlink" href="#ambient-wind-precursor-files-in-amrex-plot-file-format" title="Permalink to this heading"></a></h2>
+<p>When using <strong>Mod_AmbWind</strong> = 4, the ambient wind data must be
+pre-generated and stored as <a class="reference external" href="https://amrex-codes.github.io">AMReX</a> plot files. AMReX plot files are
+directories containing a <code class="docutils literal notranslate"><span class="pre">Header</span></code> file and one or more cell-data files
+storing three-component (<em>X</em>, <em>Y</em>, <em>Z</em>) velocity fields on a structured
+Cartesian grid. FAST.Farm reads the grid dimensions, origin, and
+spacing from the <code class="docutils literal notranslate"><span class="pre">Header</span></code> and requires exactly three velocity
+components (<code class="docutils literal notranslate"><span class="pre">x_velocity</span></code>, <code class="docutils literal notranslate"><span class="pre">y_velocity</span></code>, <code class="docutils literal notranslate"><span class="pre">z_velocity</span></code> or equivalent
+names in order).</p>
+<p>The sub-volume directories must follow the naming convention
+<em>&lt;WindDirPrefix&gt;_&lt;sv&gt;_&lt;index&gt;</em>, where:</p>
+<ul class="simple">
+<li><p><strong>WindDirPrefix</strong> is the path prefix specified in the FAST.Farm
+primary input file.</p></li>
+<li><p><em>&lt;sv&gt;</em> is the sub-volume number: <code class="docutils literal notranslate"><span class="pre">0</span></code> for the low-resolution domain
+and <code class="docutils literal notranslate"><span class="pre">1</span></code> through <strong>NumTurbines</strong> for the high-resolution domain of
+each wind turbine.</p></li>
+<li><p><em>&lt;index&gt;</em> is a zero-padded integer index with the same field width as
+<strong>DirStartIndex</strong>. The index for time step <span class="math notranslate nohighlight">\(n\)</span> is
+<span class="math notranslate nohighlight">\(\text{DirStartNum} + n \times \Delta_\text{index}\)</span>, where
+<span class="math notranslate nohighlight">\(\text{DirStartNum}\)</span> is the integer value of <strong>DirStartIndex</strong>
+and <span class="math notranslate nohighlight">\(\Delta_\text{index}\)</span> is the stride between successive
+directory indices (determined automatically by FAST.Farm by scanning
+the available directories).</p></li>
+</ul>
+<p>During initialization, FAST.Farm reads the header of the starting
+sub-volume for each domain (low-resolution sub-volume 0 and each
+high-resolution sub-volume 1 through <strong>NumTurbines</strong>) to obtain the
+grid properties, then calls the directory-discovery routine to confirm
+that a sufficient number of time steps exist and that the grid
+properties are consistent across all time steps. Specifically, FAST.Farm
+verifies:</p>
+<ul class="simple">
+<li><p>That at least <strong>NumDT</strong> low-resolution and high-resolution
+directories are available for the simulation duration.</p></li>
+<li><p>That the grid dimensions, origin, and spacing are identical across
+all time steps for a given sub-volume.</p></li>
+<li><p>That the grid dimensions are the same for all high-resolution
+sub-volumes (one per turbine).</p></li>
+</ul>
+<p>Because the grid properties are determined from the precursor data
+files, the user does not specify low- or high-resolution grid dimensions
+or origins in the FAST.Farm primary input file when using
+<strong>Mod_AmbWind</strong> = 4. The Wind Turbines table also requires only the
+standard four columns (<strong>WT_X</strong>, <strong>WT_Y</strong>, <strong>WT_Z</strong>, <strong>WT_FASTInFile</strong>),
+without the six additional high-resolution grid columns that are needed
+for <strong>Mod_AmbWind</strong> = 2 or 3.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>AMReX support is only available when compiling with CMake and must be enabled at
+compile time by passing <code class="docutils literal notranslate"><span class="pre">-DAMREX_READER=ON</span></code> during configuration. If FAST.Farm
+is compiled without AMReX support, setting <strong>Mod_AmbWind</strong> = 4 will
+produce a fatal error.</p>
+</div>
+</div>
+<div class="section" id="openfast-input-files">
+<span id="ff-input-ofinput"></span><h2><span class="section-number">4.19.4.6. </span>OpenFAST Input Files<a class="headerlink" href="#openfast-input-files" title="Permalink to this heading"></a></h2>
+<p>In addition to the FAST.Farm-specific input files, the OpenFAST model of
+each wind turbine also requires input files.</p>
+<p><strong>WT_FASTInFile</strong> [quoted string] specifies the OpenFAST primary input
+file for each wind turbine, including path. This is required in addition
+to the FAST.Farm-specific input files. The OpenFAST primary file, in
+turn, identifies several module-level input files. These OpenFAST input
+files are described in the OpenFAST documentation. Identical wind
+turbines can use the same OpenFAST primary input file, except if the
+corresponding OpenFAST model makes use of a Bladed-style controller in
+DLL format or, for offshore wind turbines, if different wave conditions
+are required for each turbine. If a Bladed-style DLL controller is being
+used, distinct Bladed-style controller DLLs must be used (each with a
+unique name). This requires the need for distinct <em>ServoDyn</em> primary
+input files, referencing the appropriate DLL name, and distinct OpenFAST
+primary input files, each referencing the appropriate <em>ServoDyn</em> primary
+input file name. If different wave conditions are required for each
+turbine, the distinct wave conditions (e.g., based on unique random wave
+seeds) for each wind turbine must be set in the <em>HydroDyn</em> primary input
+file and distinct OpenFAST primary input files must be used, each
+referencing the appropriate <em>HydroDyn</em> primary input file name.</p>
+<p><strong>Please note that the following input parameters in OpenFAST are
+interpreted differently when running FAST.Farm simulations than when
+running simulations in stand-alone OpenFAST.</strong></p>
+<p><strong>AbortLevel</strong> in the OpenFAST primary input file is ignored and
+replaced with the equivalent input set in the FAST.Farm primary input.</p>
+<p><strong>TMax</strong> in the OpenFAST primary input file is ignored and replaced with
+the equivalent input set in the FAST.Farm primary input.</p>
+<p><strong>CompInflow</strong> in the OpenFAST primary input file must be set to 1 (to
+use the <em>InflowWind</em> module).</p>
+<p><strong>CompAero</strong> in the OpenFAST primary input file must be set to 2 (to use
+the <em>AeroDyn v15</em> module).</p>
+<p><strong>WindType</strong> and its associated input parameters in the OpenFAST
+<em>InflowWind</em> module primary input file are ignored and replaced with the
+disturbed wind (including wakes) computed across the high-resolution
+domain for each wind turbine.</p>
+<p><strong>PropogationDir</strong> in the OpenFAST <em>InflowWind</em> module primary input
+file is ignored.</p>
+<p><strong>PCMode</strong>, <strong>VSContrl</strong>, <strong>HSSBRMode</strong>, and <strong>YCMode</strong> in the OpenFAST
+<em>ServoDyn</em> module primary input file must not be set to 4 because the
+Simulink/Labview interface is not currently supported by FAST.Farm.</p>
+<p>All input parameters across the various OpenFAST input files pertaining
+to the wind turbine geometry defined relative to the origin of the
+OpenFAST inertial-frame coordinate system remain unchanged. Turbine
+origins are defined as the intersection of the undeflected tower
+centerline and the ground or, for offshore systems, mean sea level.
+Note, however, this origin ((<span class="math notranslate nohighlight">\(0\)</span>,<span class="math notranslate nohighlight">\(0\)</span>,<span class="math notranslate nohighlight">\(0\)</span>) in the
+OpenFAST inertial-frame coordinate system) is located at
+(<strong>WT_X</strong>,<strong>WT_Y</strong>,<strong>WT_Z</strong>) in the FAST.Farm global <em>X-Y-Z</em>
+inertial-frame coordinate system.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
+<dd><p>FAST.Farm will treat such wind data points as outside the domain, and
+so, not used in any calculations.</p>
+</dd>
+<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id3">2</a></span></dt>
+<dd><p>When HAWC format is used (<strong>WindType</strong> = 5), <span class="math notranslate nohighlight">\(\_u\)</span>,
+<span class="math notranslate nohighlight">\(\_v\)</span>, <span class="math notranslate nohighlight">\(\_w\)</span> must be appended to the file names.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="RunningFFarm.html" class="btn btn-neutral float-left" title="4.19.3. Running FAST.Farm" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="OutputFiles.html" class="btn btn-neutral float-right" title="4.19.5. Output Files" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

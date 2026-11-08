@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.5.4. Aeroacoustics Noise Models &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.5.5. Model Verification" href="03-model-verification.html" />
+    <link rel="prev" title="4.5.3. Introduction" href="01-introduction.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/aerodyn-aeroacoustics/02-noise-models.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.5. Aeroacoustics</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="acronyms.html">4.5.1. List of Acronyms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbols.html">4.5.2. List of Symbols</a></li>
+<li class="toctree-l3"><a class="reference internal" href="01-introduction.html">4.5.3. Introduction</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.5.4. Aeroacoustics Noise Models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#turbulent-inflow">4.5.4.1. Turbulent Inflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#turbulent-boundary-layer-trailing-edge">4.5.4.2. Turbulent Boundary Layer – Trailing Edge</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#laminar-boundary-layer-vortex-shedding">4.5.4.3. Laminar Boundary Layer – Vortex Shedding</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tip-vortex">4.5.4.4. Tip Vortex</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#trailing-edge-bluntness-vortex-shedding">4.5.4.5. Trailing-Edge Bluntness – Vortex Shedding</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#directivity">4.5.4.6. Directivity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#a-weighting">4.5.4.7. A-Weighting</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="03-model-verification.html">4.5.5. Model Verification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="04-conclusions.html">4.5.6. Conclusions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="App-usage.html">4.5.7. Using the Aeroacoustics Model in AeroDyn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="refs.html">4.5.8. References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.5. </span>Aeroacoustics Noise Model of OpenFAST</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.5.4. </span>Aeroacoustics Noise Models</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/aerodyn-aeroacoustics/02-noise-models.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="aeroacoustics-noise-models">
+<span id="aa-noise-models"></span><h1><span class="section-number">4.5.4. </span>Aeroacoustics Noise Models<a class="headerlink" href="#aeroacoustics-noise-models" title="Permalink to this heading"></a></h1>
+<p>The aeroacoustics noise of wind turbine rotors emanates from pressure
+oscillations that are generated along the blades and propagate in the
+atmosphere. This source of noise has been historically simulated with models
+characterized by different fidelity levels. At lower fidelity, models correlated
+aeroacoustics noise with rotor thrust and torque
+(<span id="id1">[<a class="reference internal" href="refs.html#id7" title="Martin V. Lowson. Theoretical analysis of compressor noise evaluation. The Journal of the Acoustical Society of America, 47:371–385, 1970. doi:10.1121/1.1911508.">aa-Low70</a>, <a class="reference internal" href="refs.html#id19" title="Larry A. Viterna. Method for predicting impulsive noise generated by wind turbine rotors. Technical Report DOE/NASA/20320-36, 1981. URL: https://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/19820013840.pdf.">aa-Vit81</a>]</span>). At higher fidelity, three-dimensional
+incompressible computational fluid dynamics models are coupled with the Ffowcs
+Williams-Hawkings model to propagate pressure oscillations generated along the
+surface of the rotor blades to the far field (<span id="id2">[<a class="reference internal" href="refs.html#id8" title="Levin Klein, Jonas Gude, Florian Wenz, Thorsten Lutz, and Ewald Krämer. Advanced computational fluid dynamics (cfd)–multi-body simulation (mbs) coupling to assess low-frequency emissions from wind turbines. Wind Energy Science Journal, 3:713–728, 2018. doi:10.5194/wes-3-713-2018.">aa-KGW+18</a>]</span>). The latter
+models are often only suitable to estimate noise at low frequency because
+capturing noise in the audible range, which is commonly defined between 20
+(hertz) Hz and 20 kilohertz (kHz), requires a very fine space-time
+discretization with enormous computational costs.</p>
+<p>For the audible range, a variety of models is available in the public
+domain, and <span id="id3">[<a class="reference internal" href="refs.html#id18" title="CR Sucameli, P Bortolotti, A Croce, and CL Bottasso. Comparison of some wind turbine noise emission models coupled to BEM aerodynamics. Journal of Physics: Conference Series, 1037:022038, jun 2018. doi:10.1088/1742-6596/1037/2/022038.">aa-SBCB18</a>]</span> offers the most recent literature
+review. These models have inputs that match the inputs and outputs of
+modern aeroservoelastic solvers, such as OpenFAST, and have therefore
+often been coupled together. Further, the computational costs of these
+acoustic models are similar to the costs of modern aeroservoelastic
+solvers, which has facilitated the coupling.</p>
+<p>Models have targeted different noise generation mechanisms following the
+distinction defined by <span id="id4">[<a class="reference internal" href="refs.html#id4" title="Thomas F. Brooks, D. Stuart Pope, and Michael A. Marcolini. Airfoil self-noise and prediction. Reference Publication 1218, NASA, 1989.">aa-BPM89</a>]</span>, and the
+mechanism of turbulent inflow noise. The latter represents a broadband
+noise source that is generated when a body of arbitrary shape
+experiences an unsteady lift because of the presence of an incident
+turbulent flow. For an airfoil, this phenomenon can be interpreted as
+leading-edge noise. Turbulent inflow noise was the topic of multiple
+investigations over the past decades and, as a result, multiple models
+have been published (<span id="id5">[<a class="reference internal" href="refs.html#id18" title="CR Sucameli, P Bortolotti, A Croce, and CL Bottasso. Comparison of some wind turbine noise emission models coupled to BEM aerodynamics. Journal of Physics: Conference Series, 1037:022038, jun 2018. doi:10.1088/1742-6596/1037/2/022038.">aa-SBCB18</a>]</span>). The BPM model includes five
+mechanisms of noise generation for an airfoil immersed in a flow:</p>
+<ol class="arabic simple">
+<li><p>Turbulent boundary layer – trailing edge (TBL-TE)</p></li>
+<li><p>Separation stall</p></li>
+<li><p>Laminar boundary layer – vortex shedding</p></li>
+<li><p>Tip vortex</p></li>
+<li><p>Trailing-edge bluntness – vortex shedding.</p></li>
+</ol>
+<p>For the five mechanisms, semiempirical models were initially defined for
+the NACA 0012 airfoil. The BPM model is still a popular model for wind
+turbine noise prediction, and subsequent studies have improved the model
+by removing some of the assumptions originally adopted. Recent studies
+have especially focused on the TBL-TE mechanism, which is commonly the
+dominant noise source of modern wind turbines. As a result, each noise
+source defined in the BPM model now has a variety of permutations.</p>
+<p>The following subsections describe the details of each mechanism and the
+models implemented in this model of OpenFAST.</p>
+<div class="section" id="turbulent-inflow">
+<span id="aa-turbinflow"></span><h2><span class="section-number">4.5.4.1. </span>Turbulent Inflow<a class="headerlink" href="#turbulent-inflow" title="Permalink to this heading"></a></h2>
+<p>A body of any arbitrary shape, when immersed in a turbulent flow,
+generates surface pressure fluctuations. Over the years, several
+formulations of the turbulent inflow noise model have been developed
+(<span id="id6">[<a class="reference internal" href="refs.html#id18" title="CR Sucameli, P Bortolotti, A Croce, and CL Bottasso. Comparison of some wind turbine noise emission models coupled to BEM aerodynamics. Journal of Physics: Conference Series, 1037:022038, jun 2018. doi:10.1088/1742-6596/1037/2/022038.">aa-SBCB18</a>]</span>). In this model of OpenFAST, the formulation
+defined in <span id="id7">[<a class="reference internal" href="refs.html#id10" title="Patrick Moriarty, Gianfranco Guidati, and Paul Migliore. Recent improvement of a semi-empirical aeroacoustic prediction code for wind turbines. In 10th AIAA/CEAS Aeroacoustics Conference. 2004. doi:10.2514/6.2004-3041.">aa-MGM04</a>]</span> is adopted. The formulation is based
+on the model of Amiet (<span id="id8">[<a class="reference internal" href="refs.html#id2" title="Roy K. Amiet. Acoustic radiation from an airfoil in a turbulent stream. Journal of Sound and Vibration, 41(4):407–420, 1975. doi:10.1016/S0022-460X(75)80105-2.">aa-Ami75</a>, <a class="reference internal" href="refs.html#id17" title="R. Paterson and R. Amiet. Acoustic radiation and surface pressure characteristics of an airfoil due to incident turbulence. In 3rd Aeroacoustics Conference. AIAA, 1976. doi:10.2514/6.1976-571.">aa-PA76</a>]</span>) and is
+presented in <a class="reference internal" href="#aa-amiet"><span class="std std-numref">Section 4.5.4.1.1</span></a>. Additionally, the user can activate the
+correction defined by <span id="id9">[<a class="reference internal" href="refs.html#id12" title="Patrick J. Moriarty and A. C. Hansen. Aerodyn theory manual. Technical Report NREL/TP-500-36881, National Renewable Energy Laboratory, Golden, CO, 2005. URL: https://www.nrel.gov/docs/fy05osti/36881.pdf.">aa-MH05</a>]</span>, which builds upon the
+Amiet model and accounts for the thickness of the airfoils adopted along
+the blade span. This second model is named Simplified Guidati and is
+presented in <a class="reference internal" href="#aa-guidati"><span class="std std-numref">Section 4.5.4.1.2</span></a>.</p>
+<div class="section" id="amiet-model">
+<span id="aa-amiet"></span><h3><span class="section-number">4.5.4.1.1. </span>Amiet model<a class="headerlink" href="#amiet-model" title="Permalink to this heading"></a></h3>
+<p>The formulation is based on work from <span id="id10">[<a class="reference internal" href="refs.html#id2" title="Roy K. Amiet. Acoustic radiation from an airfoil in a turbulent stream. Journal of Sound and Vibration, 41(4):407–420, 1975. doi:10.1016/S0022-460X(75)80105-2.">aa-Ami75</a>]</span> and
+<span id="id11">[<a class="reference internal" href="refs.html#id17" title="R. Paterson and R. Amiet. Acoustic radiation and surface pressure characteristics of an airfoil due to incident turbulence. In 3rd Aeroacoustics Conference. AIAA, 1976. doi:10.2514/6.1976-571.">aa-PA76</a>]</span>, and it represents the blade as a
+flat plate and neglects the shape of the airfoil.</p>
+<p>The model starts by first computing the wave number, <span class="math notranslate nohighlight">\(k_{1}\)</span>, for
+a given frequency <span class="math notranslate nohighlight">\(f\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-aa-eq-1">
+<span class="eqno">(4.32)<a class="headerlink" href="#equation-aa-eq-1" title="Permalink to this equation"></a></span>\[k_{1} = \frac{2\text{πf}}{U_{1}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(U_{1}\)</span> is the incident inflow velocity on the profile. From
+<span class="math notranslate nohighlight">\(k_{1}\)</span>, the wave numbers <span class="math notranslate nohighlight">\({\overline{k}}_{1}\)</span> and
+<span class="math notranslate nohighlight">\({\widehat{k}}_{1}\)</span> are computed:</p>
+<div class="math notranslate nohighlight" id="equation-aa-eq-2">
+<span class="eqno">(4.33)<a class="headerlink" href="#equation-aa-eq-2" title="Permalink to this equation"></a></span>\[{\overline{k}}_{1} = \frac{k_{1}c_{i}}{2}\]</div>
+<div class="math notranslate nohighlight" id="equation-aa-eq-3">
+<span class="eqno">(4.34)<a class="headerlink" href="#equation-aa-eq-3" title="Permalink to this equation"></a></span>\[{\widehat{k}}_{1} = \frac{k_{1}}{k_{e}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(c_{i}\)</span> is the local chord, and <span class="math notranslate nohighlight">\(k_{e}\)</span> is the wave
+number range of energy containing eddies, defined as:</p>
+<div class="math notranslate nohighlight" id="equation-aa-eq-4">
+<span class="eqno">(4.35)<a class="headerlink" href="#equation-aa-eq-4" title="Permalink to this equation"></a></span>\[k_{e} = \frac{3}{4L_{t}}.\]</div>
+<p>L<sub>t</sub> is the turbulent length scale, and many different
+formulations have been proposed over the years. As default
+implementation, <span class="math notranslate nohighlight">\(L_{t}\)</span> is defined following the formulation
+proposed in <span id="id12">[<a class="reference internal" href="refs.html#id20" title="Wei J. Zhu, Nicolai Heilskov, and Wen Zhong Shen. Modeling of aerodynamically generated noise from wind turbines. Journal of Solar Energy Engineering, 127(4):517-528, 2005. doi:10.1115/1.2035700.">aa-ZHS05</a>]</span>:</p>
+<div class="math notranslate nohighlight" id="equation-aa-eq-5">
+<span class="eqno">(4.36)<a class="headerlink" href="#equation-aa-eq-5" title="Permalink to this equation"></a></span>\[L_{t} = 25z^{0.35}z_{0}^{- 0.063}\]</div>
+<p>where <span class="math notranslate nohighlight">\(z\)</span> is the height above the ground of the leading edge of
+section <span class="math notranslate nohighlight">\(i\)</span> at a given instant, <span class="math notranslate nohighlight">\(t\)</span>, while <span class="math notranslate nohighlight">\(z_{0}\)</span> is
+the surface roughness. Note that setting <span class="math notranslate nohighlight">\(L_{t}\)</span> appropriately is
+a challenge, and advanced users of this model may want to validate this
+formulation against experimental data.</p>
+<p>The value of sound pressure level (<span class="math notranslate nohighlight">\(\text{SPL}\)</span>) is expressed in
+one-third octave bands at the given frequency, <span class="math notranslate nohighlight">\(f\)</span>, originated at
+the given blade station, <span class="math notranslate nohighlight">\(i\)</span>, which can be computed as:</p>
+<div class="math notranslate nohighlight" id="equation-aa-eq-6">
+<span class="eqno">(4.37)<a class="headerlink" href="#equation-aa-eq-6" title="Permalink to this equation"></a></span>\[\text{SPL}_{\text{TI}} = 10\log_{10}{\left( \rho^{2}c^{4}\frac{L_{t}d}{{2r}_{e}^{2}}M^{5}I_{1}^{2}
+   \frac{{\widehat{k}}_{1}^{3}}{\left( 1 + {\widehat{k}}_{1}^{2} \right)^{\frac{7}{3}}}
+   \overline{D} \right) +}78.4\]</div>
+<p>where <span class="math notranslate nohighlight">\(\rho\)</span> is the air density, <span class="math notranslate nohighlight">\(c\)</span> the speed of sound,
+<span class="math notranslate nohighlight">\(d\)</span> the blade element span, <span class="math notranslate nohighlight">\(r_{e}\)</span> the effective distance
+between leading edge and observer, <span class="math notranslate nohighlight">\(M\)</span> the Mach number,
+<span class="math notranslate nohighlight">\(I_{1}\)</span> the turbulence intensity of the airfoil inflow, and
+<span class="math notranslate nohighlight">\(\overline{D}\)</span> the directivity term. <span class="math notranslate nohighlight">\(\overline{D}\)</span> is
+different below (<span class="math notranslate nohighlight">\({\overline{D}}_{l}\)</span>) and above
+(<span class="math notranslate nohighlight">\({\overline{D}}_{h}\)</span>) a certain frequency, which is named
+“cut-off” and defined as:</p>
+<div class="math notranslate nohighlight" id="equation-aa-eq-7">
+<span class="eqno">(4.38)<a class="headerlink" href="#equation-aa-eq-7" title="Permalink to this equation"></a></span>\[f_{\text{co}} = \frac{10U_{1}}{\pi c_{i}}.\]</div>
+<p>The formulations of <span class="math notranslate nohighlight">\({\overline{D}}_{h}\ \)</span>and
+<span class="math notranslate nohighlight">\({\overline{D}}_{l}\)</span> are presented in <a class="reference internal" href="#aa-directivity"><span class="std std-numref">Section 4.5.4.6</span></a>.</p>
+<p>The current implementation offers two approaches to estimate
+<span class="math notranslate nohighlight">\(I_{1}\)</span>. The first one is through a user-defined <span class="math notranslate nohighlight">\(I_{1}\)</span>.
+The second option is to have the code
+reconstructing <span class="math notranslate nohighlight">\(I_{1}\)</span> from the turbulent wind grid, where the
+code computes the airfoil relative position of each blade section,
+<span class="math notranslate nohighlight">\(i\)</span>, at every time instant and, given the rotor speed,
+reconstructs the inflow component, <span class="math notranslate nohighlight">\(I_{1}\)</span>, of the turbulence
+intensity.</p>
+<p>Two corrections to this model are also implemented. The first one
+comprises a correction for the angle of attack, <span class="math notranslate nohighlight">\(\alpha\)</span>, in which
+the effect is neglected in the original formulation from <span id="id13">[<a class="reference internal" href="refs.html#id2" title="Roy K. Amiet. Acoustic radiation from an airfoil in a turbulent stream. Journal of Sound and Vibration, 41(4):407–420, 1975. doi:10.1016/S0022-460X(75)80105-2.">aa-Ami75</a>]</span>
+and Amiet and Peterson (1976). This correction is formulated as:</p>
+<div class="math notranslate nohighlight" id="equation-aa-eq-8">
+<span class="eqno">(4.39)<a class="headerlink" href="#equation-aa-eq-8" title="Permalink to this equation"></a></span>\[\text{SPL}_{\text{TI}} = \text{SPL}_{\text{TI}} + 10\log_{10}{\left( 1 + 9a^{2} \right).}\]</div>
+<p>The second correction is called low-frequency correction
+(<span class="math notranslate nohighlight">\(\text{LFC}\)</span>), and is formulated as:</p>
+<div class="math notranslate nohighlight" id="equation-aa-eq-9">
+<span class="eqno">(4.40)<a class="headerlink" href="#equation-aa-eq-9" title="Permalink to this equation"></a></span>\[S^{2} = \left( \frac{2\pi{\overline{k}}_{1}}{\beta^{2}}
+   + \left( 1 + 2.4\frac{{\overline{k}}_{1}}{\beta^{2}} \right)^{- 1} \right)^{- 1}\]</div>
+<div class="math notranslate nohighlight" id="equation-aa-eq-10">
+<span class="eqno">(4.41)<a class="headerlink" href="#equation-aa-eq-10" title="Permalink to this equation"></a></span>\[LFC = 10S^{2}M{\overline{k}}_{1}^{2}\beta^{- 2}\]</div>
+<div class="math notranslate nohighlight" id="equation-aa-eq-11">
+<span class="eqno">(4.42)<a class="headerlink" href="#equation-aa-eq-11" title="Permalink to this equation"></a></span>\[\text{SPL}_{\text{TI}} = \text{SPL}_{\text{TI}} + 10\log_{10}\left( \frac{\text{LFC}}{1 + LFC} \right).\]</div>
+<p>In <a class="reference internal" href="#equation-aa-eq-9">(4.40)</a> and <a class="reference internal" href="#equation-aa-eq-10">(4.41)</a>, <span class="math notranslate nohighlight">\(S^{2}\)</span> represents the squared Sears
+function, and <span class="math notranslate nohighlight">\(\beta^{2}\)</span> is the Prandtl-Glauert correction
+factor, which is defined as:</p>
+<div class="math notranslate nohighlight" id="equation-aa-eq-12">
+<span class="eqno">(4.43)<a class="headerlink" href="#equation-aa-eq-12" title="Permalink to this equation"></a></span>\[\beta^{2} = 1 - M^{2}.\]</div>
+<p>It is worth stressing that numerous alternative formulations of the
+turbulent inflow noise model exist (<span id="id14">[<a class="reference internal" href="refs.html#id18" title="CR Sucameli, P Bortolotti, A Croce, and CL Bottasso. Comparison of some wind turbine noise emission models coupled to BEM aerodynamics. Journal of Physics: Conference Series, 1037:022038, jun 2018. doi:10.1088/1742-6596/1037/2/022038.">aa-SBCB18</a>]</span>), where the
+main differences comprise different definitions of <span class="math notranslate nohighlight">\(L_{t}\)</span> and
+<span class="math notranslate nohighlight">\(k_{1}\)</span>.</p>
+</div>
+<div class="section" id="simplified-guidati">
+<span id="aa-guidati"></span><h3><span class="section-number">4.5.4.1.2. </span>Simplified Guidati<a class="headerlink" href="#simplified-guidati" title="Permalink to this heading"></a></h3>
+<p>Sound spectra are often overpredicted by the Amiet model implemented here.
+Guidatai (<span id="id15">[<a class="reference internal" href="refs.html#id6" title="Gianfranco Guidati, Rainer Bareiss, Siegfried Wagner, Rene Parchen, Gianfranco Guidati, Rainer Bareiss, Siegfried Wagner, and Rene Parchen. Simulation and measurement of inflow-turbulence noise on airfoils. In 3rd AIAA/CEAS Aeroacoustics Conference. 1997. doi:10.2514/6.1997-1698.">aa-GBW+97</a>]</span>) derived a correction to the sound pressure
+levels by adding a term considering shape and camber of the airfoil profiles,
+but the method proved computationally too expensive for wind turbine
+simulations. Moriarty et al. (<span id="id16">[<a class="reference internal" href="refs.html#id11" title="Patrick Moriarty, Gianfranco Guidati, and Paul Migliore. Prediction of turbulent inflow and trailing-edge noise for wind turbines. In 11th AIAA/CEAS Aeroacoustics Conference. 2005. doi:10.2514/6.2005-2881.">aa-MGM05</a>]</span>) proposed
+a simplified model based on geometric characteristics of six wind turbine
+airfoils. The validity of the correction is limited to Mach numbers on the order
+of 0.1 ≈ 0.2 and Strouhal number <span class="math notranslate nohighlight">\(\text{St}\)</span> below 75.  <span class="math notranslate nohighlight">\(\text{St}\)</span>
+is defined based on airfoil chord and mean inflow velocity:</p>
+<div class="math notranslate nohighlight" id="equation-aa-eq-13">
+<span class="eqno">(4.44)<a class="headerlink" href="#equation-aa-eq-13" title="Permalink to this equation"></a></span>\[St = \frac{fc_{i}}{U_{1}}.\]</div>
+<p>The formula for the correction to the noise spectra is provided in Eq. 4
+in <span id="id17">[<a class="reference internal" href="refs.html#id11" title="Patrick Moriarty, Gianfranco Guidati, and Paul Migliore. Prediction of turbulent inflow and trailing-edge noise for wind turbines. In 11th AIAA/CEAS Aeroacoustics Conference. 2005. doi:10.2514/6.2005-2881.">aa-MGM05</a>]</span>:</p>
+<div class="math notranslate nohighlight" id="equation-aa-eq-14">
+<span class="eqno">(4.45)<a class="headerlink" href="#equation-aa-eq-14" title="Permalink to this equation"></a></span>\[t = t_{1\%} + t_{10\%}\]</div>
+<div class="math notranslate nohighlight" id="equation-aa-eq-15">
+<span class="eqno">(4.46)<a class="headerlink" href="#equation-aa-eq-15" title="Permalink to this equation"></a></span>\[{\mathrm{\Delta}SPL}_{\text{TI}} = -\left( 1.123t + 5.317t^{2} \right)\left( 2\pi St + 5 \right)\]</div>
+<p>where <span class="math notranslate nohighlight">\(t_{x\%}\)</span> is the relative thickness of the profile at
+<span class="math notranslate nohighlight">\(x\)</span> position along the chord (i.e., 0% being the leading edge and
+100% the trailing edge).</p>
+<p>It should be highlighted here that a validation campaign was conducted in a wind
+tunnel on two-dimensional airfoils (<span id="id18">[<a class="reference internal" href="refs.html#id10" title="Patrick Moriarty, Gianfranco Guidati, and Paul Migliore. Recent improvement of a semi-empirical aeroacoustic prediction code for wind turbines. In 10th AIAA/CEAS Aeroacoustics Conference. 2004. doi:10.2514/6.2004-3041.">aa-MGM04</a>]</span>),
+returning a fairly poor match between the Simplified Guidati model and the
+experimental results. Therefore, a correction of +10 decibels (dB) on the SPL
+levels across the whole frequency spectrum was proposed. This correction is
+still implemented, but a validation at turbine level should assess the accuracy
+of the models for turbulent inflow. It should also be noted that the code
+currently does not check whether Mach and Strouhal numbers are within the range
+of validity of this model.</p>
+</div>
+</div>
+<div class="section" id="turbulent-boundary-layer-trailing-edge">
+<span id="aa-turb-te"></span><h2><span class="section-number">4.5.4.2. </span>Turbulent Boundary Layer – Trailing Edge<a class="headerlink" href="#turbulent-boundary-layer-trailing-edge" title="Permalink to this heading"></a></h2>
+<p>Airfoils immersed in a flow develop a boundary layer, which at high
+Reynolds numbers is turbulent. When the turbulence passes over the
+trailing edge, noise is generated. This noise source was named TBL-TE in
+<span id="id19">[<a class="reference internal" href="refs.html#id4" title="Thomas F. Brooks, D. Stuart Pope, and Michael A. Marcolini. Airfoil self-noise and prediction. Reference Publication 1218, NASA, 1989.">aa-BPM89</a>]</span> and it is a relevant source of aeroacoustics noise
+for modern wind turbine rotors. Two formulations of TBL-TE noise are
+implemented in the code: (1) the original formulation from the BPM
+model, described in <a class="reference internal" href="#aa-amiet"><span class="std std-numref">Section 4.5.4.1.1</span></a>, and (2) a more recent model developed
+at the Dutch research institute, TNO, described in <a class="reference internal" href="#aa-guidati"><span class="std std-numref">Section 4.5.4.1.2</span></a>. Both
+models take as input the characteristics of the airfoil boundary layer.
+These must be provided by the user and are discussed in <a class="reference internal" href="App-usage.html#aa-sec-blinputs"><span class="std std-numref">Section 4.5.7.2</span></a>.</p>
+<div class="section" id="bpm">
+<span id="aa-turb-te-bpm"></span><h3><span class="section-number">4.5.4.2.1. </span>BPM<a class="headerlink" href="#bpm" title="Permalink to this heading"></a></h3>
+<p>The <span class="math notranslate nohighlight">\(\text{SPL}\)</span> of the TBL-TE noise in the BPM model is made from
+three contributions:</p>
+<div class="math notranslate nohighlight" id="equation-aa-eq-16">
+<span class="eqno">(4.47)<a class="headerlink" href="#equation-aa-eq-16" title="Permalink to this equation"></a></span>\[\text{SPL}_{TBL - TE} = 10\log_{10}\left( 10^{\frac{\text{SPL}_{p}}{10}}
+   + 10^{\frac{\text{SPL}_{s}}{10}} + 10^{\frac{\text{SPL}_{\alpha}}{10}} \right)\]</div>
+<p>where the subscripts <sub>p</sub>, <sub>s</sub>, and <sub>α</sub> refer to the
+contributions of pressure side, suction side, and angle of attack,
+respectively. The equations describing the three contributions are
+described in great detail in Section 5.1.2, in <span id="id20">[<a class="reference internal" href="refs.html#id4" title="Thomas F. Brooks, D. Stuart Pope, and Michael A. Marcolini. Airfoil self-noise and prediction. Reference Publication 1218, NASA, 1989.">aa-BPM89</a>]</span>, and
+are summarized here.</p>
+<p>For the suction and pressure contributions, the equations are:</p>
+<div class="math notranslate nohighlight" id="equation-aa-eq-17">
+<span class="eqno">(4.48)<a class="headerlink" href="#equation-aa-eq-17" title="Permalink to this equation"></a></span>\[\text{SPL}_{p} = 10\log_{10}\left( \frac{\delta_{p}^{*}M^{5}d{\overline{D}}_{h}}{r_{e}^{2}} \right)
+   + A\left( \frac{\text{St}_{p}}{\text{St}_{1}}\right) + \left( K_{1} - 3 \right) + {\mathrm{\Delta}K}_{1}\]</div>
+<div class="math notranslate nohighlight" id="equation-aa-eq-18">
+<span class="eqno">(4.49)<a class="headerlink" href="#equation-aa-eq-18" title="Permalink to this equation"></a></span>\[\text{SPL}_{s} = 10\log_{10}\left( \frac{\delta_{s}^{*}M^{5}d{\overline{D}}_{h}}{r_{e}^{2}} \right)
+   + A\left( \frac{\text{St}_{s}}{\text{St}_{1}} \right) + \left( K_{1} - 3 \right).\]</div>
+<p>The terms in the equations, which are also described in the nomenclature
+at the beginning of this document, list <span class="math notranslate nohighlight">\(\delta^{*}\)</span> as the
+boundary layer displacement thickness on either side of the airfoil,
+<span class="math notranslate nohighlight">\(St,\)</span> as the Strouhal number based on <span class="math notranslate nohighlight">\(\delta^{*}\)</span>, and
+<span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(A'\)</span>, <span class="math notranslate nohighlight">\(B\)</span>, <span class="math notranslate nohighlight">\({\Delta K}_{1}\)</span>, <span class="math notranslate nohighlight">\(K_{1}\)</span>,
+and <span class="math notranslate nohighlight">\(K_{2}\)</span> as empirical functions based on <span class="math notranslate nohighlight">\(\text{St}\)</span>.</p>
+<p>For the angle-of-attack contribution, a distinction is made above and
+below the stall angle, which in the original BPM model is set equal to
+12.5 degrees, whereas it is here assumed to be the actual stall angle of
+attack of the airfoil at blade station i. Below stall,
+<span class="math notranslate nohighlight">\(\text{SPL}_{\alpha}\)</span> is equal to:</p>
+<div class="math notranslate nohighlight" id="equation-aa-eq-19">
+<span class="eqno">(4.50)<a class="headerlink" href="#equation-aa-eq-19" title="Permalink to this equation"></a></span>\[\text{SPL}_{\alpha} = 10\log_{10}\left( \frac{\delta_{s}^{*}M^{5}d{\overline{D}}_{h}}{r_{e}^{2}} \right)
+   + B\left( \frac{\text{St}_{s}}{\text{St}_{2}} \right) + K_{2}.\]</div>
+<p>At angles of attack above the stall point, the flow along the profile is
+fully separated and noise radiates from the whole
+chord.<span class="math notranslate nohighlight">\(\ \text{SPL}_{p}\)</span> and <span class="math notranslate nohighlight">\(\text{SPL}_{s}\)</span> are then set
+equal to -∞, whereas <span class="math notranslate nohighlight">\(\text{SPL}_{\alpha}\)</span> becomes:</p>
+<div class="math notranslate nohighlight" id="equation-aa-eq-20">
+<span class="eqno">(4.51)<a class="headerlink" href="#equation-aa-eq-20" title="Permalink to this equation"></a></span>\[\text{SPL}_{\alpha} = 10\log_{10}\left( \frac{\delta_{s}^{*}M^{5}d{\overline{D}}_{l}}{r_{e}^{2}} \right)
+   + A'\left( \frac{\text{St}_{s}}{\text{St}_{2}} \right) + K_{2.}\]</div>
+<p>Notably, above stall the low-frequency directivity <span class="math notranslate nohighlight">\({\overline{D}}_{l}\)</span> is adopted in Eqs. 18 and 19 (see
+<a class="reference internal" href="#aa-directivity"><span class="std std-numref">Section 4.5.4.6</span></a>).</p>
+</div>
+<div class="section" id="tno-model">
+<span id="aa-turb-te-tno"></span><h3><span class="section-number">4.5.4.2.2. </span>TNO model<a class="headerlink" href="#tno-model" title="Permalink to this heading"></a></h3>
+<p>The TNO model is a more recent model to simulate the noise emitted by
+the vortices shed at the trailing edge of the blades and was formulated
+by Parchen (<span id="id21">[<a class="reference internal" href="refs.html#id16" title="René R. Parchen. Progress report DRAW: a prediction scheme for trailing edge noise based on detailed boundary layer characteristics. Technical Report, TNO Institute of Applied Physics, 1998.">aa-Par98</a>]</span>). The implementation adopted here is the one described
+in Moriarty et al. (2005). The TNO model uses the spectrum of the wave
+number, <span class="math notranslate nohighlight">\(\overline{k}\)</span>, of unsteady surface pressures to estimate
+the far-field noise. The spectrum, <span class="math notranslate nohighlight">\(P\)</span>, is assumed to be:</p>
+<div class="math notranslate nohighlight" id="equation-aa-eq-21">
+<span class="eqno">(4.52)<a class="headerlink" href="#equation-aa-eq-21" title="Permalink to this equation"></a></span>\[\begin{split}P\left( k_{1},k_{3},\omega \right) = 4\rho_{0}^{2}\frac{k_{1}^{2}}{k_{1}^{2}
++ k_{3}^{2}}\int_{0}^{10\frac{\omega}{Mc}}{L_{2}\overline{u_{2}^{2}}
+\left( \frac{\partial U_{1}}{\partial x_{2}} \right)^{2}
+\phi_{22}\left( k_{1},k_{3},\omega \right)} \\
+\phi_{m}\left( \omega - U_{c}\left( x_{2} \right)k_{1} \right)
+e^{\left( - 2\left| \overline{k} \right|x_{2} \right)}dx_{2}.\end{split}\]</div>
+<p>In the equation, the indices 1, 2, and 3 refer to the directions
+parallel to the airfoil chord, normal to the airfoil chord, and along
+span, respectively; <span class="math notranslate nohighlight">\(\phi_{22}\)</span> is the vertical velocity
+fluctuation spectrum; <span class="math notranslate nohighlight">\(\phi_{m}\)</span> is the moving axis spectrum; and
+<span class="math notranslate nohighlight">\(U_{c}\)</span> is the convection velocity of the eddies along the
+trailing edge. Lastly, <span class="math notranslate nohighlight">\(L_{2}\)</span> is the vertical correlation length,
+perpendicular to the chord length, which indicates the vertical
+extension of the vortices that convect over the trailing edge. In this
+work, <span class="math notranslate nohighlight">\(L_{2}\)</span> is assumed equal to the mixing length, <span class="math notranslate nohighlight">\(L_{m}\)</span>
+(Moriarty et al. 2005). This decision is partially arbitrary, and
+dedicated research should better assess the correct integral length to
+be adopted within the TNO model.</p>
+<p>From <span class="math notranslate nohighlight">\(P\)</span>, the far-field spectrum, <span class="math notranslate nohighlight">\(S\left( \omega \right)\)</span>,
+is computed as:</p>
+<div class="math notranslate nohighlight" id="equation-aa-eq-22">
+<span class="eqno">(4.53)<a class="headerlink" href="#equation-aa-eq-22" title="Permalink to this equation"></a></span>\[S\left( \omega \right) = \frac{d{\overline{D}}_{h}}{4\pi r_{e}^{2}}\int_{0}^{\delta}
+{\frac{\omega}{ck_{1}}P\left( k_{1},0,\omega \right)}\text{dk}_{1}.\]</div>
+<p>The implementation of the TNO model is identical to the one described in
+<span id="id22">[<a class="reference internal" href="refs.html#id11" title="Patrick Moriarty, Gianfranco Guidati, and Paul Migliore. Prediction of turbulent inflow and trailing-edge noise for wind turbines. In 11th AIAA/CEAS Aeroacoustics Conference. 2005. doi:10.2514/6.2005-2881.">aa-MGM05</a>]</span>. The inputs to the model are generated from the
+boundary layer characteristics provided by the user (see <a class="reference internal" href="App-usage.html#aa-sec-blinputs"><span class="std std-numref">Section 4.5.7.2</span></a>).</p>
+</div>
+</div>
+<div class="section" id="laminar-boundary-layer-vortex-shedding">
+<span id="aa-laminar-vortex"></span><h2><span class="section-number">4.5.4.3. </span>Laminar Boundary Layer – Vortex Shedding<a class="headerlink" href="#laminar-boundary-layer-vortex-shedding" title="Permalink to this heading"></a></h2>
+<p>Another source of airfoil self-noise noise included in the BPM model is
+the noise generated by a feedback loop between vortices being shed at
+the trailing edge and instability waves in the laminar boundary layer.
+This noise is typically distributed on a narrow band of frequencies and
+occurs when the boundary layer of the airfoil remains laminar. This may
+occur in the inboard region of smaller wind turbines, where the Reynolds
+number can be smaller than 1 million, but hardly occurs in modern rotors
+that operate at a Reynolds number one order of magnitude larger. The
+formula to estimate the noise spectrum in a one-third-octave
+presentation is:</p>
+<div class="math notranslate nohighlight" id="equation-aa-eq-23">
+<span class="eqno">(4.54)<a class="headerlink" href="#equation-aa-eq-23" title="Permalink to this equation"></a></span>\[\begin{split}\text{SPL}_{LBL - VS} = 10\log_{10}{
+   \left( \frac{\delta_{p}M^{5}d{\overline{D}}_{h}}{r_{e}^{2}} \right)
+   + G_{1}\left( \frac{St'}{{St'}_{\text{peak}}} \right) \\
+   + G_{2}\left\lbrack \frac{\text{Re}_{c}}{\left( \text{Re}_{c} \right)_{0}} \right\rbrack
+   + G_{3}\left( \alpha_{*} \right)}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(G\)</span> represents empirical functions,
+<span class="math notranslate nohighlight">\({St'}_{\text{peak}}\)</span> is the peak Strouhal number function of
+<span class="math notranslate nohighlight">\(\text{Re}_{c}\)</span>, which is the Reynolds number at chord,
+<span class="math notranslate nohighlight">\(c_{i}\)</span>. The subscript <sub>0</sub> refers to a reference Reynolds
+number that is a function of the angle of attack (Brooks et al. 1989).</p>
+</div>
+<div class="section" id="tip-vortex">
+<span id="aa-tip-vortex"></span><h2><span class="section-number">4.5.4.4. </span>Tip Vortex<a class="headerlink" href="#tip-vortex" title="Permalink to this heading"></a></h2>
+<p>The vortices generated at blade tips are another source of noise of the
+BPM model. Although rarely relevant in modern wind turbines, the
+possibility to include this noise source is offered. The sound pressure
+level is estimated as:</p>
+<div class="math notranslate nohighlight" id="equation-aa-eq-24">
+<span class="eqno">(4.55)<a class="headerlink" href="#equation-aa-eq-24" title="Permalink to this equation"></a></span>\[\text{SPL}_{\text{Tip}} = 10\log_{10}{\left(
+   \frac{M^{2}M_{\max}^{2}l^{2}{\overline{D}}_{h}}{r_{e}^{2}} \right)
+   - 30.5\left( \log_{10}{St^{''}} + 0.3 \right)^{2} + 126}\]</div>
+<p>where <span class="math notranslate nohighlight">\(M_{\max}\  = \ M_{\max}\left( \alpha_{\text{tip}} \right)\)</span>
+is the maximum Mach number, measured near the blade tip within the
+separated flow region that is assumed to depend on
+<span class="math notranslate nohighlight">\(\alpha_{\text{tip}}\)</span>, which is the angle of attack at the tip;
+<span class="math notranslate nohighlight">\(l\)</span> is the spanwise extent of the separation zone; and
+<span class="math notranslate nohighlight">\(St'''\)</span> is the Strouhal number based on <span class="math notranslate nohighlight">\(l\)</span>. For a round
+shape of the tip, <span class="math notranslate nohighlight">\(l\)</span> is estimated as:</p>
+<div class="math notranslate nohighlight" id="equation-aa-eq-25">
+<span class="eqno">(4.56)<a class="headerlink" href="#equation-aa-eq-25" title="Permalink to this equation"></a></span>\[l = c_{i}0.008\alpha_{\text{tip}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\alpha_{\text{tip}}\)</span> is the angle of attack of the tip
+region to the incoming flow. For a square tip, the BPM model estimates
+<span class="math notranslate nohighlight">\(l\)</span> based on the quantity, <span class="math notranslate nohighlight">\({\alpha'}_{\text{tip}}\)</span>, which
+is defined as:</p>
+<div class="math notranslate nohighlight" id="equation-aa-eq-26">
+<span class="eqno">(4.57)<a class="headerlink" href="#equation-aa-eq-26" title="Permalink to this equation"></a></span>\[\left. \ {\alpha^{'}}_{\text{tip}} = \left\lbrack \left(
+   \frac{\frac{\partial L'}{\partial y}}{\left(
+      \frac{\partial L'}{\partial y} \right)_{\text{ref}}}
+   \right)_{y\rightarrow tip}
+      \right\rbrack \right.\ \alpha_{\text{tip}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(L'\)</span> is the lift per unit span along the blade at position
+<span class="math notranslate nohighlight">\(y\)</span>. For <span class="math notranslate nohighlight">\({\alpha'}_{\text{tip}}\)</span> between 0 and 2 degrees,
+<span class="math notranslate nohighlight">\(l\)</span> becomes:</p>
+<div class="math notranslate nohighlight" id="equation-aa-eq-27">
+<span class="eqno">(4.58)<a class="headerlink" href="#equation-aa-eq-27" title="Permalink to this equation"></a></span>\[l = c_{i}\left( 0.0230 + 0.0169{\alpha^{'}}_{\text{tip}} \right),\]</div>
+<p>while for <span class="math notranslate nohighlight">\({\alpha'}_{\text{tip}}\)</span> larger than 2 degrees,
+<span class="math notranslate nohighlight">\(l\)</span> is:</p>
+<div class="math notranslate nohighlight" id="equation-aa-eq-28">
+<span class="eqno">(4.59)<a class="headerlink" href="#equation-aa-eq-28" title="Permalink to this equation"></a></span>\[l = c_{i}\left( 0.0378 + 0.0095{\alpha^{'}}_{\text{tip}} \right).\]</div>
+<p>However, it must be noted that, unfortunately,
+<span class="math notranslate nohighlight">\(\alpha_{\text{tip}}\)</span> is not a reliable output of standard
+aeroelastic models and the impossibility to accurately determine
+<span class="math notranslate nohighlight">\(\alpha_{\text{tip}}\)</span> weakens the formulation of the tip vortex
+noise.</p>
+</div>
+<div class="section" id="trailing-edge-bluntness-vortex-shedding">
+<span id="aa-te-vortex"></span><h2><span class="section-number">4.5.4.5. </span>Trailing-Edge Bluntness – Vortex Shedding<a class="headerlink" href="#trailing-edge-bluntness-vortex-shedding" title="Permalink to this heading"></a></h2>
+<p>Lastly, wind turbine blades are often characterized by a finite height of the
+trailing edge, which generates noise as a result of vortex shedding. The
+frequency and amplitude of this noise source depends on the geometry of the
+trailing edge and is typically characterized by a tonal nature. Adopting
+flatback and truncated airfoils far outboard along the blade may strengthen this
+noise source. When this noise source is activated, the user is asked to provide
+the distribution along the blade span of the blunt thickness of the trailing
+edge, <span class="math notranslate nohighlight">\(h\)</span>, and the solid angle between the suction and pressure sides of
+the airfoil, <span class="math notranslate nohighlight">\(\Psi\)</span> (see <a class="reference internal" href="#aa-turb-te"><span class="std std-numref">Section 4.5.4.2</span></a>). <span class="math notranslate nohighlight">\(h\)</span> and
+<span class="math notranslate nohighlight">\(\Psi\)</span> are inputs to the equation:</p>
+<div class="math notranslate nohighlight" id="equation-aa-eq-29">
+<span class="eqno">(4.60)<a class="headerlink" href="#equation-aa-eq-29" title="Permalink to this equation"></a></span>\[\begin{split}\text{SPL}_{TEB - VS} = 10\log_{10}{
+   \left( \frac{\delta_{p}^{*}M^{5}d{\overline{D}}_{h}}{r_{e}^{2}} \right)
+   + G_{4}\left( \frac{h}{\delta_{\text{avg}}^{*}},\Psi \right) \\
+   + G_{5}\left( \frac{h}{\delta_{\text{avg}}^{*}},\Psi,
+      \frac{St''}{{St''}_{\text{peak}}} \right)}.\end{split}\]</div>
+<p>In the equation, <span class="math notranslate nohighlight">\(\delta_{\text{avg}}^{*}\)</span> is the average
+displacement thickness for both sides of the airfoil. Note that this
+noise source is very sensitive to <span class="math notranslate nohighlight">\(h\)</span> and <span class="math notranslate nohighlight">\(\Psi\)</span>, which,
+therefore, should be estimated accurately.</p>
+</div>
+<div class="section" id="directivity">
+<span id="aa-directivity"></span><h2><span class="section-number">4.5.4.6. </span>Directivity<a class="headerlink" href="#directivity" title="Permalink to this heading"></a></h2>
+<p>The position of one or more observers is specified by the user, as described in
+<a class="reference internal" href="App-usage.html#aa-sec-obspos"><span class="std std-numref">Section 4.5.7.3</span></a>. The directivity from the BPM model is adopted in this
+implementation (<span id="id23">[<a class="reference internal" href="refs.html#id4" title="Thomas F. Brooks, D. Stuart Pope, and Michael A. Marcolini. Airfoil self-noise and prediction. Reference Publication 1218, NASA, 1989.">aa-BPM89</a>]</span>). The directivity term,
+<span class="math notranslate nohighlight">\(\overline{D}\)</span>, corrects the <span class="math notranslate nohighlight">\(\text{SPL}\)</span> depending on the relative
+position of the observer to the emitter. The position is described by the
+spanwise directivity angle, <span class="math notranslate nohighlight">\(\Phi_{e}\)</span>, and by the chordwise directivity
+angle, <span class="math notranslate nohighlight">\(\Theta_{e}\)</span>, which are schematically represented in
+<a class="reference internal" href="#aa-fig-directivity"><span class="std std-numref">Fig. 4.17</span></a> and defined as:</p>
+<div class="math notranslate nohighlight" id="equation-aa-eq-30">
+<span class="eqno">(4.61)<a class="headerlink" href="#equation-aa-eq-30" title="Permalink to this equation"></a></span>\[\Phi_{e} = \text{atan}\left( \frac{z_{e}}{y_{e}} \right)\]</div>
+<div class="math notranslate nohighlight" id="equation-aa-eq-31">
+<span class="eqno">(4.62)<a class="headerlink" href="#equation-aa-eq-31" title="Permalink to this equation"></a></span>\[\Theta_{e} = \text{atan}\left( \frac{y_{e} \bullet \cos\left( \Phi_{e} \right)
+   + z_{e} \bullet \sin\left( \Phi_{e} \right)}{x_{e}} \right)\]</div>
+<div class="figure align-default" id="aa-fig-directivity">
+<a class="reference internal image-reference" href="../../../_images/NoiseN002.jpeg"><img alt="Angles used in the directivity function" src="../../../_images/NoiseN002.jpeg" style="width: 100.0%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.17 </span><span class="caption-text">Angles used in the directivity function (<span id="id24">[<a class="reference internal" href="refs.html#id4" title="Thomas F. Brooks, D. Stuart Pope, and Michael A. Marcolini. Airfoil self-noise and prediction. Reference Publication 1218, NASA, 1989.">aa-BPM89</a>, <a class="reference internal" href="refs.html#id9" title="Patrick J. Moriarty and Paul G. Migliore. Semi-empirical aeroacoustic noise prediction code for wind turbines. Technical Report NREL/TP-500-34478, National Renewable Energy Laboratory, Golden, CO, 2003. URL: https://www.nrel.gov/docs/fy04osti/34478.pdf.">aa-MM03</a>]</span>)</span><a class="headerlink" href="#aa-fig-directivity" title="Permalink to this image"></a></p>
+</div>
+<p>The reference axis is located at each blade node and <span class="math notranslate nohighlight">\(x_{e}\)</span> is aligned
+with the chord, <span class="math notranslate nohighlight">\(y_{e}\)</span> is aligned with the span pointing to the blade
+tip, and <span class="math notranslate nohighlight">\(z_{e}\)</span> is aligned toward the airfoil suction side. Note that in
+OpenFAST the local airfoil-oriented reference system is used, and a rotation is
+applied.</p>
+<p>Given the angles <span class="math notranslate nohighlight">\(\Theta_{e}\)</span> and <span class="math notranslate nohighlight">\(\Phi_{e}\)</span>, at high frequency,
+<span class="math notranslate nohighlight">\(\overline{D}\)</span> for the trailing edge takes the expression:</p>
+<div class="math notranslate nohighlight" id="equation-aa-eq-32">
+<span class="eqno">(4.63)<a class="headerlink" href="#equation-aa-eq-32" title="Permalink to this equation"></a></span>\[{\overline{D}}_{h-TE}\left( \Theta_{e},\Phi_{e} \right) = \frac{
+   2\sin^{2}\left( \frac{\Theta_{e}}{2} \right)\sin^{2}\Phi_{e}}
+   {\left( 1 + M\cos\Theta_{e} \right)
+      \left( 1 + \left( M - M_{c} \right)
+      \cos\Theta_{e} \right)^{2}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(M_{c}\)</span> represents the Mach number past the trailing edge
+and that is here for simplicity assumed equal to 80% of free-stream M.</p>
+<p>For the leading edge, and therefore for the turbulent inflow noise model,
+at high frequency, <span class="math notranslate nohighlight">\(\overline{D}\)</span> is:</p>
+<div class="math notranslate nohighlight" id="equation-aa-eq-33">
+<span class="eqno">(4.64)<a class="headerlink" href="#equation-aa-eq-33" title="Permalink to this equation"></a></span>\[{\overline{D}}_{h-LE}\left( \Theta_{e},\Phi_{e} \right) = \frac{
+   2\cos^{2}\left( \frac{\Theta_{e}}{2} \right)\sin^{2}\Phi_{e}}
+   {\left( 1 + M\cos\Theta_{e} \right)^{3}}\]</div>
+<p>Note that this equation was not reported in the NLR Tech Report NREL/TP-5000-75731!</p>
+<p>At low frequency, the equation is identical for both leading and trailing edges:</p>
+<div class="math notranslate nohighlight" id="equation-aa-eq-34">
+<span class="eqno">(4.65)<a class="headerlink" href="#equation-aa-eq-34" title="Permalink to this equation"></a></span>\[{\overline{D}}_{l}\left( \Theta_{e},\Phi_{e} \right) =
+   \frac{\sin^{2}\left. \ \Theta_{e} \right.\ \sin^{2}\Phi_{e}}
+   {\left( 1 + M\cos\Theta_{e} \right)^{4}}.\]</div>
+<p>Each model distinguishes a different value between low and high
+frequency. For the TI noise model, the shift between low and high
+frequency is defined based on <span class="math notranslate nohighlight">\({\overline{k}}_{1}\)</span>. For the TBL-TE
+noise, the model differences instead shift between below and above
+stall, where<span class="math notranslate nohighlight">\(\ {\overline{D}}_{h}\)</span>and
+<span class="math notranslate nohighlight">\({\overline{D}}_{l}\)</span> are used, respectively.</p>
+</div>
+<div class="section" id="a-weighting">
+<span id="aa-a-weighting"></span><h2><span class="section-number">4.5.4.7. </span>A-Weighting<a class="headerlink" href="#a-weighting" title="Permalink to this heading"></a></h2>
+<p>The code offers the possibility to weigh the aeroacoustics outputs by
+A-weighting, which is an experimental coefficient that aims to take into
+account the sensitivity of human hearing to different frequencies.
+The A-weight, <span class="math notranslate nohighlight">\(A_{w}\)</span>, is computed as:</p>
+<div class="math notranslate nohighlight" id="equation-aa-eq-35">
+<span class="eqno">(4.66)<a class="headerlink" href="#equation-aa-eq-35" title="Permalink to this equation"></a></span>\[\begin{split}A_{w} = \frac{10\log\left( 1.562339\frac{f^{4}}
+      {\left( f^{2} + {107.65265}^{2} \right)
+         \left( f^{2} + {737.86223}^{2} \right)}
+      \right)}{\log 10}\qquad\qquad\\
+   + \frac{10\log\left( 2.422881e16\frac{f^{4}}
+      {\left( f^{2} + {20.598997}^{2} \right)^{2}
+         \left( f^{2} + {12194.22}^{2} \right)^{2}} \right)}
+      {\log 10}\end{split}\]</div>
+<p>The A-weighting is a function of frequency and is added to the values of
+sound pressure levels:</p>
+<div class="math notranslate nohighlight" id="equation-aa-eq-36">
+<span class="eqno">(4.67)<a class="headerlink" href="#equation-aa-eq-36" title="Permalink to this equation"></a></span>\[SPL_{A_{w}} = SPL + A_{w}\]</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="01-introduction.html" class="btn btn-neutral float-left" title="4.5.3. Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="03-model-verification.html" class="btn btn-neutral float-right" title="4.5.5. Model Verification" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

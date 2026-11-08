@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.11.2. Input Files &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.11.3. Output Files" href="output_files.html" />
+    <link rel="prev" title="4.11.1. Installation and Getting Started" href="getting_started.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/hydrodyn/input_files.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.11. HydroDyn</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html">4.11.1. Installation and Getting Started</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.11.2. Input Files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#units">4.11.2.1. Units</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hydrodyn-driver-input-file">4.11.2.2. HydroDyn Driver Input File</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hydrodyn-primary-input-file">4.11.2.3. HydroDyn Primary Input File</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="output_files.html">4.11.3. Output Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modeling_considerations.html">4.11.4. Modeling Considerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="future_work.html">4.11.5. Future Work</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.11.6. References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.11.7. Appendix A: OC4 Semi-submersible Input File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html#appendix-b-oc4-semi-submersible-input-file">4.11.8. Appendix B: OC4 Semi-submersible Input File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html#appendix-c-list-of-output-channels">4.11.9. Appendix C. List of Output Channels</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.11. </span>HydroDyn User Guide and Theory Manual</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.11.2. </span>Input Files</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/hydrodyn/input_files.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="input-files">
+<h1><span class="section-number">4.11.2. </span>Input Files<a class="headerlink" href="#input-files" title="Permalink to this heading"></a></h1>
+<p>The user configures the hydrodynamic model parameters as well as the
+substructure geometry and properties via a primary HydroDyn input file.
+When used in standalone mode, an additional driver input file is
+required. This driver file specifies initialization inputs normally
+provided to HydroDyn by OpenFAST, as well as the per-time-step inputs to
+HydroDyn.</p>
+<p>No lines should be added or removed from the input files, except in
+tables where the number of rows is specified.</p>
+<div class="section" id="units">
+<h2><span class="section-number">4.11.2.1. </span>Units<a class="headerlink" href="#units" title="Permalink to this heading"></a></h2>
+<p>HydroDyn uses the SI system (kg, m, s, N).</p>
+</div>
+<div class="section" id="hydrodyn-driver-input-file">
+<span id="hd-driver-input"></span><h2><span class="section-number">4.11.2.2. </span>HydroDyn Driver Input File<a class="headerlink" href="#hydrodyn-driver-input-file" title="Permalink to this heading"></a></h2>
+<p>The driver input file is only needed for the standalone version of
+HydroDyn and contains inputs normally generated by OpenFAST, and are
+necessary to control the hydrodynamic simulation for uncoupled models. A
+sample HydroDyn driver input file is given in Appendix B.</p>
+<p>Set the <strong>Echo</strong> flag in this file to TRUE if you wish to have
+<code class="docutils literal notranslate"><span class="pre">HydroDynDriver</span></code> echo the contents of the driver input file (useful
+for debugging errors in the driver file). The echo file has the naming
+convention of <code class="docutils literal notranslate"><span class="pre">OutRootName.dvr.ech</span></code>. <strong>OutRootName</strong> is specified
+in the HYDRODYN section of the driver input file. Set the gravity
+constant using the <strong>Gravity</strong> parameter. HydroDyn expects a magnitude,
+so in SI units this would be set to 9.80665 <span class="math notranslate nohighlight">\(\frac{m}{s^{2}}\)</span>.
+<strong>WtrDens</strong> specifies the water density and must be a value greater than
+or equal to zero; a typical value of seawater is around 1025
+kg/m<sup>3</sup>. <strong>WtrDpth</strong> specifies the water depth (depth of the flat
+seabed), based on the reference MSL, and must be a value greater than
+zero. <strong>MSL2SWL</strong> is the offset between the MSL and SWL, positive
+upward. This parameter is useful when simulating the effect of tides or
+storm-surge sea-level variations without having to alter the
+substructure geometry information. This parameter is unused with
+<strong>WaveMod</strong> = 6 and must be set to zero if you are using a
+potential-flow model (<strong>PotMod</strong> = 1 or 2). <strong>WaveMod</strong> and <strong>PotMod</strong> are
+specified in the HydroDyn primary input file.</p>
+<p><strong>HDInputFile</strong> is the filename of the primary HydroDyn input file. This
+name should be in quotations and can contain an absolute path or a
+relative path. Note that neither the standalone HydroDyn program nor HydroDyn
+as part of OpenFAST can run without SeaState. Therefore, in addition to the
+primary HydroDyn input file, the path to a SeaState input file must also
+be provided through <strong>SeaStateInputFile</strong>.</p>
+<p>All HydroDyn-generated output files will be prefixed with <strong>OutRootName</strong>.
+If this parameter includes a file path, the output will be generated in
+that folder. <strong>Linearize</strong> can be set to either TRUE or FALSE. If TRUE,
+linearized 6-by-6 stiffness, damping, and added-mass matrices will be
+computed and printed to the calling terminal. <strong>NSteps</strong> specifies the
+number of simulation time steps, and <strong>TimeInterval</strong> specifies the time
+between steps.</p>
+<p>Motion of the structure can be specified in different ways according to
+<strong>PRPInputsMod</strong>. Irrespective of the choice of <strong>PRPInputsMod</strong> (which
+are explained below), the translational displacement, velocity, and
+acceleration are always specified in the global inertial-frame coordinate
+system. With OpenFAST now updated to support potentially large platform
+rotation, the specification of rotation differs from previous versions.
+HydroDyn now describes body rotation using Tait-Bryan roll, pitch, and
+yaw angles with the convention of intrinsic (about body-fixed axis) yaw
+rotation first, followed by pitch rotation, and roll last. Furthermore,
+HydroDyn now expects the first and second time derivatives of the
+Tait-Bryan roll, pitch, and yaw angles in place of angular velocity and
+acceleration. The standalone HydroDyn driver will convert these inputs
+to angular velocity and acceleration internally.</p>
+<p><strong>NAddDOF</strong> indicates the number of additional degrees of freedom included
+with a potential-flow body. These additional modes can be used to describe
+a flexible or articulated body. <strong>NAddDOF</strong> &gt; 0 is only allowed with a single
+potential-flow body, and the value of <strong>NAddDOF</strong> in the driver input file
+must match that in the HydroDyn primary input file. If more than one
+potential-flow bodies are included, <strong>NAddDOF</strong> should be a single zero in
+the driver input file. This is different from the HydroDyn primary input file,
+where <strong>NAddDOF</strong> should contain <strong>NBody</strong> zeros. See details below on
+the HydroDyn primary input file. Note that the generalized modes with
+<strong>NAddDOF</strong> &gt; 0 are still an experimental feature.</p>
+<p>Setting <strong>PRPInputsMod</strong> = 0 forces all platform reference point (PRP)
+input motions to zero for all time. If you set <strong>PRPInputsMod</strong> = 1,
+then you must set the steady-state inputs in the PRP STEADY STATE
+INPUTS section of the file. Setting <strong>PRPInputsMod</strong> = 2 requires the
+time-series input file whose name is specified via the
+<strong>PRPInputsFile</strong> parameter. The PRP input file is a text-formatted
+file. This file has no header lines. Each data row corresponds to a
+given time step, and the whitespace separated columns of floating point
+values represent the necessary motion inputs as shown in
+<a class="reference internal" href="#hd-prp-input-table"><span class="std std-numref">Table 4.6</span></a>.</p>
+<span id="hd-prp-input-table"></span><table class="colwidths-auto docutils align-default" id="id2">
+<caption><span class="caption-number">Table 4.6 </span><span class="caption-text">PRP Inputs Time-Series Data File Contents (<strong>PRPInputsMod</strong> = 2)</span><a class="headerlink" href="#id2" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Column Number</p></th>
+<th class="head"><p>Input</p></th>
+<th class="head"><p>Units</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Time step value</p></td>
+<td><div class="math notranslate nohighlight">
+\[s\]</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>2-4</p></td>
+<td><p>Translational displacements along <em>X</em>, <em>Y</em>, and <em>Z</em></p></td>
+<td><div class="math notranslate nohighlight">
+\[m\]</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>5-7</p></td>
+<td><p>Tait-Bryan roll, pitch, and yaw angles</p></td>
+<td><div class="math notranslate nohighlight">
+\[\text{radians}\]</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>8-10</p></td>
+<td><p>Translational velocities along <em>X</em>, <em>Y</em>, and <em>Z</em></p></td>
+<td><div class="math notranslate nohighlight">
+\[\frac{m}{s}\]</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>11-13</p></td>
+<td><p>First time derivatives of the Tait-Bryan roll, pitch, and yaw angles</p></td>
+<td><div class="math notranslate nohighlight">
+\[\frac{\text{radians}}{s}\]</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>14-16</p></td>
+<td><p>Translational accelerations along <em>X</em>, <em>Y</em>, and <em>Z</em></p></td>
+<td><div class="math notranslate nohighlight">
+\[\frac{m}{s^{2}}\]</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>17-19</p></td>
+<td><p>Second time derivatives of the Tait-Bryan roll, pitch, and yaw angles</p></td>
+<td><div class="math notranslate nohighlight">
+\[\frac{\text{radians}}{s^{2}}\]</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>With <strong>PRPInputsMod</strong> = 1 or 2, any potential-flow bodies and strip-theory
+members defined in the primary HydroDyn input file will follow the prescribed
+motion of the PRP according to rigid-body kinematics. The standalone HydroDyn
+does not check for physical consistency between motions (displacement, velocity,
+and acceleration) specified for the PRP in the driver file. The user is
+responsible for generating consistent kinematics if that is important.</p>
+<p>If the HydroDyn model contains one or more potential-flow bodies,
+<strong>PRPInputsMod</strong> can be set to a negative number with <span class="math notranslate nohighlight">\(|\ \text{**PRPInputsMod**}\ | = \text{**NBody**}\)</span>
+in the HydroDyn primary input file. In this case, an alternative form of
+the PRP input file shown in <a class="reference internal" href="#hd-prp-input-table-2"><span class="std std-numref">Table 4.7</span></a> can be used
+to specify different motions for the PRP, which controls the motion of
+all strip-theory members based on rigid-body kinematics, and for each
+potential-flow bodies separately. With this option, the user only specifies
+the translational and rotational displacements. HydroDyn will compute the
+velocity and acceleration by numerically differentiating the displacements
+with respect to time.</p>
+<span id="hd-prp-input-table-2"></span><table class="colwidths-auto docutils align-default" id="id3">
+<caption><span class="caption-number">Table 4.7 </span><span class="caption-text">PRP Inputs Time-Series Data File Contents (<strong>PRPInputsMod</strong> &lt; 0)</span><a class="headerlink" href="#id3" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Column Number</p></th>
+<th class="head"><p>Input</p></th>
+<th class="head"><p>Units</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Time step value</p></td>
+<td><div class="math notranslate nohighlight">
+\[s\]</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>2-4</p></td>
+<td><p>Translational displacements of the PRP along <em>X</em>, <em>Y</em>, and <em>Z</em></p></td>
+<td><div class="math notranslate nohighlight">
+\[m\]</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>5-7</p></td>
+<td><p>Tait-Bryan roll, pitch, and yaw angles of the PRP</p></td>
+<td><div class="math notranslate nohighlight">
+\[\text{radians}\]</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>8-10</p></td>
+<td><p>Translational displacements of the 1st potential-flow body along <em>X</em>, <em>Y</em>, and <em>Z</em></p></td>
+<td><div class="math notranslate nohighlight">
+\[m\]</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>11-13</p></td>
+<td><p>Tait-Bryan roll, pitch, and yaw angles of the 1st potential-flow body</p></td>
+<td><div class="math notranslate nohighlight">
+\[\text{radians}\]</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>14-16</p></td>
+<td><p>Translational displacements of the 2nd potential-flow body along <em>X</em>, <em>Y</em>, and <em>Z</em></p></td>
+<td><div class="math notranslate nohighlight">
+\[m\]</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>17-19</p></td>
+<td><p>Tait-Bryan roll, pitch, and yaw angles of the 2nd potential-flow body</p></td>
+<td><div class="math notranslate nohighlight">
+\[\text{radians}\]</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+</tr>
+</tbody>
+</table>
+<p>Finally, when a single potential-flow body with additional generalized degrees
+of freedom is modeled, motions of the generalized modes can be prescribed by
+setting <strong>PRPInputsMod</strong> = -1 (only one body allowed). HydroDyn will compute the
+velocity and acceleration of the generalized modes by numerically differentiating
+the displacements with respect to time.</p>
+<span id="hd-prp-input-table-3"></span><table class="colwidths-auto docutils align-default" id="id4">
+<caption><span class="caption-number">Table 4.8 </span><span class="caption-text">PRP Inputs Time-Series Data File Contents (<strong>PRPInputsMod</strong> = -1 with <strong>NAddDOF</strong> &gt; 0)</span><a class="headerlink" href="#id4" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Column Number</p></th>
+<th class="head"><p>Input</p></th>
+<th class="head"><p>Units</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Time step value</p></td>
+<td><div class="math notranslate nohighlight">
+\[s\]</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>2-4</p></td>
+<td><p>Translational displacements of the PRP along <em>X</em>, <em>Y</em>, and <em>Z</em></p></td>
+<td><div class="math notranslate nohighlight">
+\[m\]</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>5-7</p></td>
+<td><p>Tait-Bryan roll, pitch, and yaw angles of the PRP</p></td>
+<td><div class="math notranslate nohighlight">
+\[\text{radians}\]</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>8-(NAddDOF+7)</p></td>
+<td><p>Displacements of the <strong>NAddDOF</strong> generalized modes</p></td>
+<td><div class="math notranslate nohighlight">
+\[-\]</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="hydrodyn-primary-input-file">
+<span id="hd-primary-input"></span><h2><span class="section-number">4.11.2.3. </span>HydroDyn Primary Input File<a class="headerlink" href="#hydrodyn-primary-input-file" title="Permalink to this heading"></a></h2>
+<p>The HydroDyn input file defines the substructure geometry, hydrodynamic
+coefficients, incident wave kinematics and current, potential-flow
+solution options, flooding/ballasting and marine growth, and auxiliary
+parameters. The geometry of strip-theory members is defined by joint
+coordinates of the undisplaced substructure in the global reference
+system, with the origin at the intersection of the undeflected tower
+centerline with MSL. A member connects two joints; multiple members can
+use a common joint. The hydrodynamic loads are computed at nodes, which
+are the resultant of member refinement into multiple (<strong>MDivSize</strong>
+input) elements (nodes are located at the ends of each element), and
+they are calculated by the module. Member properties include outer
+diameter, thickness, and dynamic-pressure, added-mass and viscous-drag
+coefficients. Member properties are specified at the joints; if
+properties change from one joint to the other, they will be linearly
+interpolated for the inner nodes.</p>
+<p>The file is organized into several functional sections. Each section
+corresponds to an aspect of the hydrodynamics model or the submerged
+substructure. A sample HydroDyn primary input file is given in
+<a class="reference internal" href="appendix.html#hd-primary-input-example"><span class="std std-ref">Appendix A: OC4 Semi-submersible Input File</span></a>.</p>
+<p>If this manual refers to an ID in a table entry, this is an integer
+identifier for the table entry, and these IDs do not need to be
+consecutive or increasing, but they must be unique for a given table
+entry.</p>
+<p>The input file begins with two lines of header information for
+your use, but they are not used by the software. On the next line, set the
+<strong>Echo</strong> flag to TRUE if you wish to have HydroDyn echo the contents of
+the HydroDyn input file (useful for debugging errors in the input file).
+The echo file has the naming convention of <strong>OutRootName</strong><em>.HD.ech</em>.
+<strong>OutRootName</strong> is either specified in the HYDRODYN section of the
+driver input file when running HydroDyn standalone, or by OpenFAST when
+running a coupled simulation.</p>
+<div class="section" id="floating-platform">
+<h3><span class="section-number">4.11.2.3.1. </span>Floating Platform<a class="headerlink" href="#floating-platform" title="Permalink to this heading"></a></h3>
+<p>This and the next few sections of the input file have “Floating
+Platform” in the title, but the input parameters control the
+potential-flow model, regardless of whether the substructure is floating
+or not. The potential-flow solution cannot be used in conjunction with
+nonzero <strong>MSL2SWL</strong> or <strong>WaveMod</strong> = 6 in SeaState.</p>
+<p>If the load contributions from potential-flow theory are to be included, set
+<strong>PotMod</strong> to 1 to use frequency-to-time domain transforms based
+on WAMIT output or 2 to use FIT (FIT is not yet documented in
+this manual). The remaining parameters in this section are only used when
+<strong>PotMod</strong> = 1.</p>
+<p><strong>ExctnMod</strong> can be set to 0 for no wave excitation, 1 for
+frequency-to-time domain wave excitation using discrete Fourier transform,
+or 2 for the state-space wave-excitation model. Depending on the choice of
+<strong>ExctnMod</strong>, suitable hydrodynamic input files must be provided through the
+<strong>PotFile</strong> input. More information below.</p>
+<p><strong>ExctnDisp</strong> specifies if and how structure displacement in the horizontal
+plane should be considered when evaluating the potential-flow wave excitation.
+Setting <strong>ExctnDisp</strong> = 0 ignores structure displacement, and wave
+excitation will be computed using the undisplaced structure position as in
+previous versions of OpenFAST. If <strong>ExctnDisp</strong> = 1, HydroDyn will compute
+the potential-flow wave excitation using the unfiltered instantaneous PRP
+position in the horizontal plane. If <strong>ExctnDisp</strong> = 2, HydroDyn will instead
+compute the wave excitation based on the low-pass filtered PRP position in
+the horizontal plane. The cutoff frequency is specified through <strong>ExctnCutOff</strong>
+in Hz. This option is useful when second-order potential-flow wave excitation is
+enabled. The cutoff frequency should be set to filter out as much of the
+wave-frequency PRP motion as possible while retaining the low-frequency drift
+motion to prevent double counting the contributions from first-order
+structural motion already included in the second-order potential-flow wave
+excitation.</p>
+<p>HydroDyn now supports large but slow (well below wave frequencies)
+transient platform yaw motion with both strip-theory only and hybrid
+potential-flow models. To enable this capability, the inputs
+<strong>PtfmYMod</strong>, <strong>PtfmRefY</strong>, <strong>PtfmYCutoff</strong>, and <strong>NExctnHdg</strong> must
+be set appropriately. Note that HydroDyn still requires the platform
+roll and pitch angles to be small, i.e., within +/-15 deg.</p>
+<p>To conform with the first- and second-order potential-flow theory,
+which limits the structure to small displacement about a reference
+mean position, a constant or slowly varying reference platform yaw
+orientation must be established.</p>
+<p>Setting <strong>PtfmYMod</strong> = 0 lets HydroDyn use a constant reference yaw
+angle given by <strong>PtfmRefY</strong> in degrees. In this case, the platform
+yaw rotation during the simulation, as given by the <strong>PRPYaw</strong>
+output channel, must stay within +/-15 deg of <strong>PtfmRefY</strong> specified
+by the user. A severe warning will be displayed if this requirement
+is not met at any point during the simulation, while still allowing
+the simulation to continue if possible. With a hybrid potential-flow
+model, the potential-flow wave excitation input file needs to cover
+a suitable range of wave headings relative to the platform after a
+yaw offset of <strong>PtfmRefY</strong> is applied.</p>
+<p>Alternatively, <strong>PtfmYMod</strong> = 1 lets HydroDyn update the reference
+yaw position <strong>PtfmRefY</strong> dynamically based on the low-pass-filtered
+platform yaw rotation, analogous to the modeling of slow-drift motion
+with <strong>ExctnDisp</strong> = 2 above. In this case, the <strong>PtfmRefY</strong> input
+allows the user to specify the initial reference yaw position at
+<strong>t</strong> = 0. The cutoff frequency of the first-order low-pass filter
+for platform yaw rotation can be set with <strong>PtfmYCutoff</strong> in Hz.
+Ideally, <strong>PtfmYCutoff</strong> should be placed between the wave frequency
+region and the characteristic frequency of any slow but large change
+in platform heading to filter out as much wave-frequency platform
+motion as possible while minimizing the phase shift in the low-frequency
+heading change. Throughout the simulation, the instantaneous
+platform yaw rotation should stay within +/-15 deg of the now
+time-dependent <strong>PtfmRefY</strong>. A severe warning will be displayed if
+this requirement is not met at any point during the simulation, while
+still allowing the simulation to continue if possible.</p>
+<p>With <strong>PtfmYMod</strong> = 1, HydroDyn requires the first- and second-order
+(mean- or slow-drift loads from Newman’s approximation only)
+potential-flow wave excitation input file(s) to cover the full range
+of possible wave headings with the first (smallest) wave heading being
+exactly -180 deg and the last (largest) wave heading being exactly
++180 deg (the duplicated wave headings of +/-180 deg are intentional).
+HydroDyn will error out if this requirement is not met by the input files.
+HydroDyn uses this information to precompute the wave excitation on
+the platform for <strong>NExctnHdg</strong> evenly distributed platform yaw/heading
+angles over the range of [-180,+180) deg. For instance, with
+<strong>NExctnHdg</strong> = 36, HydroDyn will precomupte the wave excitation for 0,
+10, 20, …, 350 deg platform heading. The instantaneous wave excitation
+applied on the platform during the time-domain simulation is interpolated
+from this data based on the instantaneous <strong>PtfmRefY</strong>. <strong>NExctnHdg</strong>
+should be set appropriately to ensure adequate angular resolution in
+platform heading. However, a high <strong>NExctnHdg</strong> can increase memory use
+by OpenFAST substantially.</p>
+<p>Additional constraints on HydroDyn inputs apply when <strong>PtfmYMod</strong> = 1.
+The strip-theory hydrodynamic load must be evaluated using the wave
+kinematics and dynamic pressure at the displaced structure position
+by setting <strong>WaveDisp</strong> = 1. State-space wave excitation cannot be used.
+<strong>ExctnMod</strong> must be either 0 (no wave excitation) or 1 (frequency-to-time
+domain transform using inverse discrete Fourier transform). Lastly,
+full difference- and sum-frequency QTFs are not supported, requiring
+both <strong>DiffQTF</strong> and <strong>SumQTF</strong> to be set to 0. However, mean- or
+slow-drift loads based on Newman’s approximation can be included through
+the <strong>MnDrift</strong> or <strong>NewmanApp</strong> inputs explained below.</p>
+<p>Note that the inputs <strong>PtfmYMod</strong> and <strong>PtfmRefY</strong> also affect the
+strip-theory hydrodynamic load. This is because the orientation of
+the strip-theory members is updated based on <strong>PtfmRefY</strong> instead
+of the instantaneous platform yaw rotation. Behavior of previous
+versions of HydroDyn can be approximately recovered by setting
+<strong>PtfmYMod</strong> = 0 and <strong>PtfmRefY</strong> = 0 deg, in which case, the
+inputs <strong>PtfmYCutoff</strong> and <strong>NExctnHdg</strong> are not used.</p>
+<p>HydroDyn has two methods for calculating the radiation memory effect.
+Set <strong>RdtnMod</strong> to 1 for the convolution method, 2 for the linear
+state-space model, or 0 to disable the memory effect calculation. For
+the convolution method, <strong>RdtnTMax</strong> determines how long to track the
+memory effect (truncating the convolutions at <em>t</em> – <strong>RdtnTMax</strong>, where
+<em>t</em> is the current simulation time), but it also determines the
+frequency step used in the cosine transform, from which the time-domain
+radiation kernel (radiation impulse-response function) is derived. A
+<strong>RdtnTMax</strong> of 60 s is usually more than sufficient because the
+radiation kernel decays to zero after a short amount of time; setting
+<strong>RdtnTMax</strong> much greater than this will cause HydroDyn to run
+significantly slower. (<strong>RdtnTMax</strong> does not need to match or exceed the
+total simulation length.) Setting <strong>RdtnTMax</strong> to 0 s disables the
+memory effect, akin to setting <strong>RdtnMod</strong> to 0. For the convolution
+method, <strong>RdtnDT</strong> is the time step for the radiation calculations
+(numerical convolutions), but also determines the maximum frequency in
+the cosine transform. For the state-space model, <strong>RdtnDT</strong> is the time
+step to use for time integration of the linear state-space model. In
+this version of HydroDyn, <strong>RdtnDT</strong> must match the glue code
+(OpenFAST/driver program) simulation time step; the DEFAULT keyword can be
+used for this. Depending on the choice of <strong>RdtnMod</strong>, suitable hydrodynamic
+input files must be provided through the <strong>PotFile</strong> input. More
+information below.</p>
+<p>HydroDyn supports the inclusion of multiple potential-flow bodies.
+<strong>NBody</strong> specifies the number of potential-flow bodies present.
+<strong>NBodyMod</strong> controls how multiple potential-flow bodies should be modeled.
+HydroDyn will retain the full hydrodynamic coupling among the potential-flow
+bodies if <strong>NBodyMod</strong> = 1. For this option, all bodies should be present
+in the same WAMIT run with <strong>NBody</strong> in HydroDyn being equal to NBODY in the
+WAMIT input file. The WAMIT output files should contain results for 6·NBody modes.
+HydroDyn will neglect hydrodynamic coupling among the potential-flow bodies if
+<strong>NBodyMod</strong> = 2 or 3. In either case, WAMIT should be run for each body separately
+one at a time. If the WAMIT computation is run with each body centered at the
+origin (XBODY=0 in WAMIT), <strong>NBodyMod</strong> = 2 should be used in HydroDyn.
+In this case, HydroDyn will process the WAMIT outputs to account for the
+shift in wave phase due to any offset of each potential-flow body from the
+origin/PRP. HydroDyn will also rotate the WAMIT outputs according to the heading of
+each body in HydroDyn. <strong>NBodyMod</strong> = 2 is convenient when, e.g., multiple
+identical potential-flow bodies are present in the structure. If the hydrodynamic
+coupling among the bodies can be neglected, the same set of WAMIT output files
+can be used for each body by setting <strong>NBodyMod</strong> = 2. On the other hand,
+<strong>NBodyMod</strong> = 3 should be used if each body is already positioned and oriented
+correctly relative to the origin/PRP in WAMIT by setting XBODY in the WAMIT input
+file. In this case, HydroDyn will use the provided WAMIT output as is.</p>
+<p>The <strong>PotFile</strong> input should contain the path and root name (without
+extensions) for the WAMIT output files enclosed in quotation marks. These
+files consist of the <em>.1</em>, <em>.3</em>, <em>.hst</em>, and second-order files. The
+<em>.hst</em> file contains the hydrostatic restoring (stiffness) matrix.
+The <em>.1</em> file contains the frequency-dependent hydrodynamic added-mass
+and damping matrix from the wave radiation problem. The <em>.3</em>
+file contains the frequency- and direction-dependent first-order
+wave-excitation vector from the linear wave diffraction
+problem. These are written by the WAMIT program and should not include
+any file headers. When the linear state-space model is used in place of
+frequency-to-time domain transformation for wave excitation or in place
+of convolution for radiation, the <em>.ssexctn</em> file for wave excitation
+(more information to be provided in the future) and/or the <em>.ss</em> file
+for radiation generated by <a class="reference external" href="https://www.nlr.gov/wind/nwtc/ss-fitting.html">SS_Fitting</a>
+must have the same root name as the other WAMIT-related files.</p>
+<p>When <strong>NBodyMod</strong> = 1, <strong>PotFile</strong> should only contain one entry irrespective of
+<strong>NBody</strong> because the hydrodynamic coefficients for all bodies with
+hydrodynamic coupling should be contained within a single set of files.
+When <strong>NBodyMod</strong> = 2 or 3, <strong>PotFile</strong> should contain <strong>NBody</strong> entries,
+each enclosed in quotes and separated from each other with commas or spaces.
+Each entry of <strong>PotFile</strong> corresponds to a single potential-flow body.</p>
+<p>In the reminder of this section, each input should contain <strong>NBody</strong> entries
+separated by commas or spaces, irrespective of <strong>NBodyMod</strong>.</p>
+<p>The output files from WAMIT are in a standard nondimensional form that
+HydroDyn will dimensionalize internally upon input. <strong>WAMITULEN</strong> is the
+characteristic body length (in m) used to redimensionalize the WAMIT
+output. The body motion and force/moment in these WAMIT files are always
+resolved in the body-local frame of reference given by XBODY in the WAMIT
+input file. To correctly interpret the WAMIT outputs, the position and
+heading of each potential-flow body relative to the origin/PRP must be
+specified using <strong>PtfmRefxt</strong>, <strong>PtfmRefyt</strong>, <strong>PtfmRefzt</strong>, and
+<strong>PtfmRefztRot</strong> (in m or deg). With the exception of <strong>NBodyMod</strong> = 2,
+these inputs must match XBODY in the WAMIT input file. When
+<strong>NBodyMod</strong> = 2, these inputs can be set freely except for <strong>PtfmRefzt</strong>,
+which must always be zero.</p>
+<p>While HydroDyn expects hydrodynamic coefficients derived from
+WAMIT, if you are not using WAMIT, it is recommended that you reformat
+your data according to the WAMIT format (including
+nondimensionalization) before inputting them to HydroDyn. Information on
+the WAMIT format is available from Chapter 4 of the WAMIT User’s Guide
+<span id="id1">[<a class="reference internal" href="zrefs.html#id4" title="C. H. Lee and J. N. Newman. WAMIT User Manual. WAMIT, Inc, Chestnut Hill, MA, 6.3, 6.3pc, 6.3s, 6.3s-pc edition, 2006.">LN06</a>]</span>.</p>
+<p><strong>PtfmVol0</strong> is the displaced volume of water when the potential-flow body is in
+its undisplaced position (in m<sup>3</sup>). This value should be set equal
+to the value computed by WAMIT as output in the WAMIT <code class="docutils literal notranslate"><span class="pre">.out</span></code> file.
+<strong>PtfmCOBxt</strong> and <strong>PtfmCOByt</strong> are the <em>X</em> and <em>Y</em> offsets (in m) of the
+center of buoyancy of each body from the origin/PRP, NOT from
+<strong>PtfmRefxt</strong> and <strong>PtfmRefyt</strong>.</p>
+<p><em>Experimental feature</em></p>
+<p><strong>NAddDOF</strong> is an array of <strong>NBody</strong> numbers indicating the number of
+additional generalized degrees of freedom of each potential-flow body. These
+additional modes can be used to describe flexible or articulated bodies and
+must match the modes in the 1st-order WAMIT-style input files, i.e., the .1,
+.3, and .hst files. The convention for the WAMIT-style input files requires
+the first 6 modes to be rigid-body modes always, and the additional generalized
+modes are numbered from 7 onward. The total number of modes in the 1st-order
+WAMIT-style input files should be <strong>6+NAddDOF</strong> for each body. Currently, only
+one potential-flow body is allowed when additional degrees of freedom are used,
+requiring <strong>NBody = 1</strong>. In this case, the choice of <strong>NBodyMod</strong> does not
+matter. If more than one potential-flow bodies are present, <strong>NAddDOF</strong> should
+be populated with <strong>NBody</strong> zeros. This because, internally, HydroDyn supports
+additional degrees of freedom for an arbitrary number of bodies with any of the
+<strong>NBodyMod</strong> options. The limitation of one potential-flow body only is due
+to constraints with coupling to ExtPtfm, the only module that can make use of the
+additional modes so far and input file limitations. Generalized modes have not
+been implemented for 2nd-order loads; therefore, the 2nd-order WAMIT-style input
+files, if included, should always contain <strong>6NBody</strong> modes irrespective of
+<strong>NAddDOF</strong>. Finally, when <strong>NAddDOF &gt; 0</strong>, <strong>WAMITULEN</strong> must be 1.</p>
+<p>Currently, the HydroDyn loads for the additional degrees of freedom can only be
+used by the ExtPtfm module of OpenFAST with externally generated structural
+mass (M), stiffness (K), and damping (C) matrices. This workflow is intended for
+floating structures only with 6DOF rigid-body motions and a user-defined number
+of additional elastic modes. The number of modes in HydroDyn and ExtPtfm must match.
+More specifically, the number of modes active in ExtPtfm must be equal to
+<strong>6+NAddDOF</strong> with the first 6 modes also being rigid-body modes.</p>
+</div>
+<div class="section" id="nd-order-floating-platform-forces">
+<span id="hd-2nd-order-floating-platform-forces-input"></span><h3><span class="section-number">4.11.2.3.2. </span>2<sup>nd</sup>-Order Floating Platform Forces<a class="headerlink" href="#nd-order-floating-platform-forces" title="Permalink to this heading"></a></h3>
+<p>The 2<sup>ND</sup>-ORDER FLOATING PLATFORM FORCES section of the input
+file allows the option of adding second-order contributions to the
+potential-flow solution. When second-order terms are optionally enabled,
+the second-order terms are calculated using the first-order
+wave-component amplitudes and added to the first-order wave excitation
+at the difference and/or sum frequencies. The second-order terms cannot
+be computed without also including the first-order terms from the
+FLOATING PLATFORM section above (<strong>PotMod</strong> = 1). Enabling the
+second-order terms allows one to capture some of the nonlinearities in the
+wave loads, permitting more accurate modeling at the expense of greater
+computational effort (mostly at HydroDyn initialization).</p>
+<p>While the cut-off frequencies in the <a class="reference internal" href="../seastate/input_files.html#sea-2nd-order-waves-input"><span class="std std-ref">2nd-Order Waves</span></a> section
+of the SeaState module apply to both the second-order wave kinematics used by strip
+theory and the second-order diffraction loads in potential-flow theory,
+the second-order terms themselves are enabled separately. The
+second-order wave kinematics used by strip theory are enabled in the
+<a class="reference internal" href="../seastate/input_files.html#sea-2nd-order-waves-input"><span class="std std-ref">2nd-Order Waves</span></a> section while the second-order
+diffraction loads in potential-flow theory are enabled in this section.</p>
+<p>The second-order difference-frequency potential-flow terms can be
+enabled in one of three ways. To compute only the mean-drift term, set
+<strong>MnDrift</strong> to a nonzero value; to estimate the mean- and slow-drift
+terms using Standing et al.’s extension to Newman’s approximation, based
+only on first-order effects, set <strong>NewmanApp</strong> to a nonzero value; or to
+compute the mean- and slow-drift terms using the full
+difference-frequency QTF set <strong>DiffQTF</strong> to a nonzero value. Valid
+values of <strong>MnDrift</strong> are 0, 7, 8, 9, 10, 11, or 12 corresponding to
+which WAMIT output file the mean-drift terms will be calculated from.
+Valid values of <strong>NewmanApp</strong> are 0, 7, 8, 9, 10, 11, or 12
+corresponding to which WAMIT output file the Newman’s approximation will
+be calculated from. Newman’s approximation cannot be used in conjunction
+with directional spreading (<strong>WaveDirMod</strong> must be 0) and the
+second-order cut-off frequencies do not apply to Newman’s approximation.
+Valid values of <strong>DiffQTF</strong> are 0, 10, 11, or 12 corresponding to which
+WAMIT output file the full difference-frequency potential-flow solution
+will be calculated from. Only one of <strong>MnDrift</strong>, <strong>NewmanApp</strong>, and
+<strong>DiffQTF</strong> can be nonzero; a setting of 0 disregards the second-order
+difference-frequency contributions to the potential-flow solution.</p>
+<p>The .<em>7</em> WAMIT file refers to the mean-drift loads (diagonal of the
+difference-frequency QTF) in all DOFs derived from the control-surface
+integration method based on the first-order solution. The .<em>8</em> WAMIT
+file refers to the mean-drift loads (diagonal of the
+difference-frequency QTF) only in surge, sway, and yaw derived from the
+momentum conservation principle based on the first-order solution. The
+.<em>9</em> WAMIT file refers to the mean-drift loads (diagonal of the
+difference-frequency QTF) in all DOFs derived from the pressure
+integration method based on the first-order solution. For the
+difference-frequency terms, 10, 11, and 12 refer to the WAMIT .<em>10d</em>,
+.<em>11d</em>, and .<em>12d</em> files, corresponding to the full QTF of (.*10d*)
+loads in all DOFs associated with the quadratic interaction of
+first-order quantities, (.*11d*) total (quadratic plus second-order
+potential) loads in all DOFs derived by the indirect method, and
+(.*12d*) total (quadratic plus second-order potential) loads in all
+DOFs derived by the direct method, respectively.</p>
+<p>The second-order sum-frequency potential-flow terms can only be enabled
+using the full sum-frequency QTF, by setting <strong>SumQTF</strong> to a nonzero
+value. Valid values of <strong>SumQTF</strong> are 0, 10, 11, or 12 corresponding to
+which WAMIT output file the full sum-frequency potential-flow solution
+will be calculated from; a setting of 0 disregards the second-order
+sum-frequency contributions to the potential-flow solution. For the
+sum-frequency terms, 10, 11, and 12 refer to the WAMIT .<em>10s</em>,
+.<em>11s</em>, and .<em>12s</em> files, corresponding to the full QTF of (.*10s*)
+loads in all 6 DOFs associated with the quadratic interaction of
+first-order quantities, (.*11s*) total (quadratic plus second-order
+potential) loads in all DOFs derived by the indirect method, and
+(.*12s*) total (quadratic plus second-order potential) loads in all
+DOFs derived by the direct method, respectively.</p>
+<p>Note that also apply here are the various considerations associated with
+running WAMIT for multiple potential-flow bodies discussed in the
+<strong>FLOATING PLATFORM</strong> section for first-order loads.</p>
+</div>
+<div class="section" id="platform-additional-stiffness-and-damping">
+<h3><span class="section-number">4.11.2.3.3. </span>Platform Additional Stiffness and Damping<a class="headerlink" href="#platform-additional-stiffness-and-damping" title="Permalink to this heading"></a></h3>
+<p>The vectors and matrices of this section are used to generate additional
+loads on the platform (in addition to other hydrodynamic terms
+calculated by HydroDyn), per the following equation.</p>
+<div class="math notranslate nohighlight" id="equation-ptfmstiffdamp">
+<span class="eqno">(4.196)<a class="headerlink" href="#equation-ptfmstiffdamp" title="Permalink to this equation"></a></span>\[\overrightarrow{F}_{Add} = \overrightarrow{F}_{0} - [C] \overrightarrow{q} - [B] \dot{\overrightarrow{q}} - [B_{quad}] ABS \left(\dot{\overrightarrow{q}}\right) \dot{\overrightarrow{q}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\overrightarrow{F}_{0}\)</span> corresponds to the <strong>AddF0</strong> static load (preload) vector,
+<span class="math notranslate nohighlight">\([C]\)</span> corresponds to the <strong>AddCLin</strong> linear restoring (stiffness) matrix,
+<span class="math notranslate nohighlight">\([B]\)</span> corresponds to the <strong>AddBLin</strong> linear damping matrix,
+<span class="math notranslate nohighlight">\([B_{quad}]\)</span> corresponds to the <strong>AddBQuad</strong> quadratic drag matrix, and
+<span class="math notranslate nohighlight">\(\overrightarrow{q}\)</span> corresponds to the displacement vector of the potential-flow bodies
+(translation and rotation), where the overdot refers to the first time-derivative.</p>
+<p>In the absence of additional degrees of freedom, i.e., <strong>NAddDOF</strong> is all zeros,
+<strong>AddF0</strong> is either a column vector with 6<strong>NBody</strong> entries
+if <strong>NBodyMod</strong> = 1 or <strong>NBody</strong> column vectors with six entries each
+if <strong>NBodyMod</strong> = 2 or 3. In the former case, <strong>AddF0</strong> will span
+6<strong>NBody</strong> lines with each line containing a single number in the
+input file. In the latter case, <strong>AddF0</strong> will span six lines with each line
+containing <strong>NBody</strong> numbers in the input file. When additional degrees of
+freedom are included, only one potential-flow body is allowed, and <strong>AddF0</strong>
+should be a column vector spanning 6 + <strong>NAddDOF</strong> rows.</p>
+<p>In the absence of additional degrees of freedom,
+<strong>AddCLin</strong>, <strong>AddBLin</strong>, and <strong>AddBQuad</strong> are either a single
+6<strong>NBody</strong>-by-6<strong>NBody</strong> matrix if <strong>NBodyMod</strong> = 1 or
+six 6-by-6 matrices if <strong>NBodyMod</strong> = 2 or 3. In the former case,
+each matrix spans 6<strong>NBody</strong> lines in the input file with each line
+containing 6<strong>NBody</strong> numbers. In the latter case, each matrix
+spans six lines in the input file, with each line containing 6<strong>NBody</strong>
+numbers. When additional degrees of freedom are included, only one
+potential-flow body is allowed, and each of these matrices should span
+6 + <strong>NAddDOF</strong> rows, with each row containing 6 + <strong>NAddDOF</strong> numbers.</p>
+<p>These terms can be used, e.g., to model a linearized mooring system, to
+augment strip-theory members with a linear hydrostatic restoring matrix
+(see <a class="reference internal" href="modeling_considerations.html#hd-modeling-hydrostatic-restoring-strip-theory"><span class="std std-numref">Section 4.11.4.8.3</span></a>), or to “tune”
+HydroDyn to match damping to experimental results, such as free-decay tests.
+While likely most useful for floating systems, these matrices can also be
+used for fixed-bottom systems; in both cases, the resulting load is applied
+at the reference point of each potential-flow body given by <strong>PtfmRefxt</strong>,
+<strong>PtfmRefyt</strong>, and <strong>PtfmRefzt</strong>. When additional generalized degrees of
+freedom are included with a potential-flow body, <strong>AddF0</strong> can be used to
+apply constant hydrostatic/buoyancy loads to the generalized modes.</p>
+</div>
+<div class="section" id="strip-theory-options">
+<h3><span class="section-number">4.11.2.3.4. </span>Strip theory options<a class="headerlink" href="#strip-theory-options" title="Permalink to this heading"></a></h3>
+<p><strong>WaveDisp</strong> can be set to 0 to compute the strip-theory loads using the
+wave kinematics and dynamic pressure at the undisplaced position of the
+structure. If set to 1, the loads will be computed using the wave kinematics
+and dynamic pressure at the instantaneous displaced positions of the strip-theory
+members. Note that when wave stretching is not used (<strong>WaveStMod</strong> = 0 in
+SeaState), only the <em>X</em>- and <em>Y</em>-displacements of the strip-theory member
+nodes are considered when <strong>WaveDisp</strong> = 1, while the vertical <em>Z</em>-displacement is
+ignored. This is done to avoid discontinuous nodal loads that can result in
+unphysical structural vibration with a SubDyn substructure model. When
+<strong>WaveStMod</strong> &gt; 0 and <strong>WaveDisp</strong> = 1, displacements of strip-theory members
+in all three directions are considered when computing the wave kinematics.
+A load smoothing procedure is performed to avoid discontinuous nodal loads
+in this case.</p>
+<p><strong>AMMod</strong> controls the computation of distributed strip-theory added-mass force.
+If <strong>AMMod</strong> = 0, the strip-theory added-mass force is always evaluated up
+to the SWL while neglecting the vertical displacement of the strip-theory member
+nodes, even if wave stretching is enabled. With <strong>AMMod</strong> = 1, the strip-theory
+added-mass force is evaluated up to the instantaneous free surface if
+<strong>WaveStMod</strong> &gt; 0. The vertical displacement of strip-theory members will also be
+accounted for if <strong>WaveDisp</strong> = 1. <strong>AMMod</strong> should only be set to 0 if wave
+stretching is causing numerical instabilities with flexible fixed-bottom support
+structures modeled in SubDyn.</p>
+<p><strong>HstMod</strong> controls the computation of distributed hydrostatic loads on
+strip-theory members. If <strong>HstMod</strong> = 0, the hydrostatic pressure is always
+integrated on the instantaneous wetted surface up to the SWL, even if wave
+stretching is enabled. If <strong>HstMod</strong> = 1 and one of the wave stretching model is
+selected with <strong>WaveStMod</strong> &gt; 0, the hydrostatic pressure will be integrated up
+to the instantaneous wave free surface, considering both wave elevation and wave
+slope. If wave stretching is not used, <strong>HstMod</strong> will always be set to zero
+internally, disregarding the user input. Irrespective of <strong>HstMod</strong>, the exact
+displaced position of the structure is always used when computing hydrostatic
+loads to obtain the correct hydrostatic restoring effect.</p>
+</div>
+<div class="section" id="axial-coefficients">
+<h3><span class="section-number">4.11.2.3.5. </span>Axial Coefficients<a class="headerlink" href="#axial-coefficients" title="Permalink to this heading"></a></h3>
+<p>This and the next several sections of the input file control the
+strip-theory model for both fixed-bottom and floating substructures.</p>
+<p>HydroDyn computes lumped viscous-drag, added-mass, fluid-inertia, and
+static pressure loads at member ends (joints). The hydrodynamic
+coefficients for the lumped loads at joints are referred to
+as “axial coefficients” and include viscous-drag coefficients, <strong>AxCd</strong>,
+added-mass coefficients, <strong>AxCa</strong>, and dynamic-pressure coefficients,
+<strong>AxCp</strong>. <strong>AxCa</strong> influences both the added-mass loads and the
+scattering component of the fluid-inertia loads. Any number of separate
+axial coefficient sets, distinguished by <strong>AxCoefID</strong>, may be specified
+by setting <strong>NAxCoef</strong> &gt; 1.</p>
+<p>There are three optional inputs that affect the viscous drag force on
+endplates. These are <strong>AxFDMod</strong>, <strong>AxVnCOff</strong>, and <strong>AxFDLoFSc</strong>.</p>
+<p><strong>AxFDMod</strong> can be either 0 or 1. When set to 0, the drag force on
+endplates will be computed as in previous versions of OpenFAST.
+When set to 1, drag force will only be applied when the relative
+flow is directed away from the endplate where flow separation is
+expected, not when the relative flow is impinging on the endplate
+where flow separation is unlikely. Option 0 is suitable for
+strip-theory-only members, whereas option 1 might be better suited for
+hybrid potential-flow members with drag force. Note that option 0
+uses a leading coefficient of 1/4 when computing the drag force, while
+option 1 uses the more common leading coefficient of 1/2 since drag
+is usually only applied to one of the two endplates of the member
+instead of on both.</p>
+<p><strong>AxVnCOff</strong> is the cutoff frequency in Hz for high-pass filtering
+the relative normal flow velocity used to compute the endplate drag force.
+This input parameter should be used together with the weighting factor
+<strong>AxFDLoFSc</strong> (between 0 and 1). When <strong>AxFDLoFSc</strong> = 0, the endplate
+drag force is computed purely based on the high-pass filtered relative
+normal velocity. When <strong>AxFDLoFSc</strong> = 1, the endplate drag force is
+computed purely based on the unfiltered relative normal velocity. This
+formulation is added to allow the user to attenuate the drag force in
+response to lower-frequency motion. In some cases, this approach can
+help address the underprediction of low-frequency resonance motion.</p>
+<p>Users can opt to omit all three optional inputs. In this case, HydroDyn
+will compute the endplate drag force as in previous versions of OpenFAST.
+Alternatively, users can include only the optional parameter <strong>AxFDMod</strong>.
+No velocity filtering will be applied in this case. Lastly, users can
+include all three optional parameters to control the behavior of endplate
+drag force as explained above.</p>
+<p>Axial viscous-drag loads will be calculated for all specified member
+joints. Axial added-mass, fluid-inertia, and static-pressure loads will
+only be calculated for member joints of members not modeled with
+potential flow (<strong>PropPot</strong> = FALSE). Axial loads are only calculated at
+user-specified joints. Axial loads are not calculated at joints HydroDyn
+may automatically create as part its solution process. For example, if
+you want axial effects at a marine-growth boundary (where HydroDyn
+automatically adds a joint), you must explicitly set a joint at that
+location.</p>
+</div>
+<div class="section" id="member-joints">
+<h3><span class="section-number">4.11.2.3.6. </span>Member Joints<a class="headerlink" href="#member-joints" title="Permalink to this heading"></a></h3>
+<p>The strip-theory model is based on a substructure composed of joints
+interconnected by members. <strong>NJoints</strong> is the user-specified number of
+joints and determines the number of rows in the subsequent table.
+Because a member connects two nodes, <strong>NJoints</strong> must be exactly zero or
+greater than or equal to two. Each joint listed in the table is
+identified by a unique integer, <strong>JointID</strong>. The (<em>X</em>,<em>Y</em>,<em>Z</em>)
+coordinate of each joint is specified in the global inertial-frame
+coordinate system via <strong>Jointxi</strong>, <strong>Jointyi</strong>, and <strong>Jointzi</strong>,
+respectively. <strong>JointAxID</strong> corresponds to an entry in the AXIAL
+COEFFICIENTS table and sets the axial coefficients for a joint. This
+version of HydroDyn cannot calculate joint overlap when multiple members
+meet at a common joint; therefore <strong>JointOvrlp</strong> must be set to 0.
+Future releases will enable joint overlap calculations.</p>
+<p>Modeling a fixed-bottom substructure embedded into the seabed (e.g.,
+through piles or suction buckets) requires that the lowest member
+joint(s) lie below the water depth. Placing a joint at or above the
+water depth results in static pressure loads being applied.</p>
+</div>
+<div class="section" id="member-cross-sections">
+<h3><span class="section-number">4.11.2.3.7. </span>Member Cross-Sections<a class="headerlink" href="#member-cross-sections" title="Permalink to this heading"></a></h3>
+<p>Members in HydroDyn are assumed to be straight with either a circular cross section or a rectangular cross section. In either case, tapering is allowed, including independent tapering of the two sides of a member with rectangular cross sections. However, twisting of rectangular members is not allowed, and the four side walls of the member must remain planar.</p>
+<p>The HydroDyn primary input file contains two separate sections for member cross-section properties. The first section is for circular sections, and the second one is for rectangular sections.</p>
+<p>In the first section labeled CYLINDRICAL MEMBER CROSS-SECTION PROPERTIES, <strong>NPropSetsCyl</strong> different section defintions can be entered, with each section definition on a separate line identified by its <strong>PropSetID</strong>. The <strong>PropSetID</strong> is used in the MEMBERS table, as described in <a class="reference internal" href="#hd-members"><span class="std std-numref">Section 4.11.2.3.9</span></a> below. For each section definition, the user needs to provide the member outer diameter, <strong>PropD</strong>, and member wall thickness, <strong>PropThck</strong>. <strong>PropD</strong> determines the static buoyancy loads exterior to a member, as well as the area used in the viscous-drag calculation and the volume used in the added-mass and fluid-inertia load calculations. <strong>PropThck</strong> determines the interior volume for fluid-filled (flooded/ballasted) members.</p>
+<p>In the second section labeled RECTANGULAR MEMBER CROSS-SECTION PROPERTIES, <strong>NPropSetsRec</strong> different section definitions can be entered, with each section definition on a separate line identified by its <strong>PropSetID</strong>. The <strong>PropSetID</strong> is referenced in the MEMBERS table, as described in <a class="reference internal" href="#hd-members"><span class="std std-numref">Section 4.11.2.3.9</span></a> below. For each section definition, the user needs to provide the member outer side lengths of the rectangular section. <strong>PropA</strong> is the outer length of Side A, and <strong>PropB</strong> is the outer length of Side B (see <a class="reference internal" href="#hd-members"><span class="std std-numref">Section 4.11.2.3.9</span></a> on how the two sides are identified). <strong>PropThck</strong> is again the section wall thickness. Currently, we assume the four side walls of each rectangular section have the same uniform wall thickness, so only one <strong>PropThck</strong> can be specified for each rectangular section.</p>
+<p>Note that the <strong>PropSetID</strong> for circular and rectangular sections are independent. For instance, it is allowed to have a circular section and a rectangular section both having the same <strong>PropSetID</strong>. Depending on the section shape specified for each member, HydroDyn will look up the correct section properties.</p>
+</div>
+<div class="section" id="hydrodynamic-coefficients">
+<h3><span class="section-number">4.11.2.3.8. </span>Hydrodynamic Coefficients<a class="headerlink" href="#hydrodynamic-coefficients" title="Permalink to this heading"></a></h3>
+<p>HydroDyn computes distributed viscous-drag, added-mass, fluid-inertia, and static buoyancy loads along members.</p>
+<p>The hydrodynamic coefficients for the distributed strip-theory loads are specified using any of the three available models, which we refer to as the simple model (model 1), a depth-based model (model 2), and a member-based model (model 3). All of these models require the specification of both transverse and axial hydrodynamic coefficients for viscous drag, added mass, and dynamic pressure. The added-mass coefficient influences both the added-mass loads and the scattering component of the fluid-inertia loads. There are two separate sets of hydrodynamic coefficients with one set for the part of a member with marine growth and the other for the part without. Which members have marine growth is defined by the MARINE GROWTH table of <a class="reference internal" href="#hd-marine-growth"><span class="std std-numref">Section 4.11.2.3.11</span></a>. You can specify only one model type (<strong>MCoefMod</strong> = 1, 2, or 3) for any given member in the MEMBERS table. However, different members can use different coefficient models.</p>
+<p>In the hydrodynamic coefficient tables, <strong>Cd</strong>, <strong>Ca</strong>, and <strong>Cp</strong> refer to the viscous-drag, added-mass, and dynamic-pressure coefficients, respectively. For circular sections, these coefficients apply to loads in any radial direction due to axisymmetry. For rectangular sections, two sets of transverse <strong>Cd</strong> and <strong>Ca</strong> coefficients must be provided, with one set having the letter “A” appended for load components normal to Side A of the section (e.g., <strong>CdA</strong>) and the other with the letter “B” appended for load components normal to Side B of the section (e.g., <strong>CaB</strong>). Note that only the transverse <strong>Cd</strong> and <strong>Ca</strong> (with and without marine growth) make a distinction between the two transverse directions of rectangular sections. None of the other coefficients make this distinction. <strong>MG</strong> identifies the coefficients to be applied on member sections with marine growth (the standard values are identified without <strong>MG</strong>), and <strong>Ax</strong> identifies the axial coefficients to be applied for tapered members (the transverse coefficients are identified without <strong>Ax</strong>). The <strong>Cb</strong> coefficients allow the user to scale the hydrostatic load for, e.g., non-circular and non-rectangular member cross sections. To avoid unphysical hydrostatic loads, the <strong>Cb</strong> coefficients are not used to directly scale the distributed hydrostatic load. Instead, the local member diameter or side lengths (with marine growth if specified) are scaled by the square root of <strong>Cb</strong> when computing the hydrostatic loads. This scaling also affects the hydrostatic loads on member endplates for consistency. While the strip-theory solution assumes either a circular or a rectangular cross section, the hydrodynamic coefficients can include shape corrections.</p>
+<p>For each of the three available coefficient models, there are two separate input sections with the first one for circular sections and the second for rectangular sections. These are explained below.</p>
+<div class="section" id="simple-model-for-circular-sections">
+<h4><span class="section-number">4.11.2.3.8.1. </span>Simple Model for Circular Sections<a class="headerlink" href="#simple-model-for-circular-sections" title="Permalink to this heading"></a></h4>
+<p>This table consists of a single complete set of hydrodynamic coefficients for circular sections as follows: <strong>SimplCd</strong>, <strong>SimplCdMG</strong>, <strong>SimplCa</strong>, <strong>SimplCaMG</strong>, <strong>SimplCp</strong>, <strong>SimplCpMG</strong>, <strong>SimplAxCd</strong>, <strong>SimplAxCdMG</strong>, <strong>SimplAxCa</strong>, <strong>SimplAxCaMG</strong>, <strong>SimplAxCp</strong>, <strong>SimplAxCpMG</strong>, <strong>SimplCb</strong>, and <strong>SimplCbMG</strong>. These hydrodynamic coefficients are referenced in the MEMBERS table of <a class="reference internal" href="#hd-members"><span class="std std-numref">Section 4.11.2.3.9</span></a> by selecting <strong>MCoefMod</strong> = 1.</p>
+</div>
+<div class="section" id="simple-model-for-rectangular-sections">
+<h4><span class="section-number">4.11.2.3.8.2. </span>Simple Model for Rectangular Sections<a class="headerlink" href="#simple-model-for-rectangular-sections" title="Permalink to this heading"></a></h4>
+<p>This table consists of a single complete set of hydrodynamic coefficients for rectangular sections as follows: <strong>SimplCdA</strong>, <strong>SimplCdAMG</strong>, <strong>SimplCdB</strong>, <strong>SimplCdBMG</strong>, <strong>SimplCaA</strong>, <strong>SimplCaAMG</strong>, <strong>SimplCaB</strong>, <strong>SimplCaBMG</strong>, <strong>SimplCp</strong>, <strong>SimplCpMG</strong>, <strong>SimplAxCd</strong>, <strong>SimplAxCdMG</strong>, <strong>SimplAxCa</strong>, <strong>SimplAxCaMG</strong>, <strong>SimplAxCp</strong>, <strong>SimplAxCpMG</strong>, <strong>SimplCb</strong>, and <strong>SimplCbMG</strong>. These hydrodynamic coefficients are referenced in the MEMBERS table of <a class="reference internal" href="#hd-members"><span class="std std-numref">Section 4.11.2.3.9</span></a> by selecting <strong>MCoefMod</strong> = 1.</p>
+</div>
+<div class="section" id="depth-based-model-for-circular-sections">
+<h4><span class="section-number">4.11.2.3.8.3. </span>Depth-Based Model for Circular Sections<a class="headerlink" href="#depth-based-model-for-circular-sections" title="Permalink to this heading"></a></h4>
+<p>The depth-based coefficient model allows you to specify a series of depth-dependent coefficients for circular sections. <strong>NCoefDpthCyl</strong> is the user-specified number of depths and determines the number of rows in the subsequent table. Currently, this table requires that the rows are ordered by increasing depth, <strong>Dpth</strong>; this is equivalent to a decreasing global <em>Z</em>-coordinate. The hydrodynamic coefficients at each depth are as follows: <strong>DpthCd</strong>, <strong>DpthCdMG</strong>, <strong>DpthCa</strong>, <strong>DpthCaMG</strong>, <strong>DpthCp</strong>, <strong>DpthCpMG</strong>, <strong>DpthAxCd</strong>, <strong>DpthAxCdMG</strong>, <strong>DpthAxCa</strong>, <strong>DpthAxCaMG</strong>, <strong>DpthAxCp</strong>, <strong>DpthAxCpMG</strong>, <strong>DpthCb</strong>, and <strong>DpthCbMG</strong>. Members use these hydrodynamic coefficients by setting <strong>MCoefMod</strong> = 2. The HydroDyn module will linearly interpolate coefficients for a node whose <em>Z</em>-coordinate lies between table <em>Z</em>-coordinates.</p>
+</div>
+<div class="section" id="depth-based-model-for-rectangular-sections">
+<h4><span class="section-number">4.11.2.3.8.4. </span>Depth-Based Model for Rectangular Sections<a class="headerlink" href="#depth-based-model-for-rectangular-sections" title="Permalink to this heading"></a></h4>
+<p>The depth-based coefficient model allows you to specify a series of depth-dependent coefficients for rectangular sections. <strong>NCoefDpthRec</strong> is the user-specified number of depths and determines the number of rows in the subsequent table. Currently, this table requires that the rows are ordered by increasing depth, <strong>Dpth</strong>; this is equivalent to a decreasing global <em>Z</em>-coordinate. The hydrodynamic coefficients at each depth are as follows: <strong>DpthCdA</strong>, <strong>DpthCdAMG</strong>, <strong>DpthCdB</strong>, <strong>DpthCdBMG</strong>, <strong>DpthCaA</strong>, <strong>DpthCaAMG</strong>, <strong>DpthCaB</strong>, <strong>DpthCaBMG</strong>, <strong>DpthCp</strong>, <strong>DpthCpMG</strong>, <strong>DpthAxCd</strong>, <strong>DpthAxCdMG</strong>, <strong>DpthAxCa</strong>, <strong>DpthAxCaMG</strong>, <strong>DpthAxCp</strong>, <strong>DpthAxCpMG</strong>, <strong>DpthCb</strong>, and <strong>DpthCbMG</strong>. Members use these hydrodynamic coefficients by setting <strong>MCoefMod</strong> = 2. The HydroDyn module will linearly interpolate coefficients for a node whose <em>Z</em>-coordinate lies between table <em>Z</em>-coordinates.</p>
+</div>
+<div class="section" id="member-based-model-for-circular-sections">
+<h4><span class="section-number">4.11.2.3.8.5. </span>Member-Based Model for Circular Sections<a class="headerlink" href="#member-based-model-for-circular-sections" title="Permalink to this heading"></a></h4>
+<p>The member-based coefficient model allows you to specify a set of hydrodynamic coefficients for each member. <strong>NCoefMembersCyl</strong> is the user-specified number of members with member-based coefficients and determines the number of rows in the subsequent table. The hydrodynamic coefficients for a member distinguished by <strong>MemberID</strong> are as follows: <strong>MemberCd1</strong>, <strong>MemberCd2</strong>, <strong>MemberCdMG1</strong>, <strong>MemberCdMG2</strong>, <strong>MemberCa1</strong>, <strong>MemberCa2</strong>, <strong>MemberCaMG1</strong>, <strong>MemberCaMG2</strong>, <strong>MemberCp1</strong>, <strong>MemberCp2</strong>, <strong>MemberCpMG1</strong>, <strong>MemberCpMG2</strong>, <strong>MemberAxCd1</strong>, <strong>MemberAxCd2</strong>, <strong>MemberAxCdMG1</strong>, <strong>MemberAxCdMG2</strong>, <strong>MemberAxCa1</strong>, <strong>MemberAxCa2</strong>, <strong>MemberAxCaMG1</strong>, <strong>MemberAxCaMG2</strong>, <strong>MemberAxCp1</strong>, <strong>MemberAxCp2</strong>, <strong>MemberAxCpMG1</strong>, <strong>MemberAxCpMG2</strong>, <strong>MemberCb1</strong>, <strong>MemberCb2</strong>, <strong>MemberCbMG1</strong>, and <strong>MemberCbMG2</strong>, where <em>1</em> and <em>2</em> identify the starting and ending joint of the member, respectively. Members use these hydrodynamic coefficients by setting <strong>MCoefMod</strong> = 3.</p>
+</div>
+<div class="section" id="member-based-model-for-rectangular-sections">
+<h4><span class="section-number">4.11.2.3.8.6. </span>Member-Based Model for Rectangular Sections<a class="headerlink" href="#member-based-model-for-rectangular-sections" title="Permalink to this heading"></a></h4>
+<p>The member-based coefficient model allows you to specify a set of hydrodynamic coefficients for each member. <strong>NCoefMembersRec</strong> is the user-specified number of members with member-based coefficients and determines the number of rows in the subsequent table. The hydrodynamic coefficients for a member distinguished by <strong>MemberID</strong> are as follows: <strong>MemberCdA1</strong>, <strong>MemberCdA2</strong>, <strong>MemberCdAMG1</strong>, <strong>MemberCdAMG2</strong>, <strong>MemberCdB1</strong>, <strong>MemberCdB2</strong>, <strong>MemberCdBMG1</strong>, <strong>MemberCdBMG2</strong>, <strong>MemberCaA1</strong>, <strong>MemberCaA2</strong>, <strong>MemberCaAMG1</strong>, <strong>MemberCaAMG2</strong>, <strong>MemberCaB1</strong>, <strong>MemberCaB2</strong>, <strong>MemberCaBMG1</strong>, <strong>MemberCaBMG2</strong>, <strong>MemberCp1</strong>, <strong>MemberCp2</strong>, <strong>MemberCpMG1</strong>, <strong>MemberCpMG2</strong>, <strong>MemberAxCd1</strong>, <strong>MemberAxCd2</strong>, <strong>MemberAxCdMG1</strong>, <strong>MemberAxCdMG2</strong>, <strong>MemberAxCa1</strong>, <strong>MemberAxCa2</strong>, <strong>MemberAxCaMG1</strong>, <strong>MemberAxCaMG2</strong>, <strong>MemberAxCp1</strong>, <strong>MemberAxCp2</strong>, <strong>MemberAxCpMG1</strong>, <strong>MemberAxCpMG2</strong>, <strong>MemberCb1</strong>, <strong>MemberCb2</strong>, <strong>MemberCbMG1</strong>, and <strong>MemberCbMG2</strong>, where <em>1</em> and <em>2</em> identify the starting and ending joint of the member, respectively. Members use these hydrodynamic coefficients by setting <strong>MCoefMod</strong> = 3.</p>
+</div>
+<div class="section" id="maccamy-fuchs-diffraction-load-model">
+<h4><span class="section-number">4.11.2.3.8.7. </span>MacCamy-Fuchs diffraction load model<a class="headerlink" href="#maccamy-fuchs-diffraction-load-model" title="Permalink to this heading"></a></h4>
+<p>The MacCamy-Fuchs diffraction load model can be enabled for strip-theory
+members using any of the three coefficient models listed above. To enable
+the MacCamy-Fuchs model, all transverse <strong>Cp</strong> and <strong>CpMG</strong> coefficients
+should be replaced with the keyword <strong>MCF</strong> instead of a numeric value.
+For the simple model, this includes <strong>SimplCp</strong> and <strong>SimplCpMG</strong>. With
+the depth-based model, <strong>DpthCp</strong> and <strong>DpthCpMG</strong> on all lines should have
+the keyword <strong>MCF</strong>. Finally, for the member-based model, <strong>MemberCp1</strong>,
+<strong>MemberCp2</strong>, <strong>MemberCpMG1</strong>, and <strong>MemberCpMG2</strong> should all have the keyword
+<strong>MCF</strong> only for the members to use the MacCamy-Fuchs model. All other
+coefficients can be specified as usual, including the added-mass
+coefficients. With this configuration, the distributed transverse fluid-inertia force
+on the members will simply follow the MacCamy-Fuchs diffraction load,
+irrespective of the added-mass coefficient set by the user. In this case,
+the added-mass coefficient only affects the force component proportional
+to the structure acceleration, not the force component proportional to
+the fluid acceleration.</p>
+<p>Strictly speaking, the MacCamy-Fuchs diffraction solution only applies to
+fixed-bottom or deep-drafted vertical circular cylinders with a constant
+diameter. To ensure it is approximately applicable while still allowing for some
+flexibility, some constraints are placed on members when applying the MacCamy-Fuchs
+model:</p>
+<ul class="simple">
+<li><p>The member must have a circular cross section.</p></li>
+<li><p>The member must be surface-piercing at least when the structure is undisplaced in calm water.</p></li>
+<li><p>The member must be nearly vertical with an inclination from vertical less than 10 deg.</p></li>
+<li><p>The member can be tapered slightly, but the diameter must be within +/-10% of <strong>MCFD</strong> in the SeaState input file.</p></li>
+<li><p>The member must have a draft at least as large as 0.5<strong>MCFD</strong>.</p></li>
+</ul>
+<p>Because the MacCamy-Fuchs diffraction solution is based on linear potential-flow
+theory, second-order contributions to the fluid acceleration are neglected when
+computing the wave load even if second-order wave kinematics are enabled in SeaState.
+However, the MacCamy-Fuchs diffraction model can be used in conjunction with any of
+the available wave-stretching models.</p>
+</div>
+</div>
+<div class="section" id="members">
+<span id="hd-members"></span><h3><span class="section-number">4.11.2.3.9. </span>Members<a class="headerlink" href="#members" title="Permalink to this heading"></a></h3>
+<p><strong>NMembers</strong> is the user-specified number of members and determines the number of rows in the subsequent table. For each member distinguished by <strong>MemberID</strong>, <strong>MJointID1</strong> specifies the starting joint, and <strong>MJointID2</strong> specifies the ending joint, corresponding to an identifier (<strong>JointID</strong>) from the MEMBER JOINTS table. Likewise, <strong>MPropSetID1</strong> corresponds to the starting cross-section properties, and <strong>MProSetID2</strong> specify the ending cross-section properties, allowing for tapered members. <strong>MSecGeom</strong> indicates the cross-section shape of the member. It can be set to either 1 for circular cross section or 2 for rectangular cross section. Depending on <strong>MSecGeom</strong>, <strong>MPropSetID1</strong> and <strong>MPropSetID2</strong> either refer to entries in the CYLINDRICAL MEMBER CROSS-SECTION PROPERTIES table or the RECTANGULAR MEMBER CROSS-SECTION PROPERTIES table. <strong>MSpinOrient</strong> is an angle in degrees that specifies the spin orientation of each member, i.e., the rotation about the member axis. When <strong>MSpinOrient</strong> = 0, Side A of a rectangular section referenced in previous sections is parallel to the horizontal plane. If the member is perfectly vertical, Side A is parallel to the global <em>X</em>-axis when <strong>MSpinOrient</strong> = 0. Setting <strong>MSpinOrient</strong> to a nonzero value will rotate the member about its axis (pointing from the starting joint to the ending joint) following the right-hand convention by the prescribed angle. <strong>MSpinOrient</strong> should be specified for both members with rectangular cross sections and members with circular cross sections; however, it has no effect on the latter. <strong>MDivSize</strong> determines the maximum spacing (in meters) between simulation nodes where the distributed loads are actually computed; the smaller the number, the finer the resolution and longer the computational time.</p>
+<p>Each member in your model will have hydrodynamic coefficients, which are specified using one of the three models (<strong>MCoefMod</strong>). Model 1 uses a single set of coefficients found in the SIMPLE HYDRODYNAMIC COEFFICIENTS sections. Model 2 is depth-based, and is determined via the table found in the DEPTH-BASED HYDRODYNAMIC COEFFICIENTS sections. Model 3 specifies coefficients for a particular member, by referring to the MEMBER-BASED HYDRODYNAMIC COEFFICIENTS sections. Depending on <strong>MSecGeom</strong>, HydroDyn will either use the hydrodynamic coefficients from the input tables for circular sections or rectangular sections as appropriate. The <strong>MHstLMod</strong> switch controls the computation of hydrostatic loads on strip-theory members when <strong>PropPot</strong> = FALSE. Setting <strong>MHstLMod</strong> to 0 disables hydrostatic load. If set to 1, hydrostatic loads will be computed analytically. This approach is efficient, but it only works for fully submerged or surface-piercing members that are far from horizontal without partially wetted endplates. For nearly horizontal members close to the free surface or members that experience partially wetted endplates, a semi-numerical approach for hydrostatic load can be selected by setting <strong>MHstLMod</strong> to 2. This approach works with any member positioning in relation to the free surface at the cost of slightly longer computing time. Note that for members with rectangular cross sections, <strong>MHstLMod</strong> must be either 0 or 2. The analytical approach with <strong>MHstLMod</strong> set to 1 is not available for rectangular members. The <strong>PropPot</strong> flag indicates whether the corresponding member is included in the potential-flow solution. When <strong>PropPot</strong> = TRUE, only viscous-drag loads and ballasting loads will be computed for that member, with the assumption that all other load components are already included in the potential-flow solution.</p>
+<p>In addition to the required inputs for each member explained above, we have several optional inputs for more advanced transverse drag modeling for rectangular members. These are <strong>FDMod</strong>, <strong>VnCOffA</strong>, <strong>VnCOffB</strong>, <strong>FDLoFScA</strong>, and <strong>FDLoFScB</strong>, as shown in the example below. For each rectangular member (<strong>MSecGeom</strong> = 2), users can either omit all these optional inputs together, in which case the simple default drag formulation will be used, or provide all five optional inputs to enable more advanced drag formulation. It is not allowed to provide only a subset of these optional inputs, while omitting others. These inputs are not relevant to members with circular cross sections (<strong>MSecGeom</strong> = 1) and should be omitted for these members. HydroDyn will simply ignore these optional inputs if provided for a circular member, and a warning will be displayed at the start of the simulation.</p>
+<p>The first optional input <strong>FDMod</strong> can be 0, 1, or 2. Setting <strong>FDMod</strong> to 0 leads to the default transverse drag formulation for rectangular members. The two components of the distributed transverse drag force normal to Side A and normal to Side B are both computed using the flow and structure velocities along the axis/centerline of the member based on <strong>CdA</strong> and <strong>CdB</strong> defined previously. This is referred to as a centerline-based formulation. Consistent with the transverse drag along cylindrical members, a lead coefficient of 1/2 is used in the expression for the drag force in both directions.</p>
+<p>When <strong>FDMod</strong> is set to 1, a face-based drag formulation is used. In this case, four side-normal drag components are computed using the flow and structure velocities at the midpoints of the four sides of the rectangular section instead of at the center. On each side, only the normal components of the flow and structure velocities are used to compute the drag force. The components parallel to the side are ignored. This is analogous to the modeling of drag force on member endplates at the joints with <strong>AxFDMod</strong> set to 0, if we interpret each of the four side walls of a rectangular member as an array of endplates placed along the length of the member. Also analogous to endplate drag force, a lead coefficient of 1/4 instead of 1/2 is used when computing the drag force on each side. This is to account for the fact that we now have two drag components on the pair of sides normal to Side A and two drag components on the other pair of sides normal to Side B. This change in the lead coefficient ensures a degree of consistency with the default model of <strong>FDMod</strong> = 0.</p>
+<p>Setting <strong>FDMod</strong> to 2 also leads to a face-based drag formulation being used. However, drag force will only be applied on the sides where the relative flow is directed away from the structure, i.e., the suction side, where flow separation is expected, not on the sides the relative flow is impinging on where flow separation is unlikely. This is again analogous to the modeling of endplate drag force at the joints with <strong>AxFDMod</strong> set to 1. This suction-side-only formulation is expected to work better for hybrid members modeled by potential-flow theory. Note that with <strong>FDMod</strong> set to 2, a lead coefficient of 1/2 instead of 1/4 is again used for each side. This is because for each pair of parallel sides, typically only one side, the suction side, will have a non-zero drag force, not both. This change in the lead coefficient is again included to ensure a degree of consistency with the other two drag formulations.</p>
+<p>With <strong>FDMod</strong> set to either 1 or 2, users can optional enable high-pass filtering of the relative flow velocity when computing the transverse drag force. The cutoff frequency of the high-pass filter can be set through <strong>VnCOffA</strong> for the drag components normal to Side A and <strong>VnCOffB</strong> for the drag components normal to Side B. These inputs are analogous to <strong>AxVnCOff</strong> for the endplate drag force at the joints. The two weighting factors <strong>FDLoFScA</strong> for the drag components normal to Side A and <strong>FDLoFScB</strong> for the drag components normal to Side B control the proportion of drag force computed using the unfiltered relative flow velocity. Both inputs should be between 0 and 1. When set to 1, the drag force is computed purely based on the unfiltered relative flow velocity, equivalent to no velocity filtering. When set to 0, the drag force is computed purely based on the high-pass filtered relative flow velocity. Again, these inputs are analogous to <strong>AxFDLoFSc</strong> for the member endplate drag forces at the joints. The velocity filtering allows the user to attenuate the drag force in response to low-frequency motion. When applied to the drag force on rectangular pontoons, this option can help improve the predictions of low-frequency heave and pitch resonance motions of a floater if properly tuned. To disable velocity filtering, users can either set <strong>FDLoFScA</strong> and <strong>FDLoFScB</strong> to 1 or set <strong>VnCOffA</strong> and <strong>VnCOffB</strong> to a number equal to or less than zero. Velocity filtering is not supported with the centerline-based approach, and the relevant inputs will be ignored if <strong>FDMod</strong> = 0.</p>
+<p>If the optional inputs are omitted for a rectangular member, the default centerline-based drag formulation with <strong>FDMod</strong> = 0 will be used, and velocity filtering will not be applied. Irrespective of the choice of <strong>FDMod</strong> and velocity filtering, the member drag coefficients can be set using any of the three <strong>MCoefMod</strong> options without any additional restrictions. Finally, note that these optional inputs only affect the computation of distributed transverse drag forces perpendicular to the member axis. They do not affect the distributed axial drag force along the member axis.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>-------------------- MEMBERS -------------------------------------------------
+            2   NMembers       - Number of members (-)
+MemberID  MJointID1  MJointID2  MPropSetID1  MPropSetID2  MSecGeom    MSpinOrient   MDivSize   MCoefMod  MHstLMod   PropPot   FDMod    VnCOffA  VnCOffB  FDLoFScA FDLoFScB   [MCoefMod=1: use simple coeff table, 2: use depth-based coeff table, 3: use member-based coeff table] [PropPot/=0 if member is modeled with potential-flow theory]
+  (-)        (-)        (-)         (-)          (-)      (switch)       (deg)        (m)      (switch)  (switch)   (flag)   (switch)   (Hz)     (Hz)       (-)      (-)
+   1          1          2           1            1          1             0          0.5         1         2       FALSE   ! Circular members should not have any optional inputs. If provided, these inputs will be ignored.
+   2          3          4           1            2          2            60          0.5         2         2       FALSE       2       0.05     0.05       0.5      0.5   ! A rectangular member with optional inputs for drag.
+</pre></div>
+</div>
+</div>
+<div class="section" id="filled-members">
+<h3><span class="section-number">4.11.2.3.10. </span>Filled Members<a class="headerlink" href="#filled-members" title="Permalink to this heading"></a></h3>
+<p>Members—whether they are also modeled with potential-flow or not—may be fluid-filled, meaning that they are flooded and/or ballasted. The internal fluid introduces hydrostatic pressure on the inner wall(s) of a flooded/ballasted member. It also adds mass and moment of inertia to the member. Both distributed loads along a member and lumped loads at joints/endplates are applied.</p>
+<p>The volume of fluid in a flooded member is derived from the outer diameter/side lengths and the wall thickness of the member and a fluid-filled level. The member is either partially flooded from the lower end joint to the fluid-filled level, if the fluid-filled level is in the middle of the member, or fully flooded, if the fluid-filled level is above the top end joint of the member. In either case, a watertight bulkhead normal to the member centerline is assumed to bound the filled section of a member on either end, so there is no internal free surface nor sloshing. Furthermore, the fluid in the member is assumed to be compartmentalized such that it moves with the member in a rigid-body fashion for the purpose of computing inertial loads on the member. However, when computing the internal hydrostatic pressure, we do not assume the compartmentalization to be watertight. Therefore, the entire filled volume of a member share a single contiguous hydrostatic pressure field. As an example, a consequence of this modeling assumption is that the weight of all ballast water inside a perfectly vertical untapered spar will rest solely on the bottom endplate of the spar instead of being distributed along the spar.</p>
+<p>Furthermore, we introduce the concept of filled member groups with each group potentially containing multiple members. The internal flooded volumes of all members belonging to the same filled member group are treated as interconnected and, therefore, share the same contiguous hydrostatic pressure field. Each filled member groups is classed as either open or closed. If at least one member in a given filled member group is partially buried in the seabed, such as a monopile, we treat this group as open to the external body of sea water through the bottom opening of the partially buried member and the porous seabed. In this case, the hydrostatic pressure of the internal fluid is in equilibrium with the external body of water with zero hydrostatic pressure at the external still water level. Furthermore, the filled level of an open filled member group cannot be higher than the external still water level, and the density of the internal fluid must exactly match the external water density. Note that any member partially buried in the seabed is considered to have an open bottom, so that there is neither external nor internal hydrostatic pressure on the bottom end of the member. If none of the members of a filled member group crosses the seabed, the filled member group is considered to be closed off from the external body of water, such as the ballast chamber of a floating platform. In this case, the internal hydrostatic pressure is zero at the instantaneous highest point of the internal fluid-filled volumes of all members belonging to this group at each time step.</p>
+<p>In this input section, <strong>NFillGroups</strong> specifies the number of fluid-filled member groups and determines the number of rows in the subsequent table. <strong>FillNumM</strong> specifies the number of members in the filled group. <strong>FillMList</strong> is a list of <strong>FillNumM</strong> whitespace-separated <strong>MemberID</strong>s. <strong>FillFSLoc</strong> specifies the <em>Z</em>-height of the filled level (0 for MSL). <strong>FillDens</strong> is the density of the fluid. If <strong>FillDens</strong> = DEFAULT, then <strong>FillDens</strong> = <strong>WtrDens</strong>. This option is convenient for open filled member groups, which requires the internal fluid density to match the external water density exactly.</p>
+</div>
+<div class="section" id="marine-growth">
+<span id="hd-marine-growth"></span><h3><span class="section-number">4.11.2.3.11. </span>Marine Growth<a class="headerlink" href="#marine-growth" title="Permalink to this heading"></a></h3>
+<p>Members not also modeled with potential-flow theory may be modeled with
+marine growth. Marine growth causes three effects. First, marine growth
+introduces a static weight and mass to a member, applied as distributed
+loads along the member. Second, marine growth increases the outer
+diameter of a member, which impacts the diameter used in the
+viscous-drag, added-mass, fluid-inertia, and static buoyancy load
+calculations. Third, the hydrodynamic coefficients for viscous drag,
+added mass, and dynamic pressure are specified distinctly for marine
+growth. Rotational inertia of the marine growth is ignored and marine
+growth is not added to member ends.</p>
+<p>Marine growth is specified using a depth-based table with <strong>NMGDepths</strong>
+rows. This table must have exactly zero or at least 2 rows. The columns
+in the table include the local depth, <strong>MGDpth</strong>, the marine growth
+thickness, <strong>MGThck</strong>, and marine growth density, <strong>MGDens</strong>. Marine
+growth for a particular location in the substructure geometry is added
+by linearly interpolating between the marine-growth table entries. The
+smallest and largest values of <strong>MGDpth</strong> define the marine growth
+region. Outside this region the marine growth thickness is set to zero.
+If you want sub-regions of zero marine growth thickness within these
+bounds, you must generate depth entries which explicitly set <strong>MGThck</strong>
+to zero. The hydrodynamic coefficient tables contain coefficients with
+and without marine growth. If <strong>MGThck</strong> = 0 for a particular node, the
+coefficients not associated with marine growth are used.</p>
+</div>
+<div class="section" id="member-output-list">
+<span id="hd-member-output-list"></span><h3><span class="section-number">4.11.2.3.12. </span>Member Output List<a class="headerlink" href="#member-output-list" title="Permalink to this heading"></a></h3>
+<p>HydroDyn can output distributed load and wave kinematic quantities at up
+to 9 locations on up to 9 different members, for a total of 81 possible
+local member output locations. <strong>NMOutputs</strong> specifies the number of
+members. You must create a table entry for each requested member. Within
+a table entry, <strong>MemberID</strong> is the ID specified in the MEMBERS table,
+and <strong>NOutLoc</strong> specifies how many output locations are generated for
+this member. <strong>NodeLocs</strong> specifies those locations as a normalized
+distance from the starting joint (0.0) to the ending joint (1.0) of the
+member. If the chosen location does not align with a calculation node,
+the results at the two surrounding nodes will be linearly interpolated.
+The outputs specified in <a class="reference internal" href="appendix.html#hd-output-channels"><span class="std std-ref">Appendix C. List of Output Channels</span></a> determines which
+quantities are actually output at these locations.</p>
+</div>
+<div class="section" id="joint-output-list">
+<span id="hd-joint-output-list"></span><h3><span class="section-number">4.11.2.3.13. </span>Joint Output List<a class="headerlink" href="#joint-output-list" title="Permalink to this heading"></a></h3>
+<p>HydroDyn can output lumped load and wave kinematic quantities at up to 9
+different joints. <strong>JOutLst</strong> contains a list of <strong>NJOutputs</strong> number of
+<strong>JointIDs</strong>. The outputs specified in <a class="reference internal" href="appendix.html#hd-output-channels"><span class="std std-ref">Appendix C. List of Output Channels</span></a>
+determines which quantities are actually output at these joints.</p>
+</div>
+<div class="section" id="output">
+<h3><span class="section-number">4.11.2.3.14. </span>Output<a class="headerlink" href="#output" title="Permalink to this heading"></a></h3>
+<p>Specifying <strong>HDSum</strong> = TRUE causes HydroDyn to generate a summary file
+with name <strong>OutRootname</strong><em>.HD.sum</em>. <strong>OutRootName</strong> is either
+specified in the HYDRODYN section of the driver input file when running
+HydroDyn standalone, or by the OpenFAST program when running a coupled
+simulation. See <a class="reference internal" href="output_files.html#hd-summary-file"><span class="std std-numref">Section 4.11.3.2</span></a> for summary file details.</p>
+<p>For this version, <strong>OutAll</strong> must be set to FALSE. In future versions,
+setting <strong>OutAll</strong> = TRUE will cause HydroDyn to auto-generate outputs
+for every joint and member in the input file.</p>
+<p>If <strong>OutSwtch</strong> is set to 1, outputs are sent to a file with the name
+<code class="docutils literal notranslate"><span class="pre">OutRootname.HD.out</span></code>. If <strong>OutSwtch</strong> is set to 2, outputs are
+sent to the calling program (OpenFAST) for writing. If <strong>OutSwtch</strong> is set
+to 3, both file outputs occur. In standalone mode, setting <strong>OutSwitch</strong>
+to 2 results in no output file being produced.</p>
+<p>The <strong>OutFmt</strong> and <strong>OutSFmt</strong> parameters control the formatting for the
+output data and the channel headers, respectively. HydroDyn currently
+does not check the validity of these format strings. They need to be
+valid Fortran format strings. Since the <strong>OutSFmt</strong> is used for the
+column header and <strong>OutFmt</strong> is for the channel data, in order for the
+headers and channel data to align properly, the width specification
+should match. For example,</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;ES11.4&quot;</span><span class="w"> </span><span class="n">OutFmt</span>
+<span class="s2">&quot;A11&quot;</span><span class="w"> </span><span class="n">OutSFmt</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="output-channels">
+<h3><span class="section-number">4.11.2.3.15. </span>Output Channels<a class="headerlink" href="#output-channels" title="Permalink to this heading"></a></h3>
+<p>This section controls output quantities generated by HydroDyn. Enter one
+or more lines containing quoted strings that in turn contain one or more
+output parameter names. Separate output parameter names by any
+combination of commas, semicolons, spaces, and/or tabs. If you prefix a
+parameter name with a minus sign, “-“, underscore, “_”, or the
+characters “m” or “M”, HydroDyn will multiply the value for that channel
+by –1 before writing the data. The parameters are not necessarily
+written in the order they are listed in the input file. HydroDyn allows
+you to use multiple lines so that you can break your list into
+meaningful groups and so the lines can be shorter. You may enter
+comments after the closing quote on any of the lines. Entering a line
+with the string “END” at the beginning of the line or at the beginning
+of a quoted string found at the beginning of the line will cause
+HydroDyn to quit scanning for more lines of channel names. Member- and
+joint-related quantities are generated for the requested
+<a class="reference internal" href="#hd-member-output-list"><span class="std std-ref">Member Output List</span></a> and <a class="reference internal" href="#hd-joint-output-list"><span class="std std-ref">Joint Output List</span></a>.
+If HydroDyn encounters an unknown/invalid
+channel name, it warns the users but will remove the suspect channel
+from the output file. Please refer to Appendix C for a complete list of
+possible output parameters.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="getting_started.html" class="btn btn-neutral float-left" title="4.11.1. Installation and Getting Started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="output_files.html" class="btn btn-neutral float-right" title="4.11.3. Output Files" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

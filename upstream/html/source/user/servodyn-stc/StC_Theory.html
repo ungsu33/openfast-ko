@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.17.2. Theory Manual for the Tuned Mass Damper Module in OpenFAST &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.17.3. TLCD: Derivations of Equation of Motion" href="StC_TLCD_Theory.html" />
+    <link rel="prev" title="4.17.1. Input Files" href="StC_input.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/servodyn-stc/StC_Theory.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="StC_index.html">4.17. Structural Control</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="StC_input.html">4.17.1. Input Files</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.17.2. Theory Manual for the Tuned Mass Damper Module in OpenFAST</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#theoretical-background">4.17.2.1. Theoretical Background</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#code-modifications">4.17.2.2. Code Modifications</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#acknowledgements">4.17.2.3. Acknowledgements</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="StC_TLCD_Theory.html">4.17.3. TLCD: Derivations of Equation of Motion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.17.4. References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="StC_index.html"><span class="section-number">4.17. </span>Structural Control (SrvD)</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.17.2. </span>Theory Manual for the Tuned Mass Damper Module in OpenFAST</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/servodyn-stc/StC_Theory.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="theory-manual-for-the-tuned-mass-damper-module-in-openfast">
+<span id="stc-theory"></span><h1><span class="section-number">4.17.2. </span>Theory Manual for the Tuned Mass Damper Module in OpenFAST<a class="headerlink" href="#theory-manual-for-the-tuned-mass-damper-module-in-openfast" title="Permalink to this heading"></a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Author</dt>
+<dd class="field-odd"><p>William La Cava &amp; Matthew A. Lackner
+Department of Mechanical and Industrial Engineering
+University of Massachusetts Amherst
+Amherst, MA 01003
+<code class="docutils literal notranslate"><span class="pre">wlacava&#64;umass.edu</span></code>, <code class="docutils literal notranslate"><span class="pre">lackner&#64;ecs.umass.edu</span></code></p>
+</dd>
+</dl>
+<p>This document was edited by Jason M. Jonkman of NREL
+to include an independent vertically oriented TMD in OpenFAST.
+<code class="docutils literal notranslate"><span class="pre">jason.jonkman&#64;nrel.gov</span></code></p>
+<p>This manual describes updated functionality in OpenFAST that simulates
+the addition of tuned mass dampers (TMDs) for structural control. The
+dampers can be added to the blades, nacelle, tower, or substructure. For
+application studies of these systems, refer to
+<span id="id1">[<a class="reference internal" href="zrefs.html#id3" title="Matthew A. Lackner and Mario A. Rotea. Passive structural control of offshore wind turbines. Wind energy, 14(3):373–388, 2011. URL: http://onlinelibrary.wiley.com/doi/10.1002/we.426/full.">stc-LR11a</a>, <a class="reference internal" href="zrefs.html#id7" title="Matthew A. Lackner and Mario A. Rotea. Structural control of floating wind turbines. Mechatronics, 21(4):704–719, 2011. URL: http://www.sciencedirect.com/science/article/pii/S0957415810002072.">stc-LR11b</a>, <a class="reference internal" href="zrefs.html#id2" title="Hazim Namik, M. A. Rotea, and Matthew Lackner. Active structural control with actuator dynamics on a floating wind turbine. In Proceedings of the 51st AIAA Aerospace Sciences Meeting, 7–10. 2013. URL: http://arc.aiaa.org/doi/pdf/10.2514/6.2013-455.">stc-NRL13</a>, <a class="reference internal" href="zrefs.html#id4" title="G. Stewart and M. A. Lackner. Optimization of a passive tuned mass damper for reducing loads in offshore wind turbines. IEEE Transactions on Control Systems Technology, 21(4):1090–1104, 2013.">stc-SL13</a>, <a class="reference internal" href="zrefs.html#id6" title="Gordon M. Stewart and Matthew A. Lackner. The effect of actuator dynamics on active structural control of offshore wind turbines. Engineering Structures, 33(5):1807–1816, 2011. URL: http://www.sciencedirect.com/science/article/pii/S0141029611000915.">stc-SL11</a>, <a class="reference internal" href="zrefs.html#id5" title="Gordon M. Stewart and Matthew A. Lackner. The impact of passive tuned mass dampers and wind–wave misalignment on offshore wind turbine loads. Engineering Structures, 73:54–61, 2014. URL: http://www.sciencedirect.com/science/article/pii/S0141029614002673.">stc-SL14</a>]</span>.
+The TMDs are three independent, 1 DOF, linear mass spring damping
+elements that act in the local <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span>, and <span class="math notranslate nohighlight">\(z\)</span>
+coordinate systems of each component. The other functionality of the
+structural control (StC) module, including an omnidirectional TMD and
+TLCD are not documented herein. We first present the theoretical
+background and then describe the code changes.</p>
+<div class="section" id="theoretical-background">
+<h2><span class="section-number">4.17.2.1. </span>Theoretical Background<a class="headerlink" href="#theoretical-background" title="Permalink to this heading"></a></h2>
+<div class="section" id="definitions">
+<h3><span class="section-number">4.17.2.1.1. </span>Definitions<a class="headerlink" href="#definitions" title="Permalink to this heading"></a></h3>
+<div class="docutils container" id="tab-defs">
+<table class="docutils align-default" id="id4">
+<caption><span class="caption-number">Table 4.9 </span><span class="caption-text">Definitions</span><a class="headerlink" href="#id4" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 46%" />
+<col style="width: 54%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(O\)</span></p></td>
+<td><p>origin point of global inertial reference frame</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(P\)</span></p></td>
+<td><p>origin point of non-inertial reference frame fixed to  component (blade, nacelle, tower, substructure) where TMDs are at rest</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(TMD\)</span></p></td>
+<td><p>location point of a TMD</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(G\)</span></p></td>
+<td><p>axis orientation of global reference frame</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(N\)</span></p></td>
+<td><p>axis orientation of local component reference frame with  unit vectors <span class="math notranslate nohighlight">\(\hat{\imath}, \hat{\jmath}, \hat{k}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\vec{r}_{_{_{TMD/O_G}}} = \left[ \begin{array}{c} x \\ y\\ z \end{array} \right]_{_{TMD/O_G}}\)</span></p></td>
+<td><p>position of a TMD with respect to (w.r.t.) <span class="math notranslate nohighlight">\(O\)</span> with orientation <span class="math notranslate nohighlight">\(G\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\vec{r}_{_{_{TMD/P_N}}} = \left[ \begin{array}{c} x \\ y\\ z \end{array} \right]_{_{TMD/P_N}}\)</span></p></td>
+<td><p>position of a TMD w.r.t. <span class="math notranslate nohighlight">\(P_N\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\vec{r}_{_{_{TMD_X}}}\)</span></p></td>
+<td><p>position vector for <span class="math notranslate nohighlight">\(TMD_X\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\vec{r}_{_{_{TMD_Y}}}\)</span></p></td>
+<td><p>position vector for <span class="math notranslate nohighlight">\(TMD_Y\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\vec{r}_{_{_{TMD_Z}}}\)</span></p></td>
+<td><p>position vector for <span class="math notranslate nohighlight">\(TMD_Z\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\vec{r}_{_{P/O_G}} =\left[ \begin{array}{c} x \\ y\\ z \end{array} \right]_{_{P/O_G}}\)</span></p></td>
+<td><p>position vector of component w.r.t. <span class="math notranslate nohighlight">\(O_G\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(R_{_{N/G}}\)</span></p></td>
+<td><p>3 x 3 rotation matrix transforming orientation <span class="math notranslate nohighlight">\(G\)</span> to <span class="math notranslate nohighlight">\(N\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(R_{_{G/N}} = R_{_{N/G}}^T\)</span></p></td>
+<td><p>transformation from <span class="math notranslate nohighlight">\(N\)</span> to <span class="math notranslate nohighlight">\(G\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\vec{\omega}_{_{N/O_N}} = \dot{\left[ \begin{array}{c} \theta \\ \phi \\ \psi \end{array} \right]}_{_{N/O_N}}\)</span></p></td>
+<td><p>angular velocity of component in orientation <span class="math notranslate nohighlight">\(N\)</span>; defined likewise for  <span class="math notranslate nohighlight">\(G\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\dot{\vec{\omega}}_{_{N/O_N}} = \vec{\alpha}_{_{N/O_N}}\)</span></p></td>
+<td><p>angular acceleration of component</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\vec{a}_{G/O_G} = \left[ \begin{array}{c}0 \\ 0\\ -g \end{array} \right]_{/O_G}\)</span></p></td>
+<td><p>gravitational acceleration in global coordinates</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\vec{a}_{G/O_N} = R_{_{N/G}} \vec{a}_{G/O_G} = \left[ \begin{array}{c}a_{_{G_X}} \\ a_{_{G_Y}}\\ a_{_{G_Z}} \end{array} \right]_{/O_N}\)</span></p></td>
+<td><p>gravity w.r.t. <span class="math notranslate nohighlight">\(O_N\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="equations-of-motion">
+<h3><span class="section-number">4.17.2.1.2. </span>Equations of motion<a class="headerlink" href="#equations-of-motion" title="Permalink to this heading"></a></h3>
+<p>The position vectors of the TMDs in the two reference frames <span class="math notranslate nohighlight">\(O\)</span>
+and <span class="math notranslate nohighlight">\(P\)</span> are related by</p>
+<div class="math notranslate nohighlight">
+\[\vec{r}_{_{TMD/O_G}} =  \vec{r}_{_{P/O_G}} +  \vec{r}_{_{TMD/P_G}}\]</div>
+<p>Expressed in orientation <span class="math notranslate nohighlight">\(N\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\vec{r}_{_{TMD/O_N}} =  \vec{r}_{_{P/O_N}} +  \vec{r}_{_{TMD/P_N}}\]</div>
+<div class="math notranslate nohighlight">
+\[\Rightarrow \vec{r}_{_{TMD/P_N}} =  \vec{r}_{_{TMD/O_N}} -  \vec{r}_{_{P/O_N}}\]</div>
+<p>Differentiating, <a class="footnote-reference brackets" href="#id3" id="id2">1</a></p>
+<div class="math notranslate nohighlight">
+\[\dot{\vec{r}}_{_{TMD/P_N}}= \dot{\vec{r}}_{_{TMD/O_N}}
+   - \dot{\vec{r}}_{_{P/O_N}}
+   - \vec{\omega}_{_{N/O_N}} \times \vec{r}_{_{TMD/P_N}}\]</div>
+<p>differentiating again gives the acceleration of the TMD w.r.t. <span class="math notranslate nohighlight">\(P\)</span>
+(the nacelle position), oriented with <span class="math notranslate nohighlight">\(N\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-accel">
+<span class="eqno">(4.207)<a class="headerlink" href="#equation-accel" title="Permalink to this equation"></a></span>\[\begin{split}\begin{array}{cc}
+   \ddot{\vec{r}}_{_{TMD/P_N}} =
+            &amp;  \ddot{\vec{r}}_{_{TMD/O_N}}
+               - \ddot{\vec{r}}_{_{P/O_N}} - \vec{\omega}_{_{N/O_N}}
+               \times (\vec{\omega}_{_{N/O_N}} \times \vec{r}_{_{TMD/P_N}}) \\[1.1em]
+            &amp;- \vec{\alpha}_{_{N/O_N}} \times \vec{r}_{_{TMD/P_N}}
+               - 2 \vec{\omega}_{_{N/O_N}} \times \dot{\vec{r}}_{_{TMD/P_N}}
+\end{array}\end{split}\]</div>
+<p>The right-hand side contains the following terms:</p>
+<div class="docutils container" id="tab">
+<table class="docutils align-default" id="id5">
+<caption><span class="caption-number">Table 4.10 </span><span class="caption-text">RHS terms</span><a class="headerlink" href="#id5" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 47%" />
+<col style="width: 53%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\ddot{\vec{r}}_{_{TMD/O_N}}\)</span></p></td>
+<td><p>acceleration of the TMD in the <em>inertial</em> frame <span class="math notranslate nohighlight">\(O_N\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\ddot{\vec{r}}_{_{P/O_N}} = R_{_{N/G}} \ddot{\vec{r}}_{_{P/O_G}}\)</span></p></td>
+<td><p>acceleration of the Nacelle origin <span class="math notranslate nohighlight">\(P\)</span> w.r.t. <span class="math notranslate nohighlight">\(O_N\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\vec{\omega}_{_{N/O_N}} = R_{_{N/G}} \vec{\omega}_{_{N/O_G}}\)</span></p></td>
+<td><p>angular velocity of nacelle w.r.t. <span class="math notranslate nohighlight">\(O_N\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\vec{\omega}_{_{N/O_N}} \times (\vec{\omega}_{_{N/O_N}} \times \vec{r}_{_{TMD/P_N}})\)</span></p></td>
+<td><p>Centripetal acceleration</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\vec{\alpha}_{_{N/O_N}} \times \vec{r}_{_{TMD/P_N}}\)</span></p></td>
+<td><p>Tangential acceleration</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(2\vec{\omega}_{_{N/O_N}} \times \dot{\vec{r}}_{_{TMD/P_N}}\)</span></p></td>
+<td><p>Coriolis acceleration</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The acceleration in the inertial frame
+<span class="math notranslate nohighlight">\(\ddot{\vec{r}}_{_{TMD/O_N}}\)</span> can be replaced with a force balance</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+   \ddot{\vec{r}}_{_{TMD/O_N}} = \left[
+      \begin{array}{c} \ddot{x} \\
+         \ddot{y} \\
+         \ddot{z}
+      \end{array}
+   \right]_{_{TMD/O_N}} = \frac{1}{m} \left[
+      \begin{array}{c}
+         \sum{F_X} \\
+         \sum{F_Y} \\
+         \sum{F_Z}
+      \end{array}
+   \right]_{_{TMD/O_N}} = \frac{1}{m} \vec{F}_{_{TMD/O_N}}
+ \end{aligned}\end{split}\]</div>
+<p>Substituting the force balance into Equation <a class="reference internal" href="#equation-accel">(4.207)</a> gives
+the general equation of motion for a TMD:</p>
+<div class="math notranslate nohighlight" id="equation-eom">
+<span class="eqno">(4.208)<a class="headerlink" href="#equation-eom" title="Permalink to this equation"></a></span>\[\begin{split}\begin{array}{cc}
+   \ddot{\vec{r}}_{_{TMD/P_N}} = &amp; \frac{1}{m} \vec{F}_{_{TMD/O_N}}
+      - \ddot{\vec{r}}_{_{P/O_N}}
+      - \vec{\omega}_{_{N/O_N}} \times (\vec{\omega}_{_{N/O_N}}
+            \times \vec{r}_{_{TMD/P_N}}) \\[1.1em]
+   &amp; - \vec{\alpha}_{_{N/O_N}} \times \vec{r}_{_{TMD/P_N}}
+      - 2 \vec{\omega}_{_{N/O_N}} \times \dot{\vec{r}}_{_{TMD/P_N}}
+\end{array}\end{split}\]</div>
+<p>We will now solve the equations of motion for <span class="math notranslate nohighlight">\(TMD_X\)</span>,
+<span class="math notranslate nohighlight">\(TMD_Y\)</span>, and <span class="math notranslate nohighlight">\(TMD_Z\)</span>.</p>
+<div class="section" id="tmd-x">
+<h4><span class="section-number">4.17.2.1.2.1. </span>TMD_X :<a class="headerlink" href="#tmd-x" title="Permalink to this heading"></a></h4>
+<p>The external forces <span class="math notranslate nohighlight">\(\vec{F}_{_{TMD_X/O_N}}\)</span> are given by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{F}_{_{TMD_X/O_N}} = \left[
+   \begin{array}{c}
+      - c_x \dot{x}_{_{TMD_X/P_N}}
+      - k_x x_{_{TMD_X/P_N}}
+      + m_x a_{_{G_X/O_N}}
+      + F_{ext_x}
+      + F_{StopFrc_{X}} \\
+      F_{Y_{_{TMD_X/O_N}}}
+      + m_x a_{_{G_Y/O_N}}  \\
+      F_{Z_{_{TMD_X/O_N}}}
+      + m_x a_{_{G_Z/O_N}}
+   \end{array}
+\right]\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(TMD_X\)</span> is fixed to frame <span class="math notranslate nohighlight">\(N\)</span> in the <span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(z\)</span>
+directions so that</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}{r}_{_{TMD_X/P_N}} = \left[
+   \begin{array}{c}
+      x_{_{TMD_X/P_N}} \\
+      0 \\
+      0
+   \end{array}
+\right]\end{split}\]</div>
+<p>The other components of Eqn. <a class="reference internal" href="#equation-eom">(4.208)</a> are:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{\omega}_{_{N/O_N}} \times (\vec{\omega}_{_{N/O_N}} \times \vec{r}_{_{TMD_X/P_N}})
+      = x_{_{TMD_X/P_N}} \left[
+   \begin{array}{c}
+      - (\dot{\phi}_{_{N/O_N}}^2 + \dot{\psi}_{_{N/O_N}}^2) \\
+      \dot{\theta}_{_{N/O_N}}\dot{\phi}_{_{N/O_N}} \\
+      \dot{\theta}_{_{N/O_N}}\dot{\psi}_{_{N/O_N}}
+    \end{array}
+\right]\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}2\vec{\omega}_{_{N/O_N}} \times \dot{\vec{r}}_{_{TMD_X/P_N}}
+      = \dot{x}_{_{TMD_X/P_N}} \left[
+   \begin{array}{c} 0 \\
+      2\dot{\psi}_{_{N/O_N}} \\
+      -2\dot{\phi}_{_{N/O_N}}
+   \end{array}
+\right]\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{\alpha}_{_{N/O_N}} \times \vec{r}_{_{TMD_X/P_N}} = x_{_{TMD_X/P_N}} \left[ \begin{array}{c} 0 \\ \ddot{\psi}_{_{N/O_N}} \\ -\ddot{\phi}_{_{N/O_N}}\end{array} \right]\end{split}\]</div>
+<p>Therefore <span class="math notranslate nohighlight">\(\ddot{x}_{_{TMD_X/P_N}}\)</span> is governed by the equations</p>
+<div class="math notranslate nohighlight" id="equation-eom-xx">
+<span class="eqno">(4.209)<a class="headerlink" href="#equation-eom-xx" title="Permalink to this equation"></a></span>\[\begin{split}\begin{aligned}
+   \ddot{x}_{_{TMD_X/P_N}} =&amp; (\dot{\phi}_{_{N/O_N}}^2
+      + \dot{\psi}_{_{N/O_N}}^2-\frac{k_x}{m_x}) x_{_{TMD_X/P_N}}
+      - (\frac{c_x}{m_x}) \dot{x}_{_{TMD_X/P_N}}
+      -\ddot{x}_{_{P/O_N}}+a_{_{G_X/O_N}} \\
+   &amp;+ \frac{1}{m_x} ( F_{ext_X} + F_{StopFrc_{X}})
+\end{aligned}\end{split}\]</div>
+<p>The forces <span class="math notranslate nohighlight">\(F_{Y_{_{TMD_X/O_N}}}\)</span> and <span class="math notranslate nohighlight">\(F_{Z_{_{TMD_X/O_N}}}\)</span>
+are solved noting
+<span class="math notranslate nohighlight">\(\ddot{y}_{_{TMD_X/P_N}} = \ddot{z}_{_{TMD_X/P_N}} = 0\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eom-xy">
+<span class="eqno">(4.210)<a class="headerlink" href="#equation-eom-xy" title="Permalink to this equation"></a></span>\[F_{Y_{_{TMD_X/O_N}}} = m_x \left( - a_{_{G_Y/O_N}} +\ddot{y}_{_{P/O_N}}
+   + (\ddot{\psi}_{_{N/O_N}}
+   + \dot{\theta}_{_{N/O_N}}\dot{\phi}_{_{N/O_N}} ) x_{_{TMD_X/P_N}}
+   + 2\dot{\psi}_{_{N/O_N}} \dot{x}_{_{TMD_X/P_N}} \right)\]</div>
+<div class="math notranslate nohighlight" id="equation-eom-xz">
+<span class="eqno">(4.211)<a class="headerlink" href="#equation-eom-xz" title="Permalink to this equation"></a></span>\[F_{Z_{_{TMD_X/O_N}}} = m_x \left( - a_{_{G_Z/O_N}} +\ddot{z}_{_{P/O_N}}
+   - (\ddot{\phi}_{_{N/O_N}}
+   - \dot{\theta}_{_{N/O_N}}\dot{\psi}_{_{N/O_N}} ) x_{_{TMD_X/P_N}}
+   - 2\dot{\phi}_{_{N/O_N}} \dot{x}_{_{TMD_X/P_N}} \right)\]</div>
+</div>
+<div class="section" id="tmd-y">
+<h4><span class="section-number">4.17.2.1.2.2. </span>TMD_Y:<a class="headerlink" href="#tmd-y" title="Permalink to this heading"></a></h4>
+<p>The external forces <span class="math notranslate nohighlight">\(\vec{F}_{_{TMD_Y/P_N}}\)</span> on <span class="math notranslate nohighlight">\(TMD_Y\)</span> are
+given by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{F}_{_{TMD_Y/P_N}} =  \left[
+   \begin{array}{c}
+      F_{X_{_{TMD_Y/O_N}}} + m_y a_{_{G_X/O_N}}\\
+      - c_y \dot{y}_{_{TMD_Y/P_N}} - k_y y_{_{TMD_Y/P_N}}
+      + m_y a_{_{G_Y/O_N}} + F_{ext_y} + F_{StopFrc_{Y}} \\
+      F_{Z_{_{TMD_Y/O_N}}}+ m_y a_{_{G_Z/O_N}}
+   \end{array}
+\right]\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(TMD_Y\)</span> is fixed to frame <span class="math notranslate nohighlight">\(N\)</span> in the <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(z\)</span>
+directions so that</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}{r}_{_{TMDYX/P_N}} = \left[
+   \begin{array}{c}
+      0 \\
+      y_{_{TMD_Y/P_N}} \\
+      0
+   \end{array}
+\right]\end{split}\]</div>
+<p>The other components of Eqn. <a class="reference internal" href="#equation-eom">(4.208)</a> are:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{\omega}_{_{N/O_N}} \times (\vec{\omega}_{_{N/O_N}}
+      \times \vec{r}_{_{TMD_Y/P_N}})
+   = y_{_{TMD_Y/P_N}}
+   \left[
+      \begin{array}{c}
+         \dot{\theta}_{_{N/O_N}}\dot{\phi}_{_{N/O_N}} \\
+         -(\dot{\theta}_{_{N/O_N}}^2 + \dot{\psi}_{_{N/O_N}}^2)  \\
+         \dot{\phi}_{_{N/O_N}}\dot{\psi}_{_{N/O_N}}
+      \end{array}
+   \right]\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}2\vec{\omega}_{_{N/O_N}} \times \dot{\vec{r}}_{_{TMD_Y/P_N}}
+   = \dot{y}_{_{TMD_Y/P_N}} \left[
+      \begin{array}{c}
+         - 2 \dot{\psi}_{_{N/O_N}} \\
+         0 \\
+         2 \dot{\theta}_{_{N/O_N}}
+      \end{array}
+   \right]\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{\alpha}_{_{N/O_N}} \times \vec{r}_{_{TMD_Y/P_N}}
+   = y_{_{TMD_Y/P_N}} \left[
+      \begin{array}{c}
+         - \ddot{\psi}_{_{N/O_N}} \\
+         0 \\
+         \ddot{\theta}_{_{N/O_N}}
+      \end{array}
+   \right]\end{split}\]</div>
+<p>Therefore <span class="math notranslate nohighlight">\(\ddot{y}_{_{TMD_Y/P_N}}\)</span> is governed by the equations</p>
+<div class="math notranslate nohighlight" id="equation-eom-yy">
+<span class="eqno">(4.212)<a class="headerlink" href="#equation-eom-yy" title="Permalink to this equation"></a></span>\[\begin{split}\begin{aligned}
+   \ddot{y}_{_{TMD_Y/P_N}}
+      = &amp; (\dot{\theta}_{_{N/O_N}}^2
+         + \dot{\psi}_{_{N/O_N}}^2-\frac{k_y}{m_y}) y_{_{TMD_Y/P_N}}
+         - (\frac{c_y}{m_y}) \dot{y}_{_{TMD_Y/P_N}}
+         -\ddot{y}_{_{P/O_N}} + a_{_{G_Y/O_N}}\\
+      &amp;+ \frac{1}{m_y} (F_{ext_Y} + F_{StopFrc_{Y}})
+\end{aligned}\end{split}\]</div>
+<p>The forces <span class="math notranslate nohighlight">\(F_{X_{_{TMD_Y/O_N}}}\)</span> and <span class="math notranslate nohighlight">\(F_{Z_{_{TMD_Y/O_N}}}\)</span>
+are solved noting
+<span class="math notranslate nohighlight">\(\ddot{x}_{_{TMD_Y/P_N}} = \ddot{z}_{_{TMD_Y/P_N}} = 0\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eom-yx">
+<span class="eqno">(4.213)<a class="headerlink" href="#equation-eom-yx" title="Permalink to this equation"></a></span>\[F_{X_{_{TMD_Y/O_N}}} = m_y \left( - a_{_{G_X/O_N}} + \ddot{x}_{_{P/O_N}}
+   - (\ddot{\psi}_{_{N/O_N}}
+   - \dot{\theta}_{_{N/O_N}}\dot{\phi}_{_{N/O_N}}) y_{_{TMD_Y/P_N}}
+   - 2\dot{\psi}_{_{N/O_N}} \dot{y}_{_{TMD_Y/P_N}} \right)\]</div>
+<div class="math notranslate nohighlight" id="equation-eom-yz">
+<span class="eqno">(4.214)<a class="headerlink" href="#equation-eom-yz" title="Permalink to this equation"></a></span>\[F_{Z_{_{TMD_Y/O_N}}} = m_y \left( - a_{_{G_Z/O_N}} + \ddot{z}_{_{P/O_N}}
+   + (\ddot{\theta}_{_{N/O_N}}
+   + \dot{\phi}_{_{N/O_N}}\dot{\psi}_{_{N/O_N}}) y_{_{TMD_Y/P_N}}
+   + 2\dot{\theta}_{_{N/O_N}} \dot{y}_{_{TMD_Y/P_N}} \right)\]</div>
+</div>
+<div class="section" id="tmd-z">
+<h4><span class="section-number">4.17.2.1.2.3. </span>TMD_Z :<a class="headerlink" href="#tmd-z" title="Permalink to this heading"></a></h4>
+<p>The external forces <span class="math notranslate nohighlight">\(\vec{F}_{_{TMD_Z/O_N}}\)</span> are given by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{F}_{_{TMD_Z/O_N}} = \left[
+   \begin{array}{c}
+      F_{X_{_{TMD_Z/O_N}}} + m_z a_{_{G_X/O_N}} \\
+      F_{Y_{_{TMD_Z/O_N}}} + m_z a_{_{G_Y/O_N}} \\
+      - c_z \dot{z}_{_{TMD_Z/P_N}} - k_z z_{_{TMD_Z/P_N}}
+      + m_z a_{_{G_Z/O_N}} + F_{ext_z} + F_{StopFrc_{Z}} + F_{Z_{PreLoad}}
+   \end{array}
+\right]\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(F_{Z_{PreLoad}}\)</span> is a spring pre-load to shift the neutral position
+when gravity acts upon the mass for the <span class="math notranslate nohighlight">\(TMD_Z\)</span>.
+<span class="math notranslate nohighlight">\(TMD_Z\)</span> is fixed to frame <span class="math notranslate nohighlight">\(N\)</span> in the <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>
+directions so that</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}{r}_{_{TMD_Z/P_N}} = \left[
+   \begin{array}{c}
+      0 \\
+      0 \\
+      z_{_{TMD_Z/P_N}}
+   \end{array}
+\right]\end{split}\]</div>
+<p>The other components of Eqn. <a class="reference internal" href="#equation-eom">(4.208)</a> are:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{\omega}_{_{N/O_N}} \times (\vec{\omega}_{_{N/O_N}} \times \vec{r}_{_{TMD_Z/P_N}})
+   = z_{_{TMD_Z/P_N}} \left[
+      \begin{array}{c}
+         \dot{\theta}_{_{N/O_N}}\dot{\psi}_{_{N/O_N}} \\
+         \dot{\phi}_{_{N/O_N}}\dot{\psi}_{_{N/O_N}} \\
+         -(\dot{\theta}_{_{N/O_N}}^2 + \dot{\phi}_{_{N/O_N}}^2)
+      \end{array}
+   \right]\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}2\vec{\omega}_{_{N/O_N}} \times \dot{\vec{r}}_{_{TMD_Z/P_N}}
+   = \dot{z}_{_{TMD_Z/P_N}} \left[
+      \begin{array}{c}
+         2\dot{\phi}_{_{N/O_N}} \\
+         -2\dot{\theta}_{_{N/O_N}} \\
+         0
+      \end{array}
+   \right]\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{\alpha}_{_{N/O_N}} \times \vec{r}_{_{TMD_Z/P_N}}
+   = z_{_{TMD_Z/P_N}} \left[
+      \begin{array}{c}
+         \ddot{\phi}_{_{N/O_N}} \\
+         -\ddot{\theta}_{_{N/O_N}} \\
+         0
+      \end{array}
+   \right]\end{split}\]</div>
+<p>Therefore <span class="math notranslate nohighlight">\(\ddot{z}_{_{TMD_Z/P_N}}\)</span> is governed by the equations</p>
+<div class="math notranslate nohighlight" id="equation-eom-zz">
+<span class="eqno">(4.215)<a class="headerlink" href="#equation-eom-zz" title="Permalink to this equation"></a></span>\[\begin{split}\begin{aligned}
+   \ddot{z}_{_{TMD_Z/P_N}}
+      = &amp; (\dot{\theta}_{_{N/O_N}}^2
+         + \dot{\phi}_{_{N/O_N}}^2-\frac{k_z}{m_z}) z_{_{TMD_Z/P_N}}
+         - (\frac{c_z}{m_z}) \dot{z}_{_{TMD_Z/P_N}}
+         -\ddot{z}_{_{P/O_N}} + a_{_{G_Z/O_N}}\\
+      &amp;+ \frac{1}{m_z} (F_{ext_Z} + F_{StopFrc_{Z}} + F_{Z_{PreLoad}})
+\end{aligned}\end{split}\]</div>
+<p>The forces <span class="math notranslate nohighlight">\(F_{X_{_{TMD_Z/O_N}}}\)</span> and <span class="math notranslate nohighlight">\(F_{Y_{_{TMD_Z/O_N}}}\)</span>
+are solved noting
+<span class="math notranslate nohighlight">\(\ddot{x}_{_{TMD_Z/P_N}} = \ddot{y}_{_{TMD_Z/P_N}} = 0\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eom-zx">
+<span class="eqno">(4.216)<a class="headerlink" href="#equation-eom-zx" title="Permalink to this equation"></a></span>\[F_{X_{_{TMD_Z/O_N}}} = m_z \left( - a_{_{G_X/O_N}} + \ddot{x}_{_{P/O_N}}
+   + (\ddot{\phi}_{_{N/O_N}}
+   + \dot{\theta}_{_{N/O_N}}\dot{\psi}_{_{N/O_N}}) z_{_{TMD_Z/P_N}}
+   + 2\dot{\phi}_{_{N/O_N}} \dot{z}_{_{TMD_Z/P_N}} \right)\]</div>
+<div class="math notranslate nohighlight" id="equation-eom-zy">
+<span class="eqno">(4.217)<a class="headerlink" href="#equation-eom-zy" title="Permalink to this equation"></a></span>\[F_{Y_{_{TMD_Z/O_N}}} = m_z \left( - a_{_{G_Y/O_N}} + \ddot{y}_{_{P/O_N}}
+   - (\ddot{\theta}_{_{N/O_N}}
+   - \dot{\phi}_{_{N/O_N}}\dot{\psi}_{_{N/O_N}}) z_{_{TMD_Z/P_N}}
+   - 2\dot{\theta}_{_{N/O_N}} \dot{z}_{_{TMD_Z/P_N}} \right)\]</div>
+</div>
+</div>
+<div class="section" id="state-equations">
+<h3><span class="section-number">4.17.2.1.3. </span>State Equations<a class="headerlink" href="#state-equations" title="Permalink to this heading"></a></h3>
+<div class="section" id="inputs">
+<h4><span class="section-number">4.17.2.1.3.1. </span>Inputs:<a class="headerlink" href="#inputs" title="Permalink to this heading"></a></h4>
+<p>The inputs are the component linear acceleration and angular position,
+velocity and acceleration:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{u} = \left[
+   \begin{array}{c}
+      \ddot{\vec{r}}_{_{P/O_G}} \\
+      \vec{R}_{_{N/G}} \\
+      \vec{\omega}_{_{N/O_G}} \\
+      \vec{\alpha}_{_{N/O_G}}
+   \end{array}
+\right]
+\Rightarrow \left[
+   \begin{array}{c}
+      \ddot{\vec{r}}_{_{P/O_N}} \\
+      \vec{\omega}_{_{N/O_N}} \\
+      \vec{\alpha}_{_{N/O_N}}
+   \end{array}
+ \right]
+ = \left[
+   \begin{array}{c}
+      \vec{R}_{_{N/G}} \ddot{\vec{r}}_{_{P/O_G}} \\
+      \vec{R}_{_{N/G}} \vec{\omega}_{_{N/O_G}} \\
+      \vec{R}_{_{N/G}} \vec{\alpha}_{_{N/O_G}
+   }\end{array}
+\right]\end{split}\]</div>
+</div>
+<div class="section" id="states">
+<h4><span class="section-number">4.17.2.1.3.2. </span>States:<a class="headerlink" href="#states" title="Permalink to this heading"></a></h4>
+<p>The states are the position and velocity of the TMDs along their
+respective DOFs in the component reference frame:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{R}_{_{TMD/P_N}} = \left[
+   \begin{array}{c}
+      x \\
+      \dot{x} \\
+      y \\
+      \dot{y} \\
+      z \\
+      \dot{z}
+   \end{array}
+\right]_{_{TMD/P_N}}
+= \left[
+   \begin{array}{c}
+      {x}_{_{TMD_X/P_N}} \\
+      \dot{x}_{_{TMD_X/P_N}} \\
+      {y}_{_{TMD_Y/P_N}} \\
+      \dot{y}_{_{TMD_Y/P_N}} \\
+      {z}_{_{TMD_Z/P_N}} \\
+      \dot{z}_{_{TMD_Z/P_N}}
+   \end{array}
+\right]\end{split}\]</div>
+<p>The equations of motion can be re-written as a system of non-linear
+first-order equations of the form</p>
+<div class="math notranslate nohighlight">
+\[\dot{\vec{R}}_{_{TMD}} = A \vec{R}_{_{TMD}} + B\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A(\vec{u}) = \left[
+   \begin{array}{cccccc}
+   0&amp; 1 &amp;0&amp;0&amp;0&amp;0 \\
+   (\dot{\phi}_{_{N/O_N}}^2 + \dot{\psi}_{_{N/O_N}}^2-\frac{k_x}{m_x}) &amp; - (\frac{c_x}{m_x}) &amp;0&amp;0&amp;0&amp;0 \\
+   0&amp;0&amp;0&amp; 1 &amp;0&amp;0 \\
+   0&amp;0&amp; (\dot{\theta}_{_{N/O_N}}^2 + \dot{\psi}_{_{N/O_N}}^2-\frac{k_y}{m_y}) &amp; - (\frac{c_y}{m_y}) &amp;0&amp;0 \\
+   0&amp;0&amp;0&amp;0&amp;0&amp; 1 \\
+   0&amp;0&amp;0&amp;0&amp; (\dot{\theta}_{_{N/O_N}}^2 + \dot{\phi}_{_{N/O_N}}^2-\frac{k_z}{m_z}) &amp; - (\frac{c_z}{m_z}) \\
+\end{array} \right]\end{split}\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight" id="equation-bu">
+<span class="eqno">(4.218)<a class="headerlink" href="#equation-bu" title="Permalink to this equation"></a></span>\[\begin{split}B(\vec{u}) = \left[
+   \begin{array}{l}
+      0 \\
+      -\ddot{x}_{_{P/O_N}}+a_{_{G_X/O_N}} + \frac{1}{m_x} ( F_{ext_X} + F_{StopFrc_{X}}) \\
+      0 \\
+      -\ddot{y}_{_{P/O_N}}+a_{_{G_Y/O_N}} + \frac{1}{m_y} (F_{ext_Y}+ F_{StopFrc_{Y}}) \\
+      0 \\
+      -\ddot{z}_{_{P/O_N}}+a_{_{G_Z/O_N}} + \frac{1}{m_z} (F_{ext_Z}+ F_{StopFrc_{Z}} + F_{Z_{PreLoad}})
+   \end{array}
+\right]\end{split}\]</div>
+<p>The inputs are coupled to the state variables, resulting in A and B as
+<span class="math notranslate nohighlight">\(f(\vec{u})\)</span>.</p>
+</div>
+</div>
+<div class="section" id="outputs">
+<h3><span class="section-number">4.17.2.1.4. </span>Outputs<a class="headerlink" href="#outputs" title="Permalink to this heading"></a></h3>
+<p>The output vector <span class="math notranslate nohighlight">\(\vec{Y}\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{Y} = \left[
+   \begin{array}{c}
+      \vec{F}_{_{P_G}} \\
+      \vec{M}_{_{P_G}}
+   \end{array}
+\right]\end{split}\]</div>
+<p>The output includes reaction forces corresponding to
+<span class="math notranslate nohighlight">\(F_{Y_{_{TMD_X/O_N}}}\)</span>, <span class="math notranslate nohighlight">\(F_{Z_{_{TMD_X/O_N}}}\)</span>,
+<span class="math notranslate nohighlight">\(F_{X_{_{TMD_Y/O_N}}}\)</span>, <span class="math notranslate nohighlight">\(F_{Z_{_{TMD_Y/O_N}}}\)</span>,
+<span class="math notranslate nohighlight">\(F_{X_{_{TMD_Z/O_N}}}\)</span>, and <span class="math notranslate nohighlight">\(F_{Y_{_{TMD_Z/O_N}}}\)</span> from Eqns.
+<a class="reference internal" href="#equation-eom-xy">(4.210)</a>, <a class="reference internal" href="#equation-eom-xz">(4.211)</a>, <a class="reference internal" href="#equation-eom-yx">(4.213)</a>, <a class="reference internal" href="#equation-eom-yz">(4.214)</a>, <a class="reference internal" href="#equation-eom-zx">(4.216)</a>, and
+<a class="reference internal" href="#equation-eom-zy">(4.217)</a>. The resulting forces <span class="math notranslate nohighlight">\(\vec{F}_{_{P_G}}\)</span> and moments
+<span class="math notranslate nohighlight">\(\vec{M}_{_{P_G}}\)</span> acting on the component are</p>
+<div class="math notranslate nohighlight" id="equation-outputforces">
+<span class="eqno">(4.219)<a class="headerlink" href="#equation-outputforces" title="Permalink to this equation"></a></span>\[\begin{split}\begin{aligned}
+   \vec{F}_{_{P_G}} = R^T_{_{N/G}} &amp; \left[
+      \begin{array}{l}
+         k_x {x}_{_{TMD_X/P_N}} + c_x \dot{x}_{_{TMD_X/P_N}} - F_{StopFrc_{X}} - F_{ext_x} - F_{X_{_{TMD_Y/O_N}}} - F_{X_{_{TMD_Z/O_N}}} \\
+         k_y {y}_{_{TMD_Y/P_N}} + c_y \dot{y}_{_{TMD_Y/P_N}} - F_{StopFrc_{Y}} - F_{ext_y} - F_{Y_{_{TMD_X/O_N}}} - F_{Y_{_{TMD_Z/O_N}}} \\
+         k_z {z}_{_{TMD_Z/P_N}} + c_z \dot{z}_{_{TMD_Z/P_N}} - F_{StopFrc_{Z}} - F_{ext_z} - F_{Z_{_{TMD_X/O_N}}} - F_{Z_{_{TMD_Y/O_N}}} - F_{Z_{PreLoad}}
+      \end{array}
+   \right]
+\end{aligned}\end{split}\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{M}_{_{P_G}} = R^T_{_{N/G}} \left[
+   \begin{array}{c}
+      M_{_X} \\
+      M_{_Y} \\
+      M_{_Z}
+   \end{array}
+\right]_{_{N/N}} = R^T_{_{N/G}} \left[
+   \begin{array}{c}
+      -(F_{Z_{_{TMD_Y/O_N}}}) y_{_{TMD/P_N}} + (F_{Y_{_{TMD_Z/O_N}}} ) z_{_{TMD/P_N}} \\
+       (F_{Z_{_{TMD_X/O_N}}}) x_{_{TMD/P_N}} - (F_{X_{_{TMD_Z/O_N}}} ) z_{_{TMD/P_N}} \\
+      -(F_{Y_{_{TMD_X/O_N}}}) x_{_{TMD/P_N}} + ( F_{X_{_{TMD_Y/O_N}}}) y_{_{TMD/P_N}}
+   \end{array}
+\right]\end{split}\]</div>
+<div class="section" id="stop-forces">
+<h4><span class="section-number">4.17.2.1.4.1. </span>Stop Forces<a class="headerlink" href="#stop-forces" title="Permalink to this heading"></a></h4>
+<p>The extra forces <span class="math notranslate nohighlight">\(F_{StopFrc_{X}}\)</span>, <span class="math notranslate nohighlight">\(F_{StopFrc_{Y}}\)</span>, and
+<span class="math notranslate nohighlight">\(F_{StopFrc_{Z}}\)</span> are added to output forces in the case that the
+movement of TMD_X, TMD_Y, or TMD_Z exceeds the maximum track length for
+the mass. Otherwise, they equal zero. The track length has limits on the
+positive and negative ends in the TMD direction (X_PSP and X_NSP, Y_PSP
+and Y_NSP, and Z_PSP and Z_NSP). If we define a general maximum and
+minimum displacements as <span class="math notranslate nohighlight">\(x_{max}\)</span> and <span class="math notranslate nohighlight">\(x_{min}\)</span>,
+respectively, the stop forces have the form</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}F_{StopFrc} = -\left\{
+   \begin{array}{lr}
+      \begin{aligned}
+         k_S \Delta x  &amp; \quad : ( x &gt; x_{max} \wedge \dot{x}&lt;=0) \vee ( x &lt; x_{min} \wedge \dot{x}&gt;=0)\\
+         k_S \Delta x + c_S \dot{x} &amp; \quad : ( x &gt; x_{max} \wedge \dot{x}&gt;0) \vee ( x &lt; x_{min} \wedge \dot{x}&lt;0)\\
+         0 &amp; \quad : \text{otherwise}
+      \end{aligned}
+   \end{array}
+\right.\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Delta x\)</span> is the distance the mass has traveled beyond the
+stop position and <span class="math notranslate nohighlight">\(k_S\)</span> and <span class="math notranslate nohighlight">\(c_S\)</span> are large stiffness and
+damping constants.</p>
+</div>
+<div class="section" id="pre-load-forces">
+<span id="srvd-stcz-preload"></span><h4><span class="section-number">4.17.2.1.4.2. </span>Pre-Load Forces<a class="headerlink" href="#pre-load-forces" title="Permalink to this heading"></a></h4>
+<p>The extra force <span class="math notranslate nohighlight">\(F_{Z_{PreLoad}}\)</span> is added to the output forces as a
+method to shift the at rest position of the TMD_Z when gravity is acting on it.
+This is particularly useful for substructure mounted StCs when very large masses
+with soft spring constants are used. This appears in the term
+<span class="math notranslate nohighlight">\(\vec{F}_{_{TMD_Z/O_N}}\)</span> and in eq equations of motion given by <a class="reference internal" href="#equation-bu">(4.218)</a>
+and resulting forces in <a class="reference internal" href="#equation-outputforces">(4.219)</a>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="code-modifications">
+<h2><span class="section-number">4.17.2.2. </span>Code Modifications<a class="headerlink" href="#code-modifications" title="Permalink to this heading"></a></h2>
+<p>The Structural Control (StC) function is a submodule linked into ServoDyn. In
+addition to references in ServoDyn.f90 and ServoDyn.txt, new files that contain
+the StC module are listed below.</p>
+<div class="section" id="new-files">
+<h3><span class="section-number">4.17.2.2.1. </span>New Files<a class="headerlink" href="#new-files" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>StrucCtrl.f90 : the structural control module</p></li>
+<li><p>StrucCtrl.txt : registry file include files, inputs, states, parameters,
+and outputs shown in Tables <a class="reference external" href="#tbl2">1</a> and <a class="reference external" href="#tbl1">2</a></p></li>
+<li><p>StrucCtrl_Types.f90: automatically generated</p></li>
+</ul>
+</div>
+<div class="section" id="variables">
+<h3><span class="section-number">4.17.2.2.2. </span>Variables<a class="headerlink" href="#variables" title="Permalink to this heading"></a></h3>
+<div class="docutils container" id="tbl2">
+<table class="docutils align-default" id="id6">
+<caption><span class="caption-number">Table 4.11 </span><span class="caption-text">Summary of field definitions in the StC registry. Note that state vector <span class="math notranslate nohighlight">\(\vec{tmd_x}\)</span> corresponds to <span class="math notranslate nohighlight">\(\vec{R}_{_{TMD/P_N}}\)</span>, and that the outputs <span class="math notranslate nohighlight">\(\vec{F}_{_{P_G}}\)</span> and <span class="math notranslate nohighlight">\(\vec{M}_{_{P_G}}\)</span> are contained    in the MeshType object (y.Mesh). <span class="math notranslate nohighlight">\(X_{DSP}\)</span>, <span class="math notranslate nohighlight">\(Y_{DSP}\)</span>, and <span class="math notranslate nohighlight">\(Z_{DSP}\)</span> are initial displacements of the TMDs.</span><a class="headerlink" href="#id6" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 22%" />
+<col style="width: 78%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" rowspan="2"><p>DataType</p></th>
+<th class="head" rowspan="2"><p>Variable name</p></th>
+</tr>
+<tr class="row-even"></tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p><strong>InitInput</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>InputFile</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Gravity</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><span class="math notranslate nohighlight">\(\vec{r}_{_{N/O_G}}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Input u</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><span class="math notranslate nohighlight">\(\ddot{\vec{r}}_{_{P/O_G}}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><span class="math notranslate nohighlight">\(\vec{R}_{_{N/O_G}}\)</span></p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><span class="math notranslate nohighlight">\(\vec{\omega}_{_{N/O_G}}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><span class="math notranslate nohighlight">\(\vec{\alpha}_{_{N/O_G}}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Parameter p</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><span class="math notranslate nohighlight">\(m_x\)</span></p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><span class="math notranslate nohighlight">\(c_x\)</span></p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><span class="math notranslate nohighlight">\(k_x\)</span></p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><span class="math notranslate nohighlight">\(m_y\)</span></p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><span class="math notranslate nohighlight">\(c_y\)</span></p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><span class="math notranslate nohighlight">\(k_y\)</span></p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><span class="math notranslate nohighlight">\(m_z\)</span></p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><span class="math notranslate nohighlight">\(c_z\)</span></p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><span class="math notranslate nohighlight">\(k_z\)</span></p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><span class="math notranslate nohighlight">\(K_S = \left[ k_{SX}\hspace{1em}k_{SY}\hspace{1em}k_{SZ}\right]\)</span></p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><span class="math notranslate nohighlight">\(C_S = \left[c_{SX}\hspace{1em}c_{SY}\hspace{1em}c_{SZ}\right]\)</span></p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><span class="math notranslate nohighlight">\(P_{SP}=\left[X_{PSP}\hspace{1em}Y_{PSP}\hspace{1em}Z_{PSP}\right]\)</span></p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><span class="math notranslate nohighlight">\(P_{SP}=\left[X_{NSP}\hspace{1em}Y_{NSP}\hspace{1em}Z_{NSP}\right]\)</span></p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><span class="math notranslate nohighlight">\(F{ext}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><span class="math notranslate nohighlight">\(Gravity\)</span></p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>TMDX_DOF</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>TMDY_DOF</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>TMDZ_DOF</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><span class="math notranslate nohighlight">\(X_{DSP}\)</span></p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><span class="math notranslate nohighlight">\(Y_{DSP}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><span class="math notranslate nohighlight">\(Z_{DSP}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>State x</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><span class="math notranslate nohighlight">\(\vec{tmd_x}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Output y</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Mesh</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The input, parameter, state and output definitions are summarized in
+Table <a class="reference external" href="#tbl2">1</a>. The inputs from file are listed in Table
+<a class="reference external" href="#tbl1">2</a>.</p>
+<div class="docutils container" id="tbl1">
+<table class="docutils align-default" id="id7">
+<caption><span class="caption-number">Table 4.12 </span><span class="caption-text">Data read in from TMDInputFile.</span><a class="headerlink" href="#id7" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 69%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field Name</p></th>
+<th class="head"><p>Field Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>TMD_CMODE</p></td>
+<td><p>int</p></td>
+<td><p>Control Mode (1:passive, 2:active)</p></td>
+</tr>
+<tr class="row-odd"><td><p>TMD_X_DOF</p></td>
+<td><p>logical</p></td>
+<td><p>DOF on or off</p></td>
+</tr>
+<tr class="row-even"><td><p>TMD_Y_DOF</p></td>
+<td><p>logical</p></td>
+<td><p>DOF on or off</p></td>
+</tr>
+<tr class="row-odd"><td><p>TMD_Z_DOF</p></td>
+<td><p>logical</p></td>
+<td><p>DOF on or off</p></td>
+</tr>
+<tr class="row-even"><td><p>TMD_X_DSP</p></td>
+<td><p>real</p></td>
+<td><p>TMD_X initial displacement</p></td>
+</tr>
+<tr class="row-odd"><td><p>TMD_Y_DSP</p></td>
+<td><p>real</p></td>
+<td><p>TMD_Y initial displacement</p></td>
+</tr>
+<tr class="row-even"><td><p>TMD_Z_DSP</p></td>
+<td><p>real</p></td>
+<td><p>TMD_Z initial displacement</p></td>
+</tr>
+<tr class="row-odd"><td><p>TMD_X_M</p></td>
+<td><p>real</p></td>
+<td><p>TMD mass</p></td>
+</tr>
+<tr class="row-even"><td><p>TMD_X_K</p></td>
+<td><p>real</p></td>
+<td><p>TMD stiffness</p></td>
+</tr>
+<tr class="row-odd"><td><p>TMD_X_C</p></td>
+<td><p>real</p></td>
+<td><p>TMD damping</p></td>
+</tr>
+<tr class="row-even"><td><p>TMD_Y_M</p></td>
+<td><p>real</p></td>
+<td><p>TMD mass</p></td>
+</tr>
+<tr class="row-odd"><td><p>TMD_Y_K</p></td>
+<td><p>real</p></td>
+<td><p>TMD stiffness</p></td>
+</tr>
+<tr class="row-even"><td><p>TMD_Y_C</p></td>
+<td><p>real</p></td>
+<td><p>TMD damping</p></td>
+</tr>
+<tr class="row-odd"><td><p>TMD_Z_M</p></td>
+<td><p>real</p></td>
+<td><p>TMD mass</p></td>
+</tr>
+<tr class="row-even"><td><p>TMD_Z_K</p></td>
+<td><p>real</p></td>
+<td><p>TMD stiffness</p></td>
+</tr>
+<tr class="row-odd"><td><p>TMD_Z_C</p></td>
+<td><p>real</p></td>
+<td><p>TMD damping</p></td>
+</tr>
+<tr class="row-even"><td><p>TMD_X_PSP</p></td>
+<td><p>real</p></td>
+<td><p>positive stop position (maximum X mass displacement)</p></td>
+</tr>
+<tr class="row-odd"><td><p>TMD_X_NSP</p></td>
+<td><p>real</p></td>
+<td><p>negative stop position (minimum X mass displacement)</p></td>
+</tr>
+<tr class="row-even"><td><p>TMD_X_K_SX</p></td>
+<td><p>real</p></td>
+<td><p>stop spring stiffness</p></td>
+</tr>
+<tr class="row-odd"><td><p>TMD_X_C_SX</p></td>
+<td><p>real</p></td>
+<td><p>stop spring damping</p></td>
+</tr>
+<tr class="row-even"><td><p>TMD_Y_PSP</p></td>
+<td><p>real</p></td>
+<td><p>positive stop position (maximum Y mass displacement)</p></td>
+</tr>
+<tr class="row-odd"><td><p>TMD_Y_NSP</p></td>
+<td><p>real</p></td>
+<td><p>negative stop position (minimum Y mass displacement)</p></td>
+</tr>
+<tr class="row-even"><td><p>TMD_Y_K_S</p></td>
+<td><p>real</p></td>
+<td><p>stop spring stiffness</p></td>
+</tr>
+<tr class="row-odd"><td><p>TMD_Y_C_S</p></td>
+<td><p>real</p></td>
+<td><p>stop spring damping</p></td>
+</tr>
+<tr class="row-even"><td><p>TMD_Z_PSP</p></td>
+<td><p>real</p></td>
+<td><p>positive stop position (maximum Z mass displacement)</p></td>
+</tr>
+<tr class="row-odd"><td><p>TMD_Z_NSP</p></td>
+<td><p>real</p></td>
+<td><p>negative stop position (minimum Z mass displacement)</p></td>
+</tr>
+<tr class="row-even"><td><p>TMD_Z_K_S</p></td>
+<td><p>real</p></td>
+<td><p>stop spring stiffness</p></td>
+</tr>
+<tr class="row-odd"><td><p>TMD_Z_C_S</p></td>
+<td><p>real</p></td>
+<td><p>stop spring damping</p></td>
+</tr>
+<tr class="row-even"><td><p>TMD_P_X</p></td>
+<td><p>real</p></td>
+<td><p>x origin of P in nacelle coordinate system</p></td>
+</tr>
+<tr class="row-odd"><td><p>TMD_P_Y</p></td>
+<td><p>real</p></td>
+<td><p>y origin of P in nacelle coordinate system</p></td>
+</tr>
+<tr class="row-even"><td><p>TMD_P_Z</p></td>
+<td><p>real</p></td>
+<td><p>z origin of P in nacelle coordinate system</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="section" id="acknowledgements">
+<h2><span class="section-number">4.17.2.3. </span>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permalink to this heading"></a></h2>
+<p>The authors would like to thank Dr. Jason Jonkman for reviewing this
+manual.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
+<dd><p>Note that <span class="math notranslate nohighlight">\(( R a ) \times ( Rb ) = R( a \times b )\)</span>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="StC_input.html" class="btn btn-neutral float-left" title="4.17.1. Input Files" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="StC_TLCD_Theory.html" class="btn btn-neutral float-right" title="4.17.3. TLCD: Derivations of Equation of Motion" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

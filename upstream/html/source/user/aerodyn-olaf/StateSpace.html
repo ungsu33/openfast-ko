@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.4.7. State-Space Representation and Integration with OpenFAST &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.4.8. Future Work" href="FutureWork.html" />
+    <link rel="prev" title="4.4.6. OLAF Theory" href="OLAFTheory.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/aerodyn-olaf/StateSpace.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.4. OLAF</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Introduction.html">4.4.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Acronyms.html">4.4.2. List of Symbols</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RunningOLAF.html">4.4.3. Working with OLAF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="InputFiles.html">4.4.4. Input Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="OutputFiles.html">4.4.5. Output Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="OLAFTheory.html">4.4.6. OLAF Theory</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.4.7. State-Space Representation and Integration with OpenFAST</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#state-constraint-input-and-output-variables">4.4.7.1. State, Constraint, Input, and Output Variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#state-constraint-and-output-equations">4.4.7.2. State, Constraint, and Output Equations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#integration-with-aerodyn">4.4.7.3. Integration with AeroDyn</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="FutureWork.html">4.4.8. Future Work</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.4.9. References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixA.html">4.4.10. Appendix A: OLAF Primary Input File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixB.html">4.4.11. Appendix B: Prescribed Circulation Input File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixC.html">4.4.12. Appendix C: OLAF List of Output Channels</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.4. </span>OLAF User’s Guide and Theory Manual (Free Vortex Wake in AeroDyn)</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.4.7. </span>State-Space Representation and Integration with OpenFAST</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/aerodyn-olaf/StateSpace.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="state-space-representation-and-integration-with-openfast">
+<h1><span class="section-number">4.4.7. </span>State-Space Representation and Integration with OpenFAST<a class="headerlink" href="#state-space-representation-and-integration-with-openfast" title="Permalink to this heading"></a></h1>
+<div class="section" id="state-constraint-input-and-output-variables">
+<h2><span class="section-number">4.4.7.1. </span>State, Constraint, Input, and Output Variables<a class="headerlink" href="#state-constraint-input-and-output-variables" title="Permalink to this heading"></a></h2>
+<p>The OLAF module has been integrated into the latest version of OpenFAST via
+<em>AeroDyn</em>, following the OpenFAST modularization
+framework (<span id="id1">[<a class="reference internal" href="zrefs.html#id11" title="J. Jonkman. The new modularization framework for the fast wind turbine cae tool. Technical report NREL/CP-5000-57228, National Renewable Energy Laboratory, 2013.">olaf-Jon13</a>, <a class="reference internal" href="zrefs.html#id38" title="Michael A. Sprague, Jason M. Jonkman, and Bonnie J. Jonkman. Fast modular framework for wind turbine simulation: new algorithms and numerical examples. Technical Report NREL/CP-2C00-63203, National Renewable Energy Laboratory, 2015.">olaf-SJJ15</a>]</span>). To follow the OpenFAST framework,
+the vortex code is written as a module, and its formulation comprises state,
+constraint, and output equations. The data manipulated by the module include the
+following vectors: constant parameters, <span class="math notranslate nohighlight">\(\vec{p}\)</span>;  inputs,
+<span class="math notranslate nohighlight">\(\vec{u}\)</span>; constrained state, <span class="math notranslate nohighlight">\(\vec{z}\)</span>; states, <span class="math notranslate nohighlight">\(\vec{x}\)</span>;
+and outputs, <span class="math notranslate nohighlight">\(\vec{y}\)</span>. The vectors are defined as follows:</p>
+<ul class="simple">
+<li><p>Parameters, <span class="math notranslate nohighlight">\(\vec{p}~-\)</span> a set of internal system values that are
+independent of the states and inputs. The parameters can be fully defined at
+initialization and characterize the system state and output equations.</p></li>
+<li><p>Inputs, <span class="math notranslate nohighlight">\(\vec{u}~-\)</span> a set of values supplied to the module that, along
+with the states, are needed to calculate future states and the system output.</p></li>
+<li><p>Constraint states, <span class="math notranslate nohighlight">\(\vec{z}~-\)</span> algebraic variables that are calculated
+using a nonlinear solver, based on values from the current time step.</p></li>
+<li><p>States, <span class="math notranslate nohighlight">\(\vec{x}~-\)</span> a set of internal values of the module. They are
+influenced by the inputs and used to calculate future state values and
+output. Continuous states are employed, meaning that the states are
+differentiable in time and characterized by continuous time-differential
+equations.</p></li>
+<li><p>Outputs, <span class="math notranslate nohighlight">\(\vec{y}~-\)</span>  a set of values calculated and returned by the
+module that depend on the states, inputs, and/or parameters through output
+equations.</p></li>
+</ul>
+<p>The parameters of the vortex code include:</p>
+<ul class="simple">
+<li><p>Fluid characteristics: kinematic viscosity, <span class="math notranslate nohighlight">\(\nu\)</span>.</p></li>
+<li><p>Airfoil characteristics: chord <span class="math notranslate nohighlight">\(c\)</span> and polar data –
+<span class="math notranslate nohighlight">\(C_l(\alpha)\)</span>, <span class="math notranslate nohighlight">\(C_d(\alpha)\)</span>, <span class="math notranslate nohighlight">\(C_m(\alpha)\)</span>).</p></li>
+<li><p>Algorithmic methods and parameters, e.g., regularization, viscous
+diffusion, discretization, wake geometry, and acceleration.</p></li>
+</ul>
+<p>The inputs of the vortex code are:</p>
+<ul class="simple">
+<li><p>Position, orientation, translational velocity, and rotational
+velocity of the different nodes of the lifting lines
+(<span class="math notranslate nohighlight">\(\vec{r}_{ll}\)</span>, <span class="math notranslate nohighlight">\(\Lambda_{ll}\)</span>,
+<span class="math notranslate nohighlight">\(\vec{\dot{r}}_{ll}\)</span>, and <span class="math notranslate nohighlight">\(\vec{\omega}_{ll}\)</span>,
+respectively), gathered into the vector,
+<span class="math notranslate nohighlight">\(\vec{x}_{\text{elast},ll}\)</span>, for conciseness. These quantities
+are handled using the mesh-mapping functionality and data structure
+of OpenFAST.</p></li>
+<li><p>Disturbed velocity field at requested locations, written
+<span class="math notranslate nohighlight">\(\vec{V}_0=[\vec{V}_{0,ll}, \vec{V}_{0,m}]\)</span>. Locations are requested
+for lifting-line points, <span class="math notranslate nohighlight">\(\vec{r}_{ll}\)</span>, and Lagrangian markers,
+<span class="math notranslate nohighlight">\(\vec{r}_m\)</span>. Based on the parameters, this disturbed velocity field may
+contain the following influences: freestream, shear, veer, turbulence, tower,
+and nacelle disturbance.  The locations where the velocity field is requested
+are typically the location of the Lagrangian markers.</p></li>
+</ul>
+<p>The constraint states are:</p>
+<ul class="simple">
+<li><p>The circulation intensity along the lifting lines,
+<span class="math notranslate nohighlight">\(\Gamma_{ll}\)</span>.</p></li>
+</ul>
+<p>The continuous states are:</p>
+<ul class="simple">
+<li><p>The position of the Lagrangian markers, <span class="math notranslate nohighlight">\(\vec{r}_m\)</span></p></li>
+<li><p>The vorticity associated with each vortex element, <span class="math notranslate nohighlight">\(\vec{\omega}_e\)</span>.
+For a projection of the vorticity onto vortex segments, this corresponds to
+the circulation, <span class="math notranslate nohighlight">\(\vec{\Gamma}_e\)</span>. For each segment,
+<span class="math notranslate nohighlight">\(\vec{\Gamma}_e= \Gamma_e \vec{dl}_e =\vec{\omega}_e dV_e\)</span>, with
+<span class="math notranslate nohighlight">\(\vec{dl}_e\)</span> and <span class="math notranslate nohighlight">\(dV_e\)</span>, the vortex segment length and its
+equivalent vortex volume.</p></li>
+</ul>
+<p>The outputs are  <a class="footnote-reference brackets" href="#id3" id="id2">1</a>:</p>
+<ul class="simple">
+<li><p>The induced velocity at the lifting-line nodes,
+<span class="math notranslate nohighlight">\(\vec{v}_{i,ll}\)</span></p></li>
+<li><p>The locations where the undisturbed wind is computed, <span class="math notranslate nohighlight">\(\vec{r}_{r}\)</span>
+(typically <span class="math notranslate nohighlight">\(\vec{r_{r}}=\vec{r}_m\)</span>).</p></li>
+</ul>
+</div>
+<div class="section" id="state-constraint-and-output-equations">
+<h2><span class="section-number">4.4.7.2. </span>State, Constraint, and Output Equations<a class="headerlink" href="#state-constraint-and-output-equations" title="Permalink to this heading"></a></h2>
+<p>An overview of the states, constraints, and output equations is given here. More
+details are provided in <a class="reference internal" href="OLAFTheory.html#olaf-theory"><span class="std std-numref">Section 4.4.6</span></a>. The constraint equation is used
+to determine the circulation distribution along the span of each lifting line.
+For the van Garrel method, this circulation is a function of the angle of attack
+along the blade and the airfoil coefficients. The angle of attack at a given
+lifting-line node is a function of the undisturbed velocity,
+<span class="math notranslate nohighlight">\(\vec{v}_{0,ll}\)</span>, and the velocity induced by the vorticity,
+<span class="math notranslate nohighlight">\(\vec{v}_{i,ll}\)</span>, at that point. Part of the induced velocity is caused by
+the vorticity being shed and trailed at the current time step, which in turn is
+a function of the circulation distribution along the lifting line. This
+constraint equation may be written as:</p>
+<div class="math notranslate nohighlight">
+\[\vec{Z} = \vec{0} = \vec{\Gamma}_{ll} - \vec{\Gamma}_p\bigg(\vec{\alpha}(\vec{x},\vec{u}),\vec{p}\bigg)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\vec{\Gamma}_p\)</span> is the function that returns the circulation along
+the blade span, according to one of the methods presented in <a class="reference internal" href="OLAFTheory.html#sec-circ"><span class="std std-numref">Section 4.4.6.3</span></a>.</p>
+<p>The state equation specifies the time evolution of the vorticity and the
+convection of the Lagrangian markers:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    \frac{d \vec{\omega}_e}{dt} &amp;= \bigg[(\vec{\omega}\cdot\nabla)\vec{v} + \nu\nabla^2 \vec{\omega} \bigg]_e
+\end{aligned}\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-convection">
+<span class="eqno">(4.31)<a class="headerlink" href="#equation-eq-convection" title="Permalink to this equation"></a></span>\[\begin{aligned}
+    \frac{d \vec{r}_m}{dt} &amp;= \vec{V}(\vec{r}_m)
+ =\vec{V}_0(\vec{r}_m)  + \vec{v}_\omega(\vec{r}_m)
+ =\vec{V}_0(\vec{r}_m)  + \vec{V}_\omega(\vec{r}_m, \vec{r}_m, \vec{\omega})
+\end{aligned}\]</div>
+<p>Here,</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\vec{v}_\omega\)</span> is the velocity induced by the vorticity in the
+domain;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\vec{V}_\omega(\vec{r},\vec{r}_m,\vec{\omega})\)</span> is the function that
+computes this induced velocity at a given point, <span class="math notranslate nohighlight">\(\vec{r}\)</span>, based on
+the location of the Lagrangian markers and the intensity of the vortex elements;</p></li>
+<li><p>the subscript <span class="math notranslate nohighlight">\(e\)</span> indicates that a quantity is applied to an element;
+and</p></li>
+<li><p>the vorticity, <span class="math notranslate nohighlight">\(\vec{\omega}\)</span>, is recovered from the vorticity of the
+vortex elements by means of discrete convolutions.</p></li>
+</ul>
+<p>For vortex-segment simulations, the viscous-splitting algorithm is used, and the
+convection step (Eq. <a class="reference internal" href="#equation-eq-convection">(4.31)</a>) is the main state equation being
+solved for. The vorticity stretching is automatically accounted for, and the
+diffusion is performed <em>a posteriori</em>. The velocity function,
+<span class="math notranslate nohighlight">\(\vec{V}_\omega\)</span>, uses the Biot-Savart law. The output equation is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+   \vec{y}_1&amp;=\vec{v}_{i,ll} = \vec{V}_\omega ( \vec{r}_{ll}, \vec{r}_m, \vec{\omega}) \\
+   \vec{y}_2&amp;=\vec{r}_{r}
+\end{aligned}\end{split}\]</div>
+</div>
+<div class="section" id="integration-with-aerodyn">
+<h2><span class="section-number">4.4.7.3. </span>Integration with AeroDyn<a class="headerlink" href="#integration-with-aerodyn" title="Permalink to this heading"></a></h2>
+<p>The vortex code has been integrated as a submodule of the aerodynamic module of
+OpenFAST, <em>AeroDyn</em>. The data workflow between the different modules and
+submodules of OpenFAST is illustrated in <a class="reference internal" href="#aerodyn-olaf"><span class="std std-numref">Fig. 4.16</span></a>.
+AeroDyn inputs such as BEM options (e.g., tip-loss factor), skew model, and
+dynamic inflow are discarded when the vortex code is used. The environmental
+conditions, tower shadow, and dynamic stall model options are used. This
+integration required a restructuring of the <em>AeroDyn</em> module to isolate the
+parts of the code related to tower shadow modeling, induction computation,
+lifting-line-forces computations, and dynamic stall. The dynamic stall model is
+adapted when used in conjunction with the vortex code to ensure the effect of
+shed vorticity is not accounted for twice. The interface between <em>AeroDyn</em> and
+the inflow module, <em>InflowWind</em>, was accommodated to include the additionally
+requested points by the vortex code.</p>
+<div class="figure align-center" id="id4">
+<span id="aerodyn-olaf"></span><a class="reference internal image-reference" href="../../../_images/VortexCodeWorkFlow.png"><img alt="OpenFAST-FVW code integration workflow" src="../../../_images/VortexCodeWorkFlow.png" style="width: 100%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.16 </span><span class="caption-text">OpenFAST-OLAF code integration workflow</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</div>
+<dl class="footnote brackets">
+<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
+<dd><p>The loads on the lifting line are not an output of the vortex code;
+their calculation is handled by a separate submodule of <em>AeroDyn</em>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="OLAFTheory.html" class="btn btn-neutral float-left" title="4.4.6. OLAF Theory" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="FutureWork.html" class="btn btn-neutral float-right" title="4.4.8. Future Work" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

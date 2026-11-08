@@ -1,0 +1,640 @@
+<!DOCTYPE html><html class="writer-html5" lang="ko"><head><!-- Modified 2026-11-08: unofficial Korean machine translation of OpenFAST 5.0.0. Equations, code, figures, input values and attribution retained. -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.15.1. 입력 파일 - OpenFAST v5.0.0 문서</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../../../genindex.html">
+    <link rel="search" title="검색" href="../../../search.html">
+    <link rel="next" title="4.15.2. 확장 블레이드 인터페이스" href="ExtendedBladedInterface.html">
+    <link rel="prev" title="4.15. ServoDyn 사용자 가이드" href="index.html"> 
+<link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/servodyn/input.html"></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+          </a>
+              <div class="version">5.0 · 한국어</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="문서 검색" aria-label="문서 검색">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.15. ServoDyn</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.15.1. 입력 파일</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#units">4.15.1.1. 단위</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#servodyn-primary-input-file">4.15.1.2. ServoDyn 기본 입력 파일</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ExtendedBladedInterface.html">4.15.2. 확장 블레이드 인터페이스</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. 단순화 ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. 구조 제어</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. 추가 모듈 문서</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC 서브루틴 라이브러리</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+</ul>
+
+        <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="페이지 탐색">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.15. </span>ServoDyn 사용자 가이드</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.15.1. </span>입력 파일</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/servodyn/input.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+      </li>
+  </ul>
+  <hr>
+</div><aside class="ko-notice" aria-label="한국어 번역 안내"><strong>한국어 자동번역</strong> · OpenFAST v5.0.0 · 2026-11-08 기준<br>비공식 번역본입니다. 수식·명령어·입력 변수와 첨부자료는 원문을 보존합니다. <a href="https://openfast.readthedocs.io/en/main/source/user/servodyn/input.html" target="_blank" rel="noopener noreferrer" lang="en">영문 원문 대조 ↗</a></aside>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="input-files">
+<span id="srvd-input"></span><h1><span class="section-number">4.15.1. </span>입력 파일<a class="headerlink" href="#input-files" title="이 제목의 고유 링크"></a></h1>
+<p>사용자는 기본 ServoDyn 입력 파일뿐만 아니라 구조 제어를 위한 별도의 입력 파일 및 컨트롤러 DLL을 통해 서보 역학 모델 매개변수를 구성합니다.  <em>이 정보는 불완전하며 나중에 여기에 문서화될 예정입니다.</em></p>
+<div class="section" id="units">
+<h2><span class="section-number">4.15.1.1. </span>장치<a class="headerlink" href="#units" title="이 제목의 고유 링크"></a></h2>
+<p>ServoDyn은 SI 시스템(kg, m, s, N)을 사용합니다. 별도로 지정하지 않는 한 각도는 라디안 단위로 간주됩니다.</p>
+</div>
+<div class="section" id="servodyn-primary-input-file">
+<h2><span class="section-number">4.15.1.2. </span>ServoDyn 기본 입력 파일<a class="headerlink" href="#servodyn-primary-input-file" title="이 제목의 고유 링크"></a></h2>
+<p>기본 ServoDyn 입력 파일은 컨트롤러의 모델링 옵션을 정의합니다. 여기에는 일부 DLL 옵션과 구조 제어 옵션(일반적으로 조정된 질량 댐퍼 시스템)이 포함됩니다.</p>
+<div class="section" id="simulation-control">
+<h3><span class="section-number">4.15.1.2.1. </span>시뮬레이션 제어<a class="headerlink" href="#simulation-control" title="이 제목의 고유 링크"></a></h3>
+<p><strong>에코</strong> [플래그]</p>
+<blockquote>
+<div><p>&lt;RootName&gt;.ech에 대한 입력 데이터 에코</p>
+</div></blockquote>
+<p><strong>DT</strong>   [초]</p>
+<blockquote>
+<div><p>컨트롤러의 통신 간격(또는 "기본값")</p>
+</div></blockquote>
+</div>
+<div class="section" id="pitch-control">
+<h3><span class="section-number">4.15.1.2.2. </span>피치 제어<a class="headerlink" href="#pitch-control" title="이 제목의 고유 링크"></a></h3>
+<p><strong>PC모드</strong> [스위치]</p>
+<blockquote>
+<div><p>피치 제어 모드 {0: 없음, 3: 루틴 PitchCntrl에서 사용자 정의, 4: Simulink/Labview에서 사용자 정의, 5: Bladed 스타일 DLL에서 사용자 정의}</p>
+</div></blockquote>
+<p><strong>TPCOn</strong> [초]</p>
+<blockquote>
+<div><p>활성 피치 제어를 활성화하는 시간 <em>[사용하지 않는 경우</em> <strong>PC모드==0</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>PitNeut(1)</strong> [도]</p>
+<blockquote>
+<div><p>블레이드 1 중립 피치 위치 - 피치 스프링 모멘트는 이 위치에서 0입니다.
+<em>[사용하지 않는 경우</em> <strong>PC모드&gt;0</strong> 및 <strong>t&gt;=TPCOn</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>PitNeut(2)</strong> [도]</p>
+<blockquote>
+<div><p>블레이드 2 중립 피치 위치 - 피치 스프링 모멘트는 이 위치에서 0입니다.
+<em>[사용하지 않는 경우</em> <strong>PC모드&gt;0</strong> 및 <strong>t&gt;=TPCOn</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>PitNeut(3)</strong> [도]</p>
+<blockquote>
+<div><p>블레이드 3 중립 피치 위치 - 피치 스프링 모멘트는 이 위치에서 0입니다.
+<em>[사용하지 않는 경우</em> <strong>PC모드&gt;0</strong> 및 <strong>t&gt;=TPCOn</strong> <em>]</em> <em>[2블레이드 미사용]</em></p>
+</div></blockquote>
+<p><strong>PitSpr(1)</strong> [N-m/rad]</p>
+<blockquote>
+<div><p>블레이드 1 피치 스프링 상수</p>
+</div></blockquote>
+<p><strong>PitSpr(2)</strong> [N-m/rad]</p>
+<blockquote>
+<div><p>블레이드 2 피치 스프링 상수</p>
+</div></blockquote>
+<p><strong>PitSpr(3)</strong> [N-m/rad]</p>
+<blockquote>
+<div><p>블레이드 3 피치 스프링 상수 <em>[2블레이드 미사용]</em></p>
+</div></blockquote>
+<p><strong>PitDamp(1)</strong> [N-m/(rad/s)]</p>
+<blockquote>
+<div><p>블레이드 1 피치 댐핑 상수</p>
+</div></blockquote>
+<p><strong>PitDamp(2)</strong> [N-m/(rad/s)]</p>
+<blockquote>
+<div><p>블레이드 2 피치 댐핑 상수</p>
+</div></blockquote>
+<p><strong>PitDamp(3)</strong> [N-m/(rad/s)]</p>
+<blockquote>
+<div><p>블레이드 3 피치 댐핑 상수 <em>[2블레이드 미사용]</em></p>
+</div></blockquote>
+<p><strong>TPitManS(1)</strong> [초]</p>
+<blockquote>
+<div><p>블레이드 1에 대한 오버라이드 피치 조작을 시작하고 표준 피치 제어를 종료하는 시간</p>
+</div></blockquote>
+<p><strong>TPitManS(2)</strong> [초]</p>
+<blockquote>
+<div><p>블레이드 2에 대한 오버라이드 피치 조작을 시작하고 표준 피치 제어를 종료하는 시간</p>
+</div></blockquote>
+<p><strong>TPitManS(3)</strong> [초]</p>
+<blockquote>
+<div><p>블레이드 3에 대한 오버라이드 피치 조작을 시작하고 표준 피치 제어를 종료하는 시간 <em>[2블레이드 미사용]</em></p>
+</div></blockquote>
+<p><strong>PitManRat(1)</strong> [도/초]</p>
+<blockquote>
+<div><p>블레이드 1의 최종 피치 각도를 향한 피치 조작 헤드를 오버라이드하는 피치 속도</p>
+</div></blockquote>
+<p><strong>PitManRat(2)</strong> [도/초]</p>
+<blockquote>
+<div><p>블레이드 2의 최종 피치 각도를 향한 피치 조작 헤드를 오버라이드하는 피치 속도</p>
+</div></blockquote>
+<p><strong>PitManRat(3)</strong> [도/초]</p>
+<blockquote>
+<div><p>블레이드 3의 최종 피치 각도를 향한 피치 조작 헤드를 오버라이드하는 피치 속도 <em>[2블레이드 미사용]</em></p>
+</div></blockquote>
+<p><strong>BlPitchF(1)</strong> [도]</p>
+<blockquote>
+<div><p>피치 기동을 위한 블레이드 1 최종 피치</p>
+</div></blockquote>
+<p><strong>BlPitchF(2)</strong> [도]</p>
+<blockquote>
+<div><p>피치 기동을 위한 블레이드 2 최종 피치</p>
+</div></blockquote>
+<p><strong>BlPitchF(3)</strong> [도]</p>
+<blockquote>
+<div><p>피치 기동을 위한 블레이드 3 최종 피치 <em>[2블레이드 미사용]</em></p>
+</div></blockquote>
+</div>
+<div class="section" id="generator-and-torque-control">
+<h3><span class="section-number">4.15.1.2.3. </span>발전기 및 토크 제어<a class="headerlink" href="#generator-and-torque-control" title="이 제목의 고유 링크"></a></h3>
+<p><strong>VSContrl</strong> [스위치]</p>
+<blockquote>
+<div><p>가변 속도 제어 모드 {0: 없음, 1: 단순 VS, 3: 루틴 UserVSCont에서 사용자 정의, 4: Simulink/Labview에서 사용자 정의, 5: Bladed 스타일 DLL에서 사용자 정의}</p>
+</div></blockquote>
+<p><strong>GenModel</strong> [스위치]</p>
+<blockquote>
+<div><p>생성기 모델 {1: 단순, 2: Thevenin, 3: 루틴 UserGen에서 사용자 정의} <em>[다음 경우에만 사용됨</em> <strong>VSContrl==0</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>GenEff</strong>   [%]</p>
+<blockquote>
+<div><p>발전기 효율 <em>[Thevenin 및 사용자 정의 생성기 모델에서는 무시됨]</em></p>
+</div></blockquote>
+<p><strong>GenTiStr</strong> [플래그]</p>
+<blockquote>
+<div><p>발전기를 시작하는 방법 {T: TimGenOn을 사용하여 시간 설정, F: SpdGenOn을 사용하여 발전기 속도}</p>
+</div></blockquote>
+<p><strong>GenTiStp</strong> [플래그]</p>
+<blockquote>
+<div><p>발전기 정지 방법 {T: TimGenOf를 사용하여 시간 설정, F: 발전기 전력 = 0일 때}</p>
+</div></blockquote>
+<p><strong>SpdGenOn</strong> [rpm]</p>
+<blockquote>
+<div><p>시동을 위해 발전기를 켜는 발전기 속도(HSS 속도) <em>[다음 경우에만 사용됨</em> <strong>GenTiStri==거짓</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>TimGenOn</strong> [초]</p>
+<blockquote>
+<div><p>시동을 위해 발전기를 켜는 시간 <em>[다음 경우에만 사용됨</em>
+<strong>GenTiStr==참</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>TimGenOf</strong> [초]</p>
+<blockquote>
+<div><p>발전기를 끄는 시간 <em>[다음 경우에만 사용됨</em> <strong>GenTiStp==참</strong> <em>]</em></p>
+</div></blockquote>
+</div>
+<div class="section" id="simple-variable-speed-torque-control">
+<h3><span class="section-number">4.15.1.2.4. </span>간단한 가변 속도 토크 제어<a class="headerlink" href="#simple-variable-speed-torque-control" title="이 제목의 고유 링크"></a></h3>
+<p><strong>VS_RtGnSp</strong> [rpm]</p>
+<blockquote>
+<div><p>간단한 가변 속도 발전기 제어를 위한 정격 발전기 속도(HSS 측)
+<em>[다음 경우에만 사용됨</em> <strong>VSContrl==1</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>VS_RtTq</strong>   [N-m]</p>
+<blockquote>
+<div><p>간단한 가변 속도 발전기 제어를 위한 영역 3의 정격 발전기 토크/일정 발전기 토크(HSS 측) <em>[다음 경우에만 사용됨</em> <strong>VSContrl==1</strong>
+<em>]</em></p>
+</div></blockquote>
+<p><strong>VS_Rgn2K</strong>  [N-m/rpm^2]</p>
+<blockquote>
+<div><p>간단한 가변 속도 발전기 제어를 위한 영역 2의 발전기 토크 상수(HSS 측) <em>[다음 경우에만 사용됨</em> <strong>VSContrl==1</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>VS_SlPc</strong>   [%]</p>
+<blockquote>
+<div><p>간단한 가변 속도 발전기 제어를 위한 영역 2 1/2의 정격 발전기 슬립 비율 <em>[다음 경우에만 사용됨</em> <strong>VSContrl==1</strong> <em>]</em></p>
+</div></blockquote>
+</div>
+<div class="section" id="simple-induction-generator">
+<h3><span class="section-number">4.15.1.2.5. </span>단순 유도 발전기<a class="headerlink" href="#simple-induction-generator" title="이 제목의 고유 링크"></a></h3>
+<p><strong>SIG_SlPc</strong>     [%]</p>
+<blockquote>
+<div><p>정격 발전기 슬립 비율 <em>[다음 경우에만 사용됨</em> <strong>VSContrl==0</strong> <em>및</em>
+<strong>GenModel==1</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>SIG_SySp</strong>     [rpm]</p>
+<blockquote>
+<div><p>동기식(제로 토크) 발전기 속도 <em>[다음 경우에만 사용됨</em> <strong>VSContrl==0</strong>
+<em>및</em> <strong>GenModel==1</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>SIG_RtTq</strong>     [N-m]</p>
+<blockquote>
+<div><p>정격 토크 <em>[다음 경우에만 사용됨</em> <strong>VSContrl==0</strong> <em>및</em> <strong>GenModel==1</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>SIG_PORt</strong>     [-]</p>
+<blockquote>
+<div><p>풀아웃 비율(T풀아웃/Trated) <em>[다음 경우에만 사용됨</em> <strong>VSContrl==0</strong> <em>및</em>
+<strong>GenModel==1</strong> <em>]</em></p>
+</div></blockquote>
+</div>
+<div class="section" id="thevenin-equivalent-induction-generator">
+<h3><span class="section-number">4.15.1.2.6. </span>테브닌 등가 유도 발전기<a class="headerlink" href="#thevenin-equivalent-induction-generator" title="이 제목의 고유 링크"></a></h3>
+<p><strong>TEC_Freq</strong>     [Hz]</p>
+<blockquote>
+<div><p>라인 주파수 [50 또는 60] <em>[다음 경우에만 사용됨</em> <strong>VSContrl==0</strong> <em>및</em>
+<strong>GenModel==2</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>TEC_NPol</strong>     [-]</p>
+<blockquote>
+<div><p>극 수 [짝수 &gt; 0] <em>[다음 경우에만 사용됨</em> <strong>VSContrl==0</strong> <em>및</em>
+<strong>GenModel==2</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>TEC_SRes</strong>     [옴]</p>
+<blockquote>
+<div><p>고정자 저항 <em>[다음 경우에만 사용됨</em> <strong>VSContrl==0</strong> <em>및</em> <strong>GenModel==2</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>TEC_RRes</strong>     [옴]</p>
+<blockquote>
+<div><p>로터 저항 <em>[다음 경우에만 사용됨</em> <strong>VSContrl==0</strong> <em>및</em> <strong>GenModel==2</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>TEC_VLL</strong>      [볼트]</p>
+<blockquote>
+<div><p>라인-라인 RMS 전압 <em>[다음 경우에만 사용됨</em> <strong>VSContrl==0</strong> <em>및</em>
+<strong>GenModel==2</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>TEC_SLR</strong>      [옴]</p>
+<blockquote>
+<div><p>고정자 누설 리액턴스 <em>[다음 경우에만 사용됨</em> <strong>VSContrl==0</strong> <em>및</em>
+<strong>GenModel==2</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>TEC_RLR</strong>      [옴]</p>
+<blockquote>
+<div><p>로터 누설 리액턴스 <em>[다음 경우에만 사용됨</em> <strong>VSContrl==0</strong> <em>및</em>
+<strong>GenModel==2</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>TEC_MR</strong>       [옴]</p>
+<blockquote>
+<div><p>자화 리액턴스 <em>[다음 경우에만 사용됨</em> <strong>VSContrl==0</strong> <em>및</em> <strong>GenModel==2</strong>
+<em>]</em></p>
+</div></blockquote>
+</div>
+<div class="section" id="high-speed-shaft-brake">
+<h3><span class="section-number">4.15.1.2.7. </span>고속 샤프트 브레이크<a class="headerlink" href="#high-speed-shaft-brake" title="이 제목의 고유 링크"></a></h3>
+<p><strong>HSSBrMode</strong>     [스위치]</p>
+<blockquote>
+<div><p>HSS 브레이크 모델 {0: 없음, 1: 단순, 3: 루틴 UserHSSBr에서 사용자 정의, 4: Simulink/Labview에서 사용자 정의, 5: Bladed 스타일 DLL에서 사용자 정의}</p>
+</div></blockquote>
+<p><strong>THSSBrDp</strong>      [초]</p>
+<blockquote>
+<div><p>HSS 브레이크 배치를 시작할 시간입니다.</p>
+</div></blockquote>
+<p><strong>HSSBrDT</strong>       [초]</p>
+<blockquote>
+<div><p>HSS 브레이크가 시작되면 완전 배치에 도달하는 데 걸리는 시간 <em>[다음 경우에만 사용됨</em>
+<strong>HSSBrMode==1</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>HSSBrTqF</strong>      [N-m]</p>
+<blockquote>
+<div><p>완전히 전개된 HSS 브레이크 토크</p>
+</div></blockquote>
+</div>
+<div class="section" id="nacelle-yaw-control">
+<h3><span class="section-number">4.15.1.2.8. </span>나셀 요 제어<a class="headerlink" href="#nacelle-yaw-control" title="이 제목의 고유 링크"></a></h3>
+<p><strong>YC모드
+Simulink/Labview 인터페이스는 현재 FAST.Farm에서 지원되지 않으므로</strong>        [스위치]</p>
+<blockquote>
+<div><p>Yaw 제어 모드 {0: 없음, 3: 루틴 UserYawCont에서 사용자 정의, 4: Simulink/Labview에서 사용자 정의, 5: Bladed 스타일 DLL에서 사용자 정의}</p>
+</div></blockquote>
+<p><strong>타이콘</strong>         [초]</p>
+<blockquote>
+<div><p>활성 요 제어를 활성화하는 시간 <em>[사용하지 않는 경우</em> <strong>YCMode==0</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>YawNeut</strong>       [도]</p>
+<blockquote>
+<div><p>중립 요 위치 - 요 스프링 힘은 이 요에서 0입니다.</p>
+</div></blockquote>
+<p><strong>YawSpr</strong>        [N-m/rad]</p>
+<blockquote>
+<div><p>Nacelle-yaw 스프링 상수</p>
+</div></blockquote>
+<p><strong>YawDamp</strong>       [N-m/(rad/s)]</p>
+<blockquote>
+<div><p>나셀 요 댐핑 상수</p>
+</div></blockquote>
+<p><strong>TYawManS</strong>      [초]</p>
+<blockquote>
+<div><p>요 조작 무시를 시작하고 표준 요 제어를 종료하는 시간</p>
+</div></blockquote>
+<p><strong>YawManRat</strong>     [도/초]</p>
+<blockquote>
+<div><p>요 조작률(절대값)</p>
+</div></blockquote>
+<p><strong>NacYawF</strong>       [도]</p>
+<blockquote>
+<div><p>오버라이드 요 동작을 위한 최종 요 각도</p>
+</div></blockquote>
+</div>
+<div class="section" id="aerodynamic-flow-control">
+<span id="srvd-afc-inputs"></span><h3><span class="section-number">4.15.1.2.9. </span>공기역학적 흐름 제어<a class="headerlink" href="#aerodynamic-flow-control" title="이 제목의 고유 링크"></a></h3>
+<p><strong>AfCmode</strong>       [스위치]</p>
+<blockquote>
+<div><p>에어포일 제어 모드 {0: 없음, 1: 사인파 주기, 4: Simulink/Labview에서 사용자 정의, 5: Bladed 스타일 DLL에서 사용자 정의}</p>
+</div></blockquote>
+<p><strong>AfC_Mean</strong>      [-]</p>
+<blockquote>
+<div><p>코사인 순환 또는 정상 값의 평균 수준 <em>[다음과 함께 사용됨</em>
+<strong>AfCmode==1</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>AfC_Amp</strong>       [-]</p>
+<blockquote>
+<div><p>플랩 신호의 코사인 순환 진폭 <em>[다음과 함께 사용됨</em>
+<strong>AfCmode==1</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>AfC_Phase</strong>     [도]</p>
+<blockquote>
+<div><p>플랩 신호의 코사인 순환에 대한 블레이드 방위각(0은 수직)에 상대적인 위상 <em>[다음과 함께 사용됨</em> <strong>AfCmode==1</strong> <em>]</em></p>
+</div></blockquote>
+<p>언제 <strong>AfCmode==1</strong>, 에어포일 흐름 제어 신호는 다음 식으로 설정됩니다. <em>AfC_Mean + p%AfC_Amp*cos( 방위각 + AfC_위상)</em> 여기서 방위각은 특정 블레이드의 방위각입니다(방위각=0은 수직으로 간주됩니다).</p>
+</div>
+<div class="section" id="cable-control">
+<span id="srvd-cablecontrol-inputs"></span><h3><span class="section-number">4.15.1.2.10. </span>케이블 제어<a class="headerlink" href="#cable-control" title="이 제목의 고유 링크"></a></h3>
+<p>MoorDyn 또는 SubDyn 모듈에 지정된 케이블 요소의 제어는 Bladed 스타일 컨트롤러에 의해 ServoDyn을 통해 제어될 수 있습니다. 각 케이블은 요청된 케이블 길이 변경(DeltaL)에 대한 컨트롤러 채널과 케이블 길이 변경 속도(DeltaLdot)에 대한 컨트롤러 채널 쌍을 수신합니다. 채널 할당은 케이블 요소(현재 MoorDyn 및/또는 SubDyn)가 있는 모듈에 의해 요청되며 적절한 제어 채널에 매핑됩니다. 채널을 요청한 모듈에 대한 요약은 ServoDyn의 요약 파일 출력에서 ​​사용할 수 있습니다. DLL에 연결할 때는 최대 100개의 채널 그룹을 요청할 수 있고, Simulink에 연결할 때는 최대 20개의 채널 그룹을 요청할 수 있습니다.</p>
+<p><strong>CC모드</strong>        [스위치]</p>
+<blockquote>
+<div><p>케이블 제어 모드 {0: 없음, 4: Simulink/Labview에서 사용자 정의, 5: Bladed 스타일 DLL에서 사용자 정의}.</p>
+<p>각 케이블 제어 채널 그룹은 컨트롤러/Simulink 인터페이스의 DeltaL(요청된 케이블 길이 변경)용 채널과 DeltaLdot(케이블 길이 변경률)용 채널로 구성됩니다.</p>
+</div></blockquote>
+</div>
+<div class="section" id="structural-control">
+<span id="srvd-stc-inputs"></span><h3><span class="section-number">4.15.1.2.11. </span>구조 제어<a class="headerlink" href="#structural-control" title="이 제목의 고유 링크"></a></h3>
+<p>참조
+자세한 내용은 <a class="reference internal" href="../servodyn-stc/StC_input.html#stc-locations"><span class="std std-numref">섹션 4.17.1.2</span></a> 를 참조하세요.</p>
+<p><strong>NumBStC</strong>      [정수]</p>
+<blockquote>
+<div><p>블레이드 구조 컨트롤러 수</p>
+</div></blockquote>
+<p><strong>BStCfiles</strong>      [-]</p>
+<blockquote>
+<div><p>블레이드 구조 컨트롤러용 파일 이름(한 줄에 인용 문자열) <em>[사용하지 않는 경우</em> <strong>NumBStC==0</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>NumNStC</strong>      [정수]</p>
+<blockquote>
+<div><p>나셀 구조 컨트롤러 수</p>
+</div></blockquote>
+<p><strong>NStCfiles</strong>      [-]</p>
+<blockquote>
+<div><p>나셀 구조 컨트롤러용 파일 이름(한 줄에 인용 문자열) <em>[사용하지 않는 경우</em> <strong>NumNStC==0</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>NumTStC</strong>      [정수]</p>
+<blockquote>
+<div><p>타워 구조 컨트롤러 수</p>
+</div></blockquote>
+<p><strong>TStCfiles</strong>      [-]</p>
+<blockquote>
+<div><p>타워 구조 제어 댐핑용 파일 이름(한 줄에 인용 문자열) <em>[사용하지 않는 경우</em> <strong>NumTStC==0</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>NumSStC</strong>   [정수]</p>
+<blockquote>
+<div><p>하부 구조 구조 컨트롤러 수</p>
+</div></blockquote>
+<p><strong>SStCfiles</strong>   [-]</p>
+<blockquote>
+<div><p>하위 구조 구조 컨트롤러용 파일 이름(한 줄에 인용 문자열) <em>[사용하지 않는 경우</em> <strong>NumSStC==0</strong> <em>]</em></p>
+</div></blockquote>
+</div>
+<div class="section" id="bladed-controller-interface">
+<h3><span class="section-number">4.15.1.2.12. </span>블레이드 컨트롤러 인터페이스<a class="headerlink" href="#bladed-controller-interface" title="이 제목의 고유 링크"></a></h3>
+<p><strong>DLL_FileName</strong>  [-]</p>
+<blockquote>
+<div><p>Bladed-DLL 형식의 동적 라이브러리 {.dll [Windows] 또는 .so [Linux]}의 이름/위치 <em>[블레이드 인터페이스에만 사용됨]</em></p>
+</div></blockquote>
+<p><strong>DLL_InFile</strong>    [-]</p>
+<blockquote>
+<div><p>DLL로 전송된 입력 파일의 이름 <em>[블레이드 인터페이스에만 사용됨]</em></p>
+</div></blockquote>
+<p><strong>DLL_ProcName</strong>  [-]</p>
+<blockquote>
+<div><p>호출할 DLL의 프로시저 이름 <em>[대소문자 구분; DLL 인터페이스에서만 사용됨]</em></p>
+</div></blockquote>
+<p><strong>DLL_DT</strong>        [초]</p>
+<blockquote>
+<div><p>동적 라이브러리에 대한 통신 간격(또는 "기본값") <em>[블레이드 인터페이스에만 사용됨]</em></p>
+</div></blockquote>
+<p><strong>DLL_Ramp</strong>      [플래그]</p>
+<blockquote>
+<div><p>DLL_DT 시간 단계 사이에 선형 램프를 사용해야 하는지 여부[true인 경우 시간 이동 도입] <em>[블레이드 인터페이스에만 사용됨]</em></p>
+</div></blockquote>
+<p><strong>BP컷오프</strong>      [Hz]</p>
+<blockquote>
+<div><p>DLL의 블레이드 피치에 대한 저역 통과 필터의 차단 주파수 <em>[블레이드 인터페이스에만 사용됨]</em></p>
+</div></blockquote>
+<p><strong>NacYaw_North</strong>  [도]</p>
+<blockquote>
+<div><p>풍향 끝점이 정북일 때 나셀의 참조 요 각도
+<em>[블레이드 인터페이스에만 사용됨]</em></p>
+</div></blockquote>
+<p><strong>Ptch_Cntrl</strong>    [스위치]</p>
+<blockquote>
+<div><p>레코드 28: 개별 피치 컨트롤 사용 {0: 집단 피치; 1: 개별 피치 제어} <em>[블레이드 인터페이스에만 사용됨]</em></p>
+</div></blockquote>
+<p><strong>Ptch_SetPnt</strong>   [도]</p>
+<blockquote>
+<div><p>기록 5: 정격 피치 각도 설정점 미만 <em>[블레이드 인터페이스에만 사용됨]</em></p>
+</div></blockquote>
+<p><strong>Ptch_Min</strong>      [도]</p>
+<blockquote>
+<div><p>레코드 6: 최소 피치 각도 <em>[블레이드 인터페이스에만 사용됨]</em></p>
+</div></blockquote>
+<p><strong>Ptch_Max</strong>      [도]</p>
+<blockquote>
+<div><p>기록 7: 최대 피치 각도 <em>[블레이드 인터페이스에만 사용됨]</em></p>
+</div></blockquote>
+<p><strong>PtchRate_Min</strong>  [도/초]</p>
+<blockquote>
+<div><p>레코드 8: 최소 피치 속도(가장 음수 값 허용) <em>[블레이드 인터페이스에만 사용됨]</em></p>
+</div></blockquote>
+<p><strong>PtchRate_Max</strong>  [도/초]</p>
+<blockquote>
+<div><p>레코드 9: 최대 피치 속도  <em>[블레이드 인터페이스에만 사용됨]</em></p>
+</div></blockquote>
+<p><strong>Gain_OM</strong>       [N-m/(rad/s)^2]</p>
+<blockquote>
+<div><p>레코드 16: 최적 모드 이득 <em>[블레이드 인터페이스에만 사용됨]</em></p>
+</div></blockquote>
+<p><strong>GenSpd_MinOM</strong>  [rpm]</p>
+<blockquote>
+<div><p>레코드 17: 최소 발전기 속도 <em>[블레이드 인터페이스에만 사용됨]</em></p>
+</div></blockquote>
+<p><strong>GenSpd_MaxOM</strong>  [rpm]</p>
+<blockquote>
+<div><p>기록 18: 최적 모드 최대 속도 <em>[블레이드 인터페이스에만 사용됨]</em></p>
+</div></blockquote>
+<p><strong>GenSpd_Dem</strong>    [rpm]</p>
+<blockquote>
+<div><p>기록 19: 정격보다 요구되는 발전기 속도 <em>[블레이드 인터페이스에만 사용됨]</em></p>
+</div></blockquote>
+<p><strong>GenTrq_Dem</strong>    [N-m]</p>
+<blockquote>
+<div><p>기록 22: 정격보다 높은 발전기 토크 요구 <em>[블레이드 인터페이스에만 사용됨]</em></p>
+</div></blockquote>
+<p><strong>GenPwr_Dem</strong>    [W]</p>
+<blockquote>
+<div><p>기록 13: 요구 전력 <em>[블레이드 인터페이스에만 사용됨]</em></p>
+</div></blockquote>
+</div>
+<div class="section" id="bladed-interface-torque-speed-look-up-table">
+<h3><span class="section-number">4.15.1.2.13. </span>블레이드 인터페이스 토크-속도 조회 테이블<a class="headerlink" href="#bladed-interface-torque-speed-look-up-table" title="이 제목의 고유 링크"></a></h3>
+<p><strong>DLL_NumTrq</strong>    [-]</p>
+<blockquote>
+<div><p>레코드 26: 토크-속도 조회 테이블의 포인트 수 {0 = 없음 및 최적 모드 매개변수 사용; 0이 아님 = 레코드 16을 0.0으로 설정하여 최적 모드 매개변수를 무시} <em>[블레이드 인터페이스에만 사용됨]</em>
+다음과 같은 2열 테이블 형식이 예상됩니다.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><dl class="simple">
+<dt>GenSpd_TLU</dt><dd><p>(rpm)</p>
+</dd>
+</dl>
+</td>
+<td><dl class="simple">
+<dt>GenTrq_TLU</dt><dd><p>(N-m)</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="output">
+<span id="srvd-outputs"></span><h3><span class="section-number">4.15.1.2.14. </span>출력<a class="headerlink" href="#output" title="이 제목의 고유 링크"></a></h3>
+<p><strong>SumPrint</strong>      [플래그]</p>
+<blockquote>
+<div><p>요약 데이터를 &lt;RootName&gt;.sum에 인쇄합니다. 이 파일에는 입력 요약이 포함되어 있으며 사용 시 블레이드 스타일 컨트롤러와의 통신 채널에 대한 자세한 목록을 제공합니다. 이 정보는 컨트롤러를 디버깅하거나 ServoDyn 구성 방법을 확인하는 데 도움이 될 수 있습니다.</p>
+</div></blockquote>
+<p><strong>OutFile</strong>       [-]</p>
+<blockquote>
+<div><p>출력이 배치될 위치를 결정하는 스위치: {1: 모듈 출력 파일에서만; 2: 글루 코드 출력 파일에서만; 3: 둘 다} <em>(현재 미사용)</em></p>
+</div></blockquote>
+<p><strong>TabDelim</strong>      [플래그]</p>
+<blockquote>
+<div><p>텍스트 표 출력 파일에 탭 구분 기호를 사용하시겠습니까? <em>(현재 미사용)</em></p>
+</div></blockquote>
+<p><strong>OutFmt</strong>        [-]</p>
+<blockquote>
+<div><p>텍스트 표 출력에 사용되는 형식입니다(시간 제외). 결과 필드는 10자여야 합니다. (따옴표 붙은 문자열) <em>(현재 미사용)</em></p>
+</div></blockquote>
+<p><strong>T시작</strong>        [초]</p>
+<blockquote>
+<div><p>표 출력을 시작할 시간입니다. <em>(현재 미사용)</em></p>
+</div></blockquote>
+<p><strong>OutList</strong> 섹션은 ServoDyn이 생성하는 출력량을 제어합니다. 하나 이상의 출력 매개변수 이름을 포함하는 따옴표 붙은 문자열을 포함하는 하나 이상의 행을 입력하십시오. 쉼표, 세미콜론, 공백 및/또는 탭의 조합으로 출력 매개변수 이름을 구분합니다. 매개변수 이름 앞에 빼기 기호, "-", 밑줄, "_" 또는 문자 "m" 또는 "M"을 붙이면 ServoDyn은 데이터를 쓰기 전에 해당 채널의 값에 -1을 곱합니다. 매개변수는 입력 파일에 나열된 순서대로 작성됩니다. ServoDyn을 사용하면 여러 줄을 사용하여 목록을 의미 있는 그룹으로 나누고 줄을 더 짧게 만들 수 있습니다. 모든 행에서 닫는 따옴표 뒤에 설명을 입력할 수 있습니다. 줄의 시작 부분이나 줄의 시작 부분에 있는 따옴표 붙은 문자열의 시작 부분에 "END"라는 문자열이 포함된 줄을 입력하면 ServoDyn이 더 많은 채널 이름 줄에 대한 검색을 중단하게 됩니다. ServoDyn이 알 수 없거나 유효하지 않은 채널 이름을 발견하면 사용자에게 경고하지만 의심되는 채널을 출력 파일에서 제거합니다. 엑셀 파일의 ServoDyn 탭을 참고하세요. <a class="reference download internal" download="" href="../../../_downloads/3f19498a5dc774461e022b671ff01ec6/OutListParameters.xlsx"><code class="xref download docutils literal notranslate"><span class="pre">OutListParameters.xlsx</span></code></a>
+를 참조하세요.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="index.html" class="btn btn-neutral float-left" title="4.15. ServoDyn 사용자 가이드" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+        <a href="ExtendedBladedInterface.html" class="btn btn-neutral float-right" title="4.15.2. 확장 블레이드 인터페이스" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>© Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    
+     
+
+
+</body></html>

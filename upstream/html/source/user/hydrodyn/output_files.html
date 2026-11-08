@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.11.3. Output Files &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.11.4. Modeling Considerations" href="modeling_considerations.html" />
+    <link rel="prev" title="4.11.2. Input Files" href="input_files.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/hydrodyn/output_files.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.11. HydroDyn</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html">4.11.1. Installation and Getting Started</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input_files.html">4.11.2. Input Files</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.11.3. Output Files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#echo-files">4.11.3.1. Echo Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#summary-file">4.11.3.2. Summary File</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#results-file">4.11.3.3. Results File</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="modeling_considerations.html">4.11.4. Modeling Considerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="future_work.html">4.11.5. Future Work</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.11.6. References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.11.7. Appendix A: OC4 Semi-submersible Input File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html#appendix-b-oc4-semi-submersible-input-file">4.11.8. Appendix B: OC4 Semi-submersible Input File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html#appendix-c-list-of-output-channels">4.11.9. Appendix C. List of Output Channels</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.11. </span>HydroDyn User Guide and Theory Manual</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.11.3. </span>Output Files</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/hydrodyn/output_files.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="output-files">
+<span id="hd-output"></span><h1><span class="section-number">4.11.3. </span>Output Files<a class="headerlink" href="#output-files" title="Permalink to this heading"></a></h1>
+<p>HydroDyn produces three types of output files: an echo file, a summary
+file, and a time-series file. The following sections detail the
+purpose and contents of these files.</p>
+<div class="section" id="echo-files">
+<h2><span class="section-number">4.11.3.1. </span>Echo Files<a class="headerlink" href="#echo-files" title="Permalink to this heading"></a></h2>
+<p>If you set the <strong>Echo</strong> flag to TRUE in the HydroDyn driver file or the
+HydroDyn primary input file, the contents of those files will be echoed
+to a file with the naming conventions, <strong>OutRootName</strong><em>.dvr.ech</em> for
+the driver input file and <strong>OutRootName</strong><em>.HD.ech</em> for the HydroDyn
+primary input file. <strong>OutRootName</strong> is either specified in the HYDRODYN
+section of the driver input file, or by the OpenFAST program. The echo files
+are helpful for debugging your input files. The contents of an echo file
+will be truncated if HydroDyn encounters an error while parsing an input
+file. The error usually corresponds to the line after the last
+successfully echoed line.</p>
+</div>
+<div class="section" id="summary-file">
+<span id="hd-summary-file"></span><h2><span class="section-number">4.11.3.2. </span>Summary File<a class="headerlink" href="#summary-file" title="Permalink to this heading"></a></h2>
+<p>HydroDyn generates a summary file with the naming convention,
+<strong>OutRootName</strong><em>.HD.sum</em> if the <strong>HDSum</strong> parameter is set to TRUE.
+This file summarizes key information about your hydrodynamics model,
+including buoyancy, substructure volumes, marine growth weight, the
+simulation mesh and its properties, and the radiation kernel for
+potential-flow bodies.</p>
+<p>When the text refers to an index, it is referring to a given row in a
+table. The indexing starts at 1 and increases consecutively down the
+rows.</p>
+<div class="section" id="wamit-model-volume-and-buoyancy-information">
+<h3><span class="section-number">4.11.3.2.1. </span>WAMIT-Model Volume and Buoyancy Information<a class="headerlink" href="#wamit-model-volume-and-buoyancy-information" title="Permalink to this heading"></a></h3>
+<p>This section summarizes the buoyancy of each potential-flow body in
+its undisplaced position. For a hybrid potential-flow/strip-theory
+model, these buoyancy values must be added to any strip-theory member
+buoyancy reported in the subsequent sections to obtain the total
+buoyancy of the platform.</p>
+</div>
+<div class="section" id="strip-theory-volume-calculations">
+<h3><span class="section-number">4.11.3.2.2. </span>Strip-Theory Volume Calculations<a class="headerlink" href="#strip-theory-volume-calculations" title="Permalink to this heading"></a></h3>
+<p>This section contains a summary of the combined total volume,
+submerged volume, volume of any marine growth, and fluid-filled
+(flooded/ballasted) volume of all strip-theory members in their undisplaced
+positions. Except for the fluid-filled volume value, the reported
+volumes are only for members that have the <strong>PropPot</strong> flag set to
+FALSE. The flooded/ballasted volume applies to any fluid-filled member,
+regardless of its <strong>PropPot</strong> flag.</p>
+</div>
+<div class="section" id="total-buoyancy-loads">
+<h3><span class="section-number">4.11.3.2.3. </span>Total Buoyancy Loads<a class="headerlink" href="#total-buoyancy-loads" title="Permalink to this heading"></a></h3>
+<p>This section details the buoyancy loads of the undisplaced substructure
+when summed about (0,0,0). The external buoyancy includes the
+effects of marine growth, and only applies to members whose <strong>PropPot</strong>
+flag is set to FALSE. The internal buoyancy is the negative effect on
+buoyancy due to flooding or ballasting and is independent of the
+<strong>PropPot</strong> flag.</p>
+</div>
+<div class="section" id="integrated-marine-growth-weights">
+<h3><span class="section-number">4.11.3.2.4. </span>Integrated Marine Growth Weights<a class="headerlink" href="#integrated-marine-growth-weights" title="Permalink to this heading"></a></h3>
+<p>This section details the marine growth weight loads of the undisplaced
+substructure when summed about (0,0,0).</p>
+</div>
+<div class="section" id="strip-theory-node-table">
+<h3><span class="section-number">4.11.3.2.5. </span>Strip-Theory Node Table<a class="headerlink" href="#strip-theory-node-table" title="Permalink to this heading"></a></h3>
+<p>This table details the undisplaced strip-theory nodal information and properties for
+all user defined joints and internal analysis nodes generated by HydroDyn.
+The internal nodes are generated by splitting input members somewhere
+along its length to meet the requirements of the <strong>MDivSize</strong> parameter in
+the primary input file member table. The node index is provided in the
+first column. The second column provides the input member index (not to be
+confused with the <strong>MemberID</strong>) each internal node belongs to.
+User-defined joints do not necessarily belong to a specific member, so no
+information is provided on this column for these joints. <strong>Nxi</strong>, <strong>Nyi</strong>, and <strong>Nzi</strong>
+provide the (<em>X</em>,<em>Y</em>,<em>Z</em>) coordinates in the global inertial-frame
+coordinate system. <strong>R</strong> is the outer radius of the member at the node
+(excluding marine growth), and <strong>t</strong> is the member wall thickness at the node.
+<strong>tMG</strong> is the marine growth thickness, and <strong>MGDens</strong> is the marine growth
+density. <strong>PropPot</strong> indicates whether the element attached to this node
+is modeled using potential-flow theory. If <strong>FilledFlag</strong> is TRUE, then <strong>FillMass</strong>
+gives the filled fluid mass assigned to the node. <strong>Cd</strong>, <strong>Ca</strong>, <strong>Cp</strong>, <strong>Cb</strong>, <strong>AxCd</strong>, <strong>AxCa</strong>,
+<strong>AxCp</strong>, <strong>JAxCd</strong>, <strong>JAxCa</strong>, and <strong>JAxCp</strong> are the transverse drag,
+transverse added-mass, transverse dynamic-pressure, buoyancy-scaling, axial drag, axial added-mass,
+axial dynamic-pressure, endplate axial drag, endplate axial added-mass, and
+endplate axial dynamic-pressure coefficients, respectively. Note that some of the columns
+are only populated for user-defined joints, while other columns are only populated
+for internal analysis nodes belonging to a single member.</p>
+</div>
+<div class="section" id="strip-theory-member-table">
+<h3><span class="section-number">4.11.3.2.6. </span>Strip-Theory Member Table<a class="headerlink" href="#strip-theory-member-table" title="Permalink to this heading"></a></h3>
+<p>This section details the undisplaced strip-theory members and their
+associated properties. A suffix of 1 or 2 in a column heading refers to
+the starting or ending node of the member, respectively. The first column is
+the member index. <strong>joint1</strong> and <strong>joint2</strong> refer to the node index found
+in the node table of the previous section. Next are the member
+<strong>Length</strong>, the number of subdivided elements <strong>NElem</strong> to meet the
+<strong>MDivSize</strong> requirement, and the exterior <strong>Volume</strong>. This exterior volume
+calculation includes any marine growth volume on the member. <strong>MGVolume</strong> provides the volume
+contribution due to marine growth. <strong>Volume</strong> and <strong>MGVolume</strong> will be zeros
+for members modeled by potential flow, i.e., with <strong>PropPot</strong> = T for TRUE.
+The cross-sectional properties of outer radius (including marine growth) and wall thickness for each
+node are given by <strong>R1</strong>, <strong>t1</strong>, <strong>R2</strong>, and <strong>t2</strong>, respectively. <strong>PropPot</strong> indicates if
+the member is modeled using potential-flow theory. If the element is
+fluid-filled (has flooding or ballasting), <strong>FilledFlag</strong> is set to
+T for TRUE. <strong>FillDensity</strong> and <strong>FillFSLoc</strong> are the filled fluid
+density and the free-surface location (<em>Z</em>-coordinate in the global
+inertial-frame coordinate system). <strong>FillMass</strong> is calculated by
+multiplying the <strong>FillDensity</strong> value by the element’s interior volume.
+Finally, the hydrodynamic coefficients at the two end joints are listed.
+These are the same coefficients listed in the node table (above).</p>
+</div>
+<div class="section" id="summary-of-user-requested-outputs">
+<h3><span class="section-number">4.11.3.2.7. </span>Summary of User-Requested Outputs<a class="headerlink" href="#summary-of-user-requested-outputs" title="Permalink to this heading"></a></h3>
+<p>The summary file includes information about all requested member and
+joint output channels.</p>
+<div class="section" id="member-outputs">
+<h4><span class="section-number">4.11.3.2.7.1. </span>Member Outputs<a class="headerlink" href="#member-outputs" title="Permalink to this heading"></a></h4>
+<p>The first column lists the string labels of the data channels, as entered in
+the OUTPUT CHANNELS section of the HydroDyn input file. <strong>Xi</strong>, <strong>Yi</strong>,
+and <strong>Zi</strong> provide the coordinates of the output location in the global
+inertial-frame system when the structure is not displaced. The next column,
+<strong>MemberID</strong>, tells you the corresponding input member index. Next are
+the coordinates of the starting (<strong>StartXi</strong>, <strong>StartYi</strong>, <strong>StartZi</strong>)
+and ending (<strong>EndXi</strong>, <strong>EndYi</strong>, <strong>EndZi</strong>) nodes of the member containing
+this output location. <strong>Loc</strong> is the normalized distance from the starting
+node of this member.</p>
+</div>
+<div class="section" id="joint-outputs">
+<h4><span class="section-number">4.11.3.2.7.2. </span>Joint Outputs<a class="headerlink" href="#joint-outputs" title="Permalink to this heading"></a></h4>
+<p>The first column lists the string labels of the data channels, as entered in
+the OUTPUT CHANNELS section of the HydroDyn input file. <strong>Xi</strong>, <strong>Yi</strong>,
+and <strong>Zi</strong> provide the coordinates of the output joint in the global
+inertial-frame system when the structure is not displaced. <strong>InpJointID</strong>
+specifies the <strong>JointID</strong> for the output as given in the MEMBER JOINTS table
+of the HydroDyn input file.</p>
+</div>
+</div>
+<div class="section" id="radiation-memory-effect-convolution-kernel">
+<h3><span class="section-number">4.11.3.2.8. </span>Radiation Memory Effect Convolution Kernel<a class="headerlink" href="#radiation-memory-effect-convolution-kernel" title="Permalink to this heading"></a></h3>
+<p>In the potential-flow solution based on frequency-to-time-domain
+transforms, HydroDyn computes the radiation kernel used by the
+convolution method for calculating the radiation memory effect through
+the cosine transform of the frequency-dependent hydrodynamic damping
+matrix from the radiation problem. The resulting time-domain radiation
+kernel (radiation impulse-response function), a time-dependent
+matrix, is provided in this section. <strong>n</strong> and <strong>t</strong> give
+the time-step index and time, which are followed by the entries of the matrix
+(<strong>K11</strong>, <strong>K12</strong>, etc.) of the radiation kernel associated with that
+time. Because the frequency-dependent hydrodynamic damping matrix is
+symmetric, so is the radiation kernel; thus, only the diagonal and
+upper-triangular portion of the matrix are provided. The radiation
+kernel should decay to zero after a short amount of time, which should
+aid in selecting an appropriate value of <strong>RdtnTMax</strong>. The dimensions of the
+radiation kernel matrix depend on the number of potential-flow bodies
+present (<strong>NBody</strong>) and <strong>NBodyMod</strong> in the HydroDyn primary input file. If
+<strong>NBodyMod</strong> = 1 (full hydrodynamic coupling), the summary file will contain
+data for a single 6<strong>NBody</strong>-by-6<strong>NBody</strong> matrix. If <strong>NBodyMod</strong> &gt; 1
+(no hydrodynamic coupling), the summary file will contain data for <strong>NBody</strong>
+6-by-6 radiation kernal matrices.</p>
+</div>
+</div>
+<div class="section" id="results-file">
+<h2><span class="section-number">4.11.3.3. </span>Results File<a class="headerlink" href="#results-file" title="Permalink to this heading"></a></h2>
+<p>The HydroDyn time-series results are written to a text-based file with
+the naming convention <code class="docutils literal notranslate"><span class="pre">OutRootName.HD.out</span></code> when <strong>OutSwtch</strong> is
+set to either 1 or 3. If HydroDyn is coupled to OpenFAST and <strong>OutSwtch</strong> is
+set to 2 or 3, then OpenFAST will generate a master results file that
+includes the HydroDyn results. The results are in table format, where
+each column is a data channel (the first column is always the
+simulation time), and each row corresponds to a simulation output time
+step. The data channels are specified in the OUTPUT CHANNELS section of
+the HydroDyn primary input file. The column format of the
+HydroDyn-generated file is specified using the <strong>OutFmt</strong> and
+<strong>OutSFmt</strong> parameter of the primary input file.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="input_files.html" class="btn btn-neutral float-left" title="4.11.2. Input Files" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="modeling_considerations.html" class="btn btn-neutral float-right" title="4.11.4. Modeling Considerations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

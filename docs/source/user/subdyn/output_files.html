@@ -1,0 +1,218 @@
+<!DOCTYPE html><html class="writer-html5" lang="ko"><head><!-- Modified 2026-11-08: unofficial Korean machine translation of OpenFAST 5.0.0. Equations, code, figures, input values and attribution retained. -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.8.4. 출력 파일 - OpenFAST v5.0.0 문서</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css">
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css">
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="색인" href="../../../genindex.html">
+    <link rel="search" title="검색" href="../../../search.html">
+    <link rel="next" title="4.8.5. 모델링 시 고려사항" href="modeling.html">
+    <link rel="prev" title="4.8.3. 입력 파일" href="input_files.html"> 
+<link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/subdyn/output_files.html"></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+          </a>
+              <div class="version">5.0 · 한국어</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="문서 검색" aria-label="문서 검색">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.8. SubDyn</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">4.8.1. 소개</a></li>
+<li class="toctree-l3"><a class="reference internal" href="running_sd.html">4.8.2. SubDyn 실행</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input_files.html">4.8.3. 입력 파일</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.8.4. 출력 파일</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#echo-file">4.8.4.1. 에코 파일</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#summary-file">4.8.4.2. 요약 파일</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#results-file">4.8.4.3. 결과 파일</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="modeling.html">4.8.5. 모델링 시 고려사항</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory.html">4.8.6. 서브다인 이론</a></li>
+<li class="toctree-l3"><a class="reference internal" href="future_work.html">4.8.7. 알려진 한계와 향후 개발 계획</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.8.8. 참고문헌</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendixA.html">4.8.9. 부록 A. OC4 재킷 입력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendixB.html">4.8.10. 부록 B. OC4 재킷 드라이버 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendixC.html">4.8.11. 부록 C. OC4 재킷 SSI 입력 파일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendixD.html">4.8.12. 부록 D. 출력 채널 목록</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendixE.html">4.8.13. 부록 E. 독립형 SubDyn 컴파일하기</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendixF.html">4.8.14. 부록 F. SubDyn의 주요 변경 사항</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. 단순화 ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. 구조 제어</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. 추가 모듈 문서</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC 서브루틴 라이브러리</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+</ul>
+
+        <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="페이지 탐색">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.8. </span>SubDyn 사용자 가이드 및 이론 설명서</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.8.4. </span>출력 파일</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/subdyn/output_files.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+      </li>
+  </ul>
+  <hr>
+</div><aside class="ko-notice" aria-label="한국어 번역 안내"><strong>한국어 자동번역</strong> · OpenFAST v5.0.0 · 2026-11-08 기준<br>비공식 번역본입니다. 수식·명령어·입력 변수와 첨부자료는 원문을 보존합니다. <a href="https://openfast.readthedocs.io/en/main/source/user/subdyn/output_files.html" target="_blank" rel="noopener noreferrer" lang="en">영문 원문 대조 ↗</a></aside>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="output-files">
+<span id="sd-output-files"></span><h1><span class="section-number">4.8.4. </span>출력 파일<a class="headerlink" href="#output-files" title="이 제목의 고유 링크"></a></h1>
+<p>SubDyn은 에코 파일, 요약 파일, 시계열 결과 파일의 세 가지 유형의 출력 파일을 생성합니다. 다음 섹션에서는 이러한 파일의 목적과 내용을 자세히 설명합니다.
+SubDyn 드라이버 파일 또는 기본 SubDyn 입력 파일에서</p>
+<div class="section" id="echo-file">
+<h2><span class="section-number">4.8.4.1. </span>에코 파일<a class="headerlink" href="#echo-file" title="이 제목의 고유 링크"></a></h2>
+<p>사용자가 설정하는 경우
+BeamDyn 기본 입력 파일에서 <strong>에코</strong> 플래그를 TRUE로 설정하면 해당 파일의 내용이 명명 규칙을 사용하여 파일에 반영됩니다.
+기본 SubDyn 입력 파일의 경우 <strong>OutRootName.dvr.ech</strong>
+및 <strong>OutRootName.SD.ech</strong> 입니다. <strong>OutRootName</strong> 는 드라이버 입력 파일의 SUBDYN 섹션이나 FAST 입력 파일에 지정됩니다. 에코 파일은 입력 파일을 디버깅하는 데 유용합니다. SubDyn이 입력 파일을 구문 분석하는 동안 오류가 발생하면 에코 파일의 내용이 잘립니다. 오류는 일반적으로 마지막으로 성공적으로 에코된 줄 다음 줄에 해당합니다.</p>
+</div>
+<div class="section" id="summary-file">
+<span id="sd-sum-file"></span><h2><span class="section-number">4.8.4.2. </span>요약 파일<a class="headerlink" href="#summary-file" title="이 제목의 고유 링크"></a></h2>
+<p>SubDyn은 명명 규칙을 사용하여 요약 파일을 생성합니다.
+<strong>OutRootName.SD.sum</strong> 경우 <strong>SumPrint</strong> 매개변수는 TRUE로 설정됩니다. 이 파일에는 다음을 포함하여 하위 구조 모델에 대한 주요 정보가 요약되어 있습니다.</p>
+<ul class="simple">
+<li><p>변위되지 않은 노드 형상: 모든 목록(<strong>NNodes</strong>) 노드 및 <em>X</em>,<em>Y</em>,<em>Z</em> 는 전역 SS 좌표계의 좌표입니다. 참고하세요 <strong>NNodes</strong> 는 다음보다 크거나 같을 수 있습니다.
+<strong>N조인트</strong>, 다음에 따라 다름 <strong>NDiv</strong> (기본 입력 파일 매개변수).</p></li>
+<li><p>끝 노드의 요소 연결 및 속성: 모든 목록(<strong>NElems</strong>) 요소, 시작 및 끝 노드(<strong>Node_I</strong>,
+<strong>Node_J</strong>) 및 속성 세트의 ID(<strong>Prop_I</strong>,
+<strong>Prop_J</strong>)를 시작 및 끝 노드에 배치합니다. <strong>NElems</strong> 는 다음보다 크거나 같을 수 있습니다. <strong>N회원</strong>, 다음에 따라 다름 <strong>NDiv</strong> (기본 입력 파일 매개변수).</p></li>
+<li><p>속성 집합. 테이퍼 멤버를 사용하는 경우 보간된 직경 및 두께 값을 기준으로 기본 입력 파일에 지정된 속성 세트 외에 추가 속성 세트가 포함될 수 있습니다. 헤더와 그 의미는 섹션에 설명된 것과 동일합니다.</p></li>
+<li><p>반응 DOF 및 인터페이스 DOF 및 관련 고정성; DOF의 실제 인덱스(<strong>DOF_ID</strong>)는 고정성 수준을 구별하기 위해 (1/0) 플래그와 함께 나열됩니다.</p></li>
+<li><p>집중미사일정. 이는 기본 입력 파일에 있는 해당 섹션의 에코입니다. 섹션을 참조하십시오.</p></li>
+<li><p>조인트, 노드 및 해당 질량에 대한 연결을 포함한 멤버 일정. 테이블에는 식별자별로 모든 구성원이 나열됩니다(<strong>MemberID</strong>), 시작 및 끝 노드(<strong>Joint1_ID</strong>,
+<strong>Joint2_ID</strong>), 관련 질량(<strong>질량</strong>) 및 멤버 길이에 따른 노드 식별자 목록입니다.</p></li>
+<li><p>멤버의 방향 코사인 행렬입니다. 각 행(열 2-10)은 방향 코사인 행렬 항목(<strong>DC(1,1)</strong>
+를 통해
+각 풍력터빈의 고해상도 영역에 대한 <strong>DC(3,3)</strong>) 식별자가 첫 번째 열에 나열된 멤버에 대한 것입니다. 방향 코사인 행렬은 각 멤버에 대해 전역 참조에서 로컬 좌표계로의 변환을 지정합니다.</p></li>
+<li><p>TP 기준점이 자유 끝이라고 가정하여 전체 하부 구조 시스템에 대한 고유 주파수[헤르츠(Hz)]를 정렬했습니다(FAST를 통해 ElastoDyn에 대한 가능한 결합을 무시함). 총 가 있습니다
+<strong>NDOF</strong> 고유주파수 및 고유벡터.</p></li>
+<li><p>TP 기준점이 고정 끝이라고 가정하고 C-B 감소 시스템에 대한 정렬된 고유 주파수(Hz)입니다. 총 가 있습니다
+<strong>N모드</strong> CB는 고유주파수와 고유벡터를 줄였습니다.</p></li>
+<li><p>전체 하부 구조 시스템 고유 벡터. 각 열은 파일에서 이전에 식별된 해당 고유 주파수와 연관된 고유 벡터를 나타냅니다.</p></li>
+<li><p>C-B 감소 시스템 고유 벡터(<strong>PhiM</strong> 매트릭스). 각 열은 파일에서 이전에 식별된 해당 고유 주파수와 연관된 고유 벡터를 나타냅니다.</p></li>
+<li><p><strong>PhiR</strong> 매트릭스 또는 변위(섹션 참조). 행렬의 각 열은 각 베이스 및 인터페이스 조인트에 대한 인터페이스 DOF를 따른 주어진 단위 강체 모션에 대한 내부 DOF 변위를 나타냅니다.</p></li>
+<li><p>TP 기준점을 기준으로 한 하부 구조 등가 강성 및 질량 행렬(<strong>KBBt</strong> 및 <strong>MBBt
+SubDyn 요약 파일에 있는</strong>), Guyan 감소를 기반으로 합니다. 이는 ElastoDyn에 대한 타워 고유 모드를 계산하는 동안 하부 구조 유연성의 효과를 계산하는 데 유용합니다.</p></li>
+<li><p>전역 원점을 기준으로 한 강체 등가 질량 행렬(<strong>MRB</strong>); 6x6 질량 행렬.</p></li>
+<li><p>하부구조 전체(건조) 질량.</p></li>
+<li><p>전체 좌표계의 하부 구조 질량 중심 좌표입니다.</p></li>
+</ul>
+<p>요약 파일과 변수의 다양한 섹션은 설명이 필요 없으며 파일에서 쉽게 식별할 수 있습니다.</p>
+</div>
+<div class="section" id="results-file">
+<h2><span class="section-number">4.8.4.3. </span>결과 파일<a class="headerlink" href="#results-file" title="이 제목의 고유 링크"></a></h2>
+<p>SubDyn 시계열 결과는 명명 규칙을 사용하여 텍스트 기반 파일에 기록됩니다. <strong>OutRootName.SD.out</strong> 때 <strong>OutSwtch</strong> 는 1 또는 3으로 설정됩니다. SubDyn이 FAST와 결합된 경우 <strong>OutSwtch</strong> 가 2개 또는 3개로 설정되면 FAST는 SubDyn 결과를 포함하는 마스터 결과 파일을 생성합니다. 결과는 <strong>OutRootName.SD.out</strong> 는 테이블 형식으로 되어 있으며 각 열은 데이터 채널이고(첫 번째 열은 항상 시뮬레이션 시간임) 각 행은 시뮬레이션 시간 단계에 해당합니다. 데이터 채널은 입력 파일의 SDOutList 섹션에 지정됩니다. SubDyn 생성 파일의 열 형식은 다음을 사용하여 지정됩니다.
+입력 파일의 <strong>OutFmt</strong> 및 <strong>OutSFmt</strong> 매개변수입니다.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="input_files.html" class="btn btn-neutral float-left" title="4.8.3. 입력 파일" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+        <a href="modeling.html" class="btn btn-neutral float-right" title="4.8.5. 모델링 시 고려사항" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>© Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    
+     
+
+
+</body></html>

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.10.3. ElastoDyn Theory &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.10.5. References" href="zrefs.html" />
+    <link rel="prev" title="4.10.2. Input Files" href="input.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/elastodyn/theory.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.10. ElastoDyn</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="coordsys.html">4.10.1. Coordinate systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input.html">4.10.2. Input Files</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.10.3. ElastoDyn Theory</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#notations">4.10.3.1. Notations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#kinematics">4.10.3.2. Kinematics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rotor-and-tail-furl">4.10.3.3. Rotor and tail furl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#yaw-friction-model">4.10.3.4. Yaw-friction model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#blade-pitch-dynamics">4.10.3.5. Blade pitch dynamics</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#developer-notes">4.10.4. Developer notes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.10.5. References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.10. </span>ElastoDyn Users Guide and Theory Manual</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.10.3. </span>ElastoDyn Theory</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/elastodyn/theory.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="elastodyn-theory">
+<span id="ed-theory"></span><h1><span class="section-number">4.10.3. </span>ElastoDyn Theory<a class="headerlink" href="#elastodyn-theory" title="Permalink to this heading"></a></h1>
+<p>Note this document is work in progress and is greatly incomplete.
+This documentation was started to document some code changes to the tail furl and rotor furl part of ElastoDyn.
+Please refer to the different ressources provided in <a class="reference internal" href="index.html#ed-intro"><span class="std std-numref">Section 4.10</span></a> for additional documents.</p>
+<div class="section" id="notations">
+<h2><span class="section-number">4.10.3.1. </span>Notations<a class="headerlink" href="#notations" title="Permalink to this heading"></a></h2>
+<p><strong>Points</strong></p>
+<p>The following (partial) list of points are defined by ElastoDyn:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Z</span></code>: the platform reference point</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">O</span></code>: the tower-top/base plate point</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">W</span></code>: the specified point on the tail-furl axis</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">I</span></code>: the tail boom center of mass</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">J</span></code>: the tail fin center of mass</p></li>
+</ul>
+<p><strong>Bodies</strong></p>
+<p>The following (partial) list of bodies are defined by ElastoDyn:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">E</span></code>: the earth/inertial frame</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">X</span></code>: the platform body</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">N</span></code>: the nacelle body</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">A</span></code>: the tail-furl body</p></li>
+</ul>
+</div>
+<div class="section" id="kinematics">
+<h2><span class="section-number">4.10.3.2. </span>Kinematics<a class="headerlink" href="#kinematics" title="Permalink to this heading"></a></h2>
+<p>ElastoDyn computes the position, velocity and accelerations of key points of the structure, starting from the platform reference point <cite>Z</cite> and going up in the structure.</p>
+<p>The different position vectors are available in the data stucture <code class="docutils literal notranslate"><span class="pre">RtHSdat</span></code>.
+For instance, the global position of point J is given by:</p>
+<div class="math notranslate nohighlight" id="equation-tfpointjpos">
+<span class="eqno">(4.187)<a class="headerlink" href="#equation-tfpointjpos" title="Permalink to this equation"></a></span>\[\boldsymbol{r}_J =  \boldsymbol{r}_Z +  \boldsymbol{r}_{ZO} +  \boldsymbol{r}_{OW} +  \boldsymbol{r}_{WJ}\]</div>
+<p>The translational displacement vector (how much a point has moved compared to its reference position)  is calculated as follows: <span class="math notranslate nohighlight">\(\boldsymbol{r}_J-\boldsymbol{r}_{J,\text{ref}}\)</span>.</p>
+<p>The coordinate systems of ElastoDyn are stored in the variable <code class="docutils literal notranslate"><span class="pre">CoordSys</span></code>.
+The orientation matrix of a given coordinate system can be formed using the unit vectors (assumed to be column vectors) of a given coordinate system expressed in the inertial frame.
+For instance for the tailfin coordinate system:</p>
+<div class="math notranslate nohighlight" id="equation-tfpointjorientation">
+<span class="eqno">(4.188)<a class="headerlink" href="#equation-tfpointjorientation" title="Permalink to this equation"></a></span>\[\begin{split}\boldsymbol{R}_{Ai} = \begin{bmatrix}
+   \left.\boldsymbol{\hat{x}_\text{tf}^t}\right|_i \\
+   \left.\boldsymbol{\hat{y}_\text{tf}^t}\right|_i \\
+   \left.\boldsymbol{\hat{z}_\text{tf}^t}\right|_i \\
+\end{bmatrix}\end{split}\]</div>
+<p>Angular velocities are stored in variables <code class="docutils literal notranslate"><span class="pre">RtHSdat%AngVelE*</span></code> with respect to the initial frame (“Earth”, <cite>E</cite>).
+For instance, the angular velocity of the tail-furl body (body <cite>A</cite>) is:</p>
+<div class="math notranslate nohighlight" id="equation-tfpointjangvel">
+<span class="eqno">(4.189)<a class="headerlink" href="#equation-tfpointjangvel" title="Permalink to this equation"></a></span>\[\boldsymbol{\omega}_{A/E} =  \boldsymbol{\omega}_{X/E} + \boldsymbol{\omega}_{N/X} + \boldsymbol{\omega}_{A/N}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\boldsymbol{\omega}_{N/X}=\boldsymbol{\omega}_{B/X}+\boldsymbol{\omega}_{N/B}\)</span></p>
+<p>Linear (translational) velocities of the different points are found in the variables <code class="docutils literal notranslate"><span class="pre">RtHSdat%LinVelE*</span></code>, and are computed based on Kane’s partial velocities (which are Jacobians of the velocity with respect to the time derivatives of the degrees of freedom).
+For instance, the linear velocity of point J is computed as:</p>
+<div class="math notranslate nohighlight" id="equation-tfpointjvel">
+<span class="eqno">(4.190)<a class="headerlink" href="#equation-tfpointjvel" title="Permalink to this equation"></a></span>\[\boldsymbol{v}_J = \sum_{j} \frac{\partial v_J}{\partial \dot{q}_j} \dot{q}_j\]</div>
+<p>where the Jacobians <span class="math notranslate nohighlight">\(\frac{\partial v_J}{\partial \dot{q}_j}\)</span> are stored in <code class="docutils literal notranslate"><span class="pre">RtHSdat%PLinVelEJ(:,0)</span></code></p>
+<p>Translational accelerations are computed as the sum of contribution from the first and second time derivatives of the degrees of freedom.
+For instance, the acceleration of point <cite>J</cite> is computed as:</p>
+<div class="math notranslate nohighlight" id="equation-tfpointjang">
+<span class="eqno">(4.191)<a class="headerlink" href="#equation-tfpointjang" title="Permalink to this equation"></a></span>\[ \begin{align}\begin{aligned}\boldsymbol{\tilde{a}}_J &amp;= \sum_{j\in PA} \frac{\partial a_J}{\partial \dot{q}_j} \dot{q}_j\\\boldsymbol{a}_J &amp;= \boldsymbol{\tilde{a}}_J + \sum_{j\in PA} \frac{\partial v_J}{\partial \dot{q}_j} \ddot{q}_j\end{aligned}\end{align} \]</div>
+<p>where  <span class="math notranslate nohighlight">\(\frac{\partial a_J}{\partial \dot{q}_j}\)</span> are stored in <code class="docutils literal notranslate"><span class="pre">RtHSdat%PLinVelEJ(:,1)</span></code></p>
+<p>Angular accelerations requires similar computations currently not documented.</p>
+</div>
+<div class="section" id="rotor-and-tail-furl">
+<span id="ed-rtfrl-theory"></span><h2><span class="section-number">4.10.3.3. </span>Rotor and tail furl<a class="headerlink" href="#rotor-and-tail-furl" title="Permalink to this heading"></a></h2>
+<p>The user can select linear spring and damper models, together with
+up- and down-stop springs, and up- and down-stop dampers.</p>
+<p>The torque applied from the linear spring and damper is:</p>
+<div class="math notranslate nohighlight" id="equation-tflintorque">
+<span class="eqno">(4.192)<a class="headerlink" href="#equation-tflintorque" title="Permalink to this equation"></a></span>\[Q_\text{lin} = - k \theta  - d \dot{\theta}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\theta\)</span> is the degree of freedom (rotor or tail furl),
+<span class="math notranslate nohighlight">\(k\)</span> is the linear spring constant (<code class="docutils literal notranslate"><span class="pre">RFrlSpr</span></code> or <code class="docutils literal notranslate"><span class="pre">TFrlSpr</span></code>)
+<span class="math notranslate nohighlight">\(d\)</span> is the linear damping constant (<code class="docutils literal notranslate"><span class="pre">RFrlDmp</span></code> or <code class="docutils literal notranslate"><span class="pre">TFrlDmp</span></code>).</p>
+<p>The up-/down- stop spring torque is defined as:</p>
+<div class="math notranslate nohighlight" id="equation-tfstoptorquespring">
+<span class="eqno">(4.193)<a class="headerlink" href="#equation-tfstoptorquespring" title="Permalink to this equation"></a></span>\[\begin{split}Q_\text{stop, spr} = \begin{cases}
+   - k_{US} (\theta-\theta_{k_{US}}),&amp;\text{if } \theta&gt;\theta_{k_{US}}  \\
+   - k_{DS} (\theta-\theta_{k_{DS}}),&amp;\text{if } \theta&lt;\theta_{k_{DS}}  \\
+     0 ,&amp;\text{otherwise}
+     \end{cases}\end{split}\]</div>
+<p>where
+<span class="math notranslate nohighlight">\(k_{US}\)</span> is the up-stop spring constant (<code class="docutils literal notranslate"><span class="pre">RFrlUSSpr</span></code> or <code class="docutils literal notranslate"><span class="pre">TFrlUSSpr</span></code>),
+<span class="math notranslate nohighlight">\(\theta_{k_{US}}\)</span> is the up-stop spring angle (<code class="docutils literal notranslate"><span class="pre">RFrlUSSP</span></code> or <code class="docutils literal notranslate"><span class="pre">TFrlUSSP</span></code>),
+and similar notations are used for the down-stop spring.</p>
+<p>The up-/down- stop damping torque is defined as:</p>
+<div class="math notranslate nohighlight" id="equation-tfstoptorquedamp">
+<span class="eqno">(4.194)<a class="headerlink" href="#equation-tfstoptorquedamp" title="Permalink to this equation"></a></span>\[\begin{split}Q_\text{stop, dmp} = \begin{cases}
+   - d_{US} \dot{\theta},&amp;\text{if } \theta&gt;\theta_{d_{US}}  \\
+   - d_{DS} \dot{\theta},&amp;\text{if } \theta&lt;\theta_{d_{DS}}  \\
+     0 ,&amp;\text{otherwise}
+     \end{cases}\end{split}\]</div>
+<p>where similar nnotations are used.
+The total moment on the given degree of freedom is:</p>
+<div class="math notranslate nohighlight" id="equation-tftottorque">
+<span class="eqno">(4.195)<a class="headerlink" href="#equation-tftottorque" title="Permalink to this equation"></a></span>\[Q = Q_\text{lin} + Q_\text{stop,spr} + Q_\text{stop,dmp}\]</div>
+</div>
+<div class="section" id="yaw-friction-model">
+<span id="ed-yawfriction-theory"></span><h2><span class="section-number">4.10.3.4. </span>Yaw-friction model<a class="headerlink" href="#yaw-friction-model" title="Permalink to this heading"></a></h2>
+<p>A yaw-friction model is implemented in ElastoDyn based on a Coulomb-viscous approach.
+The yaw-friction moment as a function of yaw rate (<span class="math notranslate nohighlight">\(\omega\)</span>) is shown below in <a class="reference internal" href="#figyawfriction"><span class="std std-numref">Fig. 4.49</span></a></p>
+<div class="figure align-default" id="id2">
+<span id="figyawfriction"></span><a class="reference internal image-reference" href="../../../_images/YawFrictionModel.jpg"><img alt="../../../_images/YawFrictionModel.jpg" src="../../../_images/YawFrictionModel.jpg" style="width: 60%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.49 </span><span class="caption-text">Yaw-friction model</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</div>
+<p>When <code class="docutils literal notranslate"><span class="pre">YawFrctMod</span></code> = 1, the maximum static or dynamic Coulomb friction does not depend on the external load on the yaw bearing. The yaw-friction torque <span class="math notranslate nohighlight">\(M_f\)</span> can be calculated as follows.
+If <span class="math notranslate nohighlight">\(\omega\neq0\)</span>, we have dynamic friction of the form</p>
+<div class="math notranslate nohighlight">
+\[M_f = -(\mu_d\bar{D})\cdot\textrm{sign}(\omega) - M_{f,vis},\]</div>
+<p>where <span class="math notranslate nohighlight">\(\bar{D}\)</span> is the effective yaw-bearing diameter and <span class="math notranslate nohighlight">\(\mu_d\)</span> is the dynamic Coulomb friction coefficient. Their product, <span class="math notranslate nohighlight">\(\mu_d\bar{D}\)</span>, is specified in the input file through <code class="docutils literal notranslate"><span class="pre">M_CD</span></code>. The first term on the right-hand side is the dynamic Coulomb friction.
+The viscous friction, <span class="math notranslate nohighlight">\(M_{f,vis}\)</span>, is of the form</p>
+<div class="math notranslate nohighlight">
+\[M_{f,vis} = \sigma_v\omega + \sigma_{v2}\omega\left|\omega\right|\qquad\qquad\text{if}~\left|\omega\right|\ge\omega_c,\]</div>
+<p>or</p>
+<div class="math notranslate nohighlight">
+\[M_{f,vis} = (\sigma_v + \sigma_{v2}\omega_c)\omega\qquad\qquad\text{if}~\left|\omega\right|\le\omega_c,\]</div>
+<p>where <span class="math notranslate nohighlight">\(\sigma_v\)</span> and <span class="math notranslate nohighlight">\(\sigma_{v2}\)</span> are the linear and quadratic viscous friction coefficients and <span class="math notranslate nohighlight">\(\omega_c\)</span> is the cutoff yaw rate below which viscous friction is linearized. Setting <span class="math notranslate nohighlight">\(\omega_c=0\)</span> disables the linearization of viscous friction.</p>
+<p>If <span class="math notranslate nohighlight">\(\omega=0\)</span> and <span class="math notranslate nohighlight">\(\dot{\omega}\neq 0\)</span>, we have a slightly modified dynamic Coulomb friction of the form</p>
+<div class="math notranslate nohighlight">
+\[M_f = -\textrm{min}\!\left(\mu_d\bar{D},\left|M_z\right|\right)\cdot\textrm{sign}(M_z),\]</div>
+<p>where <span class="math notranslate nohighlight">\(M_z\)</span> is the external yaw torque.
+If <span class="math notranslate nohighlight">\(\omega=0\)</span> and <span class="math notranslate nohighlight">\(\dot{\omega}=0\)</span>, we have static Coulomb friction of the form</p>
+<div class="math notranslate nohighlight">
+\[M_f = -\textrm{min}\!\left(\mu_s\bar{D},\left|M_z\right|\right)\cdot\textrm{sign}(M_z),\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mu_s\)</span> is the static Coulomb friction coefficient. The product <span class="math notranslate nohighlight">\(\mu_s\bar{D}\)</span> is specified in the input file through <code class="docutils literal notranslate"><span class="pre">M_CSmax</span></code>.</p>
+<p>When <code class="docutils literal notranslate"><span class="pre">YawFrctMod</span></code> = 2, the maximum static or dynamic Coulomb friction depends on the external load on the yaw bearing, with proportional contributions from <span class="math notranslate nohighlight">\(\left|F_z\right|\)</span>, the magnitude of the bearing axial load, if <span class="math notranslate nohighlight">\(F_z&lt;0\)</span>, from the bearing shear force magnitude, <span class="math notranslate nohighlight">\(\sqrt{F_x^2+F_y^2}\)</span>, and from the bearing bending moment magnitude, <span class="math notranslate nohighlight">\(\sqrt{M_x^2+M_y^2}\)</span>.
+If <span class="math notranslate nohighlight">\(\omega\neq0\)</span>, we have dynamic friction of the form</p>
+<div class="math notranslate nohighlight">
+\[M_f = \left(\mu_d\bar{D}\cdot\textrm{min}\!\left(0,F_z\right)-\mu_{df}\bar{D}\sqrt{F_x^2+F_y^2}-\mu_{dm}\sqrt{M_x^2+M_y^2}\right)\cdot\textrm{sign}(\omega) - M_{f,vis},\]</div>
+<p>where <span class="math notranslate nohighlight">\(M_{f,vis}\)</span> is defined in the same way as when <code class="docutils literal notranslate"><span class="pre">YawFrctMod</span></code> = 1. The product <span class="math notranslate nohighlight">\(\mu_{df}\bar{D}\)</span> and <span class="math notranslate nohighlight">\(\mu_{dm}\)</span> are specified in the input file through <code class="docutils literal notranslate"><span class="pre">M_FCD</span></code> and <code class="docutils literal notranslate"><span class="pre">M_MCD</span></code>, respectively.
+If <span class="math notranslate nohighlight">\(\omega=0\)</span> and <span class="math notranslate nohighlight">\(\dot{\omega}\neq 0\)</span>, we have a modified dynamic Coulomb friction of the form</p>
+<div class="math notranslate nohighlight">
+\[M_f = -\textrm{min}\!\left(\mu_d\bar{D}\left|\textrm{min}(0,F_z)\right| + \mu_{df}\bar{D}\sqrt{F_x^2+F_y^2} + \mu_{dm}\sqrt{M_x^2+M_y^2},\left|M_z\right|\right)\cdot\textrm{sign}(M_z).\]</div>
+<p>If <span class="math notranslate nohighlight">\(\omega=0\)</span> and <span class="math notranslate nohighlight">\(\dot{\omega}=0\)</span>, we have static Coulomb friction of the form</p>
+<div class="math notranslate nohighlight">
+\[M_f = -\textrm{min}\!\left(\mu_s\bar{D}\left|\textrm{min}(0,F_z)\right| + \mu_{sf}\bar{D}\sqrt{F_x^2+F_y^2} + \mu_{sm}\sqrt{M_x^2+M_y^2},\left|M_z\right|\right)\cdot\textrm{sign}(M_z),\]</div>
+<p>where the product <span class="math notranslate nohighlight">\(\mu_{sf}\bar{D}\)</span> and <span class="math notranslate nohighlight">\(\mu_{sm}\)</span> are specified in the input file through <code class="docutils literal notranslate"><span class="pre">M_FCSmax</span></code> and <code class="docutils literal notranslate"><span class="pre">M_MCSmax</span></code>, respectively.</p>
+<p>The static ‘stiction’ (where the static contribution exceeds the dynamic Coulomb friction) is only applied if both the yaw rotational velocity and acceleration at the current time-step are zero.
+The static portion of the friction is omitted if the rotational acceleration is not null.
+This is to account for the fact that a ‘warm’ joint may not feel stiction when crossing through zero velocity in a dynamic sense <span id="id1">[<a class="reference internal" href="zrefs.html#id2" title="Mohamed M Hammam, David Wood, and Brent Summerville. Modeling the yaw behavior of tail fins for small wind turbines: november 22, 2021-may 21, 2024. Technical Report, National Renewable Energy Laboratory (NREL), Golden, CO (United States), 2023.">ed-HWS23</a>]</span>.
+When <span class="math notranslate nohighlight">\(\omega=0\)</span>, the yaw-bearing static or dynamic friction is formulated such that the frictional resistance opposes the external applied moment, <span class="math notranslate nohighlight">\(M_z\)</span>, without overcoming it.</p>
+</div>
+<div class="section" id="blade-pitch-dynamics">
+<h2><span class="section-number">4.10.3.5. </span>Blade pitch dynamics<a class="headerlink" href="#blade-pitch-dynamics" title="Permalink to this heading"></a></h2>
+<p>Prior to OpenFAST v5, the blade pitch angles were either fixed or prescribed based on the pitch command from ServoDyn. The blade root pitch velocity and acceleration were always zero despite the pitch angle potentially changing following ServoDyn pitch command. There was also no pitch moment due to blade pitch inertia if the blades are modeled in ElastoDyn. Note that when BeamDyn was used to model the blades, only the blade root nodes had zero pitch velocity and acceleration. The pitch inertia and twisting of the rest of the blades following the root node were still accounted for, partially capturing the blade pitch dynamics.</p>
+<p>In OpenFAST v5, new blade pitch degrees of freedom, <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code>, are introduced in ElastoDyn. By setting <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> to true, blade pitching can now be simulated dynamically in ElastoDyn. To use this feature, users need to provide the moments of inertia of the pitch actuators/bearings about the pitch axis through the new <code class="docutils literal notranslate"><span class="pre">PBrIner(I)</span></code> inputs added to the ElastoDyn input file. If the blades are also modeled in ElastoDyn instead of BeamDyn, the total moments of inertia of the undeflected blades about the pitch axis must also be provided through the new <code class="docutils literal notranslate"><span class="pre">BlPIner(I)</span></code> inputs. Note that because ElastoDyn does not model blade twisting, it is not necessary to specify distributed blade pitch inertia. Furthermore, the effective blade pitch moments of inertia during the simulation might be higher than <code class="docutils literal notranslate"><span class="pre">BlPIner(I)</span></code> due to additional contributions coming from blade bending. When ElastoDyn is used to model the blades, <code class="docutils literal notranslate"><span class="pre">PBrIner(I)</span></code> and <code class="docutils literal notranslate"><span class="pre">BlPIner(I)</span></code> are simply added together to obtain the total pitch moment of inertia needed in the equations of motion. The results from the simulation will be the same as long as the sum of <code class="docutils literal notranslate"><span class="pre">PBrIner(I)</span></code> and <code class="docutils literal notranslate"><span class="pre">BlPIner(I)</span></code> remains unchanged. When BeamDyn is used to model the blades, <code class="docutils literal notranslate"><span class="pre">BlPIner(I)</span></code> is ignored because the distributions of pitch moment of inertia along the blades are considered in BeamDyn, which also models blade twisting. It is, however, still necessary to have realistic values for <code class="docutils literal notranslate"><span class="pre">PBrIner(I)</span></code> in ElastoDyn. Setting <code class="docutils literal notranslate"><span class="pre">PBrIner(I)</span></code> to zero or close to zero will result in numerical issues in ElastoDyn.</p>
+<p>When <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> is true, the blade root pitch angles are solved dynamically instead of being prescribed. In this case, a pitch actuator torque is computed by ServoDyn for each blade as</p>
+<p><code class="docutils literal notranslate"><span class="pre">BlPitchMom</span> <span class="pre">=</span> <span class="pre">-</span> <span class="pre">PitSpr</span>&#160; <span class="pre">*</span> <span class="pre">(</span> <span class="pre">BlPitch</span> <span class="pre">-</span> <span class="pre">BlPitchCom</span> <span class="pre">)</span> <span class="pre">-</span> <span class="pre">PitDamp</span> <span class="pre">*</span> <span class="pre">(</span> <span class="pre">BlPRate</span> <span class="pre">-</span> <span class="pre">BlPRateCom</span> <span class="pre">)</span></code></p>
+<p>The pitch actuator stiffness/spring constant <code class="docutils literal notranslate"><span class="pre">PitSpr</span></code> and damping <code class="docutils literal notranslate"><span class="pre">PitDamp</span></code> for each blade are both defined in the ServoDyn input file. This actuator torque is applied to the blade at the root. An equal but opposite torque is applied to the rotor hub. The pitch command <code class="docutils literal notranslate"><span class="pre">BlPitchCom</span></code> and pitch rate command <code class="docutils literal notranslate"><span class="pre">BlPRateCom</span></code> are not used by ElastoDyn directly when <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> is true. (ServoDyn will compute and output pitch actuator torques regardless of whether <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> is true or false in ElastoDyn. However, in the latter case, the actuator torques are simply not used.)</p>
+<p>When active blade pitch control is on in ServoDyn, <code class="docutils literal notranslate"><span class="pre">BlPitchCom</span></code> is computed by the turbine controller. When active blade pitch control is off (<code class="docutils literal notranslate"><span class="pre">PCMode=0</span></code> or during <code class="docutils literal notranslate"><span class="pre">t&lt;TPCOn</span></code> when <code class="docutils literal notranslate"><span class="pre">PCMode&gt;0</span></code>), <code class="docutils literal notranslate"><span class="pre">BlPitchCom</span></code> is given by the neutral blade pitch position <code class="docutils literal notranslate"><span class="pre">PitNeut(I)</span></code> in the ServoDyn input file. Finally, during pitch maneuver, <code class="docutils literal notranslate"><span class="pre">BlPitchCom</span></code> approaches the final pitch position at a constant rate given by <code class="docutils literal notranslate"><span class="pre">PitManRat(I)</span></code> in the ServoDyn input file.</p>
+<p>In addition to pitch position commands, pitch rate commands <code class="docutils literal notranslate"><span class="pre">BlPRateCom</span></code> are also added to ServoDyn. Currently, <code class="docutils literal notranslate"><span class="pre">BlPRateCom</span></code> is only available with DLL controllers (<code class="docutils literal notranslate"><span class="pre">PCMode=5</span></code>) or during override pitch maneuvers. During normal operation, the pitch rate commands are estimated using finite differencing based on the pitch set points from two consecutive controller steps. During pitch maneuvers, the pitch rate command is simply set to <code class="docutils literal notranslate"><span class="pre">PitManRat(I)</span></code> in the ServoDyn input file until the final pitch position is reached. <code class="docutils literal notranslate"><span class="pre">BlPRateCom</span></code> is zero when <code class="docutils literal notranslate"><span class="pre">PCMode</span></code> is 0, 3, or 4 or after the pitch maneuver is completed.</p>
+<p>When <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> is true in ElastoDyn, the following ServoDyn settings are recommended:</p>
+<ul class="simple">
+<li><p>When using a DLL controller (<code class="docutils literal notranslate"><span class="pre">PCMode=5</span></code>), set <code class="docutils literal notranslate"><span class="pre">BPCutoff</span></code> to an appropriate value (on the order of 1 Hz depending on the turbine) to avoid discontinuities in the pitch-rate command. This can help reduce large fluctuations in the actuator torque. The same low-pass filter is applied to both pitch command and pitch rate command.</p></li>
+<li><p>For consistency with the pitch rate command estimated using finite differencing, set <code class="docutils literal notranslate"><span class="pre">DLL_Ramp</span></code> to true. This can reduce small jitters in the actuator moment when <code class="docutils literal notranslate"><span class="pre">DLL_DT</span></code> is larger than the simulation time step.</p></li>
+<li><p>Finally, the pitch actuator stiffness and damping must be set appropriately to obtain a reasonable time constant (on the order of a quarter of a second) and damping ratio (about 0.7). Higher <code class="docutils literal notranslate"><span class="pre">PitSpr(I)</span></code> and <code class="docutils literal notranslate"><span class="pre">PitDamp(I)</span></code> will require a smaller time step for numerical stability. To achieve a given damped period <code class="docutils literal notranslate"><span class="pre">Td</span></code> and damping ratio <code class="docutils literal notranslate"><span class="pre">zeta</span></code>, the following equations can be used to obtain initial estimates of <code class="docutils literal notranslate"><span class="pre">PitSpr(I)</span></code> and <code class="docutils literal notranslate"><span class="pre">PitDamp(I)</span></code>:</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">PitSpr</span>&#160; <span class="pre">=</span> <span class="pre">4</span> <span class="pre">*</span> <span class="pre">pi^2</span> <span class="pre">*</span> <span class="pre">(</span> <span class="pre">PBrIner</span> <span class="pre">+</span> <span class="pre">BlPIner</span> <span class="pre">)</span> <span class="pre">/</span> <span class="pre">(</span> <span class="pre">Td^2</span> <span class="pre">*</span> <span class="pre">(</span> <span class="pre">1</span> <span class="pre">-</span> <span class="pre">zeta^2</span> <span class="pre">)</span> <span class="pre">)</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">PitDamp</span> <span class="pre">=</span> <span class="pre">2</span> <span class="pre">*</span> <span class="pre">zeta</span> <span class="pre">*</span> <span class="pre">sqrt(</span> <span class="pre">PitSpr</span> <span class="pre">*</span> <span class="pre">(</span> <span class="pre">PBrIner</span> <span class="pre">+</span> <span class="pre">BlPIner</span> <span class="pre">)</span> <span class="pre">)</span></code></p>
+<p>When <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> is true, the following new output channels from ElastoDyn become available:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">BldPRate1</span></code> - blade 1 pitch rate (deg/s)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BldPRate2</span></code> - blade 2 pitch rate (deg/s)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BldPRate3</span></code> - blade 3 pitch rate (deg/s)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BldPAcc1</span></code> - blade 1 pitch acceleration (deg/s^2)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BldPAcc2</span></code> - blade 2 pitch acceleration (deg/s^2)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BldPAcc3</span></code> - blade 3 pitch acceleration (deg/s^2)</p></li>
+</ul>
+<p>These output channels are valid only if <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> is true with positive values toward the feathered position.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> is false in ElastoDyn, OpenFAST will function as before with the blade root pitch angles either fixed to the initial positions defined in ElastoDyn when ServoDyn is disabled or set to the pitch commands from ServoDyn. Setting <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> to false does not mean the blade pitch angles will be constant. <code class="docutils literal notranslate"><span class="pre">PBrIner(I)</span></code> and <code class="docutils literal notranslate"><span class="pre">BlPIner(I)</span></code> in the ElastoDyn input file are both ignored when <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> is false. The pitch actuator torques from ServoDyn are also ignored by ElastoDyn. Finally, note that the initial blade pitch positions specified in ElastoDyn will be superseded by <code class="docutils literal notranslate"><span class="pre">PitNeut(I)</span></code> in ServoDyn if ServoDyn is enabled but active blade pitch control is off (<code class="docutils literal notranslate"><span class="pre">PCMode=0</span></code> or during <code class="docutils literal notranslate"><span class="pre">t&lt;TPCOn</span></code> when <code class="docutils literal notranslate"><span class="pre">PCMode&gt;0</span></code>).</p>
+<p><strong>Usage guidance</strong></p>
+<p>The effect of enabling <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> on blade root loads tends to be more significant when the blades are modeled in ElastoDyn. This is because ElastoDyn will entirely ignore the blade pitch inertia otherwise. When the blades are modeled in BeamDyn, the effect tends to be less significant because blade pitch inertia (except that of the root node) and blade twisting will always be accounted for. In this case, enabling <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> in ElastoDyn allows the pitch inertia of the entire blade, including that of the root node, to be included in the dynamics.</p>
+<p>Furthermore, the impact of <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> tends to be more significant after sudden starts or stops in blade pitching. For example, this can happen during normal operation when the blade pitch angle saturates (if the pitch command is not low-pass filtered as suggested above) or during emergency shutdown when the blades need to quickly pitch to the feathered position and stop. In these situations, enabling <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> allows OpenFAST to capture the large pitch moments at the blade roots that would otherwise be missed if the blades are modeled in ElastoDyn. Alternatively, if the blades are modeled in BeamDyn, it prevents discontinuous pitch rates at the blade roots and can help smooth out large fluctuations in the root moments immediately following the impulsive start or sudden stop.</p>
+</div>
+</div>
+<div class="section" id="developer-notes">
+<span id="ed-dev-notes"></span><h1><span class="section-number">4.10.4. </span>Developer notes<a class="headerlink" href="#developer-notes" title="Permalink to this heading"></a></h1>
+<p><strong>Internal coordinate systems</strong></p>
+<p>The different coordinate systems of ElastoDyn are stored in the variable <code class="docutils literal notranslate"><span class="pre">CoordSys</span></code>.
+The coordinate systems used internally by ElastoDyn are using a different convention than the OpenFAST input/output coordinate system.</p>
+<p>For instance, for the coordinate system of the nacelle, with unit axes noted <span class="math notranslate nohighlight">\(x_n,y_n,z_n\)</span> in OpenFAST, and <span class="math notranslate nohighlight">\(d_1,d_2,d_3\)</span> in ElastoDyn, the following conversions apply:
+<span class="math notranslate nohighlight">\(d_1 = x_n\)</span>,
+<span class="math notranslate nohighlight">\(d_2 =z_n\)</span> and
+<span class="math notranslate nohighlight">\(d_3 =-y_n\)</span>.</p>
+<p>The following (partial) list of coordinate systems are defined internally by ElastoDyn:</p>
+<ul class="simple">
+<li><p><cite>z</cite> : inertial coordinate system</p></li>
+<li><p><cite>a</cite> : tower base coordinate system</p></li>
+<li><p><cite>t</cite> : tower-node coordinate system (one per node)</p></li>
+<li><p><cite>d</cite> : nacelle coordinate system</p></li>
+<li><p><cite>c</cite> : shaft-tilted coordinate system</p></li>
+<li><p><cite>rf</cite> : rotor furl coordinate system</p></li>
+<li><p><cite>tf</cite> : tail furl coordinate system</p></li>
+<li><p><cite>g</cite> : hub coordinate system</p></li>
+</ul>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="input.html" class="btn btn-neutral float-left" title="4.10.2. Input Files" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="zrefs.html" class="btn btn-neutral float-right" title="4.10.5. References" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

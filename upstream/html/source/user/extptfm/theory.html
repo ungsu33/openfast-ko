@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.9.3. Theory &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.9.4. References" href="zrefs.html" />
+    <link rel="prev" title="4.9.2. Input Files" href="input_files.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/extptfm/theory.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.9. ExtPtfm</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="usage.html">4.9.1. Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input_files.html">4.9.2. Input Files</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.9.3. Theory</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#reduction-of-the-equations-of-motion">4.9.3.1. Reduction of the equations of motion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#coupling-with-another-structure">4.9.3.2. Coupling with another structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#state-space-representation-of-the-module-extptfm">4.9.3.3. State-space representation of the module <em>ExtPtfm</em></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.9.4. References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.9.5. Example Files</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.9. </span>ExtPtfm</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.9.3. </span>Theory</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/extptfm/theory.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="theory">
+<span id="ep-theory"></span><h1><span class="section-number">4.9.3. </span>Theory<a class="headerlink" href="#theory" title="Permalink to this heading"></a></h1>
+<p>This section focuses on the theory behind the ExtPtfm module.
+The theory was published in the following
+article <span id="id1">[<a class="reference internal" href="zrefs.html#id2" title="E. Branlard, M. Shields, B. Anderson, R. Damiani, F. Wendt, J. Jonkman, W. Musial, and B. Foley. Superelement reduction of substructures for sequential load calculations in OpenFAST. Journal of Physics: Conference Series, 1452:012033, jan 2020. URL: https://doi.org/10.1088/1742-6596/1452/1/012033, doi:10.1088/1742-6596/1452/1/012033.">ep-BSA+20</a>]</span>
+(<a class="reference external" href="https://iopscience.iop.org/article/10.1088/1742-6596/1452/1/012033">access article here</a>)
+which may be used to reference this documention.</p>
+<p>ExtPtfm relies on a dynamics system reduction via
+the Craig-Bampton (C-B) method <span id="id2">[<a class="reference internal" href="zrefs.html#id3" title="R. Craig and M. Bampton. Coupling of Substructures for Dynamic Analysis. AIAA Journal, 6(7):1313-1319, 1968.">ep-CB68</a>]</span>.</p>
+<div class="section" id="reduction-of-the-equations-of-motion">
+<h2><span class="section-number">4.9.3.1. </span>Reduction of the equations of motion<a class="headerlink" href="#reduction-of-the-equations-of-motion" title="Permalink to this heading"></a></h2>
+<p>The dynamics of a structure are defined by
+<span class="math notranslate nohighlight">\(\boldsymbol{M}\boldsymbol{\ddot{x}}+\boldsymbol{C}\boldsymbol{\dot{x}}+\boldsymbol{K}\boldsymbol{x}=\boldsymbol{f}\)</span>,
+where <span class="math notranslate nohighlight">\(\boldsymbol{M}\)</span>, <span class="math notranslate nohighlight">\(\boldsymbol{C}\)</span>,
+<span class="math notranslate nohighlight">\(\boldsymbol{K}\)</span> are the mass, damping, and stiffness matrices;
+<span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> is the vector of DOF; and <span class="math notranslate nohighlight">\(\boldsymbol{f}\)</span>
+is the vector of loads acting on the DOF.
+This system of equations is typcally set up for the support structure by
+a commercial software.
+The
+typical number of DOF for a jacket substructure is about <span class="math notranslate nohighlight">\(10^3\)</span> to
+<span class="math notranslate nohighlight">\(10^4\)</span>. The DOF are first partitioned and rearranged into a set of
+leader and follower DOF, labelled with the subscript <span class="math notranslate nohighlight">\(l\)</span> and
+<span class="math notranslate nohighlight">\(f\)</span>, respectively. In the case of the substructure, the six
+degrees of freedom corresponding to the three translations and rotations
+of the interface point between the substructure and the tower are
+selected as leader DOF. Assuming symmetry of the system matrices, the
+rearranged equation of motions are:</p>
+<div class="math notranslate nohighlight" id="equation-reductiongeneraleq">
+<span class="eqno">(4.178)<a class="headerlink" href="#equation-reductiongeneraleq" title="Permalink to this equation"></a></span>\[\begin{split}\begin{aligned}
+    \begin{bmatrix}
+        \boldsymbol{M}_{{\ell\!\ell}}   &amp; \boldsymbol{M}_{{\ell\!f}} \\
+        \boldsymbol{M}_{{\ell\!f}}^t &amp; \boldsymbol{M}_{{\!f\!f}} \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        \boldsymbol{\ddot{x}}_{\ell}\\
+        \boldsymbol{\ddot{x}}_{\!f}\\
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+        \boldsymbol{C}_{{\ell\!\ell}}   &amp; \boldsymbol{C}_{{\ell\!f}} \\
+        \boldsymbol{C}_{{\ell\!f}}^t &amp; \boldsymbol{C}_{{\!f\!f}} \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        \boldsymbol{\dot{x}}_{\ell}\\
+        \boldsymbol{\dot{x}}_{\!f}\\
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+        \boldsymbol{K}_{{\ell\!\ell}}   &amp; \boldsymbol{K}_{{\ell\!f}} \\
+        \boldsymbol{K}_{{\ell\!f}}^t &amp; \boldsymbol{K}_{{\!f\!f}} \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        \boldsymbol{x}_{\ell}\\
+        \boldsymbol{x}_{\!f}\\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        \boldsymbol{f}_{\ell}\\
+        \boldsymbol{f}_{\!f}\\
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>The CB reduction assumes that the followers’ motion consists of two
+parts: (1) the elastic motion that would occur in response to the motion
+of the leader DOF if the inertia of the followers and the external
+forces were neglected; and (2) the internal motion that would result
+from the external forces directly exciting the internal DOF. The first
+part is effectively obtained from
+Eq. <a class="reference internal" href="#equation-reductiongeneraleq">(4.178)</a>
+by assuming statics and solving
+for <span class="math notranslate nohighlight">\(\boldsymbol{x}_{\!f}\)</span>, leading to:</p>
+<div class="math notranslate nohighlight" id="equation-followmotion">
+<span class="eqno">(4.179)<a class="headerlink" href="#equation-followmotion" title="Permalink to this equation"></a></span>\[\begin{aligned}
+    \boldsymbol{x}_{{\!f},\text{Guyan}}
+    =  -\boldsymbol{K}_{{\!f\!f}}^{-1} \boldsymbol{K}_{{\ell\!f}}^t\,  \boldsymbol{x}_{{\ell},\text{Guyan}}
+    =  \boldsymbol{\Phi}_1  \boldsymbol{x}_{{\ell},\text{Guyan}}
+    ,\quad
+        \text{where}
+    \quad
+\boldsymbol{\Phi}_1 =-\boldsymbol{K}_{{\!f\!f}}^{-1} \boldsymbol{K}_{{\ell\!f}}^t
+\end{aligned}\]</div>
+<p>Eq. <a class="reference internal" href="#equation-followmotion">(4.179)</a> provides the motion of the followers as a function of the leaders’
+motion under the assumptions of the Guyan
+reduction <span id="id3">[<a class="reference internal" href="zrefs.html#id4" title="R. Guyan. Reduction of stiffness and mass matrices. AIAA Journal, 3:380, 1965.">ep-Guy65</a>]</span>.</p>
+<p>The CB method further considers the isolated and undamped eigenvalue
+problem of the follower DOF:
+<span class="math notranslate nohighlight">\(\left(\boldsymbol{K}_{{\!f\!f}}-\nu_i^2 \boldsymbol{M}_{\text{ff}}\right) \boldsymbol{\phi}_i=0\)</span>
+where <span class="math notranslate nohighlight">\(\nu_i\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{\phi}_i\)</span> are the
+<span class="math notranslate nohighlight">\(i^{th}\)</span> angular frequency and mode shape, respectively; this
+problem is “constrained” because it inherently assumes that the leader
+DOF are fixed (i.e., zero). The method next selects <span class="math notranslate nohighlight">\(n_\text{CB}\)</span>
+mode shapes, gathering them as column vectors into a matrix noted
+<span class="math notranslate nohighlight">\(\boldsymbol{\Phi}_2\)</span>. These mode shapes can be selected as the
+ones with the lowest frequency or a mix of low- and high-frequency mode
+shapes. Typically, <span class="math notranslate nohighlight">\(n_\text{CB}\)</span> is several orders of magnitude
+smaller than the original number of DOF, going from <span class="math notranslate nohighlight">\(\sim10^3\)</span> DOF
+to <span class="math notranslate nohighlight">\(\sim 20\)</span> modes for a wind turbine substructure. The scaling of
+the modes is chosen such that
+<span class="math notranslate nohighlight">\(\boldsymbol{\Phi}_2^t\boldsymbol{M}_{{\!f\!f}}\boldsymbol{\Phi}_2 = \boldsymbol{I}\)</span>,
+where <span class="math notranslate nohighlight">\(\boldsymbol{I}\)</span> is the identity matrix. Effectively, the CB
+method performs a change of coordinates from the full set,
+<span class="math notranslate nohighlight">\(\boldsymbol{x}=[\boldsymbol{x}_l\ \boldsymbol{x}_{\!f}]^t\)</span>, to
+the reduced set,
+<span class="math notranslate nohighlight">\(\boldsymbol{x}_r=[\boldsymbol{x}_{r1}\ \boldsymbol{x}_{r2}]^t\)</span>,
+where <span class="math notranslate nohighlight">\(\boldsymbol{x}_{r1}\)</span> corresponds directly to the leader
+DOF, whereas <span class="math notranslate nohighlight">\(\boldsymbol{x}_{r2}\)</span> are the modal coordinates
+defining the amplitudes of each of the mode shapes selected. The change
+of variable is formally written as:</p>
+<div class="math notranslate nohighlight" id="equation-craigbampton">
+<span class="eqno">(4.180)<a class="headerlink" href="#equation-craigbampton" title="Permalink to this equation"></a></span>\[\begin{split}\begin{aligned}
+    \begin{bmatrix}
+    \boldsymbol{x}_l \\
+    \boldsymbol{x}_{\!f}\\
+    \end{bmatrix}
+    \approx
+    \begin{bmatrix}
+        \boldsymbol{I} &amp; \boldsymbol{0} \\
+        \boldsymbol{\Phi}_1 &amp; \boldsymbol{\Phi}_2\\
+    \end{bmatrix}
+    \begin{bmatrix}
+        \boldsymbol{x}_{r1}\\
+        \boldsymbol{x}_{r2}\\
+    \end{bmatrix}
+    \quad\Leftrightarrow \quad
+    \boldsymbol{x}\approx \boldsymbol{T} \boldsymbol{x}_r
+        ,
+    \quad
+\text{with}
+    \quad
+    \boldsymbol{T}=
+    \begin{bmatrix}
+        \boldsymbol{I} &amp; \boldsymbol{0} \\
+        \boldsymbol{\Phi}_1 &amp; \boldsymbol{\Phi}_2\\
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>The equations of motion are rewritten in these coordinates by the
+transformation:
+<span class="math notranslate nohighlight">\(\boldsymbol{M}_r =\boldsymbol{T}^t \boldsymbol{M} \boldsymbol{T}\)</span>,
+<span class="math notranslate nohighlight">\(\boldsymbol{K}_r =\boldsymbol{T}^t \boldsymbol{K} \boldsymbol{T}\)</span>,
+<span class="math notranslate nohighlight">\(\boldsymbol{f}_r =\boldsymbol{T}^t \boldsymbol{f}\)</span>,
+leading to
+<span class="math notranslate nohighlight">\(\boldsymbol{M}_r \boldsymbol{\ddot{x}}_r + \boldsymbol{K_r}\boldsymbol{x}_r=\boldsymbol{f}_r\)</span>,
+which is written in a developed form as:</p>
+<div class="math notranslate nohighlight" id="equation-cbloadsreduction">
+<span class="eqno">(4.181)<a class="headerlink" href="#equation-cbloadsreduction" title="Permalink to this equation"></a></span>\[\begin{split}\begin{aligned}
+    &amp;
+        \qquad
+        \qquad
+        \begin{bmatrix}
+        \boldsymbol{M}_{r11} &amp; \boldsymbol{M}_{r12} \\
+        \boldsymbol{M}_{r12}^t &amp; \boldsymbol{M}_{r22} \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        \boldsymbol{\ddot{x}}_{r1}\\
+        \boldsymbol{\ddot{x}}_{r2}\\
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+        \boldsymbol{K}_{r11} &amp; \boldsymbol{0} \\
+    \boldsymbol{0} &amp; \boldsymbol{K}_{r22} \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        \boldsymbol{x}_{r1}\\
+        \boldsymbol{x}_{r2}\\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        \boldsymbol{f}_{r1}\\
+        \boldsymbol{f}_{r2}\\
+    \end{bmatrix}
+    \label{eq:CraigBampton}
+\end{aligned}\end{split}\]</div>
+<p>with</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+   &amp; \boldsymbol{M}_{r11} = \boldsymbol{M}_{{\ell\!\ell}}
+                  + \boldsymbol{\Phi}_\text{1}^t \boldsymbol{M}_{f\!\ell}
+                  + \boldsymbol{M}_{\ell\!f}\boldsymbol{\Phi}_\text{1}
+                  + \boldsymbol{\Phi}_\text{1}^t \boldsymbol{M}_{\!f\!f}\boldsymbol{\Phi}_{1}
+,\qquad
+    \boldsymbol{M}_{r22}=\boldsymbol{\Phi}_2^t\boldsymbol{M}_{\!f\!f}\boldsymbol{\Phi}_2 =\boldsymbol{I}
+\nonumber
+\\
+   &amp; \boldsymbol{M}_{r12} = \left(\boldsymbol{M}_{\ell\!f}+ \boldsymbol{\Phi}_\text{1}^t \boldsymbol{M}_{\!f\!f}\right)\boldsymbol{\Phi}_2
+,\qquad
+    \boldsymbol{f}_{r2} = \boldsymbol{\Phi}_2^t \boldsymbol{f}_{\!f}
+,\qquad
+    \boldsymbol{f}_{r1} = \boldsymbol{f}_{\ell}+\boldsymbol{\Phi}_1^t \boldsymbol{f}_{\!f}
+\nonumber
+\\
+   &amp; \boldsymbol{K}_{r11} = \boldsymbol{K}_{{\ell\!\ell}} + \boldsymbol{K}_{\ell\!f}\boldsymbol{\Phi}_1
+,\qquad
+    \boldsymbol{K}_{r22}=\boldsymbol{\Phi}_2^t\boldsymbol{K}_{\!f\!f}\boldsymbol{\Phi}_2
+    \nonumber
+\end{aligned}\end{split}\]</div>
+<p>The expressions for the reduced damping matrix,
+<span class="math notranslate nohighlight">\(\boldsymbol{C}_r=\boldsymbol{T}^t \boldsymbol{C} \boldsymbol{T}\)</span>,
+are similar to the ones from the mass matrix, except that
+<span class="math notranslate nohighlight">\(\boldsymbol{C}_{r22}\)</span> is not equal to the identity matrix. Some
+tools or practitioners may not compute the reduced damping matrix and
+instead set it based on the Rayleigh damping assumption, using the
+reduced mass and stiffness matrix. Setting
+<span class="math notranslate nohighlight">\(\boldsymbol{\Phi}_2\equiv 0\)</span> in Eq. <a class="reference internal" href="#equation-craigbampton">(4.180)</a>, or equivalently
+<span class="math notranslate nohighlight">\(n_\text{CB}\equiv 0\)</span>, leads to the Guyan reduction equations.</p>
+</div>
+<div class="section" id="coupling-with-another-structure">
+<h2><span class="section-number">4.9.3.2. </span>Coupling with another structure<a class="headerlink" href="#coupling-with-another-structure" title="Permalink to this heading"></a></h2>
+<p>This section illustrates how the equations of motions are set when a
+superelement is coupled to another structure. The modular approach
+presented below is the one implemented in OpenFAST.
+The superelement is here
+assumed to represent the substructure (and foundation), but it may be
+applied to other parts of the wind turbine, in particular the entire
+support structure. For simplicity, it is assumed here that all
+the substructure leader DOF have an interface with the remaining part of
+the structure. The interface DOF are labelled as index <span class="math notranslate nohighlight">\(1\)</span>, the
+substructure internal DOF as index <span class="math notranslate nohighlight">\(2\)</span>, and the remaining DOF are
+labelled <span class="math notranslate nohighlight">\(0\)</span>. The subscript <span class="math notranslate nohighlight">\(r\)</span> used in the previous
+paragraph is dropped for the DOF but kept for the matrices. With this
+labelling, system <span class="math notranslate nohighlight">\(0\text{--}1\)</span> consists of the tower and rotor
+nacelle assembly, the system <span class="math notranslate nohighlight">\(1\text{--}2\)</span> is the substructure,
+and the vector, <span class="math notranslate nohighlight">\(\boldsymbol{x}_1\)</span>, is the six degrees of freedom
+at the top of the transition piece. The damping terms are omitted to
+simplify the equations, but their inclusion is straightforward. Two ways
+to set up the equations of motions are presented next, the monolithic or
+modular approaches (see e.g. <span id="id4">[<a class="reference internal" href="zrefs.html#id2" title="E. Branlard, M. Shields, B. Anderson, R. Damiani, F. Wendt, J. Jonkman, W. Musial, and B. Foley. Superelement reduction of substructures for sequential load calculations in OpenFAST. Journal of Physics: Conference Series, 1452:012033, jan 2020. URL: https://doi.org/10.1088/1742-6596/1452/1/012033, doi:10.1088/1742-6596/1452/1/012033.">ep-BSA+20</a>]</span>).</p>
+<p><strong>Monolithic approach</strong>:</p>
+<p>In this approach, the full system of equations
+is solved with all the DOF gathered into one state vector. The system of
+equations is obtained by assembling the individual mass and stiffness
+matrices of the different subsystems. Using Eq. <a class="reference internal" href="#equation-craigbampton">(4.180)</a>, the equations of motion of
+the system written in a monolithic form are:</p>
+<div class="math notranslate nohighlight" id="equation-monolith">
+<span class="eqno">(4.182)<a class="headerlink" href="#equation-monolith" title="Permalink to this equation"></a></span>\[\begin{split}\begin{aligned}
+    \begin{bmatrix}
+        \boldsymbol{M}_{00} &amp; \boldsymbol{M}_{01}             &amp; \boldsymbol{0}       \\
+                   &amp; \boldsymbol{M}_{11}+\boldsymbol{M}_{r11} &amp; \boldsymbol{M}_{r12} \\
+       \text{sym} &amp;                         &amp; \boldsymbol{M}_{r22} \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        \boldsymbol{\ddot{x}}_0\\
+        \boldsymbol{\ddot{x}}_1\\
+        \boldsymbol{\ddot{x}}_2\\
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+        \boldsymbol{K}_{00}        &amp; \boldsymbol{K}_{01}  &amp;  \boldsymbol{0} \\
+                          &amp; \boldsymbol{K}_{11} + \boldsymbol{K}_{r11} &amp;  \boldsymbol{0} \\
+        \text{sym}        &amp;             &amp; \boldsymbol{K}_{r22}\\
+    \end{bmatrix}
+    \begin{bmatrix}
+        \boldsymbol{x}_0\\
+        \boldsymbol{x}_1\\
+        \boldsymbol{x}_2\\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        \boldsymbol{f}_0\\
+        \boldsymbol{f}_1 + \boldsymbol{f}_{r1}\\
+        \boldsymbol{f}_{r2}\\
+    \end{bmatrix}
+    \end{aligned}\end{split}\]</div>
+<p><strong>Modular approach</strong>:
+In this approach, the equations of motion are
+written for each subsystem. Couplings with other subsystems are
+introduced using external loads and constraints (which are unnecessary
+here). The coupling load vector at <span class="math notranslate nohighlight">\(1\)</span> between the two systems,
+usually consisting of three forces and three moments, is written as
+<span class="math notranslate nohighlight">\(\boldsymbol{f}_C\)</span> . The equations of motion for system
+<span class="math notranslate nohighlight">\(0\text{--}1\)</span> are:</p>
+<div class="math notranslate nohighlight" id="equation-modulea">
+<span class="eqno">(4.183)<a class="headerlink" href="#equation-modulea" title="Permalink to this equation"></a></span>\[\begin{split}\begin{aligned}
+    \begin{bmatrix}
+        \boldsymbol{M}_{00} &amp; \boldsymbol{M}_{01} \\
+        \text{sym} &amp; \boldsymbol{M}_{11} \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        \boldsymbol{\ddot{x}}_0\\
+        \boldsymbol{\ddot{x}}_1\\
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+        \boldsymbol{K}_{00}        &amp; \boldsymbol{K}_{01} \\
+        \text{sym}        &amp; \boldsymbol{K}_{11} \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        \boldsymbol{x}_0\\
+        \boldsymbol{x}_1\\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        \boldsymbol{f}_0\\
+        \boldsymbol{f}_1\\
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+        \boldsymbol{0}\\
+        \boldsymbol{f}_{C}\\
+    \end{bmatrix}
+    \end{aligned}\end{split}\]</div>
+<p>System <span class="math notranslate nohighlight">\(1-2\)</span> receives the opposite , <span class="math notranslate nohighlight">\(\boldsymbol{f}_C\)</span>,
+from system <span class="math notranslate nohighlight">\(0-1\)</span>, leading to the following set of equations for
+system <span class="math notranslate nohighlight">\(1\text{--}2\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-moduleb">
+<span class="eqno">(4.184)<a class="headerlink" href="#equation-moduleb" title="Permalink to this equation"></a></span>\[\begin{split}\begin{aligned}
+    \begin{bmatrix}
+        \boldsymbol{M}_{r11} &amp; \boldsymbol{M}_{r12} \\
+        \text{sym}  &amp; \boldsymbol{M}_{r22} \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        \boldsymbol{\ddot{x}}_1\\
+        \boldsymbol{\ddot{x}}_2\\
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+       \boldsymbol{K}_{r11} &amp; \boldsymbol{0}       \\
+       \text{sym}  &amp; \boldsymbol{K}_{r22} \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        \boldsymbol{x}_1\\
+        \boldsymbol{x}_2\\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        \boldsymbol{f}_{r1}\\
+        \boldsymbol{f}_{r2}\\
+    \end{bmatrix}
+    -
+    \begin{bmatrix}
+        \boldsymbol{f}_{C}\\
+        \boldsymbol{0}\\
+    \end{bmatrix}
+    \end{aligned}\end{split}\]</div>
+</div>
+<div class="section" id="state-space-representation-of-the-module-extptfm">
+<h2><span class="section-number">4.9.3.3. </span>State-space representation of the module <em>ExtPtfm</em><a class="headerlink" href="#state-space-representation-of-the-module-extptfm" title="Permalink to this heading"></a></h2>
+<p>The following sections detail the implementation of the CB approach into
+<em>ExtPtfm</em> to model fixed-bottom substructures.</p>
+<p><em>ExtPtfm</em> provides the coupling load at the interface,
+<span class="math notranslate nohighlight">\(\boldsymbol{f}_C\)</span>, given the motions of the interface node:
+<span class="math notranslate nohighlight">\(\boldsymbol{x}_1\)</span>, <span class="math notranslate nohighlight">\(\boldsymbol{\dot{x}}_1\)</span>,
+<span class="math notranslate nohighlight">\(\boldsymbol{\ddot{x}}_1\)</span>. The six degrees of freedom,
+<span class="math notranslate nohighlight">\(\boldsymbol{x}_1\)</span> (surge, sway, heave, roll, pitch, and yaw) and
+the coordinate system used at the interface are given in <a class="reference internal" href="#epdof"><span class="std std-numref">Fig. 4.45</span></a>.</p>
+<div class="figure align-default" id="id7">
+<span id="epdof"></span><a class="reference internal image-reference" href="../../../_images/MasterDOFScheme.png"><img alt="../../../_images/MasterDOFScheme.png" src="../../../_images/MasterDOFScheme.png" style="width: 40%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.45 </span><span class="caption-text">Interface degrees of freedom</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</div>
+<p><em>ExtPtfm</em> is written in a form that consists of state and output
+equations. For a linear system, these equations take the following form:</p>
+<div class="math notranslate nohighlight" id="equation-statespaceform">
+<span class="eqno">(4.185)<a class="headerlink" href="#equation-statespaceform" title="Permalink to this equation"></a></span>\[\begin{split}\begin{aligned}
+    \boldsymbol{\dot{x}}&amp;=\boldsymbol{X}(\boldsymbol{x},\boldsymbol{u}, t) = \boldsymbol{A} \boldsymbol{x}+\boldsymbol{B}\boldsymbol{u} + \boldsymbol{f}_x \\
+    \boldsymbol{y} &amp;= \boldsymbol{Y}(\boldsymbol{x},\boldsymbol{u}, t) = \boldsymbol{C} \boldsymbol{x}+\boldsymbol{D}\boldsymbol{u} + \boldsymbol{f}_y
+\end{aligned}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> is the state vector, <span class="math notranslate nohighlight">\(\boldsymbol{u}\)</span>
+the input vector, and <span class="math notranslate nohighlight">\(\boldsymbol{y}\)</span> the output vector of the
+module. The input vector of the module is the motion of the interface
+node,
+<span class="math notranslate nohighlight">\(\boldsymbol{u}=[\boldsymbol{x}_1, \boldsymbol{\dot{x}}_1, \boldsymbol{\ddot{x}}_1]^t\)</span>,
+whereas the output vector is the coupling load at the interface node,
+<span class="math notranslate nohighlight">\(\boldsymbol{y}=[\boldsymbol{f}_{C}]^t\)</span>. The state vector consists
+of the motions and velocities of the CB modes,
+<span class="math notranslate nohighlight">\(\boldsymbol{x}=[\boldsymbol{x}_2, \boldsymbol{\dot{x}}_2]^t\)</span>. The
+dimensions of each vector are:
+<span class="math notranslate nohighlight">\(\boldsymbol{x}(2n_\text{CB}\times 1)\)</span>,
+<span class="math notranslate nohighlight">\(\boldsymbol{u} (18\times 1)\)</span>, <span class="math notranslate nohighlight">\(\boldsymbol{y} (6\times 1)\)</span>.</p>
+<p>Eq. <a class="reference internal" href="#equation-moduleb">(4.184)</a> is rewritten in the state-space form of Eq. <a class="reference internal" href="#equation-statespaceform">(4.185)</a> as follows. The second block row
+of <a class="reference internal" href="#equation-moduleb">(4.184)</a> is developed to isolate <span class="math notranslate nohighlight">\(\boldsymbol{\ddot{x}}_2\)</span>.
+Using
+<span class="math notranslate nohighlight">\(\boldsymbol{M}_{r22}=\boldsymbol{I}\)</span> and reintroducing the
+damping matrix for completeness gives:</p>
+<div class="math notranslate nohighlight" id="equation-xddot2">
+<span class="eqno">(4.186)<a class="headerlink" href="#equation-xddot2" title="Permalink to this equation"></a></span>\[\begin{aligned}
+\boldsymbol{\ddot{x}}_2=\boldsymbol{f}_{r2}-\boldsymbol{M}_{r12}^t\boldsymbol{\ddot{x}}_1-\boldsymbol{K}_{r22} \boldsymbol{x}_2 -\boldsymbol{C}_{r12}^t\boldsymbol{\dot{x}}_1 -\boldsymbol{C}_{r22}\boldsymbol{\dot{x}}_2
+\end{aligned}\]</div>
+<p>The matrices of the state-space relation from Eq. <a class="reference internal" href="#equation-statespaceform">(4.185)</a> are then directly
+identified as (<span id="id5">[<a class="reference internal" href="zrefs.html#id2" title="E. Branlard, M. Shields, B. Anderson, R. Damiani, F. Wendt, J. Jonkman, W. Musial, and B. Foley. Superelement reduction of substructures for sequential load calculations in OpenFAST. Journal of Physics: Conference Series, 1452:012033, jan 2020. URL: https://doi.org/10.1088/1742-6596/1452/1/012033, doi:10.1088/1742-6596/1452/1/012033.">ep-BSA+20</a>]</span>):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \boldsymbol{A}=
+    \begin{bmatrix}
+        \boldsymbol{0} &amp; \boldsymbol{I}\\
+        -\boldsymbol{K}_{r22} &amp; -\boldsymbol{C}_{r22}\\
+    \end{bmatrix}
+    ,\qquad
+    \boldsymbol{B}=
+    \begin{bmatrix}
+      \boldsymbol{0}&amp; \boldsymbol{0}&amp;  \boldsymbol{0}\\
+      \boldsymbol{0}&amp; -\boldsymbol{C}_{r12}^t&amp;   -\boldsymbol{M}_{r12}^t \\
+    \end{bmatrix}
+    ,\qquad
+    \boldsymbol{f}_x=
+    \begin{bmatrix}
+        \boldsymbol{0}  \\
+      \boldsymbol{f}_{r2}\\
+    \end{bmatrix}
+   \end{aligned}\end{split}\]</div>
+<p>Isolating <span class="math notranslate nohighlight">\(\boldsymbol{f}_{C}\)</span> from the first block row of Eq. <a class="reference internal" href="#equation-moduleb">(4.184)</a> and
+using the expression of <span class="math notranslate nohighlight">\(\boldsymbol{\ddot{x}}_2\)</span> from Eq. <a class="reference internal" href="#equation-xddot2">(4.186)</a> leads to:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \boldsymbol{f}_{C}
+               =&amp; \boldsymbol{f}_{r1} - \boldsymbol{M}_{r11}\boldsymbol{\ddot{x}}_1 - \boldsymbol{C}_{r11}\boldsymbol{\dot{x}}_1 - \boldsymbol{C}_{r12}\boldsymbol{\dot{x}}_2 - \boldsymbol{K}_{r11}\boldsymbol{x}_1 \nonumber\\
+                &amp;- \boldsymbol{M}_{r12}
+(\boldsymbol{f}_{r2}-\boldsymbol{M}_{r12}^t\boldsymbol{\ddot{x}}_1 -\boldsymbol{C}_{r12}^t\boldsymbol{\dot{x}}_1 -\boldsymbol{C}_{r22}\boldsymbol{\dot{x}}_2-\boldsymbol{K}_{r22} \boldsymbol{x}_2)\end{aligned}\end{split}\]</div>
+<p>The matrices of for the output <span class="math notranslate nohighlight">\(\boldsymbol{y}\)</span> are then
+identified as (<span id="id6">[<a class="reference internal" href="zrefs.html#id2" title="E. Branlard, M. Shields, B. Anderson, R. Damiani, F. Wendt, J. Jonkman, W. Musial, and B. Foley. Superelement reduction of substructures for sequential load calculations in OpenFAST. Journal of Physics: Conference Series, 1452:012033, jan 2020. URL: https://doi.org/10.1088/1742-6596/1452/1/012033, doi:10.1088/1742-6596/1452/1/012033.">ep-BSA+20</a>]</span>):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \boldsymbol{C}&amp;=
+    \begin{bmatrix}
+        \boldsymbol{M}_{r12}\boldsymbol{K}_{r22} &amp; \boldsymbol{M}_{r12}\boldsymbol{C}_{r22}-\boldsymbol{C}_{r12}\\
+    \end{bmatrix}
+    ,\qquad
+    \qquad
+    \boldsymbol{f}_y=
+    \begin{bmatrix}
+        \boldsymbol{f}_{r1} - \boldsymbol{M}_{r12}\boldsymbol{f}_{r2}\\
+    \end{bmatrix} \\
+    \boldsymbol{D}&amp;=
+    \begin{bmatrix}
+        -\boldsymbol{K}_{r11} &amp; -\boldsymbol{C}_{r11} + \boldsymbol{M}_{r12}\boldsymbol{C}_{r12}^t &amp; -\boldsymbol{M}_{r11}+\boldsymbol{M}_{r12}\boldsymbol{M}_{r12}^t \\
+    \end{bmatrix}
+   \end{aligned}\end{split}\]</div>
+<p>All the block matrices and vectors labeled with “r” are provided to the
+module via an input file. At a given time step, the loads,
+<span class="math notranslate nohighlight">\(\boldsymbol{f}_r(t)\)</span>, are computed by linear interpolation of the
+loads given in the input file, and the state equation, , is solved for
+<span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> with the outputs returned to the glue code of
+<em>OpenFAST</em>.</p>
+<p>The glue code can also perform the linearization of the full system at a
+given time or operating point, using the Jacobians of the state
+equations of each module. Since the formulation of <em>ExtPtfm</em> is linear,
+the Jacobian of the state and output equations, with respect to the
+states and inputs of the module, are:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    \frac{\partial \boldsymbol{X}}{\partial \boldsymbol{x}} = \boldsymbol{A}
+    ,\quad
+    \frac{\partial \boldsymbol{Y}}{\partial \boldsymbol{x}} = \boldsymbol{C}
+    ,\quad
+    \frac{\partial \boldsymbol{X}}{\partial \boldsymbol{u}} = \boldsymbol{B}
+    ,\quad
+    \frac{\partial \boldsymbol{Y}}{\partial \boldsymbol{u}} = \boldsymbol{D}
+   \end{aligned}\]</div>
+<p>The linearization of ExtPtfm was implemented in the module, but some work remains to be
+done at the glue-code (OpenFAST) level to allow for full system linearization.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="input_files.html" class="btn btn-neutral float-left" title="4.9.2. Input Files" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="zrefs.html" class="btn btn-neutral float-right" title="4.9.4. References" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

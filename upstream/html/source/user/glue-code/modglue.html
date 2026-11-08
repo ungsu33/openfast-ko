@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.2.3. ModGlue – Combining Modules into Global Arrays &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.2.4. Solver" href="solver.html" />
+    <link rel="prev" title="4.2.2. Module Variables (ModVar)" href="modvar.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/glue-code/modglue.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.2. Glue Code</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="overview.html">4.2.1. Glue Code Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modvar.html">4.2.2. Module Variables (<code class="docutils literal notranslate"><span class="pre">ModVar</span></code>)</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.2.3. ModGlue – Combining Modules into Global Arrays</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#the-modgluetype-structure">4.2.3.1. The <code class="docutils literal notranslate"><span class="pre">ModGlueType</span></code> structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-iloc-index-range">4.2.3.2. The <code class="docutils literal notranslate"><span class="pre">iLoc</span></code> index range</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#what-modglue-combinemodules-does">4.2.3.3. What <code class="docutils literal notranslate"><span class="pre">ModGlue_CombineModules</span></code> does</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#where-modglue-combinemodules-is-called">4.2.3.4. Where <code class="docutils literal notranslate"><span class="pre">ModGlue_CombineModules</span></code> is called</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#how-the-global-index-enables-matrix-assembly">4.2.3.5. How the global index enables matrix assembly</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="solver.html">4.2.4. Solver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linearization.html">4.2.5. Linearization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.2. </span>Glue Code</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.2.3. </span>ModGlue – Combining Modules into Global Arrays</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/glue-code/modglue.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="modglue-combining-modules-into-global-arrays">
+<span id="glue-code-modglue"></span><h1><span class="section-number">4.2.3. </span>ModGlue – Combining Modules into Global Arrays<a class="headerlink" href="#modglue-combining-modules-into-global-arrays" title="Permalink to this heading"></a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">ModGlue_CombineModules</span></code> is the single routine that transforms the
+per-module variable descriptions registered by <code class="docutils literal notranslate"><span class="pre">MV_AddVar</span></code> /
+<code class="docutils literal notranslate"><span class="pre">MV_AddMeshVar</span></code> / <code class="docutils literal notranslate"><span class="pre">MV_AddModule</span></code> (see <a class="reference internal" href="modvar.html#glue-code-modvar"><span class="std std-ref">Module Variables (ModVar)</span></a>) into a
+<em>monolithic</em> view of the coupled system.  The output of the routine is a
+<code class="docutils literal notranslate"><span class="pre">ModGlueType</span></code> structure whose <code class="docutils literal notranslate"><span class="pre">Vars</span></code> member holds globally indexed
+arrays for every state, input, and output variable that belongs to a
+specified set of modules.  These global arrays underpin both the solver
+Jacobian construction (<a class="reference internal" href="solver.html#glue-code-solver"><span class="std std-ref">Solver</span></a>) and the linearization
+procedure (<a class="reference internal" href="linearization.html#glue-code-linearization"><span class="std std-ref">Linearization</span></a>).</p>
+<div class="figure align-center" id="id1">
+<span id="fig-modvar-types"></span><a class="reference internal image-reference" href="../../../_images/ModVar.svg"><img alt="ModVar data structure hierarchy" src="../../../_images/ModVar.svg" width="100%" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.1 </span><span class="caption-text">Complete data-structure hierarchy used by the glue code.  Types shown on
+the left (<code class="docutils literal notranslate"><span class="pre">DatLoc</span></code>, <code class="docutils literal notranslate"><span class="pre">Field</span> <span class="pre">ID</span></code>, <code class="docutils literal notranslate"><span class="pre">Variable</span> <span class="pre">Flag</span></code>) are referenced from
+each <code class="docutils literal notranslate"><span class="pre">ModVarType</span></code>.  <code class="docutils literal notranslate"><span class="pre">ModDataType</span></code> (centre, per module) is collected into
+the top-level <code class="docutils literal notranslate"><span class="pre">ModGlueType</span></code> (right) by <code class="docutils literal notranslate"><span class="pre">ModGlue_CombineModules</span></code>.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</div>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#the-modgluetype-structure" id="id2">The <code class="docutils literal notranslate"><span class="pre">ModGlueType</span></code> structure</a></p></li>
+<li><p><a class="reference internal" href="#the-iloc-index-range" id="id3">The <code class="docutils literal notranslate"><span class="pre">iLoc</span></code> index range</a></p></li>
+<li><p><a class="reference internal" href="#what-modglue-combinemodules-does" id="id4">What <code class="docutils literal notranslate"><span class="pre">ModGlue_CombineModules</span></code> does</a></p></li>
+<li><p><a class="reference internal" href="#where-modglue-combinemodules-is-called" id="id5">Where <code class="docutils literal notranslate"><span class="pre">ModGlue_CombineModules</span></code> is called</a></p>
+<ul>
+<li><p><a class="reference internal" href="#m-mod-the-solver-glue-module-in-fast-solverinit" id="id6"><code class="docutils literal notranslate"><span class="pre">m%Mod</span></code> – the Solver glue module (in <code class="docutils literal notranslate"><span class="pre">FAST_SolverInit</span></code>)</a></p></li>
+<li><p><a class="reference internal" href="#m-fast-modglue-the-linearization-glue-module-in-modglue-init" id="id7"><code class="docutils literal notranslate"><span class="pre">m_FAST%ModGlue</span></code> – the Linearization glue module (in <code class="docutils literal notranslate"><span class="pre">ModGlue_Init</span></code>)</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#how-the-global-index-enables-matrix-assembly" id="id8">How the global index enables matrix assembly</a></p></li>
+</ul>
+</div>
+<div class="section" id="the-modgluetype-structure">
+<h2><a class="toc-backref" href="#id2"><span class="section-number">4.2.3.1. </span>The <code class="docutils literal notranslate"><span class="pre">ModGlueType</span></code> structure</a><a class="headerlink" href="#the-modgluetype-structure" title="Permalink to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">ModGlueType</span></code> is defined in <code class="docutils literal notranslate"><span class="pre">modules/openfast-library/src/Glue_Types.f90</span></code>:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">type </span><span class="n">ModGlueType</span>
+<span class="w">   </span><span class="kt">character</span><span class="p">(</span><span class="n">ChanLen</span><span class="p">)</span><span class="w">                    </span><span class="kd">::</span><span class="w"> </span><span class="n">Name</span><span class="w">     </span><span class="c">! Label (e.g. &#39;Solver&#39;, &#39;Lin&#39;)</span>
+<span class="w">   </span><span class="k">type</span><span class="p">(</span><span class="n">ModDataType</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w">        </span><span class="kd">::</span><span class="w"> </span><span class="n">ModData</span><span class="p">(:)</span><span class="w"> </span><span class="c">! Per-module view</span>
+<span class="w">   </span><span class="k">type</span><span class="p">(</span><span class="n">ModVarsType</span><span class="p">)</span><span class="w">                     </span><span class="kd">::</span><span class="w"> </span><span class="n">Vars</span><span class="w">       </span><span class="c">! Combined variable arrays</span>
+<span class="w">   </span><span class="k">type</span><span class="p">(</span><span class="n">ModLinType</span><span class="p">)</span><span class="w">                      </span><span class="kd">::</span><span class="w"> </span><span class="n">Lin</span><span class="w">        </span><span class="c">! Linearization matrices</span>
+<span class="w">   </span><span class="k">type</span><span class="p">(</span><span class="n">VarMapType</span><span class="p">),</span><span class="w">  </span><span class="k">allocatable</span><span class="w">        </span><span class="kd">::</span><span class="w"> </span><span class="n">VarMaps</span><span class="p">(:)</span><span class="w"> </span><span class="c">! Relevant mappings</span>
+<span class="k">end type </span><span class="n">ModGlueType</span>
+</pre></div>
+</div>
+<p>Key members:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Member</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ModData(:)</span></code></p></td>
+<td><p>One entry per module included in this glue instance.  Each entry is a
+filtered copy of the original <code class="docutils literal notranslate"><span class="pre">ModDataType</span></code>, containing only the
+variable subset selected by <code class="docutils literal notranslate"><span class="pre">FlagFilter</span></code>.  Index ordering matches the
+<code class="docutils literal notranslate"><span class="pre">iModAry</span></code> argument passed to <code class="docutils literal notranslate"><span class="pre">ModGlue_CombineModules</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Vars%x(:)</span></code></p></td>
+<td><p>Concatenated array of <code class="docutils literal notranslate"><span class="pre">ModVarType</span></code> descriptors for all <em>continuous-state</em>
+variables across the selected modules.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Vars%u(:)</span></code></p></td>
+<td><p>Concatenated array of <code class="docutils literal notranslate"><span class="pre">ModVarType</span></code> descriptors for all <em>input</em> variables.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Vars%y(:)</span></code></p></td>
+<td><p>Concatenated array of <code class="docutils literal notranslate"><span class="pre">ModVarType</span></code> descriptors for all <em>output</em> variables.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Vars%Nx</span> <span class="pre">/</span> <span class="pre">%Nu</span> <span class="pre">/</span> <span class="pre">%Ny</span></code></p></td>
+<td><p>Total number of scalar values in each group (sum of <code class="docutils literal notranslate"><span class="pre">Var%Num</span></code> across
+all variables in <code class="docutils literal notranslate"><span class="pre">Vars%x</span> <span class="pre">/</span> <span class="pre">%u</span> <span class="pre">/</span> <span class="pre">%y</span></code> respectively).  These are the
+row/column dimensions of the global data arrays and Jacobian matrices.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Lin</span></code></p></td>
+<td><p>Holds linearization operating-point arrays (<code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">dx</span></code>, <code class="docutils literal notranslate"><span class="pre">u</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code>)
+and the full-system matrices (<code class="docutils literal notranslate"><span class="pre">dXdx</span></code>, <code class="docutils literal notranslate"><span class="pre">dXdu</span></code>, <code class="docutils literal notranslate"><span class="pre">dYdx</span></code>, <code class="docutils literal notranslate"><span class="pre">dYdu</span></code>,
+<code class="docutils literal notranslate"><span class="pre">dUdu</span></code>, <code class="docutils literal notranslate"><span class="pre">dUdy</span></code>).  Only allocated when <code class="docutils literal notranslate"><span class="pre">Linearize=.true.</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">VarMaps(:)</span></code></p></td>
+<td><p>Filtered subset of the global <code class="docutils literal notranslate"><span class="pre">Mappings</span></code> array containing only the
+mappings whose source <strong>and</strong> destination modules both appear in
+<code class="docutils literal notranslate"><span class="pre">iModAry</span></code>.  Used during Jacobian finite-differencing to account for
+output-to-input coupling.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="the-iloc-index-range">
+<h2><a class="toc-backref" href="#id3"><span class="section-number">4.2.3.2. </span>The <code class="docutils literal notranslate"><span class="pre">iLoc</span></code> index range</a><a class="headerlink" href="#the-iloc-index-range" title="Permalink to this heading"></a></h2>
+<p>After <code class="docutils literal notranslate"><span class="pre">ModGlue_CombineModules</span></code> returns, each variable in
+<code class="docutils literal notranslate"><span class="pre">ModGlue%Vars%x</span> <span class="pre">/</span> <span class="pre">%u</span> <span class="pre">/</span> <span class="pre">%y</span></code> carries an <code class="docutils literal notranslate"><span class="pre">iLoc(1:2)</span></code> range that locates it
+inside the <em>glue-level</em> data vectors.  Specifically, for a variable at position
+<em>k</em> in <code class="docutils literal notranslate"><span class="pre">ModGlue%Vars%x</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">iLoc(1)</span></code> – index of its first scalar value in a length-<code class="docutils literal notranslate"><span class="pre">Vars%Nx</span></code> array.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iLoc(2)</span></code> – index of its last scalar value.</p></li>
+</ul>
+<p>This is the <em>glue-local</em> index after filtration; the corresponding
+per-module position is still available through the variable’s <code class="docutils literal notranslate"><span class="pre">iGlu</span></code> range
+(set earlier by <code class="docutils literal notranslate"><span class="pre">FAST_SolverInit</span> <span class="pre">→</span> <span class="pre">CalcVarGlobalIndices</span></code>).
+The <code class="docutils literal notranslate"><span class="pre">iLoc</span> <span class="pre">/</span> <span class="pre">iGlu</span></code> separation means the same variable descriptor can live
+simultaneously in the per-module <code class="docutils literal notranslate"><span class="pre">ModData</span></code> view, the solver <code class="docutils literal notranslate"><span class="pre">m%Mod</span></code>
+view, and the linearization <code class="docutils literal notranslate"><span class="pre">m%ModGlue</span></code> view with consistent, non-overlapping
+index ranges in each context.</p>
+</div>
+<div class="section" id="what-modglue-combinemodules-does">
+<h2><a class="toc-backref" href="#id4"><span class="section-number">4.2.3.3. </span>What <code class="docutils literal notranslate"><span class="pre">ModGlue_CombineModules</span></code> does</a><a class="headerlink" href="#what-modglue-combinemodules-does" title="Permalink to this heading"></a></h2>
+<p>The subroutine signature is:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">ModGlue_CombineModules</span><span class="p">(</span><span class="n">ModGlue</span><span class="p">,</span><span class="w"> </span><span class="n">ModDataAry</span><span class="p">,</span><span class="w"> </span><span class="n">Mappings</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">                                   </span><span class="n">iModAry</span><span class="p">,</span><span class="w"> </span><span class="n">FlagFilter</span><span class="p">,</span><span class="w"> </span><span class="n">Linearize</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">                                   </span><span class="n">ErrStat</span><span class="p">,</span><span class="w"> </span><span class="n">ErrMsg</span><span class="p">,</span><span class="w"> </span><span class="n">Name</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 22%" />
+<col style="width: 12%" />
+<col style="width: 66%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Argument</p></th>
+<th class="head"><p>Intent</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ModGlue</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">out</span></code></p></td>
+<td><p>The <code class="docutils literal notranslate"><span class="pre">ModGlueType</span></code> structure to populate.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ModDataAry(:)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">in</span></code></p></td>
+<td><p>Full array of per-module data registered by the glue code.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Mappings(:)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">in</span></code></p></td>
+<td><p>Full array of mesh and variable mappings.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">iModAry(:)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">in</span></code></p></td>
+<td><p>Ordered list of indices into <code class="docutils literal notranslate"><span class="pre">ModDataAry</span></code> specifying <em>which</em> modules
+to include and in <em>what order</em>.  The order determines the row/column
+layout of the global vectors and Jacobians.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">FlagFilter</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">in</span></code></p></td>
+<td><p>Bitmask of <code class="docutils literal notranslate"><span class="pre">VF_*</span></code> flags.  Only variables that have <strong>at least one</strong> of
+these flags set (i.e. <code class="docutils literal notranslate"><span class="pre">MV_HasFlagsAny(Var,</span> <span class="pre">FlagFilter)</span></code> is true) are
+copied into the glue <code class="docutils literal notranslate"><span class="pre">Vars</span></code> arrays.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Linearize</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">in</span></code></p></td>
+<td><p>When <code class="docutils literal notranslate"><span class="pre">.true.</span></code>, allocates the <code class="docutils literal notranslate"><span class="pre">Lin</span></code> operating-point arrays and the
+full-system Jacobian matrices.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Name</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">in</span></code> (optional)</p></td>
+<td><p>Human-readable label stored in <code class="docutils literal notranslate"><span class="pre">ModGlue%Name</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">'Solver'</span></code>,
+<code class="docutils literal notranslate"><span class="pre">'Lin'</span></code>).</p></td>
+</tr>
+</tbody>
+</table>
+<p>The four main steps performed internally are:</p>
+<ol class="arabic simple">
+<li><p><strong>Count and allocate</strong>.  Iterate over each module in <code class="docutils literal notranslate"><span class="pre">iModAry</span></code> and count
+how many variable descriptors (and how many total scalar values) pass the
+<code class="docutils literal notranslate"><span class="pre">FlagFilter</span></code> test for each of the <em>x</em>, <em>u</em>, <em>y</em> groups.  Allocate
+<code class="docutils literal notranslate"><span class="pre">ModGlue%Vars%x</span> <span class="pre">/</span> <span class="pre">%u</span> <span class="pre">/</span> <span class="pre">%y</span></code> to exactly those sizes.</p></li>
+<li><p><strong>Copy and re-index</strong>.  For each module, copy the filtered
+<code class="docutils literal notranslate"><span class="pre">ModVarType</span></code> descriptors into <code class="docutils literal notranslate"><span class="pre">ModGlue%Vars</span></code> and assign contiguous
+<code class="docutils literal notranslate"><span class="pre">iLoc</span></code> ranges so the glue-level index is consecutive across all
+modules.  The per-module <code class="docutils literal notranslate"><span class="pre">ModGlue%ModData(i)%Vars</span></code> sub-arrays receive
+the same descriptors with the same <code class="docutils literal notranslate"><span class="pre">iLoc</span></code> so that
+scatter/gather routines can operate directly on global vectors.
+Linear name prefixes (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;ED</span> <span class="pre">&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;BD_1</span> <span class="pre">&quot;</span></code>) are prepended to
+<code class="docutils literal notranslate"><span class="pre">LinNames</span></code> at this step to produce globally unique channel labels.</p></li>
+<li><p><strong>Filter mappings</strong>.  Iterate over the full <code class="docutils literal notranslate"><span class="pre">Mappings</span></code> array and retain
+only those where both <code class="docutils literal notranslate"><span class="pre">iModSrc</span></code> and <code class="docutils literal notranslate"><span class="pre">iModDst</span></code> appear in <code class="docutils literal notranslate"><span class="pre">iModAry</span></code>.
+Re-index the retained entries against the local <code class="docutils literal notranslate"><span class="pre">ModData</span></code> position (not
+the global <code class="docutils literal notranslate"><span class="pre">ModDataAry</span></code> position) and store them in
+<code class="docutils literal notranslate"><span class="pre">ModGlue%VarMaps</span></code>.</p></li>
+<li><p><strong>Allocate linearization storage</strong> (only when <code class="docutils literal notranslate"><span class="pre">Linearize=.true.</span></code>).
+Allocate the <code class="docutils literal notranslate"><span class="pre">Lin</span></code> operating-point vectors (<code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">dx</span></code>, <code class="docutils literal notranslate"><span class="pre">u</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code>)
+and all six Jacobian matrices (<code class="docutils literal notranslate"><span class="pre">dXdx</span></code>, <code class="docutils literal notranslate"><span class="pre">dXdu</span></code>, <code class="docutils literal notranslate"><span class="pre">dYdx</span></code>, <code class="docutils literal notranslate"><span class="pre">dYdu</span></code>,
+<code class="docutils literal notranslate"><span class="pre">dUdu</span></code>, <code class="docutils literal notranslate"><span class="pre">dUdy</span></code>) dimensioned by <code class="docutils literal notranslate"><span class="pre">Vars%Nx</span></code> and <code class="docutils literal notranslate"><span class="pre">Vars%Nu</span> <span class="pre">/</span> <span class="pre">Ny</span></code>.</p></li>
+</ol>
+</div>
+<div class="section" id="where-modglue-combinemodules-is-called">
+<h2><a class="toc-backref" href="#id5"><span class="section-number">4.2.3.4. </span>Where <code class="docutils literal notranslate"><span class="pre">ModGlue_CombineModules</span></code> is called</a><a class="headerlink" href="#where-modglue-combinemodules-is-called" title="Permalink to this heading"></a></h2>
+<p>The routine is called twice during OpenFAST initialisation, producing two
+distinct <code class="docutils literal notranslate"><span class="pre">ModGlueType</span></code> instances with different variable selections:</p>
+<div class="section" id="m-mod-the-solver-glue-module-in-fast-solverinit">
+<h3><a class="toc-backref" href="#id6"><span class="section-number">4.2.3.4.1. </span><code class="docutils literal notranslate"><span class="pre">m%Mod</span></code> – the Solver glue module (in <code class="docutils literal notranslate"><span class="pre">FAST_SolverInit</span></code>)</a><a class="headerlink" href="#m-mod-the-solver-glue-module-in-fast-solverinit" title="Permalink to this heading"></a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">iMod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">p</span><span class="p">%</span><span class="n">iModTC</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">%</span><span class="n">iModOpt1</span><span class="p">]</span><span class="w">   </span><span class="c">! TC + Option-1 indices</span>
+
+<span class="k">call </span><span class="n">ModGlue_CombineModules</span><span class="p">(</span><span class="n">m</span><span class="p">%</span><span class="nb">Mod</span><span class="p">,</span><span class="w"> </span><span class="n">GlueModData</span><span class="p">,</span><span class="w"> </span><span class="n">GlueModMaps</span><span class="p">,</span><span class="w"> </span><span class="n">iMod</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">                            </span><span class="n">VF_Solve</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">true</span><span class="p">.,</span><span class="w"> </span><span class="n">ErrStat2</span><span class="p">,</span><span class="w"> </span><span class="n">ErrMsg2</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">                            </span><span class="n">Name</span><span class="o">=</span><span class="s1">&#39;Solver&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Modules included</strong>: tight-coupling (TC) modules plus Option-1 modules.</p></li>
+<li><p><strong>Variable filter</strong>: <code class="docutils literal notranslate"><span class="pre">VF_Solve</span></code>.  This flag is set by
+<code class="docutils literal notranslate"><span class="pre">FAST_SolverInit</span> <span class="pre">→</span> <span class="pre">SetVarSolveFlags</span></code> on every variable that must appear
+in the Newton iteration: TC continuous states, motion/load mesh
+inputs/outputs involved in inter-module couplings, and any
+variable-to-variable mapped inputs/outputs (see <a class="reference internal" href="solver.html#glue-code-solver"><span class="std std-ref">Solver</span></a>
+for the full selection criteria).</p></li>
+<li><p><strong>Linearize</strong>: <code class="docutils literal notranslate"><span class="pre">.true.</span></code> — the Jacobian matrices are allocated here
+because the solver’s Newton linear system reuses the same storage as the
+operating-point linearization.</p></li>
+<li><p><strong>Result</strong>: <code class="docutils literal notranslate"><span class="pre">m%Mod%Vars%Nx</span></code> equals the number of TC displacement/velocity
+scalars (<code class="docutils literal notranslate"><span class="pre">p%NumQ</span></code>); <code class="docutils literal notranslate"><span class="pre">m%Mod%Vars%Nu</span></code> covers all TC and Option-1 inputs
+flagged <code class="docutils literal notranslate"><span class="pre">VF_Solve</span></code>.  The Jacobian dimension <code class="docutils literal notranslate"><span class="pre">p%NumJ</span> <span class="pre">=</span> <span class="pre">p%NumQ</span> <span class="pre">+</span> <span class="pre">p%NumU</span></code>
+follows directly.</p></li>
+</ul>
+</div>
+<div class="section" id="m-fast-modglue-the-linearization-glue-module-in-modglue-init">
+<h3><a class="toc-backref" href="#id7"><span class="section-number">4.2.3.4.2. </span><code class="docutils literal notranslate"><span class="pre">m_FAST%ModGlue</span></code> – the Linearization glue module (in <code class="docutils literal notranslate"><span class="pre">ModGlue_Init</span></code>)</a><a class="headerlink" href="#m-fast-modglue-the-linearization-glue-module-in-modglue-init" title="Permalink to this heading"></a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">LinFlags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">VF_Linearize</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">VF_Mapping</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">VF_Mesh</span>
+
+<span class="k">call </span><span class="n">ModGlue_CombineModules</span><span class="p">(</span><span class="n">m</span><span class="p">%</span><span class="n">ModGlue</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">%</span><span class="n">ModData</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">%</span><span class="n">Mappings</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">                            </span><span class="n">p</span><span class="p">%</span><span class="n">Lin</span><span class="p">%</span><span class="n">iMod</span><span class="p">,</span><span class="w"> </span><span class="n">LinFlags</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">                            </span><span class="n">p_FAST</span><span class="p">%</span><span class="n">Linearize</span><span class="p">,</span><span class="w"> </span><span class="n">ErrStat2</span><span class="p">,</span><span class="w"> </span><span class="n">ErrMsg2</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">                            </span><span class="n">Name</span><span class="o">=</span><span class="s2">&quot;Lin&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Modules included</strong>: all modules participating in linearization, in the
+canonical order set by <code class="docutils literal notranslate"><span class="pre">p%Lin%iMod</span></code> (InflowWind → SeaState → ServoDyn →
+ElastoDyn → BeamDyn → AeroDyn → HydroDyn → SubDyn → MAP++ → MoorDyn).</p></li>
+<li><p><strong>Variable filter</strong>: <code class="docutils literal notranslate"><span class="pre">VF_Linearize</span> <span class="pre">+</span> <span class="pre">VF_Mapping</span> <span class="pre">+</span> <span class="pre">VF_Mesh</span></code>.  The
+<code class="docutils literal notranslate"><span class="pre">VF_Linearize</span></code> flag is applied per variable according to the
+<code class="docutils literal notranslate"><span class="pre">LinInputs</span></code> / <code class="docutils literal notranslate"><span class="pre">LinOutputs</span></code> settings in the input file;
+<code class="docutils literal notranslate"><span class="pre">VF_Mapping</span></code> / <code class="docutils literal notranslate"><span class="pre">VF_Mesh</span></code> ensure that mesh-coupled variables are always
+included so that coupling Jacobians can be assembled even when a variable
+is not a formal linearization output.</p></li>
+<li><p><strong>Linearize</strong>: <code class="docutils literal notranslate"><span class="pre">p_FAST%Linearize</span></code> — only allocates the full full-system
+matrices when linearization is requested.</p></li>
+<li><p><strong>Result</strong>: <code class="docutils literal notranslate"><span class="pre">m%ModGlue%Vars%Nx</span> <span class="pre">/</span> <span class="pre">%Nu</span> <span class="pre">/</span> <span class="pre">%Ny</span></code> give the dimensions of the
+<strong>A</strong>, <strong>B</strong>, <strong>C</strong>, <strong>D</strong>, <strong>dUdu</strong>, <strong>dUdy</strong> matrices written to the
+<code class="docutils literal notranslate"><span class="pre">.lin</span></code> file.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="how-the-global-index-enables-matrix-assembly">
+<h2><a class="toc-backref" href="#id8"><span class="section-number">4.2.3.5. </span>How the global index enables matrix assembly</a><a class="headerlink" href="#how-the-global-index-enables-matrix-assembly" title="Permalink to this heading"></a></h2>
+<p>Because every variable descriptor carries its <code class="docutils literal notranslate"><span class="pre">iLoc</span></code> range in the glue
+<code class="docutils literal notranslate"><span class="pre">Vars</span></code> array, scatter and gather operations on global data vectors become
+trivial index-range assignments.  For example, to pack a module’s state
+vector into the global solver vector <code class="docutils literal notranslate"><span class="pre">x_global</span></code>:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">do </span><span class="n">iVar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">ModData</span><span class="p">%</span><span class="n">Vars</span><span class="p">%</span><span class="n">x</span><span class="p">)</span>
+<span class="w">   </span><span class="k">associate</span><span class="w"> </span><span class="p">(</span><span class="n">Var</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">ModData</span><span class="p">%</span><span class="n">Vars</span><span class="p">%</span><span class="n">x</span><span class="p">(</span><span class="n">iVar</span><span class="p">))</span>
+<span class="w">      </span><span class="n">x_global</span><span class="p">(</span><span class="n">Var</span><span class="p">%</span><span class="n">iLoc</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span><span class="n">Var</span><span class="p">%</span><span class="n">iLoc</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x_mod</span><span class="p">(</span><span class="n">Var</span><span class="p">%</span><span class="n">iGlu</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span><span class="n">Var</span><span class="p">%</span><span class="n">iGlu</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="w">   </span><span class="k">end associate</span>
+<span class="k">end do</span>
+</pre></div>
+</div>
+<p>And the corresponding gather from the global Jacobian column into a
+per-module sub-column requires no offset arithmetic: the <code class="docutils literal notranslate"><span class="pre">iLoc</span></code> index
+already encodes the correct global position.</p>
+<p>Similarly, the <code class="docutils literal notranslate"><span class="pre">VarMaps</span></code> array stored in <code class="docutils literal notranslate"><span class="pre">ModGlueType</span></code> makes the
+Jacobian coupling terms self-contained.  During
+<code class="docutils literal notranslate"><span class="pre">BuildJacobianTC</span></code> / <code class="docutils literal notranslate"><span class="pre">BuildJacobianIO</span></code> (in <code class="docutils literal notranslate"><span class="pre">FAST_Solver.f90</span></code>) and
+<code class="docutils literal notranslate"><span class="pre">ModGlue_Linearize_OP</span></code> (in <code class="docutils literal notranslate"><span class="pre">FAST_ModGlue.f90</span></code>), the loop is simply:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">ModGlue</span><span class="p">%</span><span class="n">VarMaps</span><span class="p">)</span>
+<span class="w">   </span><span class="c">! perturb source output, evaluate destination input change</span>
+<span class="w">   </span><span class="c">! scatter result into J(iVarDst%iLoc, iVarSrc%iLoc)</span>
+<span class="k">end do</span>
+</pre></div>
+</div>
+<p>No module-specific knowledge is needed at this level — the <code class="docutils literal notranslate"><span class="pre">ModGlueType</span></code>
+instance is fully self-describing.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modvar.html" class="btn btn-neutral float-left" title="4.2.2. Module Variables (ModVar)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="solver.html" class="btn btn-neutral float-right" title="4.2.4. Solver" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

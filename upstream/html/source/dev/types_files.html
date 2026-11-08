@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>6.1.6.4. Types Files and the OpenFAST Registry &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="6.1.6.5. Debugging OpenFAST" href="debugging.html" />
+    <link rel="prev" title="6.1.6.3. Developing Documentation" href="build_doc.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/dev/types_files.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">4. User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">6. Developer Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#development-philosophy-and-guidelines">6.1. Development Philosophy and Guidelines</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html#engagement-with-nlr">6.1.1. Engagement with NLR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#development-plan-implementation-plan">6.1.2. Development Plan / Implementation Plan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#qualities-of-a-good-submission">6.1.3. Qualities of a good submission</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#submit-for-review-and-nlr-feedback">6.1.4. Submit for review and NLR feedback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#bug-fixes">6.1.5. Bug fixes</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#additional-guidance">6.1.6. Additional guidance</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="github_workflow.html">6.1.6.1. Working with OpenFAST on GitHub</a></li>
+<li class="toctree-l4"><a class="reference internal" href="code_style.html">6.1.6.2. Code Style</a></li>
+<li class="toctree-l4"><a class="reference internal" href="build_doc.html">6.1.6.3. Developing Documentation</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">6.1.6.4. Types Files and the OpenFAST Registry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="debugging.html">6.1.6.5. Debugging OpenFAST</a></li>
+<li class="toctree-l4"><a class="reference internal" href="performance.html">6.1.6.6. Performance Profiling and Tuning</a></li>
+<li class="toctree-l4"><a class="reference internal" href="versioning.html">6.1.6.7. Versioning</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#api-reference">6.2. API Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#c-api-reference">6.3. C++ API Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#other-documentation">6.4. Other Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">6. </span>Developer Documentation</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">6.1.6.4. </span>Types Files and the OpenFAST Registry</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/source/dev/types_files.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="types-files-and-the-openfast-registry">
+<span id="types-files"></span><h1><span class="section-number">6.1.6.4. </span>Types Files and the OpenFAST Registry<a class="headerlink" href="#types-files-and-the-openfast-registry" title="Permalink to this heading"></a></h1>
+<p>Being a modern software project, OpenFAST has a complex system of custom data
+types. In Fortran, these are known as “derived data types.” Each module
+contains a unique collection of derived types which may add on to but must
+comply with the OpenFAST Framework. The module types are generally
+auto-generated by an included program called <em>OpenFAST Registry</em>. The OpenFAST
+Registry is written in C and adapted from a similar utility used in
+<a class="reference external" href="http://www.mmm.ucar.edu/wrf/WG2/software_2.0/registry_schaffer.pdf">WRF</a>.
+Visit the <a class="reference external" href="https://github.com/OpenFAST/openfast/tree/main/modules/openfast-registry">OpenFAST Registry README</a>
+for more information.</p>
+<p>The OpenFAST Registry requires an input file to describe the necessary types
+for a given module. Generally, all module use a similar naming convention,
+<strong>&lt;Module&gt;_Registry.txt</strong>, and resulting Fortran code will be in a file
+called <strong>&lt;Module&gt;_Types.f90</strong>. For example, the AeroDyn OpenFAST Registry input
+file is located at <code class="docutils literal notranslate"><span class="pre">openfast/modules/aerodyn/src/AeroDyn_Registry.txt</span></code> and
+the resulting auto-generated Fortran source code is at
+<code class="docutils literal notranslate"><span class="pre">openfast/modules/aerodyn/src/AeroDyn_Types.f90</span></code>.</p>
+<p>Since the types-modules are autogenerated, any changes to the data types
+directly should be expressed in the OpenFAST Registry input files so that the
+changes are not subsequently overwritten.</p>
+<div class="section" id="compiling-the-openfast-registry">
+<h2><span class="section-number">6.1.6.4.1. </span>Compiling the OpenFAST Registry<a class="headerlink" href="#compiling-the-openfast-registry" title="Permalink to this heading"></a></h2>
+<p>The OpenFAST Registry is included
+in the OpenFAST build system through CMake. However, the default is to
+<strong>not</strong> compile the OpenFAST Registry executable and instead use the types
+modules that are included in <em>git</em> while compiling OpenFAST. To include the
+OpenFAST Registry in the build process and compile the Registry program,
+configure CMake with the <code class="docutils literal notranslate"><span class="pre">GENERATE_TYPES</span></code> flag:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>..<span class="w"> </span>-DGENERATE_TYPES<span class="o">=</span>ON
+</pre></div>
+</div>
+<p>With <code class="docutils literal notranslate"><span class="pre">GENERATE_TYPES</span></code> enabled, CMake will configure the <cite>openfast-registry</cite>
+target to compile as a dependency of all other targets. The OpenFAST Registry
+executable will be found in
+<code class="docutils literal notranslate"><span class="pre">openfast/build/modules/openfast-registry/openfast-registry</span></code>.</p>
+</div>
+<div class="section" id="regenerating-a-types-module">
+<span id="regenerating-types"></span><h2><span class="section-number">6.1.6.4.2. </span>Regenerating a types module<a class="headerlink" href="#regenerating-a-types-module" title="Permalink to this heading"></a></h2>
+<p>With the <code class="docutils literal notranslate"><span class="pre">GENERATE_TYPES</span></code> flag enabled, an additional step will be added to
+modules that are configured can make use of the OpenFAST Registry. The
+additional step will execute the OpenFAST Registry and regenerate the types
+module overwriting the existing modules. Any changes to the types module will
+be evident in <em>git</em>. For modules where the registry input file has not
+changed, the resulting types module will not change. However, for registry
+input files that have been modified, the output types module will be
+recompiled.</p>
+</div>
+<div class="section" id="adding-a-new-types-module">
+<h2><span class="section-number">6.1.6.4.3. </span>Adding a new types module<a class="headerlink" href="#adding-a-new-types-module" title="Permalink to this heading"></a></h2>
+<p>The process for adding a new types module follows <a class="reference internal" href="#regenerating-types"><span class="std std-ref">Regenerating a types module</span></a>
+closely. Here, an additional step is required to configure CMake to execute
+the Registry on the new input file and include the resulting types module
+in the compile step.</p>
+<p>First, a new OpenFAST Registry input file must be created. Then, it must be
+configured to pass through the Registry in the corresponding module’s
+<code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code>:</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="c"># This is the control statement for allowing the Registry to execute</span>
+<span class="nb">if</span><span class="w"> </span><span class="p">(</span><span class="s">GENERATE_TYPES</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c"># Here is the CMake wrapper-function to execute the Registry</span>
+<span class="w">    </span><span class="c"># syntax: generate_f90_types(&lt;Registry input file&gt; &lt;output file location&gt;)</span>
+<span class="w">    </span><span class="nb">generate_f90_types</span><span class="p">(</span><span class="s">src/AeroDyn_Registry.txt</span><span class="w"> </span><span class="o">${</span><span class="nv">CMAKE_CURRENT_LIST_DIR</span><span class="o">}</span><span class="s">/src/AeroDyn_Types.f90</span><span class="p">)</span>
+<span class="w">    </span><span class="nb">generate_f90_types</span><span class="p">(</span><span class="s">src/New_Registry.txt</span><span class="w"> </span><span class="o">${</span><span class="nv">CMAKE_CURRENT_LIST_DIR</span><span class="o">}</span><span class="s">/src/New_Types.f90</span><span class="p">)</span>
+<span class="nb">endif</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Finally, the resulting types module must be added to the source files for the
+corresponding module:</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="c"># AeroDyn lib</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">AD_LIBS_SOURCES</span>
+<span class="w">    </span><span class="s">src/AeroDyn.f90</span>
+<span class="w">    </span><span class="s">src/AeroDyn_IO.f90</span>
+<span class="w">    </span><span class="s">src/AirfoilInfo.f90</span>
+<span class="w">    </span><span class="s">src/BEMT.f90</span>
+<span class="w">    </span><span class="s">src/DBEMT.f90</span>
+<span class="w">    </span><span class="s">src/BEMTUncoupled.f90</span>
+<span class="w">    </span><span class="s">src/UnsteadyAero.f90</span>
+<span class="w">    </span><span class="s">src/fmin_fcn.f90</span>
+<span class="w">    </span><span class="s">src/mod_root1dim.f90</span>
+<span class="w">    </span><span class="s">src/AeroDyn_Types.f90</span>
+<span class="w">    </span><span class="s">src/AirfoilInfo_Types.f90</span>
+<span class="w">    </span><span class="s">src/BEMT_Types.f90</span>
+<span class="w">    </span><span class="s">src/DBEMT_Types.f90</span>
+<span class="w">    </span><span class="s">src/UnsteadyAero_Types.f90</span>
+
+<span class="w">    </span><span class="c"># Add the new types module here</span>
+<span class="w">    </span><span class="s">src/New_Types.f90</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>With CMake properly configured, a message will display during the build process
+indicating that the OpenFAST Registry is executing:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span><span class="w"> </span><span class="m">64</span>%<span class="o">]</span><span class="w"> </span>Generating<span class="w"> </span>../../../modules/aerodyn/src/New_Types.f90
+
+-----<span class="w"> </span>FAST<span class="w"> </span>Registry<span class="w"> </span>--------------
+----------------------------------------------------------
+input<span class="w"> </span>file:<span class="w"> </span>/Users/rmudafor/Development/openfast/modules/aerodyn/src/New_Registry.txt
+<span class="c1"># more build process output will follow</span>
+</pre></div>
+</div>
+<p>And finally there should be an indication that the resulting types module is
+compiled:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Scanning<span class="w"> </span>dependencies<span class="w"> </span>of<span class="w"> </span>target<span class="w"> </span>aerodynlib
+<span class="o">[</span><span class="w"> </span><span class="m">70</span>%<span class="o">]</span><span class="w"> </span>Building<span class="w"> </span>Fortran<span class="w"> </span>object<span class="w"> </span>modules/aerodyn/CMakeFiles/aerodynlib.dir/src/New_Types.f90.o
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="build_doc.html" class="btn btn-neutral float-left" title="6.1.6.3. Developing Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="debugging.html" class="btn btn-neutral float-right" title="6.1.6.5. Debugging OpenFAST" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

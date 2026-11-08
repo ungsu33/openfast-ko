@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>6.1.6.3. Developing Documentation &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="6.1.6.4. Types Files and the OpenFAST Registry" href="types_files.html" />
+    <link rel="prev" title="6.1.6.2. Code Style" href="code_style.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/dev/build_doc.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">4. User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">6. Developer Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#development-philosophy-and-guidelines">6.1. Development Philosophy and Guidelines</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html#engagement-with-nlr">6.1.1. Engagement with NLR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#development-plan-implementation-plan">6.1.2. Development Plan / Implementation Plan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#qualities-of-a-good-submission">6.1.3. Qualities of a good submission</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#submit-for-review-and-nlr-feedback">6.1.4. Submit for review and NLR feedback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#bug-fixes">6.1.5. Bug fixes</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#additional-guidance">6.1.6. Additional guidance</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="github_workflow.html">6.1.6.1. Working with OpenFAST on GitHub</a></li>
+<li class="toctree-l4"><a class="reference internal" href="code_style.html">6.1.6.2. Code Style</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">6.1.6.3. Developing Documentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="types_files.html">6.1.6.4. Types Files and the OpenFAST Registry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="debugging.html">6.1.6.5. Debugging OpenFAST</a></li>
+<li class="toctree-l4"><a class="reference internal" href="performance.html">6.1.6.6. Performance Profiling and Tuning</a></li>
+<li class="toctree-l4"><a class="reference internal" href="versioning.html">6.1.6.7. Versioning</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#api-reference">6.2. API Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#c-api-reference">6.3. C++ API Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#other-documentation">6.4. Other Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">6. </span>Developer Documentation</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">6.1.6.3. </span>Developing Documentation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/source/dev/build_doc.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="developing-documentation">
+<span id="build-doc"></span><h1><span class="section-number">6.1.6.3. </span>Developing Documentation<a class="headerlink" href="#developing-documentation" title="Permalink to this heading"></a></h1>
+<p>OpenFAST documentation is hosted on
+<a class="reference external" href="http://openfast.readthedocs.io/">readthedocs</a>. It is automatically generated
+through the <code class="docutils literal notranslate"><span class="pre">readthedocs</span></code> build system from both the <code class="docutils literal notranslate"><span class="pre">main</span></code> and <code class="docutils literal notranslate"><span class="pre">dev</span></code>
+branches whenever new commits are added. This documentation uses the
+<a class="reference external" href="http://www.sphinx-doc.org/en/main/usage/restructuredtext/basics.html">restructured text</a>
+markup language.</p>
+<div class="section" id="building-this-documentation-locally">
+<h2><span class="section-number">6.1.6.3.1. </span>Building this documentation locally<a class="headerlink" href="#building-this-documentation-locally" title="Permalink to this heading"></a></h2>
+<p>The documentation is compiled with <a class="reference external" href="http://sphinx-doc.org">Sphinx</a>, which is
+a Python based tool. Install it and the other required Python packages listed
+in <code class="docutils literal notranslate"><span class="pre">openfast/docs/requirements.txt</span></code> with <code class="docutils literal notranslate"><span class="pre">pip</span></code> or another Python package
+manager.</p>
+<p>These additional packages are optional and are not included in the requirements
+file:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://www.stack.nl/~dimitri/doxygen/">Doxygen</a></p></li>
+<li><p><a class="reference external" href="https://pythonhosted.org/sphinxcontrib-doxylink/">Doxylink</a></p></li>
+<li><p><a class="reference external" href="http://www.graphviz.org">Graphviz</a></p></li>
+<li><p><a class="reference external" href="https://www.latex-project.org">LaTeX</a></p></li>
+</ul>
+<p>Doxygen and Graphviz can be installed directly from their website or with a
+package manager like <code class="docutils literal notranslate"><span class="pre">brew</span></code>, <code class="docutils literal notranslate"><span class="pre">yum</span></code>, or <code class="docutils literal notranslate"><span class="pre">apt</span></code>.</p>
+<p>The result of building the documentation locally will be a set of
+HTML files and their accompanying required files. The main HTML file
+will exist <code class="docutils literal notranslate"><span class="pre">openfast/build/docs/html/index.html</span></code>. This file can
+be opened with any browser to view and navigate the locally-generated
+documentation as if it were any other web site.</p>
+<div class="section" id="pure-python-build">
+<h3><span class="section-number">6.1.6.3.1.1. </span>Pure python build<a class="headerlink" href="#pure-python-build" title="Permalink to this heading"></a></h3>
+<p>If CMake and Make are not available on your system, the documentation can
+be generated directly with <cite>sphinx</cite>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method does not generate the API documentation through Doxygen.</p>
+</div>
+<p>First, align your directory structure to the standard OpenFAST build by
+creating a directory  at <code class="docutils literal notranslate"><span class="pre">openfast/build</span></code>. Then, move into
+<code class="docutils literal notranslate"><span class="pre">openfast/build</span></code> and run this command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># sphinx-build -b &lt;builder-name&gt; &lt;source-directory&gt; &lt;output-directory&gt;</span>
+sphinx-build<span class="w"> </span>-b<span class="w"> </span>html<span class="w"> </span>../docs<span class="w"> </span>./docs/html
+</pre></div>
+</div>
+<p>If this completes successfully, an html file will be created at
+<code class="docutils literal notranslate"><span class="pre">build/docs/html/index.html</span></code> which can be opened with any web browser.</p>
+</div>
+<div class="section" id="building-with-cmake-and-make">
+<h3><span class="section-number">6.1.6.3.1.2. </span>Building with CMake and Make<a class="headerlink" href="#building-with-cmake-and-make" title="Permalink to this heading"></a></h3>
+<p>In the OpenFAST directory, create a <code class="docutils literal notranslate"><span class="pre">build</span></code> directory and move into it.
+Then, run CMake with this flag: <code class="docutils literal notranslate"><span class="pre">-DBUILD_DOCUMENTATION=ON</span></code>. CMake will
+configure the build system with the necessary files for building
+the documentation.</p>
+<p>Next, run the command to compile the docs:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>docs
+</pre></div>
+</div>
+<p>This will first build the Doxygen API documentation and then the Sphinx
+documentation. If this completes successfully, a html file will be
+created at <code class="docutils literal notranslate"><span class="pre">build/docs/html/index.html</span></code> which can be opened with any web
+browser.</p>
+<p>The full procedure for configuring and building the documentation is:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>build
+<span class="nb">cd</span><span class="w"> </span>build
+cmake<span class="w"> </span>..<span class="w"> </span>-DBUILD_DOCUMENTATION<span class="o">=</span>ON
+make<span class="w"> </span>docs
+</pre></div>
+</div>
+<p>If any modifications are made to the source files in <code class="docutils literal notranslate"><span class="pre">openfast/docs/source</span></code>,
+you can simply update the html files by executing the <code class="docutils literal notranslate"><span class="pre">make</span></code> command again.</p>
+<p>The table below lists make-targets related to the documentation.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 22%" />
+<col style="width: 49%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Target</p></th>
+<th class="head"><p>Command</p></th>
+<th class="head"><p>Output location</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Full docs</p></td>
+<td><p>make docs</p></td>
+<td><p>openfast/build/docs/html/index.html</p></td>
+</tr>
+<tr class="row-odd"><td><p>Full docs</p></td>
+<td><p>make sphinx</p></td>
+<td><p>openfast/build/docs/html/index.html</p></td>
+</tr>
+<tr class="row-even"><td><p>Doxygen API Reference</p></td>
+<td><p>make doxygen</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>HTML only</p></td>
+<td><p>make sphinx-html</p></td>
+<td><p>openfast/build/docs/html/index.html</p></td>
+</tr>
+<tr class="row-even"><td><p>PDF only</p></td>
+<td><p>make sphinx-pdf</p></td>
+<td><p>openfast/build/docs/latex/Openfast.pdf</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="adding-documentation">
+<h2><span class="section-number">6.1.6.3.2. </span>Adding documentation<a class="headerlink" href="#adding-documentation" title="Permalink to this heading"></a></h2>
+<p>Coming soon. Feel like contributing? Start here!</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="code_style.html" class="btn btn-neutral float-left" title="6.1.6.2. Code Style" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="types_files.html" class="btn btn-neutral float-right" title="6.1.6.4. Types Files and the OpenFAST Registry" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

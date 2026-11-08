@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.7.8. Appendix &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.8. SubDyn User Guide and Theory Manual" href="../subdyn/index.html" />
+    <link rel="prev" title="4.7.7. References" href="zrefs.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/beamdyn/appendix.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.7. BeamDyn</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">4.7.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="running_bd.html">4.7.2. Running BeamDyn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input_files.html">4.7.3. Input Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="output_files.html">4.7.4. Output Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory.html">4.7.5. BeamDyn Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="future_work.html">4.7.6. Future Work</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.7.7. References</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.7.8. Appendix</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#beamdyn-input-files">4.7.8.1. BeamDyn Input Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#beamdyn-list-of-output-channels">4.7.8.2. BeamDyn List of Output Channels</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.7. </span>BeamDyn User Guide and Theory Manual</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.7.8. </span>Appendix</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/beamdyn/appendix.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="appendix">
+<span id="bd-appendix"></span><h1><span class="section-number">4.7.8. </span>Appendix<a class="headerlink" href="#appendix" title="Permalink to this heading"></a></h1>
+<div class="section" id="beamdyn-input-files">
+<span id="bd-input-files"></span><h2><span class="section-number">4.7.8.1. </span>BeamDyn Input Files<a class="headerlink" href="#beamdyn-input-files" title="Permalink to this heading"></a></h2>
+<p>In this appendix we describe the BeamDyn input-file structure and provide examples for the NREL 5MW Reference Wind Turbine.</p>
+<p>OpenFAST+BeamDyn and stand-alone BeamDyn (static and dynamic) simulations all require two files:</p>
+<p>1) BeamDyn primary input file
+<a class="reference download internal" download="" href="../../../_downloads/c0c6cfb19db7865ebd055267d5ed4f96/bd_primary_nrel_5mw.inp"><code class="xref download docutils literal notranslate"><span class="pre">(NREL</span> <span class="pre">5MW</span> <span class="pre">static</span> <span class="pre">example)</span></code></a>: This file includes information on the numerical-solution parameters (e.g., numerical damping, quadrature rules), and the geometric definition of the beam reference line via “members” and “key points”.  This file also specifies the “blade input file.”</p>
+<ol class="arabic simple" start="2">
+<li><p>BeamDyn blade input file <a class="reference download internal" download="" href="../../../_downloads/00e23250171d6a724b3a0c085d0aadf9/nrel_5mw_blade.inp"><code class="xref download docutils literal notranslate"><span class="pre">(NREL</span> <span class="pre">5MW</span> <span class="pre">example)</span></code></a>:
+This file specifies the blade sectional properties at various stations along the blade.
+The file includes stiffness and mass matrices at each station, as well as damping parameters.
+Note that the example file uses stiffness-proportional damping (damp_flag = 1). For modal
+damping (damp_flag = 2), the n_modes parameter should be set to a non-zero value and
+followed by the corresponding modal damping ratios (zeta values) represented as the
+fraction of critical damping.</p></li>
+</ol>
+<p>Stand-alone BeamDyn simulation also require a driver input file; we list here examples for static and dynamic simulations:</p>
+<p>3a) BeamDyn driver for dynamic simulations <a class="reference download internal" download="" href="../../../_downloads/a1e9dd3dcf9409299da529162ca39bf7/bd_driver_dynamic_nrel_5mw.inp"><code class="xref download docutils literal notranslate"><span class="pre">(NREL</span> <span class="pre">5MW</span> <span class="pre">example)</span></code></a>: This file specifies the inputs for a single blade (e.g., forces, orientations, root velocity) and specifies the BeamDyn primary input file.</p>
+<p>3b) BeamDyn driver for static simulations <a class="reference download internal" download="" href="../../../_downloads/aa3597f4170e4bb5f82a171a1ec4c55a/bd_driver_static_nrel_5mw.inp"><code class="xref download docutils literal notranslate"><span class="pre">(NREL</span> <span class="pre">5MW</span> <span class="pre">example)</span></code></a>: Same as above but for static analysis.</p>
+</div>
+<div class="section" id="beamdyn-list-of-output-channels">
+<span id="app-output-channel"></span><h2><span class="section-number">4.7.8.2. </span>BeamDyn List of Output Channels<a class="headerlink" href="#beamdyn-list-of-output-channels" title="Permalink to this heading"></a></h2>
+<p>This is a list of all possible output parameters for the BeamDyn module.
+The names are grouped by meaning, but can be ordered in the OUTPUTS
+section of the BeamDyn primary input file as the user sees fit.
+N<span class="math notranslate nohighlight">\(\beta\)</span>, refers to output node <span class="math notranslate nohighlight">\(\beta\)</span>, where
+<span class="math notranslate nohighlight">\(\beta\)</span> is a number in the range [1,9], corresponding to entry
+<span class="math notranslate nohighlight">\(\beta\)</span> in the <code class="docutils literal notranslate"><span class="pre">OutNd</span></code> list. When coupled to FAST,
+“<span class="math notranslate nohighlight">\(B\alpha\)</span>” is prefixed to each output name, where <span class="math notranslate nohighlight">\(\alpha\)</span>
+is a number in the range [1,3], corresponding to the blade number. The
+outputs are expressed in one of the following three coordinate systems:</p>
+<ul class="simple">
+<li><p><strong>r</strong>: a floating reference coordinate system fixed to the root of the
+moving beam; when coupled to FAST for blades, this is equivalent to
+the IEC blade (b) coordinate system.</p></li>
+<li><p><strong>l</strong>: a floating coordinate system local to the deflected beam.</p></li>
+<li><p><strong>g</strong>: the global inertial frame coordinate system; when coupled to FAST,
+this is equivalent to FAST’s global inertial frame (i) coordinate
+system.</p></li>
+</ul>
+<div class="figure align-center" id="id1">
+<span id="bd-output-channel"></span><a class="reference internal image-reference" href="../../../_images/bd_output_channel.png"><img alt="../../../_images/bd_output_channel.png" src="../../../_images/bd_output_channel.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.36 </span><span class="caption-text">BeamDyn Output Channel List</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>New Output Channels (v5.0 and later):</strong></p>
+<p>BeamDyn now includes additional output channels for applied loads mapped to the root node.
+These channels provide the total applied loads (both distributed and point loads) resolved
+at the root of the blade, expressed in both the root coordinate system (r) and global
+inertial frame (g):</p>
+<ul class="simple">
+<li><p><strong>RootAppliedFxr, RootAppliedFyr, RootAppliedFzr</strong>: Applied force components in r-frame</p></li>
+<li><p><strong>RootAppliedMxr, RootAppliedMyr, RootAppliedMzr</strong>: Applied moment components in r-frame</p></li>
+<li><p><strong>RootAppliedFxg, RootAppliedFyg, RootAppliedFzg</strong>: Applied force components in g-frame</p></li>
+<li><p><strong>RootAppliedMxg, RootAppliedMyg, RootAppliedMzg</strong>: Applied moment components in g-frame</p></li>
+</ul>
+<p>These outputs are useful for understanding the total aerodynamic and other external loads
+acting on the blade, particularly when diagnosing load imbalances or validating force
+distributions.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="zrefs.html" class="btn btn-neutral float-left" title="4.7.7. References" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../subdyn/index.html" class="btn btn-neutral float-right" title="4.8. SubDyn User Guide and Theory Manual" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

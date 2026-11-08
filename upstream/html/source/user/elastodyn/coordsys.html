@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.10.1. Coordinate systems &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.10.2. Input Files" href="input.html" />
+    <link rel="prev" title="4.10. ElastoDyn Users Guide and Theory Manual" href="index.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/elastodyn/coordsys.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.10. ElastoDyn</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.10.1. Coordinate systems</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rotor-furl-coordinate-system">4.10.1.1. Rotor-Furl coordinate system</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tail-furl-coordinate-system">4.10.1.2. Tail-Furl coordinate system</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="input.html">4.10.2. Input Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory.html">4.10.3. ElastoDyn Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory.html#developer-notes">4.10.4. Developer notes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.10.5. References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.10. </span>ElastoDyn Users Guide and Theory Manual</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.10.1. </span>Coordinate systems</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/elastodyn/coordsys.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="coordinate-systems">
+<span id="ed-coordsys"></span><h1><span class="section-number">4.10.1. </span>Coordinate systems<a class="headerlink" href="#coordinate-systems" title="Permalink to this heading"></a></h1>
+<p>For the coordinates system not detailed in subsections below, please refer to the following references:</p>
+<ul class="simple">
+<li><p><a class="reference download internal" download="" href="../../../_downloads/58e8e5d57917c1fb844a50b953a02b6c/OpenFAST_coords.pdf"><code class="xref download docutils literal notranslate"><span class="pre">OpenFAST_coords.pdf</span></code></a>:
+Presentation from 2024 overviewing some coordinate systems in OpenFAST.</p></li>
+<li><p><a class="reference external" href="https://www.nlr.gov/docs/fy06osti/38230.pdf">FAST 7 Manual</a></p></li>
+<li><p><a class="reference external" href="https://www.nlr.gov/docs/fy04osti/34755.pdf">Technical report</a> on FAST_AD and modeling of the UAE wind turbine (in section 3)</p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/c9ae932057ea1e64c79154b36d3ab30a/FASTCoordinateSystems.doc"><code class="xref download docutils literal notranslate"><span class="pre">FASTCoordinateSystems.doc</span></code></a>:
+Documents the transformation matrices relating each coordinate system in OpenFAST. Unfortunately, there are no pictures in this document that diagram these coordinate systems. They can hopefully be visualized by means of the transformation matrices.</p></li>
+</ul>
+<div class="section" id="rotor-furl-coordinate-system">
+<span id="ed-rfrl-coordsys"></span><h2><span class="section-number">4.10.1.1. </span>Rotor-Furl coordinate system<a class="headerlink" href="#rotor-furl-coordinate-system" title="Permalink to this heading"></a></h2>
+<p>The rotor-furl DOF allows the user to model the
+unusual configuration of a bearing that permits the
+rotor and drivetrain to rotate about the yawing-portion
+of the structure atop the tower. The rotor-furl DOF can
+alternatively be used to model torsional flexibility in
+the gearbox mounting if the rotor-furl axis is aligned
+with the rotor shaft axis. In order to include rotor-
+furling in the model, the user must designate the turbine
+as a furling machine by setting input <code class="docutils literal notranslate"><span class="pre">Furling</span></code> from the
+primary input file to True. Then, the user must assemble
+the furling input file, <code class="docutils literal notranslate"><span class="pre">FurlFile</span></code>, and use the rotor-furl
+flag, RFrlDOF, to enable this feature.
+The angular rotor-furl motion takes place about the
+rotor-furl axis defined by inputs:
+<code class="docutils literal notranslate"><span class="pre">RFrlPnt_n</span></code>,
+<code class="docutils literal notranslate"><span class="pre">RFrlSkew</span></code>, and <code class="docutils literal notranslate"><span class="pre">RFrlTilt</span></code>.
+available in FurlFile.
+The input <code class="docutils literal notranslate"><span class="pre">RFrlPnt_n</span></code> locate an arbitrary point on the rotor-
+furl axis relative to the tower-top. Inputs <code class="docutils literal notranslate"><span class="pre">RFrlSkew</span></code>
+and <code class="docutils literal notranslate"><span class="pre">RFrlTilt</span></code> then define the angular orientation of the
+rotor-furl axis passing through this point.
+See <a class="reference internal" href="#figtfaxes"><span class="std std-numref">Fig. 4.46</span></a> for a schematic.</p>
+<p>The geometries of the hub and rotor-furl structure
+mass center, which are both components of the furling-
+rotor assembly, are defined relative to the tower-top as
+shown in <a class="reference internal" href="#figtffurl"><span class="std std-numref">Fig. 4.47</span></a>.
+This definition was chosen in
+order to avoid having to define a coordinate system in
+the furling-rotor assembly since such a coordinate
+system would most likely have an obscure orientation,
+making it difficult for users to input configuration
+information relative to it. This definition also avoids
+the complications involved in having to define
+geometries differently, depending on whether or not a
+rotor-furl assembly exists separately from the nacelle,
+which depends on whether rotor-furl is present or
+absent in the turbine.</p>
+<p>Since the component geometry of the furling-rotor
+assembly is defined relative to the tower-top, this
+geometry naturally changes with the rotor-furl angle.
+In order to avoid having to define different geometries
+for different rotor-furl positions (for example,
+variations in the initial rotor-furl angle), ElastoDyn expects
+the component geometry of the furling-rotor assembly
+to be defined/input at a rotor-furl angle of zero. As
+such, the initial rotor-furl angle does not affect the
+specification of any other rotor-furl geometry. Stated
+another way, the input geometries for the rotor-furl
+assembly components define the rotor configuration
+when the rotor-furl angle is zero regardless of initial
+rotor-furl position. Users should be clear of this
+convention when assembling their furling input file.</p>
+</div>
+<div class="section" id="tail-furl-coordinate-system">
+<span id="ed-tfrl-coordsys"></span><h2><span class="section-number">4.10.1.2. </span>Tail-Furl coordinate system<a class="headerlink" href="#tail-furl-coordinate-system" title="Permalink to this heading"></a></h2>
+<p>The tail-furl DOF allows the user to model the unusual
+configuration of a bearing that permits the tail to rotate
+about the yawing-portion of the structure atop the
+tower. In order to include tail-furling in a model,
+the user must designate the turbine as a furling machine by
+setting the input <code class="docutils literal notranslate"><span class="pre">Furling</span></code> from the ElastoDyn input file to
+True. Then you must assemble the furling input file,
+<code class="docutils literal notranslate"><span class="pre">FurlFile</span></code>, and use the tail-furl flag, <code class="docutils literal notranslate"><span class="pre">TFrlDOF</span></code>, to enable
+this feature.
+The angular tail-furl motion takes place about the
+tail-furl axis defined by inputs <code class="docutils literal notranslate"><span class="pre">TFrlPnt_n</span></code>, <code class="docutils literal notranslate"><span class="pre">TFrlSkew</span></code>, and <code class="docutils literal notranslate"><span class="pre">TFrlTilt</span></code> available in
+<code class="docutils literal notranslate"><span class="pre">FurlFile</span></code>.
+The input <code class="docutils literal notranslate"><span class="pre">TFrlPnt_n</span></code> locate an arbitrary point on the tail-furl axis
+relative to the tower-top.
+See <a class="reference internal" href="#figtfaxes"><span class="std std-numref">Fig. 4.46</span></a> for a schematic.</p>
+<p>The geometries of the tail boom mass center, tail
+fin mass center, and tail fin aerodynamic surface,
+which are all components of the furling-tail assembly,
+are defined relative to the tower-top as shown in <a class="reference internal" href="#figtfgeom"><span class="std std-numref">Fig. 4.48</span></a>.
+This definition was chosen in order to avoid
+having to define a coordinate system in the furling-tail
+assembly since such a coordinate system would most
+likely have an obscure orientation, making it difficult
+for users to input configuration information relative to
+it. This definition also avoids the complications
+involved in having to define geometries differently,
+depending on whether or not a tail-furl assembly exists
+separately from the nacelle, which depends on whether
+tail-furl is present or absent in the turbine.</p>
+<p>Since the component geometry of the furling-tail
+assembly is defined relative to the tower-top, this
+geometry naturally changes with the tail-furl angle. In
+order to avoid having to define different geometries for
+different tail-furl positions (for example, variations in
+the initial tail-furl angle), ElastoDyn expects the component
+geometry of the furling-tail assembly to be
+defined/input at a tail-furl angle of zero. As such, the
+initial tail-furl angle does not affect the specification of
+any other tail-furl geometry. Stated another way, the
+input geometries for the tail-furl assembly components
+define the tail configuration when the tail-furl angle is
+zero regardless of initial tail-furl position. Users
+should be clear of this convention when assembling
+their furling input file. Further clarification on this
+furling geometry convention is provided in the Rotor-
+Furl section above.</p>
+<div class="figure align-default" id="id1">
+<span id="figtfaxes"></span><a class="reference internal image-reference" href="../../../_images/TailFinAxes.png"><img alt="../../../_images/TailFinAxes.png" src="../../../_images/TailFinAxes.png" style="width: 70%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.46 </span><span class="caption-text">Layout of a three-bladed, upwind, furling turbine: furl axes</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</div>
+<div class="figure align-default" id="id2">
+<span id="figtffurl"></span><a class="reference internal image-reference" href="../../../_images/TailFinFurl.png"><img alt="../../../_images/TailFinFurl.png" src="../../../_images/TailFinFurl.png" style="width: 70%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.47 </span><span class="caption-text">Layout of a three-bladed, upwind, furling turbine: rotor-furl structure</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</div>
+<div class="figure align-default" id="id3">
+<span id="figtfgeom"></span><a class="reference internal image-reference" href="../../../_images/TailFinGeom.png"><img alt="../../../_images/TailFinGeom.png" src="../../../_images/TailFinGeom.png" style="width: 70%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.48 </span><span class="caption-text">Layout of a three-bladed, upwind, furling turbine: tail-furl structure.
+NOTE: The tail fin “CP” (center of pressure) parameters are now replaced by the location of the reference point.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="4.10. ElastoDyn Users Guide and Theory Manual" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="input.html" class="btn btn-neutral float-right" title="4.10.2. Input Files" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

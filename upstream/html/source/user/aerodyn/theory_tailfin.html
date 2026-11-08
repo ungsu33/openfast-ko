@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.3.9. Tail fin Aerodynamics Theory &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.3.10. References" href="zrefs.html" />
+    <link rel="prev" title="4.3.8. Unsteady Aerodynamics" href="theory_ua.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/aerodyn/theory_tailfin.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.3. AeroDyn</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">4.3.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coordsys.html">4.3.2. Coordinate systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input.html">4.3.3. Input Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="output.html">4.3.4. Output Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modeling.html">4.3.5. Modeling Considerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver.html">4.3.6. AeroDyn Driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory.html">4.3.7. AeroDyn Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory_ua.html">4.3.8. Unsteady Aerodynamics</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.3.9. Tail fin Aerodynamics Theory</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#notations">4.3.9.1. Notations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polar-based-model">4.3.9.2. Polar-based model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#unsteady-slender-body-model">4.3.9.3. Unsteady slender body model</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.3.10. References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.3.11. Appendix</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.3. </span>AeroDyn Users Guide and Theory Manual</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.3.9. </span>Tail fin Aerodynamics Theory</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/aerodyn/theory_tailfin.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="tail-fin-aerodynamics-theory">
+<span id="tf-aerotheory"></span><h1><span class="section-number">4.3.9. </span>Tail fin Aerodynamics Theory<a class="headerlink" href="#tail-fin-aerodynamics-theory" title="Permalink to this heading"></a></h1>
+<div class="section" id="notations">
+<h2><span class="section-number">4.3.9.1. </span>Notations<a class="headerlink" href="#notations" title="Permalink to this heading"></a></h2>
+<p><strong>Tail fin aerodynamic reference point</strong></p>
+<p>The tail fin aerodynamic reference point, <span class="math notranslate nohighlight">\(\boldsymbol{x}_\text{ref}\)</span>, is the point where the aerodynamic loads are calculated on the tail fin.
+The structural solver computes the instantenous position, velocity, acceleration, of the reference point at each time step.
+The initial position of the reference point with respect to the tower top is a user input.
+Typical choices are the
+leading edge/apex of the fin or a point close to the center of pressure at zero angle of attack.
+The other aerodynamic inputs (e.g. aerodynamic moment coefficient) need to be consistent with the choice of the reference point.</p>
+<p><strong>Tail fin coordinate system</strong></p>
+<p>The inertial and tail fin coordinate systems are illustrated in <a class="reference internal" href="#figtfcoord1"><span class="std std-numref">Fig. 4.10</span></a>.
+The transformation matrix from the inertial coordinate system to the tail fin coordinate system is given by <span class="math notranslate nohighlight">\(\boldsymbol{R}_\text{tf,i}\)</span>.</p>
+<div class="figure align-default" id="id3">
+<span id="figtfcoord1"></span><a class="reference internal image-reference" href="../../../_images/TailFinCoord.png"><img alt="../../../_images/TailFinCoord.png" src="../../../_images/TailFinCoord.png" style="width: 70%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.10 </span><span class="caption-text">Coordinate systems and velocity vectors used for the tail fin aerodynamics</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</div>
+<p>The reference orientation (when the structure is un-deflected), the transformation matrix is:</p>
+<div class="math notranslate nohighlight" id="equation-tfrrfiinit">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-tfrrfiinit" title="Permalink to this equation"></a></span>\[\boldsymbol{R}_\text{tf,i} = \operatorname{EulerConstruct}(\theta_\text{bank}, \theta_\text{tilt}, \theta_\text{skew})\]</div>
+<p>For a common application with a vertical fin, the three angles are zero.</p>
+<p><strong>Velocities</strong></p>
+<p>The following velocity vectors (3D vectors in global coordinates) are defined (see <a class="reference internal" href="#figtfcoord1"><span class="std std-numref">Fig. 4.10</span></a>):</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{V}_\text{wind}\)</span>:
+Undisturbed Wind speed vector at the reference point</p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{V}_\text{dist}\)</span>:
+Disturbed wind speed vector at the reference point (the disturbed wind contains the influence of the tower on the flow). AeroDyn has internal methods to compute <span class="math notranslate nohighlight">\(\boldsymbol{V}_\text{dist}\)</span> from <span class="math notranslate nohighlight">\(\boldsymbol{V}_\text{wind}\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{V}_\text{elast}\)</span>:
+Structural translational velocity vector at the reference point</p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{V}_\text{ind}\)</span>:
+Induced velocity from the wake at the reference point (assumed to be zero for now)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{\omega}\)</span>:
+Structural rotational velocity of the fin</p></li>
+</ul>
+<p>All velocities (except for <span class="math notranslate nohighlight">\(\boldsymbol{V}_\text{ind}\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{V}_\text{dist}\)</span> which are computed internally by AeroDyn) are provided as input to the aerodynamic solver.
+The relative wind experienced by the airfoil is given by:</p>
+<div class="math notranslate nohighlight" id="equation-tfvrel">
+<span class="eqno">(4.2)<a class="headerlink" href="#equation-tfvrel" title="Permalink to this equation"></a></span>\[\boldsymbol{V}_\text{rel} =
+     \boldsymbol{V}_\text{wind}
+    -\boldsymbol{V}_\text{elast}
+    +\boldsymbol{V}_\text{ind}\]</div>
+<p><strong>Angle of attack</strong></p>
+<p>The angle of attack is defined in the <span class="math notranslate nohighlight">\(x_\text{tf}-y_\text{tf}\)</span> plane of the tail fin coordinate systems as illustrated in <a class="reference internal" href="#figtfcoord2"><span class="std std-numref">Fig. 4.11</span></a>.</p>
+<div class="figure align-default" id="id4">
+<span id="figtfcoord2"></span><a class="reference internal image-reference" href="../../../_images/TailFinAirfoilCoord.png"><img alt="../../../_images/TailFinAirfoilCoord.png" src="../../../_images/TailFinAirfoilCoord.png" style="width: 70%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.11 </span><span class="caption-text">Tail fin airfoil coordinate system and definition of angle of attack in the x-y plane</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</div>
+<p>We write <span class="math notranslate nohighlight">\(V_{\text{rel},\perp}\)</span> the projection of <span class="math notranslate nohighlight">\(\boldsymbol{V}_\text{rel}\)</span> in this plane. The angle of attack is given by the components of this vector:</p>
+<div class="math notranslate nohighlight" id="equation-tfalpha">
+<span class="eqno">(4.3)<a class="headerlink" href="#equation-tfalpha" title="Permalink to this equation"></a></span>\[\alpha = \arctan\frac{V_{\text{rel},y_\text{tf}}}{V_{\text{rel},x_\text{tf}}}\]</div>
+<p>In this implementation, the function <cite>atan2</cite> is used to compute the angle of attack.</p>
+<p><strong>Loads</strong></p>
+<p>If the dimensionless coefficients are known, they can be projected in the <span class="math notranslate nohighlight">\(x_\text{tf}-y_\text{tf}\)</span> plane as follows:</p>
+<div class="math notranslate nohighlight" id="equation-tfcxcy">
+<span class="eqno">(4.4)<a class="headerlink" href="#equation-tfcxcy" title="Permalink to this equation"></a></span>\[C_{x_\text{tf}}(\alpha)  = -C_l(\alpha) \sin\alpha + C_d(\alpha)\cos\alpha
+,\quad
+C_{y_\text{tf}}(\alpha)  =  C_l(\alpha) \cos\alpha + C_d(\alpha)\sin\alpha\]</div>
+<p>and the loads are therefore given by:</p>
+<div class="math notranslate nohighlight" id="equation-tffxfymz">
+<span class="eqno">(4.5)<a class="headerlink" href="#equation-tffxfymz" title="Permalink to this equation"></a></span>\[f_{x_\text{tf}} = \frac{1}{2}\rho V_{\text{rel},\perp}^2 A  \,C_{x_\text{tf}}(\alpha)
+             ,\quad
+f_{y_\text{tf}} = \frac{1}{2}\rho V_{\text{rel},\perp}^2 A  \,C_{y_\text{tf}}(\alpha)
+             ,\quad
+m_{z_\text{tf}} = \frac{1}{2}\rho V_{\text{rel},\perp}^2 Ac \, C_m(\alpha)\]</div>
+<p>Once the loads are known in the tail fin coordinate systems, they are transferred to the inertial system as follows:</p>
+<div class="math notranslate nohighlight" id="equation-tfforcesi">
+<span class="eqno">(4.6)<a class="headerlink" href="#equation-tfforcesi" title="Permalink to this equation"></a></span>\[\begin{split}\left.\boldsymbol{f}\right|_{i} = \boldsymbol{R}_\text{tf,i}^t  \left.\boldsymbol{f}\right|_\text{tf}
+ = \boldsymbol{R}_\text{tf,i}^t
+ \begin{bmatrix}
+ f_{x_\text{tf}}\\
+ f_{y_\text{tf}}\\
+ 0\\
+ \end{bmatrix}
+ ,\qquad
+\left.\boldsymbol{m}\right|_{i} = \boldsymbol{R}_\text{tf,i}^t  \left.\boldsymbol{m}\right|_\text{tf}
+ = \boldsymbol{R}_\text{tf,i}^t
+ \begin{bmatrix}
+ 0\\
+ 0\\
+ m_{z_\text{tf}}\\
+ \end{bmatrix}\end{split}\]</div>
+<p><strong>Induced velocity</strong></p>
+<p>The induced velocity from the wake at the reference point will affect the relative wind and therefore the angle of attack of the tail fin.
+Different models are implemented to compute this induced velocity.
+As a first approximation, this velocity may be set to zero (corresponding to the input <cite>TFinIndMod=0</cite>):</p>
+<div class="math notranslate nohighlight" id="equation-tfvindzero">
+<span class="eqno">(4.7)<a class="headerlink" href="#equation-tfvindzero" title="Permalink to this equation"></a></span>\[\boldsymbol{V}_\text{ind}=0\]</div>
+<p>The rotor-averaged induced velocity can also be used as an estimate (<cite>TFinIndMod=1</cite>). It is computed as the mean induced velocity over all the blade and aerodynamic nodes</p>
+<div class="math notranslate nohighlight" id="equation-tfvindrtavg">
+<span class="eqno">(4.8)<a class="headerlink" href="#equation-tfvindrtavg" title="Permalink to this equation"></a></span>\[\boldsymbol{V}_\text{ind}=\frac{1}{n_B n_r}\sum_{i_b=1..n_B} \sum_{i_r=1..n_r}  \boldsymbol{V}_{\text{ind},\text{blade}}[i_b, i_r]\]</div>
+<p>Where <span class="math notranslate nohighlight">\(\boldsymbol{V}_{\text{ind},\text{blade}}[i_b, i_r]\)</span> is the induced velocity vector for blade <span class="math notranslate nohighlight">\(i_b\)</span> and at the radial node <span class="math notranslate nohighlight">\(i_r\)</span>.</p>
+<p>More advanced models could set the induced velocity to zero when outside of the wake boundary, or include a tower-shadow-like wake model. Such option is not yet available.</p>
+</div>
+<div class="section" id="polar-based-model">
+<h2><span class="section-number">4.3.9.2. </span>Polar-based model<a class="headerlink" href="#polar-based-model" title="Permalink to this heading"></a></h2>
+<p>In the polar-based model, the user provides the aerodynamic coefficients <span class="math notranslate nohighlight">\(C_l, C_d, C_m\)</span>, as tabulated data, functions of the angle of attack. The aerodynamic moment is assumed to be provided at the reference point. A common practice is to use the center of pressure at zero angle of attack for polar data, so the user might want to chose such a point as the reference point of the fin.
+The tabulated data are provided as part of the list of airfoils given with <cite>AFNames</cite> in the AeroDyn input file.
+The user only needs to indicate the index <cite>TFinAFIndex</cite> within the list <cite>AFNames</cite> to indicate which polar to use for the tail fin.</p>
+</div>
+<div class="section" id="unsteady-slender-body-model">
+<h2><span class="section-number">4.3.9.3. </span>Unsteady slender body model<a class="headerlink" href="#unsteady-slender-body-model" title="Permalink to this heading"></a></h2>
+<p>The unsteady aerodynamics of the tail fin is modeled based on Unsteady Slender Body Theory.
+The theory is extended to include the effect of high yaw angle <span id="id1">[<a class="reference internal" href="zrefs.html#id14" title="Mohamed M Hammam, David Wood, and Brent Summerville. Modeling the yaw behavior of tail fins for small wind turbines: november 22, 2021-may 21, 2024. Technical Report, National Renewable Energy Laboratory (NREL), Golden, CO (United States), 2023.">ad-HWS23</a>]</span>.
+To simplify the implementation, it is assumed that that arm length of the tail fin is much greater than the chord and the characteristic time (chord/wind speed) is small.</p>
+<p>The normal force on the tail fin can be described as the sum of three contributions (potential lift, vortex lift, and drag), weighted by separation functions <span class="math notranslate nohighlight">\(x_i\)</span> as:</p>
+<div class="math notranslate nohighlight" id="equation-tfusbforce">
+<span class="eqno">(4.9)<a class="headerlink" href="#equation-tfusbforce" title="Permalink to this equation"></a></span>\[N = \frac{\rho}{2} A_{tf} \bigg(  K_p x_1 V_{\text{rel},x} V_{\text{rel},y} +  \Big[x_2 K_v+(1- x_3)C_{Dc} \Big] V_{\text{rel},y}\big|V_{\text{rel},y}\big|\bigg)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\rho\)</span> is the density of air, <span class="math notranslate nohighlight">\(A_{tf}\)</span> is the tail fin area, <span class="math notranslate nohighlight">\(K_p\)</span> is the potential lift coefficient and <span class="math notranslate nohighlight">\(K_v\)</span> is the vortex lift coefficient, and <span class="math notranslate nohighlight">\(C_{Dc}\)</span> is the drag coefficient.
+Note that the sign convnetion of OpenFAST is slightly different than used in <span id="id2">[<a class="reference internal" href="zrefs.html#id14" title="Mohamed M Hammam, David Wood, and Brent Summerville. Modeling the yaw behavior of tail fins for small wind turbines: november 22, 2021-may 21, 2024. Technical Report, National Renewable Energy Laboratory (NREL), Golden, CO (United States), 2023.">ad-HWS23</a>]</span>.
+This is reflected in Equation <a class="reference internal" href="#equation-tfusbforce">(4.9)</a>.</p>
+<p><span class="math notranslate nohighlight">\(x_i\)</span> are the separation functions calculated using a quasi-steady approximation as:</p>
+<div class="math notranslate nohighlight" id="equation-tfusbxiequation">
+<span class="eqno">(4.10)<a class="headerlink" href="#equation-tfusbxiequation" title="Permalink to this equation"></a></span>\[x_i = (1+exp{[\sigma_i (|\gamma_{tf}|-\alpha^*_i)]})^{-1}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\sigma_i\)</span> are empirical constants characterizing the decay of separation functions, <span class="math notranslate nohighlight">\(\gamma_{tf}\)</span> is the yaw angle of the tail fin with respect to the free-stream wind (<span class="math notranslate nohighlight">\(V_{\text{wind}}\)</span>), <span class="math notranslate nohighlight">\(\alpha^*_i\)</span> are the characteristics angles for separation functions.
+<span class="math notranslate nohighlight">\(x_i\)</span> takes on a value between 0 and 1, and are used to activate or deactivate a the contribution of potential lift, vortex lift and drag to the normal force on the tail fin.</p>
+<p>The normal force is assumed to act at the user defined reference point on the tail fin and the moment of the normal force is calculated accordingly.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="theory_ua.html" class="btn btn-neutral float-left" title="4.3.8. Unsteady Aerodynamics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="zrefs.html" class="btn btn-neutral float-right" title="4.3.10. References" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

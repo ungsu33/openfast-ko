@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>6. Developer Documentation &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+        <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.12.1/dist/mermaid.esm.min.mjs";
+
+
+
+
+
+const initStyles = () => {
+    const defaultStyle = document.createElement('style');
+    defaultStyle.textContent = `pre.mermaid {
+    /* Same as .mermaid-container > pre */
+    display: block;
+    width: 100%;
+}
+
+pre.mermaid > svg {
+    /* Same as .mermaid-container > pre > svg */
+    height: 500px;
+    width: 100%;
+    max-width: 100% !important;
+}`;
+    document.head.appendChild(defaultStyle);
+
+    const fullscreenStyle = document.createElement('style');
+    fullscreenStyle.textContent = `.mermaid-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.mermaid-container > pre {
+    display: block;
+    width: 100%;
+}
+
+.mermaid-container > pre > svg {
+    height: 500px;
+    width: 100%;
+    max-width: 100% !important;
+}
+
+.mermaid-fullscreen-btn {
+    width: 28px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    line-height: 1;
+    padding: 0;
+    color: #333;
+}
+
+.mermaid-fullscreen-btn:hover {
+    opacity: 100% !important;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
+}
+
+.mermaid-fullscreen-btn.dark-theme {
+    background: rgba(50, 50, 50, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #e0e0e0;
+}
+
+.mermaid-fullscreen-btn.dark-theme:hover {
+    background: rgba(60, 60, 60, 1);
+    box-shadow: 0 3px 10px rgba(255, 255, 255, 0.2);
+}
+
+.mermaid-fullscreen-modal {
+    display: none;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 95vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.98);
+    z-index: 9999;
+    padding: 20px;
+    overflow: auto;
+}
+
+.mermaid-fullscreen-modal.dark-theme {
+    background: rgba(0, 0, 0, 0.98);
+}
+
+.mermaid-fullscreen-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen {
+    position: relative;
+    width: 95vw;
+    height: 90vh;
+    max-width: 95vw;
+    max-height: 90vh;
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen.dark-theme {
+    background: #1a1a1a;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+}
+
+.mermaid-container-fullscreen pre.mermaid {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen .mermaid svg {
+    height: 100% !important;
+    width: 100% !important;
+    cursor: grab;
+}
+
+.mermaid-fullscreen-close {
+    position: fixed !important;
+    top: 20px !important;
+    right: 20px !important;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s;
+    font-size: 24px;
+    line-height: 1;
+    color: #333;
+}
+
+.mermaid-fullscreen-close:hover {
+    background: white;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    transform: scale(1.1);
+}
+
+.mermaid-fullscreen-close.dark-theme {
+    background: rgba(50, 50, 50, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #e0e0e0;
+}
+
+.mermaid-fullscreen-close.dark-theme:hover {
+    background: rgba(60, 60, 60, 1);
+    box-shadow: 0 6px 16px rgba(255, 255, 255, 0.2);
+}
+
+.mermaid-fullscreen-modal .mermaid-fullscreen-btn {
+    display: none !important;
+}`;
+    document.head.appendChild(fullscreenStyle);
+}
+
+// Detect if page has dark background
+const isDarkTheme = () => {
+    // We use a set of heuristics:
+    // 1. Check for common dark mode classes or attributes
+    // 2. Check computed background color brightness
+    if (document.documentElement.classList.contains('dark') ||
+        document.documentElement.getAttribute('data-theme') === 'dark' ||
+        document.body.classList.contains('dark') ||
+        document.body.getAttribute('data-theme') === 'dark') {
+        // console.log("Dark theme detected via class/attribute");
+        return true;
+    }
+    if (document.documentElement.classList.contains('light') ||
+        document.documentElement.getAttribute('data-theme') === 'light' ||
+        document.body.classList.contains('light') ||
+        document.body.getAttribute('data-theme') === 'light') {
+        // console.log("Light theme detected via class/attribute");
+        return false;
+    }
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        // console.log("Dark theme detected via prefers-color-scheme");
+        return true;
+    }
+    const bgColor = window.getComputedStyle(document.body).backgroundColor;
+    const match = bgColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)/);
+    if (match) {
+        const r = parseInt(match[1]);
+        const g = parseInt(match[2]);
+        const b = parseInt(match[3]);
+        const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+        // console.log("Background color brightness:", brightness);
+        return brightness < 128;
+    }
+    // console.log("No dark or light theme detected, defaulting to light theme");
+    return false;
+};
+
+let darkTheme = isDarkTheme();
+let modal = null;
+let modalContent = null;
+let previousScrollOffset = [window.scrollX, window.scrollY];
+
+const runMermaid = async (rerun) => {
+    console.log("Running mermaid diagrams, rerun =", rerun);
+    // clear all existing mermaid charts
+    let all_mermaids = document.querySelectorAll(".mermaid");
+
+    if (rerun) {
+        all_mermaids.forEach((el) => {
+            if(!el.hasAttribute("data-original-code")) {
+                // store original code
+                // console.log(`Storing original code for first run: `, el.innerHTML);
+                el.setAttribute('data-original-code', el.innerHTML);
+            }
+            if(el.getAttribute("data-processed") === "true") {
+                // remove and restore original
+                el.removeAttribute("data-processed");
+                // console.log(`Restoring original code for re-run: `, el.getAttribute('data-original-code'));
+                el.innerHTML = el.getAttribute('data-original-code');
+            } else {
+                // store original code
+                // console.log(`Storing original code for re-run: `, el.innerHTML);
+                el.setAttribute('data-original-code', el.innerHTML);
+            }
+        });
+        await mermaid.run();
+    }
+
+    all_mermaids = document.querySelectorAll(".mermaid");
+    const mermaids_processed = document.querySelectorAll(".mermaid[data-processed='true']");
+
+    if ("False" === "True") {
+        const mermaids_to_add_zoom = -1 === -1 ? all_mermaids.length : -1;
+        if(mermaids_to_add_zoom > 0) {
+            var svgs = d3.selectAll("");
+            if(all_mermaids.length !== mermaids_processed.length) {
+                setTimeout(() => runMermaid(false), 200);
+                return;
+            } else if(svgs.size() !== mermaids_to_add_zoom) {
+                setTimeout(() => runMermaid(false), 200);
+                return;
+            } else {
+                svgs.each(function() {
+                    var svg = d3.select(this);
+                    svg.html("<g class='wrapper'>" + svg.html() + "</g>");
+                    var inner = svg.select("g");
+                    var zoom = d3.zoom().on("zoom", function(event) {
+                        inner.attr("transform", event.transform);
+                    });
+                    svg.call(zoom);
+                });
+            }
+        }
+    } else if(all_mermaids.length !== mermaids_processed.length) {
+        // Wait for mermaid to process all diagrams
+        setTimeout(() => runMermaid(false), 200);
+        return;
+    }
+
+    // Stop here if not adding fullscreen capability
+    if ("True" !== "True") return;
+
+    if (modal !== null ) {
+        // Destroy existing modal
+        modal.remove();
+        modal = null;
+        modalContent = null;
+    }
+
+    modal = document.createElement('div');
+    modal.className = 'mermaid-fullscreen-modal' + (darkTheme ? ' dark-theme' : '');
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-label', 'Fullscreen diagram viewer');
+    modal.innerHTML = `
+        <button class="mermaid-fullscreen-close${darkTheme ? ' dark-theme' : ''}" aria-label="Close fullscreen">✕</button>
+        <div class="mermaid-container-fullscreen${darkTheme ? ' dark-theme' : ''}"></div>
+    `;
+    document.body.appendChild(modal);
+
+    modalContent = modal.querySelector('.mermaid-container-fullscreen');
+    const closeBtn = modal.querySelector('.mermaid-fullscreen-close');
+
+    const closeModal = () => {
+        modal.classList.remove('active');
+        modalContent.innerHTML = '';
+        document.body.style.overflow = ''
+        window.scrollTo({left: previousScrollOffset[0], top: previousScrollOffset[1], behavior: 'instant'});
+    };
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+
+    document.querySelectorAll('.mermaid').forEach((mermaidDiv) => {
+        if (mermaidDiv.parentNode.classList.contains('mermaid-container') ||
+            mermaidDiv.closest('.mermaid-fullscreen-modal')) {
+            // Already processed, adjust button class if needed
+            const existingBtn = mermaidDiv.parentNode.querySelector('.mermaid-fullscreen-btn');
+            if (existingBtn) {
+                existingBtn.className = 'mermaid-fullscreen-btn' + (darkTheme ? ' dark-theme' : '');
+            }
+            return;
+        }
+
+        const container = document.createElement('div');
+        container.className = 'mermaid-container';
+        mermaidDiv.parentNode.insertBefore(container, mermaidDiv);
+        container.appendChild(mermaidDiv);
+
+        const fullscreenBtn = document.createElement('button');
+        fullscreenBtn.className = 'mermaid-fullscreen-btn' + (darkTheme ? ' dark-theme' : '');
+        fullscreenBtn.setAttribute('aria-label', 'View diagram in fullscreen');
+        fullscreenBtn.textContent = '⛶';
+        fullscreenBtn.style.opacity = '50%';
+
+        // Calculate dynamic position based on diagram's margin and padding
+        const diagramStyle = window.getComputedStyle(mermaidDiv);
+        const marginTop = parseFloat(diagramStyle.marginTop) || 0;
+        const marginRight = parseFloat(diagramStyle.marginRight) || 0;
+        const paddingTop = parseFloat(diagramStyle.paddingTop) || 0;
+        const paddingRight = parseFloat(diagramStyle.paddingRight) || 0;
+        fullscreenBtn.style.top = `${marginTop + paddingTop + 4}px`;
+        fullscreenBtn.style.right = `${marginRight + paddingRight + 4}px`;
+
+        fullscreenBtn.addEventListener('click', () => {
+            previousScrollOffset = [window.scroll, window.scrollY];
+            const clone = mermaidDiv.cloneNode(true);
+            modalContent.innerHTML = '';
+            modalContent.appendChild(clone);
+
+            const svg = clone.querySelector('svg');
+            if (svg) {
+                svg.removeAttribute('width');
+                svg.removeAttribute('height');
+                svg.style.width = '100%';
+                svg.style.height = 'auto';
+                svg.style.maxWidth = '100%';
+                svg.style.sdisplay = 'block';
+
+                if ("False" === "True") {
+                    setTimeout(() => {
+                        const g = svg.querySelector('g');
+                        if (g) {
+                            var svgD3 = d3.select(svg);
+                            svgD3.html("<g class='wrapper'>" + svgD3.html() + "</g>");
+                            var inner = svgD3.select("g");
+                            var zoom = d3.zoom().on("zoom", function(event) {
+                                inner.attr("transform", event.transform);
+                            });
+                            svgD3.call(zoom);
+                        }
+                    }, 100);
+                }
+            }
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        container.appendChild(fullscreenBtn);
+    });
+};
+
+const load = async () => {
+    initStyles();
+
+    await runMermaid(true);
+
+    const reRunIfThemeChanges = async () => {
+        const newDarkTheme = isDarkTheme();
+        if (newDarkTheme !== darkTheme) {
+            darkTheme = newDarkTheme;
+            console.log("Theme change detected, re-running mermaid with", darkTheme ? "dark" : "default", "theme");
+            await mermaid.initialize(
+                {...JSON.parse(
+                    `{"startOnLoad": false}`
+                ),
+                ...{ darkMode: darkTheme, theme: darkTheme ? 'dark' : 'default' },
+                }
+            );
+            await runMermaid(true);
+        }
+    };
+
+    // Update theme classes when theme changes
+    const themeObserver = new MutationObserver(reRunIfThemeChanges);
+    themeObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class', 'style', 'data-theme']
+    });
+    themeObserver.observe(document.body, {
+        attributes: true,
+        attributeFilter: ['class', 'style', 'data-theme']
+    });
+};
+
+
+
+
+
+console.log("Initializing mermaid with", darkTheme ? "dark" : "default", "theme");
+mermaid.initialize(
+    {...JSON.parse(
+        `{"startOnLoad": false}`
+    ),
+    ...{ darkMode: darkTheme, theme: darkTheme ? 'dark' : 'default' },
+    }
+);
+
+window.addEventListener("load", load);
+window.runMermaid = runMermaid;</script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="6.1.6.1. Working with OpenFAST on GitHub" href="github_workflow.html" />
+    <link rel="prev" title="5.2.5.4.1. Windows with Visual Studio regression test" href="../testing/regression_test_windows.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/dev/index.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">4. User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">6. Developer Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#development-philosophy-and-guidelines">6.1. Development Philosophy and Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#engagement-with-nlr">6.1.1. Engagement with NLR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#development-plan-implementation-plan">6.1.2. Development Plan / Implementation Plan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qualities-of-a-good-submission">6.1.3. Qualities of a good submission</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#submit-for-review-and-nlr-feedback">6.1.4. Submit for review and NLR feedback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bug-fixes">6.1.5. Bug fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#additional-guidance">6.1.6. Additional guidance</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="github_workflow.html">6.1.6.1. Working with OpenFAST on GitHub</a></li>
+<li class="toctree-l4"><a class="reference internal" href="code_style.html">6.1.6.2. Code Style</a></li>
+<li class="toctree-l4"><a class="reference internal" href="build_doc.html">6.1.6.3. Developing Documentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="types_files.html">6.1.6.4. Types Files and the OpenFAST Registry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="debugging.html">6.1.6.5. Debugging OpenFAST</a></li>
+<li class="toctree-l4"><a class="reference internal" href="performance.html">6.1.6.6. Performance Profiling and Tuning</a></li>
+<li class="toctree-l4"><a class="reference internal" href="versioning.html">6.1.6.7. Versioning</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#api-reference">6.2. API Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#c-api-reference">6.3. C++ API Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cppapi/index.html">6.3.1. OpenFAST C++ Application Programming Interface</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#other-documentation">6.4. Other Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">6. </span>Developer Documentation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/source/dev/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="developer-documentation">
+<span id="dev-guide"></span><h1><span class="section-number">6. </span>Developer Documentation<a class="headerlink" href="#developer-documentation" title="Permalink to this heading"></a></h1>
+<p><strong>Our goal as developers of OpenFAST is to ensure that it is well tested, well
+documented, and self-sustaining software.</strong> To that end, we
+continually work to improve the documentation and test coverage along with
+feature additions and improvements. This section of the documentation outlines
+the processes and procedures we have established for external developers
+to work with the NLR OpenFAST team on code development.</p>
+<p>If you’d like to help with general OpenFAST development or work on a particular
+feature, then first install OpenFAST following the
+<a class="reference internal" href="../install/index.html"><span class="doc">installation instructions</span></a> for your machine. Next,
+verify that your installation is valid by running the test suite following the
+<a class="reference internal" href="../testing/index.html"><span class="doc">testing instructions</span></a>. While OpenFAST is compiling, we
+encourage reading through the <a class="reference internal" href="#development-philosophy"><span class="std std-ref">Development Philosophy and Guidelines</span></a> section to
+understand the general workflow for individual and coordinated development.
+Finally, be sure to review the <a class="reference internal" href="github_workflow.html"><span class="doc">GitHub workflow</span></a> to
+avoid any merge or code conflicts.</p>
+<p>With development happening in parallel between NLR, industry partners, and
+universities, NLR relies on GitHub to coordinate efforts:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/openfast/openfast/issues">GitHub Issues</a> is the place
+to ask usage or development questions, report bugs, and
+suggest code enhancements</p></li>
+<li><p><a class="reference external" href="https://github.com/openfast/openfast/pulls">GitHub Pull Requests</a>
+is the place for engaging with the OpenFAST team to have your new code
+merged into the main repository.</p></li>
+</ul>
+<p>For other questions regarding OpenFAST, please contact
+<a class="reference external" href="mailto:michael&#46;a&#46;sprague&#37;&#52;&#48;nrel&#46;gov">Mike Sprague</a>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The following sections provide valuable guidance on workflow and
+development tips which make the process more efficient and
+effective:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="github_workflow.html#github-workflow"><span class="std std-ref">Working with OpenFAST on GitHub</span></a></p></li>
+<li><p><a class="reference internal" href="code_style.html#code-style"><span class="std std-ref">Code Style</span></a></p></li>
+<li><p><a class="reference internal" href="debugging.html#debugging"><span class="std std-ref">Debugging OpenFAST</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="development-philosophy-and-guidelines">
+<span id="development-philosophy"></span><h2><span class="section-number">6.1. </span>Development Philosophy and Guidelines<a class="headerlink" href="#development-philosophy-and-guidelines" title="Permalink to this heading"></a></h2>
+<p>OpenFAST is intended to be a self-sustaining, community developed software.
+While the NLR OpenFAST team serves as the gatekeeper of the repository, we
+actively encourage the community to share new ideas and contribute code.
+Considerations for contributing code are outlined here.</p>
+<div class="section" id="engagement-with-nlr">
+<h3><span class="section-number">6.1.1. </span>Engagement with NLR<a class="headerlink" href="#engagement-with-nlr" title="Permalink to this heading"></a></h3>
+<p>The process for community code contribution starts with engaging directly
+with the NLR OpenFAST team to define the scope of the work and coordinate
+development efforts. This is particularly important since many groups
+work on OpenFAST simultaneously. By engaging early, all developers can
+stay up to date and minimize conflicts during the code merge.
+The preferred method of communication is <a class="reference external" href="https://github.com/openfast/openfast/issues">GitHub Issues</a>.
+An initial post should contain all relevant information about the planned
+development work, the areas of the software that will be impacted,
+and any model validation materials. See <a class="reference internal" href="#development-plan"><span class="std std-ref">Development Plan / Implementation Plan</span></a>
+for more information on describing the planned work.</p>
+<p>The NLR OpenFAST team is always working on internal projects
+that require the majority of our attention, but we will make every effort
+to engage with the community and support development efforts in
+a reasonable time frame. After posting an Issue, the NLR OpenFAST
+team may reach out to schedule a meeting to talk through the details.</p>
+</div>
+<div class="section" id="development-plan-implementation-plan">
+<span id="development-plan"></span><h3><span class="section-number">6.1.2. </span>Development Plan / Implementation Plan<a class="headerlink" href="#development-plan-implementation-plan" title="Permalink to this heading"></a></h3>
+<p>Significant code development efforts at NLR begin with the development
+of a detailed implementation plan, and a few such plans are available to
+download for reference:</p>
+<ul class="simple">
+<li><p><a class="reference download internal" download="" href="../../_downloads/ac04f454598248483d3a339d96dcd4fd/AeroLin_2019-12.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Development</span> <span class="pre">Plan</span> <span class="pre">for</span> <span class="pre">the</span> <span class="pre">Aerodynamic</span> <span class="pre">Linearization</span> <span class="pre">of</span> <span class="pre">OpenFAST</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../_downloads/c653fb54b5d72da81494fa4851344182/FAST.Farm_Plan_Rev25.doc"><code class="xref download docutils literal notranslate"><span class="pre">FAST.Farm</span> <span class="pre">Development</span> <span class="pre">Plan</span></code></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../../_downloads/ec7b205d06be5a23fd2d7de23c517805/HydroDyn_2ndOrderForces_Plan.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Implementation</span> <span class="pre">Plan</span> <span class="pre">-</span> <span class="pre">2nd-order</span> <span class="pre">Forces</span> <span class="pre">Within</span> <span class="pre">HydroDyn</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../_downloads/42a2cfdae2d2df1d36eae686d87eb12d/WAVE2_document.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Implementation</span> <span class="pre">Plan</span> <span class="pre">-</span> <span class="pre">2nd-order</span> <span class="pre">Wave</span> <span class="pre">Kinematics</span> <span class="pre">Within</span> <span class="pre">HydroDyn</span></code></a></p></li>
+</ul>
+<p>A good plan within the modularization framework of OpenFAST will
+follow the definitions and nomenclature used by the
+<a class="reference download internal" download="" href="../../_downloads/2a9110b5e2a2b531c7dc05ea1fc86b89/NWTC_Programmers_Handbook.pdf"><code class="xref download docutils literal notranslate"><span class="pre">NWTC</span> <span class="pre">Programmer's</span> <span class="pre">Handbook</span></code></a>.
+It should communication the following information:</p>
+<ul class="simple">
+<li><p>State whether the module is intended for loose coupling,
+tight coupling for time marching, and/or linearization.</p></li>
+<li><p>Define the module’s inputs (including initialization),
+outputs (including initialization), states (continous,
+discrete, and constraint), and parameters, including units.</p></li>
+<li><p>Lay out an example input file for the module.</p></li>
+<li><p>Explain the module’s mathemetical formulation, including
+Jacobians (for tight coupling and linearization), in the form
+required of the framework.</p></li>
+<li><p>Prescribe how the module’s inputs are derived from the
+outputs of other specific modules</p></li>
+<li><p>Identify any potential numerical problems and how to avoid
+them in the code.</p></li>
+<li><p>Lay out the module’s subroutines using pseudocode (as opposed
+to actual code), including identifying which mathematical formulas
+are used by which subroutines, and describing the algorithms used
+in the solution process.</p></li>
+</ul>
+<p>This information is very helpful since it is easier to review, iterate,
+and agree on a plan before making changes to source code. Additionally,
+an implementation plan will greatly aid in the programming effort and is
+a useful starting point for writing the user and develop documentation.</p>
+</div>
+<div class="section" id="qualities-of-a-good-submission">
+<h3><span class="section-number">6.1.3. </span>Qualities of a good submission<a class="headerlink" href="#qualities-of-a-good-submission" title="Permalink to this heading"></a></h3>
+<p>Development efforts should include adequate testing throughout
+the development process. When possible, new subroutines should include unit-level tests,
+and the existing regression tests should be run periodically to ensure that
+the full system behavior has not changed unintentionally. For new features,
+additional regression tests should be added to cover the new code.
+If the regression test results change in an expected manner, the baseline
+results should be updated locally and in the <a class="reference external" href="https://github.com/openfast/r-test">openfast/r-test</a>
+repository. The <a class="reference external" href="https://github.com/openfast/r-test#updating-the-baselines">r-test README</a>
+describes updating the baselines and the <a class="reference internal" href="../testing/index.html#testing"><span class="std std-ref">Testing OpenFAST</span></a>
+section in this documentation contains additional details on testing.</p>
+<p>New code should consider robustness from both the developer and user
+perspectives. Here are some questions to consider during
+code development:</p>
+<ul class="simple">
+<li><p>Is it clear to other developers how to use your subroutine?</p></li>
+<li><p>Does your new code exhibit clear and predictable behavior?</p></li>
+<li><p>How will your code perform under different qualities of data?</p></li>
+<li><p>How does your code impact the performance of the simulation?</p></li>
+</ul>
+<p>Additionally, user and developer documentation should be included
+with new code. User documentation includes theory, modeling guidance,
+and a description of any inputs and outputs. User documentation should be
+included as part of the online documentation described in <a class="reference internal" href="build_doc.html#build-doc"><span class="std std-ref">Developing Documentation</span></a>.
+Developer documentation is typically included in comments in the source
+code. This should describe subroutine API’s (inputs and outputs) as well
+as any algorithms or lines of code that are unclear. Ask yourself
+what you would need to know to fully understand your code if you don’t
+see it again for two years.</p>
+</div>
+<div class="section" id="submit-for-review-and-nlr-feedback">
+<h3><span class="section-number">6.1.4. </span>Submit for review and NLR feedback<a class="headerlink" href="#submit-for-review-and-nlr-feedback" title="Permalink to this heading"></a></h3>
+<p>New code can be submitted for review from the NLR OpenFAST team by
+opening a <a class="reference external" href="https://github.com/openfast/openfast/pulls">pull request</a>
+as described in <a class="reference internal" href="github_workflow.html#github-workflow"><span class="std std-ref">Working with OpenFAST on GitHub</span></a>. We will review the code for
+accuracy, validity, quality, and robustness. Reviewing open source
+code contributions can be difficult, so it is worthwhile to review
+your own code and consider what information would help you to
+determine whether it is ready to merge.</p>
+<p>The review process begins with simply ensuring that the automated
+tests pass in <a class="reference external" href="https://github.com/openfast/openfast/actions">GitHub Actions</a>.
+<strong>Please ensure that all automated tests pass prior to requesting a review.</strong>
+After that, the process will involve some communication between the
+reviewer and the submitter, possibly requests for more information
+on the background or validation, and comments in the pull request
+to gain additional insight into specific lines of code.</p>
+<p>After a consensus is reached between the submitter and reviewer,
+the pull request will be merged into the target branch (typically
+<cite>dev</cite>) and the pull request will be closed. You’re done!
+This change will be included in the subsequent release of OpenFAST
+when the <cite>dev</cite> branch is merged into <cite>main</cite>.</p>
+</div>
+<div class="section" id="bug-fixes">
+<h3><span class="section-number">6.1.5. </span>Bug fixes<a class="headerlink" href="#bug-fixes" title="Permalink to this heading"></a></h3>
+<p>If you’ve found a bug in the code, it is important to fully describe
+it both in a <a class="reference external" href="https://github.com/openfast/openfast/issues">GitHub Issue</a>
+and through a minimal test. Before making a commit with the bug fix,
+commit the new test that exposes the bug. This test should fail.
+Then, commit the bug fix and show that the test passes. The git-commit
+history should look something like this (progresses bottom to top):</p>
+<pre  class="mermaid">
+        gitGraph BT:
+options
+{
+  &quot;nodeSpacing&quot;: 60,
+  &quot;nodeFillColor&quot;: &quot;white&quot;,
+  &quot;nodeStrokeWidth&quot;: 2,
+  &quot;nodeStrokeColor&quot;: &quot;#747474&quot;,
+  &quot;lineStrokeWidth&quot;: 2,
+  &quot;branchOffset&quot;: 30,
+  &quot;lineColor&quot;: &quot;grey&quot;,
+  &quot;leftMargin&quot;: 20,
+  &quot;branchColors&quot;: [&quot;#007bff&quot;, &quot;#ff2d54&quot;],
+  &quot;nodeRadius&quot;: 5,
+  &quot;nodeLabel&quot;: {
+    &quot;width&quot;: 75,
+    &quot;height&quot;: 100,
+    &quot;x&quot;: -25,
+    &quot;y&quot;: 0
+  }
+}
+end
+
+commit
+branch dev
+checkout dev
+commit &quot;Merge pull request #123&quot;
+commit &quot;Merge pull request #124&quot;
+branch bugfix
+checkout bugfix
+commit &quot;Add unit test exposing out of bounds error&quot;
+commit &quot;Fix out of bounds error in array&quot;
+checkout dev
+commit &quot;Merge pull request #125&quot;
+merge bugfix
+    </pre><p>See <a class="reference internal" href="../testing/index.html#testing"><span class="std std-ref">Testing OpenFAST</span></a> and <a class="reference internal" href="github_workflow.html#github-workflow"><span class="std std-ref">Working with OpenFAST on GitHub</span></a> for more information.</p>
+</div>
+<div class="section" id="additional-guidance">
+<h3><span class="section-number">6.1.6. </span>Additional guidance<a class="headerlink" href="#additional-guidance" title="Permalink to this heading"></a></h3>
+<p>The following sections provide extended guidance on developing source code,
+interacting with the NLR OpenFAST team and other community contributors, and
+generally debugging and building out features.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="github_workflow.html">6.1.6.1. Working with OpenFAST on GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_style.html">6.1.6.2. Code Style</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_doc.html">6.1.6.3. Developing Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types_files.html">6.1.6.4. Types Files and the OpenFAST Registry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debugging.html">6.1.6.5. Debugging OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performance.html">6.1.6.6. Performance Profiling and Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="versioning.html">6.1.6.7. Versioning</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="api-reference">
+<h2><span class="section-number">6.2. </span>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this heading"></a></h2>
+<p>Some subroutines and derived types throughout the source code have in-source
+documentation which is compiled with Doxygen. Though this portion of the
+documentation is always under development, the existing API reference can
+be found in the following pages:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="../../html/index.html">Main Page</a></p></li>
+<li><p><a class="reference external" href="../../html/classes.html">Index of Types</a></p></li>
+<li><p><a class="reference external" href="../../html/files.html">Source Files</a></p></li>
+</ul>
+</div>
+<div class="section" id="c-api-reference">
+<h2><span class="section-number">6.3. </span>C++ API Reference<a class="headerlink" href="#c-api-reference" title="Permalink to this heading"></a></h2>
+<p>C++ API documentation is available.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cppapi/index.html">6.3.1. OpenFAST C++ Application Programming Interface</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="other-documentation">
+<h2><span class="section-number">6.4. </span>Other Documentation<a class="headerlink" href="#other-documentation" title="Permalink to this heading"></a></h2>
+<p>Additional documentation exists that may be useful for developers seeking deeper
+understanding of the solver and mathematics.</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><a class="reference download internal" download="" href="../../_downloads/2a9110b5e2a2b531c7dc05ea1fc86b89/NWTC_Programmers_Handbook.pdf"><code class="xref download docutils literal notranslate"><span class="pre">NWTC</span> <span class="pre">Programmer's</span> <span class="pre">Handbook</span></code></a></dt><dd><p>This is an overview of programming guidelines for FAST 8. While some syntax and minor details have
+changed in OpenFAST, most of this guide is still relevant.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><a class="reference download internal" download="" href="../../_downloads/3f19498a5dc774461e022b671ff01ec6/OutListParameters.xlsx"><code class="xref download docutils literal notranslate"><span class="pre">OutListParameters.xlsx</span></code></a></dt><dd><p>This Excel file contains the full list of outputs for each module.  It is used to generate the
+Fortran code for the output channel list handling for each module (this code is generally in
+the _IO.f90 files).  The MATLAB script available in the
+<a class="reference external" href="https://github.com/OpenFAST/matlab-toolbox">matlab-toolbox</a> repository at <em>Utilities/GetOutListParameters.m</em>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../testing/regression_test_windows.html" class="btn btn-neutral float-left" title="5.2.5.4.1. Windows with Visual Studio regression test" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="github_workflow.html" class="btn btn-neutral float-right" title="6.1.6.1. Working with OpenFAST on GitHub" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

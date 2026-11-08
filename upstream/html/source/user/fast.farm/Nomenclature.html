@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.19.1. Nomenclature &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.19.2. Introduction" href="Introduction.html" />
+    <link rel="prev" title="4.19. FAST.Farm User’s Guide and Theory Manual" href="index.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/fast.farm/Nomenclature.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn/index.html">4.15. ServoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.19. FAST.Farm</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.19.1. Nomenclature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Introduction.html">4.19.2. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RunningFFarm.html">4.19.3. Running FAST.Farm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="InputFiles.html">4.19.4. Input Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="OutputFiles.html">4.19.5. Output Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ModelGuidance.html">4.19.6. Modeling Guidance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FFarmTheory.html">4.19.7. FAST.Farm Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FutureWork.html">4.19.8. Future Work</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.19.9. References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixA.html">4.19.10. FAST.Farm Primary Input File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixB.html">4.19.11. Ambient Wind File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixC.html">4.19.12. List of Output Channels</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.19. </span>FAST.Farm User’s Guide and Theory Manual</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.19.1. </span>Nomenclature</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/fast.farm/Nomenclature.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="nomenclature">
+<span id="ff-nomenclature"></span><h1><span class="section-number">4.19.1. </span>Nomenclature<a class="headerlink" href="#nomenclature" title="Permalink to this heading"></a></h1>
+<div class="docutils container" id="tab-ff-nomenclature">
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-number">Table 4.14 </span><span class="caption-text">List of Available FAST.Farm Output Channels</span><a class="headerlink" href="#id1" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 49%" />
+<col style="width: 51%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ABLSolver</p></td>
+<td><p>atmospheric boundary layer solver</p></td>
+</tr>
+<tr class="row-even"><td><p>AWAE</p></td>
+<td><p>ambient wind and array effects (module)</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(a(r)\)</span></p></td>
+<td><p>axial induction factor, distributed radially</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(a_K\)</span></p></td>
+<td><p>coherence decrement parameter</p></td>
+</tr>
+<tr class="row-odd"><td><p>BEM</p></td>
+<td><p>blade-element momentum</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(b_K\)</span></p></td>
+<td><p>coherence offset parameter</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(C^\text{O}_\text{HWkDfl}\)</span>, <span class="math notranslate nohighlight">\(C^\text{OY}_\text{HWkDfl}\)</span>, <span class="math notranslate nohighlight">\(C^\text{x}_\text{HWkDfl}\)</span>, and <span class="math notranslate nohighlight">\(C^\text{xY}_\text{HWkDfl}\)</span></p></td>
+<td><p>calibrated parameters in the horizontal wake-deflection correction</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(c_\text{max}\)</span></p></td>
+<td><p>maximum blade chord length</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(C_\text{Meander}\)</span></p></td>
+<td><p>calibrated parameter for wake meandering</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(C_\text{NearWake}\)</span></p></td>
+<td><p>calibrated parameter in the near-wake correction</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(C_\text{WakeDiam}\)</span></p></td>
+<td><p>calibrated parameter in the wake-diameter  calculation</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(C^\text{DMax}_{\nu \text{Amb}}\)</span>, <span class="math notranslate nohighlight">\(C^\text{DMin}_{\nu \text{Amb}}\)</span>, <span class="math notranslate nohighlight">\(C^\text{Exp}_{\nu Amb}\)</span>, and <span class="math notranslate nohighlight">\(C^\text{FMin}_{\nu Amb}\)</span></p></td>
+<td><p>calibrated parameters in the eddy-viscosity filter function for ambient turbulence</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(C^\text{DMax}_{\nu \text{Shr}}\)</span>, <span class="math notranslate nohighlight">\(C^\text{DMin}_{\nu \text{Shr}}\)</span>, <span class="math notranslate nohighlight">\(C^\text{Exp}_{\nu \text{Shr}}\)</span>, and <span class="math notranslate nohighlight">\(C^\text{FMin}_{\nu \text{Shr}}\)</span></p></td>
+<td><p>calibrated parameters in the eddy-viscosity filter function for the wake shear layer</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(^\text{AzimAvg}C_t(r)\)</span> and <span class="math notranslate nohighlight">\(^\text{FiltAzimAvg}C_t(r)\)</span></p></td>
+<td><p>azimuthally averaged thrust-force coefficient (normal to a rotor disk), distributed radially, and its low-pass time-filtered value</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(Coh_{i,j}\)</span></p></td>
+<td><p>magnitude of partial coherence between points <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>DLL</p></td>
+<td><p>dynamic-link library</p></td>
+</tr>
+<tr class="row-odd"><td><p>DWM</p></td>
+<td><p>dynamic wake meandering</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(D_\text{Grid}\)</span></p></td>
+<td><p>Assumed rotor diameter when generating TurbSim inflow</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(D^\text{Rotor}\)</span> and <span class="math notranslate nohighlight">\(^\text{Filt}D_{n_p}^\text{Rotor}\)</span></p></td>
+<td><p>rotor diameter and its low-pass time-filtered value at wake plane <span class="math notranslate nohighlight">\(n_p\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(D_{n_p}^\text{Wake}\)</span></p></td>
+<td><p>wake diameter at wake plane <span class="math notranslate nohighlight">\(n_p\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>FLORIS</p></td>
+<td><p>FLOw Redirection and Induction in Steady state</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
+<td><p>frequency</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(f_c\)</span></p></td>
+<td><p>cutoff (corner) frequency of the low-pass time filter</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\vec{f}_{n_b}(r)\)</span></p></td>
+<td><p>aerodynamic applied loads distributed radially per unit length for blade <span class="math notranslate nohighlight">\(n_b\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(f_\text{max}\)</span></p></td>
+<td><p>maximum excitation frequency</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(F_{\nu \text{Amb}}(x)\)</span></p></td>
+<td><p>eddy-viscosity filter function associated with ambient turbulence</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(F_{\nu \text{Shr}}(x)\)</span></p></td>
+<td><p>eddy-viscosity filter function associated with the wake shear layer</p></td>
+</tr>
+<tr class="row-even"><td><p>HFM</p></td>
+<td><p>high-fidelity modeling</p></td>
+</tr>
+<tr class="row-odd"><td><p>HPC</p></td>
+<td><p>high-performance computer</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(I\)</span></p></td>
+<td><p>three-by-three identify matrix</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(K\)</span></p></td>
+<td><p>velocity components <span class="math notranslate nohighlight">\(u\)</span>, <span class="math notranslate nohighlight">\(v\)</span>, and <span class="math notranslate nohighlight">\(w\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(k_{\nu \text{Amb}}\)</span></p></td>
+<td><p>calibrated parameter for the influence of ambient turbulence in the eddy viscosity</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(k_{\nu \text{Shr}}\)</span></p></td>
+<td><p>calibrated parameter for the influence of the wake shear layer in the eddy viscosity</p></td>
+</tr>
+<tr class="row-even"><td><p>LES</p></td>
+<td><p>large-eddy simulation</p></td>
+</tr>
+<tr class="row-odd"><td><p>MFoR</p></td>
+<td><p>moving frame of reference</p></td>
+</tr>
+<tr class="row-even"><td><p>MPI</p></td>
+<td><p>message-passing interface</p></td>
+</tr>
+<tr class="row-odd"><td><p>NaN</p></td>
+<td><p>not a number</p></td>
+</tr>
+<tr class="row-even"><td><p>NREL</p></td>
+<td><p>National Renewable Energy Laboratory</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(N\)</span> and <span class="math notranslate nohighlight">\(n\)</span></p></td>
+<td><p>number of discrete-time steps and discrete-time-step counter</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(N_b\)</span> and <span class="math notranslate nohighlight">\(n_b\)</span></p></td>
+<td><p>number of rotor blades and blade counter</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(N_{n_p}^\text{Polar}\)</span> and <span class="math notranslate nohighlight">\(n^\text{Polar}\)</span></p></td>
+<td><p>number of points in the polar grid of wake plane <span class="math notranslate nohighlight">\(n_p\)</span> and point counter</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(N^\text{Wake}\)</span> and <span class="math notranslate nohighlight">\(n^\text{Wake}\)</span></p></td>
+<td><p>number of wakes overlapping a given wind data point in the wind domain and wake counter</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(N_P\)</span> and <span class="math notranslate nohighlight">\(n_P\)</span></p></td>
+<td><p>number of wake planes and wake-plane counter</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(N_r\)</span> and <span class="math notranslate nohighlight">\(n_r\)</span></p></td>
+<td><p>number of radial nodes and radii counter</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(N_t\)</span> and <span class="math notranslate nohighlight">\(n_t\)</span></p></td>
+<td><p>number of wind turbines and turbine counter</p></td>
+</tr>
+<tr class="row-even"><td><p>OF</p></td>
+<td><p>OpenFAST (module)</p></td>
+</tr>
+<tr class="row-odd"><td><p>OpenMP</p></td>
+<td><p>open multiprocessing</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\vec{p}^\text{Hub}\)</span></p></td>
+<td><p>global position of a rotor center</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\vec{p}^\text{Plane}_{n_p}\)</span></p></td>
+<td><p>global position of the center of wake plane <span class="math notranslate nohighlight">\(n_p\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>RAM</p></td>
+<td><p>random-access memory</p></td>
+</tr>
+<tr class="row-odd"><td><p>RSS</p></td>
+<td><p>root-sum-squared</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(r\)</span> and <span class="math notranslate nohighlight">\(r^\text{Plane}\)</span></p></td>
+<td><p>radius in the axisymmetric coordinate system</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\hat{r}^\text{Plane}\)</span></p></td>
+<td><p>radial unit vector in the axisymmetric coordinate system</p></td>
+</tr>
+<tr class="row-even"><td><p>SOWFA</p></td>
+<td><p>Simulator fOr Wind Farm Applications</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
+<td><p>simulation time</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(TI_\text{Amb}\)</span> and <span class="math notranslate nohighlight">\(^\text{Filt}TI_{\text{Amb}_{n_p}}\)</span></p></td>
+<td><p>ambient turbulence intensity of the wind at a rotor and its low-pass time-filtered value for wake plane <span class="math notranslate nohighlight">\(n_p\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(u^d\)</span></p></td>
+<td><p>discrete-time inputs</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(V_\text{Advect}\)</span></p></td>
+<td><p>advection speed of the synthetic wind data</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\vec{V}_\text{Amb}^\text{High}\)</span></p></td>
+<td><p>ambient wind across a high-resolution wind domain around a turbine</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\vec{V}_\text{Amb}^\text{Low}\)</span></p></td>
+<td><p>ambient wind across a  low-resolution wind domain throughout the wind farm</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\vec{V}_\text{Dist}^\text{High}\)</span></p></td>
+<td><p>disturbed wind across a high-resolution wind domain around a turbine</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\vec{V}_\text{Dist}^\text{Low}\)</span></p></td>
+<td><p>disturbed wind across a low-resolution wind domain throughout the wind farm</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(V_\text{Hub}\)</span></p></td>
+<td><p>mean hub-height wind speed</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\vec{V}_{n_p}^\text{Plane}\)</span> and <span class="math notranslate nohighlight">\(^\text{Filt}\vec{V}_{n_p}^\text{Plane}\)</span></p></td>
+<td><p>advection, deflection,  and meandering velocity and its low-pass time-filtered value of wake plane <span class="math notranslate nohighlight">\(n_p\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(V_r\)</span></p></td>
+<td><p>radial velocity in the axisymmetric coordinate system</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(V_{r_{n_p}}^\text{Wake}(r)\)</span></p></td>
+<td><p>radial wake-velocity deficit at wake plane <span class="math notranslate nohighlight">\(n_p\)</span>, distributed radially</p></td>
+</tr>
+<tr class="row-odd"><td><p>VTK</p></td>
+<td><p>Visualization Toolkit</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(^\text{DiskAvg}V_x^\text{Rel}\)</span> and <span class="math notranslate nohighlight">\(^\text{FiltDiskAvg}V_x^\text{Rel}\)</span></p></td>
+<td><p>rotor-disk-averaged relative wind speed (ambient plus wakes of neighboring turbines plus turbine motion), normal to the disk, and its low-pass time-filtered value</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(V_x\)</span></p></td>
+<td><p>axial velocity in the axisymmetric coordinate system</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(V_{x_{n_p}}^\text{Wake}(r)\)</span></p></td>
+<td><p>axial wake-velocity deficit at wake plane <span class="math notranslate nohighlight">\(n_p\)</span>, distributed radially</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(^\text{DiskAvg}V_x^\text{Wind}\)</span> and <span class="math notranslate nohighlight">\(^\text{FiltDiskAvg}V_{x_{n_p}}^\text{Wind}\)</span></p></td>
+<td><p>rotor-disk-averaged ambient wind speed, normal to the disk, and its low-pass time-filtered value at wake plane <span class="math notranslate nohighlight">\(n_p\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(w_{n^\text{Wind}}\)</span></p></td>
+<td><p>weighting in the spatial averaging for wind data point <span class="math notranslate nohighlight">\(n^\text{Wind}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>WD</p></td>
+<td><p>wake dynamics (module)</p></td>
+</tr>
+<tr class="row-even"><td><p>WISDEM</p></td>
+<td><p>Wind-Plant Integrated System Design &amp; Engineering Model</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x_{n_p}^\text{Plane}\)</span></p></td>
+<td><p>downwind distance from a rotor to wake plane <span class="math notranslate nohighlight">\(n_p\)</span> in the axisymmetric coordinate system</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(Y\)</span>, and <span class="math notranslate nohighlight">\(Z\)</span></p></td>
+<td><p>inertial-frame coordinates, with Z directed vertically upward, opposite gravity, X directed horizontally nominally downwind (along the zero-degree wind direction), and Y directed horizontally transversely</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\hat{X}\)</span>, <span class="math notranslate nohighlight">\(\hat{Y}\)</span>, and <span class="math notranslate nohighlight">\(\hat{Z}\)</span></p></td>
+<td><p>unit vectors of the inertial-frame coordinate system, parallel to the X, Y, and X coordinates</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(x^d\)</span></p></td>
+<td><p>discrete-time states</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(X^d(\quad)\)</span></p></td>
+<td><p>discrete-time state functions</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\hat{x}^\text{Disk}\)</span></p></td>
+<td><p>orientation of a rotor centerline</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\hat{x}_{n_p}^\text{Plane}\)</span></p></td>
+<td><p>orientation of wake plane <span class="math notranslate nohighlight">\(n_p\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(y^d\)</span></p></td>
+<td><p>discrete-time outputs</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(Y^d(\quad)\)</span></p></td>
+<td><p>discrete-time output functions</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(z_\text{bot}\)</span></p></td>
+<td><p>bottom vertical location of synthetic turbulence inflow grid</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\alpha\)</span></p></td>
+<td><p>low-pass time-filter parameter</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\Delta t\)</span></p></td>
+<td><p>discrete time step (increment)</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\gamma^\text{YawErr}\)</span> and <span class="math notranslate nohighlight">\(^\text{Filt}\gamma_{n_p}^\text{YawErr}\)</span></p></td>
+<td><p>nacelle-yaw error of a rotor and its low-pass time-filtered value at wake plane <span class="math notranslate nohighlight">\(n_p\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\nu_T\)</span></p></td>
+<td><p>eddy viscosity</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\rho\)</span></p></td>
+<td><p>air density</p></td>
+</tr>
+<tr class="row-even"><td><p>2D</p></td>
+<td><p>two dimensional</p></td>
+</tr>
+<tr class="row-odd"><td><p>3D</p></td>
+<td><p>three dimensional</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="4.19. FAST.Farm User’s Guide and Theory Manual" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Introduction.html" class="btn btn-neutral float-right" title="4.19.2. Introduction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

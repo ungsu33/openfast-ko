@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.15.1. Input Files &mdash; OpenFAST v5.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4.15.2. Extended Bladed Interface" href="ExtendedBladedInterface.html" />
+    <link rel="prev" title="4.15. ServoDyn Users Guide" href="index.html" /> 
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="openfast" /><meta name="readthedocs-version-slug" content="main" /><meta name="readthedocs-resolver-filename" content="/source/user/servodyn/input.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            OpenFAST
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. This documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. Installing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. Working with OpenFAST</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. User Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. General considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. Glue Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. Aeroacoustics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extptfm/index.html">4.9. ExtPtfm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elastodyn/index.html">4.10. ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seastate/index.html">4.12. SeaState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inflowwind/index.html">4.13. InflowWind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.15. ServoDyn</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.15.1. Input Files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#units">4.15.1.1. Units</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#servodyn-primary-input-file">4.15.1.2. ServoDyn Primary Input File</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ExtendedBladedInterface.html">4.15.2. Extended Bladed Interface</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../simplified_elastodyn/index.html">4.16. Simplified ElastoDyn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../servodyn-stc/StC_index.html">4.17. Structural Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fast.farm/index.html">4.19. FAST.Farm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cppapi/index.html">4.20. C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">4.21. WaveTank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#additional-module-documentation">4.22. Additional module documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nwtc-subroutine-library">4.23. NWTC Subroutine Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. Testing OpenFAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">8. Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenFAST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>User Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.15. </span>ServoDyn Users Guide</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.15.1. </span>Input Files</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/source/user/servodyn/input.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style> .red {color:#ff0000} </style><div class="section" id="input-files">
+<span id="srvd-input"></span><h1><span class="section-number">4.15.1. </span>Input Files<a class="headerlink" href="#input-files" title="Permalink to this heading"></a></h1>
+<p>The user configures the servodynamics model parameters via a primary ServoDyn
+input file, as well as separate input files for Structural control, and a
+controller DLL.  <em>This information is incomplete and will be documented here
+at a later date.</em></p>
+<div class="section" id="units">
+<h2><span class="section-number">4.15.1.1. </span>Units<a class="headerlink" href="#units" title="Permalink to this heading"></a></h2>
+<p>ServoDyn uses the SI system (kg, m, s, N). Angles are assumed to be in
+radians unless otherwise specified.</p>
+</div>
+<div class="section" id="servodyn-primary-input-file">
+<h2><span class="section-number">4.15.1.2. </span>ServoDyn Primary Input File<a class="headerlink" href="#servodyn-primary-input-file" title="Permalink to this heading"></a></h2>
+<p>The primary ServoDyn input file defines the modeling options for the controller.
+This includes some DLL options, and Structural control options (typically a
+tuned mass damper system).</p>
+<div class="section" id="simulation-control">
+<h3><span class="section-number">4.15.1.2.1. </span>Simulation Control<a class="headerlink" href="#simulation-control" title="Permalink to this heading"></a></h3>
+<p><strong>Echo</strong> [flag]</p>
+<blockquote>
+<div><p>Echo input data to &lt;RootName&gt;.ech</p>
+</div></blockquote>
+<p><strong>DT</strong>   [sec]</p>
+<blockquote>
+<div><p>Communication interval for controllers (or “default”)</p>
+</div></blockquote>
+</div>
+<div class="section" id="pitch-control">
+<h3><span class="section-number">4.15.1.2.2. </span>Pitch Control<a class="headerlink" href="#pitch-control" title="Permalink to this heading"></a></h3>
+<p><strong>PCMode</strong> [switch]</p>
+<blockquote>
+<div><p>Pitch control mode {0: none, 3: user-defined from routine PitchCntrl, 4:
+user-defined from Simulink/Labview, 5: user-defined from Bladed-style DLL}</p>
+</div></blockquote>
+<p><strong>TPCOn</strong> [sec]</p>
+<blockquote>
+<div><p>Time to enable active pitch control <em>[unused when</em> <strong>PCMode==0</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>PitNeut(1)</strong> [deg]</p>
+<blockquote>
+<div><p>Blade 1 neutral pitch position–pitch spring moment is zero at this position
+<em>[unused when</em> <strong>PCMode&gt;0</strong> and <strong>t&gt;=TPCOn</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>PitNeut(2)</strong> [deg]</p>
+<blockquote>
+<div><p>Blade 2 neutral pitch position–pitch spring moment is zero at this position
+<em>[unused when</em> <strong>PCMode&gt;0</strong> and <strong>t&gt;=TPCOn</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>PitNeut(3)</strong> [deg]</p>
+<blockquote>
+<div><p>Blade 3 neutral pitch position–pitch spring moment is zero at this position
+<em>[unused when</em> <strong>PCMode&gt;0</strong> and <strong>t&gt;=TPCOn</strong> <em>]</em> <em>[unused for 2 blades]</em></p>
+</div></blockquote>
+<p><strong>PitSpr(1)</strong> [N-m/rad]</p>
+<blockquote>
+<div><p>Blade 1 pitch spring constant</p>
+</div></blockquote>
+<p><strong>PitSpr(2)</strong> [N-m/rad]</p>
+<blockquote>
+<div><p>Blade 2 pitch spring constant</p>
+</div></blockquote>
+<p><strong>PitSpr(3)</strong> [N-m/rad]</p>
+<blockquote>
+<div><p>Blade 3 pitch spring constant <em>[unused for 2 blades]</em></p>
+</div></blockquote>
+<p><strong>PitDamp(1)</strong> [N-m/(rad/s)]</p>
+<blockquote>
+<div><p>Blade 1 pitch damping constant</p>
+</div></blockquote>
+<p><strong>PitDamp(2)</strong> [N-m/(rad/s)]</p>
+<blockquote>
+<div><p>Blade 2 pitch damping constant</p>
+</div></blockquote>
+<p><strong>PitDamp(3)</strong> [N-m/(rad/s)]</p>
+<blockquote>
+<div><p>Blade 3 pitch damping constant <em>[unused for 2 blades]</em></p>
+</div></blockquote>
+<p><strong>TPitManS(1)</strong> [sec]</p>
+<blockquote>
+<div><p>Time to start override pitch maneuver for blade 1 and end standard pitch
+control</p>
+</div></blockquote>
+<p><strong>TPitManS(2)</strong> [sec]</p>
+<blockquote>
+<div><p>Time to start override pitch maneuver for blade 2 and end standard pitch
+control</p>
+</div></blockquote>
+<p><strong>TPitManS(3)</strong> [sec]</p>
+<blockquote>
+<div><p>Time to start override pitch maneuver for blade 3 and end standard pitch
+control <em>[unused for 2 blades]</em></p>
+</div></blockquote>
+<p><strong>PitManRat(1)</strong> [deg/s]</p>
+<blockquote>
+<div><p>Pitch rate at which override pitch maneuver heads toward final pitch angle
+for blade 1</p>
+</div></blockquote>
+<p><strong>PitManRat(2)</strong> [deg/s]</p>
+<blockquote>
+<div><p>Pitch rate at which override pitch maneuver heads toward final pitch angle
+for blade 2</p>
+</div></blockquote>
+<p><strong>PitManRat(3)</strong> [deg/s]</p>
+<blockquote>
+<div><p>Pitch rate at which override pitch maneuver heads toward final pitch angle
+for blade 3 <em>[unused for 2 blades]</em></p>
+</div></blockquote>
+<p><strong>BlPitchF(1)</strong> [deg]</p>
+<blockquote>
+<div><p>Blade 1 final pitch for pitch maneuvers</p>
+</div></blockquote>
+<p><strong>BlPitchF(2)</strong> [deg]</p>
+<blockquote>
+<div><p>Blade 2 final pitch for pitch maneuvers</p>
+</div></blockquote>
+<p><strong>BlPitchF(3)</strong> [deg]</p>
+<blockquote>
+<div><p>Blade 3 final pitch for pitch maneuvers <em>[unused for 2 blades]</em></p>
+</div></blockquote>
+</div>
+<div class="section" id="generator-and-torque-control">
+<h3><span class="section-number">4.15.1.2.3. </span>Generator and Torque Control<a class="headerlink" href="#generator-and-torque-control" title="Permalink to this heading"></a></h3>
+<p><strong>VSContrl</strong> [switch]</p>
+<blockquote>
+<div><p>Variable-speed control mode {0: none, 1: simple VS, 3: user-defined from
+routine UserVSCont, 4: user-defined from Simulink/Labview, 5: user-defined from
+Bladed-style DLL}</p>
+</div></blockquote>
+<p><strong>GenModel</strong> [switch]</p>
+<blockquote>
+<div><p>Generator model {1: simple, 2: Thevenin, 3: user-defined from routine
+UserGen} <em>[used only when</em> <strong>VSContrl==0</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>GenEff</strong>   [%]</p>
+<blockquote>
+<div><p>Generator efficiency <em>[ignored by the Thevenin and user-defined generator
+models]</em></p>
+</div></blockquote>
+<p><strong>GenTiStr</strong> [flag]</p>
+<blockquote>
+<div><p>Method to start the generator {T: timed using TimGenOn, F: generator speed
+using SpdGenOn}</p>
+</div></blockquote>
+<p><strong>GenTiStp</strong> [Flag]</p>
+<blockquote>
+<div><p>Method to stop the generator {T: timed using TimGenOf, F: when generator
+power = 0}</p>
+</div></blockquote>
+<p><strong>SpdGenOn</strong> [rpm]</p>
+<blockquote>
+<div><p>Generator speed to turn on the generator for a startup (HSS speed) <em>[used
+only when</em> <strong>GenTiStri==False</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>TimGenOn</strong> [sec]</p>
+<blockquote>
+<div><p>Time to turn on the generator for a startup <em>[used only when</em>
+<strong>GenTiStr==True</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>TimGenOf</strong> [sec]</p>
+<blockquote>
+<div><p>Time to turn off the generator <em>[used only when</em> <strong>GenTiStp==True</strong> <em>]</em></p>
+</div></blockquote>
+</div>
+<div class="section" id="simple-variable-speed-torque-control">
+<h3><span class="section-number">4.15.1.2.4. </span>Simple Variable-speed Torque Control<a class="headerlink" href="#simple-variable-speed-torque-control" title="Permalink to this heading"></a></h3>
+<p><strong>VS_RtGnSp</strong> [rpm]</p>
+<blockquote>
+<div><p>Rated generator speed for simple variable-speed generator control (HSS side)
+<em>[used only when</em> <strong>VSContrl==1</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>VS_RtTq</strong>   [N-m]</p>
+<blockquote>
+<div><p>Rated generator torque/constant generator torque in Region 3 for simple
+variable-speed generator control (HSS side) <em>[used only when</em> <strong>VSContrl==1</strong>
+<em>]</em></p>
+</div></blockquote>
+<p><strong>VS_Rgn2K</strong>  [N-m/rpm^2]</p>
+<blockquote>
+<div><p>Generator torque constant in Region 2 for simple variable-speed generator
+control (HSS side) <em>[used only when</em> <strong>VSContrl==1</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>VS_SlPc</strong>   [%]</p>
+<blockquote>
+<div><p>Rated generator slip percentage in Region 2 1/2 for simple variable-speed
+generator control <em>[used only when</em> <strong>VSContrl==1</strong> <em>]</em></p>
+</div></blockquote>
+</div>
+<div class="section" id="simple-induction-generator">
+<h3><span class="section-number">4.15.1.2.5. </span>Simple Induction Generator<a class="headerlink" href="#simple-induction-generator" title="Permalink to this heading"></a></h3>
+<p><strong>SIG_SlPc</strong>     [%]</p>
+<blockquote>
+<div><p>Rated generator slip percentage <em>[used only when</em> <strong>VSContrl==0</strong> <em>and</em>
+<strong>GenModel==1</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>SIG_SySp</strong>     [rpm]</p>
+<blockquote>
+<div><p>Synchronous (zero-torque) generator speed <em>[used only when</em> <strong>VSContrl==0</strong>
+<em>and</em> <strong>GenModel==1</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>SIG_RtTq</strong>     [N-m]</p>
+<blockquote>
+<div><p>Rated torque <em>[used only when</em> <strong>VSContrl==0</strong> <em>and</em> <strong>GenModel==1</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>SIG_PORt</strong>     [-]</p>
+<blockquote>
+<div><p>Pull-out ratio (Tpullout/Trated) <em>[used only when</em> <strong>VSContrl==0</strong> <em>and</em>
+<strong>GenModel==1</strong> <em>]</em></p>
+</div></blockquote>
+</div>
+<div class="section" id="thevenin-equivalent-induction-generator">
+<h3><span class="section-number">4.15.1.2.6. </span>Thevenin-Equivalent Induction Generator<a class="headerlink" href="#thevenin-equivalent-induction-generator" title="Permalink to this heading"></a></h3>
+<p><strong>TEC_Freq</strong>     [Hz]</p>
+<blockquote>
+<div><p>Line frequency [50 or 60] <em>[used only when</em> <strong>VSContrl==0</strong> <em>and</em>
+<strong>GenModel==2</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>TEC_NPol</strong>     [-]</p>
+<blockquote>
+<div><p>Number of poles [even integer &gt; 0] <em>[used only when</em> <strong>VSContrl==0</strong> <em>and</em>
+<strong>GenModel==2</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>TEC_SRes</strong>     [ohms]</p>
+<blockquote>
+<div><p>Stator resistance <em>[used only when</em> <strong>VSContrl==0</strong> <em>and</em> <strong>GenModel==2</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>TEC_RRes</strong>     [ohms]</p>
+<blockquote>
+<div><p>Rotor resistance <em>[used only when</em> <strong>VSContrl==0</strong> <em>and</em> <strong>GenModel==2</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>TEC_VLL</strong>      [volts]</p>
+<blockquote>
+<div><p>Line-to-line RMS voltage <em>[used only when</em> <strong>VSContrl==0</strong> <em>and</em>
+<strong>GenModel==2</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>TEC_SLR</strong>      [ohms]</p>
+<blockquote>
+<div><p>Stator leakage reactance <em>[used only when</em> <strong>VSContrl==0</strong> <em>and</em>
+<strong>GenModel==2</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>TEC_RLR</strong>      [ohms]</p>
+<blockquote>
+<div><p>Rotor leakage reactance <em>[used only when</em> <strong>VSContrl==0</strong> <em>and</em>
+<strong>GenModel==2</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>TEC_MR</strong>       [ohms]</p>
+<blockquote>
+<div><p>Magnetizing reactance <em>[used only when</em> <strong>VSContrl==0</strong> <em>and</em> <strong>GenModel==2</strong>
+<em>]</em></p>
+</div></blockquote>
+</div>
+<div class="section" id="high-speed-shaft-brake">
+<h3><span class="section-number">4.15.1.2.7. </span>High-speed Shaft Brake<a class="headerlink" href="#high-speed-shaft-brake" title="Permalink to this heading"></a></h3>
+<p><strong>HSSBrMode</strong>     [switch]</p>
+<blockquote>
+<div><p>HSS brake model {0: none, 1: simple, 3: user-defined from routine UserHSSBr,
+4: user-defined from Simulink/Labview, 5: user-defined from Bladed-style DLL}</p>
+</div></blockquote>
+<p><strong>THSSBrDp</strong>      [sec]</p>
+<blockquote>
+<div><p>Time to initiate deployment of the HSS brake</p>
+</div></blockquote>
+<p><strong>HSSBrDT</strong>       [sec]</p>
+<blockquote>
+<div><p>Time for HSS-brake to reach full deployment once initiated <em>[used only when</em>
+<strong>HSSBrMode==1</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>HSSBrTqF</strong>      [N-m]</p>
+<blockquote>
+<div><p>Fully deployed HSS-brake torque</p>
+</div></blockquote>
+</div>
+<div class="section" id="nacelle-yaw-control">
+<h3><span class="section-number">4.15.1.2.8. </span>Nacelle-yaw Control<a class="headerlink" href="#nacelle-yaw-control" title="Permalink to this heading"></a></h3>
+<p><strong>YCMode</strong>        [switch]</p>
+<blockquote>
+<div><p>Yaw control mode {0: none, 3: user-defined from routine UserYawCont, 4:
+user-defined from Simulink/Labview, 5: user-defined from Bladed-style DLL}</p>
+</div></blockquote>
+<p><strong>TYCOn</strong>         [sec]</p>
+<blockquote>
+<div><p>Time to enable active yaw control <em>[unused when</em> <strong>YCMode==0</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>YawNeut</strong>       [deg]</p>
+<blockquote>
+<div><p>Neutral yaw position–yaw spring force is zero at this yaw</p>
+</div></blockquote>
+<p><strong>YawSpr</strong>        [N-m/rad]</p>
+<blockquote>
+<div><p>Nacelle-yaw spring constant</p>
+</div></blockquote>
+<p><strong>YawDamp</strong>       [N-m/(rad/s)]</p>
+<blockquote>
+<div><p>Nacelle-yaw damping constant</p>
+</div></blockquote>
+<p><strong>TYawManS</strong>      [sec]</p>
+<blockquote>
+<div><p>Time to start override yaw maneuver and end standard yaw control</p>
+</div></blockquote>
+<p><strong>YawManRat</strong>     [deg/s]</p>
+<blockquote>
+<div><p>Yaw maneuver rate (in absolute value)</p>
+</div></blockquote>
+<p><strong>NacYawF</strong>       [deg]</p>
+<blockquote>
+<div><p>Final yaw angle for override yaw maneuvers</p>
+</div></blockquote>
+</div>
+<div class="section" id="aerodynamic-flow-control">
+<span id="srvd-afc-inputs"></span><h3><span class="section-number">4.15.1.2.9. </span>Aerodynamic Flow Control<a class="headerlink" href="#aerodynamic-flow-control" title="Permalink to this heading"></a></h3>
+<p><strong>AfCmode</strong>       [switch]</p>
+<blockquote>
+<div><p>Airfoil control mode {0: none, 1: sine wave cycle, 4: user-defined from
+Simulink/Labview, 5: user-defined from Bladed-style DLL}</p>
+</div></blockquote>
+<p><strong>AfC_Mean</strong>      [-]</p>
+<blockquote>
+<div><p>Mean level for cosine cycling or steady value <em>[used only with</em>
+<strong>AfCmode==1</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>AfC_Amp</strong>       [-]</p>
+<blockquote>
+<div><p>Amplitude for cosine cycling of flap signal <em>[used only with</em>
+<strong>AfCmode==1</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>AfC_Phase</strong>     [deg]</p>
+<blockquote>
+<div><p>Phase relative to the blade azimuth (0 is vertical) for cosine cycling of
+flap signal <em>[used only with</em> <strong>AfCmode==1</strong> <em>]</em></p>
+</div></blockquote>
+<p>When <strong>AfCmode==1</strong>, the signal for the airfoil flow control is set by the
+expression <em>AfC_Mean + p%AfC_Amp*cos( Azimuth + AfC_phase)</em> where the azimuth
+is the azimuth of that particular blade (azimuth=0 is considered vertical).</p>
+</div>
+<div class="section" id="cable-control">
+<span id="srvd-cablecontrol-inputs"></span><h3><span class="section-number">4.15.1.2.10. </span>Cable Control<a class="headerlink" href="#cable-control" title="Permalink to this heading"></a></h3>
+<p>Control of cable elements specified in either the MoorDyn or SubDyn modules can
+be controlled through ServoDyn by a Bladed-style controller.  Each cable
+receives a pair of controller channels, one for the requested cable length
+change (DeltaL), and one for the cable length rate of change (DeltaLdot).  The
+channel assignments are requested by the modules with the cable elements
+(MoorDyn and/or SubDyn at present), and mapped to the appropriate control
+channel.  A summary of which module requested the channels is available in the
+summary file output from ServoDyn.  Up to 100 channel groups may be requested
+when linking to a DLL, or 20 channel groups when linking to Simulink.</p>
+<p><strong>CCmode</strong>        [switch]</p>
+<blockquote>
+<div><p>Cable control mode {0: none, 4: user-defined from Simulink/Labview, 5:
+user-defined from Bladed-style DLL}.</p>
+<p>Each cable control channel group consists of a channel for DeltaL (requested
+cable length change) and a channel for DeltaLdot (cable length change
+rate) from the controller/Simulink interface.</p>
+</div></blockquote>
+</div>
+<div class="section" id="structural-control">
+<span id="srvd-stc-inputs"></span><h3><span class="section-number">4.15.1.2.11. </span>Structural Control<a class="headerlink" href="#structural-control" title="Permalink to this heading"></a></h3>
+<p>See <a class="reference internal" href="../servodyn-stc/StC_input.html#stc-locations"><span class="std std-numref">Section 4.17.1.2</span></a> for descriptions of the mounting locations for each
+of the following options.</p>
+<p><strong>NumBStC</strong>      [integer]</p>
+<blockquote>
+<div><p>Number of blade structural controllers</p>
+</div></blockquote>
+<p><strong>BStCfiles</strong>      [-]</p>
+<blockquote>
+<div><p>Name of the files for blade structural controllers (quoted strings on one
+line) <em>[unused when</em> <strong>NumBStC==0</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>NumNStC</strong>      [integer]</p>
+<blockquote>
+<div><p>Number of nacelle structural controllers</p>
+</div></blockquote>
+<p><strong>NStCfiles</strong>      [-]</p>
+<blockquote>
+<div><p>Name of the files for nacelle structural controllers (quoted strings on one
+line) <em>[unused when</em> <strong>NumNStC==0</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>NumTStC</strong>      [integer]</p>
+<blockquote>
+<div><p>Number of tower structural controllers</p>
+</div></blockquote>
+<p><strong>TStCfiles</strong>      [-]</p>
+<blockquote>
+<div><p>Names of the file for tower structural control damping (quoted strings on one
+line) <em>[unused when</em> <strong>NumTStC==0</strong> <em>]</em></p>
+</div></blockquote>
+<p><strong>NumSStC</strong>   [integer]</p>
+<blockquote>
+<div><p>Number of substructure structural controllers</p>
+</div></blockquote>
+<p><strong>SStCfiles</strong>   [-]</p>
+<blockquote>
+<div><p>Name of the files for substructure structural controllers (quoted strings on one
+line) <em>[unused when</em> <strong>NumSStC==0</strong> <em>]</em></p>
+</div></blockquote>
+</div>
+<div class="section" id="bladed-controller-interface">
+<h3><span class="section-number">4.15.1.2.12. </span>Bladed Controller Interface<a class="headerlink" href="#bladed-controller-interface" title="Permalink to this heading"></a></h3>
+<p><strong>DLL_FileName</strong>  [-]</p>
+<blockquote>
+<div><p>Name/location of the dynamic library {.dll [Windows] or .so [Linux]} in the
+Bladed-DLL format <em>[used only with Bladed Interface]</em></p>
+</div></blockquote>
+<p><strong>DLL_InFile</strong>    [-]</p>
+<blockquote>
+<div><p>Name of input file sent to the DLL <em>[used only with Bladed Interface]</em></p>
+</div></blockquote>
+<p><strong>DLL_ProcName</strong>  [-]</p>
+<blockquote>
+<div><p>Name of procedure in DLL to be called <em>[case sensitive; used only with DLL
+Interface]</em></p>
+</div></blockquote>
+<p><strong>DLL_DT</strong>        [sec]</p>
+<blockquote>
+<div><p>Communication interval for dynamic library (or “default”) <em>[used only with
+Bladed Interface]</em></p>
+</div></blockquote>
+<p><strong>DLL_Ramp</strong>      [flag]</p>
+<blockquote>
+<div><p>Whether a linear ramp should be used between DLL_DT time steps [introduces
+time shift when true] <em>[used only with Bladed Interface]</em></p>
+</div></blockquote>
+<p><strong>BPCutoff</strong>      [Hz]</p>
+<blockquote>
+<div><p>Cutoff frequency for low-pass filter on blade pitch from DLL <em>[used only with
+Bladed Interface]</em></p>
+</div></blockquote>
+<p><strong>NacYaw_North</strong>  [deg]</p>
+<blockquote>
+<div><p>Reference yaw angle of the nacelle when the upwind end points due North
+<em>[used only with Bladed Interface]</em></p>
+</div></blockquote>
+<p><strong>Ptch_Cntrl</strong>    [switch]</p>
+<blockquote>
+<div><p>Record 28: Use individual pitch control {0: collective pitch; 1: individual
+pitch control} <em>[used only with Bladed Interface]</em></p>
+</div></blockquote>
+<p><strong>Ptch_SetPnt</strong>   [deg]</p>
+<blockquote>
+<div><p>Record  5: Below-rated pitch angle set-point <em>[used only with Bladed
+Interface]</em></p>
+</div></blockquote>
+<p><strong>Ptch_Min</strong>      [deg]</p>
+<blockquote>
+<div><p>Record  6: Minimum pitch angle <em>[used only with Bladed Interface]</em></p>
+</div></blockquote>
+<p><strong>Ptch_Max</strong>      [deg]</p>
+<blockquote>
+<div><p>Record  7: Maximum pitch angle <em>[used only with Bladed Interface]</em></p>
+</div></blockquote>
+<p><strong>PtchRate_Min</strong>  [deg/s]</p>
+<blockquote>
+<div><p>Record  8: Minimum pitch rate (most negative value allowed) <em>[used only with
+Bladed Interface]</em></p>
+</div></blockquote>
+<p><strong>PtchRate_Max</strong>  [deg/s]</p>
+<blockquote>
+<div><p>Record  9: Maximum pitch rate  <em>[used only with Bladed Interface]</em></p>
+</div></blockquote>
+<p><strong>Gain_OM</strong>       [N-m/(rad/s)^2]</p>
+<blockquote>
+<div><p>Record 16: Optimal mode gain <em>[used only with Bladed Interface]</em></p>
+</div></blockquote>
+<p><strong>GenSpd_MinOM</strong>  [rpm]</p>
+<blockquote>
+<div><p>Record 17: Minimum generator speed <em>[used only with Bladed Interface]</em></p>
+</div></blockquote>
+<p><strong>GenSpd_MaxOM</strong>  [rpm]</p>
+<blockquote>
+<div><p>Record 18: Optimal mode maximum speed <em>[used only with Bladed Interface]</em></p>
+</div></blockquote>
+<p><strong>GenSpd_Dem</strong>    [rpm]</p>
+<blockquote>
+<div><p>Record 19: Demanded generator speed above rated <em>[used only with Bladed
+Interface]</em></p>
+</div></blockquote>
+<p><strong>GenTrq_Dem</strong>    [N-m]</p>
+<blockquote>
+<div><p>Record 22: Demanded generator torque above rated <em>[used only with Bladed
+Interface]</em></p>
+</div></blockquote>
+<p><strong>GenPwr_Dem</strong>    [W]</p>
+<blockquote>
+<div><p>Record 13: Demanded power <em>[used only with Bladed Interface]</em></p>
+</div></blockquote>
+</div>
+<div class="section" id="bladed-interface-torque-speed-look-up-table">
+<h3><span class="section-number">4.15.1.2.13. </span>Bladed Interface Torque-Speed Look-up table<a class="headerlink" href="#bladed-interface-torque-speed-look-up-table" title="Permalink to this heading"></a></h3>
+<p><strong>DLL_NumTrq</strong>    [-]</p>
+<blockquote>
+<div><p>Record 26: No. of points in torque-speed
+look-up table {0 = none and use the optimal mode parameters; nonzero = ignore
+the optimal mode PARAMETERs by setting Record 16 to 0.0} <em>[used only with Bladed
+Interface]</em>
+The following 2 column table format is expected:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><dl class="simple">
+<dt>GenSpd_TLU</dt><dd><p>(rpm)</p>
+</dd>
+</dl>
+</td>
+<td><dl class="simple">
+<dt>GenTrq_TLU</dt><dd><p>(N-m)</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="output">
+<span id="srvd-outputs"></span><h3><span class="section-number">4.15.1.2.14. </span>Output<a class="headerlink" href="#output" title="Permalink to this heading"></a></h3>
+<p><strong>SumPrint</strong>      [flag]</p>
+<blockquote>
+<div><p>Print summary data to &lt;RootName&gt;.sum.  This file contains a summary of the
+inputs, and will give a detailed list of the communication channels with a
+Bladed-style controller when used.  This information may be helpful in
+debugging a controller, or verifying how ServoDyn is configured.</p>
+</div></blockquote>
+<p><strong>OutFile</strong>       [-]</p>
+<blockquote>
+<div><p>Switch to determine where output will be placed: {1: in module output file
+only; 2: in glue code output file only; 3: both} <em>(currently unused)</em></p>
+</div></blockquote>
+<p><strong>TabDelim</strong>      [flag]</p>
+<blockquote>
+<div><p>Use tab delimiters in text tabular output file? <em>(currently unused)</em></p>
+</div></blockquote>
+<p><strong>OutFmt</strong>        [-]</p>
+<blockquote>
+<div><p>Format used for text tabular output (except time).  Resulting field should be
+10 characters. (quoted string) <em>(currently unused)</em></p>
+</div></blockquote>
+<p><strong>TStart</strong>        [sec]</p>
+<blockquote>
+<div><p>Time to begin tabular output <em>(currently unused)</em></p>
+</div></blockquote>
+<p><strong>OutList</strong> section controls output quantities generated by
+ServoDyn. Enter one or more lines containing quoted strings that in turn
+contain one or more output parameter names. Separate output parameter
+names by any combination of commas, semicolons, spaces, and/or tabs. If
+you prefix a parameter name with a minus sign, “-”, underscore, “_”, or
+the characters “m” or “M”, ServoDyn will multiply the value for that
+channel by –1 before writing the data. The parameters are written in the
+order they are listed in the input file. ServoDyn allows you to use
+multiple lines so that you can break your list into meaningful groups
+and so the lines can be shorter. You may enter comments after the
+closing quote on any of the lines. Entering a line with the string “END”
+at the beginning of the line or at the beginning of a quoted string
+found at the beginning of the line will cause ServoDyn to quit scanning
+for more lines of channel names.  If ServoDyn encounters an
+unknown/invalid channel name, it warns the users but will remove the
+suspect channel from the output file. Please refer to the ServoDyn tab in the
+Excel file <a class="reference download internal" download="" href="../../../_downloads/3f19498a5dc774461e022b671ff01ec6/OutListParameters.xlsx"><code class="xref download docutils literal notranslate"><span class="pre">OutListParameters.xlsx</span></code></a>
+for a complete list of possible output parameters.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="4.15. ServoDyn Users Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ExtendedBladedInterface.html" class="btn btn-neutral float-right" title="4.15.2. Extended Bladed Interface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, National Renewable Energy Laboratory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54J9QGXMGP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54J9QGXMGP', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

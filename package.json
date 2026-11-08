@@ -1,0 +1,18 @@
+{
+  "name": "openfast-ko",
+  "version": "1.0.0",
+  "description": "OpenFAST v5.0.0 한국어 문서 미러와 기술 리뷰",
+  "scripts": {
+    "mirror": "node scripts/mirror.mjs",
+    "translate": "node scripts/translate.mjs",
+    "build": "node scripts/build.mjs",
+    "verify": "node scripts/verify.mjs",
+    "serve": "node scripts/serve.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "Apache-2.0",
+  "type": "module",
+  "dependencies": {"cheerio": "1.2.0"},
+  "engines": {"node": ">=22"}
+}
