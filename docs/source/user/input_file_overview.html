@@ -20,7 +20,7 @@
         <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../genindex.html">
-    <link rel="search" title="찾다" href="../../search.html">
+    <link rel="search" title="검색" href="../../search.html">
     <link rel="next" title="4.2. 접착제 코드" href="glue-code/index.html">
     <link rel="prev" title="4.1.2. API 버전 간 변경" href="api_change.html"> 
 <link rel="stylesheet" href="../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/input_file_overview.html"></head>
@@ -47,9 +47,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. 이 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. 이 문서에 대하여</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../working.html">3. OpenFAST 작업</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working.html">3. OpenFAST 사용하기</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">4. 사용자 문서</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="general.html">4.1. 일반 고려사항</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="fast_to_openfast.html">4.1.1. FAST v8 및 OpenFAST로의 전환</a></li>
@@ -90,16 +90,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../license.html">7. 라이센스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">7. 라이선스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. 감사의 말씀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. 감사의 글</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../review.html">문서 상세 리뷰</a></li><li><a href="../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">OpenFAST</a>
       </nav>
@@ -108,12 +108,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home" aria-label="집"></a></li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="홈"></a></li>
           <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4. </span>사용자 문서</a></li>
-          <li class="breadcrumb-item"><a href="general.html"><span class="section-number">4.1. </span>일반적인</a></li>
+          <li class="breadcrumb-item"><a href="general.html"><span class="section-number">4.1. </span>일반 사항</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.1.3. </span>입력 파일 형식</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../_sources/source/user/input_file_overview.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
+            <a href="../../_sources/source/user/input_file_overview.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -122,10 +122,10 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="input-file-formats">
-<span id="input-file-overview"></span><h1><span class="section-number">4.1.3. </span>입력 파일 형식<a class="headerlink" href="#input-file-formats" title="이 제목에 대한 영구 링크"></a></h1>
+<span id="input-file-overview"></span><h1><span class="section-number">4.1.3. </span>입력 파일 형식<a class="headerlink" href="#input-file-formats" title="이 제목의 고유 링크"></a></h1>
 <p>OpenFAST는 두 가지 기본 입력 파일 형식을 사용합니다. <em>값 열</em> 각 줄의 첫 번째 값을 읽는 방식이며, <em>키+값</em> 여기서 값과 키워드 쌍을 읽습니다. 두 형식 모두 일부 예외를 제외하고 특정 줄에서 특정 입력이 예상되는 위치를 기반으로 하는 줄 번호입니다.</p>
 <div class="section" id="value-column-input-files">
-<span id="sec-value-column"></span><h2><span class="section-number">4.1.3.1. </span>값 열 입력 파일<a class="headerlink" href="#value-column-input-files" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="sec-value-column"></span><h2><span class="section-number">4.1.3.1. </span>값 열 입력 파일<a class="headerlink" href="#value-column-input-files" title="이 제목의 고유 링크"></a></h2>
 <p>첫 번째 열만 <em>값 열</em> 기반 입력 파일을 읽습니다. 이는 OpenFAST 및 이전 버전에서 사용된 기록 형식입니다(키워드는 소스 코드 및 문서에서 자주 참조되었지만 OpenFAST는 키워드 또는 설명을 처리하지 않았습니다). 첫 번째 값을 읽은 이후의 모든 내용은 코드에서 무시됩니다. 이를 통해 사용자는 항목을 수정하는 동안 이전 값을 유지할 수 있었습니다. 예를 들어 다음과 같은 입력 라인은</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span>       <span class="mi">20</span>   <span class="n">TMax</span>            <span class="o">-</span> <span class="n">Total</span> <span class="n">run</span> <span class="n">time</span> <span class="p">(</span><span class="n">s</span><span class="p">)</span>
 </pre></div>
@@ -134,7 +134,7 @@
 <p>이 형식 및 관련 구문 분석 방법은 사용자에게 구문 분석 오류를 알리는 데 다소 제한이 있으며 전체 입력 파일을 다른 코드(예: Python 드라이버 코드)의 텍스트 문자열로 전달하는 기능도 제한됩니다.</p>
 </div>
 <div class="section" id="key-value-input-files">
-<span id="sec-format-key-value"></span><h2><span class="section-number">4.1.3.2. </span>키 + 값 입력 파일<a class="headerlink" href="#key-value-input-files" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="sec-format-key-value"></span><h2><span class="section-number">4.1.3.2. </span>키 + 값 입력 파일<a class="headerlink" href="#key-value-input-files" title="이 제목의 고유 링크"></a></h2>
 <p>처음 두 열을 읽습니다. <em>키 + 값</em> 입력 파일. 두 열 중 하나에는 다음이 포함되어야 합니다. <strong>정확한</strong> 키워드이고 다른 하나는 이에 해당하는 값을 포함해야 합니다. 예를 들어, 입력 라인</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">20</span>   <span class="n">TMax</span>            <span class="o">-</span> <span class="n">Total</span> <span class="n">run</span> <span class="n">time</span> <span class="p">(</span><span class="n">s</span><span class="p">)</span>
 </pre></div>
@@ -153,7 +153,7 @@
 </div>
 <p>이 형식의 입력 파일에 대한 구문 분석기는 어떤 줄이 주석인지, 어떤 줄에 값과 키 쌍이 포함되어 있는지도 추적합니다. 키 이름을 찾을 수 없으면 파서는 어느 줄에서 읽었는지에 대한 정보와 함께 오류를 반환합니다.</p>
 <div class="section" id="modules-using-key-value-format">
-<h3><span class="section-number">4.1.3.2.1. </span>키 + 값 형식을 사용하는 모듈<a class="headerlink" href="#modules-using-key-value-format" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.1.3.2.1. </span>키 + 값 형식을 사용하는 모듈<a class="headerlink" href="#modules-using-key-value-format" title="이 제목의 고유 링크"></a></h3>
 <p>다음 모듈은 <em>키 + 값</em> 형식 입력 파일(다른 모든 모듈은 <em>값 열</em> 체재):</p>
 <table class="docutils align-default">
 <colgroup>
@@ -201,14 +201,14 @@
 <p>키 앞에 값이 명시되어 있으면 키 + 값 형식과 값 열 입력 파일이 동일할 수 있습니다.</p>
 </div>
 <div class="section" id="reasons-for-change">
-<h3><span class="section-number">4.1.3.2.2. </span>변경 이유<a class="headerlink" href="#reasons-for-change" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.1.3.2.2. </span>변경 이유<a class="headerlink" href="#reasons-for-change" title="이 제목의 고유 링크"></a></h3>
 <p>입력 파일 구문 분석이 변경된 주요 이유는 메모리의 전체 입력 파일을 래퍼 코드에서 OpenFAST 또는 모듈로 전달할 수 있도록 하기 위한 것이었습니다. 예를 들어 AeroDyn 모듈을 Python 코드에 포함하면 먼저 디스크에 쓰지 않고도 입력 파일을 메모리에 직접 전달할 수 있습니다. 이는 입력 파일에 대한 아주 작은 변경으로 모듈이 순차적으로 여러 번 호출될 수 있는 최적화 루프에서 IO 오버헤드를 줄이는 데 도움이 됩니다.  <em>NOTE: 아직 진행 중인 작업이므로 아직 모든 모듈을 이 방식으로 연결할 수는 없습니다.</em>.</p>
 <p>이를 달성하기 위해 AeroDyn 15의 FAST8에 있는 익형 테이블을 구문 분석하기 위해 Marshall Buhl이 작성한 파일 파서가 사용되었습니다. 이 파서는 더욱 강력한 기능을 포함했습니다.
 <em>키 + 값</em> 입력 형식.</p>
 </div>
 </div>
 <div class="section" id="troubleshooting-input-files">
-<span id="sec-troubleshoot-input-file"></span><h2><span class="section-number">4.1.3.3. </span>입력 파일 문제 해결<a class="headerlink" href="#troubleshooting-input-files" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="sec-troubleshoot-input-file"></span><h2><span class="section-number">4.1.3.3. </span>입력 파일 문제 해결<a class="headerlink" href="#troubleshooting-input-files" title="이 제목의 고유 링크"></a></h2>
 <p>입력 파일 오류 문제를 해결할 때 다음 절차를 시도해 보십시오.</p>
 <ol class="arabic simple">
 <li><p>줄 번호와 변수 이름이 포함된 오류 메시지, 구문 분석되는 파일 형식은 <em>키 + 값</em> 체재. 키의 철자가 입력 파일과 정확히 일치하는지 확인하세요. 보다 <a class="reference internal" href="#sec-format-key-value"><span class="std std-numref">섹션 4.1.3.2</span></a> 아래에.</p></li>
@@ -224,8 +224,8 @@
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
-        <a href="api_change.html" class="btn btn-neutral float-left" title="4.1.2. API 버전 간 변경" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="api_change.html" class="btn btn-neutral float-left" title="4.1.2. API 버전 간 변경" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
         <a href="glue-code/index.html" class="btn btn-neutral float-right" title="4.2. 접착제 코드" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

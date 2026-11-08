@@ -20,7 +20,7 @@
         <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="색인" href="genindex.html">
-    <link rel="search" title="찾다" href="search.html">
+    <link rel="search" title="검색" href="search.html">
     <link rel="next" title="1. 이 문서" href="source/this_doc.html"> 
 <link rel="stylesheet" href="_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/"></head>
 
@@ -46,22 +46,22 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="source/this_doc.html">1. 이 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/this_doc.html">1. 이 문서에 대하여</a></li>
 <li class="toctree-l1"><a class="reference internal" href="source/install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/working.html">3. OpenFAST 작업</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/working.html">3. OpenFAST 사용하기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="source/user/index.html">4. 사용자 문서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="source/testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="source/dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/license.html">7. 라이센스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/license.html">7. 라이선스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="source/help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/acknowledgements.html">9. 감사의 말씀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/acknowledgements.html">9. 감사의 글</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="review.html">문서 상세 리뷰</a></li><li><a href="coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="#">OpenFAST</a>
       </nav>
@@ -70,10 +70,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="#" class="icon icon-home" aria-label="집"></a></li>
+      <li><a href="#" class="icon icon-home" aria-label="홈"></a></li>
       <li class="breadcrumb-item active">OpenFAST 문서</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/index.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
+            <a href="_sources/index.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -82,7 +82,7 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="openfast-documentation">
-<h1>OpenFAST 문서<a class="headerlink" href="#openfast-documentation" title="이 제목에 대한 영구 링크"></a></h1>
+<h1>OpenFAST 문서<a class="headerlink" href="#openfast-documentation" title="이 제목의 고유 링크"></a></h1>
 <dl class="field-list simple">
 <dt class="field-odd">버전</dt>
 <dd class="field-odd"><p>v5.0.0</p>
@@ -92,33 +92,33 @@
 </dd>
 </dl>
 <p>OpenFAST는 풍력터빈의 연성 동적 응답을 모사하는 다중물리·다중정밀도 해석 도구입니다. 구체적으로는 공기역학, 해상 구조물의 유체역학, 제어 및 전기 계통의 동역학, 구조동역학 계산 모듈을 연결하는 프레임워크(글루 코드)이며, 시간 영역에서 비선형 공력–수력–서보–탄성 연성 해석을 수행합니다. 2엽 또는 3엽 수평축 로터, 피치 제어 또는 실속 제어, 강체 허브 또는 티터링 허브, 업윈드 또는 다운윈드 로터, 격자형 또는 관형 타워 등 다양한 구성을 해석할 수 있습니다. 육상 풍력터빈뿐 아니라 고정식 또는 부유식 하부구조 위에 설치된 해상 풍력터빈도 모델링할 수 있습니다.</p>
-<p>2017년에 설립된 OpenFAST는 FAST v8을 기반으로 하는 오픈 소스 소프트웨어 패키지입니다(참조: <a class="reference internal" href="source/user/fast_to_openfast.html#fast-to-openfast"><span class="std std-ref">FAST v8 및 OpenFAST로의 전환</span></a>). 글루 코드와 기본 모듈은 대부분 Fortran(2003 표준 준수)으로 작성되었으며 모듈은 C 또는 C++로 작성할 수도 있습니다. 연구실, 학계, 산업체에서 개발하고 사용하는 커뮤니티 모델이 되는 것을 목표로 만들어졌습니다. 이는 로키산맥 국립 연구소(National Lab of the Rockies)의 전담 팀에 의해 관리됩니다. 우리의 목표는 OpenFAST가 잘 테스트되고 문서화되었으며 자립 가능한 소프트웨어인지 확인하는 것입니다. 이를 위해 우리는 기존 코드에 대한 문서화 및 테스트 범위를 지속적으로 개선하고 있으며, 새로운 기능에 적절한 테스트 및 문서화가 포함될 것으로 기대합니다. 기여하고 싶다면 다음을 참조하세요.
-<a class="reference internal" href="source/dev/index.html#dev-guide"><span class="std std-ref">개발자 문서</span></a> 그리고 미해결된 GitHub 문제는
-<a class="reference external" href="https://github.com/OpenFAST/openfast/issues?q=is%3Aopen+is%3Aissue+label%3A&quot;Help+wanted&quot;" target="_blank" rel="noopener noreferrer">도움 구함</a>
-꼬리표.</p>
-<p>다음 링크는 소프트웨어 패키지로서 OpenFAST에 대한 더 많은 통찰력을 제공합니다.</p>
+<p>OpenFAST는 FAST v8을 기반으로 2017년에 개발된 오픈소스 소프트웨어 패키지입니다(참조: <a class="reference internal" href="source/user/fast_to_openfast.html#fast-to-openfast"><span class="std std-ref">FAST v8 및 OpenFAST로의 전환</span></a>). 글루 코드와 기본 모듈은 대부분 Fortran(2003 표준 준수)으로 작성되었으며 모듈은 C 또는 C++로 작성할 수도 있습니다. 연구실, 학계, 산업체에서 개발하고 사용하는 커뮤니티 모델이 되는 것을 목표로 만들어졌습니다. 이는 로키산맥 국립 연구소(National Lab of the Rockies)의 전담 팀에 의해 관리됩니다. 우리의 목표는 OpenFAST가 잘 테스트되고 문서화되었으며 자립 가능한 소프트웨어인지 확인하는 것입니다. 이를 위해 우리는 기존 코드에 대한 문서화 및 테스트 범위를 지속적으로 개선하고 있으며, 새로운 기능에 적절한 테스트 및 문서화가 포함될 것으로 기대합니다. 기여하고 싶다면 다음을 참조하세요.
+<a class="reference internal" href="source/dev/index.html#dev-guide"><span class="std std-ref">개발자 문서</span></a> 와 GitHub의
+<a class="reference external" href="https://github.com/OpenFAST/openfast/issues?q=is%3Aopen+is%3Aissue+label%3A&quot;Help+wanted&quot;" target="_blank" rel="noopener noreferrer">Help Wanted</a>
+태그가 붙은 미해결 이슈를 참조하세요.</p>
+<p>다음 링크에서 OpenFAST에 관한 추가 정보를 확인할 수 있습니다:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/OpenFAST" target="_blank" rel="noopener noreferrer">OpenFAST Github 조직</a></p></li>
+<li><p><a class="reference external" href="https://github.com/OpenFAST" target="_blank" rel="noopener noreferrer">OpenFAST GitHub 조직</a></p></li>
 </ul>
-<p>소스 코드, 릴리스 및 예제 회귀 테스트는 Github에서 확인할 수 있습니다. <a class="reference external" href="https://github.com/OpenFAST/OpenFAST" target="_blank" rel="noopener noreferrer">Github 저장소</a>
+<p>소스 코드, 릴리스, 회귀 테스트 예제는 GitHub에서 확인할 수 있습니다: <a class="reference external" href="https://github.com/OpenFAST/OpenFAST" target="_blank" rel="noopener noreferrer">GitHub 저장소</a>
 - <a class="reference external" href="https://github.com/OpenFAST/openfast/releases" target="_blank" rel="noopener noreferrer">OpenFAST 릴리스 노트 및 Windows 실행 파일</a>
 - <a class="reference external" href="https://github.com/OpenFAST/r-test/releases" target="_blank" rel="noopener noreferrer">OpenFAST 입력 파일</a></p>
-<p><strong>문서 디렉토리</strong></p>
+<p><strong>문서 목차</strong></p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="source/this_doc.html">1. 이 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/this_doc.html">1. 이 문서에 대하여</a></li>
 <li class="toctree-l1"><a class="reference internal" href="source/install/index.html">2. OpenFAST 설치</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="source/install/index.html#download-binaries">2.1. 바이너리 다운로드</a></li>
 <li class="toctree-l2"><a class="reference internal" href="source/install/index.html#running-openfast-with-docker">2.2. 도커로 OpenFAST 실행</a></li>
-<li class="toctree-l2"><a class="reference internal" href="source/install/index.html#install-the-openfast-io-python-wrapper">2.3. 설치하다 <code class="docutils literal notranslate"><span class="pre">openfast_io</span></code> 파이썬 래퍼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source/install/index.html#install-the-openfast-io-python-wrapper">2.3. <code class="docutils literal notranslate"><span class="pre">openfast_io</span></code> Python 래퍼 설치</a></li>
 <li class="toctree-l2"><a class="reference internal" href="source/install/index.html#compile-from-source">2.4. 소스 코드에서 컴파일</a></li>
 <li class="toctree-l2"><a class="reference internal" href="source/install/index.html#c-api">2.5. C++ API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="source/install/index.html#fast-farm">2.6. FAST.Farm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="source/install/index.html#simulink">2.7. Simulink</a></li>
-<li class="toctree-l2"><a class="reference internal" href="source/install/index.html#appendix">2.8. 충수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source/install/index.html#appendix">2.8. 부록</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="source/working.html">3. OpenFAST 작업</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="source/working.html">3. OpenFAST 사용하기</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="source/working.html#quick-start-running-openfast">3.1. 빠른 시작: OpenFAST 실행</a></li>
 <li class="toctree-l2"><a class="reference internal" href="source/working.html#troubleshooting-a-simulation">3.2. 시뮬레이션 문제 해결</a></li>
 <li class="toctree-l2"><a class="reference internal" href="source/working.html#scripting-and-other-support-tools">3.3. 스크립팅 및 기타 지원 도구</a></li>
@@ -167,9 +167,9 @@
 <li class="toctree-l2"><a class="reference internal" href="source/dev/index.html#other-documentation">6.4. 기타 문서</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="source/license.html">7. 라이센스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/license.html">7. 라이선스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="source/help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/acknowledgements.html">9. 감사의 말씀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/acknowledgements.html">9. 감사의 글</a></li>
 </ul>
 </div>
 </div>
@@ -177,7 +177,7 @@
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
         <a href="source/this_doc.html" class="btn btn-neutral float-right" title="1. 이 문서" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

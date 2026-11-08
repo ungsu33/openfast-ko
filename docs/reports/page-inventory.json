@@ -28,7 +28,7 @@
       "math": 0,
       "codeBlocks": 0,
       "originalCharacters": 1099,
-      "title": "9. 감사의 말",
+      "title": "9. 감사의 글",
       "headings": [],
       "intro": "이 소프트웨어는 연구원들에 의해 개발 및 유지 관리됩니다.로키산맥 국립연구소미국 에너지부 풍력 에너지 기술 사무소의 자금 지원을 통해대기에서 전자로(A2e)연구 이니셔티브.NLR는 다음 조직의 개발 기여에 감사드립니다.",
       "warnings": []
@@ -90,7 +90,7 @@
         "6.3.1.1. 액추에이터 라인 시뮬레이션을 위한 C++ API 사용",
         "6.3.1.2. 구현",
         "6.3.1.3. 매핑 절차 테스트",
-        "6.3.1.4. 참고자료"
+        "6.3.1.4. 참고문헌"
       ],
       "intro": "OpenFAST는 C++의 외부 프로그램에서 풍력 터빈 시뮬레이션을 구동하기 위한 C++ 애플리케이션 프로그래밍 인터페이스(API)를 제공합니다. C++ API는 주로 유체 구조 상호 작용(FSI) 애플리케이션을 위한 OpenFAST와 전산 유체 역학(CFD) 솔버를 통합하기 위해 개발되었습니다. 현재는 액츄에이터 라인 방법을 사용하여 FSI 시뮬레이션을 지원하며 가까운 시일 내에 블레이드 분해 FSI 시뮬레이션을 지원할 계획입니다. C++ API는 여러 풍력 터빈의 OpenFAST 시뮬레이션을 병렬로 실행하는 외부 드라이버 프로그램이나 글루 코드를 만드는 데에도 사용할 수 있습니다.C++ API는 다음에서 정의되고 구현됩니다.fast::OpenFAST수업. C++에서 OpenFAST에 대한 글루 코드를 작성하려는 사용자는 OpenFAST 클래스의 개체를 인스턴스화하고 이를 사용하여 터빈 시뮬레이션을 구동해야 합니다. 샘플 글루 코드FAST_Prog.cppC++ API 사용법의 데모로 제공됩니다. 글루 코드를 사용하면 여러 프로세서에서 직렬 또는 병렬로 OpenFAST를 사용하여 여러 터빈을 시뮬레이션할 수 있습니다. 메시지 전달 인터페이스(MPI)는 다양한 터빈 인스턴스를 병렬로 실행하는 데 사용됩니다. FAST_Prog.cpp의 축약 버전은 다음과 같습니다. 강조 표시된 줄은 OpenFAST 클래스의 사용을 나타냅니다.",
       "warnings": []
@@ -280,7 +280,7 @@
         "2.7. Simulink",
         "2.7.1. Visual Studio가 설치된 Windows",
         "2.7.2. CMake",
-        "2.8. 충수"
+        "2.8. 부록"
       ],
       "intro": "여기에는 미리 컴파일된 바이너리를 얻거나 소스 코드에서 OpenFAST를 컴파일하기 위한 지침과 절차가 설명되어 있습니다. 동일한 결과를 달성하는 방법은 여러 가지가 있지만 OpenFAST 팀은 포괄적이고 신중한 설치 시스템을 개발했습니다. 따라서 여기에 설명된 방법은 OpenFAST 실행 파일을 얻기 위해 공식적으로 지원되고 유지되는 유일한 경로입니다.대부분의 OpenFAST 사용자는 소스 코드를 수정하거나 컴파일할 필요가 없습니다.소스 코드를 변경하지 않고 OpenFAST를 가장 간단하게 설치하려면,의 표를 참조하세요.바이너리 다운로드또는도커로 OpenFAST 실행섹션을 읽고 특정 지침에 대해서는 해당 문서를 읽어보세요. 컴파일에 대한 지침은 다음을 참조하세요.소스 코드에서 컴파일.",
       "warnings": [
@@ -430,7 +430,7 @@
       "math": 0,
       "codeBlocks": 0,
       "originalCharacters": 1357,
-      "title": "1. 이 문서",
+      "title": "1. 이 문서에 대하여",
       "headings": [],
       "intro": "OpenFAST 문서는 다음에서 호스팅됩니다.문서 읽기이며 두 가지 모두에서 자동으로 생성됩니다.기본및개발자새로운 커밋이 추가될 때마다 분기됩니다. 페이지 왼쪽 하단에 있는 막대를 클릭하면 저장소 분기 선택, 문서 다른 형식(PDF, HTML, EPub) 다운로드 및 기타 관련 웹사이트 링크 옵션이 포함된 패널(아래 이미지 참조)이 표시됩니다.여기에서 OpenFAST 개발자 문서가 향상되는 동안 개발자는 레거시 FAST v8을 참조하는 것이 좋습니다.NWTC Programmer's Handbook. OpenFAST 획득 및 설치에 대한 지침은 다음에서 확인할 수 있습니다.OpenFAST 설치, 자동화된 테스트를 통한 설치 확인을 위한 문서는 다음 위치에 있습니다.OpenFAST 테스트.",
       "warnings": []
@@ -578,7 +578,7 @@
       "math": 0,
       "codeBlocks": 0,
       "originalCharacters": 3813,
-      "title": "4.5.8. 참고자료",
+      "title": "4.5.8. 참고문헌",
       "headings": [],
       "intro": "로이 K. 아미에트. 난류의 익형에서 발생하는 음향 방사입니다.소리와 진동 저널, 41(4):407–420, 1975. 도이:10.1016/S0022-460X(75)80105-2.Pietro Bortolotti, Helena Canet Tarres, Katherine Dykes, Karl Merz, Latha Sethuraman, David Verelst 및 Frederik Zahle. 풍력 에너지의 시스템 엔지니어링 - wp2.1 참조 풍력 터빈. 기술 보고서, IEA 기술 보고서, 2019. URL:https://www.nrel.gov/docs/fy19osti/73492.pdf.",
       "warnings": []
@@ -650,7 +650,7 @@
       "math": 0,
       "codeBlocks": 0,
       "originalCharacters": 1314,
-      "title": "4.4.8. 미래의 일",
+      "title": "4.4.8. 향후 개발 계획",
       "headings": [],
       "intro": "이 첫 번째 구현 단계는 단일 터빈 기능에 중점을 두고 크고 새로운 로터 ​​개념 설계를 위한 기본 요구 사항을 충족합니다. 향후 개발 작업은 중대형 규모의 컴퓨팅 클러스터에서 다중 터빈 시뮬레이션을 가능하게 하는 기능을 구현하는 방향으로 진행될 것입니다. 계산 시간 단축에도 초점이 맞춰질 것입니다. 이는 고속 다중극 방법과 같은 트리 기술을 사용하여 달성할 수 있습니다. 시뮬레이션 속도를 높이기 위해 멀리 있는 소용돌이 융합과 같은 추가 알고리즘 옵션이 고려될 것입니다. 이 매뉴얼에 제시된 프레임워크는 그리드 프리 또는 그리드 기반 와류 입자 공식과 호환됩니다. 이러한 입자 기반 구현도 미래에 구상될 것입니다. 측정 및 고차 도구에 대한 코드의 추가 검증이 추구될 것입니다. 매우 유연한 로터, 해상 부유식 터빈, 소규모 풍력 발전 단지, 다중 로터 터빈 또는 연과 같이 BEM 알고리즘이 까다로운 것으로 알려진 사례에 대한 적용도 조사됩니다.다음 목록에는 OLAF 소프트웨어에 대한 향후 작업이 포함되어 있습니다.",
       "warnings": []
@@ -776,7 +776,7 @@
       "math": 0,
       "codeBlocks": 0,
       "originalCharacters": 1689,
-      "title": "4.4. OLAF 사용자 가이드 및 이론 매뉴얼(AeroDyn의 Free Vortex Wake)",
+      "title": "4.4. OLAF 사용자 가이드 및 이론 설명서 (AeroDyn의 자유 와류 후류)",
       "headings": [],
       "intro": "이 문서는 OpenFAST의 AeroDyn 모듈에 포함된 OLAF라는 자유 와류 후류 모듈에 대한 빠른 참조 가이드를 제공합니다. 일반 사용자가 AeroDyn 및 기타 OpenFAST 모듈의 다른 기능과 결합하여 사용하도록 고안되었습니다. 설명서는 새 릴리스가 출시될 때마다 업데이트되며 소프트웨어의 개선 또는 수정에 대한 추가 정보를 제공하기 위해 필요에 따라 업데이트됩니다.여기에 있는 문서는 K. Shaler, E. Branlard 및 A. Platt의 OLAF 사용자 설명서에서 파생되었습니다. (https://www.nrel.gov/docs/fy20osti/75959.pdf)",
       "warnings": []
@@ -788,7 +788,7 @@
       "math": 0,
       "codeBlocks": 0,
       "originalCharacters": 4513,
-      "title": "4.4.9. 참고자료",
+      "title": "4.4.9. 참고문헌",
       "headings": [],
       "intro": "H. 아베디.풍력 공기역학을 위한 와류 필라멘트 방법 개발. PhD 논문, Chalmers University of Technology, Gothenburg, 스웨덴, 2016.S. Ananthan, J. G. Leishman 및 M. Ramasamy. 로터 후류의 자유 와류 모델링에서 필라멘트 신장의 역할. ~ 안에미국 헬리콥터 협회 국제(American Helicopter Society International) 제58회 연례 포럼 및 기술 전시. 2002년, 캐나다 몬트리올.",
       "warnings": []
@@ -812,7 +812,7 @@
       "math": 18,
       "codeBlocks": 0,
       "originalCharacters": 3822,
-      "title": "4.3.11. 충수",
+      "title": "4.3.11. 부록",
       "headings": [
         "4.3.11.1. AeroDyn 입력 파일",
         "4.3.11.2. AeroDyn 출력 채널 목록"
@@ -869,7 +869,7 @@
       "math": 0,
       "codeBlocks": 0,
       "originalCharacters": 3504,
-      "title": "4.3. AeroDyn 사용자 가이드 및 이론 매뉴얼",
+      "title": "4.3. AeroDyn 사용자 가이드 및 이론 설명서",
       "headings": [],
       "intro": "이 문서는 AeroDyn 소프트웨어 프로그램에 대한 빠른 참조 가이드를 제공합니다. 일반 사용자가 다른 OpenFAST 매뉴얼과 함께 사용하도록 고안되었습니다. 설명서는 새 릴리스가 출시될 때마다 업데이트되며 소프트웨어의 개선 또는 수정에 대한 추가 정보를 제공하기 위해 필요에 따라 업데이트됩니다. 참고로 아래 목록에서 프레젠테이션 슬라이드, 개발 계획, 출판물 등 추가 자료를 다운로드하실 수 있습니다.Development and Validation of a New Blade Element Momentum Skewed-Wake Model within AeroDyn",
       "warnings": []
@@ -1043,7 +1043,7 @@
       "math": 0,
       "codeBlocks": 0,
       "originalCharacters": 2322,
-      "title": "4.3.10. 참고자료",
+      "title": "4.3.10. 참고문헌",
       "headings": [],
       "intro": "E Branlard, B Jonkman, G R Pirrung, K Dixon 및 J Jonkman. OpenFAST의 모달 및 안정성 해석을 위한 동적 유입 및 비정상 공기 역학 모델.물리학 저널: 컨퍼런스 시리즈, 2265(3):032044, 2022. 도이:10.1088/1742-6596/2265/3/032044.E. 브랜라드.풍력 터빈 공기역학 및 와도 기반 방법: 기초 및 최근 응용. 스프링거 국제 출판, 2017. ISBN 978-3-319-55163-0.도이:10.1007/978-3-319-55164-7.",
       "warnings": []
@@ -1119,7 +1119,7 @@
       "math": 6,
       "codeBlocks": 0,
       "originalCharacters": 3485,
-      "title": "4.7.8. 충수",
+      "title": "4.7.8. 부록",
       "headings": [
         "4.7.8.1. BeamDyn 입력 파일",
         "4.7.8.2. BeamDyn 출력 채널 목록"
@@ -1136,7 +1136,7 @@
       "math": 1,
       "codeBlocks": 0,
       "originalCharacters": 1122,
-      "title": "4.7.6. 미래의 일",
+      "title": "4.7.6. 향후 개발 계획",
       "headings": [],
       "intro": "다음 목록에는 BeamDyn 소프트웨어에 대한 향후 작업이 포함되어 있습니다.단정밀도의 수치 문제를 제거합니다.",
       "warnings": []
@@ -1148,7 +1148,7 @@
       "math": 1,
       "codeBlocks": 0,
       "originalCharacters": 1796,
-      "title": "4.7. BeamDyn 사용자 가이드 및 이론 매뉴얼",
+      "title": "4.7. BeamDyn 사용자 가이드 및 이론 설명서",
       "headings": [],
       "intro": "이 문서는 BeamDyn 소프트웨어 프로그램에 대한 빠른 참조 가이드를 제공합니다. 일반 사용자가 다른 OpenFAST 매뉴얼과 함께 사용하도록 고안되었습니다. 설명서는 새 릴리스가 출시될 때마다 업데이트되며 소프트웨어의 개선 또는 수정에 대한 추가 정보를 제공하기 위해 필요에 따라 업데이트됩니다. 참고로 아래 목록에서 프레젠테이션 슬라이드, 개발 계획, 출판물 등 추가 자료를 다운로드하실 수 있습니다.BeamDyn inputs from sectional beam properties",
       "warnings": []
@@ -1264,7 +1264,7 @@
       "math": 0,
       "codeBlocks": 0,
       "originalCharacters": 4136,
-      "title": "4.7.7. 참고자료",
+      "title": "4.7.7. 참고문헌",
       "headings": [],
       "intro": "K. J. Bathe 및 A. P. Cimento. 비선형 유한 요소 방정식의 해를 구하는 몇 가지 실제 절차.응용기계 및 공학의 컴퓨터 방법, 22:59–85, 1980. http://web.mit.edu/kjb/www/Publications_Prior_to_1998/Some_Practical_Procedures_for_the_Solution_of_Nonlinear_Finite_Element_Equations.pdf. 도이:10.1016/0045-7825(80)90051-1.O. A. 바우샤우.유연한 다물체 동역학. 스프링거, 2010.도이:10.1007/978-94-007-0335-3.",
       "warnings": []
@@ -1321,9 +1321,9 @@
       "math": 0,
       "codeBlocks": 0,
       "originalCharacters": 3700,
-      "title": "4.10. ElastoDyn 사용자 가이드 및 이론 매뉴얼",
+      "title": "4.10. ElastoDyn 사용자 가이드 및 이론 설명서",
       "headings": [],
-      "intro": "이 문서는 ElastoDyn 소프트웨어 프로그램에 대한 빠른 참조 가이드를 제공합니다. 일반 사용자가 다른 OpenFAST 매뉴얼과 함께 사용하도록 고안되었습니다. 설명서는 새 릴리스가 출시될 때마다 업데이트되며 소프트웨어의 개선 또는 수정에 대한 추가 정보를 제공하기 위해 필요에 따라 업데이트됩니다.이 모듈에 대한 더 많은 문서는 다음에 나열된 레거시 문서에서 사용할 수 있습니다.일반적인. 특히 FAST v6 사용자 가이드와 FAST v8 README의 작은 업데이트에서는 이 모듈을 설명하고 OpenFAST에 대한 일반 정보를 포함합니다.",
+      "intro": "이 문서는 ElastoDyn 소프트웨어 프로그램에 대한 빠른 참조 가이드를 제공합니다. 일반 사용자가 다른 OpenFAST 매뉴얼과 함께 사용하도록 고안되었습니다. 설명서는 새 릴리스가 출시될 때마다 업데이트되며 소프트웨어의 개선 또는 수정에 대한 추가 정보를 제공하기 위해 필요에 따라 업데이트됩니다.이 모듈에 대한 더 많은 문서는 다음에 나열된 레거시 문서에서 사용할 수 있습니다.일반 사항. 특히 FAST v6 사용자 가이드와 FAST v8 README의 작은 업데이트에서는 이 모듈을 설명하고 OpenFAST에 대한 일반 정보를 포함합니다.",
       "warnings": [
         "참고 문서를 FAST 8에서 OpenFAST로 마이그레이션하는 중입니다. 참고로, 이전 문서의 다양한 부분이 여기에 제공됩니다. 대부분은 여전히 ​​OpenFAST에 직접 적용 가능하지만 일부는 최신이 아닐 수 있습니다."
       ]
@@ -1382,7 +1382,7 @@
       "math": 0,
       "codeBlocks": 0,
       "originalCharacters": 334,
-      "title": "4.10.5. 참고자료",
+      "title": "4.10.5. 참고문헌",
       "headings": [],
       "intro": "모하메드 M 함맘(Mohamed M Hammam), 데이비드 우드(David Wood), 브렌트 서머빌(Brent Summerville). 소형 풍력 터빈용 꼬리 핀의 요 동작 모델링: 2021년 11월 22일~2024년 5월 21일. 기술 보고서, 국립 재생 에너지 연구소(NREL), Golden, CO(미국), 2023.",
       "warnings": []
@@ -1475,7 +1475,7 @@
       "math": 0,
       "codeBlocks": 0,
       "originalCharacters": 631,
-      "title": "4.9.4. 참고자료",
+      "title": "4.9.4. 참고문헌",
       "headings": [],
       "intro": "E. Branlard, M. Shields, B. Anderson, R. Damiani, F. Wendt, J. Jonkman, W. Musial 및 B. Foley. OpenFAST의 순차적 하중 계산을 위한 하위 구조의 상위 요소 감소.물리학 저널: 컨퍼런스 시리즈, 1452:012033, 2020년 1월. URL:https://doi.org/10.1088/1742-6596/1452/1/012033, 도이:10.1088/1742-6596/1452/1/012033.R. 크레이그와 M. 뱀프턴. 동적 해석을 위한 하위 구조의 결합.AIAA 저널, 6(7):1313–1319, 1968.",
       "warnings": []
@@ -1542,7 +1542,7 @@
       "math": 1,
       "codeBlocks": 0,
       "originalCharacters": 3894,
-      "title": "4.19.8. 미래의 일",
+      "title": "4.19.8. 향후 개발 계획",
       "headings": [],
       "intro": "이 목록에는 향후 릴리스에서 구현될 수 있는 기능이 포함되어 있습니다.다음을 포함하여 충실도가 높은 전구체 시뮬레이션에서 주변 바람을 생성/처리하는 보다 효율적인 방법을 개발합니다.",
       "warnings": []
@@ -1681,7 +1681,7 @@
       "math": 0,
       "codeBlocks": 0,
       "originalCharacters": 3007,
-      "title": "4.19. FAST.Farm 사용자 가이드 및 이론 매뉴얼",
+      "title": "4.19. FAST.Farm 사용자 가이드 및 이론 설명서",
       "headings": [],
       "intro": "FAST.Farm 구현 계획도 다운로드할 수 있습니다.FAST.Farm Development Plan.여기에 있는 문서는 Jason Jonkman과 Kelsey Shaler가 작성한 FAST.Farm 사용자 가이드 및 이론 매뉴얼에서 파생되었습니다.",
       "warnings": []
@@ -1693,7 +1693,7 @@
       "math": 0,
       "codeBlocks": 0,
       "originalCharacters": 4527,
-      "title": "4.19.9. 참고자료",
+      "title": "4.19.9. 참고문헌",
       "headings": [],
       "intro": "J. F. 에인슬리. 풍력 터빈의 결과로 유동장을 계산합니다.풍력 공학 및 산업 공기 역학 저널, 27:213–224, 1988. 도이:https://doi.org/10.1016/0167-6105(88)90037-2.E. Branlard, J. Jonkman, A. Platt, R. Thedin, L. A. Martinez-Tossas 및 M. Kretschmer. fast.farm에서 개선된 후류 추가 난류 모델의 개발 및 검증. TORQUE 2024. 2024년 5월 이탈리아 피렌체. EAWE.",
       "warnings": []
@@ -1724,7 +1724,7 @@
       "math": 0,
       "codeBlocks": 0,
       "originalCharacters": 1843,
-      "title": "4.1. 일반적인",
+      "title": "4.1. 일반 사항",
       "headings": [
         "4.1.4. 모듈화 프레임워크",
         "4.1.5. 글루 코드 및 메시 매핑"
@@ -1739,7 +1739,7 @@
       "math": 0,
       "codeBlocks": 0,
       "originalCharacters": 1489,
-      "title": "4.2. 접착제 코드",
+      "title": "4.2. 글루 코드",
       "headings": [],
       "intro": "OpenFAST글루 코드각 물리 모듈을 초기화하고, 모듈 간의 데이터 흐름을 관리하고, 시간 단계 루프를 조정하고, 선택적으로 조립된 시스템을 선형화하는 소프트웨어 계층입니다. 이 섹션에서는 사용자 및 모듈 개발자 관점에서 글루 코드를 설명합니다.",
       "warnings": []
@@ -1871,7 +1871,7 @@
       "math": 0,
       "codeBlocks": 0,
       "originalCharacters": 1269,
-      "title": "4.11.5. 미래의 일",
+      "title": "4.11.5. 향후 개발 계획",
       "headings": [],
       "intro": "이 목록에는 향후 릴리스에서 구현될 수 있는 기능이 포함되어 있습니다.독립형 HydroDyn(MorisonInputsMod = 2)",
       "warnings": []
@@ -1898,7 +1898,7 @@
       "math": 0,
       "codeBlocks": 0,
       "originalCharacters": 7716,
-      "title": "4.11. HydroDyn 사용자 가이드 및 이론 매뉴얼",
+      "title": "4.11. HydroDyn 사용자 가이드 및 이론 설명서",
       "headings": [],
       "intro": "HydroDyn는 해상 풍력 터빈의 공기-수력-서보-탄성 시뮬레이션을 가능하게 하기 위해 OpenFAST 풍력 터빈 다중 물리 엔지니어링 도구에 결합된 시간 영역 유체 역학 모듈입니다. HydroDyn는 고정 바닥 및 부유식 해양 하부구조 모두에 적용 가능합니다. HydroDyn의 현재 릴리스는 FAST 모듈화 프레임워크를 통해 OpenFAST와 통합됩니다. HydroDyn는 OpenFAST에서 분리된 유체역학적 하중을 계산하기 위해 독립 실행형 코드로 구동될 수도 있습니다.이 문서 외에도 프레젠테이션 슬라이드, 개발 계획, 출판물 등을 포함한 다음 자료를 참조할 수 있습니다. 이들 중 일부는 오래되었을 수 있으며 이전 버전의 HydroDyn와 관련이 있을 수 있습니다.",
       "warnings": []
@@ -1992,7 +1992,7 @@
       "math": 0,
       "codeBlocks": 0,
       "originalCharacters": 536,
-      "title": "4.11.6. 참고자료",
+      "title": "4.11.6. 참고문헌",
       "headings": [],
       "intro": "C. H. Lee와 J.N. Newman.WAMIT 사용자 매뉴얼. WAMIT, Inc, 체스트넛 힐, MA, 6.3, 6.3pc, 6.3s, 6.3s-pc 에디션, 2006.W. J. 브렌딩, R. G. 스탠딩, D. 윌슨.파도 표류력, 저주파 감쇠 및 응답 분석의 최근 개발. 제79회 연례 OTC 간행물, 1987년.",
       "warnings": []
@@ -2021,7 +2021,7 @@
       "math": 0,
       "codeBlocks": 0,
       "originalCharacters": 1269,
-      "title": "4.13.6. 충수",
+      "title": "4.13.6. 부록",
       "headings": [
         "4.13.6.1. InflowWind 입력 파일",
         "4.13.6.2. InflowWind 출력 채널 목록"
@@ -2062,7 +2062,7 @@
       "math": 0,
       "codeBlocks": 0,
       "originalCharacters": 1425,
-      "title": "4.13. InflowWind 사용자 가이드 및 이론 매뉴얼",
+      "title": "4.13. InflowWind 사용자 가이드 및 이론 설명서",
       "headings": [],
       "intro": "이 문서는 InflowWind 소프트웨어에 대한 빠른 참조 가이드를 제공합니다. 일반 사용자가 다른 OpenFAST 매뉴얼과 함께 사용하도록 고안되었습니다. 설명서는 새 릴리스가 출시될 때마다 업데이트되며 소프트웨어의 개선 또는 수정에 대한 추가 정보를 제공하기 위해 필요에 따라 업데이트됩니다.여기에 있는 정보는 불완전합니다. 원본을 봐주세요InflowWind ManualOpenFAST의 문서 스타일로 변환될 때까지.",
       "warnings": []
@@ -2200,7 +2200,7 @@
       "math": 0,
       "codeBlocks": 0,
       "originalCharacters": 480,
-      "title": "4.12. SeaState 사용자 가이드 및 이론 매뉴얼",
+      "title": "4.12. SeaState 사용자 가이드 및 이론 설명서",
       "headings": [],
       "intro": "SeaState는 HydroDyn에서 사용하는 파동장 정보를 생성합니다. 이 모듈은 한때 HydroDyn의 일부였으므로 파도와 전류에 대한 정보는 HydroDyn 문서를 참조하세요.",
       "warnings": []
@@ -2287,7 +2287,7 @@
         "4.17.2.2. 코드 수정",
         "4.17.2.2.1. 새 파일",
         "4.17.2.2.2. 변수",
-        "4.17.2.3. 감사의 말"
+        "4.17.2.3. 감사의 글"
       ],
       "intro": "William La Cava 및 Matthew A. Lackner 매사추세츠 대학교 기계산업공학부 Amherst Amherst, MA 01003wlacava@umass.edu, lackner@ecs.umass.edu이 문서는 NREL의 Jason M. Jonkman이 편집하여 OpenFAST에 독립적인 수직 지향 TMD를 포함했습니다.jason.jonkman@nrel.gov",
       "warnings": []
@@ -2341,7 +2341,7 @@
       "math": 0,
       "codeBlocks": 0,
       "originalCharacters": 1468,
-      "title": "4.17.4. 참고자료",
+      "title": "4.17.4. 참고문헌",
       "headings": [],
       "intro": "매튜 A. 래크너(Matthew A. Lackner)와 마리오 A. 로테아(Mario A. Rotea). 해상 풍력 터빈의 수동적 구조 제어.풍력 에너지, 14(3):373–388, 2011. URL:http://onlinelibrary.wiley.com/doi/10.1002/we.426/full.매튜 A. 래크너(Matthew A. Lackner)와 마리오 A. 로테아(Mario A. Rotea). 부유식 풍력 터빈의 구조적 제어.메카트로닉스, 21(4):704–719, 2011. URL:http://www.sciencedirect.com/science/article/pii/S0957415810002072.",
       "warnings": []
@@ -2524,7 +2524,7 @@
       "math": 0,
       "codeBlocks": 0,
       "originalCharacters": 1422,
-      "title": "4.8.7. 알려진 제한 사항 및 향후 작업",
+      "title": "4.8.7. 알려진 한계와 향후 개발 계획",
       "headings": [],
       "intro": "다음 목록에는 코드의 알려진 현재 제한 사항이 포함되어 있습니다.긴밀한 결합은 아직 지원되지 않습니다.",
       "warnings": []
@@ -2536,7 +2536,7 @@
       "math": 0,
       "codeBlocks": 0,
       "originalCharacters": 2373,
-      "title": "4.8. SubDyn 사용자 가이드 및 이론 매뉴얼",
+      "title": "4.8. SubDyn 사용자 가이드 및 이론 설명서",
       "headings": [],
       "intro": "이 매뉴얼은 SubDyn 소프트웨어 프로그램에 대한 빠른 참조 가이드와 보다 심층적인 이론 가이드를 모두 제공합니다. 일반 사용자가 OpenFAST 및 HydroDyn 매뉴얼과 함께 사용하도록 고안되었습니다. 문서는 다음에서 시작되었습니다.[DJH15]작성자: Damiani et al. 설명서는 새 릴리스가 출시될 때마다 업데이트되며 소프트웨어의 개선 또는 수정에 대한 추가 정보를 제공하기 위해 필요에 따라 업데이트됩니다.저자는 R. Damiani, E. Branlard, J. Jonkman, A. Robertson, F. Wendt 및 B. Barahona와 같은 기여자들에게 감사를 표하고 싶습니다. 추가 기여자는 github에서 찾을 수 있습니다. 또한 이 소프트웨어 개발을 지원한 미국 에너지부 풍력 및 수력 발전 프로그램에도 감사드립니다.",
       "warnings": []
@@ -2699,7 +2699,7 @@
       "math": 0,
       "codeBlocks": 0,
       "originalCharacters": 3408,
-      "title": "4.8.8. 참고자료",
+      "title": "4.8.8. 참고문헌",
       "headings": [],
       "intro": "SC Chapra 및 R.P. Canale.엔지니어를 위한 수치해석법. McGraw-힐 과학/엔지니어링/매트, 2010.로버트 D. 쿡.유한요소해석의 개념과 응용. 존 와일리 & 아들, 2001.",
       "warnings": []
@@ -2711,7 +2711,7 @@
       "math": 0,
       "codeBlocks": 0,
       "originalCharacters": 502,
-      "title": "4.18.2. 충수",
+      "title": "4.18.2. 부록",
       "headings": [
         "4.18.2.1. TurbSim 입력 파일"
       ],
@@ -2725,7 +2725,7 @@
       "math": 0,
       "codeBlocks": 0,
       "originalCharacters": 410,
-      "title": "4.18. TurbSim 사용자 가이드 자리 표시자",
+      "title": "4.18. TurbSim 사용자 가이드 (원문의 임시 항목)",
       "headings": [],
       "intro": "Turbsim 문서는 아직 문서를 읽을 수 있도록 포팅되지 않았습니다. 아래에서 다운로드할 수 있습니다.User's Guide",
       "warnings": []
@@ -2751,7 +2751,7 @@
       "math": 2,
       "codeBlocks": 8,
       "originalCharacters": 31706,
-      "title": "3. OpenFAST 작업",
+      "title": "3. OpenFAST 사용하기",
       "headings": [
         "3.1. 빠른 시작: OpenFAST 실행",
         "3.1.1. 터미널 열기",

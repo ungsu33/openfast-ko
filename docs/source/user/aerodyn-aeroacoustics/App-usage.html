@@ -21,7 +21,7 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="찾다" href="../../../search.html">
+    <link rel="search" title="검색" href="../../../search.html">
     <link rel="next" title="4.5.8. 참고자료" href="refs.html">
     <link rel="prev" title="4.5.6. 결론" href="04-conclusions.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/aerodyn-aeroacoustics/App-usage.html"></head>
@@ -48,9 +48,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
@@ -69,7 +69,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#observer-positions">4.5.7.3. 관찰자 위치</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="refs.html">4.5.8. 참고자료</a></li>
+<li class="toctree-l3"><a class="reference internal" href="refs.html">4.5.8. 참고문헌</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
@@ -94,16 +94,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -112,12 +112,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
           <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.5. </span>OpenFAST의 공력소음 모델</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.5.7. </span>AeroDyn에서 공력소음 모델 사용하기</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/aerodyn-aeroacoustics/App-usage.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
+            <a href="../../../_sources/source/user/aerodyn-aeroacoustics/App-usage.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -126,7 +126,7 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="using-the-aeroacoustics-model-in-aerodyn">
-<span id="aa-usage"></span><h1><span class="section-number">4.5.7. </span>AeroDyn에서 공력소음 모델 사용하기<a class="headerlink" href="#using-the-aeroacoustics-model-in-aerodyn" title="이 제목에 대한 영구 링크"></a></h1>
+<span id="aa-usage"></span><h1><span class="section-number">4.5.7. </span>AeroDyn에서 공력소음 모델 사용하기<a class="headerlink" href="#using-the-aeroacoustics-model-in-aerodyn" title="이 제목의 고유 링크"></a></h1>
 <p>이 문서의 라이브 버전은 다음에서 확인할 수 있습니다.
 <a class="reference external" href="https://openfast.readthedocs.io/" target="_blank" rel="noopener noreferrer">https://openfast.readthedocs.io/</a>. 항공음향 모델을 실행하려면 플래그 <strong>CompAA</strong> 으로 설정해야 합니다. <strong>진실</strong> AeroDyn 주 입력 파일의 입력 블록 14번째 줄에 <strong>일반 옵션</strong>. 플래그가 다음으로 설정되면
 <strong>진실</strong>, 다음 줄에는 공력음향 모델에 대한 입력이 포함된 파일의 이름이 포함되어야 합니다. 이에 대해서는 다음에서 설명합니다.
@@ -153,7 +153,7 @@
 </div>
 </div>
 <div class="section" id="main-input-file">
-<span id="aa-sec-maininput"></span><h2><span class="section-number">4.5.7.1. </span>기본 입력 파일<a class="headerlink" href="#main-input-file" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="aa-sec-maininput"></span><h2><span class="section-number">4.5.7.1. </span>기본 입력 파일<a class="headerlink" href="#main-input-file" title="이 제목의 고유 링크"></a></h2>
 <p>항공음향학 기본 입력 파일은 실행해야 하는 분석에 따라 적절하게 설정되어야 하는 일련의 입력 및 플래그로 구성됩니다. 이는 일반 옵션, 공력음향 모델, 관찰자 ​​입력 및 출력 하위 필드로 나뉩니다.</p>
 <p>일반 옵션부터 시작하면 다음과 같습니다.</p>
 <ul class="simple">
@@ -226,7 +226,7 @@
 </div>
 </div>
 <div class="section" id="boundary-layer-inputs-and-trailing-edge-geometry">
-<span id="aa-sec-blinputs"></span><h2><span class="section-number">4.5.7.2. </span>경계층 입력 및 후행 가장자리 기하학<a class="headerlink" href="#boundary-layer-inputs-and-trailing-edge-geometry" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="aa-sec-blinputs"></span><h2><span class="section-number">4.5.7.2. </span>경계층 입력 및 후행 가장자리 기하학<a class="headerlink" href="#boundary-layer-inputs-and-trailing-edge-geometry" title="이 제목의 고유 링크"></a></h2>
 <p>깃발이 언제 <strong>BLMod</strong> 가 2로 설정되면 경계층의 미리 정리된 속성이 제공되어야 하며 난류 경계층 - 뒷전 소음 모델에서 사용됩니다. 파일 이름은 익형 극계수를 포함한 파일 입력 중 BL_file 필드에 지정됩니다. 공기역학적 스테이션당 하나의 익형 파일을 지정해야 합니다.</p>
 <div class="docutils container" id="aa-tab-aftab">
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>! ------------ AirfoilInfo Input File ------------------------------------------
@@ -405,7 +405,7 @@
 </div>
 </div>
 <div class="section" id="observer-positions">
-<span id="aa-sec-obspos"></span><h2><span class="section-number">4.5.7.3. </span>관찰자 위치<a class="headerlink" href="#observer-positions" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="aa-sec-obspos"></span><h2><span class="section-number">4.5.7.3. </span>관찰자 위치<a class="headerlink" href="#observer-positions" title="이 제목의 고유 링크"></a></h2>
 <p>관찰자의 수와 위치는 ObserverLocations 파일에 설정되어 있습니다. <a class="reference internal" href="#aa-sec-maininput"><span class="std std-numref">섹션 4.5.7.1</span></a>. 위치는 OpenFAST 전역 관성계 좌표계에서 지정되어야 합니다. 이 좌표계는 타워 베이스에 위치하며 x축은 바람 방향, y축은 측면, z축은 수직 위쪽을 향합니다. 관찰자를 위한 좌표계의 구성은 다음과 같습니다. <a class="reference internal" href="#aa-fig-obsrefsys"><span class="std std-numref">그림 4.27</span></a>.</p>
 <div class="figure align-center" id="aa-fig-obsrefsys">
 <a class="reference internal image-reference" href="../../../_images/NoiseN010.png"><img alt="관찰자를 위한 참조 시스템" src="../../../_images/NoiseN010.png" style="width: 40.0%;"></a>
@@ -437,8 +437,8 @@
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
-        <a href="04-conclusions.html" class="btn btn-neutral float-left" title="4.5.6. 결론" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="04-conclusions.html" class="btn btn-neutral float-left" title="4.5.6. 결론" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
         <a href="refs.html" class="btn btn-neutral float-right" title="4.5.8. 참고자료" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

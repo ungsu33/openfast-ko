@@ -21,7 +21,7 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="찾다" href="../../../search.html">
+    <link rel="search" title="검색" href="../../../search.html">
     <link rel="next" title="4.8.4. 출력 파일" href="output_files.html">
     <link rel="prev" title="4.8.2. SubDyn 실행" href="running_sd.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/subdyn/input_files.html"></head>
@@ -48,9 +48,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
@@ -72,8 +72,8 @@
 <li class="toctree-l3"><a class="reference internal" href="output_files.html">4.8.4. 출력 파일</a></li>
 <li class="toctree-l3"><a class="reference internal" href="modeling.html">4.8.5. 모델링 시 고려사항</a></li>
 <li class="toctree-l3"><a class="reference internal" href="theory.html">4.8.6. SubDyn 이론</a></li>
-<li class="toctree-l3"><a class="reference internal" href="future_work.html">4.8.7. 알려진 제한 사항 및 향후 작업</a></li>
-<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.8.8. 참고자료</a></li>
+<li class="toctree-l3"><a class="reference internal" href="future_work.html">4.8.7. 알려진 한계와 향후 개발 계획</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.8.8. 참고문헌</a></li>
 <li class="toctree-l3"><a class="reference internal" href="appendixA.html">4.8.9. 부록 A. OC4 재킷 입력 파일</a></li>
 <li class="toctree-l3"><a class="reference internal" href="appendixB.html">4.8.10. 부록 B. OC4 재킷 드라이버 파일</a></li>
 <li class="toctree-l3"><a class="reference internal" href="appendixC.html">4.8.11. 부록 C. OC4 재킷 SSI 입력 파일</a></li>
@@ -101,16 +101,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -119,12 +119,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.8. </span>SubDyn 사용자 가이드 및 이론 매뉴얼</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.8. </span>SubDyn 사용자 가이드 및 이론 설명서</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.8.3. </span>입력 파일</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/subdyn/input_files.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
+            <a href="../../../_sources/source/user/subdyn/input_files.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -133,27 +133,27 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="input-files">
-<span id="sd-input-files"></span><h1><span class="section-number">4.8.3. </span>입력 파일<a class="headerlink" href="#input-files" title="이 제목에 대한 영구 링크"></a></h1>
+<span id="sd-input-files"></span><h1><span class="section-number">4.8.3. </span>입력 파일<a class="headerlink" href="#input-files" title="이 제목의 고유 링크"></a></h1>
 <p>사용자는 기본 SubDyn 입력 파일을 통해 형상 및 속성을 포함한 하부 구조 모델 매개변수를 지정합니다. 독립형 모드에서 사용하는 경우 추가 드라이버 입력 파일이 필요합니다. 이 드라이버 파일은 TP 기준점의 동작을 포함하여 일반적으로 FAST에 의해 SubDyn에 제공되는 입력을 지정합니다.</p>
 <p>행 수가 지정된 테이블을 제외하고는 입력 파일에서 행을 추가하거나 제거해서는 안 됩니다.</p>
 <p>토양 구조 정보가 포함된 추가 입력 파일(<em>SSIfile</em>)는 사용자가 기본 SubDyn 입력 파일의 섹션 아래에 경로를 지정하여 제공할 수 있습니다. <em>BASE REACTION JOINTS</em>.</p>
 <div class="section" id="units">
-<h2><span class="section-number">4.8.3.1. </span>단위<a class="headerlink" href="#units" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.8.3.1. </span>단위<a class="headerlink" href="#units" title="이 제목의 고유 링크"></a></h2>
 <p>SubDyn는 SI 시스템(kg, m, s, N)을 사용합니다. 별도로 지정하지 않는 한 각도는 라디안 단위로 간주됩니다.</p>
 </div>
 <div class="section" id="subdyn-driver-input-file">
-<span id="sd-driver-input-file"></span><h2><span class="section-number">4.8.3.2. </span>SubDyn 드라이버 입력 파일<a class="headerlink" href="#subdyn-driver-input-file" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="sd-driver-input-file"></span><h2><span class="section-number">4.8.3.2. </span>SubDyn 드라이버 입력 파일<a class="headerlink" href="#subdyn-driver-input-file" title="이 제목의 고유 링크"></a></h2>
 <p>드라이버 입력 파일은 SubDyn의 독립형 버전에만 필요하며 일반적으로 FAST에 의해 설정되고 결합되지 않은 모델에 대한 시뮬레이션을 제어하는 ​​데 필요한 입력을 포함합니다. 드라이버 파일을 TP 모션의 시간 기록(변위, 속도 및 가속도)이 포함된 추가 입력 파일에 연결하여 독립 실행형 모드에서도 SubDyn에 시간 단계별 입력을 제공할 수 있습니다. 샘플 SubDyn 드라이버 입력 파일은 다음과 같습니다.
 <a class="reference internal" href="appendixB.html#sd-appendix-b"><span class="std std-numref">섹션 4.8.10</span></a>.</p>
 <p>사용자는 <strong>Echo</strong> 이 파일의 플래그를 TRUE로 지정하여
 <em>SubDyn_win32.exe</em> 드라이버 입력 파일의 내용을 에코합니다(드라이버 파일의 오류를 디버깅하는 데 유용함). 에코 파일의 명명 규칙은 다음과 같습니다. <strong>OutRootName.dvr.ech</strong>. <strong>OutRootName</strong> 드라이버 입력 파일의 SUBDYN 섹션에 지정됩니다(아래 참조).</p>
 <div class="section" id="environmental-conditions">
-<h3><span class="section-number">4.8.3.2.1. </span>환경 조건<a class="headerlink" href="#environmental-conditions" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.8.3.2.1. </span>환경 조건<a class="headerlink" href="#environmental-conditions" title="이 제목의 고유 링크"></a></h3>
 <p>다음을 사용하여 중력 상수를 설정합니다. <strong>Gravity</strong> 매개변수. SubDyn는 크기를 예상하므로 SI 단위에서는 9.80665로 설정됩니다.
 <span class="math notranslate nohighlight">\(\frac{m}{s^{2}}\)</span> 표준 중력의 경우. <strong>WtrDpth</strong> MSL 참조를 기준으로 수심(해저 깊이)을 지정하며 0보다 큰 값이어야 합니다.</p>
 </div>
 <div class="section" id="subdyn-module-inputs">
-<h3><span class="section-number">4.8.3.2.2. </span>SubDyn 모듈 입력<a class="headerlink" href="#subdyn-module-inputs" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.8.3.2.2. </span>SubDyn 모듈 입력<a class="headerlink" href="#subdyn-module-inputs" title="이 제목의 고유 링크"></a></h3>
 <p><strong>SDInputFile</strong> 기본 SubDyn 입력 파일의 파일 이름입니다. 이 이름은 따옴표로 묶어야 하며 절대 경로 또는 상대 경로를 포함할 수 있습니다. 모든 SubDyn 생성 출력 파일에는 다음이 붙습니다.
 <strong>OutRootName</strong>. 이 매개변수에 파일 경로가 포함되어 있으면 해당 폴더에 출력이 생성됩니다. 이 출력이 비어 있으면 드라이버 파일 이름(확장자 없음)이 사용됩니다.
 <strong>NSteps</strong> 시뮬레이션 시간 단계 수를 지정합니다. <strong>TimeStep</strong> 단계 사이의 시간을 지정합니다. 다음으로 사용자는 전환 부분(TP) 기준점의 위치를 ​​지정해야 합니다. 이는 일반적으로 ElastoDyn 입력 파일을 통해 OpenFAST에 의해 설정되며 소위 <em>플랫폼</em> 에 의해 주어진 기준점 <strong>PtfmRefxt</strong>, <strong>PtfmRefyt</strong>, 및 <strong>PtfmRefzt</strong> ElastoDyn에서. SubDyn의 기본 입력 파일에 정의된 인터페이스 조인트는 이러한 ElastoDyn 플랫폼 참조 지점에 견고하게 연결됩니다. SubDyn 독립형 드라이버를 실행할 때 이러한 TP 참조점의 위치는 대신 드라이버 입력 파일에서 정의되어야 하며 아래의 전환 부분에 대해 규정된 모션을 정의할 수 있습니다.
@@ -163,7 +163,7 @@
 <strong>NTPs</strong> 항목. SubDyn의 기본 입력 파일 내에서 동일한 형상 정의를 활용하면서 수직에 대해 서로 다른 하부 구조 방향을 허용하려면 사용자가 설정할 수 있습니다. <strong>SubRotateZ</strong> 전역 좌표계를 기준으로 지정된 각도(도)까지 <em>Z</em>-중심선. 전체 하부 구조가 해당 각도만큼 회전됩니다. (이 기능은 독립 실행형 모드에서만 사용할 수 있습니다.)</p>
 </div>
 <div class="section" id="input-motion">
-<h3><span class="section-number">4.8.3.2.3. </span>모션 입력<a class="headerlink" href="#input-motion" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.8.3.2.3. </span>모션 입력<a class="headerlink" href="#input-motion" title="이 제목의 고유 링크"></a></h3>
 <p>환경 <strong>InputsMod</strong> = 0은 모든 시간 단계에 대해 모든 TP 참조점 동작을 0으로 설정합니다. 환경 <strong>InputsMod</strong> = 1을 사용하면 사용자가 파일의 STEADY INPUTS 섹션에서 TP 모션에 대해 안정적인(고정) 입력을 제공할 수 있습니다.<strong>uTPInSteady</strong>, <strong>uDotTPInSteady</strong>, 및
 <strong>uDotDotTPInSteady</strong>. 각 줄에는 6 x가 포함되어야 합니다. <strong>NTPs</strong> 첫 번째 전환 부분에 대한 처음 6개 항목, 두 번째 전환 부분에 대한 다음 6개 항목 등을 입력합니다. 이러한 입력의 세부 사항은 다음 항목과 일치합니다. <strong>InputsMod</strong> = 아래 2개.</p>
 <p>환경 <strong>InputsMod</strong> = 2를 사용하면 사용자가 다음을 통해 이름이 지정된 시계열 파일을 제공할 수 있습니다. <strong>InputsFile</strong> 매개변수. 시계열 입력 파일은 텍스트 형식의 파일입니다. 이 파일에는 헤더 줄이 없습니다.
@@ -243,7 +243,7 @@
 </table>
 </div>
 <div class="section" id="applied-loads">
-<h3><span class="section-number">4.8.3.2.4. </span>적용된 하중<a class="headerlink" href="#applied-loads" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.8.3.2.4. </span>적용된 하중<a class="headerlink" href="#applied-loads" title="이 제목의 고유 링크"></a></h3>
 <p>입력 파일의 다음 섹션에서는 구조의 지정된 접합부에 하중을 적용하는 옵션을 제공합니다.
 <strong>nAppliedLoads</strong> [-]는 다음 표에 나열된 적용 하중 수를 지정합니다. 사용자는 정상 하중과 비정상 하중의 조합을 지정할 수 있습니다(둘 다 함께 추가됨). 하중은 전역 좌표계에 있습니다. 정상 하중은 테이블의 열(Fx, Fy, Fz, Mx, My, Mz)로 제공되는 반면, 비정상 하중은 CSV 파일로 제공됩니다. CSV 파일 이름은 테이블의 마지막 항목에 제공됩니다. 파일 이름이 비어 있으면 비정상 하중을 읽지 않습니다. 적용된 하중 테이블의 예는 다음과 같습니다.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">----------------------</span> <span class="n">LOADS</span> <span class="o">--------------------------------------------------------------------</span>
@@ -264,7 +264,7 @@
 </div>
 </div>
 <div class="section" id="subdyn-primary-input-file">
-<span id="sd-main-input-file"></span><h2><span class="section-number">4.8.3.3. </span>SubDyn 기본 입력 파일<a class="headerlink" href="#subdyn-primary-input-file" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="sd-main-input-file"></span><h2><span class="section-number">4.8.3.3. </span>SubDyn 기본 입력 파일<a class="headerlink" href="#subdyn-primary-input-file" title="이 제목의 고유 링크"></a></h2>
 <p>SubDyn 입력 파일은 하부 구조 형상, 통합 및 시뮬레이션 옵션, 유한 요소 매개변수 및 출력 채널을 정의합니다. 부재의 형상은 전역 참조 시스템(관성 프레임 좌표계)에서 변위되지 않은 하부 구조의 접합 좌표로 정의되며, 원점은 편향되지 않은 타워 중심선과 MSL의 교차점 또는 지상 기반 구조물의 경우 지면 수준입니다. 부재는 두 개의 관절을 연결합니다. 여러 멤버가 공통 조인트를 사용할 수 있습니다. 유체역학 및 중력 하중은 노드에 적용되며, 이는 부재를 여러 개로 세분화한 결과입니다(<strong>NDiv</strong> 입력) 요소(노드는 각 요소의 끝에 위치함)로, 모듈에서 계산됩니다. 부재 속성에는 외경, 두께, 재료 밀도, 영률 및 전단 계수가 포함됩니다. 부재 속성은 조인트에서 지정됩니다. 속성이 한 조인트에서 다른 조인트로 변경되면 내부 노드에 대해 선형으로 보간됩니다. 기하학적 특성과 달리 재료 특성은 단일 부재 내에서 변경할 수 없습니다.</p>
 <p>향후 릴리스에서는 다양한 단면의 멤버, 즉 비원형 멤버를 허용할 예정입니다. 이러한 이유로 입력 파일에는 향후 모듈이 비원형 구성원의 올바른 방향을 식별할 수 있도록 하는 방향 코사인 식별 전용 섹션이 있습니다. 현재 릴리스에서는 관형(원형) 부재만 허용됩니다.</p>
 <p>파일은 여러 기능 섹션으로 구성됩니다. 각 섹션은 SubDyn 모델 및 하위 구조의 측면에 해당합니다.</p>
@@ -272,7 +272,7 @@
 <p>샘플 SubDyn 기본 입력 파일은 다음과 같습니다. <a class="reference internal" href="appendixA.html#sd-appendix-a"><span class="std std-numref">섹션 4.8.9</span></a>.</p>
 <p>입력 파일은 사용자를 위한 것이지만 소프트웨어에서는 사용되지 않는 두 줄의 헤더 정보로 시작됩니다.</p>
 <div class="section" id="simulation-control-parameters">
-<h3><span class="section-number">4.8.3.3.1. </span>시뮬레이션 제어 매개변수<a class="headerlink" href="#simulation-control-parameters" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.8.3.3.1. </span>시뮬레이션 제어 매개변수<a class="headerlink" href="#simulation-control-parameters" title="이 제목의 고유 링크"></a></h3>
 <p>사용자는 <strong>Echo</strong> SubDyn가 SubDyn 입력 파일의 내용을 에코하도록 하려면 플래그를 TRUE에 지정합니다(입력 파일의 오류를 디버깅하는 데 유용함). 에코 파일의 명명 규칙은 다음과 같습니다.
 <strong>OutRootName.SD.ech</strong>. <strong>OutRootName</strong> SubDyn 독립 실행형을 실행할 때 드라이버 입력 파일의 SUBDYN 섹션에 지정되거나, 결합 시뮬레이션을 실행할 때 FAST의 기본 입력 파일에서 FAST에 의해 지정됩니다.</p>
 <p><strong>SDdeltaT</strong> 통합의 고정 시간 간격을 초 단위로 지정합니다. 'DEFAULT' 키워드는 모듈이 드라이버 코드(FAST/독립 실행형 드라이버 프로그램)에 규정된 시간 단계를 사용해야 함을 나타내는 데 사용될 수 있습니다.</p>
@@ -280,7 +280,7 @@
 <p><strong>SttcSolve</strong> 정적 개선 방법(SIM, 참조) 여부를 지정하는 플래그입니다. <a class="reference internal" href="theory.html#sd-sim"><span class="std std-numref">섹션 4.8.6.6.6</span></a>)을 채용하게 됩니다. 이 방법을 통해 C-B 감소에 의해 고려되지 않은 모든(고주파) 모드가 준정적으로 처리됩니다. 이 처리는 정적 중력, 부력 하중, 터빈에서 전달되는 고주파 하중과 같은 효과를 포착하는 데 필요한 유지 모드 수를 최소화하는 데 도움이 됩니다. True로 설정하는 것이 좋습니다.</p>
 </div>
 <div class="section" id="fea-and-craig-bampton-parameters">
-<h3><span class="section-number">4.8.3.3.2. </span>FEA 및 Craig-Bampton 매개변수<a class="headerlink" href="#fea-and-craig-bampton-parameters" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.8.3.3.2. </span>FEA 및 Craig-Bampton 매개변수<a class="headerlink" href="#fea-and-craig-bampton-parameters" title="이 제목의 고유 링크"></a></h3>
 <p><strong>FEMMod</strong> 유한 요소 공식화에 대해 다음 옵션 중 하나를 지정합니다. 1) 오일러-베르누이(Euler-Bernoulli); 3) 티모셴코. 테이퍼형 공식(2 및 4)은 아직 구현되지 않았으며 향후 릴리스에서 제공될 예정입니다.</p>
 <p><strong>NDiv</strong> 멤버당 요소 수를 지정합니다. 분석 노드는 요소의 끝에 위치하며, 부재당 분석 노드의 수는 다음과 같습니다. <strong>NDiv</strong> + 1. <strong>NDiv</strong> 부재의 길이에 관계없이 모든 부재에 균일하게 적용되므로 일부 부재에서는 요소가 작고 다른 부재에서는 요소가 길어질 수 있습니다. 멤버당 요소 수를 늘리면 메모리 사용량과 계산 시간이 늘어나 정확도가 높아질 수 있습니다. 우리는 다음을 사용하는 것이 좋습니다 <strong>NDiv</strong> &gt; 테이퍼형 부재를 모델링하는 경우 1입니다.</p>
 <p><strong>N모드</strong> C-B 감소에 유지할 내부 C-B 모달 DOF 수를 설정합니다. <strong>N모드</strong> = 0은 Guyan(정적) 감소에 해당합니다. 와 함께 <strong>N모드</strong> &lt; 0 (동등 <strong>CBMod</strong> 이전 버전에서는 FALSE로 설정됨) SubDyn는 모든 C-B 모드를 유지하므로 전체 유한 요소 모델과 동일한 수의 DOF가 생성됩니다.</p>
@@ -291,11 +291,11 @@
 <p>이러한 매개변수에 대한 자세한 내용과 설정 방법에 대한 지침은 섹션을 참조하세요. <a class="reference internal" href="modeling.html#sd-modeling-considerations"><span class="std std-numref">섹션 4.8.5</span></a> 및 <a class="reference internal" href="theory.html#subdyn-theory"><span class="std std-numref">섹션 4.8.6</span></a>.</p>
 </div>
 <div class="section" id="initial-rigid-body-position">
-<h3><span class="section-number">4.8.3.3.3. </span>초기 강체 위치<a class="headerlink" href="#initial-rigid-body-position" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.8.3.3.3. </span>초기 강체 위치<a class="headerlink" href="#initial-rigid-body-position" title="이 제목의 고유 링크"></a></h3>
 <p>강체 기준점으로 모델링된 부유 구조물의 경우, 즉 인터페이스 조인트가 다음에 할당되어 있습니다. <strong>TPID</strong> = 0에서 <strong>인터페이스 조인트</strong> 아래 섹션에서 사용자는 이 강체 기준점의 초기 변위를 지정해야 합니다. <strong>RBSurge</strong>, <strong>RBSway</strong>, 및 <strong>RBHeave</strong> 는 지구에 고정된 강체 기준점의 초기 변위입니다. <strong>X</strong>, <strong>Y</strong>, 및 <strong>Z</strong> 미터 단위의 방향. <strong>RBRoll</strong>, <strong>RBPitch</strong>, 및 <strong>RBYaw</strong> 는 먼저 몸체 고정 요 회전, 다음 피치 회전, 마지막 롤 회전 순서에 따른 초기 강체 회전 각도(도)입니다. 이 섹션의 모든 항목을 0으로 설정하면 시뮬레이션 시작 시 변위되지 않은 구조에 해당합니다. 고정 바닥 하위 구조가 모델링되거나 부동 구조가 다음과 같은 강체 기준점을 사용하지 않는 경우 이 섹션은 무시됩니다. <strong>TPID</strong> = 0에서 결석 <strong>인터페이스 조인트</strong> 아래 섹션.</p>
 </div>
 <div class="section" id="structure-joints">
-<h3><span class="section-number">4.8.3.3.4. </span>구조 조인트<a class="headerlink" href="#structure-joints" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.8.3.3.4. </span>구조 조인트<a class="headerlink" href="#structure-joints" title="이 제목의 고유 링크"></a></h3>
 <p>유한 요소 모델은 부재로 상호 연결된 조인트로 구성된 하부 구조를 기반으로 합니다. <strong>NJoints</strong> 는 사용자가 지정한 조인트 수이며 후속 테이블의 행 수를 결정합니다. 하나의 부재가 두 개의 관절을 연결하기 때문에, <strong>NJoints</strong> 2보다 크거나 같아야 합니다. 표에 나열된 각 관절은 고유한 정수로 식별됩니다. <strong>JointID</strong>; 1과 사이의 각 정수
 <strong>NJoints</strong> 테이블에 있어야 하지만 순차적일 필요는 없습니다. (<em>X</em>,<em>Y</em>,<em>Z</em>) 각 관절의 좌표는 하위 구조(SS) 좌표계에 지정되며 이는 전역 관성 프레임 좌표계와 일치합니다. <strong>JointXss</strong>,
 <strong>JointYss</strong>, 및 <strong>JointZss</strong>, 각각. 이 버전의 SubDyn는 여러 부재가 공통 조인트에서 만날 때 중첩을 고려하지 않으므로 전체 하부구조 질량을 과대평가하는 경향이 있습니다. 멤버 중첩 및 노드 오프셋 계산은 SubDyn의 향후 릴리스에서 고려될 예정입니다. 다섯 번째 열은 다음을 지정합니다. <strong>JointType</strong> (보다 <a class="reference internal" href="theory.html#sd-fem"><span class="std std-numref">섹션 4.8.6.4</span></a>):</p>
@@ -318,7 +318,7 @@
 </div>
 </div>
 <div class="section" id="base-reaction-joints">
-<h3><span class="section-number">4.8.3.3.5. </span>베이스 반력 조인트<a class="headerlink" href="#base-reaction-joints" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.8.3.3.5. </span>베이스 반력 조인트<a class="headerlink" href="#base-reaction-joints" title="이 제목의 고유 링크"></a></h3>
 <p>SubDyn에서는 사용자가 경계 접합을 지정해야 합니다. <strong>NReact</strong>
 완전히 구속된 구조(즉, 해저) 바닥의 조인트(앞서 정의한) 수와 동일하게 설정되어야 합니다.
 <strong>NReact</strong> 또한 후속 테이블의 행 수도 결정됩니다. 바닥이 고정된 구조의 경우, <strong>NReact</strong> 1보다 크거나 같아야 합니다. 표에 나열된 각 관절은 고유한 정수로 식별됩니다. <strong>RJointID</strong>, 이는 다음과 일치해야 합니다. <strong>JointID</strong> STRUCTURE JOINTS 테이블에서 값을 찾았습니다. 깃발 <strong>RctTDXss</strong>, <strong>RctTDYss</strong>, <strong>RctTDZss</strong>,
@@ -336,7 +336,7 @@ SSI 정보 파일의 상대 경로와 파일 이름을 가리킵니다. 실제�
 </div>
 </div>
 <div class="section" id="interface-joints">
-<h3><span class="section-number">4.8.3.3.6. </span>인터페이스 조인트<a class="headerlink" href="#interface-joints" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.8.3.3.6. </span>인터페이스 조인트<a class="headerlink" href="#interface-joints" title="이 제목의 고유 링크"></a></h3>
 <p>SubDyn에서는 사용자가 인터페이스 조인트를 지정해야 합니다. <strong>NInterf</strong>
 구조 상단의 조인트 수, 즉 전환 조각(TP)과 동일하게 설정해야 합니다. <strong>NInterf</strong> 또한 후속 테이블의 행 수도 결정됩니다. SubDyn에서, <strong>NInterf</strong> 1보다 크거나 같아야 합니다. 다음과 같은 부유 구조물의 강체 기준점을 제외하고 <strong>TPID</strong> = 0인 경우 이러한 조인트는 FAST에 연결될 때 ElastoDyn 인스턴스(FAST 설명서 참조)의 플랫폼 참조 지점에 단단히 연결되거나 SubDyn가 독립형 모드에서 실행되는 경우 TP 참조 지점에 단단히 연결된 것으로 가정됩니다. 표에 나열된 각 관절은 고유한 정수로 식별됩니다. <strong>IJointID</strong>, 이는 다음과 일치해야 합니다. <em>JointID</em>
 STRUCTURE JOINTS 테이블에서 값을 찾았습니다. 캔틸레버 조인트만 인터페이스 조인트 역할을 할 수 있습니다. 또한 동일한 강체 어셈블리에 속하는 여러 조인트를 인터페이스 조인트로 할당할 수 없습니다. (이 또한 중복됩니다.)</p>
@@ -358,7 +358,7 @@ IJointID    TPID    ItfTDXss    ItfTDYss    ItfTDZss    ItfRDXss    ItfRDYss    
 </div>
 </div>
 <div class="section" id="members">
-<h3><span class="section-number">4.8.3.3.7. </span>회원<a class="headerlink" href="#members" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.8.3.3.7. </span>회원<a class="headerlink" href="#members" title="이 제목의 고유 링크"></a></h3>
 <p><strong>NMembers</strong> 사용자가 지정한 멤버 수이며 후속 테이블의 행 수를 결정합니다. 테이블에 나열된 각 구성원은 고유한 정수로 식별됩니다. <strong>MemberID</strong>. 1과 사이의 각 정수 <strong>NMembers</strong> 테이블에 있어야 하지만 순차적일 필요는 없습니다. 멤버별로 구별되는 <strong>MemberID</strong>,
 <strong>MJointID1</strong> 시작 접합을 지정하고 <strong>MJointID2</strong>
 식별자에 해당하는 끝 관절을 지정합니다(<strong>JointID</strong>) STRUCTURE JOINTS 테이블에서. 비슷하게,
@@ -382,7 +382,7 @@ IJointID    TPID    ItfTDXss    ItfTDYss    ItfTDZss    ItfRDXss    ItfRDYss    
 </div>
 </div>
 <div class="section" id="member-cross-section-properties">
-<h3><span class="section-number">4.8.3.3.8. </span>부재 단면 속성<a class="headerlink" href="#member-cross-section-properties" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.8.3.3.8. </span>부재 단면 속성<a class="headerlink" href="#member-cross-section-properties" title="이 제목의 고유 링크"></a></h3>
 <p>SubDyn의 빔 부재는 원형, 직사각형 또는 사용자 정의 일반 단면을 갖는 직선형, 테이퍼형 및 속이 빈 것으로 가정됩니다. 이러한 빔 단면 속성은 세 개의 개별 테이블에 정의되어 있습니다.</p>
 <p>SubDyn에 필요한 원형 빔 단면의 특성은 재료 영률, <strong>YoungE</strong>, 전단 계수, <strong>ShearG</strong>및 밀도, <strong>MatDens</strong>, 부재 외경, <strong>XsecD</strong>및 부재 벽 두께, <strong>XsecT</strong>. 해당 설정을 참고하세요 <strong>XsecT</strong> 0보다 작거나 같은 값은 솔리드 섹션을 의미합니다. 사용자는 다음으로 식별되는 입력 파일의 이 섹션 내 첫 번째 테이블에 항목을 생성해야 합니다.
 <strong>PropSetID</strong>, 이러한 다섯 가지 속성의 각 고유한 조합에 대해. 구성원 속성 집합 테이블에는 다음이 포함됩니다. <strong>NPropSetsCyl</strong> 행. 구성원 속성 집합은 해당 항목으로 참조됩니다. <strong>PropSetID</strong> 위의 MEMBERS 테이블에서. 단, 직경과 두께는 개별 부재 내에서 선형 보간되지만 SubDyn는 허용되지 않습니다. <em>재료</em> 개별 멤버 내에서 변경할 속성입니다.</p>
@@ -393,7 +393,7 @@ IJointID    TPID    ItfTDXss    ItfTDYss    ItfTDZss    ItfRDXss    ItfRDYss    
 및 <em>y</em> (<strong>XsecJxx</strong>, <strong>XsecJyy</strong>), 단면 극지방 관성 모멘트(<strong>XsecJ0</strong>), 단면 비틀림 상수(<strong>XsecJt</strong>). 이 섹션에 정의된 단면 속성은 다음과 같은 임의의 빔 유형과 함께 사용할 수 있습니다. <em>MType=4</em> MEMBERS 테이블에서. 단면은 다음을 통해 방향을 바꿀 수 있습니다. <strong>MSpin</strong> 직사각형 멤버와 유사하게 MEMBERS 섹션에 입력합니다.</p>
 </div>
 <div class="section" id="cable-properties">
-<h3><span class="section-number">4.8.3.3.9. </span>케이블 속성<a class="headerlink" href="#cable-properties" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.8.3.3.9. </span>케이블 속성<a class="headerlink" href="#cable-properties" title="이 제목의 고유 링크"></a></h3>
 <p>프리텐션 케이블로 지정된 멤버(<strong>MType=2</strong>), 해당 속성은 케이블 속성 테이블에 정의되어 있습니다. 표에는 각 케이블 속성이 나열되어 있습니다. ID 속성(<strong>PropSetID</strong>), 케이블 장력 강성(<strong>EA</strong>), 재료 밀도(<strong>MatDens</strong>), 장력(<strong>T0</strong>) 및 제어 채널(<strong>CtrlChannel</strong>). 제어 채널은 ServoDyn가 전용 제어 신호를 제공하는 경우에만 사용되며, 이 경우 케이블 장력(길이 변화로 제공됨) <span class="math notranslate nohighlight">\(\Delta l\)</span>)이 동적으로 변경됩니다(참조: <a class="reference internal" href="theory.html#sd-controlcable"><span class="std std-numref">섹션 4.8.6.4.5.3</span></a>). 초기 장력 케이블의 FEM 표현은 다음과 같습니다. <a class="reference internal" href="theory.html#sd-pretensioncable"><span class="std std-numref">섹션 4.8.6.4.5</span></a>.</p>
 <p>케이블 속성 표의 예는 다음과 같습니다.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--------------------------</span> <span class="n">CABLE</span> <span class="n">PROPERTIES</span>  <span class="o">-------------------------------------</span>
@@ -406,7 +406,7 @@ IJointID    TPID    ItfTDXss    ItfTDYss    ItfTDZss    ItfRDXss    ItfRDYss    
 </div>
 </div>
 <div class="section" id="rigid-link-properties">
-<h3><span class="section-number">4.8.3.3.10. </span>강체링크 속성<a class="headerlink" href="#rigid-link-properties" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.8.3.3.10. </span>강체링크 속성<a class="headerlink" href="#rigid-link-properties" title="이 제목의 고유 링크"></a></h3>
 <p>강체링크로 지정된 부재(<strong>MType=3</strong>), 강체 링크 속성 테이블에 해당 속성이 정의되어 있습니다. 표에는 재료 밀도(<strong>MatDens</strong>) 각 강체 링크 속성에 대해. 강성 링크의 FEM 표현은 다음과 같습니다. <a class="reference internal" href="theory.html#sd-rigidlinks"><span class="std std-numref">섹션 4.8.6.4.7</span></a>.</p>
 <p>강성 링크 속성 테이블의 예는 다음과 같습니다.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-----------------------</span> <span class="n">RIGID</span> <span class="n">LINK</span> <span class="n">PROPERTIES</span> <span class="o">------------------------------------</span>
@@ -419,7 +419,7 @@ IJointID    TPID    ItfTDXss    ItfTDYss    ItfTDZss    ItfRDXss    ItfRDYss    
 </div>
 </div>
 <div class="section" id="spring-properties">
-<h3><span class="section-number">4.8.3.3.11. </span>스프링 속성<a class="headerlink" href="#spring-properties" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.8.3.3.11. </span>스프링 속성<a class="headerlink" href="#spring-properties" title="이 제목의 고유 링크"></a></h3>
 <p>스프링 요소로 지정된 멤버(<strong>MType=5</strong>), 스프링 요소 속성 테이블에 해당 속성이 정의되어 있습니다. 각 스프링 속성에 대한 표는 ID 속성(<strong>PropSetID</strong>) 및 강성 계수(<strong>K11</strong>, <strong>K12</strong>, <strong>K13</strong>, <strong>K14</strong>, <strong>K15</strong>, <strong>K16</strong>, <strong>K22</strong>,
 <strong>K23</strong>, <strong>K24</strong>, <strong>K25</strong>, <strong>K26</strong>,  <strong>K33</strong>, <strong>K34</strong>, <strong>K35</strong>, <strong>K36</strong>, <strong>K44</strong>, <strong>K45</strong>,
 <strong>K46</strong>, <strong>K55</strong>, <strong>K56</strong>, <strong>K66</strong>). 강성 행렬은 대칭으로 간주되며 대각선(kii) 및 교차 결합(kij) 계수를 포함합니다. 스프링 요소의 FEM 표현은 다음과 같습니다. <a class="reference internal" href="theory.html#sd-springelement"><span class="std std-numref">섹션 4.8.6.4.8</span></a>.</p>
@@ -433,11 +433,11 @@ IJointID    TPID    ItfTDXss    ItfTDYss    ItfTDZss    ItfRDXss    ItfRDYss    
 </div>
 </div>
 <div class="section" id="member-cosine-matrices-cosm-i-j">
-<h3><span class="section-number">4.8.3.3.12. </span>멤버 코사인 행렬 COSM(i,j)<a class="headerlink" href="#member-cosine-matrices-cosm-i-j" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.8.3.3.12. </span>멤버 코사인 행렬 COSM(i,j)<a class="headerlink" href="#member-cosine-matrices-cosm-i-j" title="이 제목의 고유 링크"></a></h3>
 <p><strong>NCOSMs</strong> 각 고유한 회원 오리엔테이션 세트에 대해 하나씩 행을 제공해야 합니다. 테이블의 각 행에는 행렬 요소에 대한 방향 코사인 행렬(COSM11, COSM12,…COSM33)의 9개 항목이 나열됩니다. 각 행은 각각 x(COSM11, COSM12, COSM13), y(COSM21, COSM22, COSM23) 및 z(COSM31, COSM32, COSM33) 방향의 주축에 대한 전역 좌표계의 벡터입니다. 내부적으로 SubDyn는 제공된 이 행렬을 방향 코사인 행렬의 정의와 일치하도록 전치합니다. <span class="math notranslate nohighlight">\([ \mathbf{D_c} ]\)</span> SubDyn(Eq. <a class="reference internal" href="theory.html#equation-dc">(4.110)</a>). 내부 계산과 동일한 결과를 얻으려면 제공된 벡터를 매우 높은 수준의 정밀도로 지정해야 합니다.</p>
 </div>
 <div class="section" id="joint-additional-concentrated-masses">
-<h3><span class="section-number">4.8.3.3.13. </span>공동 추가 집중 질량<a class="headerlink" href="#joint-additional-concentrated-masses" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.8.3.3.13. </span>공동 추가 집중 질량<a class="headerlink" href="#joint-additional-concentrated-masses" title="이 제목의 고유 링크"></a></h3>
 <p>SubDyn는 받아들일 수 있습니다 <strong>NCmass</strong> 관절에 정의된 덩어리 질량/관성. 다음 테이블에는 <strong>NCmass</strong> 행은 각 관절에 대해 다음과 같이 구별됩니다. <strong>CMJointID</strong> (식별자에 해당, <strong>JointID</strong>, STRUCTURE JOINTS 테이블에서), <strong>JMass</strong>
 집중 질량 값을 지정합니다. <strong>JMXX</strong>, <strong>JMYY</strong>, <strong>JMZZ</strong>
 SS 좌표계(요소 시스템 아님)를 기준으로 질량 2차 관성 모멘트를 지정합니다. SubDyn의 최신 버전에서는 6개의 추가 열을 허용합니다(<strong>JMXY</strong>, <strong>JMXZ</strong>, <strong>JMYZ</strong>, <strong>MCGX</strong>, <strong>MCGY</strong>, <strong>MCGZ</strong>) 비대각선 항을 지정합니다.</p>
@@ -463,7 +463,7 @@ z m  &amp; 0    &amp; -x m &amp; J_{xy} - m x y       &amp; J_{yy} + m (x^2+z^2)
 </div>
 </div>
 <div class="section" id="output-summary-and-outfile">
-<h3><span class="section-number">4.8.3.3.14. </span>출력: 요약 및 개요 파일<a class="headerlink" href="#output-summary-and-outfile" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.8.3.3.14. </span>출력: 요약 및 개요 파일<a class="headerlink" href="#output-summary-and-outfile" title="이 제목의 고유 링크"></a></h3>
 <p>입력 파일의 이 섹션에서 사용자는 원하는 출력 동작에 대한 플래그와 스위치를 설정합니다.</p>
 <p>지정 <strong>SumPrint</strong> = TRUE는 SubDyn가 이름이 있는 요약 파일을 생성하도록 합니다. <strong>OutRootName</strong>.SD.sum*. <strong>OutRootName</strong> 독립형 모드에서 SubDyn를 실행할 때 드라이버 입력 파일의 SUBDYN 섹션에 지정되거나 결합 시뮬레이션을 실행할 때 FAST 입력 파일에 지정됩니다. 요약 파일에 대한 자세한 내용은 섹션 4.2를 참조하세요.</p>
 <p>다음 두 입력은 모드 형상을 디스크에 기록해야 하는지 여부를 지정합니다.  <strong>OutCBModes</strong> Guyan 및 Craig-Bampton 모드의 출력을 제어하는 ​​플래그입니다. 비슷하게, <strong>OutFEMModes</strong>, FEM 모드(CB 감소 이전에 제약 조건이 있는 전체 시스템)의 출력을 제어합니다. 현재는 처음 30개의 FEM 모드만 디스크에 기록되지만 사용자가 선택한 CB 모드는 모두 기록됩니다. 두 입력 모두에 대해 다음 옵션을 사용할 수 있습니다: 0, 출력 없음, 1, JSON 형식으로 출력. JSON 파일에는 노드 좌표, 노드 간 연결, 각 모드 및 노드의 변위, 각 모드의 주파수가 포함됩니다. JSON 형식 파서를 사용하는 Matlab 또는 Python을 사용하면 이러한 파일을 쉽게 읽을 수 있습니다. 파일은 viz3danim 도구를 사용하여 모드를 시각화하기 위해 열 수 있습니다(참조: <a class="reference external" href="https://ebranlard.github.io/viz3Danim/" target="_blank" rel="noopener noreferrer">라이브 버전</a>
@@ -483,16 +483,16 @@ z m  &amp; 0    &amp; -x m &amp; J_{xy} - m x y       &amp; J_{yy} + m (x^2+z^2)
 </div>
 </div>
 <div class="section" id="member-output-list">
-<span id="sd-member-output"></span><h3><span class="section-number">4.8.3.3.15. </span>회원 출력 목록<a class="headerlink" href="#member-output-list" title="이 제목에 대한 영구 링크"></a></h3>
+<span id="sd-member-output"></span><h3><span class="section-number">4.8.3.3.15. </span>회원 출력 목록<a class="headerlink" href="#member-output-list" title="이 제목의 고유 링크"></a></h3>
 <p>SubDyn는 최대 9개의 서로 다른 멤버에 대해 최대 9개의 위치에서 하중 및 운동량을 출력할 수 있으며 총 81개의 로컬 멤버 출력 위치가 가능합니다. <strong>NMOutputs</strong> 출력이 요청되는 멤버 수를 지정합니다. 사용자는 요청된 각 멤버에 대해 테이블 ​​항목을 생성해야 합니다. 이 테이블의 행 내에서, <strong>MemberID</strong> MEMBERS 테이블에 지정된 ID이고, <strong>NOutCnt</strong> 출력을 생성할 멤버의 노드 수를 지정합니다. <strong>NodeCnt</strong> 출력을 위해 시작 조인트(노드 1)에서 끝 조인트(노드)까지의 정수 인덱스로 해당 노드 번호(각 노드에 대해 동일한 줄에 별도의 항목)를 지정합니다. <strong>NDiv</strong> + 1) 회원의. SDOutList 섹션에 지정된 출력은 이러한 위치에서 실제로 출력되는 양을 결정합니다.</p>
 </div>
 <div class="section" id="output-channels-sdoutlist-section">
-<h3><span class="section-number">4.8.3.3.16. </span>출력 채널 - SDOutList 섹션<a class="headerlink" href="#output-channels-sdoutlist-section" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.8.3.3.16. </span>출력 채널 - SDOutList 섹션<a class="headerlink" href="#output-channels-sdoutlist-section" title="이 제목의 고유 링크"></a></h3>
 <p>이 섹션에서는 SubDyn에 의해 출력되는 수량을 지정합니다. 하나 이상의 출력 매개변수 이름을 포함하는 따옴표 붙은 문자열을 포함하는 하나 이상의 행을 입력하십시오. 쉼표, 세미콜론, 공백 및/또는 탭의 조합으로 출력 매개변수 이름을 구분합니다. 매개변수 이름 앞에 빼기 기호, "-", 밑줄, "_" 또는 "m" 또는 "M" 문자가 붙은 경우 SubDyn는 데이터를 쓰기 전에 해당 채널의 값에 -1을 곱합니다. 매개변수는 입력 파일에 나열된 순서대로 작성됩니다. SubDyn를 사용하면 여러 줄을 사용할 수 있으므로 사용자는 목록을 의미 있는 그룹으로 나누고 줄을 더 짧게 만들 수 있습니다. 줄의 닫는 따옴표 뒤에 주석을 입력할 수도 있습니다. 줄 시작 부분이나 줄 시작 부분에 있는 따옴표 붙은 문자열의 시작 부분에 "END"라는 문자열이 포함된 줄을 입력하면 SubDyn가 더 많은 채널 이름 줄 검색을 중단하게 됩니다. 모달 기구학 및 부재 노드, 베이스, 인터페이스 관련 기구학 및 하중 수량을 선택할 수 있습니다. 멤버 노드 관련 데이터는 섹션 에 설명된 구성을 따릅니다. SubDyn가 알 수 없거나 유효하지 않은 채널 이름을 발견하면 오류 메시지를 인쇄하고 실행을 중단합니다. 참고하세요 <a class="reference internal" href="appendixC.html#sd-appendix-c"><span class="std std-numref">섹션 4.8.11</span></a> 가능한 출력 매개변수와 해당 이름의 전체 목록을 보려면</p>
 </div>
 </div>
 <div class="section" id="ssi-input-file">
-<span id="sd-ssi-inputfile"></span><h2><span class="section-number">4.8.3.4. </span>SSI 입력 파일<a class="headerlink" href="#ssi-input-file" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="sd-ssi-inputfile"></span><h2><span class="section-number">4.8.3.4. </span>SSI 입력 파일<a class="headerlink" href="#ssi-input-file" title="이 제목의 고유 링크"></a></h2>
 <p>개별 SSI 파일(<em>SSIfiles</em>)은 제한된 각 노드에 대해 제공될 수 있으므로 SSIfiles의 최대 개수는 다음과 같습니다. <strong>NReact</strong>. SSIfile에서는 SSI 질량 행렬에 대해 최대 21개의 요소와 최대 21개의 SSI 강성 행렬 요소를 제공할 수 있습니다. 질량과 강성 요소는 말뚝과 지반 효과를 모두 설명합니다. 이 시점에서는 추가 댐핑을 제공할 수 없습니다.</p>
 <p>각 요소 값에는 실제 요소를 식별하는 문자열 레이블이 함께 제공되므로 요소의 순서는 중요하지 않습니다. 허용되는 강성 행렬 레이블은 'Kxx', 'Kxy', 'Kyy', 'Kxz', 'Kyz', 'Kzz', 'Kxtx', 'Kytx', 'Kztx', 'Ktxtx', 'Kxty', 'Kyty', 'Kzty', 'Ktxty', 'Ktyty', 'Kxtz', 'Kytz', 'Kztz'입니다. 'Ktxtz', 'Ktytz', 'Ktztz'.</p>
 <p>행렬 요소가 제공되지 않으면 기본적으로 무한대(즉, '거대한' 기계)로 설정됩니다.</p>
@@ -506,8 +506,8 @@ z m  &amp; 0    &amp; -x m &amp; J_{xy} - m x y       &amp; J_{yy} + m (x^2+z^2)
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
-        <a href="running_sd.html" class="btn btn-neutral float-left" title="4.8.2. SubDyn 실행" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="running_sd.html" class="btn btn-neutral float-left" title="4.8.2. SubDyn 실행" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
         <a href="output_files.html" class="btn btn-neutral float-right" title="4.8.4. 출력 파일" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

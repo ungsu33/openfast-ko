@@ -21,7 +21,7 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../genindex.html">
-    <link rel="search" title="찾다" href="../search.html">
+    <link rel="search" title="검색" href="../search.html">
     <link rel="next" title="4. 사용자 문서" href="user/index.html">
     <link rel="prev" title="2.8.2. CMake 및 Cygwin 64비트를 사용하여 Windows에서 OpenFAST 빌드" href="install/install_cygwin.html"> 
 <link rel="stylesheet" href="../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/working.html"></head>
@@ -48,9 +48,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="this_doc.html">1. 이 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="this_doc.html">1. 이 문서에 대하여</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">3. OpenFAST 작업</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. OpenFAST 사용하기</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#quick-start-running-openfast">3.1. 빠른 시작: OpenFAST 실행</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#open-a-terminal">3.1.1. 터미널 열기</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#navigate-to-your-simulation-directory">3.1.2. 시뮬레이션 디렉터리로 이동</a></li>
@@ -91,16 +91,16 @@
 <li class="toctree-l1"><a class="reference internal" href="user/index.html">4. 사용자 문서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="license.html">7. 라이센스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">7. 라이선스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="acknowledgements.html">9. 감사의 말씀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgements.html">9. 감사의 글</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../review.html">문서 상세 리뷰</a></li><li><a href="../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">OpenFAST</a>
       </nav>
@@ -109,10 +109,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home" aria-label="집"></a></li>
-      <li class="breadcrumb-item active"><span class="section-number">3. </span>OpenFAST 작업</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="홈"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3. </span>OpenFAST 사용하기</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/source/working.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
+            <a href="../_sources/source/working.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -121,10 +121,10 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="working-with-openfast">
-<span id="working-with-of"></span><h1><span class="section-number">3. </span>OpenFAST 작업<a class="headerlink" href="#working-with-openfast" title="이 제목에 대한 영구 링크"></a></h1>
+<span id="working-with-of"></span><h1><span class="section-number">3. </span>OpenFAST 사용하기<a class="headerlink" href="#working-with-openfast" title="이 제목의 고유 링크"></a></h1>
 <p>이 섹션에서는 OpenFAST의 일반적인 사용 사례 중 일부에 대한 지원을 제공합니다. 이는 사용자가 사용 가능한 OpenFAST 실행 파일을 가지고 있다고 가정합니다(참조: <a class="reference internal" href="install/index.html#installation"><span class="std std-ref">OpenFAST 설치</span></a> 설치용).</p>
 <div class="section" id="quick-start-running-openfast">
-<h2><span class="section-number">3.1. </span>빠른 시작: OpenFAST 실행<a class="headerlink" href="#quick-start-running-openfast" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">3.1. </span>빠른 시작: OpenFAST 실행<a class="headerlink" href="#quick-start-running-openfast" title="이 제목의 고유 링크"></a></h2>
 <p>이 Quick Start에서는 OpenFAST를 실행하는 방법을 설명합니다. OpenFAST는 일반적으로 터미널(명령 프롬프트 또는 명령줄이라고도 함)에서 실행됩니다. OpenFAST를 실행하는 가장 간단한 방법은 OpenFAST 실행 파일을 작업 디렉터리에 복사한 다음 해당 디렉터리에서 터미널을 여는 것입니다. 따라서 단계는 다음과 같습니다.</p>
 <blockquote>
 <div><ul class="simple">
@@ -137,7 +137,7 @@
 </div></blockquote>
 <p>단계는 아래에 자세히 설명되어 있습니다.</p>
 <div class="section" id="open-a-terminal">
-<h3><span class="section-number">3.1.1. </span>터미널 열기<a class="headerlink" href="#open-a-terminal" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">3.1.1. </span>터미널 열기<a class="headerlink" href="#open-a-terminal" title="이 제목의 고유 링크"></a></h3>
 <p>특정 운영 체제에서 터미널을 여는 방법을 알아보려면 다음 검색어를 사용해 보세요.</p>
 <blockquote>
 <div><ul class="simple">
@@ -148,7 +148,7 @@
 </div></blockquote>
 </div>
 <div class="section" id="navigate-to-your-simulation-directory">
-<h3><span class="section-number">3.1.2. </span>시뮬레이션 디렉터리로 이동<a class="headerlink" href="#navigate-to-your-simulation-directory" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">3.1.2. </span>시뮬레이션 디렉터리로 이동<a class="headerlink" href="#navigate-to-your-simulation-directory" title="이 제목의 고유 링크"></a></h3>
 <p>터미널에서 다음 명령을 사용하여 폴더 간을 탐색할 수 있습니다. <cite>CD</cite>. 이 예에서는 시뮬레이션 디렉터리가 다음과 같다고 가정합니다. <cite>시뮬레이션/테스트</cite>따라서 이 디렉토리로 이동하려면 다음을 입력해야 합니다.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>simulations
 <span class="nb">cd</span><span class="w"> </span><span class="nb">test</span>
@@ -161,7 +161,7 @@
 <p>상위 디렉토리로 이동하려면 다음을 사용할 수 있습니다. <cite>CD ..</cite>. 디렉터리 경로에 공백이 포함되어 있으면 경로 주위에 따옴표를 사용하십시오. 일반적으로 디렉터리 및 파일 이름에 공백을 사용하지 않는 것이 좋습니다. 경로는 절대 경로일 수도 있습니다. 예: <cite>CD C:/시뮬레이션/테스트</cite>.</p>
 </div>
 <div class="section" id="run-openfast-to-check-the-version-number">
-<h3><span class="section-number">3.1.3. </span>OpenFAST를 실행하여 버전 번호를 확인하세요.<a class="headerlink" href="#run-openfast-to-check-the-version-number" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">3.1.3. </span>OpenFAST를 실행하여 버전 번호를 확인하세요.<a class="headerlink" href="#run-openfast-to-check-the-version-number" title="이 제목의 고유 링크"></a></h3>
 <p>터미널이 OpenFAST가 있는 디렉터리에 있으면 OpenFAST를 실행하고 다음과 같이 버전을 확인할 수 있습니다.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./openfast<span class="w"> </span>/h
 </pre></div>
@@ -181,7 +181,7 @@
 </div>
 </div>
 <div class="section" id="run-your-first-openfast-simulation">
-<h3><span class="section-number">3.1.4. </span>첫 번째 OpenFAST 시뮬레이션 실행<a class="headerlink" href="#run-your-first-openfast-simulation" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">3.1.4. </span>첫 번째 OpenFAST 시뮬레이션 실행<a class="headerlink" href="#run-your-first-openfast-simulation" title="이 제목의 고유 링크"></a></h3>
 <p>시뮬레이션을 실행하는 일반적인 구문은 다음과 같습니다.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./openfast<span class="w"> </span>InputFile.fst
 </pre></div>
@@ -212,9 +212,9 @@
 </div>
 </div>
 <div class="section" id="troubleshooting-a-simulation">
-<h2><span class="section-number">3.2. </span>시뮬레이션 문제 해결<a class="headerlink" href="#troubleshooting-a-simulation" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">3.2. </span>시뮬레이션 문제 해결<a class="headerlink" href="#troubleshooting-a-simulation" title="이 제목의 고유 링크"></a></h2>
 <div class="section" id="simple-troubleshooting">
-<span id="troubleshooting"></span><h3><span class="section-number">3.2.1. </span>간단한 문제 해결<a class="headerlink" href="#simple-troubleshooting" title="이 제목에 대한 영구 링크"></a></h3>
+<span id="troubleshooting"></span><h3><span class="section-number">3.2.1. </span>간단한 문제 해결<a class="headerlink" href="#simple-troubleshooting" title="이 제목의 고유 링크"></a></h3>
 <p>시뮬레이션 중에 오류가 발생하면 OpenFAST는 다음 종류의 메시지와 함께 중단됩니다.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>FAST<span class="w"> </span>encountered<span class="w"> </span>an<span class="w"> </span>error<span class="w"> </span>during<span class="w"> </span>module<span class="w"> </span>initialization.
 Simulation<span class="w"> </span>error<span class="w"> </span>level:<span class="w"> </span>FATAL<span class="w"> </span>ERROR
@@ -224,7 +224,7 @@ Aborting<span class="w"> </span>OpenFAST.
 </div>
 <p>이 메시지 위의 줄은 오류의 성격을 나타내며 이 정보는 시뮬레이션 문제를 해결하는 데 사용될 수 있습니다.</p>
 <div class="section" id="typical-errors">
-<h4><span class="section-number">3.2.1.1. </span>일반적인 오류<a class="headerlink" href="#typical-errors" title="이 제목에 대한 영구 링크"></a></h4>
+<h4><span class="section-number">3.2.1.1. </span>일반적인 오류<a class="headerlink" href="#typical-errors" title="이 제목의 고유 링크"></a></h4>
 <p>몇 가지 일반적인 오류와 해결 방법은 다음과 같습니다.</p>
 <ul class="simple">
 <li><p><em>입력 파일 "FILE"를 찾을 수 없습니다</em>: 표시된 대로 입력 파일을 찾을 수 없습니다. Linux 및 Mac 플랫폼은 대소문자를 구분하며 슬래시가 필요합니다. OpenFAST는 상대 또는 절대 경로를 허용합니다. 상대 경로는 참조되는 파일을 기준으로 표현됩니다.</p></li>
@@ -238,7 +238,7 @@ Aborting<span class="w"> </span>OpenFAST.
 </div>
 </div>
 <div class="section" id="typical-warnings">
-<h4><span class="section-number">3.2.1.2. </span>일반적인 경고<a class="headerlink" href="#typical-warnings" title="이 제목에 대한 영구 링크"></a></h4>
+<h4><span class="section-number">3.2.1.2. </span>일반적인 경고<a class="headerlink" href="#typical-warnings" title="이 제목의 고유 링크"></a></h4>
 <p>일부 경고는 때때로 다른 모듈(일반적으로 공기 역학 모듈)에서 발생하여 명령 창에 보고될 수 있습니다.</p>
 <blockquote>
 <div><ul class="simple">
@@ -250,7 +250,7 @@ Aborting<span class="w"> </span>OpenFAST.
 </div>
 </div>
 <div class="section" id="advanced-troubleshooting">
-<h3><span class="section-number">3.2.2. </span>고급 문제 해결<a class="headerlink" href="#advanced-troubleshooting" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">3.2.2. </span>고급 문제 해결<a class="headerlink" href="#advanced-troubleshooting" title="이 제목의 고유 링크"></a></h3>
 <p>어떤 경우에는 시뮬레이션 중에 시뮬레이션이 중단될 수 있습니다(<em>FAST에서 시뮬레이션 시간 T에 오류가 발생했습니다.</em>) 또는 실행되지만 몇 가지 시간 단계(최소 1시간 단계) 후에 비어 있거나 "NaN" 출력이 있을 수 있습니다. 이러한 오류는 일반적으로 모델이 비물리적이기 때문에 발생합니다. 이러한 경우 명령 창에 다음과 같은 종류의 오류 메시지가 표시될 수 있습니다.</p>
 <ul class="simple">
 <li><p><em>작은 각도 가정이 위반되었습니다.</em> 또는 <em>GetSmllRotAngs()의 각도가 0.4 라디안보다 큽니다.</em>: 이러한 경고는 구조의 일부가 큰 회전을 겪고 있음을 나타내는 반면 OpenFAST의 일부 모듈은 작은 각도 근사치에서만 유효합니다.</p></li>
@@ -278,7 +278,7 @@ Aborting<span class="w"> </span>OpenFAST.
 </ul>
 </div>
 <div class="section" id="troubleshooting-for-specific-modules">
-<span id="moduletroubleshooting"></span><h3><span class="section-number">3.2.3. </span>특정 모듈 문제 해결<a class="headerlink" href="#troubleshooting-for-specific-modules" title="이 제목에 대한 영구 링크"></a></h3>
+<span id="moduletroubleshooting"></span><h3><span class="section-number">3.2.3. </span>특정 모듈 문제 해결<a class="headerlink" href="#troubleshooting-for-specific-modules" title="이 제목의 고유 링크"></a></h3>
 <p>OpenFAST의 모든 모듈에는 시뮬레이션이 물리적인지 확인하기 위해 일정 수준의 전문 지식이 필요합니다. 다양한 모듈에 대한 지침은 이 문서 전체에서 찾을 수 있습니다. 특히 다음을 참조하세요.</p>
 <ul class="simple">
 <li><p>AeroDyn: <a class="reference internal" href="user/aerodyn/modeling.html#ad-modeling"><span class="std std-ref">모델링 시 고려사항</span></a></p></li>
@@ -290,10 +290,10 @@ Aborting<span class="w"> </span>OpenFAST.
 </div>
 </div>
 <div class="section" id="scripting-and-other-support-tools">
-<h2><span class="section-number">3.3. </span>스크립팅 및 기타 지원 도구<a class="headerlink" href="#scripting-and-other-support-tools" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">3.3. </span>스크립팅 및 기타 지원 도구<a class="headerlink" href="#scripting-and-other-support-tools" title="이 제목의 고유 링크"></a></h2>
 <p>NLR는 OpenFAST와 함께 작동하는 여러 스크립트 저장소를 유지 관리합니다. 예를 들어 스크립트는 OpenFAST의 입력 및 출력을 읽고, 시각화하고, 여러 시뮬레이션 입력을 생성하고 후처리하는 데 사용할 수 있습니다. 이러한 응용 프로그램 중 일부는 다음 섹션에서 자세히 설명합니다.</p>
 <div class="section" id="nlr-toolboxes">
-<h3><span class="section-number">3.3.1. </span>NLR 도구 상자<a class="headerlink" href="#nlr-toolboxes" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">3.3.1. </span>NLR 도구 상자<a class="headerlink" href="#nlr-toolboxes" title="이 제목의 고유 링크"></a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/OpenFAST/openfast_toolbox" target="_blank" rel="noopener noreferrer">openfast_toolbox</a>: OpenFAST와 함께 작동하고 세분성을 가지고 간단한 작업을 수행하는 하위 수준 Python 도구 모음입니다.</p></li>
 <li><p><a class="reference external" href="https://github.com/OpenFAST/matlab-toolbox" target="_blank" rel="noopener noreferrer">MATLAB 도구 상자</a>: OpenFAST와 함께 작동하는 낮은 수준의 Matlab 도구 모음입니다.</p></li>
@@ -302,7 +302,7 @@ Aborting<span class="w"> </span>OpenFAST.
 <p>사용자는 개별 저장소의 문서를 참조하고 개별 GitHub 페이지에서 관련 문제를 논의하도록 초대됩니다. NLR 저장소에 대한 커뮤니티의 기여를 환영하고 권장합니다.</p>
 </div>
 <div class="section" id="other-related-nlr-tools">
-<h3><span class="section-number">3.3.2. </span>기타 관련 NLR 도구<a class="headerlink" href="#other-related-nlr-tools" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">3.3.2. </span>기타 관련 NLR 도구<a class="headerlink" href="#other-related-nlr-tools" title="이 제목의 고유 링크"></a></h3>
 <p>NLR가 관리하는 추가 저장소는 다음과 같습니다.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/NLRWindSystems/WISDEM" target="_blank" rel="noopener noreferrer">WISDEM</a>: 전체 풍력 발전소 에너지 비용(COE)을 평가하기 위한 모델, 파일 IO, (DLC) 사례 생성, 극좌표 조작, 시각화 등도 포함되어 있습니다!</p></li>
@@ -310,7 +310,7 @@ Aborting<span class="w"> </span>OpenFAST.
 </ul>
 </div>
 <div class="section" id="third-party-tools">
-<h3><span class="section-number">3.3.3. </span>타사 도구<a class="headerlink" href="#third-party-tools" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">3.3.3. </span>타사 도구<a class="headerlink" href="#third-party-tools" title="이 제목의 고유 링크"></a></h3>
 <ul>
 <li><p><a class="reference external" href="https://github.com/ebranlard/pyDatView" target="_blank" rel="noopener noreferrer">pyDatView</a> : OpenFAST, CSV 파일의 입력 및 출력 파일과 다른 풍력 에너지 소프트웨어(Hawc2, Flex, Bladed)의 기타 파일을 플롯하는 도구입니다. 여러 파일을 한 번에 열어 다양한 시뮬레이션 결과를 비교할 수 있습니다.</p></li>
 <li><p><a class="reference external" href="https://gitlab.windenergy.dtu.dk/toolbox/WindEnergyToolbox" target="_blank" rel="noopener noreferrer">WindEnergyToolbox</a>: DTU에서 개발한 라이브러리로 다양한 파일 형식을 일부 지원합니다.</p></li>
@@ -328,7 +328,7 @@ Aborting<span class="w"> </span>OpenFAST.
 </div>
 </div>
 <div class="section" id="open-source-openfast-models">
-<span id="models-of"></span><h2><span class="section-number">3.4. </span>오픈 소스 OpenFAST 모델<a class="headerlink" href="#open-source-openfast-models" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="models-of"></span><h2><span class="section-number">3.4. </span>오픈 소스 OpenFAST 모델<a class="headerlink" href="#open-source-openfast-models" title="이 제목의 고유 링크"></a></h2>
 <p>오픈 소스 OpenFAST 풍력 터빈 모델은 여기에서 찾을 수 있습니다.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/OpenFAST/r-test" target="_blank" rel="noopener noreferrer">r-테스트</a>: OpenFAST에 대한 회귀 테스트에는 OpenFAST 및 해당 드라이버(AeroDyn, SubDyn, HydroDyn 등)에 대한 모델이 포함되어 있습니다. 이 저장소는 모델의 "데이터베이스"로 사용하기 위한 것이 아니지만 입력 파일이 항상 최신 상태로 유지된다는 장점이 있습니다. <a class="reference external" href="https://openfast.readthedocs.io/en/master/source/user/api_change.html" target="_blank" rel="noopener noreferrer">형식 사양</a> . 이전 버전의 OpenFAST 입력 파일은 이 저장소의 git 태그를 통해 액세스할 수 있습니다.</p></li>
@@ -337,7 +337,7 @@ Aborting<span class="w"> </span>OpenFAST.
 </ul>
 </div>
 <div class="section" id="visualizing-inputs-and-outputs-files">
-<span id="visualizing-input-output-of"></span><h2><span class="section-number">3.5. </span>입력 및 출력 파일 시각화<a class="headerlink" href="#visualizing-inputs-and-outputs-files" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="visualizing-input-output-of"></span><h2><span class="section-number">3.5. </span>입력 및 출력 파일 시각화<a class="headerlink" href="#visualizing-inputs-and-outputs-files" title="이 제목의 고유 링크"></a></h2>
 <p>OpenFAST의 입력 및 출력 파일을 시각화하려면 다음 그래픽 인터페이스 도구를 사용할 수 있습니다.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/ebranlard/pyDatView" target="_blank" rel="noopener noreferrer">pyDatView</a> : OpenFAST, CSV 파일의 입력 및 출력 파일과 다른 풍력 에너지 소프트웨어(Hawc2, Flex, Bladed)의 기타 파일을 플롯하는 도구입니다. 여러 파일을 한 번에 열어 다양한 시뮬레이션 결과를 비교할 수 있습니다.</p></li>
@@ -349,16 +349,16 @@ Aborting<span class="w"> </span>OpenFAST.
 <p>고급 사례의 경우 사용자는 입력 파일 읽기 및 플로팅을 스크립트로 작성할 수 있습니다. Python 및 Matlab 도구는 각각 다음에서 제공됩니다. <a class="reference external" href="https://github.com/OpenFAST/openfast_toolbox" target="_blank" rel="noopener noreferrer">openfast_toolbox</a> 및 <a class="reference external" href="https://github.com/OpenFAST/matlab-toolbox" target="_blank" rel="noopener noreferrer">MATLAB 도구 상자</a>. MATLAB 도구 상자에서 스크립트는 <cite>FAST2Matlab.m</cite> 및 <cite>Matlab2FAST.m</cite> 입력 파일을 읽고 쓰는 데 사용됩니다. <cite>ReadFASTbinary</cite> 바이너리를 여는 데 사용됩니다(<cite>.outb</cite>) 출력 파일. 이러한 저장소의 README 파일은 예제와 추가 문서를 가리킵니다.</p>
 </div>
 <div class="section" id="running-parametric-studies-and-design-load-cases-dlc">
-<span id="running-multiple-of"></span><h2><span class="section-number">3.6. </span>매개변수 연구 및 설계하중조건(DLC) 실행<a class="headerlink" href="#running-parametric-studies-and-design-load-cases-dlc" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="running-multiple-of"></span><h2><span class="section-number">3.6. </span>매개변수 연구 및 설계하중조건(DLC) 실행<a class="headerlink" href="#running-parametric-studies-and-design-load-cases-dlc" title="이 제목의 고유 링크"></a></h2>
 <p>파라메트릭 연구는 제공된 OpenFAST 입력 파일을 읽고 쓰는 스크립트를 사용하여 실행할 수 있습니다. <a class="reference external" href="https://github.com/OpenFAST/matlab-toolbox" target="_blank" rel="noopener noreferrer">MATLAB 도구 상자</a>
 그리고 파이썬
 <a class="reference external" href="https://github.com/OpenFAST/openfast_toolbox" target="_blank" rel="noopener noreferrer">openfast_toolbox</a>
 . openfast_toolbox는 프로세스를 자동화하기 위한 전용 Python 스크립트와 예제를 제공합니다(자세한 내용은 저장소의 README 참조). 그만큼 <cite>AeroelasticSE</cite> 모듈 <a class="reference external" href="https://github.com/NLRWindSystems/WEIS" target="_blank" rel="noopener noreferrer">WEIS</a> 표준에 명시된 설계 하중 케이스에 대한 입력 파일을 생성할 수 있습니다. 자세한 내용은 WEIS 저장소를 참조하세요.</p>
 </div>
 <div class="section" id="performing-linearization-analyses">
-<span id="linearization-analysis-of"></span><h2><span class="section-number">3.7. </span>선형화 해석 수행<a class="headerlink" href="#performing-linearization-analyses" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="linearization-analysis-of"></span><h2><span class="section-number">3.7. </span>선형화 해석 수행<a class="headerlink" href="#performing-linearization-analyses" title="이 제목의 고유 링크"></a></h2>
 <div class="section" id="background">
-<h3><span class="section-number">3.7.1. </span>배경<a class="headerlink" href="#background" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">3.7.1. </span>배경<a class="headerlink" href="#background" title="이 제목의 고유 링크"></a></h3>
 <p>많은 응용 프로그램에는 고유값 분석, 주파수 영역 분석, 관찰자를 위한 선형 상태 공간 모델 등 시스템의 선형 모델이 필요합니다. OpenFAST의 대부분 모델은 비선형이므로 기본 시스템의 선형화가 필요합니다. Linearization는 시스템의 상태 및 입력 값 세트(일반적으로 시뮬레이션의 주어진 시간)에 해당하는 특정 작동 지점에 대해 수행됩니다. 선형화의 출력은 작동 지점 부근에서 유효한 선형 상태 공간 모델(상태, 입력 및 출력과 관련된 4개의 행렬)입니다.</p>
 <p>로터가 회전하기 때문에 평형 솔루션이 존재한다면 주기적일 가능성이 높습니다. 회전 기간 동안 다양한 작동 지점(즉, 다양한 방위각 위치)에서 선형화해야 합니다.</p>
 <p>추가적인 복잡성은 OpenFAST의 상태 중 일부가 회전 기준 프레임에 있다는 것입니다(예: ElastoDyn 블레이드 상태). 고정된(비회전) 참조 프레임에 있는 시스템의 선형 상태 공간 모델을 얻으려면 다중 블레이드 좌표 변환(MBC)이 적용됩니다. 순수 주기 시스템의 경우, MBC는 서로 다른 방위각 위치의 선형화된 출력에 적용할 수 있으며, 이를 결합하여 고정 기준 프레임에서 선형화된 시스템을 형성할 수 있습니다. MBC는 3개 이상의 블레이드에만 적용됩니다. Floquet 이론에는 1개 또는 2개의 블레이드가 필요하지만 NLR에는 현재 Floquet 이론을 사용하는 후처리 프로세서가 없습니다.</p>
@@ -374,7 +374,7 @@ Aborting<span class="w"> </span>OpenFAST.
 <p>아래 섹션에서는 OpenFAST를 사용하여 선형 모델을 얻는 프로세스를 자세히 설명하고 시스템 모드의 주파수 및 감쇠를 얻기 위한 적용에 중점을 둡니다.</p>
 </div>
 <div class="section" id="linearized-models-for-one-simulation-manually">
-<h3><span class="section-number">3.7.2. </span>단일 시뮬레이션에 대한 선형화된 모델(수동)<a class="headerlink" href="#linearized-models-for-one-simulation-manually" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">3.7.2. </span>단일 시뮬레이션에 대한 선형화된 모델(수동)<a class="headerlink" href="#linearized-models-for-one-simulation-manually" title="이 제목의 고유 링크"></a></h3>
 <p>이 섹션에서는 OpenFAST를 사용하여 시스템의 선형화된 모델을 생성하는 주요 단계를 설명합니다.</p>
 <p>간단한 선형화 분석을 수행하는 단계는 다음과 같습니다.</p>
 <ol class="arabic simple">
@@ -404,13 +404,13 @@ Aborting<span class="w"> </span>OpenFAST.
 </div>
 </div>
 <div class="section" id="postprocessing">
-<h3><span class="section-number">3.7.3. </span>후처리<a class="headerlink" href="#postprocessing" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">3.7.3. </span>후처리<a class="headerlink" href="#postprocessing" title="이 제목의 고유 링크"></a></h3>
 <p>시스템의 고유 주파수를 얻기 위해 사용자는 다음을 열 수 있습니다. <cite>.lin</cite> 파일에서 상태 매트릭스를 추출합니다. <cite>A</cite> 고유값 분석을 수행합니다. 회전하는 로터의 경우 다양한 방위각 위치에서 시뮬레이션을 통해 생성된 모든 lin 파일을 열고 MBC 변환을 사용하여 변환해야 합니다. 이러한 경우를 위한 스크립트를 제공합니다.</p>
 <p>단 하나의 선형화 파일만 사용되는 경우(예: 정지 상태) 스크립트는 <cite>postproLin_OneLinFile_NoRotation</cite> 사용할 수 있습니다. 다음에서 발견됩니다. <cite>matlab-toolbox/Campbell/예제</cite> 또는 <cite>openfast_toolbox/openfast_toolbox/선형화/예제/</cite>.</p>
 <p>여러 선형화 파일을 후처리해야 하는 경우(특히 다른 방위각 위치에 해당하는 여러 파일) ​​스크립트는 <cite>postproLin_MultiLinFile_Campbel</cite> 위에서 언급한 것과 동일한 폴더에 위치하여 사용할 수 있습니다. 다른 풍속과 RPM(다른 OpenFAST 호출을 통해)에서 선형화가 수행된 경우에도 스크립트를 사용할 수 있습니다. 이러한 다양한 풍력 터빈 작동 조건에서 주파수와 감쇠를 표시하는 것을 캠벨 다이어그램이라고 합니다.</p>
 </div>
 <div class="section" id="campbell-diagrams">
-<h3><span class="section-number">3.7.4. </span>캠벨 다이어그램<a class="headerlink" href="#campbell-diagrams" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">3.7.4. </span>캠벨 다이어그램<a class="headerlink" href="#campbell-diagrams" title="이 제목의 고유 링크"></a></h3>
 <p>가까운 시일 내에 Campbell 다이어그램 생성 프로세스를 단순화하기 위한 전용 도구가 제공될 예정입니다.</p>
 <p>그때까지는 다양한 풍력 터빈 작동 조건에 대한 입력 파일을 수동으로 편집하는 프로세스를 피하기 위해 우리는 스크립트를 제공합니다. <cite>runCampbell</cite>,에서 발견됨 <cite>matlab-toolbox/Campbell/예제</cite> 또는 <cite>openfast_toolbox/openfast_toolbox/선형화/예제/</cite>. 스크립트는 참조 "fst" 파일인 템플릿 폴더에 의존합니다. 폴더를 복제하고, 풍력터빈 운전조건(풍속/rpm)별 파일을 생성한 후, OpenFAST를 실행하고 선형화 파일을 후처리한다.</p>
 <p>스크립트 <cite>runCampbell</cite> CSV 파일 세트 또는 Excel 파일을 생성합니다. 스크립트는 모드(예: 첫 번째 타워 앞뒤 모드, 첫 번째 플랩 모드 등)를 식별하려고 시도하지만 모드를 완전히 식별하려면 일반적으로 수동 프로세스가 필요합니다. 이 과정은 어렵고 지루할 수 있습니다. 시스템에 익숙해지려면 먼저 진공 상태에서 작동 지점이 거의 없는 시뮬레이션을 진행하는 것이 좋습니다.</p>
@@ -445,13 +445,13 @@ Aborting<span class="w"> </span>OpenFAST.
 <p>우리는 프로세스가 길다는 것을 알고 있습니다. 이 프로세스를 간소화하기 위해 노력하는 동안 양해해 주셔서 감사합니다.</p>
 </div>
 <div class="section" id="mode-shape-visualization">
-<h3><span class="section-number">3.7.5. </span>모드 형상 시각화<a class="headerlink" href="#mode-shape-visualization" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">3.7.5. </span>모드 형상 시각화<a class="headerlink" href="#mode-shape-visualization" title="이 제목의 고유 링크"></a></h3>
 <p>현재 모드 형상 시각화가 가능합니다. 각 시뮬레이션에 대해 viz 파일을 생성하고 OpenFAST를 다시 실행하여 VTK 파일을 생성해야 합니다. MATLAB 스크립트 <cite>runCampbell</cite> 이 프로세스를 지원하지만 현재로서는 제한된 지원과 문서가 제공됩니다.</p>
 <p>사용자는 다음 예를 참조하도록 초대됩니다. -  <a class="reference external" href="https://github.com/OpenFAST/r-test/tree/main/glue-codes/openfast/5MW_Land_ModeShapes" target="_blank" rel="noopener noreferrer">https://github.com/OpenFAST/r-test/tree/main/glue-codes/openfast/5MW_Land_ModeShapes</a></p>
 <p>관련 문서는 다음과 같습니다. - <a class="reference external" href="https://github.com/OpenFAST/r-test/blob/main/glue-codes/openfast/5MW_Land_ModeShapes/vtk-visualization.md" target="_blank" rel="noopener noreferrer">https://github.com/OpenFAST/r-test/blob/main/glue-codes/openfast/5MW_Land_ModeShapes/vtk-visualization.md</a></p>
 </div>
 <div class="section" id="additional-references">
-<h3><span class="section-number">3.7.6. </span>추가 참고자료<a class="headerlink" href="#additional-references" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">3.7.6. </span>추가 참고자료<a class="headerlink" href="#additional-references" title="이 제목의 고유 링크"></a></h3>
 <p>일부 선형화 문제는 포럼과 github 문제에서 논의되었습니다.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://wind.nrel.gov/forum/wind/" target="_blank" rel="noopener noreferrer">https://wind.nrel.gov/forum/wind/</a></p></li>
@@ -465,8 +465,8 @@ Aborting<span class="w"> </span>OpenFAST.
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
-        <a href="install/install_cygwin.html" class="btn btn-neutral float-left" title="2.8.2. CMake 및 Cygwin 64비트를 사용하여 Windows에서 OpenFAST 빌드" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="install/install_cygwin.html" class="btn btn-neutral float-left" title="2.8.2. CMake 및 Cygwin 64비트를 사용하여 Windows에서 OpenFAST 빌드" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
         <a href="user/index.html" class="btn btn-neutral float-right" title="4. 사용자 문서" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

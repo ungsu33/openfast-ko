@@ -21,7 +21,7 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="찾다" href="../../../search.html">
+    <link rel="search" title="검색" href="../../../search.html">
     <link rel="next" title="4.3.9. 꼬리지느러미 공기역학 이론" href="theory_tailfin.html">
     <link rel="prev" title="4.3.7. AeroDyn 이론" href="theory.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/aerodyn/theory_ua.html"></head>
@@ -48,9 +48,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
@@ -72,8 +72,8 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="theory_tailfin.html">4.3.9. 꼬리지느러미 공기역학 이론</a></li>
-<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.3.10. 참고자료</a></li>
-<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.3.11. 충수</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.3.10. 참고문헌</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.3.11. 부록</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
@@ -100,16 +100,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -118,12 +118,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.3. </span>AeroDyn 사용자 가이드 및 이론 매뉴얼</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.3. </span>AeroDyn 사용자 가이드 및 이론 설명서</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.3.8. </span>비정상 공력</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/aerodyn/theory_ua.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
+            <a href="../../../_sources/source/user/aerodyn/theory_ua.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -132,15 +132,15 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="unsteady-aerodynamics">
-<span id="ad-ua"></span><h1><span class="section-number">4.3.8. </span>비정상 공력<a class="headerlink" href="#unsteady-aerodynamics" title="이 제목에 대한 영구 링크"></a></h1>
+<span id="ad-ua"></span><h1><span class="section-number">4.3.8. </span>비정상 공력<a class="headerlink" href="#unsteady-aerodynamics" title="이 제목의 고유 링크"></a></h1>
 <p>비정상 공기역학(UA) 모델은 비정상 부착 흐름, 뒷전 흐름 분리, 동적 실속 및 흐름 재부착을 포함한 흐름 히스테리시스를 설명합니다.
 <em>동적 실속</em> 실속 현상을 유발하거나 지연시킬 수 있는 급격한 공기역학적 변화를 말합니다. <span id="id1">[<a class="reference internal" href="zrefs.html#id5" title="E. 브랜라드. 풍력 터빈 공기역학 및 와도 기반 방법: 기초 및 최근 응용. 스프링거 국제 출판, 2017. ISBN 978-3-319-55163-0. 도이:10.1007/978-3-319-55164-7.">ad-Bra17</a>]</span>. 풍속의 급격한 변화(예: 블레이드가 타워 그림자를 통과할 때)는 에어포일을 따라 공기 흐름이 갑자기 분리되었다가 다시 부착되는 원인이 됩니다. 블레이드 표면에서의 이러한 효과는 정상 상태 공기 역학으로는 예측할 수 없지만 블레이드가 타워 그림자를 만날 때뿐만 아니라 기울어진 흐름 및 난류 조건에서 작동하는 동안에도 터빈 작동에 영향을 미칠 수 있습니다. 동적 실속 효과는 블레이드의 상대풍이 블레이드 코드를 가로지르는 시간 순서의 시간 척도에서 발생합니다.
 <span class="math notranslate nohighlight">\(c/\Omega r\)</span>. 대형 풍력 터빈의 경우 이는 다음과 같을 수 있습니다. <span class="math notranslate nohighlight">\(0.5\)</span> 블레이드 루트에서 초 <span class="math notranslate nohighlight">\(0.001\)</span> 칼날 끝에서 초. 동적 실속은 풍속이 증가함에 따라 높은 과도 힘을 초래할 수 있지만 실속은 지연됩니다.</p>
 <div class="section" id="theory">
-<span id="ua-theory"></span><h2><span class="section-number">4.3.8.1. </span>이론<a class="headerlink" href="#theory" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="ua-theory"></span><h2><span class="section-number">4.3.8.1. </span>이론<a class="headerlink" href="#theory" title="이 제목의 고유 링크"></a></h2>
 <p>AeroDyn에 구현된 다양한 동적 실속 모델이 아래에 나와 있습니다.</p>
 <div class="section" id="notations-and-definitions">
-<span id="ua-notations"></span><h3><span class="section-number">4.3.8.1.1. </span>표기법 및 정의<a class="headerlink" href="#notations-and-definitions" title="이 제목에 대한 영구 링크"></a></h3>
+<span id="ua-notations"></span><h3><span class="section-number">4.3.8.1.1. </span>표기법 및 정의<a class="headerlink" href="#notations-and-definitions" title="이 제목의 고유 링크"></a></h3>
 <p>다음을 참조: <a class="reference internal" href="input.html#airfoil-data-input-file"><span class="std std-numref">섹션 4.3.3.19.1</span></a> 프로필 입력 파일에 있는 모든 입력에 대한 포괄적인 설명(아래 반복된 입력 중 일부 포함)</p>
 <p>익형 단면 좌표계와 주요 변수는 다음과 같습니다. <a class="reference internal" href="#fig-uaairfoilsystem"><span class="std std-numref">그림 4.9</span></a> 아래에 추가로 설명되어 있습니다.</p>
 <div class="figure align-default" id="fig-uaairfoilsystem">
@@ -218,12 +218,12 @@ f_s^{st}(\alpha)=0
  \text{when $f_s^{st}=1$}\end{aligned}\]</div>
 </div>
 <div class="section" id="beddoes-leishman-type-models-uamod-2-3">
-<h3><span class="section-number">4.3.8.1.2. </span>Beddoes-Leishman 유형 모델(UAMod=2,3)<a class="headerlink" href="#beddoes-leishman-type-models-uamod-2-3" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.3.8.1.2. </span>Beddoes-Leishman 유형 모델(UAMod=2,3)<a class="headerlink" href="#beddoes-leishman-type-models-uamod-2-3" title="이 제목의 고유 링크"></a></h3>
 <p>Beddoes-Leishman 모델은 부착된 흐름과 후연 실속을 설명합니다. <span id="id5">[<a class="reference internal" href="zrefs.html#id11" title="J. G. Leishman 및 T.S. 침대. 동적 실속에 대한 반경험적 모델. 미국 헬리콥터 학회지, 34(3):p3-17, 1989.">ad-LB89</a>]</span>.</p>
 <p>Unsteady Aerodynamic 모듈에는 두 가지 변형이 구현되어 있습니다. 이 두 가지(압축 가능) 모델은 현재 다음 참조 자료에 설명되어 있습니다. <span id="id6">[<a class="reference internal" href="zrefs.html#id3" title="R. 다미아니와 G. 헤이먼. 빠른 속도를 위한 비정상 공기역학 모듈 8. 기술 보고서, 국립 재생 에너지 연구소, 2019. NREL/TP-5000-66347.">ad-DH19</a>]</span>. 모델이 사용하는 <span class="math notranslate nohighlight">\(C_n\)</span> 및 <span class="math notranslate nohighlight">\(C_c\)</span> 주요 물리량으로. 모델은 이산 상태를 사용하며 선형화와 함께 사용할 수 없습니다.</p>
 </div>
 <div class="section" id="beddoes-leishman-4-states-model-uamod-4">
-<h3><span class="section-number">4.3.8.1.3. </span>Beddoes-Leishman 4상태 모델(UAMod=4)<a class="headerlink" href="#beddoes-leishman-4-states-model-uamod-4" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.3.8.1.3. </span>Beddoes-Leishman 4상태 모델(UAMod=4)<a class="headerlink" href="#beddoes-leishman-4-states-model-uamod-4" title="이 제목의 고유 링크"></a></h3>
 <p>OpenFAST에 구현된 4가지 상태(비압축성) 동적 실속 모델은 다음에서 설명됩니다. <span id="id7">[<a class="reference internal" href="zrefs.html#id6" title="E Branlard, B Jonkman, G R Pirrung, K Dixon 및 J Jonkman. OpenFAST의 모달 및 안정성 해석을 위한 동적 유입 및 비정상 공기 역학 모델. 물리학 저널: 컨퍼런스 시리즈, 2265(3):032044, 2022. doi:10.1088/1742-6596/2265/3/032044.">ad-BJP+22</a>]</span> (모델은 Hansen-Gaunaa-Madsen(HGM)의 원래 공식과 약간 다릅니다. <span id="id8">[<a class="reference internal" href="zrefs.html#id9" title="M.H. Hansen, Mac Gaunaa, Helge Aagaard Madsen. 상태 공간 및 지표 공식의 beddoes-leishman 유형 동적 실속 모델. 기술 보고서, Risø National Laboratory, Roskilde, 덴마크, 2004.">ad-HGAM04</a>]</span>). 모델은 다음을 사용하여 활성화됩니다. <code class="docutils literal notranslate"><span class="pre">UAMod=4</span></code>. 모델이 사용하는 <span class="math notranslate nohighlight">\(C_l\)</span> 주요 물리량으로. 모델의 Linearization를 사용할 수 있습니다.</p>
 <p>NOTE: 이 모델은 AeroDyn-UA에서 엄격한 적분기가 구현될 때까지 더 작은 시간 단계가 필요할 수 있습니다.</p>
 <p><strong>상태 방정식:</strong>
@@ -265,11 +265,11 @@ f_s^{st}(\alpha)=0
 \end{aligned}\end{split}\]</div>
 </div>
 <div class="section" id="beddoes-leishman-5-states-model-uamod-5">
-<h3><span class="section-number">4.3.8.1.4. </span>Beddoes-Leishman 5개 상태 모델(UAMod=5)<a class="headerlink" href="#beddoes-leishman-5-states-model-uamod-5" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.3.8.1.4. </span>Beddoes-Leishman 5개 상태 모델(UAMod=5)<a class="headerlink" href="#beddoes-leishman-5-states-model-uamod-5" title="이 제목의 고유 링크"></a></h3>
 <p>5개 상태(비압축성) 동적 실속 모델은 Beddoes-Leishman 4개 상태 모델(UAMod=4)과 유사하지만 소용돌이 생성을 나타내기 위해 5번째 상태를 추가합니다. 다음을 사용하여 활성화됩니다. <code class="docutils literal notranslate"><span class="pre">UAMod=5</span></code>. 모델이 사용하는 <span class="math notranslate nohighlight">\(C_n\)</span> 및 <span class="math notranslate nohighlight">\(C_c\)</span> 주요 물리량으로. 모델의 Linearization를 사용할 수 있습니다.</p>
 </div>
 <div class="section" id="oye-model-uamod-6">
-<span id="ua-oye"></span><h3><span class="section-number">4.3.8.1.5. </span>오예 모델(UAMod=6)<a class="headerlink" href="#oye-model-uamod-6" title="이 제목에 대한 영구 링크"></a></h3>
+<span id="ua-oye"></span><h3><span class="section-number">4.3.8.1.5. </span>오예 모델(UAMod=6)<a class="headerlink" href="#oye-model-uamod-6" title="이 제목의 고유 링크"></a></h3>
 <p>Oye의 동적 실속 모델은 다음과 같이 공식화된 단일 상태(연속) 모델입니다. <span id="id9">[<a class="reference internal" href="zrefs.html#id10" title="S. Øye. 분리 시간 지연으로 시뮬레이션된 동적 실속. 풍력 터빈의 공기역학에 관한 제4회 IEA 심포지엄 간행물, 1991년.">ad-Oye91</a>]</span> 예를 들어 설명됩니다. ~에 <span id="id10">[<a class="reference internal" href="zrefs.html#id5" title="E. 브랜라드. 풍력 터빈 공기역학 및 와도 기반 방법: 기초 및 최근 응용. 스프링거 국제 출판, 2017. ISBN 978-3-319-55163-0. 도이:10.1007/978-3-319-55164-7.">ad-Bra17</a>]</span>. 모델은 후연 실속을 포착하려고 시도합니다. 모델의 Linearization를 사용할 수 있습니다.</p>
 <p><strong>상태 방정식:</strong>
 Oye의 동적 실속 모델은 하나의 상태를 사용합니다. <span class="math notranslate nohighlight">\(\boldsymbol{x}=[f_s]\)</span>
@@ -291,7 +291,7 @@ Oye의 동적 실속 모델은 하나의 상태를 사용합니다. <span class=
 <span class="math notranslate nohighlight">\(f_s\)</span> 두 흐름 상황 사이에서 완화 요인으로 작용하는 것으로 보입니다.</p>
 </div>
 <div class="section" id="boeing-vertol-model-uamod-7">
-<h3><span class="section-number">4.3.8.1.6. </span>Boeing-Vertol 모델(UAMod=7)<a class="headerlink" href="#boeing-vertol-model-uamod-7" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.3.8.1.6. </span>Boeing-Vertol 모델(UAMod=7)<a class="headerlink" href="#boeing-vertol-model-uamod-7" title="이 제목의 고유 링크"></a></h3>
 <p>Boeing-Vertol은 다음 논문에 언급되어 있습니다. <span id="id11">[<a class="reference internal" href="zrefs.html#id12" title="J. 머레이와 M. 바론. 선인장: 풍력 및 해상 터빈 성능 시뮬레이션 코드 개발. 기술 보고서, 49차 AIAA 항공우주 과학 회의, 올랜도, 플로리다, 2011.">ad-MB11</a>]</span>. 모델의 세부 사항은 이 참조에서 생략되었으므로 여기에 제시된 문서는 AeroDyn의 유사 동일성으로 재현된 소용돌이 코드 CACTUS에서 수행된 구현에서 영감을 얻었습니다. 이 모델에서는 Linearization가 불가능합니다.</p>
 <p>에 제시된 모델 <span id="id12">[<a class="reference internal" href="zrefs.html#id12" title="J. 머레이와 M. 바론. 선인장: 풍력 및 해상 터빈 성능 시뮬레이션 코드 개발. 기술 보고서, 49차 AIAA 항공우주 과학 회의, 올랜도, 플로리다, 2011.">ad-MB11</a>]</span> 준정상 받음각과 받음각의 변화율을 사용하여 동적 받음각이 결정되는 출력 전용 모델입니다.</p>
 <div class="math notranslate nohighlight">
@@ -381,7 +381,7 @@ Oye의 동적 실속 모델은 하나의 상태를 사용합니다. <span class=
 </div>
 </div>
 <div class="section" id="inputs">
-<span id="ua-inputs"></span><h2><span class="section-number">4.3.8.2. </span>입력<a class="headerlink" href="#inputs" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="ua-inputs"></span><h2><span class="section-number">4.3.8.2. </span>입력<a class="headerlink" href="#inputs" title="이 제목의 고유 링크"></a></h2>
 <p>다음을 참조: <a class="reference internal" href="input.html#ad-ua-inputs"><span class="std std-numref">섹션 4.3.3.10</span></a> AeroDyn 기본 파일에 필요한 입력에 대한 설명(예: <code class="docutils literal notranslate"><span class="pre">UAMod</span></code>)</p>
 <p>다음을 참조: <a class="reference internal" href="input.html#airfoil-data-input-file"><span class="std std-numref">섹션 4.3.3.19.1</span></a> 프로필 입력 파일에 있는 모든 입력에 대한 보다 포괄적인 설명을 보려면 기본값은 다음에 설명되어 있습니다. <a class="reference internal" href="#ua-afi-defaults"><span class="std std-numref">섹션 4.3.8.3</span></a></p>
 <p>다음을 참조: <a class="reference internal" href="#ua-notations"><span class="std std-numref">섹션 4.3.8.1.1</span></a> 비정상 공력적 입력과 관련된 표기법 및 정의 목록은 다음과 같습니다.</p>
@@ -390,7 +390,7 @@ Oye의 동적 실속 모델은 하나의 상태를 사용합니다. <span class=
 <p>비정상 공력적 운전자 입력은 다음 문서에 문서화되어 있습니다. <a class="reference internal" href="#ua-driver"><span class="std std-numref">섹션 4.3.8.6</span></a>.</p>
 </div>
 <div class="section" id="calculating-default-airfoil-coefficients">
-<span id="ua-afi-defaults"></span><h2><span class="section-number">4.3.8.3. </span>기본 에어포일 계수 계산<a class="headerlink" href="#calculating-default-airfoil-coefficients" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="ua-afi-defaults"></span><h2><span class="section-number">4.3.8.3. </span>기본 에어포일 계수 계산<a class="headerlink" href="#calculating-default-airfoil-coefficients" title="이 제목의 고유 링크"></a></h2>
 <p>기본값은 <code class="docutils literal notranslate"><span class="pre">cd0</span></code> 의 최소값은 <span class="math notranslate nohighlight">\(C_d\)</span> 사이의 곡선 <span class="math notranslate nohighlight">\(\pm20\)</span> 공격 각도.
 <span class="math notranslate nohighlight">\(\alpha_{c_{d0}}\)</span> 여기서 공격 각도로 정의됩니다. <code class="docutils literal notranslate"><span class="pre">cd0</span></code> 발생합니다.</p>
 <p>계산 후 <code class="docutils literal notranslate"><span class="pre">cd0</span></code>, <span class="math notranslate nohighlight">\(C_n\)</span> 곡선은 다음과 같이 계산됩니다.</p>
@@ -426,17 +426,17 @@ Oye의 동적 실속 모델은 하나의 상태를 사용합니다. <span class=
 <p><code class="docutils literal notranslate"><span class="pre">Cn2</span></code> 의 가치는 <span class="math notranslate nohighlight">\(C_n\)</span> 곡선 <code class="docutils literal notranslate"><span class="pre">alpha2</span></code>.</p>
 </div>
 <div class="section" id="outputs">
-<h2><span class="section-number">4.3.8.4. </span>출력<a class="headerlink" href="#outputs" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.3.8.4. </span>출력<a class="headerlink" href="#outputs" title="이 제목의 고유 링크"></a></h2>
 <p>동적 실속 모델의 변수 출력이 가능하지만 전처리기 변수 설정이 필요합니다. <code class="docutils literal notranslate"><span class="pre">UA_OUTS</span></code> 프로그램(OpenFAST, AeroDyn 드라이버 또는 Unsteady Aero 드라이버)을 다시 컴파일하세요. 출력은 확장자를 가진 출력 파일에 기록됩니다. <cite>*.UA.out</cite>. 다음을 사용하여 이러한 출력을 활성화하려면 <cite>cmake</cite>, 다음을 사용하여 컴파일 <code class="docutils literal notranslate"><span class="pre">-DCMAKE_Fortran_FLAGS="-DUA_OUTS=ON"</span></code></p>
 <p>드라이버를 사용할 때 이 전처리기 변수를 사용할 필요가 없습니다.</p>
 </div>
 <div class="section" id="aeroelastic-simulation-of-a-2d-section">
-<span id="ua-aeroelasttheory"></span><h2><span class="section-number">4.3.8.5. </span>2D 단면의 공탄성 시뮬레이션<a class="headerlink" href="#aeroelastic-simulation-of-a-2d-section" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="ua-aeroelasttheory"></span><h2><span class="section-number">4.3.8.5. </span>2D 단면의 공탄성 시뮬레이션<a class="headerlink" href="#aeroelastic-simulation-of-a-2d-section" title="이 제목의 고유 링크"></a></h2>
 <p>단순화된 맥락에서 비정상 공기 역학 모델을 사용하기 위해 드라이버를 사용하여 격리된 2D 단면의 공탄성 시뮬레이션이 가능합니다. 보다 <a class="reference internal" href="#ua-driver"><span class="std std-numref">섹션 4.3.8.6</span></a>. 공탄성 시뮬레이션에 대한 이론과 설명은 다음에서 찾을 수 있습니다.
 <span id="id13">[<a class="reference internal" href="zrefs.html#id4" title="E. Branlard, J.Jonkman, B. Jonkman, M. Singh, E. Mayda, K.Dixon, J H. Porter 및 G. Vijayakumar. 불안정한 익형 공기역학적 및 동적 유입을 포함한 일반화된 풍력 터빈 단면의 공탄성 안정성. 물리학 저널: 컨퍼런스 시리즈, 2024.">ad-BJJonkmanJ+24</a>]</span>.</p>
 </div>
 <div class="section" id="driver">
-<span id="ua-driver"></span><h2><span class="section-number">4.3.8.6. </span>운전사<a class="headerlink" href="#driver" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="ua-driver"></span><h2><span class="section-number">4.3.8.6. </span>운전사<a class="headerlink" href="#driver" title="이 제목의 고유 링크"></a></h2>
 <p>단일 익형에 대한 시뮬레이션을 실행하는 데 드라이버를 사용할 수 있습니다.</p>
 <p>다양한 종류의 시뮬레이션이 가능합니다:</p>
 <blockquote>
@@ -448,11 +448,11 @@ Oye의 동적 실속 모델은 하나의 상태를 사용합니다. <span class=
 </div></blockquote>
 <p>공탄성 시뮬레이션에 대한 이론과 설명은 다음에서 찾을 수 있습니다. <span id="id14">[<a class="reference internal" href="zrefs.html#id4" title="E. Branlard, J.Jonkman, B. Jonkman, M. Singh, E. Mayda, K.Dixon, J H. Porter 및 G. Vijayakumar. 불안정한 익형 공기역학적 및 동적 유입을 포함한 일반화된 풍력 터빈 단면의 공탄성 안정성. 물리학 저널: 컨퍼런스 시리즈, 2024.">ad-BJJonkmanJ+24</a>]</span>.</p>
 <div class="section" id="compilation">
-<h3><span class="section-number">4.3.8.6.1. </span>편집<a class="headerlink" href="#compilation" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.3.8.6.1. </span>편집<a class="headerlink" href="#compilation" title="이 제목의 고유 링크"></a></h3>
 <p>사용 <cite>cmake</cite>, 드라이버는 다음을 사용하여 컴파일됩니다. <cite>unsteadyaero_driver를 만드세요</cite>, 결과적으로 실행 파일로 생성됩니다. <cite>에어로딘</cite> 접는 사람.</p>
 </div>
 <div class="section" id="driver-inputs">
-<h3><span class="section-number">4.3.8.6.2. </span>드라이버 입력<a class="headerlink" href="#driver-inputs" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.3.8.6.2. </span>드라이버 입력<a class="headerlink" href="#driver-inputs" title="이 제목의 고유 링크"></a></h3>
 <p>비정상 공력적 드라이버에 대한 입력 파일의 예는 다음에서 찾을 수 있습니다. <a class="reference external" href="https://github.com/OpenFAST/r-test/blob/main/modules/unsteadyaero/ua_redfreq/UA2.dvr" target="_blank" rel="noopener noreferrer">r-테스트 저장소</a>.</p>
 <p>다양한 입력은 아래에 설명되어 있습니다.</p>
 <p><strong>환경 조건</strong></p>
@@ -514,8 +514,8 @@ Oye의 동적 실속 모델은 하나의 상태를 사용합니다. <span class=
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
-        <a href="theory.html" class="btn btn-neutral float-left" title="4.3.7. AeroDyn 이론" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="theory.html" class="btn btn-neutral float-left" title="4.3.7. AeroDyn 이론" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
         <a href="theory_tailfin.html" class="btn btn-neutral float-right" title="4.3.9. 꼬리지느러미 공기역학 이론" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

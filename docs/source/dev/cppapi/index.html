@@ -21,7 +21,7 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="찾다" href="../../../search.html">
+    <link rel="search" title="검색" href="../../../search.html">
     <link rel="next" title="6.3.1.1.1. C++ API 문서" href="api.html">
     <link rel="prev" title="6.1.6.7. 버전 관리" href="../versioning.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/dev/cppapi/index.html"></head>
@@ -48,9 +48,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../user/index.html">4. 사용자 문서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">6. 개발자 문서</a><ul class="current">
@@ -61,7 +61,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#use-of-c-api-for-actuator-line-simulations">6.3.1.1. 액추에이터 라인 시뮬레이션을 위한 C++ API 사용</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#implementation">6.3.1.2. 구현</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#test-for-mapping-procedure">6.3.1.3. 매핑 절차 테스트</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#references">6.3.1.4. 참고자료</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#references">6.3.1.4. 참고문헌</a></li>
 </ul>
 </li>
 </ul>
@@ -69,16 +69,16 @@
 <li class="toctree-l2"><a class="reference internal" href="../index.html#other-documentation">6.4. 기타 문서</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -87,11 +87,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">6. </span>개발자 문서</a></li>
       <li class="breadcrumb-item active"><span class="section-number">6.3.1. </span>OpenFAST C++ 응용 프로그래밍 인터페이스</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/dev/cppapi/index.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
+            <a href="../../../_sources/source/dev/cppapi/index.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -100,7 +100,7 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="openfast-c-application-programming-interface">
-<span id="cppapi"></span><h1><span class="section-number">6.3.1. </span>OpenFAST C++ 응용 프로그래밍 인터페이스<a class="headerlink" href="#openfast-c-application-programming-interface" title="이 제목에 대한 영구 링크"></a></h1>
+<span id="cppapi"></span><h1><span class="section-number">6.3.1. </span>OpenFAST C++ 응용 프로그래밍 인터페이스<a class="headerlink" href="#openfast-c-application-programming-interface" title="이 제목의 고유 링크"></a></h1>
 <p>OpenFAST는 C++의 외부 프로그램에서 풍력 터빈 시뮬레이션을 구동하기 위한 C++ 애플리케이션 프로그래밍 인터페이스(API)를 제공합니다. C++ API는 주로 유체 구조 상호 작용(FSI) 애플리케이션을 위한 OpenFAST와 전산 유체 역학(CFD) 솔버를 통합하기 위해 개발되었습니다. 현재는 액츄에이터 라인 방법을 사용하여 FSI 시뮬레이션을 지원하며 가까운 시일 내에 블레이드 분해 FSI 시뮬레이션을 지원할 계획입니다. C++ API는 여러 풍력 터빈의 OpenFAST 시뮬레이션을 병렬로 실행하는 외부 드라이버 프로그램이나 글루 코드를 만드는 데에도 사용할 수 있습니다.</p>
 <p>C++ API는 다음에서 정의되고 구현됩니다. <code class="xref py py-class docutils literal notranslate"><span class="pre">fast::OpenFAST</span></code> 수업. C++에서 OpenFAST에 대한 글루 코드를 작성하려는 사용자는 OpenFAST 클래스의 개체를 인스턴스화하고 이를 사용하여 터빈 시뮬레이션을 구동해야 합니다. 샘플 글루 코드 <a class="reference external" href="https://github.com/OpenFAST/openfast/blob/dev/glue-codes/openfast-cpp/src/FAST_Prog.cpp" target="_blank" rel="noopener noreferrer">FAST_Prog.cpp</a> C++ API 사용법의 데모로 제공됩니다. 글루 코드를 사용하면 여러 프로세서에서 직렬 또는 병렬로 OpenFAST를 사용하여 여러 터빈을 시뮬레이션할 수 있습니다. 메시지 전달 인터페이스(MPI)는 다양한 터빈 인스턴스를 병렬로 실행하는 데 사용됩니다. FAST_Prog.cpp의 축약 버전은 다음과 같습니다. 강조 표시된 줄은 OpenFAST 클래스의 사용을 나타냅니다.</p>
 <div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="cp">#include</span><span class="w"> </span><span class="cpf">"OpenFAST.H"</span>
@@ -164,7 +164,7 @@
 <p>대상 <code class="xref py py-class docutils literal notranslate"><span class="pre">fast::fastInputs</span></code> 클래스는 유형의 구조체 벡터를 보유할 것으로 예상됩니다. <code class="xref py py-class docutils literal notranslate"><span class="pre">fast::turbineDataType</span></code> 시뮬레이션에서 터빈 수의 크기.</p>
 <p>FIXME: <strong>doxygenstruct</strong> 렌더링하는 데 필요합니다. <code class="xref py py-class docutils literal notranslate"><span class="pre">fast::turbineDataType</span></code> 수업 구조</p>
 <div class="section" id="use-of-c-api-for-actuator-line-simulations">
-<h2><span class="section-number">6.3.1.1. </span>액추에이터 라인 시뮬레이션을 위한 C++ API 사용<a class="headerlink" href="#use-of-c-api-for-actuator-line-simulations" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">6.3.1.1. </span>액추에이터 라인 시뮬레이션을 위한 C++ API 사용<a class="headerlink" href="#use-of-c-api-for-actuator-line-simulations" title="이 제목의 고유 링크"></a></h2>
 <p>C++ API는 주로 FSI(유체 구조 상호 작용) 애플리케이션을 위한 OpenFAST와 전산 유체 역학(CFD) 솔버를 통합하기 위해 개발되었습니다. 오늘날 풍력 에너지 응용 분야의 주력 제품인 FSI 알고리즘은 Actuator Line 알고리즘입니다. <span id="id1">[<a class="reference internal" href="#id5" title="Matthew Churchfield, Sang Lee, Patrick Moriarty, Luis Martinez, Stefano Leonardi, Ganesh Vijayakumar 및 James Brasseur. 풍력발전소 공기역학의 대형 에디 시뮬레이션. 미국 항공 우주 연구소, 2017/07/18 2012. URL: https://doi.org/10.2514/6.2012-537, doi:doi:10.2514/6.2012-537.">cpp-CLM+12</a>]</span>. Actuator Line 알고리즘은 터빈이 유동장에 미치는 영향을 일련의 점 힘으로 나타냅니다. <strong>액추에이터 포인트</strong> 공기 역학적 표면을 따라. AeroDyn에서 블레이드 요소 모멘텀 이론의 사용은 액추에이터 라인 시뮬레이션을 위해 OpenFAST와 CFD 솔버를 인터페이스하도록 수정되었습니다. CFD 솔버는 터빈 근처의 속도 정보를 제공하는 OpenFAST의 유입 모듈이 됩니다. 유도 계수의 계산은 OpenFAST에서 꺼지고 AeroDyn는 단순히 조회 테이블과 선택적 동적 실속 모델을 사용하여 CFD 솔버에서 수신된 유입 필드 정보를 기반으로 터빈의 부하를 계산합니다. 유도 모델은 다음을 선택하여 OpenFAST에서 꺼야 합니다. <code class="samp docutils literal notranslate"><span class="pre">WakeMod=0</span></code> AeroDyn 입력 파일에서. OpenFAST는 블레이드와 타워를 따른 라인 힘을 액추에이터 라인 알고리즘에 대한 일련의 점 힘으로 묶습니다. <a class="reference internal" href="#actuatorline-viz"><span class="std std-numref">그림 6.1</span></a> 액추에이터 라인 애플리케이션을 위한 OpenFAST와 CFD 솔버 간의 정보 전송을 보여줍니다.</p>
 <div class="figure align-center" id="id18">
 <span id="actuatorline-viz"></span><a class="reference internal image-reference" href="../../../_images/actuatorLine_illustrationViz.png"><img alt="../../../_images/actuatorLine_illustrationViz.png" src="../../../_images/actuatorLine_illustrationViz.png" style="width: 100%;"></a>
@@ -221,7 +221,7 @@
 </div>
 </div>
 <div class="section" id="implementation">
-<h2><span class="section-number">6.3.1.2. </span>구현<a class="headerlink" href="#implementation" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">6.3.1.2. </span>구현<a class="headerlink" href="#implementation" title="이 제목의 고유 링크"></a></h2>
 <p>C++ API는 C-Fortran 인터페이스를 사용하여 내부적으로 Fortran 드라이버와 동일한 기능을 호출하여 OpenFAST를 시간에 맞게 향상시킵니다. FAST_Library.f90에는 C++ API에서 호출할 수 있는 모든 함수가 포함되어 있습니다. C++ API와 Fortran 모듈 간의 해당 기능 중 일부가 다음 표에 나와 있습니다.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -322,7 +322,7 @@
 <p>액추에이터 지점에 대한 하중 및 편향 매핑은 다음에서 수행됩니다. <code class="xref py py-class docutils literal notranslate"><span class="pre">ExternalInflow</span></code> OpenFAST의 모듈. C++ API는 BeamDyn 및 ElastoDyn를 모두 사용하여 블레이드를 모델링하는 것을 지원합니다. 블레이드를 모델링하기 위해 BeamDyn를 사용할 때 C++ API에서는 액추에이터 라인 시뮬레이션을 위한 사다리꼴 구적법 선택과 함께 각 블레이드에 대해 단 1개의 유한 요소만 사용해야 합니다.</p>
 </div>
 <div class="section" id="test-for-mapping-procedure">
-<h2><span class="section-number">6.3.1.3. </span>매핑 절차 테스트<a class="headerlink" href="#test-for-mapping-procedure" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">6.3.1.3. </span>매핑 절차 테스트<a class="headerlink" href="#test-for-mapping-procedure" title="이 제목의 고유 링크"></a></h2>
 <p>매핑 절차 구현을 위한 테스트는 다음과 같다. OpenFAST는 C++ API를 사용하여 실행되어 Jonkman 5-MW(이전의 NREL 5-MW) 터빈을 규정된 속도 <span class="math notranslate nohighlight">\(8 m/s\)</span> 모든 속도 노드에서 유도가 없고(<code class="samp docutils literal notranslate"><span class="pre">WakeMod=0</span></code>). 액츄에이터 힘 노드의 수는 10에서 100까지 다양하며 속도 노드의 수는 17로 고정됩니다. <a class="reference internal" href="#actuator-force-nodes-mapping-test-thrust"><span class="std std-numref">그림 6.3</span></a> 및 <a class="reference internal" href="#actuator-force-nodes-mapping-test-torque"><span class="std std-numref">그림 6.4</span></a> 추력과 토크가 다음보다 적게 변한다는 것을 보여줍니다. <span class="math notranslate nohighlight">\(1.1 \times 10^{-6}\%\)</span> 및 <span class="math notranslate nohighlight">\(2 \times 10^{-6}\%\)</span> 액추에이터 힘 절점 수를 다음 범위에서 변경할 때 각각 <span class="math notranslate nohighlight">\(10-100\)</span>.</p>
 <div class="figure align-center" id="id20">
 <span id="actuator-force-nodes-mapping-test-thrust"></span><a class="reference internal image-reference" href="../../../_images/thrustXActuatorForcePoints.png"><img alt="../../../_images/thrustXActuatorForcePoints.png" src="../../../_images/thrustXActuatorForcePoints.png" style="width: 100%;"></a>
@@ -334,7 +334,7 @@
 </div>
 </div>
 <div class="section" id="references">
-<h2><span class="section-number">6.3.1.4. </span>참고자료<a class="headerlink" href="#references" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">6.3.1.4. </span>참고문헌<a class="headerlink" href="#references" title="이 제목의 고유 링크"></a></h2>
 <div class="docutils container" id="id4">
 <dl class="citation">
 <dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id1">cpp-CLM+12</a></span></dt>
@@ -354,8 +354,8 @@
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
-        <a href="../versioning.html" class="btn btn-neutral float-left" title="6.1.6.7. 버전 관리" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="../versioning.html" class="btn btn-neutral float-left" title="6.1.6.7. 버전 관리" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
         <a href="api.html" class="btn btn-neutral float-right" title="6.3.1.1.1. C++ API 문서" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

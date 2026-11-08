@@ -20,7 +20,7 @@
         <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../genindex.html">
-    <link rel="search" title="찾다" href="../../search.html">
+    <link rel="search" title="검색" href="../../search.html">
     <link rel="next" title="5.2.5.4.1. Visual Studio 회귀 테스트를 사용하는 Windows" href="regression_test_windows.html">
     <link rel="prev" title="5.1. 단위 테스트" href="unit_test.html"> 
 <link rel="stylesheet" href="../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/testing/regression_test.html"></head>
@@ -47,9 +47,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. 이 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. 이 문서에 대하여</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../working.html">3. OpenFAST 작업</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working.html">3. OpenFAST 사용하기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../user/index.html">4. 사용자 문서</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">5. OpenFAST 테스트</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="unit_test.html">5.1. 단위 테스트</a></li>
@@ -72,16 +72,16 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../license.html">7. 라이센스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">7. 라이선스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. 감사의 말씀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. 감사의 글</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../review.html">문서 상세 리뷰</a></li><li><a href="../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">OpenFAST</a>
       </nav>
@@ -90,11 +90,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home" aria-label="집"></a></li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="홈"></a></li>
           <li class="breadcrumb-item"><a href="index.html"><span class="section-number">5. </span>OpenFAST 테스트</a></li>
       <li class="breadcrumb-item active"><span class="section-number">5.2. </span>회귀 테스트</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../_sources/source/testing/regression_test.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
+            <a href="../../_sources/source/testing/regression_test.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -103,7 +103,7 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="regression-tests">
-<span id="regression-test"></span><h1><span class="section-number">5.2. </span>회귀 테스트<a class="headerlink" href="#regression-tests" title="이 제목에 대한 영구 링크"></a></h1>
+<span id="regression-test"></span><h1><span class="section-number">5.2. </span>회귀 테스트<a class="headerlink" href="#regression-tests" title="이 제목의 고유 링크"></a></h1>
 <p>회귀 테스트는 OpenFAST 및 해당 모듈의 기능을 완전히 설명하기 위한 일련의 테스트 사례를 실행합니다. 회귀 테스트 실행에 대한 지침을 보려면 다음 섹션 중 하나로 이동하세요.</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#python-driver"><span class="std std-ref">Python 드라이버로 실행</span></a></p></li>
@@ -152,7 +152,7 @@
 </pre></div>
 </div>
 <div class="section" id="testing-environment">
-<h2><span class="section-number">5.2.1. </span>테스트 환경<a class="headerlink" href="#testing-environment" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">5.2.1. </span>테스트 환경<a class="headerlink" href="#testing-environment" title="이 제목의 고유 링크"></a></h2>
 <p>우리는 다음을 사용하는 것이 좋습니다 <code class="docutils literal notranslate"><span class="pre">conda</span></code> 필요한 패키지를 설치하기 위한 로컬 환경을 생성합니다. <em>OpenFAST</em> 테스트. Linux/MacOS 기반 시스템에서 필요한 환경을 설정하기 위한 대략적인 지침으로 다음 프로세스를 사용할 수 있습니다.</p>
 <ol class="arabic simple">
 <li><p>새로 만들기 <code class="docutils literal notranslate"><span class="pre">conda</span></code> 환경 <em>OpenFAST</em> Python을 테스트하고 설치합니다.</p>
@@ -183,7 +183,7 @@
 </div></blockquote>
 </div>
 <div class="section" id="dependencies">
-<h2><span class="section-number">5.2.2. </span>종속성<a class="headerlink" href="#dependencies" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">5.2.2. </span>종속성<a class="headerlink" href="#dependencies" title="이 제목의 고유 링크"></a></h2>
 <p>회귀 테스트에는 다음 패키지가 필요합니다(또한
 <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> Python 모듈의 루트 디렉터리에 있는 파일):</p>
 <ul class="simple">
@@ -200,7 +200,7 @@
 </ul>
 </div>
 <div class="section" id="executing-with-python-driver">
-<span id="python-driver"></span><h2><span class="section-number">5.2.3. </span>Python 드라이버로 실행<a class="headerlink" href="#executing-with-python-driver" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="python-driver"></span><h2><span class="section-number">5.2.3. </span>Python 드라이버로 실행<a class="headerlink" href="#executing-with-python-driver" title="이 제목의 고유 링크"></a></h2>
 <p>회귀 테스트는 포함된 드라이버를 사용하여 수동으로 실행할 수 있습니다.
 <code class="docutils literal notranslate"><span class="pre">openfast/reg_tests/manualRegressionTest.py</span></code>. 이 프로그램은 다음 위치에서 사례 목록 파일을 읽습니다. <code class="docutils literal notranslate"><span class="pre">openfast/reg_tests/r-test/glue-codes/openfast/CaseList.md</span></code>. 해당 줄을 다음으로 시작하면 사례를 제거하거나 무시할 수 있습니다. <code class="docutils literal notranslate"><span class="pre">#</span></code>. 드라이버 프로그램에는 help 옵션을 실행하여 얻을 수 있는 여러 선택적 플래그가 포함되어 있습니다.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;$ python manualRegressionTest.py -h</span>
@@ -239,7 +239,7 @@ openfast/build/reg_tests/glue-codes/openfast/5MW_Baseline/ServoData/DISCON_OC3Hy
 </div>
 </div>
 <div class="section" id="executing-with-ctest">
-<span id="ctest-driver"></span><h2><span class="section-number">5.2.4. </span>CTest로 실행<a class="headerlink" href="#executing-with-ctest" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="ctest-driver"></span><h2><span class="section-number">5.2.4. </span>CTest로 실행<a class="headerlink" href="#executing-with-ctest" title="이 제목의 고유 링크"></a></h2>
 <p>CTest는 CMake에 포함되어 있으며 주로 사전 구성된 대상 및 명령 세트입니다. 회귀 테스트에 CTest 드라이버를 사용하려면 다음 설명에 따라 CMake를 실행합니다. <a class="reference internal" href="../install/index.html#installation"><span class="std std-ref">OpenFAST 설치</span></a>, 그러나 다음 추가 플래그를 사용하면:
 <code class="docutils literal notranslate"><span class="pre">-DBUILD_TESTING=ON</span></code>.</p>
 <p>회귀 테스트 특정 CMake 변수는 다음과 같습니다.</p>
@@ -320,10 +320,10 @@ ctest<span class="w"> </span>-N<span class="w"> </span>-R<span class="w"> </span
 <p>자동화된 회귀 테스트는 빌드 디렉터리에만 새 파일을 씁니다. 특히, 로컬로 생성된 모든 솔루션은 해당 글루 코드 또는 모듈 내의 모듈에 있습니다. <code class="docutils literal notranslate"><span class="pre">openfast/build/reg_tests</span></code>. 에 포함된 기본 솔루션 <code class="docutils literal notranslate"><span class="pre">openfast/reg_tests/r-test</span></code> 엄격하게 읽혀지며 자동화된 프로세스에 의해 수정되지 않습니다.</p>
 </div>
 <div class="section" id="regression-test-examples">
-<span id="regression-test-example"></span><h2><span class="section-number">5.2.5. </span>회귀 테스트 예<a class="headerlink" href="#regression-test-examples" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="regression-test-example"></span><h2><span class="section-number">5.2.5. </span>회귀 테스트 예<a class="headerlink" href="#regression-test-examples" title="이 제목의 고유 링크"></a></h2>
 <p>다음 예에서는 Unix 기반 시스템에서 회귀 테스트를 실행하는 방법을 보여줍니다. 그러나 CMake 및 CTest를 사용하여 Windows에서도 유사한 절차를 사용할 수 있습니다. Windows에서 회귀 테스트를 실행하는 다른 방법은 다음과 같습니다. <a class="reference internal" href="#reg-test-windows"><span class="std std-ref">Windows에서 실행하는 자세한 예</span></a>.</p>
 <div class="section" id="compile-openfast-and-execute-with-ctest">
-<h3><span class="section-number">5.2.5.1. </span>OpenFAST를 컴파일하고 CTest로 실행<a class="headerlink" href="#compile-openfast-and-execute-with-ctest" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">5.2.5.1. </span>OpenFAST를 컴파일하고 CTest로 실행<a class="headerlink" href="#compile-openfast-and-execute-with-ctest" title="이 제목의 고유 링크"></a></h3>
 <p>다음 예에서는 사용자가 처음부터 완전히 시작한다고 가정합니다. 아래 명령은 소스 코드를 다운로드하고, CMake로 OpenFAST 프로젝트를 구성하고, 모든 실행 파일을 컴파일하고, 전체 회귀 테스트 모음을 실행합니다.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download the source code from GitHub</span>
 <span class="c1">#    Note: The default branch is 'main'</span>
@@ -352,7 +352,7 @@ ctest<span class="w"> </span>-j4
 </div>
 </div>
 <div class="section" id="configure-with-cmake-and-a-given-executable">
-<h3><span class="section-number">5.2.5.2. </span>CMake 및 특정 실행 파일로 구성<a class="headerlink" href="#configure-with-cmake-and-a-given-executable" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">5.2.5.2. </span>CMake 및 특정 실행 파일로 구성<a class="headerlink" href="#configure-with-cmake-and-a-given-executable" title="이 제목의 고유 링크"></a></h3>
 <p>이 예에서는 사용자가 필요한 라이브러리와 함께 사용할 수 있는 모든 기능을 갖춘 OpenFAST 실행 파일을 가지고 있지만 소스 코드 저장소를 다운로드하지 않았다고 가정합니다. 실행 파일이 조직 내에서 배포되거나 다음에서 다운로드되는 경우가 이에 해당할 수 있습니다.
 <a class="reference external" href="https://github.com/openfast/openfast/releases" target="_blank" rel="noopener noreferrer">OpenFAST 출시</a>. 여기서는 아무것도 컴파일되지 않지만 테스트 스위트는 CTest 명령과 함께 사용하기 위해 CMake로 구성됩니다.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download the source code from GitHub</span>
@@ -385,7 +385,7 @@ ctest<span class="w"> </span>-j4
 </div>
 </div>
 <div class="section" id="python-driver-with-a-given-executable">
-<span id="example-python-driver"></span><h3><span class="section-number">5.2.5.3. </span>특정 실행 파일이 포함된 Python 드라이버<a class="headerlink" href="#python-driver-with-a-given-executable" title="이 제목에 대한 영구 링크"></a></h3>
+<span id="example-python-driver"></span><h3><span class="section-number">5.2.5.3. </span>특정 실행 파일이 포함된 Python 드라이버<a class="headerlink" href="#python-driver-with-a-given-executable" title="이 제목의 고유 링크"></a></h3>
 <p>이 예에서는 사용자가 필요한 라이브러리와 함께 사용할 수 있는 모든 기능을 갖춘 OpenFAST 실행 파일을 가지고 있지만 소스 코드 저장소를 다운로드하지 않았다고 가정합니다. 실행 파일이 조직 내에서 배포되거나 다음에서 다운로드되는 경우가 이에 해당할 수 있습니다.
 <a class="reference external" href="https://github.com/openfast/openfast/releases" target="_blank" rel="noopener noreferrer">OpenFAST 출시</a>. 아무것도 컴파일되지 않지만 포함된 Python 드라이버를 사용하여 테스트 도구 모음이 실행됩니다.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download the source code from GitHub</span>
@@ -428,14 +428,14 @@ python<span class="w"> </span>manualRegressionTest.py<span class="w"> </span>..<
 </div>
 </div>
 <div class="section" id="detailed-example-of-running-on-windows">
-<span id="reg-test-windows"></span><h3><span class="section-number">5.2.5.4. </span>Windows에서 실행하는 자세한 예<a class="headerlink" href="#detailed-example-of-running-on-windows" title="이 제목에 대한 영구 링크"></a></h3>
+<span id="reg-test-windows"></span><h3><span class="section-number">5.2.5.4. </span>Windows에서 실행하는 자세한 예<a class="headerlink" href="#detailed-example-of-running-on-windows" title="이 제목의 고유 링크"></a></h3>
 <p>해당 <a class="reference internal" href="#example-python-driver"><span class="std std-ref">특정 실행 파일이 포함된 Python 드라이버</span></a> 예제는 Windows 컴퓨터에서 회귀 테스트를 실행하는 데 사용될 수 있습니다. 그러나 보다 자세한 단계별 설명은 <a class="reference internal" href="regression_test_windows.html#regression-test-windows"><span class="std std-ref">Visual Studio 회귀 테스트를 사용하는 Windows</span></a>.</p>
 <div class="toctree-wrapper compound">
 </div>
 </div>
 </div>
 <div class="section" id="adding-test-cases">
-<span id="new-regression-test-case"></span><h2><span class="section-number">5.2.6. </span>테스트 케이스 추가<a class="headerlink" href="#adding-test-cases" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="new-regression-test-case"></span><h2><span class="section-number">5.2.6. </span>테스트 케이스 추가<a class="headerlink" href="#adding-test-cases" title="이 제목의 고유 링크"></a></h2>
 <p>모든 실행 모드에서 회귀 테스트는 궁극적으로 다음 위치에 있는 일련의 Python 스크립트에 의해 구동됩니다. <code class="docutils literal notranslate"><span class="pre">openfast/reg_tests</span></code> 명명 체계가 있는 디렉터리 <code class="docutils literal notranslate"><span class="pre">execute&lt;Module&gt;RegressionTest.py</span></code>. 새로운 회귀 테스트 케이스를 추가하는 첫 번째 단계는 대상 모듈에 대한 스크립트가 존재하는지 확인하는 것입니다. 그렇지 않은 경우 다음에서 문제를 열어야 합니다. <a class="reference external" href="https://github.com/openfast/openfast/issues" target="_blank" rel="noopener noreferrer">OpenFAST 문제</a>
 이 스크립트를 작성하는 데 NLR 팀과 협력합니다.</p>
 <p>다음 단계는 테스트 케이스를 적절한 위치에 추가하는 것입니다. <cite>r-테스트</cite> 서브모듈. r-test의 디렉토리 구조는 OpenFAST의 디렉토리 구조를 미러링하므로 모듈 수준 테스트는 해당 모듈 디렉토리에 배치되어야 하며 글루 코드 테스트는
@@ -461,8 +461,8 @@ ctest<span class="w"> </span>-N
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
-        <a href="unit_test.html" class="btn btn-neutral float-left" title="5.1. 단위 테스트" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="unit_test.html" class="btn btn-neutral float-left" title="5.1. 단위 테스트" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
         <a href="regression_test_windows.html" class="btn btn-neutral float-right" title="5.2.5.4.1. Visual Studio 회귀 테스트를 사용하는 Windows" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

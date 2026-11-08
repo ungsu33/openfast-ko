@@ -20,7 +20,7 @@
         <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../genindex.html">
-    <link rel="search" title="찾다" href="../../search.html">
+    <link rel="search" title="검색" href="../../search.html">
     <link rel="next" title="6.1.6.2. 코드 스타일" href="code_style.html">
     <link rel="prev" title="6. 개발자 문서" href="index.html"> 
 <link rel="stylesheet" href="../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/dev/github_workflow.html"></head>
@@ -47,9 +47,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. 이 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. 이 문서에 대하여</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../working.html">3. OpenFAST 작업</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working.html">3. OpenFAST 사용하기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../user/index.html">4. 사용자 문서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">6. 개발자 문서</a><ul class="current">
@@ -76,16 +76,16 @@
 <li class="toctree-l2"><a class="reference internal" href="index.html#other-documentation">6.4. 기타 문서</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../license.html">7. 라이센스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">7. 라이선스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. 감사의 말씀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. 감사의 글</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../review.html">문서 상세 리뷰</a></li><li><a href="../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">OpenFAST</a>
       </nav>
@@ -94,11 +94,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home" aria-label="집"></a></li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="홈"></a></li>
           <li class="breadcrumb-item"><a href="index.html"><span class="section-number">6. </span>개발자 문서</a></li>
       <li class="breadcrumb-item active"><span class="section-number">6.1.6.1. </span>GitHub에서 OpenFAST 작업</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../_sources/source/dev/github_workflow.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
+            <a href="../../_sources/source/dev/github_workflow.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -107,17 +107,17 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="working-with-openfast-on-github">
-<span id="github-workflow"></span><h1><span class="section-number">6.1.6.1. </span>GitHub에서 OpenFAST 작업<a class="headerlink" href="#working-with-openfast-on-github" title="이 제목에 대한 영구 링크"></a></h1>
+<span id="github-workflow"></span><h1><span class="section-number">6.1.6.1. </span>GitHub에서 OpenFAST 작업<a class="headerlink" href="#working-with-openfast-on-github" title="이 제목의 고유 링크"></a></h1>
 <p>OpenFAST에 대한 대부분의 협업 및 개발은 다음에서 이루어집니다. <a class="reference external" href="http://github.com/openfast/openfast" target="_blank" rel="noopener noreferrer">GitHub 저장소</a>. 거기,
 <a class="reference external" href="http://github.com/openfast/openfast/issues" target="_blank" rel="noopener noreferrer">문제</a> 및
 <a class="reference external" href="http://github.com/openfast/openfast/pulls" target="_blank" rel="noopener noreferrer">풀 요청</a>
 논의되고 새 버전이 출시됩니다. 이는 NLR OpenFAST 팀 및 OpenFAST 커뮤니티 전체의 다른 개발자와 협력하기 위한 최고의 메커니즘입니다.</p>
 <div class="section" id="issues-and-work-assignment">
-<h2><span class="section-number">6.1.6.1.1. </span>문제 및 업무 할당<a class="headerlink" href="#issues-and-work-assignment" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">6.1.6.1.1. </span>문제 및 업무 할당<a class="headerlink" href="#issues-and-work-assignment" title="이 제목의 고유 링크"></a></h2>
 <p>문제 또는 기능 격차를 완전히 설명하려면 적절한 문서와 데이터를 사용하여 문제를 열어야 합니다. 새로운 개발을 위해 진행 중인 작업과 관련하여 의사소통과 조정이 이루어져야 하며, 개발자는 작업을 완료하려는 의도를 분명히 해야 합니다.</p>
 </div>
 <div class="section" id="pull-requests">
-<span id="id1"></span><h2><span class="section-number">6.1.6.1.2. </span>풀 요청<a class="headerlink" href="#pull-requests" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="id1"></span><h2><span class="section-number">6.1.6.1.2. </span>풀 요청<a class="headerlink" href="#pull-requests" title="이 제목의 고유 링크"></a></h2>
 <p>코드 수정 사항을 검토할 준비가 되면 모든 적절한 문서 및 테스트와 함께 끌어오기 요청을 제출해야 합니다. NLR OpenFAST 팀원은 검토자를 할당하고 개발자와 협력하여 코드를 기본 저장소에 병합합니다.</p>
 <p>새로운 풀 요청에는 다음이 포함되어야 합니다.</p>
 <ul class="simple">
@@ -138,7 +138,7 @@
 </ul>
 </div>
 <div class="section" id="git-workflow-and-interacting-with-the-main-repository">
-<h2><span class="section-number">6.1.6.1.3. </span>Git 워크플로 및 기본 저장소와의 상호 작용<a class="headerlink" href="#git-workflow-and-interacting-with-the-main-repository" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">6.1.6.1.3. </span>Git 워크플로 및 기본 저장소와의 상호 작용<a class="headerlink" href="#git-workflow-and-interacting-with-the-main-repository" title="이 제목의 고유 링크"></a></h2>
 <p>OpenFAST 개발은 github 저장소와 상호 작용할 때 "Git Flow"를 따라야 합니다. Git Flow는 공유 저장소에 커밋을 푸시하고 풀하는 안전한 방법을 설명하는 git 사용을 위해 잘 정의되고 널리 채택되는 워크플로입니다. 원격 변경으로 인해 로컬 개발이 차단되는 것을 방지하려면 Git 흐름을 유지하는 것이 중요합니다. 이 작업 흐름은 훌륭하게 자세히 설명되어 있습니다.
 <a class="reference external" href="http://nvie.com/posts/a-successful-git-branching-model" target="_blank" rel="noopener noreferrer">여기</a>
 아래 차트는 높은 수준의 관점을 제공합니다.</p>
@@ -146,7 +146,7 @@
 <p>참조: <a class="reference external" href="http://nvie.com/posts/a-successful-git-branching-model" target="_blank" rel="noopener noreferrer">http://nvie.com/posts/a-successful-git-branching-model</a></p>
 </div>
 <div class="section" id="openfast-specific-git-flow">
-<h2><span class="section-number">6.1.6.1.4. </span>OpenFAST 특정 Git 흐름<a class="headerlink" href="#openfast-specific-git-flow" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">6.1.6.1.4. </span>OpenFAST 특정 Git 흐름<a class="headerlink" href="#openfast-specific-git-flow" title="이 제목의 고유 링크"></a></h2>
 <p>현재 작업이 다른 개발자의 커밋에 의해 어떻게 영향을 받는지, 그리고 커밋이 다른 개발자에게 어떤 영향을 미칠지 고려하는 것이 중요합니다. 공공 지점에서는 사용하지 마십시오.
 <a class="reference external" href="https://git-scm.com/book/en/v2/Git-Branching-Rebasing" target="_blank" rel="noopener noreferrer">자식 리베이스</a>
 그리고 결코 <a class="reference external" href="https://git-scm.com/docs/git-push#git-push---force" target="_blank" rel="noopener noreferrer">강제 푸시</a>.</p>
@@ -203,8 +203,8 @@ git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
-        <a href="index.html" class="btn btn-neutral float-left" title="6. 개발자 문서" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="index.html" class="btn btn-neutral float-left" title="6. 개발자 문서" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
         <a href="code_style.html" class="btn btn-neutral float-right" title="6.1.6.2. 코드 스타일" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

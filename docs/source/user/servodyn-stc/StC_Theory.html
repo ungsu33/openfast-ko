@@ -21,7 +21,7 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="찾다" href="../../../search.html">
+    <link rel="search" title="검색" href="../../../search.html">
     <link rel="next" title="4.17.3. TLCD: 운동 방정식의 유도" href="StC_TLCD_Theory.html">
     <link rel="prev" title="4.17.1. 입력 파일" href="StC_input.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/servodyn-stc/StC_Theory.html"></head>
@@ -48,9 +48,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
@@ -73,11 +73,11 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">4.17.2. OpenFAST의 튜닝 질량 댐퍼 모듈에 대한 이론 매뉴얼</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#theoretical-background">4.17.2.1. 이론적 배경</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#code-modifications">4.17.2.2. 코드 수정</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#acknowledgements">4.17.2.3. 감사의 말</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#acknowledgements">4.17.2.3. 감사의 글</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="StC_TLCD_Theory.html">4.17.3. TLCD: 운동 방정식의 유도</a></li>
-<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.17.4. 참고자료</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.17.4. 참고문헌</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../turbsim/index.html">4.18. TurbSim</a></li>
@@ -90,16 +90,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -108,12 +108,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
           <li class="breadcrumb-item"><a href="StC_index.html"><span class="section-number">4.17. </span>구조 제어(SrvD)</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.17.2. </span>OpenFAST의 튜닝 질량 댐퍼 모듈에 대한 이론 매뉴얼</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/servodyn-stc/StC_Theory.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
+            <a href="../../../_sources/source/user/servodyn-stc/StC_Theory.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -122,7 +122,7 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="theory-manual-for-the-tuned-mass-damper-module-in-openfast">
-<span id="stc-theory"></span><h1><span class="section-number">4.17.2. </span>OpenFAST의 튜닝 질량 댐퍼 모듈에 대한 이론 매뉴얼<a class="headerlink" href="#theory-manual-for-the-tuned-mass-damper-module-in-openfast" title="이 제목에 대한 영구 링크"></a></h1>
+<span id="stc-theory"></span><h1><span class="section-number">4.17.2. </span>OpenFAST의 튜닝 질량 댐퍼 모듈에 대한 이론 매뉴얼<a class="headerlink" href="#theory-manual-for-the-tuned-mass-damper-module-in-openfast" title="이 제목의 고유 링크"></a></h1>
 <dl class="field-list simple">
 <dt class="field-odd">작가</dt>
 <dd class="field-odd"><p>William La Cava 및 Matthew A. Lackner 매사추세츠 대학교 기계산업공학부 Amherst Amherst, MA 01003
@@ -135,9 +135,9 @@
 <span id="id1">[<a class="reference internal" href="zrefs.html#id3" title="매튜 A. 래크너(Matthew A. Lackner)와 마리오 A. 로테아(Mario A. Rotea). 해상 풍력 터빈의 수동적 구조 제어. 풍력 에너지, 14(3):373–388, 2011. URL: http://onlinelibrary.wiley.com/doi/10.1002/we.426/full.">stc-LR11a</a>, <a class="reference internal" href="zrefs.html#id7" title="매튜 A. 래크너(Matthew A. Lackner)와 마리오 A. 로테아(Mario A. Rotea). 부유식 풍력 터빈의 구조적 제어. 메카트로닉스, 21(4):704–719, 2011. URL: http://www.sciencedirect.com/science/article/pii/S0957415810002072.">stc-LR11b</a>, <a class="reference internal" href="zrefs.html#id2" title="Hazim Namik, M. A. Rotea 및 Matthew Lackner. 부유식 풍력 터빈의 액추에이터 동역학을 이용한 능동 구조 제어. 제51회 AIAA 항공우주과학 회의 진행, 7–10. 2013. URL: http://arc.aiaa.org/doi/pdf/10.2514/6.2013-455.">stc-NRL13</a>, <a class="reference internal" href="zrefs.html#id4" title="G. 스튜어트와 M. A. 래크너. 해상 풍력 터빈의 부하를 줄이기 위한 수동 동조 질량 댐퍼의 최적화. 제어 시스템 기술에 관한 IEEE 거래, 21(4):1090–1104, 2013.">stc-SL13</a>, <a class="reference internal" href="zrefs.html#id6" title="고든 M. 스튜어트와 매튜 A. 래크너. 해상 풍력 터빈의 능동 구조 제어에 대한 액추에이터 동역학의 영향. 엔지니어링 구조, 33(5):1807–1816, 2011. URL: http://www.sciencedirect.com/science/article/pii/S0141029611000915.">stc-SL11</a>, <a class="reference internal" href="zrefs.html#id5" title="고든 M. 스튜어트와 매튜 A. 래크너. 수동으로 조정된 질량 댐퍼와 풍파 오정렬이 해상 풍력 터빈 부하에 미치는 영향. 엔지니어링 구조, 73:54–61, 2014. URL: http://www.sciencedirect.com/science/article/pii/S0141029614002673.">stc-SL14</a>]</span>. TMDs는 로컬에서 작동하는 3개의 독립적인 1개의 DOF 선형 질량 스프링 댐핑 요소입니다. <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span>, 및 <span class="math notranslate nohighlight">\(z\)</span>
 각 구성 요소의 좌표계. 전방향 TMD 및 TLCD를 포함한 구조 제어(StC) 모듈의 다른 기능은 여기에 문서화되어 있지 않습니다. 먼저 이론적 배경을 제시하고 코드 변경 사항을 설명합니다.</p>
 <div class="section" id="theoretical-background">
-<h2><span class="section-number">4.17.2.1. </span>이론적 배경<a class="headerlink" href="#theoretical-background" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.17.2.1. </span>이론적 배경<a class="headerlink" href="#theoretical-background" title="이 제목의 고유 링크"></a></h2>
 <div class="section" id="definitions">
-<h3><span class="section-number">4.17.2.1.1. </span>정의<a class="headerlink" href="#definitions" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.17.2.1.1. </span>정의<a class="headerlink" href="#definitions" title="이 제목의 고유 링크"></a></h3>
 <div class="docutils container" id="tab-defs">
 <table class="docutils align-default" id="id4">
 <caption><span class="caption-number">표 4.9 </span><span class="caption-text">정의</span><a class="headerlink" href="#id4" title="이 테이블에 대한 영구 링크"></a></caption>
@@ -207,7 +207,7 @@
 </div>
 </div>
 <div class="section" id="equations-of-motion">
-<h3><span class="section-number">4.17.2.1.2. </span>운동 방정식<a class="headerlink" href="#equations-of-motion" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.17.2.1.2. </span>운동 방정식<a class="headerlink" href="#equations-of-motion" title="이 제목의 고유 링크"></a></h3>
 <p>두 참조 프레임에서 TMDs의 위치 벡터 <span class="math notranslate nohighlight">\(O\)</span>
 및 <span class="math notranslate nohighlight">\(P\)</span> 에 의해 관련되어 있습니다</p>
 <div class="math notranslate nohighlight">
@@ -293,7 +293,7 @@
 <p>이제 우리는 다음의 운동 방정식을 풀겠습니다. <span class="math notranslate nohighlight">\(TMD_X\)</span>,
 <span class="math notranslate nohighlight">\(TMD_Y\)</span>, 및 <span class="math notranslate nohighlight">\(TMD_Z\)</span>.</p>
 <div class="section" id="tmd-x">
-<h4><span class="section-number">4.17.2.1.2.1. </span>TMD_X :<a class="headerlink" href="#tmd-x" title="이 제목에 대한 영구 링크"></a></h4>
+<h4><span class="section-number">4.17.2.1.2.1. </span>TMD_X :<a class="headerlink" href="#tmd-x" title="이 제목의 고유 링크"></a></h4>
 <p>외부 세력 <span class="math notranslate nohighlight">\(\vec{F}_{_{TMD_X/O_N}}\)</span> 에 의해 주어진다</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\vec{F}_{_{TMD_X/O_N}} = \left[
@@ -363,7 +363,7 @@
    - 2\dot{\phi}_{_{N/O_N}} \dot{x}_{_{TMD_X/P_N}} \right)\]</div>
 </div>
 <div class="section" id="tmd-y">
-<h4><span class="section-number">4.17.2.1.2.2. </span>TMD_Y:<a class="headerlink" href="#tmd-y" title="이 제목에 대한 영구 링크"></a></h4>
+<h4><span class="section-number">4.17.2.1.2.2. </span>TMD_Y:<a class="headerlink" href="#tmd-y" title="이 제목의 고유 링크"></a></h4>
 <p>외부 세력 <span class="math notranslate nohighlight">\(\vec{F}_{_{TMD_Y/P_N}}\)</span> ~에 <span class="math notranslate nohighlight">\(TMD_Y\)</span> 에 의해 주어진다</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\vec{F}_{_{TMD_Y/P_N}} =  \left[
@@ -439,7 +439,7 @@
    + 2\dot{\theta}_{_{N/O_N}} \dot{y}_{_{TMD_Y/P_N}} \right)\]</div>
 </div>
 <div class="section" id="tmd-z">
-<h4><span class="section-number">4.17.2.1.2.3. </span>TMD_Z :<a class="headerlink" href="#tmd-z" title="이 제목에 대한 영구 링크"></a></h4>
+<h4><span class="section-number">4.17.2.1.2.3. </span>TMD_Z :<a class="headerlink" href="#tmd-z" title="이 제목의 고유 링크"></a></h4>
 <p>외부 세력 <span class="math notranslate nohighlight">\(\vec{F}_{_{TMD_Z/O_N}}\)</span> 에 의해 주어진다</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\vec{F}_{_{TMD_Z/O_N}} = \left[
@@ -515,9 +515,9 @@
 </div>
 </div>
 <div class="section" id="state-equations">
-<h3><span class="section-number">4.17.2.1.3. </span>상태 방정식<a class="headerlink" href="#state-equations" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.17.2.1.3. </span>상태 방정식<a class="headerlink" href="#state-equations" title="이 제목의 고유 링크"></a></h3>
 <div class="section" id="inputs">
-<h4><span class="section-number">4.17.2.1.3.1. </span>입력:<a class="headerlink" href="#inputs" title="이 제목에 대한 영구 링크"></a></h4>
+<h4><span class="section-number">4.17.2.1.3.1. </span>입력:<a class="headerlink" href="#inputs" title="이 제목의 고유 링크"></a></h4>
 <p>입력은 구성요소 선형 가속도와 각위치, 속도 및 가속도입니다.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\vec{u} = \left[
@@ -544,7 +544,7 @@
 \right]\end{split}\]</div>
 </div>
 <div class="section" id="states">
-<h4><span class="section-number">4.17.2.1.3.2. </span>상태:<a class="headerlink" href="#states" title="이 제목에 대한 영구 링크"></a></h4>
+<h4><span class="section-number">4.17.2.1.3.2. </span>상태:<a class="headerlink" href="#states" title="이 제목의 고유 링크"></a></h4>
 <p>상태는 구성 요소 참조 프레임에서 해당 DOFs를 따른 TMDs의 위치와 속도입니다.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\vec{R}_{_{TMD/P_N}} = \left[
@@ -598,7 +598,7 @@
 </div>
 </div>
 <div class="section" id="outputs">
-<h3><span class="section-number">4.17.2.1.4. </span>출력<a class="headerlink" href="#outputs" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.17.2.1.4. </span>출력<a class="headerlink" href="#outputs" title="이 제목의 고유 링크"></a></h3>
 <p>출력 벡터 <span class="math notranslate nohighlight">\(\vec{Y}\)</span> ~이다</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\vec{Y} = \left[
@@ -640,7 +640,7 @@
    \end{array}
 \right]\end{split}\]</div>
 <div class="section" id="stop-forces">
-<h4><span class="section-number">4.17.2.1.4.1. </span>힘을 멈추세요<a class="headerlink" href="#stop-forces" title="이 제목에 대한 영구 링크"></a></h4>
+<h4><span class="section-number">4.17.2.1.4.1. </span>힘을 멈추세요<a class="headerlink" href="#stop-forces" title="이 제목의 고유 링크"></a></h4>
 <p>추가 힘 <span class="math notranslate nohighlight">\(F_{StopFrc_{X}}\)</span>, <span class="math notranslate nohighlight">\(F_{StopFrc_{Y}}\)</span>, 및
 <span class="math notranslate nohighlight">\(F_{StopFrc_{Z}}\)</span> TMD_X, TMD_Y 또는 TMD_Z의 움직임이 질량의 최대 트랙 길이를 초과하는 경우 출력 힘에 추가됩니다. 그렇지 않으면 0과 같습니다. 트랙 길이에는 TMD 방향(X_PSP 및 X_NSP, Y_PSP 및 Y_NSP, Z_PSP 및 Z_NSP)의 양극 및 음극 끝 부분에 제한이 있습니다. 일반적인 최대 및 최소 변위를 다음과 같이 정의하면 <span class="math notranslate nohighlight">\(x_{max}\)</span> 및 <span class="math notranslate nohighlight">\(x_{min}\)</span>, 각각 정지력은 다음과 같은 형식을 갖습니다.</p>
 <div class="math notranslate nohighlight">
@@ -656,7 +656,7 @@
 <p>여기서 <span class="math notranslate nohighlight">\(\Delta x\)</span> 질량이 정지 위치를 넘어 이동한 거리입니다. <span class="math notranslate nohighlight">\(k_S\)</span> 및 <span class="math notranslate nohighlight">\(c_S\)</span> 강성과 감쇠 상수가 큽니다.</p>
 </div>
 <div class="section" id="pre-load-forces">
-<span id="srvd-stcz-preload"></span><h4><span class="section-number">4.17.2.1.4.2. </span>예압력<a class="headerlink" href="#pre-load-forces" title="이 제목에 대한 영구 링크"></a></h4>
+<span id="srvd-stcz-preload"></span><h4><span class="section-number">4.17.2.1.4.2. </span>예압력<a class="headerlink" href="#pre-load-forces" title="이 제목의 고유 링크"></a></h4>
 <p>추가적인 힘 <span class="math notranslate nohighlight">\(F_{Z_{PreLoad}}\)</span> 중력이 작용할 때 TMD_Z의 정지 위치를 이동하는 방법으로 출력 힘에 추가됩니다. 이는 소프트 스프링 상수가 있는 매우 큰 질량이 사용될 때 StCs에 장착된 하부 구조에 특히 유용합니다. 이는 용어에 나타납니다.
 <span class="math notranslate nohighlight">\(\vec{F}_{_{TMD_Z/O_N}}\)</span> 그리고 eq 운동 방정식은 다음과 같이 주어진다. <a class="reference internal" href="#equation-bu">(4.218)</a>
 그리고 그 결과로 발생하는 힘 <a class="reference internal" href="#equation-outputforces">(4.219)</a>.</p>
@@ -664,10 +664,10 @@
 </div>
 </div>
 <div class="section" id="code-modifications">
-<h2><span class="section-number">4.17.2.2. </span>코드 수정<a class="headerlink" href="#code-modifications" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.17.2.2. </span>코드 수정<a class="headerlink" href="#code-modifications" title="이 제목의 고유 링크"></a></h2>
 <p>구조 제어(StC) 기능은 ServoDyn에 연결된 하위 모듈입니다. ServoDyn.f90 및 ServoDyn.txt의 참조 외에도 StC 모듈이 포함된 새 파일이 아래에 나열되어 있습니다.</p>
 <div class="section" id="new-files">
-<h3><span class="section-number">4.17.2.2.1. </span>새 파일<a class="headerlink" href="#new-files" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.17.2.2.1. </span>새 파일<a class="headerlink" href="#new-files" title="이 제목의 고유 링크"></a></h3>
 <ul class="simple">
 <li><p>StrucCtrl.f90 : 구조 제어 모듈</p></li>
 <li><p>StrucCtrl.txt : 레지스트리 파일에는 표에 표시된 파일, 입력, 상태, 매개변수 및 출력이 포함됩니다. <a class="reference external" href="#tbl2">1</a> 및 <a class="reference external" href="#tbl1">2</a></p></li>
@@ -675,7 +675,7 @@
 </ul>
 </div>
 <div class="section" id="variables">
-<h3><span class="section-number">4.17.2.2.2. </span>변수<a class="headerlink" href="#variables" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.17.2.2.2. </span>변수<a class="headerlink" href="#variables" title="이 제목의 고유 링크"></a></h3>
 <div class="docutils container" id="tbl2">
 <table class="docutils align-default" id="id6">
 <caption><span class="caption-number">표 4.11 </span><span class="caption-text">StC 레지스트리의 필드 정의 요약입니다. 상태 벡터에 주목하세요. <span class="math notranslate nohighlight">\(\vec{tmd_x}\)</span> 에 해당 <span class="math notranslate nohighlight">\(\vec{R}_{_{TMD/P_N}}\)</span>, 그리고 출력은 <span class="math notranslate nohighlight">\(\vec{F}_{_{P_G}}\)</span> 및 <span class="math notranslate nohighlight">\(\vec{M}_{_{P_G}}\)</span> MeshType 개체(y.Mesh)에 포함되어 있습니다. <span class="math notranslate nohighlight">\(X_{DSP}\)</span>, <span class="math notranslate nohighlight">\(Y_{DSP}\)</span>, 및 <span class="math notranslate nohighlight">\(Z_{DSP}\)</span> TMDs의 초기 변위입니다.</span><a class="headerlink" href="#id6" title="이 테이블에 대한 영구 링크"></a></caption>
@@ -945,7 +945,7 @@
 </div>
 </div>
 <div class="section" id="acknowledgements">
-<h2><span class="section-number">4.17.2.3. </span>감사의 말<a class="headerlink" href="#acknowledgements" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.17.2.3. </span>감사의 글<a class="headerlink" href="#acknowledgements" title="이 제목의 고유 링크"></a></h2>
 <p>저자들은 이 매뉴얼을 검토해준 Dr. Jason Jonkman에게 감사를 표하고 싶습니다.</p>
 <dl class="footnote brackets">
 <dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
@@ -958,8 +958,8 @@
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
-        <a href="StC_input.html" class="btn btn-neutral float-left" title="4.17.1. 입력 파일" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="StC_input.html" class="btn btn-neutral float-left" title="4.17.1. 입력 파일" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
         <a href="StC_TLCD_Theory.html" class="btn btn-neutral float-right" title="4.17.3. TLCD: 운동 방정식의 유도" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

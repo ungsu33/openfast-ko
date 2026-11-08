@@ -21,7 +21,7 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="찾다" href="../../../search.html">
+    <link rel="search" title="검색" href="../../../search.html">
     <link rel="next" title="4.4.7. 상태공간 표현 및 OpenFAST와의 통합" href="StateSpace.html">
     <link rel="prev" title="4.4.5. 출력 파일" href="OutputFiles.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/aerodyn-olaf/OLAFTheory.html"></head>
@@ -48,9 +48,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
@@ -74,8 +74,8 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="StateSpace.html">4.4.7. 상태공간 표현과 OpenFAST 연동</a></li>
-<li class="toctree-l3"><a class="reference internal" href="FutureWork.html">4.4.8. 미래의 일</a></li>
-<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.4.9. 참고자료</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FutureWork.html">4.4.8. 향후 개발 계획</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.4.9. 참고문헌</a></li>
 <li class="toctree-l3"><a class="reference internal" href="AppendixA.html">4.4.10. 부록 A: OLAF 기본 입력 파일</a></li>
 <li class="toctree-l3"><a class="reference internal" href="AppendixB.html">4.4.11. 부록 B: 규정된 순환 입력 파일</a></li>
 <li class="toctree-l3"><a class="reference internal" href="AppendixC.html">4.4.12. 부록 C: OLAF 출력 채널 목록</a></li>
@@ -104,16 +104,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -122,12 +122,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.4. </span>OLAF 사용자 가이드 및 이론 매뉴얼(AeroDyn의 Free Vortex Wake)</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.4. </span>OLAF 사용자 가이드 및 이론 설명서 (AeroDyn의 자유 와류 후류)</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.4.6. </span>OLAF 이론</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/aerodyn-olaf/OLAFTheory.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
+            <a href="../../../_sources/source/user/aerodyn-olaf/OLAFTheory.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -136,10 +136,10 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="olaf-theory">
-<span id="id1"></span><h1><span class="section-number">4.4.6. </span>OLAF 이론<a class="headerlink" href="#olaf-theory" title="이 제목에 대한 영구 링크"></a></h1>
+<span id="id1"></span><h1><span class="section-number">4.4.6. </span>OLAF 이론<a class="headerlink" href="#olaf-theory" title="이 제목의 고유 링크"></a></h1>
 <p>이 섹션에서는 OLAF 방법을 자세히 설명하고 계산 방법에 대한 개요를 제공한 다음 OpenFAST와의 통합에 대한 간략한 설명을 제공합니다.</p>
 <div class="section" id="introduction-vorticity-formulation">
-<span id="sec-vorticityformulation"></span><h2><span class="section-number">4.4.6.1. </span>소개 - 와도 공식<a class="headerlink" href="#introduction-vorticity-formulation" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="sec-vorticityformulation"></span><h2><span class="section-number">4.4.6.1. </span>소개 - 와도 공식<a class="headerlink" href="#introduction-vorticity-formulation" title="이 제목의 고유 링크"></a></h2>
 <p>비보존력이 없는 비압축성 균질 흐름에 대한 와도 방정식은 Eq.&nbsp;<a class="reference internal" href="#equation-eq-vorticityconservationincompr">(4.13)</a></p>
 <div class="math notranslate nohighlight" id="equation-eq-vorticityconservationincompr">
 <span class="eqno">(4.13)<a class="headerlink" href="#equation-eq-vorticityconservationincompr" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{aligned}
@@ -150,7 +150,7 @@
 <p>구현된 자유 소용돌이 코드의 다양한 모델은 다음 섹션에 설명되어 있습니다.</p>
 </div>
 <div class="section" id="discretization-projection">
-<span id="sec-discretization"></span><h2><span class="section-number">4.4.6.2. </span>이산화 - 투영<a class="headerlink" href="#discretization-projection" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="sec-discretization"></span><h2><span class="section-number">4.4.6.2. </span>이산화 - 투영<a class="headerlink" href="#discretization-projection" title="이 제목의 고유 링크"></a></h2>
 <p>수치적 방법은 유한한 수의 상태를 사용하여 연속 와도 분포를 모델링합니다. 이를 달성하기 위해 와도 분포는 와류 요소라고 하는 기본 함수에 투영됩니다. 여기서는 소용돌이 필라멘트가 소용돌이 장을 나타내는 요소로 사용됩니다. 소용돌이 필라멘트는 두 점으로 구분되므로 이 두 점에 의해 형성된 방향을 가정합니다. 와도관은 단위 벡터를 따라 방향이 지정됩니다. <span class="math notranslate nohighlight">\(\vec{e}_x\)</span> 단면의 <span class="math notranslate nohighlight">\(dS\)</span> 그리고 길이 <span class="math notranslate nohighlight">\(l\)</span>. 그런 다음 길이의 소용돌이 필라멘트로 근사화할 수 있습니다. <span class="math notranslate nohighlight">\(l\)</span> 같은 방향으로 향하게 됩니다. 튜브와 와류 필라멘트의 전체 와도는 동일하며 다음과 같이 관련됩니다.</p>
 <div class="math notranslate nohighlight" id="equation-omegagamma">
 <span class="eqno">(4.14)<a class="headerlink" href="#equation-omegagamma" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{aligned}
@@ -159,10 +159,10 @@
 <p>여기서 <span class="math notranslate nohighlight">\(\vec{\Gamma}\)</span> 소용돌이 필라멘트의 순환 강도입니다. 와도관이 복잡하고 큰 부피를 차지할 경우 와류 필라멘트로의 투영은 어려우며 와류 입자로의 투영이 더 적절합니다. 후류가 알려진 방향의 속도 점프를 정의하는 얇은 소용돌이 층에 국한되어 있다고 가정하면 후류 소용돌이 시트를 소용돌이 필라멘트의 메쉬로 근사화하는 것이 가능합니다. 이것이 와류 필라멘트 후류 방법의 기초입니다. 소용돌이 필라멘트는 볼륨 대신 선을 차지하므로 소용돌이 장을 단일하게 표현합니다. 와도 장을 더 잘 표현하기 위해 필라멘트가 "팽창"됩니다. 이 과정을 정규화라고 합니다(참조: <a class="reference internal" href="#sec-regularization"><span class="std std-numref">섹션 4.4.6.8</span></a>). 와도 장의 정규화는 속도 장도 정규화하고 그렇지 않으면 발생할 수 있는 특이점을 방지합니다.</p>
 </div>
 <div class="section" id="lifting-line-representation">
-<span id="sec-circ"></span><h2><span class="section-number">4.4.6.3. </span>리프팅 라인 표현<a class="headerlink" href="#lifting-line-representation" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="sec-circ"></span><h2><span class="section-number">4.4.6.3. </span>리프팅 라인 표현<a class="headerlink" href="#lifting-line-representation" title="이 제목의 고유 링크"></a></h2>
 <p>이 코드는 리프팅 라인 공식에 의존합니다. 리프팅 라인 방법은 블레이드의 각 단면의 하중을 블레이드의 평균 선에 효과적으로 집중시키며 각 단면의 형상을 직접적으로 고려하지 않습니다. 리프팅 라인 방법의 와도 기반 버전에서 블레이드는 다양한 순환 선으로 표시됩니다. 이 선은 블레이드의 움직임을 따르며 이를 "속박" 순환이라고 합니다. 경계 순환은 후류의 자유 소용돌이와 동일한 동적 방정식을 따르지 않습니다. 대신 강도는 Kutta-Joukowski 정리를 통해 익형 양력과 연결됩니다. 경계 순환의 경간 방향 변화로 인해 소용돌이가 후류로 방출됩니다. 이를 "추적 소용돌이도"라고 합니다. 경계 순환의 시간 변화도 후류에서 방출되는데, 이를 "흘려진" 소용돌이라고 합니다. 다음 단락에서는 구속 와도의 표현을 설명합니다.</p>
 <div class="section" id="lifting-line-panels-and-emitted-wake-panels">
-<h3><span class="section-number">4.4.6.3.1. </span>리프팅 라인 패널 및 방출 웨이크 패널<a class="headerlink" href="#lifting-line-panels-and-emitted-wake-panels" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.4.6.3.1. </span>리프팅 라인 패널 및 방출 웨이크 패널<a class="headerlink" href="#lifting-line-panels-and-emitted-wake-panels" title="이 제목의 고유 링크"></a></h3>
 <p>양력선과 후류 표현은 다음과 같습니다.
 <a class="reference internal" href="#fig-vortexlatticemethod"><span class="std std-numref">그림 4.15</span></a>. 블레이드 리프팅 라인은 유한한 수의 패널로 분리되어 있으며 각 패널은 4면의 소용돌이 고리를 형성합니다. 스팬별 이산화는 AeroDyn 블레이드 입력 파일의 이산화를 따릅니다. 스팬방향 패널의 수, <span class="math notranslate nohighlight">\(n_\text{LL}\)</span>는 AeroDyn 노드의 총 개수보다 1이 적고, <strong>NumBlNds</strong>. 패널의 측면은 리프팅 라인 및 블레이드의 후행 가장자리와 일치합니다. 리프팅 라인은 현재 앞쪽 가장자리(LE)로부터 1/4 코드 위치로 정의됩니다. 패널링에 대한 자세한 내용은 다음에서 제공됩니다. <a class="reference internal" href="#sec-panelling"><span class="std std-numref">섹션 4.4.6.3.2</span></a>. 주어진 시간 단계에서 각 리프팅 라인 패널의 순환은 개발된 세 가지 방법 중 하나에 따라 결정됩니다. <a class="reference internal" href="#sec-circulationmethods"><span class="std std-numref">섹션 4.4.6.3.3</span></a>. 시간 단계가 끝나면 각 리프팅 라인 패널의 순환이 후류로 방출되어 자유 와도 패널을 형성합니다. Kutta 조건을 만족시키기 위해 첫 번째 후류 패널 근처의 순환과 경계 순환은 동일합니다(참조: <a class="reference internal" href="#fig-vortexlatticemethod"><span class="std std-numref">그림 4.15</span></a> 비). 후류 패널은 블레이드 경계층의 연속으로 인해 발생하는 얇은 전단층을 모델링합니다. 이 전단층은 와류 이중선의 연속 분포를 사용하여 모델링할 수 있습니다. 각 패널에서는 일정한 이중선 강도가 가정되며 이는 일정한 순환의 소용돌이 고리와 동일합니다.</p>
 <div class="figure align-default" id="fig-vortexlatticemethod">
@@ -173,7 +173,7 @@
 <a class="reference internal" href="#fig-vortexlatticemethod"><span class="std std-numref">그림 4.15</span></a> 기음. 경계 패널과 후류 패널 근처의 첫 번째 열의 순환이 동일하기 때문에 후연에 위치한 와류 부분에는 순환이 없습니다.</p>
 </div>
 <div class="section" id="panelling">
-<span id="sec-panelling"></span><h3><span class="section-number">4.4.6.3.2. </span>판넬링<a class="headerlink" href="#panelling" title="이 제목에 대한 영구 링크"></a></h3>
+<span id="sec-panelling"></span><h3><span class="section-number">4.4.6.3.2. </span>판넬링<a class="headerlink" href="#panelling" title="이 제목의 고유 링크"></a></h3>
 <p>블레이드의 패널링에 사용되는 정의는 다음과 같습니다.
 <a class="reference internal" href="#fig-vortexlatticemethod"><span class="std std-numref">그림 4.15</span></a> d, van Garrel의 표기법에 따라(<span id="id2">[<a class="reference internal" href="zrefs.html#id47" title="A. 반 가렐. 풍력 터빈 공기역학 시뮬레이션 모듈 개발. 기술 보고서 ​​ECN-C–03-079, ECN, 2003.">olaf-vG03</a>]</span>). 앞쪽 가장자리와 뒤쪽 가장자리(TE) 위치는 AeroDyn 메시에서 직접 가져옵니다. 두 개의 스팬 방향 위치에서 LE 및 TE는 모서리 점을 정의합니다.
 <span class="math notranslate nohighlight">\(\vec{x}_1\)</span>, <span class="math notranslate nohighlight">\(\vec{x}_2\)</span>, <span class="math notranslate nohighlight">\(\vec{x}_3\)</span>, 및
@@ -201,10 +201,10 @@
 <p>등거리 간격의 경우 이 이산화는 제어점을 리프팅 라인의 중앙에 배치합니다(<span class="math notranslate nohighlight">\(\eta=0.5\)</span>). 코사인 간격을 갖는 타원형 날개에 대한 이론적인 순환 결과는 제어점을 날개 말단의 더 강한 후행 세그먼트에 더 가깝게 배치하기 때문에 이러한 이산화를 통해 검색됩니다(예:&nbsp;<span id="id3">[<a class="reference internal" href="zrefs.html#id48" title="J. 커윈. 강의 노트 수중익선과 프로펠러. 기술 보고서, MIT, 2000.">olaf-Ker00</a>]</span>).</p>
 </div>
 <div class="section" id="circulation-solving-methods">
-<span id="sec-circulationmethods"></span><h3><span class="section-number">4.4.6.3.3. </span>순환 해결 방법<a class="headerlink" href="#circulation-solving-methods" title="이 제목에 대한 영구 링크"></a></h3>
+<span id="sec-circulationmethods"></span><h3><span class="section-number">4.4.6.3.3. </span>순환 해결 방법<a class="headerlink" href="#circulation-solving-methods" title="이 제목의 고유 링크"></a></h3>
 <p>결합 순환 강도를 결정하기 위해 세 가지 방법이 구현됩니다. 입력을 사용하여 선택됩니다. <strong>CircSolvMethod</strong>, 다음 섹션에 나와 있습니다.</p>
 <div class="section" id="cl-based-iterative-method">
-<h4><span class="section-number">4.4.6.3.3.1. </span>Cl 기반 반복 방법<a class="headerlink" href="#cl-based-iterative-method" title="이 제목에 대한 영구 링크"></a></h4>
+<h4><span class="section-number">4.4.6.3.3.1. </span>Cl 기반 반복 방법<a class="headerlink" href="#cl-based-iterative-method" title="이 제목의 고유 링크"></a></h4>
 <p>Cl 기반 반복 방법은 리프팅 라인에 위치한 각 제어점에서 극 데이터를 활용하는 비선형 반복 솔버 내에서 순환을 결정합니다. 알고리즘은 받음각과 극좌표 데이터를 사용하여 얻은 양력이 Kutta-Joukowski 정리로 얻은 양력과 일치하는지 확인합니다. 현재 블레이드 스팬을 따라 순환을 계산하는 것이 선호되는 방법입니다. 다음과 같이 선택됩니다. <strong>CircSolvMethod=[1]</strong>. 이 방법은 van Garrel의 연구에 설명되어 있습니다(<span id="id4">[<a class="reference internal" href="zrefs.html#id47" title="A. 반 가렐. 풍력 터빈 공기역학 시뮬레이션 모듈 개발. 기술 보고서 ​​ECN-C–03-079, ECN, 2003.">olaf-vG03</a>]</span>). 알고리즘은 다음 단계를 사용하여 반복적인 접근 방식으로 구현됩니다.</p>
 <ol class="arabic">
 <li><p>추정순환으로는 이전 시점의 순환분포를 사용하고, <span class="math notranslate nohighlight">\(\Gamma_\text{prev}\)</span>.</p></li>
@@ -250,17 +250,17 @@
 </ol>
 </div>
 <div class="section" id="no-flow-through-method">
-<h4><span class="section-number">4.4.6.3.3.2. </span>무흐름 방식<a class="headerlink" href="#no-flow-through-method" title="이 제목에 대한 영구 링크"></a></h4>
+<h4><span class="section-number">4.4.6.3.3.2. </span>무흐름 방식<a class="headerlink" href="#no-flow-through-method" title="이 제목의 고유 링크"></a></h4>
 <p>무흐름 순환 해결 방법(때때로 Weissinger-L 기반 방법이라고도 함)이 향후 구현될 수 있습니다(<span id="id5">[<a class="reference internal" href="zrefs.html#id3" title="A. Bagai 및 J. G. Leishman. 실험 데이터와의 비교를 포함하는 의사 암시적 기술을 사용한 로터 자유 각성 모델링. 미국 헬리콥터 협회 제50차 연례 포럼에서. 워싱턴 D.C., 1994.">olaf-BL94</a>, <a class="reference internal" href="zrefs.html#id13" title="S. 굽타. 풍력 터빈 응용을 위한 시간 정확한 점성 라그랑주 와류 후류 모델 개발. PhD 논문, 메릴랜드 대학교, 칼리지 파크, MD, 2006.">olaf-Gup06</a>, <a class="reference internal" href="zrefs.html#id15" title="M. 리베라. 시간이 정확한 자유 소용돌이 후류 모델을 사용한 헬리콥터 비행 역학 시뮬레이션. PhD 논문, 메릴랜드 대학교, 칼리지 파크, MD, 2007.">olaf-Rib07</a>, <a class="reference internal" href="zrefs.html#id10" title="J. Weissinger. 뒤로 젖혀진 날개의 양력 분포. 기술 보고서 ​​TM 1120, NACA, 1947.">olaf-Wei47</a>]</span>). 이 방법에서는 1/4 코드 지점에서 흐름 없음 조건을 충족하여 순환을 해결합니다. 다음과 같이 선택됩니다. <strong>CircSolvMethod=[2]</strong> 그러나 현재는 구현되지 않습니다.</p>
 </div>
 <div class="section" id="prescribed-circulation">
-<h4><span class="section-number">4.4.6.3.3.3. </span>처방된 순환<a class="headerlink" href="#prescribed-circulation" title="이 제목에 대한 영구 링크"></a></h4>
+<h4><span class="section-number">4.4.6.3.3.3. </span>처방된 순환<a class="headerlink" href="#prescribed-circulation" title="이 제목의 고유 링크"></a></h4>
 <p>사용 가능한 최종 방법은 지속적인 순환을 규정합니다. 사용자가 지정한 스팬 방향 순환 분포가 블레이드에 규정됩니다. 다음과 같이 선택됩니다. <strong>CircSolvMethod=[3]</strong>.</p>
 </div>
 </div>
 </div>
 <div class="section" id="free-vorticity-convection">
-<span id="sec-vortconv"></span><h2><span class="section-number">4.4.6.4. </span>자유 소용돌이 대류<a class="headerlink" href="#free-vorticity-convection" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="sec-vortconv"></span><h2><span class="section-number">4.4.6.4. </span>자유 소용돌이 대류<a class="headerlink" href="#free-vorticity-convection" title="이 제목의 고유 링크"></a></h2>
 <p>소용돌이 필라멘트의 지배적인 운동 방정식은 라그랑주 마커의 대류 방정식으로 제공됩니다.</p>
 <div class="math notranslate nohighlight" id="equation-vortfilcart">
 <span class="eqno">(4.16)<a class="headerlink" href="#equation-vortfilcart" title="이 방정식에 대한 영구 링크"></a></span>\[\frac{d\vec{r}}{dt}=\vec{V}(\vec{r},t)\]</div>
@@ -270,7 +270,7 @@
 <span class="eqno">(4.17)<a class="headerlink" href="#equation-eq-euler" title="이 방정식에 대한 영구 링크"></a></span>\[\vec{r}  = \vec{r} + \vec{V} \Delta t\]</div>
 </div>
 <div class="section" id="free-vorticity-convection-in-polar-coordinates">
-<span id="sec-vortconvpolar"></span><h2><span class="section-number">4.4.6.5. </span>극좌표의 자유 와도 대류<a class="headerlink" href="#free-vorticity-convection-in-polar-coordinates" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="sec-vortconvpolar"></span><h2><span class="section-number">4.4.6.5. </span>극좌표의 자유 와도 대류<a class="headerlink" href="#free-vorticity-convection-in-polar-coordinates" title="이 제목의 고유 링크"></a></h2>
 <p>소용돌이 필라멘트의 지배적인 운동 방정식은 다음과 같이 주어진다:</p>
 <div class="math notranslate nohighlight" id="equation-vortfil">
 <span class="eqno">(4.18)<a class="headerlink" href="#equation-vortfil" title="이 방정식에 대한 영구 링크"></a></span>\[\frac{d\vec{r}(\psi,\zeta)}{dt}=\vec{V}[\vec{r}(\psi,\zeta),t]\]</div>
@@ -282,7 +282,7 @@
 <span class="math notranslate nohighlight">\(\vec{r}(\psi,\zeta)\)</span> 라그랑지안 마커의 위치 벡터이고, <span class="math notranslate nohighlight">\(\vec{V}[\vec{r}(\psi,\zeta)]\)</span> 속도입니다.</p>
 </div>
 <div class="section" id="frozen-vorticity-convection">
-<span id="sec-vortconvfrozen"></span><h2><span class="section-number">4.4.6.6. </span>동결 소용돌이 대류<a class="headerlink" href="#frozen-vorticity-convection" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="sec-vortconvfrozen"></span><h2><span class="section-number">4.4.6.6. </span>동결 소용돌이 대류<a class="headerlink" href="#frozen-vorticity-convection" title="이 제목의 고유 링크"></a></h2>
 <p>계산 효율성을 위해 사용자는 후류 근처 및 먼 후류 구역에 "동결"된 영역을 정의할 수 있습니다. 이러한 구역에서 라그랑지 마커는 마커의 반경 위치와 잠재적으로 후류 연령의 함수와 무관한 공통 유도 속도를 사용하여 대류됩니다. 동결 영역의 라그랑지 마커의 대류 방정식은 다음과 같습니다.</p>
 <div class="math notranslate nohighlight">
 \[\frac{d\vec{r}_\zeta}{dt}=\vec{V}_0(\vec{r}_\zeta,t) + \vec{V}_\text{avg}(t)*k(\zeta)\]</div>
@@ -291,7 +291,7 @@
 <p>일반적으로 고유한 유도 속도로 전체 "동결된" 후류를 대류시키면 약간의 오류가 발생하지만 계산 시간이 크게 단축됩니다. "동결된" 원거리 후류 지역의 장점은 잘못된 경계 조건인 후류 잘림의 영향을 완화한다는 것입니다(와류 선이 유체에서 끝날 수 없음). 후류가 여전히 "자유"인 동안 잘리면 소용돌이는 이 지역에서 자체적으로 롤업됩니다. 또 다른 장점은 확산이 없으면 후류가 하류에서 과도하게 왜곡되어 와류 필라멘트 표현의 유효성이 한계에 도달하는 경향이 있다는 것입니다.</p>
 </div>
 <div class="section" id="induced-velocity-and-velocity-field">
-<h2><span class="section-number">4.4.6.7. </span>유도 속도 및 속도 장<a class="headerlink" href="#induced-velocity-and-velocity-field" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.4.6.7. </span>유도 속도 및 속도 장<a class="headerlink" href="#induced-velocity-and-velocity-field" title="이 제목의 고유 링크"></a></h2>
 <p>Eq.의 오른쪽에 있는 속도 항.&nbsp;<a class="reference internal" href="#equation-vortfilcart">(4.16)</a> 는 자유류와 유도 속도의 조합을 나타내는 소용돌이 위치의 비선형 함수입니다(<span id="id7">[<a class="reference internal" href="zrefs.html#id9" title="M.O.L. 한센. 풍력 터빈의 공기 역학. 어스스캔, 런던; 스털링, VA, 2008.">olaf-Han08</a>]</span>). 지점에서 유도된 속도 <span class="math notranslate nohighlight">\(\vec{x}\)</span>각 직선 필라멘트에 의해 발생하는 는 라그랑지 마커의 위치와 와류 요소의 강도를 고려하는 Biot-Savart 법칙을 사용하여 계산됩니다(<span id="id8">[<a class="reference internal" href="zrefs.html#id31" title="J. G. Leishman, M. J. Bhagwat 및 A. Bagai. 헬리콥터 로터 후류 분석을 위한 자유 와류 필라멘트 방법. 항공기 저널, 39(5):759-775, 2002.">olaf-LBB02</a>]</span>):</p>
 <div class="math notranslate nohighlight" id="equation-biotsavart">
 <span class="eqno">(4.20)<a class="headerlink" href="#equation-biotsavart" title="이 방정식에 대한 영구 링크"></a></span>\[d\vec{v}(\vec{x})=\frac{\Gamma}{4\pi}\frac{d\vec{l}\times\vec{r}}{r^3}\]</div>
@@ -318,22 +318,22 @@
 <span class="math notranslate nohighlight">\(\Gamma_k\)</span>. 각 필라멘트의 강도는 에서 논의된 바와 같이 경계 순환의 스팬 방향 및 시간 변화에 의해 결정됩니다. <a class="reference internal" href="#sec-circ"><span class="std std-numref">섹션 4.4.6.3</span></a>. 트리 기반 방법에서는 모든 소용돌이 요소에 대한 합이 제어점에서 멀리 있는 요소를 함께 묶어서 줄어듭니다.</p>
 </div>
 <div class="section" id="regularization">
-<span id="sec-regularization"></span><h2><span class="section-number">4.4.6.8. </span>정규화<a class="headerlink" href="#regularization" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="sec-regularization"></span><h2><span class="section-number">4.4.6.8. </span>정규화<a class="headerlink" href="#regularization" title="이 제목의 고유 링크"></a></h2>
 <div class="section" id="regularization-and-viscous-diffusion">
-<h3><span class="section-number">4.4.6.8.1. </span>정규화 및 점성 확산<a class="headerlink" href="#regularization-and-viscous-diffusion" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.4.6.8.1. </span>정규화 및 점성 확산<a class="headerlink" href="#regularization-and-viscous-diffusion" title="이 제목의 고유 링크"></a></h3>
 <p>Eq.에서 발생하는 특이점.&nbsp;<a class="reference internal" href="#equation-biotsavart">(4.20)</a> 와류 방법의 수치 정확도에 큰 영향을 미칩니다. Biot-Savart 법칙의 "1-over-r" 커널을 정규화함으로써 Navier-Stokes 방정식으로 수렴하는 수치적 방법을 얻는 것이 가능합니다. 정규화는 "진정한" 연속 와도 장과 비교하여 이산 와도 장의 규칙성을 향상시키는 데 사용됩니다. 이 정규화는 일반적으로 부드러운 함수를 사용한 컨볼루션을 통해 얻습니다. 이 경우 와도 필드와 속도 필드의 정규화는 동일합니다. 일부 엔지니어링 모델은 Biot-Savart 속도 커널의 분모에 추가 항을 직접 도입하여 정규화를 수행하기도 합니다. 요인, <span class="math notranslate nohighlight">\(F_\nu\)</span>, Eq.에서 소개되었다.&nbsp;<a class="reference internal" href="#equation-eq-biotsavartsegment">(4.21)</a> 이 정규화를 설명합니다.</p>
 <p>소용돌이 방법의 수렴 증명에서 정규화와 점성 확산은 두 가지 별개의 측면입니다. 규칙화 개념과 점성 확산 개념을 모호하게 만드는 것이 와류 필라멘트 방법의 일반적인 관행입니다. 실제로 물리적 소용돌이 필라멘트의 경우 점성 효과는 특이점이 발생하는 것을 방지하고 시간이 지남에 따라 소용돌이 강도를 확산시킵니다. 소용돌이 주변에서 속도가 0으로 떨어지는 원형 영역을 소용돌이 코어라고 합니다. 와류 부분의 길이가 증가하면 와류 코어 반경이 감소하고 그 반대도 마찬가지입니다. 반면에 확산은 소용돌이를 방사형으로 지속적으로 퍼뜨립니다.</p>
 <p>이전에 언급한 비유로 인해 소용돌이 필라멘트 방법의 실무자는 정규화를 "점성 코어" 모델로, 정규화 매개변수를 "코어 반경"으로 참조하는 경우가 많습니다. 또한 점성 확산은 와도 방정식에서 확산을 해결하는 대신 공간과 시간의 정규화 매개변수를 수정하여 도입되는 경우가 많습니다. 명확한 설명이 필요한 경우 이 문서에서 구별이 명시적으로 이루어지지만, 문맥이 명확할 경우에는 느슨한 용어가 사용됩니다.</p>
 </div>
 <div class="section" id="determination-of-the-regularization-parameter">
-<h3><span class="section-number">4.4.6.8.2. </span>정규화 매개변수 결정<a class="headerlink" href="#determination-of-the-regularization-parameter" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.4.6.8.2. </span>정규화 매개변수 결정<a class="headerlink" href="#determination-of-the-regularization-parameter" title="이 제목의 고유 링크"></a></h3>
 <p>정규화 매개변수는 모델링되는 물리학(블레이드 경계층 및 후류)의 함수이자 이산화 선택의 함수입니다. 기여 요인은 현 길이, 경계층 높이 및 각 와류 필라멘트가 근사하는 부피입니다. 현재 선택권은 사용자에게 있습니다(<strong>RegDeterMethod=[0]</strong>). 회전 블레이드에 대한 경험적 결과는 굽타(Gupta)의 연구에서 찾을 수 있습니다.<span id="id9">[<a class="reference internal" href="zrefs.html#id13" title="S. 굽타. 풍력 터빈 응용을 위한 시간 정확한 점성 라그랑주 와류 후류 모델 개발. PhD 논문, 메릴랜드 대학교, 칼리지 파크, MD, 2006.">olaf-Gup06</a>]</span>). 지침에 따라 정규화 매개변수는 블레이드의 평균 스팬 방향 이산화의 두 배로 선택될 수 있습니다. 이 지침은 사용자가 선택할 때 구현됩니다. <strong>RegDeterMethod=[1]</strong>. 이 옵션의 추가 개선은 향후에 고려될 것입니다.</p>
 </div>
 <div class="section" id="implemented-regularization-functions">
-<span id="sec-regularizationfunction"></span><h3><span class="section-number">4.4.6.8.3. </span>정규화 기능 구현<a class="headerlink" href="#implemented-regularization-functions" title="이 제목에 대한 영구 링크"></a></h3>
+<span id="sec-regularizationfunction"></span><h3><span class="section-number">4.4.6.8.3. </span>정규화 기능 구현<a class="headerlink" href="#implemented-regularization-functions" title="이 제목의 고유 링크"></a></h3>
 <p>여러 정규화 함수가 개발되었습니다(<span id="id10">[<a class="reference internal" href="zrefs.html#id30" title="W. J. M. 랭킨. 응용역학 매뉴얼. 그리펜 컴퍼니, 런던, 1858년.">olaf-Ran58</a>, <a class="reference internal" href="zrefs.html#id14" title="M. P. 스컬리. 헬리콥터 로터 후류 형상의 계산과 로터 고조파 공압에 미치는 영향. PhD 논문, 매사추세츠 공과대학, Cambridga, MA, 1975.">olaf-Scu75</a>, <a class="reference internal" href="zrefs.html#id6" title="G. H. Vatistas, V. Koezel 및 W. C. Mih. 집중된 소용돌이에 대한 더 간단한 모델입니다. 유체 실험, 11(1):73-76, 1991.">olaf-VKM91</a>]</span>). 현재 5가지 옵션을 사용할 수 있습니다: 1) 수정 없음, 2) Rankine 방법, 3) Lamb-Oseen 방법, 4) Vatistas 방법 또는 5) 분모 오프셋 방법. 보정 방법을 사용하지 않는 경우 (<strong>RegFunction=[0]</strong>), <span class="math notranslate nohighlight">\(F_\nu=1\)</span>. 나머지 방법은 다음 섹션에 자세히 설명되어 있습니다. 여기, <span class="math notranslate nohighlight">\(r_c\)</span> 정규화 매개변수(<strong>WakeRegParam</strong>) 그리고 <span class="math notranslate nohighlight">\(\rho\)</span> 필라멘트까지의 거리입니다. 두 변수 모두 미터로 표시됩니다.</p>
 <div class="section" id="rankine">
-<h4><span class="section-number">4.4.6.8.3.1. </span>랭킨<a class="headerlink" href="#rankine" title="이 제목에 대한 영구 링크"></a></h4>
+<h4><span class="section-number">4.4.6.8.3.1. </span>랭킨<a class="headerlink" href="#rankine" title="이 제목의 고유 링크"></a></h4>
 <p>랭킨법(<span id="id11">[<a class="reference internal" href="zrefs.html#id30" title="W. J. M. 랭킨. 응용역학 매뉴얼. 그리펜 컴퍼니, 런던, 1858년.">olaf-Ran58</a>]</span>)는 가장 간단한 정규화 모델입니다. 이 방법을 사용하면 랭킨 소용돌이는 소용돌이 중심 근처에 고체 회전이 있고 중심에서 멀어지는 잠재적 소용돌이가 있는 유한 코어를 갖습니다. 이 방법을 사용하는 경우(<strong>RegFunction=[1]</strong>), 점성 코어 보정은 Eq.&nbsp;<a class="reference internal" href="#equation-rankine">(4.23)</a>.</p>
 <div class="math notranslate nohighlight" id="equation-rankine">
 <span class="eqno">(4.23)<a class="headerlink" href="#equation-rankine" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}F_\nu= \begin{cases} \rho^2/r_c^2 &amp; 0 &lt; \rho &lt; 1 \\
@@ -341,13 +341,13 @@
 <p>여기서, <span class="math notranslate nohighlight">\(r_c\)</span> 는 와류 필라멘트의 점성 코어 반경입니다. <a class="reference internal" href="#sec-corerad"><span class="std std-numref">섹션 4.4.6.8.4</span></a>.</p>
 </div>
 <div class="section" id="lamb-oseen">
-<h4><span class="section-number">4.4.6.8.3.2. </span>양고기-오센<a class="headerlink" href="#lamb-oseen" title="이 제목에 대한 영구 링크"></a></h4>
+<h4><span class="section-number">4.4.6.8.3.2. </span>양고기-오센<a class="headerlink" href="#lamb-oseen" title="이 제목의 고유 링크"></a></h4>
 <p>Lamb-Oseen 방법을 사용하면 [<strong>RegFunction=[2]</strong>], 점성 코어 보정은 Eq.&nbsp;<a class="reference internal" href="#equation-lamboseen">(4.24)</a>.</p>
 <div class="math notranslate nohighlight" id="equation-lamboseen">
 <span class="eqno">(4.24)<a class="headerlink" href="#equation-lamboseen" title="이 방정식에 대한 영구 링크"></a></span>\[F_\nu= \bigg[1-\text{exp}(-\frac{\rho^2}{r_c^2})\bigg]\]</div>
 </div>
 <div class="section" id="vatistas">
-<h4><span class="section-number">4.4.6.8.3.3. </span>바티스타스<a class="headerlink" href="#vatistas" title="이 제목에 대한 영구 링크"></a></h4>
+<h4><span class="section-number">4.4.6.8.3.3. </span>바티스타스<a class="headerlink" href="#vatistas" title="이 제목의 고유 링크"></a></h4>
 <p>바티스타스 방식을 사용하는 경우 [<strong>RegFunction=[3]</strong>], 점성 코어 보정은 Eq.&nbsp;<a class="reference internal" href="#equation-vatistas">(4.25)</a>.</p>
 <div class="math notranslate nohighlight" id="equation-vatistas">
 <span class="eqno">(4.25)<a class="headerlink" href="#equation-vatistas" title="이 방정식에 대한 영구 링크"></a></span>\[F_\nu
@@ -356,7 +356,7 @@
 <p>여기서, <span class="math notranslate nohighlight">\(\rho\)</span> 는 소용돌이 부분에서 임의의 지점까지의 거리입니다(<span id="id12">[<a class="reference internal" href="zrefs.html#id36" title="H. 아베디. 풍력 공기역학을 위한 와류 필라멘트 방법 개발. PhD 논문, Chalmers University of Technology, Gothenburg, 스웨덴, 2016.">olaf-Abe16</a>]</span>). 회전익 항공기 응용 분야에 대한 연구는 다음의 가치를 제시합니다. <span class="math notranslate nohighlight">\(n=2\)</span>, 이 작업에 사용되는 (<span id="id13">[<a class="reference internal" href="zrefs.html#id40" title="A. Bagai 및 J. G. Leishman. 밀도 구배 기술을 사용한 압축성 와류 구조의 흐름 시각화. 유체 실험, 15(6):431-442, 1993.">olaf-BL93</a>]</span>).</p>
 </div>
 <div class="section" id="denominator-offset-cut-off">
-<h4><span class="section-number">4.4.6.8.3.4. </span>분모 오프셋/컷오프<a class="headerlink" href="#denominator-offset-cut-off" title="이 제목에 대한 영구 링크"></a></h4>
+<h4><span class="section-number">4.4.6.8.3.4. </span>분모 오프셋/컷오프<a class="headerlink" href="#denominator-offset-cut-off" title="이 제목의 고유 링크"></a></h4>
 <p>분모 오프셋 방법을 사용하는 경우 [<strong>RegFunction=[4]</strong>], 점성 코어 보정은 Eq.&nbsp;<a class="reference internal" href="#equation-denom">(4.26)</a></p>
 <div class="math notranslate nohighlight" id="equation-denom">
 <span class="eqno">(4.26)<a class="headerlink" href="#equation-denom" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{aligned}
@@ -367,10 +367,10 @@
 </div>
 </div>
 <div class="section" id="time-evolution-of-the-regularization-parametercore-spreading-method">
-<span id="sec-corerad"></span><h3><span class="section-number">4.4.6.8.4. </span>정규화 매개변수의 시간 진화 - 코어 확산 방법<a class="headerlink" href="#time-evolution-of-the-regularization-parametercore-spreading-method" title="이 제목에 대한 영구 링크"></a></h3>
+<span id="sec-corerad"></span><h3><span class="section-number">4.4.6.8.4. </span>정규화 매개변수의 시간 진화 - 코어 확산 방법<a class="headerlink" href="#time-evolution-of-the-regularization-parametercore-spreading-method" title="이 제목의 고유 링크"></a></h3>
 <p>정규화 매개변수가 시간에 따라 발전할 수 있는 네 가지 방법은 1) 상수 값, 2) 스트레칭, 3) 웨이크 에이지 또는 4) 스트레칭 및 웨이크 에이지입니다. 후자의 세 가지 방법은 점성 확산과 정규화의 개념을 혼합합니다. 표기법 <span class="math notranslate nohighlight">\(r_{c0}\)</span> 이 섹션에 사용된 것은 입력 파일 매개변수 값에 해당합니다. <strong>WakeRegParam</strong>.</p>
 <div class="section" id="constant">
-<h4><span class="section-number">4.4.6.8.4.1. </span>끊임없는<a class="headerlink" href="#constant" title="이 제목에 대한 영구 링크"></a></h4>
+<h4><span class="section-number">4.4.6.8.4.1. </span>끊임없는<a class="headerlink" href="#constant" title="이 제목의 고유 링크"></a></h4>
 <p>상수 값을 선택하면 (<strong>WakeRegMethod=[1]</strong>), 값
 <span class="math notranslate nohighlight">\(r_c\)</span> 시뮬레이션 전반에 걸쳐 모든 라그랑지안 마커에 대해 변경되지 않고 유지되며 매개변수와 함께 제공된 값으로 사용됩니다. <strong>WakeRegParam</strong>
 미터 단위.</p>
@@ -379,7 +379,7 @@
 <p>여기서, <span class="math notranslate nohighlight">\(\zeta\)</span> 방출 시간으로 측정된 소용돌이 후류 연령입니다.</p>
 </div>
 <div class="section" id="stretching">
-<h4><span class="section-number">4.4.6.8.4.2. </span>스트레칭<a class="headerlink" href="#stretching" title="이 제목에 대한 영구 링크"></a></h4>
+<h4><span class="section-number">4.4.6.8.4.2. </span>스트레칭<a class="headerlink" href="#stretching" title="이 제목의 고유 링크"></a></h4>
 <p>스트레칭 방법을 선택한 경우 (<strong>WakeRegMethod=[2]</strong>), 점성 코어 반경은 Eq.&nbsp;<a class="reference internal" href="#equation-stretch">(4.28)</a>.</p>
 <div class="math notranslate nohighlight" id="equation-stretch">
 <span class="eqno">(4.28)<a class="headerlink" href="#equation-stretch" title="이 방정식에 대한 영구 링크"></a></span>\[r_c(\zeta,\epsilon) = r_{c0} (1+\epsilon)^{-1}\]</div>
@@ -389,7 +389,7 @@
 <p>이 옵션은 아직 구현되지 않았습니다.</p>
 </div>
 <div class="section" id="wake-age-core-spreading">
-<h4><span class="section-number">4.4.6.8.4.3. </span>웨이크 에이지 / 코어 확산<a class="headerlink" href="#wake-age-core-spreading" title="이 제목에 대한 영구 링크"></a></h4>
+<h4><span class="section-number">4.4.6.8.4.3. </span>웨이크 에이지 / 코어 확산<a class="headerlink" href="#wake-age-core-spreading" title="이 제목의 고유 링크"></a></h4>
 <p>Wake Age 방식을 선택한 경우, (<strong>WakeRegMethod=[3]</strong>), 점성 코어 반경은 Eq.&nbsp;<a class="reference internal" href="#equation-age">(4.29)</a>.</p>
 <div class="math notranslate nohighlight" id="equation-age">
 <span class="eqno">(4.29)<a class="headerlink" href="#equation-age" title="이 방정식에 대한 영구 링크"></a></span>\[r_c(\zeta) = \sqrt{r_{c0}^2+4\alpha\delta\nu \zeta}\]</div>
@@ -404,7 +404,7 @@ wake age 방법을 사용하는 것과 동일합니다(<strong>WakeRegMethod=[3]
 <p>및 <span class="math notranslate nohighlight">\(\frac{d r_c}{dt}=0\)</span> 블레이드에.</p>
 </div>
 <div class="section" id="stretching-and-wake-age">
-<h4><span class="section-number">4.4.6.8.4.4. </span>스트레칭과 기상 연령<a class="headerlink" href="#stretching-and-wake-age" title="이 제목에 대한 영구 링크"></a></h4>
+<h4><span class="section-number">4.4.6.8.4.4. </span>스트레칭과 기상 연령<a class="headerlink" href="#stretching-and-wake-age" title="이 제목의 고유 링크"></a></h4>
 <p>스트레칭 및 웨이크 에이지 방법을 선택한 경우(<strong>WakeRegMethod=[4]</strong>), 점성 코어 반경은 Eq.&nbsp;<a class="reference internal" href="#equation-stretchandage">(4.30)</a>.</p>
 <div class="math notranslate nohighlight" id="equation-stretchandage">
 <span class="eqno">(4.30)<a class="headerlink" href="#equation-stretchandage" title="이 방정식에 대한 영구 링크"></a></span>\[r_c(\zeta,\epsilon) = \sqrt{r_{c0}^2 + 4\alpha\delta\nu \zeta  \big(1+\epsilon\big)^{-1} }\]</div>
@@ -413,7 +413,7 @@ wake age 방법을 사용하는 것과 동일합니다(<strong>WakeRegMethod=[3]
 </div>
 </div>
 <div class="section" id="diffusion">
-<span id="sec-diffusion"></span><h2><span class="section-number">4.4.6.9. </span>확산<a class="headerlink" href="#diffusion" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="sec-diffusion"></span><h2><span class="section-number">4.4.6.9. </span>확산<a class="headerlink" href="#diffusion" title="이 제목의 고유 링크"></a></h2>
 <p>점성 분할 가정은 와도의 대류와 확산을 별도로 해결하는 데 사용됩니다. 확산 기간 <span class="math notranslate nohighlight">\(\nu \Delta
 \vec{\omega}\)</span> 분자 확산을 나타냅니다. 이 항은 와도선의 점성 연결을 허용합니다. 또한 난류 흐름은 난류 소용돌이 점도를 기반으로 비슷한 방식으로 와도를 확산시킵니다.</p>
 <p>매개변수 <strong>DiffusionMethod</strong> 점성 확산 방법을 전환하는 데 사용됩니다. 현재는 코어 확산 방식만 구현됩니다. 방법은 다음에 설명되어 있습니다. <a class="reference internal" href="#sec-corerad"><span class="std std-numref">섹션 4.4.6.8.4</span></a> 왜냐하면 이는 기상 시간에 따른 정규화 매개변수의 증가와 동일하기 때문입니다.</p>
@@ -423,8 +423,8 @@ wake age 방법을 사용하는 것과 동일합니다(<strong>WakeRegMethod=[3]
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
-        <a href="OutputFiles.html" class="btn btn-neutral float-left" title="4.4.5. 출력 파일" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="OutputFiles.html" class="btn btn-neutral float-left" title="4.4.5. 출력 파일" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
         <a href="StateSpace.html" class="btn btn-neutral float-right" title="4.4.7. 상태공간 표현 및 OpenFAST와의 통합" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

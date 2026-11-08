@@ -21,7 +21,7 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="찾다" href="../../../search.html">
+    <link rel="search" title="검색" href="../../../search.html">
     <link rel="next" title="4.4.8. 미래의 일" href="FutureWork.html">
     <link rel="prev" title="4.4.6. OLAF 이론" href="OLAFTheory.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/aerodyn-olaf/StateSpace.html"></head>
@@ -48,9 +48,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
@@ -68,8 +68,8 @@
 <li class="toctree-l4"><a class="reference internal" href="#integration-with-aerodyn">4.4.7.3. AeroDyn와 통합</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="FutureWork.html">4.4.8. 미래의 일</a></li>
-<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.4.9. 참고자료</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FutureWork.html">4.4.8. 향후 개발 계획</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.4.9. 참고문헌</a></li>
 <li class="toctree-l3"><a class="reference internal" href="AppendixA.html">4.4.10. 부록 A: OLAF 기본 입력 파일</a></li>
 <li class="toctree-l3"><a class="reference internal" href="AppendixB.html">4.4.11. 부록 B: 규정된 순환 입력 파일</a></li>
 <li class="toctree-l3"><a class="reference internal" href="AppendixC.html">4.4.12. 부록 C: OLAF 출력 채널 목록</a></li>
@@ -98,16 +98,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -116,12 +116,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.4. </span>OLAF 사용자 가이드 및 이론 매뉴얼(AeroDyn의 Free Vortex Wake)</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.4. </span>OLAF 사용자 가이드 및 이론 설명서 (AeroDyn의 자유 와류 후류)</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.4.7. </span>상태공간 표현과 OpenFAST 연동</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/aerodyn-olaf/StateSpace.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
+            <a href="../../../_sources/source/user/aerodyn-olaf/StateSpace.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -130,9 +130,9 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="state-space-representation-and-integration-with-openfast">
-<h1><span class="section-number">4.4.7. </span>상태공간 표현과 OpenFAST 연동<a class="headerlink" href="#state-space-representation-and-integration-with-openfast" title="이 제목에 대한 영구 링크"></a></h1>
+<h1><span class="section-number">4.4.7. </span>상태공간 표현과 OpenFAST 연동<a class="headerlink" href="#state-space-representation-and-integration-with-openfast" title="이 제목의 고유 링크"></a></h1>
 <div class="section" id="state-constraint-input-and-output-variables">
-<h2><span class="section-number">4.4.7.1. </span>상태, 제약 조건, 입력 및 출력 변수<a class="headerlink" href="#state-constraint-input-and-output-variables" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.4.7.1. </span>상태, 제약 조건, 입력 및 출력 변수<a class="headerlink" href="#state-constraint-input-and-output-variables" title="이 제목의 고유 링크"></a></h2>
 <p>OLAF 모듈은 다음을 통해 최신 버전의 OpenFAST에 통합되었습니다.
 <em>AeroDyn</em>, OpenFAST 모듈화 프레임워크(<span id="id1">[<a class="reference internal" href="zrefs.html#id11" title="J. 존크만. 고속 풍력 터빈 CAE 도구를 위한 새로운 모듈화 프레임워크입니다. 기술 보고서 ​​NREL/CP-5000-57228, 국립 재생 에너지 연구소, 2013.">olaf-Jon13</a>, <a class="reference internal" href="zrefs.html#id38" title="Michael A. Sprague, Jason M. Jonkman, Bonnie J. Jonkman. 풍력 터빈 시뮬레이션을 위한 빠른 모듈형 프레임워크: 새로운 알고리즘 및 수치 예제. 기술 보고서 ​​NREL/CP-2C00-63203, 국립 재생 에너지 연구소, 2015.">olaf-SJJ15</a>]</span>). OpenFAST 프레임워크를 따르기 위해 소용돌이 코드는 모듈로 작성되었으며 해당 공식은 상태, 제약 조건 및 출력 방정식으로 구성됩니다. 모듈에 의해 조작되는 데이터에는 다음 벡터가 포함됩니다: 상수 매개변수, <span class="math notranslate nohighlight">\(\vec{p}\)</span>; 입력,
 <span class="math notranslate nohighlight">\(\vec{u}\)</span>; 제한된 상태, <span class="math notranslate nohighlight">\(\vec{z}\)</span>; 상태, <span class="math notranslate nohighlight">\(\vec{x}\)</span>; 그리고 출력, <span class="math notranslate nohighlight">\(\vec{y}\)</span>. 벡터는 다음과 같이 정의됩니다.</p>
@@ -180,7 +180,7 @@
 </ul>
 </div>
 <div class="section" id="state-constraint-and-output-equations">
-<h2><span class="section-number">4.4.7.2. </span>상태, 제약 조건 및 출력 방정식<a class="headerlink" href="#state-constraint-and-output-equations" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.4.7.2. </span>상태, 제약 조건 및 출력 방정식<a class="headerlink" href="#state-constraint-and-output-equations" title="이 제목의 고유 링크"></a></h2>
 <p>상태, 제약 조건 및 출력 방정식에 대한 개요가 여기에 제공됩니다. 자세한 내용은 <a class="reference internal" href="OLAFTheory.html#olaf-theory"><span class="std std-numref">섹션 4.4.6</span></a>. 제약 방정식은 각 리프팅 라인의 범위를 따라 순환 분포를 결정하는 데 사용됩니다. Van Garrel 방법의 경우 이 순환은 블레이드를 따른 받음각과 익형 계수의 함수입니다. 주어진 리프팅 라인 노드에서의 받음각은 교란되지 않은 속도의 함수입니다.
 <span class="math notranslate nohighlight">\(\vec{v}_{0,ll}\)</span>, 그리고 소용돌이에 의해 유도된 속도,
 <span class="math notranslate nohighlight">\(\vec{v}_{i,ll}\)</span>, 그 시점에서. 유도된 속도의 일부는 현재 시간 단계에서 흘려지고 따라가는 와도에 의해 발생하며, 이는 양력선을 따른 순환 분포의 함수입니다. 이 제약 방정식은 다음과 같이 작성될 수 있습니다.</p>
@@ -214,7 +214,7 @@
 \end{aligned}\end{split}\]</div>
 </div>
 <div class="section" id="integration-with-aerodyn">
-<h2><span class="section-number">4.4.7.3. </span>AeroDyn와 통합<a class="headerlink" href="#integration-with-aerodyn" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.4.7.3. </span>AeroDyn와 통합<a class="headerlink" href="#integration-with-aerodyn" title="이 제목의 고유 링크"></a></h2>
 <p>Vortex 코드는 OpenFAST의 공기역학 모듈의 하위 모듈로 통합되었으며, <em>AeroDyn</em>. OpenFAST의 다양한 모듈과 하위 모듈 간의 데이터 흐름은 다음과 같습니다. <a class="reference internal" href="#aerodyn-olaf"><span class="std std-numref">그림 4.16</span></a>. BEM 옵션(예: 팁 손실 계수), 스큐 모델 및 동적 유입과 같은 AeroDyn 입력은 소용돌이 코드를 사용할 때 삭제됩니다. 환경 조건, 타워 그림자, 동적 실속 모델 옵션이 사용됩니다. 이번 통합에는 구조조정이 필요했다. <em>AeroDyn</em> 타워 그림자 모델링, 유도 계산, 리프팅 라인 힘 계산 및 동적 실속과 관련된 코드 부분을 분리하는 모듈입니다. 동적 실속 모델은 와류 코드와 함께 사용될 때 발산 와도의 효과가 두 번 고려되지 않도록 조정됩니다. 사이의 인터페이스 <em>AeroDyn</em> 유입 모듈, <em>InflowWind</em>, Vortex 코드에 의해 추가로 요청된 지점을 포함하도록 수용되었습니다.</p>
 <div class="figure align-center" id="id4">
 <span id="aerodyn-olaf"></span><a class="reference internal image-reference" href="../../../_images/VortexCodeWorkFlow.png"><img alt="OpenFAST-FVW 코드 통합 워크플로" src="../../../_images/VortexCodeWorkFlow.png" style="width: 100%;"></a>
@@ -231,8 +231,8 @@
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
-        <a href="OLAFTheory.html" class="btn btn-neutral float-left" title="4.4.6. OLAF 이론" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="OLAFTheory.html" class="btn btn-neutral float-left" title="4.4.6. OLAF 이론" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
         <a href="FutureWork.html" class="btn btn-neutral float-right" title="4.4.8. 미래의 일" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

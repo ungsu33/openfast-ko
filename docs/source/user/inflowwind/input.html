@@ -20,7 +20,7 @@
         <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="찾다" href="../../../search.html">
+    <link rel="search" title="검색" href="../../../search.html">
     <link rel="next" title="4.13.5. 사용자 정의 바람 필드" href="user_defined.html">
     <link rel="prev" title="4.13.1. InflowWind 드라이버" href="driver.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/inflowwind/input.html"></head>
@@ -47,9 +47,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
@@ -72,7 +72,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#angles-specified-in-inflowwind">4.13.3. InflowWind에 지정된 각도</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#superposition-of-wave-and-current-inflow">4.13.4. 파동과 유입전류의 중첩</a></li>
 <li class="toctree-l3"><a class="reference internal" href="user_defined.html">4.13.5. 사용자 정의 바람 필드</a></li>
-<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.13.6. 충수</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.13.6. 부록</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
@@ -89,16 +89,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -107,12 +107,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.13. </span>InflowWind 사용자 가이드 및 이론 매뉴얼</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.13. </span>InflowWind 사용자 가이드 및 이론 설명서</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.13.2. </span>InflowWind 입력 파일</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/inflowwind/input.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
+            <a href="../../../_sources/source/user/inflowwind/input.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -121,10 +121,10 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="inflowwind-input-files">
-<span id="ifw-input"></span><h1><span class="section-number">4.13.2. </span>InflowWind 입력 파일<a class="headerlink" href="#inflowwind-input-files" title="이 제목에 대한 영구 링크"></a></h1>
+<span id="ifw-input"></span><h1><span class="section-number">4.13.2. </span>InflowWind 입력 파일<a class="headerlink" href="#inflowwind-input-files" title="이 제목의 고유 링크"></a></h1>
 <p>고정 및 부동 MHK 터빈의 경우 모든 InflowWind 매개변수는 해저를 기준으로 정의되어야 합니다. MHK 터빈에 대한 터빈과 유입 좌표계 간의 일관성을 유지하기 위해 InflowWind에 전달된 쿼리 지점은 해저에 원점을 배치하도록 글루 코드/드라이버 수준에서 조정됩니다.</p>
 <div class="section" id="native-bladed-wind-file-support-in-inflowwind">
-<span id="ifw-native-bladed"></span><h2><span class="section-number">4.13.2.1. </span>InflowWind의 기본 Bladed 바람 파일 지원<a class="headerlink" href="#native-bladed-wind-file-support-in-inflowwind" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="ifw-native-bladed"></span><h2><span class="section-number">4.13.2.1. </span>InflowWind의 기본 Bladed 바람 파일 지원<a class="headerlink" href="#native-bladed-wind-file-support-in-inflowwind" title="이 제목의 고유 링크"></a></h2>
 <p>기본 Bladed wind 파일(스케일링 없이)을 읽는 기능이 InflowWind에 추가되었습니다. 이 기능을 사용하려면 <code class="docutils literal notranslate"><span class="pre">WindType</span></code> 으로 설정해야 합니다. <code class="docutils literal notranslate"><span class="pre">7</span></code> 기본 InflowWind 입력 파일의 5번째 줄에 있습니다. 이 파일의 예는 inAn로 제공됩니다. 이 Native Bladed 스케일링 파일의 예는 다음에 포함되어 있습니다.
 <a class="reference internal" href="appendix.html#ifw-appendix"><span class="std std-numref">섹션 4.13.6</span></a>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">7</span>                  <span class="n">WindType</span>       <span class="o">-</span> <span class="n">switch</span> <span class="k">for</span> <span class="n">wind</span> <span class="n">file</span> <span class="nb">type</span> <span class="p">(</span><span class="mi">1</span><span class="o">=</span><span class="n">steady</span><span class="p">;</span> <span class="mi">2</span><span class="o">=</span><span class="n">uniform</span><span class="p">;</span> <span class="mi">3</span><span class="o">=</span><span class="n">binary</span> <span class="n">TurbSim</span> <span class="n">FF</span><span class="p">;</span> <span class="mi">4</span><span class="o">=</span><span class="n">binary</span> <span class="n">Bladed</span><span class="o">-</span><span class="n">style</span> <span class="n">FF</span><span class="p">;</span> <span class="mi">5</span><span class="o">=</span><span class="n">HAWC</span> <span class="nb">format</span><span class="p">;</span> <span class="mi">6</span><span class="o">=</span><span class="n">User</span> <span class="n">defined</span><span class="p">;</span> <span class="mi">7</span><span class="o">=</span><span class="n">Bladed</span> <span class="n">native</span><span class="p">)</span>
@@ -229,7 +229,7 @@
 </div>
 </div>
 <div class="section" id="angles-specified-in-inflowwind">
-<span id="ifw-angles"></span><h1><span class="section-number">4.13.3. </span>InflowWind에 지정된 각도<a class="headerlink" href="#angles-specified-in-inflowwind" title="이 제목에 대한 영구 링크"></a></h1>
+<span id="ifw-angles"></span><h1><span class="section-number">4.13.3. </span>InflowWind에 지정된 각도<a class="headerlink" href="#angles-specified-in-inflowwind" title="이 제목의 고유 링크"></a></h1>
 <p>풍향과 상승 각도는 InflowWind 입력 파일에서 지정할 수 있습니다. InflowWind에서 기본 블레이드 바람 파일 지원을 사용할 때 InflowWind 입력의 각도는 기본 블레이드 입력 파일에 지정된 값으로 덮어쓰여집니다. InflowWind는 이러한 풍향과 상승 각도에 따라 허브 높이 타워 중심선을 기준으로 윈드 박스를 회전시킵니다.</p>
 <p>균일한 바람 파일은 바람의 방향과 상승 각도도 지정합니다. 균일한 바람 파일 DO NOT에 지정된 각도는 바람 상자를 회전하지만 단지 지역 풍속을 전역 좌표로 변환합니다.</p>
 <p>로컬에서 변환하는 경우 <code class="docutils literal notranslate"><span class="pre">[u</span> <span class="pre">v</span> <span class="pre">w]</span></code> 글로벌로 <code class="docutils literal notranslate"><span class="pre">[U</span> <span class="pre">V</span> <span class="pre">W]</span></code> 기준 시스템, 상향류 회전, <code class="docutils literal notranslate"><span class="pre">R(upflow)</span></code> 풍향 회전 전에 발생하며, <code class="docutils literal notranslate"><span class="pre">R(wind</span> <span class="pre">direction)</span></code>:</p>
@@ -243,7 +243,7 @@
 </div>
 </div>
 <div class="section" id="superposition-of-wave-and-current-inflow">
-<span id="inflow-superposition"></span><h1><span class="section-number">4.13.4. </span>파동과 유입전류의 중첩<a class="headerlink" href="#superposition-of-wave-and-current-inflow" title="이 제목에 대한 영구 링크"></a></h1>
+<span id="inflow-superposition"></span><h1><span class="section-number">4.13.4. </span>파동과 유입전류의 중첩<a class="headerlink" href="#superposition-of-wave-and-current-inflow" title="이 제목의 고유 링크"></a></h1>
 <p>MHK 터빈의 경우 모든 수중 구성요소가 동일한 유입장에 노출되도록 파동 및 해류 속도와 가속도가 중첩(즉, 합산)됩니다. AeroDyn 및 HydroDyn는 모두 SeaState에 파동장 정보를 쿼리할 수 있습니다. 그런 다음 SeaState는 현재 필드에 대해 InflowWind를 쿼리하고 속도와 가속도를 합산하고 중첩된 흐름장 정보를 반환합니다. 이는 아래 나열된 MHK 터빈 모델링에 여러 가지 의미를 갖습니다. InflowWind의 동적 압력 기여는 무시됩니다.</p>
 <p>로터 또는 로터/타워만 모델링하는 경우(즉, AeroDyn로만 모델링된 유체역학):</p>
 <ul class="simple">
@@ -267,8 +267,8 @@
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
-        <a href="driver.html" class="btn btn-neutral float-left" title="4.13.1. InflowWind 드라이버" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="driver.html" class="btn btn-neutral float-left" title="4.13.1. InflowWind 드라이버" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
         <a href="user_defined.html" class="btn btn-neutral float-right" title="4.13.5. 사용자 정의 바람 필드" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

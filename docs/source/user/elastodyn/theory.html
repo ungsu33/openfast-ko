@@ -21,7 +21,7 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="찾다" href="../../../search.html">
+    <link rel="search" title="검색" href="../../../search.html">
     <link rel="next" title="4.10.5. 참고자료" href="zrefs.html">
     <link rel="prev" title="4.10.2. 입력 파일" href="input.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/elastodyn/theory.html"></head>
@@ -48,9 +48,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
@@ -73,7 +73,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#developer-notes">4.10.4. 개발자 노트</a></li>
-<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.10.5. 참고자료</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.10.5. 참고문헌</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
@@ -93,16 +93,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -111,12 +111,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.10. </span>ElastoDyn 사용자 가이드 및 이론 매뉴얼</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.10. </span>ElastoDyn 사용자 가이드 및 이론 설명서</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.10.3. </span>ElastoDyn 이론</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/elastodyn/theory.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
+            <a href="../../../_sources/source/user/elastodyn/theory.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -125,10 +125,10 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="elastodyn-theory">
-<span id="ed-theory"></span><h1><span class="section-number">4.10.3. </span>ElastoDyn 이론<a class="headerlink" href="#elastodyn-theory" title="이 제목에 대한 영구 링크"></a></h1>
+<span id="ed-theory"></span><h1><span class="section-number">4.10.3. </span>ElastoDyn 이론<a class="headerlink" href="#elastodyn-theory" title="이 제목의 고유 링크"></a></h1>
 <p>이 문서는 작업이 진행 중이며 매우 불완전합니다. 이 문서는 ElastoDyn의 테일 펄 및 로터 펄 부분에 대한 일부 코드 변경 사항을 문서화하기 위해 시작되었습니다. 에서 제공되는 다양한 리소스를 참조하세요. <a class="reference internal" href="index.html#ed-intro"><span class="std std-numref">섹션 4.10</span></a> 추가 서류의 경우.</p>
 <div class="section" id="notations">
-<h2><span class="section-number">4.10.3.1. </span>표기법<a class="headerlink" href="#notations" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.10.3.1. </span>표기법<a class="headerlink" href="#notations" title="이 제목의 고유 링크"></a></h2>
 <p><strong>전철기</strong></p>
 <p>다음(일부) 점 목록은 ElastoDyn에 의해 정의됩니다.</p>
 <ul class="simple">
@@ -148,7 +148,7 @@
 </ul>
 </div>
 <div class="section" id="kinematics">
-<h2><span class="section-number">4.10.3.2. </span>운동학<a class="headerlink" href="#kinematics" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.10.3.2. </span>운동학<a class="headerlink" href="#kinematics" title="이 제목의 고유 링크"></a></h2>
 <p>ElastoDyn는 플랫폼 기준점에서 시작하여 구조물의 주요 지점의 위치, 속도 및 가속도를 계산합니다. <cite>Z</cite> 그리고 구조 위로 올라갑니다.</p>
 <p>데이터 구조에서 다양한 위치 벡터를 사용할 수 있습니다. <code class="docutils literal notranslate"><span class="pre">RtHSdat</span></code>. 예를 들어, 점 J의 전역 위치는 다음과 같이 지정됩니다.</p>
 <div class="math notranslate nohighlight" id="equation-tfpointjpos">
@@ -176,7 +176,7 @@
 <p>각가속도에는 현재 문서화되지 않은 유사한 계산이 필요합니다.</p>
 </div>
 <div class="section" id="rotor-and-tail-furl">
-<span id="ed-rtfrl-theory"></span><h2><span class="section-number">4.10.3.3. </span>로터와 테일 펄<a class="headerlink" href="#rotor-and-tail-furl" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="ed-rtfrl-theory"></span><h2><span class="section-number">4.10.3.3. </span>로터와 테일 펄<a class="headerlink" href="#rotor-and-tail-furl" title="이 제목의 고유 링크"></a></h2>
 <p>사용자는 상하 정지 스프링, 상하 정지 댐퍼와 함께 선형 스프링 및 댐퍼 모델을 선택할 수 있습니다.</p>
 <p>선형 스프링과 댐퍼에서 적용되는 토크는 다음과 같습니다.</p>
 <div class="math notranslate nohighlight" id="equation-tflintorque">
@@ -206,7 +206,7 @@
 <span class="eqno">(4.195)<a class="headerlink" href="#equation-tftottorque" title="이 방정식에 대한 영구 링크"></a></span>\[Q = Q_\text{lin} + Q_\text{stop,spr} + Q_\text{stop,dmp}\]</div>
 </div>
 <div class="section" id="yaw-friction-model">
-<span id="ed-yawfriction-theory"></span><h2><span class="section-number">4.10.3.4. </span>요 마찰 모델<a class="headerlink" href="#yaw-friction-model" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="ed-yawfriction-theory"></span><h2><span class="section-number">4.10.3.4. </span>요 마찰 모델<a class="headerlink" href="#yaw-friction-model" title="이 제목의 고유 링크"></a></h2>
 <p>요 마찰 모델은 쿨롱 점성 접근 방식을 기반으로 ElastoDyn에서 구현됩니다. 요율에 따른 요 마찰 모멘트(<span class="math notranslate nohighlight">\(\omega\)</span>)는 아래에 나와 있습니다. <a class="reference internal" href="#figyawfriction"><span class="std std-numref">그림 4.49</span></a></p>
 <div class="figure align-default" id="id2">
 <span id="figyawfriction"></span><a class="reference internal image-reference" href="../../../_images/YawFrictionModel.jpg"><img alt="../../../_images/YawFrictionModel.jpg" src="../../../_images/YawFrictionModel.jpg" style="width: 60%;"></a>
@@ -242,7 +242,7 @@
 <p>정적 '정지'(정적 기여가 동적 쿨롱 마찰을 초과하는 경우)는 현재 시간 단계에서 요 회전 속도와 가속도가 모두 0인 경우에만 적용됩니다. 회전 가속도가 null이 아닌 경우 마찰의 정적 부분이 생략됩니다. 이는 동적 의미에서 0 속도를 통과할 때 '따뜻한' 관절이 끈적임을 느끼지 않을 수 있다는 사실을 설명하기 위한 것입니다. <span id="id1">[<a class="reference internal" href="zrefs.html#id2" title="모하메드 M 함맘(Mohamed M Hammam), 데이비드 우드(David Wood), 브렌트 서머빌(Brent Summerville). 소형 풍력 터빈용 꼬리 핀의 요 동작 모델링: 2021년 11월 22일~2024년 5월 21일. 기술 보고서, 국립 재생 에너지 연구소(NREL), Golden, CO(미국), 2023.">ed-HWS23</a>]</span>. 언제 <span class="math notranslate nohighlight">\(\omega=0\)</span>, 요 베어링 정적 또는 동적 마찰은 마찰 저항이 외부 적용 모멘트에 반대되도록 공식화됩니다. <span class="math notranslate nohighlight">\(M_z\)</span>, 그것을 극복하지 못한 채.</p>
 </div>
 <div class="section" id="blade-pitch-dynamics">
-<h2><span class="section-number">4.10.3.5. </span>블레이드 피치 역학<a class="headerlink" href="#blade-pitch-dynamics" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.10.3.5. </span>블레이드 피치 역학<a class="headerlink" href="#blade-pitch-dynamics" title="이 제목의 고유 링크"></a></h2>
 <p>OpenFAST v5 이전에는 블레이드 피치 각도가 ServoDyn의 피치 명령에 따라 고정되거나 규정되었습니다. ServoDyn 피치 명령에 따라 피치 각도가 잠재적으로 변경됨에도 불구하고 블레이드 루트 피치 속도와 가속도는 항상 0이었습니다. 블레이드가 ElastoDyn로 ​​모델링된 경우 블레이드 피치 관성으로 인한 피치 모멘트도 없었습니다. BeamDyn를 사용하여 블레이드를 모델링한 경우 블레이드 루트 노드만 피치 속도와 가속도가 0이었습니다. 루트 노드를 따르는 나머지 블레이드의 피치 관성과 비틀림은 여전히 ​​고려되어 블레이드 피치 역학을 부분적으로 포착했습니다.</p>
 <p>OpenFAST v5에서는 새로운 블레이드 피치 자유도, <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code>, ElastoDyn에 도입되었습니다. 설정으로 <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> 사실, 이제 ElastoDyn에서 블레이드 피칭을 동적으로 시뮬레이션할 수 있습니다. 이 기능을 사용하려면 사용자는 새로운 기능을 통해 피치 축에 대한 피치 액츄에이터/베어링의 관성 모멘트를 제공해야 합니다. <code class="docutils literal notranslate"><span class="pre">PBrIner(I)</span></code> ElastoDyn 입력 파일에 입력이 추가되었습니다. 블레이드가 BeamDyn 대신 ElastoDyn로 모델링된 경우 피치 축을 중심으로 편향되지 않은 블레이드의 총 관성 모멘트도 새를 통해 제공되어야 합니다. <code class="docutils literal notranslate"><span class="pre">BlPIner(I)</span></code> 입력. ElastoDyn는 블레이드 비틀림을 모델링하지 않기 때문에 분산된 블레이드 피치 관성을 지정할 필요가 없습니다. 또한 시뮬레이션 중 유효 블레이드 피치 관성 모멘트는 다음보다 높을 수 있습니다. <code class="docutils literal notranslate"><span class="pre">BlPIner(I)</span></code> 블레이드 굽힘으로 인한 추가 기여로 인해. ElastoDyn를 사용하여 블레이드를 모델링할 때, <code class="docutils literal notranslate"><span class="pre">PBrIner(I)</span></code> 및 <code class="docutils literal notranslate"><span class="pre">BlPIner(I)</span></code> 운동 방정식에 필요한 총 피치 관성 모멘트를 얻기 위해 단순히 함께 추가됩니다. 시뮬레이션 결과는 다음의 합과 동일합니다. <code class="docutils literal notranslate"><span class="pre">PBrIner(I)</span></code> 및 <code class="docutils literal notranslate"><span class="pre">BlPIner(I)</span></code> 변함없이 유지됩니다. BeamDyn를 사용하여 블레이드를 모델링할 때, <code class="docutils literal notranslate"><span class="pre">BlPIner(I)</span></code> 블레이드를 따른 피치 관성 모멘트의 분포는 블레이드 비틀림을 모델링하는 BeamDyn에서 고려되기 때문에 무시됩니다. 그러나 여전히 현실적인 가치를 갖는 것이 필요하다. <code class="docutils literal notranslate"><span class="pre">PBrIner(I)</span></code> ElastoDyn에서. 환경 <code class="docutils literal notranslate"><span class="pre">PBrIner(I)</span></code> 0 또는 0에 가까워지면 ElastoDyn에서 수치 문제가 발생합니다.</p>
 <p>다음의 경우 <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> 사실이라면 블레이드 루트 피치 각도는 규정되는 대신 동적으로 해결됩니다. 이 경우 피치 액츄에이터 토크는 각 블레이드에 대해 ServoDyn에 의해 다음과 같이 계산됩니다.</p>
@@ -275,7 +275,7 @@
 </div>
 </div>
 <div class="section" id="developer-notes">
-<span id="ed-dev-notes"></span><h1><span class="section-number">4.10.4. </span>개발자 노트<a class="headerlink" href="#developer-notes" title="이 제목에 대한 영구 링크"></a></h1>
+<span id="ed-dev-notes"></span><h1><span class="section-number">4.10.4. </span>개발자 노트<a class="headerlink" href="#developer-notes" title="이 제목의 고유 링크"></a></h1>
 <p><strong>내부 좌표계</strong></p>
 <p>ElastoDyn의 다양한 좌표계는 변수에 저장됩니다. <code class="docutils literal notranslate"><span class="pre">CoordSys</span></code>. ElastoDyn에서 내부적으로 사용되는 좌표계는 OpenFAST 입력/출력 좌표계와 다른 규칙을 사용합니다.</p>
 <p>예를 들어, 나셀 좌표계의 경우 단위 축이 표시됩니다. <span class="math notranslate nohighlight">\(x_n,y_n,z_n\)</span> OpenFAST에서, 그리고 <span class="math notranslate nohighlight">\(d_1,d_2,d_3\)</span> ElastoDyn에서는 다음 변환이 적용됩니다.
@@ -298,8 +298,8 @@
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
-        <a href="input.html" class="btn btn-neutral float-left" title="4.10.2. 입력 파일" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="input.html" class="btn btn-neutral float-left" title="4.10.2. 입력 파일" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
         <a href="zrefs.html" class="btn btn-neutral float-right" title="4.10.5. 참고자료" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

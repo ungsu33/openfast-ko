@@ -21,7 +21,7 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="찾다" href="../../../search.html"> 
+    <link rel="search" title="검색" href="../../../search.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/beamdyn/BDNodalOutputs.html"></head>
 
 <body class="wy-body-for-nav"> 
@@ -46,22 +46,22 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">4. 사용자 문서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -70,10 +70,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
       <li class="breadcrumb-item active">절점 출력</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/beamdyn/BDNodalOutputs.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
+            <a href="../../../_sources/source/user/beamdyn/BDNodalOutputs.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -82,14 +82,14 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="nodal-outputs">
-<h1>절점 출력<a class="headerlink" href="#nodal-outputs" title="이 제목에 대한 영구 링크"></a></h1>
+<h1>절점 출력<a class="headerlink" href="#nodal-outputs" title="이 제목의 고유 링크"></a></h1>
 <p>명명된 출력 외에도 <a class="reference internal" href="input_files.html#bd-outputs"><span class="std std-numref">섹션 4.7.3.3.5</span></a> 위에서 BeamDyn를 사용하면 전체 세트 블레이드 노드 동작 및 부하를 출력할 수 있습니다(현재 타워 노드는 사용할 수 없음). 엑셀 파일의 BeamDyn_Nodes 탭을 참고해주세요 <a class="reference download internal" download="" href="../../../_downloads/3f19498a5dc774461e022b671ff01ec6/OutListParameters.xlsx"><code class="xref download docutils literal notranslate"><span class="pre">OutListParameters.xlsx</span></code></a>
 에서 사용 가능한 전체 출력 매개변수 목록을 확인할 수 있습니다.</p>
 <p>이 섹션은 다음을 따릅니다. <cite>END</cite> 위에서 설명한 일반 출력 섹션의 명령문으로, 구분 기호 설명 줄과 다음 optino가 포함되어 있습니다.</p>
 <p><strong>BldNd_BlOutNd</strong> 출력할 노드를 지정합니다. 현재는 사용되지 않습니다.</p>
 <p>해당 <strong>OutList</strong> 섹션은 BeamDyn에 의해 생성된 노드 출력 수량을 제어합니다. 이 섹션에서 사용자는 출력할 채널 계열의 이름을 지정합니다. 각 채널의 출력 이름은 블레이드 번호, 노드 번호 및 채널 제품군 이름을 결합하여 BeamDyn에 의해 내부적으로 생성됩니다. 예를 들어, 사용자가 지정하는 경우 <strong>TDxr</strong> 채널 패밀리 이름으로 출력 채널은 다음 규칙에 따라 이름이 지정됩니다. <strong>B</strong><span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span><strong>N###TDxr</strong> 여기서 <span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span> 블레이드 번호이고, <strong>###</strong> 세 자리 노드 번호입니다.</p>
 <div class="section" id="sample-nodal-outputs-section">
-<h2>샘플 노드 출력 섹션<a class="headerlink" href="#sample-nodal-outputs-section" title="이 제목에 대한 영구 링크"></a></h2>
+<h2>샘플 노드 출력 섹션<a class="headerlink" href="#sample-nodal-outputs-section" title="이 제목의 고유 링크"></a></h2>
 <p>이 샘플에는 <code class="docutils literal notranslate"><span class="pre">END</span></code> 일반 출력 섹션의 명령문입니다.</p>
 <div class="docutils container" id="file-bdnodaloutputs">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span>END of input file (the word "END" must appear in the first 3 columns of this last OutList line)

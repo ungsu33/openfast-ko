@@ -21,7 +21,7 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="찾다" href="../../../search.html">
+    <link rel="search" title="검색" href="../../../search.html">
     <link rel="next" title="4.2.5. Linearization" href="linearization.html">
     <link rel="prev" title="4.2.3. ModGlue – 모듈을 글로벌 어레이로 결합" href="modglue.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/glue-code/solver.html"></head>
@@ -48,9 +48,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">4.2. 글루 코드</a><ul class="current">
@@ -93,16 +93,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -111,12 +111,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
           <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.2. </span>글루 코드</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.2.4. </span>솔버</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/glue-code/solver.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
+            <a href="../../../_sources/source/user/glue-code/solver.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -125,7 +125,7 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="solver">
-<span id="glue-code-solver"></span><h1><span class="section-number">4.2.4. </span>솔버<a class="headerlink" href="#solver" title="이 제목에 대한 영구 링크"></a></h1>
+<span id="glue-code-solver"></span><h1><span class="section-number">4.2.4. </span>솔버<a class="headerlink" href="#solver" title="이 제목의 고유 링크"></a></h1>
 <p>OpenFAST 밀착 결합 솔버는 다음에서 구현됩니다.
 <code class="docutils literal notranslate"><span class="pre">modules/openfast-library/src/FAST_Solver.f90</span></code>. 이는 연속 상태를 통합하고 Newton-Raphson 수렴 반복과 함께 일반화된 알파 체계를 사용하여 모듈 간의 입력-출력 결합을 해결합니다.</p>
 <div class="contents local topic" id="contents">
@@ -147,7 +147,7 @@
 </ul>
 </div>
 <div class="section" id="user-input-parameters">
-<span id="glue-code-solver-inputs"></span><h2><a class="toc-backref" href="#id1"><span class="section-number">4.2.4.1. </span>사용자 입력 매개변수</a><a class="headerlink" href="#user-input-parameters" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="glue-code-solver-inputs"></span><h2><a class="toc-backref" href="#id1"><span class="section-number">4.2.4.1. </span>사용자 입력 매개변수</a><a class="headerlink" href="#user-input-parameters" title="이 제목의 고유 링크"></a></h2>
 <p>모든 솔버 매개변수는 기본 OpenFAST 입력 파일(<code class="docutils literal notranslate"><span class="pre">*.fst</span></code>) 아래 <strong>기능 스위치 및 플래그</strong> 및
 <strong>밀착 결합/솔버</strong> 섹션.</p>
 <table class="colwidths-given docutils align-default">
@@ -241,7 +241,7 @@
 </table>
 </div>
 <div class="section" id="generalized-alpha-integration">
-<h2><a class="toc-backref" href="#id2"><span class="section-number">4.2.4.2. </span>일반화된 알파 통합</a><a class="headerlink" href="#generalized-alpha-integration" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><a class="toc-backref" href="#id2"><span class="section-number">4.2.4.2. </span>일반화된 알파 통합</a><a class="headerlink" href="#generalized-alpha-integration" title="이 제목의 고유 링크"></a></h2>
 <p>밀착 결합 솔버는 다음 형식의 2차 ODEs를 적분합니다.</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{M}\,\ddot{\mathbf{q}} + \mathbf{f}(\mathbf{q}, \dot{\mathbf{q}}, t) = 0\]</div>
@@ -288,7 +288,7 @@
 v_{n+1}^{\rm pred}  &amp;= v_n + h[(1-\gamma)a_n + \gamma\, a_{n+1}]\end{split}\]</div>
 </div>
 <div class="section" id="module-ordering">
-<h2><a class="toc-backref" href="#id3"><span class="section-number">4.2.4.3. </span>모듈 주문</a><a class="headerlink" href="#module-ordering" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><a class="toc-backref" href="#id3"><span class="section-number">4.2.4.3. </span>모듈 주문</a><a class="headerlink" href="#module-ordering" title="이 제목의 고유 링크"></a></h2>
 <p>동안 <code class="docutils literal notranslate"><span class="pre">FAST_SolverInit</span></code> 각 모듈은 다음을 기준으로 분류됩니다. <code class="docutils literal notranslate"><span class="pre">ModCoupling</span></code>
 자체 물리 유형을 가지며 순서가 지정된 인덱스 배열 중 하나에 할당됩니다. <code class="docutils literal notranslate"><span class="pre">Glue_TCParam</span></code> 구조:</p>
 <table class="colwidths-given docutils align-default">
@@ -321,14 +321,14 @@ v_{n+1}^{\rm pred}  &amp;= v_n + h[(1-\gamma)a_n + \gamma\, a_{n+1}]\end{split}\
 </table>
 </div>
 <div class="section" id="jacobian-construction">
-<h2><a class="toc-backref" href="#id4"><span class="section-number">4.2.4.4. </span>야코비안 구조</a><a class="headerlink" href="#jacobian-construction" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><a class="toc-backref" href="#id4"><span class="section-number">4.2.4.4. </span>야코비안 구조</a><a class="headerlink" href="#jacobian-construction" title="이 제목의 고유 링크"></a></h2>
 <p>두 개의 별도 야코비 행렬이 조립됩니다.</p>
 <ol class="arabic simple">
 <li><p><strong>TC/Option-1 야코비안</strong> (<code class="docutils literal notranslate"><span class="pre">BuildJacobianTC</span></code>) — 주요 시간 단계 수렴 루프의 경우.</p></li>
 <li><p><strong>IO 야코비안</strong> (<code class="docutils literal notranslate"><span class="pre">BuildJacobianIO</span></code>) - 초기 및 선형화 입력-출력 해결을 위해.</p></li>
 </ol>
 <div class="section" id="variable-selection-vf-solve-flag">
-<h3><a class="toc-backref" href="#id5"><span class="section-number">4.2.4.4.1. </span>변수선택(<code class="docutils literal notranslate"><span class="pre">VF_Solve</span></code> 깃발)</a><a class="headerlink" href="#variable-selection-vf-solve-flag" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><a class="toc-backref" href="#id5"><span class="section-number">4.2.4.4.1. </span>변수선택(<code class="docutils literal notranslate"><span class="pre">VF_Solve</span></code> 깃발)</a><a class="headerlink" href="#variable-selection-vf-solve-flag" title="이 제목의 고유 링크"></a></h3>
 <p>동안 <code class="docutils literal notranslate"><span class="pre">FAST_SolverInit</span> <span class="pre">→</span> <span class="pre">SetVarSolveFlags</span></code>, <code class="docutils literal notranslate"><span class="pre">VF_Solve</span></code> 플래그는 야코비 행렬에 나타나야 하는 변수에 설정됩니다.</p>
 <ul class="simple">
 <li><p><strong>연속 상태</strong> 모든 TC 모듈의 (자동).</p></li>
@@ -341,7 +341,7 @@ v_{n+1}^{\rm pred}  &amp;= v_n + h[(1-\gamma)a_n + \gamma\, a_{n+1}]\end{split}\
 </ul>
 </div>
 <div class="section" id="jacobian-structure-tc-jacobian">
-<h3><a class="toc-backref" href="#id6"><span class="section-number">4.2.4.4.2. </span>야코비 구조(TC 야코비 행렬)</a><a class="headerlink" href="#jacobian-structure-tc-jacobian" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><a class="toc-backref" href="#id6"><span class="section-number">4.2.4.4.2. </span>야코비 구조(TC 야코비 행렬)</a><a class="headerlink" href="#jacobian-structure-tc-jacobian" title="이 제목의 고유 링크"></a></h3>
 <p>조립된 TC 야코비안 <strong>J</strong> 크기가 있다 <code class="docutils literal notranslate"><span class="pre">NumJ</span> <span class="pre">×</span> <span class="pre">NumJ</span></code>, 어디:</p>
 <div class="math notranslate nohighlight">
 \[N_J = \underbrace{N_Q}_{\text{TC states}} +
@@ -369,7 +369,7 @@ v_{n+1}^{\rm pred}  &amp;= v_n + h[(1-\gamma)a_n + \gamma\, a_{n+1}]\end{split}\
 <p>하중 부분(행 <code class="docutils literal notranslate"><span class="pre">iJL</span></code>)는 다음과 같이 미리 나누어집니다. <code class="docutils literal notranslate"><span class="pre">UJacSclFact</span></code> 조건화를 개선하기 위해 인수분해하기 전.</p>
 </div>
 <div class="section" id="jacobian-update-strategy">
-<h3><a class="toc-backref" href="#id7"><span class="section-number">4.2.4.4.3. </span>야코비안 업데이트 전략</a><a class="headerlink" href="#jacobian-update-strategy" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><a class="toc-backref" href="#id7"><span class="section-number">4.2.4.4.3. </span>야코비안 업데이트 전략</a><a class="headerlink" href="#jacobian-update-strategy" title="이 제목의 고유 링크"></a></h3>
 <dl>
 <dt><code class="docutils literal notranslate"><span class="pre">ModCoupling</span> <span class="pre">=</span> <span class="pre">2</span></code> (수정된 업데이트)</dt><dd><p>다음 카운터 중 하나가 0에 도달하면 야코비 행렬이 다시 작성됩니다.</p>
 <ul class="simple">
@@ -385,7 +385,7 @@ v_{n+1}^{\rm pred}  &amp;= v_n + h[(1-\gamma)a_n + \gamma\, a_{n+1}]\end{split}\
 </dl>
 </div>
 <div class="section" id="per-module-jacobian-contributions">
-<h3><a class="toc-backref" href="#id8"><span class="section-number">4.2.4.4.4. </span>모듈별 야코비안 기여</a><a class="headerlink" href="#per-module-jacobian-contributions" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><a class="toc-backref" href="#id8"><span class="section-number">4.2.4.4.4. </span>모듈별 야코비안 기여</a><a class="headerlink" href="#per-module-jacobian-contributions" title="이 제목의 고유 링크"></a></h3>
 <p>모듈 수준 야코비안 부분 행렬은 내부의 유한 차분을 통해 계산됩니다. <code class="docutils literal notranslate"><span class="pre">BuildJacobianTC</span></code> 및 <code class="docutils literal notranslate"><span class="pre">BuildJacobianIO</span></code> 사용하여 <code class="docutils literal notranslate"><span class="pre">MV_Perturb</span></code> /
 <code class="docutils literal notranslate"><span class="pre">MV_ComputeDiff</span></code> / <code class="docutils literal notranslate"><span class="pre">MV_ComputeCentralDiff</span></code> 유틸리티 <code class="docutils literal notranslate"><span class="pre">ModVar</span></code>. 플래그가 지정된 각 변수에 대해 <code class="docutils literal notranslate"><span class="pre">VF_Solve</span></code>:</p>
 <ol class="arabic simple">
@@ -398,11 +398,11 @@ v_{n+1}^{\rm pred}  &amp;= v_n + h[(1-\gamma)a_n + \gamma\, a_{n+1}]\end{split}\
 <p>방향 변수의 경우(<code class="docutils literal notranslate"><span class="pre">FieldOrientation</span></code>), 섭동은 직접 추가보다는 쿼터니언 구성에 의해 적용됩니다(<code class="docutils literal notranslate"><span class="pre">MV_Perturb</span></code>), 차이점은 회전 벡터(<code class="docutils literal notranslate"><span class="pre">MV_ComputeDiff</span></code>).</p>
 </div>
 <div class="section" id="linear-solve">
-<h3><a class="toc-backref" href="#id9"><span class="section-number">4.2.4.4.5. </span>선형 해결</a><a class="headerlink" href="#linear-solve" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><a class="toc-backref" href="#id9"><span class="section-number">4.2.4.4.5. </span>선형 해결</a><a class="headerlink" href="#linear-solve" title="이 제목의 고유 링크"></a></h3>
 <p>LU 인수분해 <strong>J</strong> 으로 계산됩니다 <code class="docutils literal notranslate"><span class="pre">LAPACK_getrf</span></code> 시스템은 다음과 같이 해결됩니다. <code class="docutils literal notranslate"><span class="pre">LAPACK_getrs</span></code> (포장 <code class="docutils literal notranslate"><span class="pre">NWTC_LAPACK</span></code>). 업데이트 전략이 재구축을 트리거할 때까지 동일한 인수분해된 행렬이 수렴 반복 전반에 걸쳐 재사용됩니다.</p>
 </div>
 <div class="section" id="convergence-check">
-<h3><a class="toc-backref" href="#id10"><span class="section-number">4.2.4.4.6. </span>수렴 확인</a><a class="headerlink" href="#convergence-check" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><a class="toc-backref" href="#id10"><span class="section-number">4.2.4.4.6. </span>수렴 확인</a><a class="headerlink" href="#convergence-check" title="이 제목의 고유 링크"></a></h3>
 <p>각 뉴턴 단계 이후 수렴 오류는 평균입니다. <cite>L2</cite>-업데이트 벡터의 표준:</p>
 <div class="math notranslate nohighlight">
 \[e = \frac{\|\Delta \mathbf{z}\|_2}{N_J}\]</div>
@@ -412,7 +412,7 @@ v_{n+1}^{\rm pred}  &amp;= v_n + h[(1-\gamma)a_n + \gamma\, a_{n+1}]\end{split}\
 </div>
 </div>
 <div class="section" id="output-channels-from-the-solver">
-<h2><a class="toc-backref" href="#id11"><span class="section-number">4.2.4.5. </span>솔버의 출력 채널</a><a class="headerlink" href="#output-channels-from-the-solver" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><a class="toc-backref" href="#id11"><span class="section-number">4.2.4.5. </span>솔버의 출력 채널</a><a class="headerlink" href="#output-channels-from-the-solver" title="이 제목의 고유 링크"></a></h2>
 <p>세 개의 출력 채널이 기록됩니다. <code class="docutils literal notranslate"><span class="pre">DriverWriteOutput</span></code> 활성화되면 각 단계가 출력 파일에 표시됩니다.</p>
 <table class="colwidths-given docutils align-default">
 <colgroup>
@@ -442,8 +442,8 @@ v_{n+1}^{\rm pred}  &amp;= v_n + h[(1-\gamma)a_n + \gamma\, a_{n+1}]\end{split}\
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
-        <a href="modglue.html" class="btn btn-neutral float-left" title="4.2.3. ModGlue – 모듈을 글로벌 어레이로 결합" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="modglue.html" class="btn btn-neutral float-left" title="4.2.3. ModGlue – 모듈을 글로벌 어레이로 결합" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
         <a href="linearization.html" class="btn btn-neutral float-right" title="4.2.5. Linearization" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

@@ -21,7 +21,7 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="찾다" href="../../../search.html">
+    <link rel="search" title="검색" href="../../../search.html">
     <link rel="next" title="4.7.4. 출력 파일" href="output_files.html">
     <link rel="prev" title="4.7.2. BeamDyn 실행" href="running_bd.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/beamdyn/input_files.html"></head>
@@ -48,9 +48,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
@@ -70,9 +70,9 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="output_files.html">4.7.4. 출력 파일</a></li>
 <li class="toctree-l3"><a class="reference internal" href="theory.html">4.7.5. BeamDyn 이론</a></li>
-<li class="toctree-l3"><a class="reference internal" href="future_work.html">4.7.6. 미래의 일</a></li>
-<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.7.7. 참고자료</a></li>
-<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.7.8. 충수</a></li>
+<li class="toctree-l3"><a class="reference internal" href="future_work.html">4.7.6. 향후 개발 계획</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.7.7. 참고문헌</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.7.8. 부록</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
@@ -95,16 +95,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -113,12 +113,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.7. </span>BeamDyn 사용자 가이드 및 이론 매뉴얼</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.7. </span>BeamDyn 사용자 가이드 및 이론 설명서</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.7.3. </span>입력 파일</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/beamdyn/input_files.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
+            <a href="../../../_sources/source/user/beamdyn/input_files.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -127,30 +127,30 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="input-files">
-<span id="bd-input-files"></span><h1><span class="section-number">4.7.3. </span>입력 파일<a class="headerlink" href="#input-files" title="이 제목에 대한 영구 링크"></a></h1>
+<span id="bd-input-files"></span><h1><span class="section-number">4.7.3. </span>입력 파일<a class="headerlink" href="#input-files" title="이 제목의 고유 링크"></a></h1>
 <p>사용자는 블레이드 모델 매개변수를 지정합니다. 기하학, 단면 특성, FE 및 출력 제어 매개변수를 포함합니다. 기본 BeamDyn 입력 파일 및 블레이드 속성 입력 파일을 통해. 독립형 모드에서 사용하는 경우 추가 드라이버 입력 파일이 필요합니다. 이 드라이버 파일은 시뮬레이션 범위, 루트 모션 및 외부에서 적용되는 하중을 포함하여 일반적으로 FAST가 BeamDyn에 제공하는 입력을 지정합니다.</p>
 <p>행 수가 지정된 테이블을 제외하고는 입력 파일에서 행을 추가하거나 제거해서는 안 됩니다.</p>
 <div class="section" id="units">
-<h2><span class="section-number">4.7.3.1. </span>단위<a class="headerlink" href="#units" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.7.3.1. </span>단위<a class="headerlink" href="#units" title="이 제목의 고유 링크"></a></h2>
 <p>BeamDyn는 SI 시스템(kg, m, s, N)을 사용합니다. 별도로 지정하지 않는 한 각도는 라디안 단위로 간주됩니다.</p>
 </div>
 <div class="section" id="beamdyn-driver-input-file">
-<span id="driver-input-file"></span><h2><span class="section-number">4.7.3.2. </span>BeamDyn 드라이버 입력 파일<a class="headerlink" href="#beamdyn-driver-input-file" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="driver-input-file"></span><h2><span class="section-number">4.7.3.2. </span>BeamDyn 드라이버 입력 파일<a class="headerlink" href="#beamdyn-driver-input-file" title="이 제목의 고유 링크"></a></h2>
 <p>드라이버 입력 파일은 BeamDyn의 독립형 버전에만 필요합니다. 여기에는 일반적으로 FAST에 의해 설정되고 결합되지 않은 모델에 대한 시뮬레이션을 제어하는 ​​데 필요한 입력이 포함되어 있습니다.</p>
 <p>드라이버 입력 파일은 사용자용이지만 소프트웨어에서는 사용되지 않는 두 줄의 헤더 정보로 시작됩니다. BeamDyn가 독립 실행형 모드에서 실행되는 경우 결과 출력 파일 앞에는 이 드라이버 입력 파일과 동일한 이름이 붙습니다.</p>
 <p>샘플 BeamDyn 드라이버 입력 파일은 다음과 같습니다. <a class="reference internal" href="appendix.html#bd-input-files"><span class="std std-numref">섹션 4.7.8.1</span></a>.</p>
 <div class="section" id="simulation-control-parameters">
-<h3><span class="section-number">4.7.3.2.1. </span>시뮬레이션 제어 매개변수<a class="headerlink" href="#simulation-control-parameters" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.7.3.2.1. </span>시뮬레이션 제어 매개변수<a class="headerlink" href="#simulation-control-parameters" title="이 제목의 고유 링크"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">DynamicSolve</span></code> BeamDyn가 동적 분석을 사용해야 하는지 여부를 지정하는 논리 변수입니다(<code class="docutils literal notranslate"><span class="pre">DynamicSolve</span> <span class="pre">=</span> <span class="pre">true</span></code>) 또는 정적 분석(<code class="docutils literal notranslate"><span class="pre">DynamicSolve</span> <span class="pre">=</span> <span class="pre">false</span></code>).
 <code class="docutils literal notranslate"><span class="pre">t_initial</span></code> 및 <code class="docutils literal notranslate"><span class="pre">t_final</span></code> 시뮬레이션 시작 시간과 시뮬레이션 종료 시간을 각각 지정합니다.
 <code class="docutils literal notranslate"><span class="pre">dt</span></code> 시간 단계 크기를 지정합니다.</p>
 </div>
 <div class="section" id="gravity-parameters">
-<h3><span class="section-number">4.7.3.2.2. </span>Gravity 매개변수<a class="headerlink" href="#gravity-parameters" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.7.3.2.2. </span>Gravity 매개변수<a class="headerlink" href="#gravity-parameters" title="이 제목의 고유 링크"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">Gx</span></code> , <code class="docutils literal notranslate"><span class="pre">Gy</span></code> , 및 <code class="docutils literal notranslate"><span class="pre">Gz</span></code> 중력 벡터의 구성요소를 다음과 같이 지정합니다. <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(Y\)</span>, 및 <span class="math notranslate nohighlight">\(Z\)</span> 각각 전역 좌표계의 방향입니다. FAST에서는 일반적으로 0, 0 및 -9.80665입니다.</p>
 </div>
 <div class="section" id="inertial-frame-parameters">
-<h3><span class="section-number">4.7.3.2.3. </span>관성 프레임 매개변수<a class="headerlink" href="#inertial-frame-parameters" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.7.3.2.3. </span>관성 프레임 매개변수<a class="headerlink" href="#inertial-frame-parameters" title="이 제목의 고유 링크"></a></h3>
 <p>이 섹션에서는 두 관성계, 전역 좌표계와 초기 블레이드 기준 좌표계 간의 관계를 정의합니다.
 <code class="docutils literal notranslate"><span class="pre">GlbPos(1)</span></code>, <code class="docutils literal notranslate"><span class="pre">GlbPos(2)</span></code>, 및 <code class="docutils literal notranslate"><span class="pre">GlbPos(3)</span></code> 초기 전역 위치 벡터의 세 가지 구성요소를 다음과 같이 지정합니다. <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(Y\)</span>, 및 <span class="math notranslate nohighlight">\(Z\)</span> 전역 좌표계에서 해결된 방향(그림 참조) <a class="reference internal" href="#frame"><span class="std std-numref">그림 4.29</span></a>. 그리고 다음 <span class="math notranslate nohighlight">\(3 \times 3\)</span> 방향 코사인 행렬(<code class="docutils literal notranslate"><span class="pre">GlbDCM</span></code>) 전체 좌표계의 회전을 초기 블레이드 기준 좌표계와 연관시킵니다.</p>
 <div class="figure align-center" id="id1">
@@ -159,7 +159,7 @@
 </div>
 </div>
 <div class="section" id="blade-floating-reference-frame-parameters">
-<h3><span class="section-number">4.7.3.2.4. </span>블레이드 부동 참조 프레임 매개변수<a class="headerlink" href="#blade-floating-reference-frame-parameters" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.7.3.2.4. </span>블레이드 부동 참조 프레임 매개변수<a class="headerlink" href="#blade-floating-reference-frame-parameters" title="이 제목의 고유 링크"></a></h3>
 <p>이 섹션에서는 몸체에 부착된 부동 프레임인 블레이드 부동 기준 프레임을 정의하는 매개변수를 지정합니다. 블레이드 루트는 이 프레임의 원점에서 캔틸레버식입니다. 드라이버 입력 파일을 기반으로 플로팅 블레이드 참조 프레임은 전역 좌표계의 원점을 중심으로 일정한 강체 회전 모드에 있다고 가정합니다. 즉,</p>
 <div class="math notranslate nohighlight" id="equation-rootvelocity">
 <span class="eqno">(4.69)<a class="headerlink" href="#equation-rootvelocity" title="이 방정식에 대한 영구 링크"></a></span>\[v_{rt} = \omega_r \times r_t\]</div>
@@ -176,7 +176,7 @@ v_0 &amp;= v_{r0} + \omega_r \times P \\
 <p>여기서 <span class="math notranslate nohighlight">\(a_{0}\)</span> 는 블레이드를 따른 초기 병진 가속도 벡터입니다. <span class="math notranslate nohighlight">\(v_0\)</span> 및 <span class="math notranslate nohighlight">\(\omega_0\)</span> 블레이드를 따른 초기 병진 및 각속도 벡터; 그리고 <span class="math notranslate nohighlight">\(P\)</span> 루트를 기준으로 블레이드를 따른 위치 벡터입니다. 이러한 방정식은 실제로 NWTC 라이브러리의 메시 매핑 루틴을 호출하여 구현됩니다.</p>
 </div>
 <div class="section" id="applied-load">
-<h3><span class="section-number">4.7.3.2.5. </span>적용된 하중<a class="headerlink" href="#applied-load" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.7.3.2.5. </span>적용된 하중<a class="headerlink" href="#applied-load" title="이 제목의 고유 링크"></a></h3>
 <p>이 섹션에서는 독립형 해석을 위해 분산, 점(집중) 및 팁 집중 하중을 포함하여 적용되는 하중을 정의합니다.</p>
 <p>처음 6개 항목 <code class="docutils literal notranslate"><span class="pre">DistrLoad(i)</span></code>, <span class="math notranslate nohighlight">\(i \in [1,6]\)</span>, 전체 좌표계에서 균일하게 분포된 힘 벡터의 세 가지 구성요소와 균일하게 분포된 모멘트 벡터의 세 가지 구성요소를 각각 지정합니다.</p>
 <p>다음 6개 항목 <code class="docutils literal notranslate"><span class="pre">TipLoad(i)</span></code>,
@@ -209,19 +209,19 @@ v_0 &amp;= v_{r0} + \omega_r \times P \\
 <p>분산 하중은 수치 적분을 위해 직교 지점에서 정의됩니다. 예를 들어, 가우스 구적법을 선택한 경우 분포 하중은 가우스 점과 빔의 두 끝점(루트 및 팁)에 정의됩니다. 사다리꼴 구적법의 경우, <code class="docutils literal notranslate"><span class="pre">p%ngp</span></code> 사다리꼴 구적점 수를 저장합니다.</p>
 </div>
 <div class="section" id="primary-input-file">
-<h3><span class="section-number">4.7.3.2.6. </span>기본 입력 파일<a class="headerlink" href="#primary-input-file" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.7.3.2.6. </span>기본 입력 파일<a class="headerlink" href="#primary-input-file" title="이 제목의 고유 링크"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">InputFile</span></code> 기본 BeamDyn 입력 파일의 파일 이름입니다. 이 이름은 따옴표로 묶어야 하며 절대 경로 또는 상대 경로를 포함할 수 있습니다.</p>
 </div>
 </div>
 <div class="section" id="beamdyn-primary-input-file">
-<h2><span class="section-number">4.7.3.3. </span>BeamDyn 기본 입력 파일<a class="headerlink" href="#beamdyn-primary-input-file" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.7.3.3. </span>BeamDyn 기본 입력 파일<a class="headerlink" href="#beamdyn-primary-input-file" title="이 제목의 고유 링크"></a></h2>
 <p>BeamDyn 기본 입력 파일은 블레이드 형상, LSFE-이산화 및 시뮬레이션 옵션, 출력 채널 및 블레이드 입력 파일의 이름을 정의합니다. 블레이드의 형상은 블레이드 로컬 좌표계(IEC 표준 블레이드 시스템)의 키 포인트 좌표와 초기 비틀림 각도(도 단위)로 정의됩니다. <span class="math notranslate nohighlight">\(Z_r\)</span>
 뿌리부터 끝까지 칼날 축을 따라 존재하며, <span class="math notranslate nohighlight">\(X_r\)</span> 일반적으로 흡입측을 향하고, <span class="math notranslate nohighlight">\(Y_r\)</span> 일반적으로 후행 가장자리를 향합니다).</p>
 <p>파일은 여러 기능 섹션으로 구성됩니다. 각 섹션은 BeamDyn 모델의 측면에 해당합니다.</p>
 <p>샘플 BeamDyn 기본 입력 파일은 다음과 같습니다. <a class="reference internal" href="appendix.html#bd-appendix"><span class="std std-numref">섹션 4.7.8</span></a>.</p>
 <p>기본 입력 파일은 사용자용이지만 소프트웨어에서는 사용되지 않는 두 줄의 헤더 정보로 시작됩니다.</p>
 <div class="section" id="simulation-controls">
-<h3><span class="section-number">4.7.3.3.1. </span>시뮬레이션 제어<a class="headerlink" href="#simulation-controls" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.7.3.3.1. </span>시뮬레이션 제어<a class="headerlink" href="#simulation-controls" title="이 제목의 고유 링크"></a></h3>
 <p>사용자는 <code class="docutils literal notranslate"><span class="pre">Echo</span></code> 플래그를 지정하다 <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> BeamDyn가 BeamDyn 입력 파일의 내용을 에코하도록 합니다(입력 파일의 오류를 디버깅하는 데 유용함).</p>
 <p>해당 <code class="docutils literal notranslate"><span class="pre">QuasiStaticInit</span></code> 플래그는 BeamDyn가 상태를 더 잘 초기화하기 위해 초기화 시 준정적 솔루션을 수행해야 하는지 여부를 나타냅니다. 이 옵션은 동적 분석이 활성화된 OpenFAST에 연결된 경우에만 사용할 수 있습니다. 으로 설정하면 <code class="docutils literal notranslate"><span class="pre">TRUE</span></code>, BeamDyn는 시작 과도 현상을 줄이고 수치 성능을 향상시키기 위해 구심 가속도를 포함하는 정상 상태 시작(SSS) 해석을 수행합니다. 이는 초기 조건으로 인해 허위 과도 현상이 발생하는 회전 블레이드 시뮬레이션에 특히 유용합니다. “DEFAULT” 키워드는 이를 다음과 같이 설정합니다. <code class="docutils literal notranslate"><span class="pre">FALSE</span></code>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">rhoinf</span></code> 수치 감쇠 매개변수(증폭 매트릭스의 스펙트럼 반경)를 다음 범위에서 지정합니다. <span class="math notranslate nohighlight">\([0.0,1.0]\)</span> 일반화에 사용 -<span class="math notranslate nohighlight">\(\alpha\)</span> 동적 분석을 위해 BeamDyn에 구현된 시간 적분기입니다. <strong>참고: 이 매개변수는 BeamDyn가 느슨한 결합 모드에서 실행되는 경우에만 사용됩니다(예: 드라이버와 독립 실행형 또는 OpenFAST에서 느슨한 결합이 명시적으로 선택된 경우). OpenFAST에서 긴밀한 결합이 사용되는 경우 시간 통합은 글루 코드에 의해 처리되며 이 매개변수는 무시됩니다.</strong>
@@ -248,7 +248,7 @@ v_0 &amp;= v_{r0} + \omega_r \times P \\
 <p><code class="docutils literal notranslate"><span class="pre">RotStates</span></code> OpenFAST에 결합될 때 선형화 분석 중에 BeamDyn의 연속 상태가 회전 프레임의 방향을 지정해야 하는지 여부를 나타내는 플래그입니다. 다중 블레이드 좌표(MBC3) 분석을 수행하면, <code class="docutils literal notranslate"><span class="pre">RotStates</span></code> 이어야 한다 <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
 </div>
 <div class="section" id="geometry-parameter">
-<h3><span class="section-number">4.7.3.3.2. </span>기하학 매개변수<a class="headerlink" href="#geometry-parameter" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.7.3.3.2. </span>기하학 매개변수<a class="headerlink" href="#geometry-parameter" title="이 제목의 고유 링크"></a></h3>
 <p>블레이드 형상은 곡선형 로컬 블레이드 기준 축으로 정의됩니다. 블레이드 기준 축은 BeamDyn 블레이드 입력 파일에 단면적 6x6 강성과 질량 행렬이 정의된 각 로컬 좌표계의 원점과 방향을 찾습니다. 기준 축이 일관되게 정의되고 블레이드의 자연스러운 형상을 밀접하게 따르는 한 단면에서 6x6 강성과 질량 매트릭스가 정의되는 위치는 실제로 중요하지 않습니다.</p>
 <p>블레이드 빔 모델은 여러 가지로 구성됩니다. <em>회원</em> 연속된 시리즈로 구성되며 각 멤버는 BeamDyn의 최소 3개 핵심 포인트로 정의됩니다. BeamDyn에 구현된 큐빅 스플라인 핏 전처리기는 핵심 포인트를 기반으로 멤버를 자동으로 생성한 다음 멤버를 블레이드에 상호 연결합니다. 인접한 구성원에는 항상 공유된 핵심 지점이 있습니다. 따라서 총 핵심 포인트 수는 구성원 수 및 각 구성원의 핵심 포인트와 관련이 있습니다.</p>
 <p><code class="docutils literal notranslate"><span class="pre">member_total</span></code> 구조에 사용되는 총 보 부재 수를 지정합니다. LSFE 이산화, 단일 멤버 및 충분히 높은 요소 차수를 사용하면 <code class="docutils literal notranslate"><span class="pre">order_elem</span></code> 아래 내용이면 충분할 수 있습니다.</p>
@@ -274,16 +274,16 @@ v_0 &amp;= v_{r0} + \omega_r \times P \\
 </div>
 </div>
 <div class="section" id="mesh-parameter">
-<h3><span class="section-number">4.7.3.3.3. </span>메쉬 매개변수<a class="headerlink" href="#mesh-parameter" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.7.3.3.3. </span>메쉬 매개변수<a class="headerlink" href="#mesh-parameter" title="이 제목의 고유 링크"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">Order_Elem</span></code> 각 유한 요소에 대한 모양 함수의 순서를 지정합니다. 각 LSFE에는 <code class="docutils literal notranslate"><span class="pre">Order_Elem</span></code>GLL 직교 지점에 위치한 +1 노드. 모든 LSFEs의 순서는 동일합니다. LSFE 이산화를 사용하면 일반적으로 정확도를 높이는 것이 더 좋습니다. <code class="docutils literal notranslate"><span class="pre">Order_Elem</span></code> (i.e., <span class="math notranslate nohighlight">\(p\)</span>-정밀화) 회원 수를 늘리는 것(즉,
 <span class="math notranslate nohighlight">\(h\)</span>-정제). 가우스 구적법의 경우, <code class="docutils literal notranslate"><span class="pre">Order_Elem</span></code> 1보다 커야 합니다.</p>
 </div>
 <div class="section" id="material-parameter">
-<h3><span class="section-number">4.7.3.3.4. </span>재료 매개변수<a class="headerlink" href="#material-parameter" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.7.3.3.4. </span>재료 매개변수<a class="headerlink" href="#material-parameter" title="이 제목의 고유 링크"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">BldFile</span></code> 블레이드 입력 파일의 파일 이름입니다. 이 이름은 따옴표로 묶어야 하며 절대 경로 또는 상대 경로를 포함할 수 있습니다.</p>
 </div>
 <div class="section" id="outputs">
-<span id="bd-outputs"></span><h3><span class="section-number">4.7.3.3.5. </span>출력<a class="headerlink" href="#outputs" title="이 제목에 대한 영구 링크"></a></h3>
+<span id="bd-outputs"></span><h3><span class="section-number">4.7.3.3.5. </span>출력<a class="headerlink" href="#outputs" title="이 제목의 고유 링크"></a></h3>
 <p>기본 입력 파일의 이 섹션에서 사용자는 원하는 출력 동작에 대한 플래그와 스위치를 설정합니다.</p>
 <p>지정 <code class="docutils literal notranslate"><span class="pre">SumPrint</span> <span class="pre">=</span> <span class="pre">TRUE</span></code> BeamDyn가 이름이 있는 요약 파일을 생성하게 합니다. <code class="docutils literal notranslate"><span class="pre">InputFile.sum</span></code>. 보다
 <a class="reference internal" href="output_files.html#sum-file"><span class="std std-numref">섹션 4.7.4.2</span></a> 요약 파일 세부정보를 확인하세요.</p>
@@ -293,14 +293,14 @@ v_0 &amp;= v_{r0} + \omega_r \times P \\
 <p>해당 <code class="docutils literal notranslate"><span class="pre">OutList</span></code> 블록에는 출력 매개변수 목록이 포함되어 있습니다. 하나 이상의 출력 매개변수 이름을 포함하는 따옴표 붙은 문자열을 포함하는 하나 이상의 행을 입력하십시오. 쉼표, 세미콜론, 공백 및/또는 탭의 조합으로 출력 매개변수 이름을 구분합니다. 매개변수 이름 앞에 빼기 기호, "-", 밑줄, "_" 또는 문자 "m" 또는 "M"을 붙이면 BeamDyn는 데이터를 쓰기 전에 해당 채널의 값에 -1을 곱합니다. 매개변수는 입력 파일에 나열된 순서대로 작성됩니다. BeamDyn를 사용하면 여러 줄을 사용하여 목록을 의미 있는 그룹으로 나누고 줄을 더 짧게 만들 수 있습니다. 모든 행에서 닫는 따옴표 뒤에 설명을 입력할 수 있습니다. 줄 시작 부분이나 줄 시작 부분에 있는 따옴표 붙은 문자열의 시작 부분에 "END"라는 문자열이 포함된 줄을 입력하면 BeamDyn가 더 많은 채널 이름 줄 검색을 중단하게 됩니다. 위의 OutNd 목록을 통해 식별된 요청 노드에 대해 노드 관련 수량이 생성됩니다. BeamDyn가 알 수 없거나 유효하지 않은 채널 이름을 발견하면 사용자에게 경고하지만 출력 파일에서 의심스러운 채널을 제거합니다. 부록을 참조하세요 <a class="reference internal" href="appendix.html#app-output-channel"><span class="std std-numref">섹션 4.7.8.2</span></a> 가능한 출력 매개변수와 해당 이름의 전체 목록을 보려면</p>
 </div>
 <div class="section" id="nodal-outputs">
-<span id="bd-nodal-outputs"></span><h3><span class="section-number">4.7.3.3.6. </span>절점 출력<a class="headerlink" href="#nodal-outputs" title="이 제목에 대한 영구 링크"></a></h3>
+<span id="bd-nodal-outputs"></span><h3><span class="section-number">4.7.3.3.6. </span>절점 출력<a class="headerlink" href="#nodal-outputs" title="이 제목의 고유 링크"></a></h3>
 <p>명명된 출력 외에도 <a class="reference internal" href="#bd-outputs"><span class="std std-numref">섹션 4.7.3.3.5</span></a> 위에서 BeamDyn를 사용하면 전체 세트 블레이드 노드 동작 및 부하를 출력할 수 있습니다(현재 타워 노드는 사용할 수 없음). 엑셀 파일의 BeamDyn_Nodes 탭을 참고해주세요 <a class="reference download internal" download="" href="../../../_downloads/3f19498a5dc774461e022b671ff01ec6/OutListParameters.xlsx"><code class="xref download docutils literal notranslate"><span class="pre">OutListParameters.xlsx</span></code></a>
 에서 사용 가능한 전체 출력 매개변수 목록을 확인할 수 있습니다.</p>
 <p>이 섹션은 다음을 따릅니다. <cite>END</cite> 위에서 설명한 일반 출력 섹션의 명령문으로, 구분 기호 설명 줄과 다음 optino가 포함되어 있습니다.</p>
 <p><strong>BldNd_BlOutNd</strong> 출력할 노드를 지정합니다. 현재는 사용되지 않습니다.</p>
 <p>해당 <strong>OutList</strong> 섹션은 BeamDyn에 의해 생성된 노드 출력 수량을 제어합니다. 이 섹션에서 사용자는 출력할 채널 계열의 이름을 지정합니다. 각 채널의 출력 이름은 블레이드 번호, 노드 번호 및 채널 제품군 이름을 결합하여 BeamDyn에 의해 내부적으로 생성됩니다. 예를 들어, 사용자가 지정하는 경우 <strong>TDxr</strong> 채널 패밀리 이름으로 출력 채널은 다음 규칙에 따라 이름이 지정됩니다. <strong>B</strong><span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span><strong>N###TDxr</strong> 여기서 <span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span> 블레이드 번호이고, <strong>###</strong> 세 자리 노드 번호입니다.</p>
 <div class="section" id="sample-nodal-outputs-section">
-<h4><span class="section-number">4.7.3.3.6.1. </span>샘플 노드 출력 섹션<a class="headerlink" href="#sample-nodal-outputs-section" title="이 제목에 대한 영구 링크"></a></h4>
+<h4><span class="section-number">4.7.3.3.6.1. </span>샘플 노드 출력 섹션<a class="headerlink" href="#sample-nodal-outputs-section" title="이 제목의 고유 링크"></a></h4>
 <p>이 샘플에는 <code class="docutils literal notranslate"><span class="pre">END</span></code> 일반 출력 섹션의 명령문입니다.</p>
 <div class="docutils container" id="file-bdnodaloutputs">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span>END of input file (the word "END" must appear in the first 3 columns of this last OutList line)
@@ -448,10 +448,10 @@ v_0 &amp;= v_{r0} + \omega_r \times P \\
 </div>
 </div>
 <div class="section" id="blade-input-file">
-<h2><span class="section-number">4.7.3.4. </span>블레이드 입력 파일<a class="headerlink" href="#blade-input-file" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.7.3.4. </span>블레이드 입력 파일<a class="headerlink" href="#blade-input-file" title="이 제목의 고유 링크"></a></h2>
 <p>블레이드 입력 파일은 블레이드를 따라 다양한 스테이션의 단면 특성과 전체 블레이드에 대한 6개의 감쇠 계수를 정의합니다. 샘플 BeamDyn 블레이드 입력 파일은 다음과 같습니다. <a class="reference internal" href="appendix.html#bd-appendix"><span class="std std-numref">섹션 4.7.8</span></a>. 블레이드 입력 파일은 사용자용이지만 소프트웨어에서는 사용되지 않는 두 줄의 헤더 정보로 시작됩니다.</p>
 <div class="section" id="blade-parameters">
-<h3><span class="section-number">4.7.3.4.1. </span>블레이드 매개변수<a class="headerlink" href="#blade-parameters" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.7.3.4.1. </span>블레이드 매개변수<a class="headerlink" href="#blade-parameters" title="이 제목의 고유 링크"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">Station_Total</span></code> 해석에 사용되는 블레이드 축을 따라 단면 스테이션 수를 지정합니다.</p>
 <p><code class="docutils literal notranslate"><span class="pre">damp_type</span></code> 해석에 사용할 구조적 감쇠 유형을 지정합니다. 세 가지 옵션이 있습니다:</p>
 <ul class="simple">
@@ -461,7 +461,7 @@ v_0 &amp;= v_{r0} + \omega_r \times P \\
 </ul>
 </div>
 <div class="section" id="stiffness-proportional-damping-coefficients">
-<h3><span class="section-number">4.7.3.4.2. </span>강성-비례 감쇠 계수<a class="headerlink" href="#stiffness-proportional-damping-coefficients" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.7.3.4.2. </span>강성-비례 감쇠 계수<a class="headerlink" href="#stiffness-proportional-damping-coefficients" title="이 제목의 고유 링크"></a></h3>
 <p>이 섹션에서는 6개의 감쇠 계수를 지정합니다. <span class="math notranslate nohighlight">\(\mu_{ii}\)</span> (라고도 함 <code class="docutils literal notranslate"><span class="pre">beta</span></code>) 와 함께
 <span class="math notranslate nohighlight">\(i \in [1,6]\)</span>, 6개의 DOFs(3개의 변환 및 3개의 회전)에 대한 것입니다. 이 계수는 다음 경우에만 사용됩니다. <code class="docutils literal notranslate"><span class="pre">damp_flag</span> <span class="pre">=</span> <span class="pre">1</span></code>.</p>
 <p>점성 감쇠는 감쇠력이 변형률에 비례하는 BeamDyn에서 구현됩니다. 이는 강성 비례 감쇠 계수입니다.
@@ -485,7 +485,7 @@ v_0 &amp;= v_{r0} + \omega_r \times P \\
 \end{bmatrix}\end{split}\]</div>
 </div>
 <div class="section" id="modal-damping-coefficients">
-<h3><span class="section-number">4.7.3.4.3. </span>모달 감쇠 계수<a class="headerlink" href="#modal-damping-coefficients" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.7.3.4.3. </span>모달 감쇠 계수<a class="headerlink" href="#modal-damping-coefficients" title="이 제목의 고유 링크"></a></h3>
 <p>이 섹션은 모달 감쇠 매개변수를 지정하며 다음과 같은 경우에만 사용됩니다. <code class="docutils literal notranslate"><span class="pre">damp_flag</span> <span class="pre">=</span> <span class="pre">2</span></code>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">n_modes</span></code> 모드 감쇠 계수가 제공되는 모드 수를 지정합니다. BeamDyn는 블레이드의 고유 진동수와 모드 형상을 계산하고 모달 좌표에 감쇠를 적용합니다.</p>
 <p><code class="docutils literal notranslate"><span class="pre">zeta</span></code> 의 배열이다 <code class="docutils literal notranslate"><span class="pre">n_modes</span></code> 모달 감쇠비는 각 모드마다 하나씩입니다. 각 값은 일반적으로 0.0(감쇠 없음)에서 1.0(임계 감쇠) 사이여야 하지만 더 높은 값도 허용됩니다. 복합 블레이드 구조의 일반적인 값은 0.05 미만(임계 감쇠의 5% 미만)입니다. 감쇠비는 모드 1~까지 적용됩니다. <code class="docutils literal notranslate"><span class="pre">n_modes</span></code> 빈도순으로.</p>
@@ -509,7 +509,7 @@ v_0 &amp;= v_{r0} + \omega_r \times P \\
 </ul>
 </div>
 <div class="section" id="distributed-properties">
-<h3><span class="section-number">4.7.3.4.4. </span>분산 속성<a class="headerlink" href="#distributed-properties" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.7.3.4.4. </span>분산 속성<a class="headerlink" href="#distributed-properties" title="이 제목의 고유 링크"></a></h3>
 <p>이 섹션에서는 각 부분의 단면 속성을 지정합니다.
 <code class="docutils literal notranslate"><span class="pre">Station_Total</span></code> 역. 각 스테이션에 대해 무차원 매개변수 <span class="math notranslate nohighlight">\(\eta\)</span> 다음 범위의 로컬 블레이드 기준 축을 따라 스테이션 위치를 지정합니다. <span class="math notranslate nohighlight">\([0.0,1.0]\)</span>. 첫 번째 및 마지막 스테이션 매개변수는 다음으로 설정되어야 합니다. <span class="math notranslate nohighlight">\(0.0\)</span> (블레이드 루트의 경우) 및
 <span class="math notranslate nohighlight">\(1.0\)</span> (블레이드 팁의 경우) 각각.</p>
@@ -549,8 +549,8 @@ m &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; -m Y_{cm} \\
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
-        <a href="running_bd.html" class="btn btn-neutral float-left" title="4.7.2. BeamDyn 실행" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="running_bd.html" class="btn btn-neutral float-left" title="4.7.2. BeamDyn 실행" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
         <a href="output_files.html" class="btn btn-neutral float-right" title="4.7.4. 출력 파일" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

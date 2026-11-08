@@ -21,7 +21,7 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="찾다" href="../../../search.html">
+    <link rel="search" title="검색" href="../../../search.html">
     <link rel="next" title="4.3.7. AeroDyn 이론" href="theory.html">
     <link rel="prev" title="4.3.5. 모델링 고려 사항" href="modeling.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/aerodyn/driver.html"></head>
@@ -48,9 +48,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
@@ -70,8 +70,8 @@
 <li class="toctree-l3"><a class="reference internal" href="theory.html">4.3.7. AeroDyn 이론</a></li>
 <li class="toctree-l3"><a class="reference internal" href="theory_ua.html">4.3.8. 비정상 공력</a></li>
 <li class="toctree-l3"><a class="reference internal" href="theory_tailfin.html">4.3.9. 꼬리지느러미 공기역학 이론</a></li>
-<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.3.10. 참고자료</a></li>
-<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.3.11. 충수</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.3.10. 참고문헌</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.3.11. 부록</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
@@ -98,16 +98,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -116,12 +116,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.3. </span>AeroDyn 사용자 가이드 및 이론 매뉴얼</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.3. </span>AeroDyn 사용자 가이드 및 이론 설명서</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.3.6. </span>AeroDyn 드라이버</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/aerodyn/driver.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
+            <a href="../../../_sources/source/user/aerodyn/driver.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -130,7 +130,7 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="aerodyn-driver">
-<span id="ad-driver"></span><h1><span class="section-number">4.3.6. </span>AeroDyn 드라이버<a class="headerlink" href="#aerodyn-driver" title="이 제목에 대한 영구 링크"></a></h1>
+<span id="ad-driver"></span><h1><span class="section-number">4.3.6. </span>AeroDyn 드라이버<a class="headerlink" href="#aerodyn-driver" title="이 제목의 고유 링크"></a></h1>
 <p>강체 운동(고정, 정현파 또는 임의)을 받는 강체 터빈의 공기역학적 시뮬레이션을 수행하기 위해 독립형 AeroDyn 드라이버가 제공됩니다. 독립형 AeroDyn 드라이버 코드는 이전에 별도의 풍력 터빈 로터 성능 도구 WT_Perf에서 사용할 수 있었던 기능을 개선합니다. 드라이버는 현재 OpenFAST에서 지원하지 않는 터빈 구성도 지원합니다.</p>
 <p>응용 프로그램의 예는 다음과 같습니다</p>
 <ul class="simple">
@@ -141,11 +141,11 @@
 </ul>
 <p>자세한 내용은 아래에 제공됩니다.</p>
 <div class="section" id="compiling-the-driver">
-<h2><span class="section-number">4.3.6.1. </span>드라이버 컴파일하기<a class="headerlink" href="#compiling-the-driver" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.3.6.1. </span>드라이버 컴파일하기<a class="headerlink" href="#compiling-the-driver" title="이 제목의 고유 링크"></a></h2>
 <p>AeroDyn 드라이버의 컴파일 단계는 OpenFAST의 컴파일 단계와 유사합니다(참조: <a class="reference internal" href="../../install/index.html#installation"><span class="std std-numref">섹션 2</span></a>). CMake 워크플로를 사용하면 드라이버가 실행될 때 자동으로 컴파일됩니다. <cite>만들다</cite>. 드라이버만 컴파일하려면 다음을 사용하십시오. <cite>aerodyn_driver를 만드세요</cite>. 드라이버는 폴더에 있습니다 <cite>/build/modules/aerodyn/</cite>. Windows용 Visual Studio 솔루션은 폴더에서 사용할 수 있습니다.  <cite>/vs-build/AeroDyn</cite>.</p>
 </div>
 <div class="section" id="driver-inputs-and-options">
-<span id="addm-driver-input-file"></span><h2><span class="section-number">4.3.6.2. </span>드라이버 입력 및 옵션<a class="headerlink" href="#driver-inputs-and-options" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="addm-driver-input-file"></span><h2><span class="section-number">4.3.6.2. </span>드라이버 입력 및 옵션<a class="headerlink" href="#driver-inputs-and-options" title="이 제목의 고유 링크"></a></h2>
 <p><strong>주요 개념</strong></p>
 <p>드라이버는 다음을 지원합니다.</p>
 <ul class="simple">
@@ -342,7 +342,7 @@ False           Echo         - Echo input parameters to "&lt;rootname&gt;.ech"?
 </div>
 </div>
 <div class="section" id="aerodyn-inputs-for-multiple-turbines">
-<span id="ad-inputs-multirot"></span><h2><span class="section-number">4.3.6.3. </span>다중 터빈용 AeroDyn 입력<a class="headerlink" href="#aerodyn-inputs-for-multiple-turbines" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="ad-inputs-multirot"></span><h2><span class="section-number">4.3.6.3. </span>다중 터빈용 AeroDyn 입력<a class="headerlink" href="#aerodyn-inputs-for-multiple-turbines" title="이 제목의 고유 링크"></a></h2>
 <p>하나의 터빈을 사용하는 경우 AeroDyn 입력 파일을 변경할 필요가 없습니다. 다중 터빈 구현의 영향을 최소화하기 위해 드라이버는 현재 모든 터빈에 대해 하나의 AeroDyn 입력 파일만 사용합니다. 이는 AeroDyn 옵션이 현재 모든 로터에 대해 동일하다는 것을 의미합니다.</p>
 <p>블레이드 파일과 타워, 허브 및 나셀 입력의 정의는 3개 이상의 블레이드가 사용되고 2개 이상의 터빈이 사용되는 경우 조정되어야 합니다.</p>
 <p><strong>블레이드 파일</strong></p>
@@ -400,14 +400,14 @@ True                   UseBlCm     - Include aerodynamic pitching moment in calc
 </div>
 </div>
 <div class="section" id="examples-of-driver-input-files">
-<span id="ad-inputfiles-examples"></span><h2><span class="section-number">4.3.6.4. </span>드라이버 입력 파일의 예<a class="headerlink" href="#examples-of-driver-input-files" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="ad-inputfiles-examples"></span><h2><span class="section-number">4.3.6.4. </span>드라이버 입력 파일의 예<a class="headerlink" href="#examples-of-driver-input-files" title="이 제목의 고유 링크"></a></h2>
 <p>드라이버의 다양한 기능을 사용하는 작업 예제는 r-test 저장소에 제공됩니다.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/OpenFAST/r-test/tree/dev/modules/aerodyn/" target="_blank" rel="noopener noreferrer">개발 브랜치</a> .</p></li>
 <li><p><a class="reference external" href="https://github.com/OpenFAST/r-test/tree/main/modules/aerodyn/" target="_blank" rel="noopener noreferrer">본점</a> .</p></li>
 </ul>
 <div class="section" id="main-driver-input-files">
-<h3><span class="section-number">4.3.6.4.1. </span>주요 드라이버 입력 파일<a class="headerlink" href="#main-driver-input-files" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.3.6.4.1. </span>주요 드라이버 입력 파일<a class="headerlink" href="#main-driver-input-files" title="이 제목의 고유 링크"></a></h3>
 <p>기본 유입, 기본 HAWT 및 결합 사례 분석을 위한 AeroDyn 드라이버의 예는 다음과 같습니다.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>----- AeroDyn Driver Input File ---------------------------------------------------------
 Three bladed wind turbine, using basic geometry input
@@ -475,7 +475,7 @@ HWndSpeed  PLExp  RotSpd  Pitch   Yaw   dT    Tmax  DOF  Amplitude Frequency
 </div>
 </div>
 <div class="section" id="motion-input-files">
-<h3><span class="section-number">4.3.6.4.2. </span>모션 입력 파일<a class="headerlink" href="#motion-input-files" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.3.6.4.2. </span>모션 입력 파일<a class="headerlink" href="#motion-input-files" title="이 제목의 고유 링크"></a></h3>
 <p>모션 파일의 시간 벡터는 오름차순이어야 하지만 선형일 필요는 없습니다. 드라이버는 선형 보간을 사용하여 주어진 시간에 입력을 결정합니다.</p>
 <p>임의의 기본 모션 파일:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">time_</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">x_</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>    <span class="p">,</span> <span class="n">y_</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>    <span class="p">,</span> <span class="n">z_</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>    <span class="p">,</span> <span class="n">theta_x_</span><span class="p">[</span><span class="n">rad</span><span class="p">]</span> <span class="p">,</span> <span class="n">theta_y_</span><span class="p">[</span><span class="n">rad</span><span class="p">]</span> <span class="p">,</span> <span class="n">theta_z_</span><span class="p">[</span><span class="n">rad</span><span class="p">]</span> <span class="p">,</span> <span class="n">xdot_</span><span class="p">[</span><span class="n">m</span><span class="o">/</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">ydot_</span><span class="p">[</span><span class="n">m</span><span class="o">/</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">zdot_</span><span class="p">[</span><span class="n">m</span><span class="o">/</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">omega_x_g_</span><span class="p">[</span><span class="n">rad</span><span class="o">/</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">omega_y_g_</span><span class="p">[</span><span class="n">rad</span><span class="o">/</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">omega_z_g_</span><span class="p">[</span><span class="n">rad</span><span class="o">/</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">xddot_</span><span class="p">[</span><span class="n">m</span><span class="o">^</span><span class="mi">2</span><span class="o">/</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">yddot_</span><span class="p">[</span><span class="n">m</span><span class="o">^</span><span class="mi">2</span><span class="o">/</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">zddot_</span><span class="p">[</span><span class="n">m</span><span class="o">^</span><span class="mi">2</span><span class="o">/</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">alpha_x_g_</span><span class="p">[</span><span class="n">rad</span><span class="o">/</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">alpha_y_g_</span><span class="p">[</span><span class="n">rad</span><span class="o">/</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">alpha_z_g_</span><span class="p">[</span><span class="n">rad</span><span class="o">/</span><span class="n">s</span><span class="p">]</span>
@@ -509,8 +509,8 @@ HWndSpeed  PLExp  RotSpd  Pitch   Yaw   dT    Tmax  DOF  Amplitude Frequency
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
-        <a href="modeling.html" class="btn btn-neutral float-left" title="4.3.5. 모델링 고려 사항" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="modeling.html" class="btn btn-neutral float-left" title="4.3.5. 모델링 고려 사항" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
         <a href="theory.html" class="btn btn-neutral float-right" title="4.3.7. AeroDyn 이론" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

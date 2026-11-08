@@ -21,7 +21,7 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="찾다" href="../../../search.html">
+    <link rel="search" title="검색" href="../../../search.html">
     <link rel="next" title="4.19.8. 미래의 일" href="FutureWork.html">
     <link rel="prev" title="4.19.6. 모델링 지침" href="ModelGuidance.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/fast.farm/FFarmTheory.html"></head>
@@ -48,9 +48,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
@@ -82,8 +82,8 @@
 <li class="toctree-l4"><a class="reference internal" href="#fast-farm-theory-basis">4.19.7.2. FAST.농장 이론 기초</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="FutureWork.html">4.19.8. 미래의 일</a></li>
-<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.19.9. 참고자료</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FutureWork.html">4.19.8. 향후 개발 계획</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.19.9. 참고문헌</a></li>
 <li class="toctree-l3"><a class="reference internal" href="AppendixA.html">4.19.10. FAST.Farm 기본 입력 파일</a></li>
 <li class="toctree-l3"><a class="reference internal" href="AppendixB.html">4.19.11. 주변 바람 파일</a></li>
 <li class="toctree-l3"><a class="reference internal" href="AppendixC.html">4.19.12. 출력 채널 목록</a></li>
@@ -97,16 +97,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -115,12 +115,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.19. </span>FAST.Farm 사용자 가이드 및 이론 매뉴얼</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.19. </span>FAST.Farm 사용자 가이드 및 이론 설명서</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.19.7. </span>FAST.농장 이론</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/fast.farm/FFarmTheory.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
+            <a href="../../../_sources/source/user/fast.farm/FFarmTheory.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -129,11 +129,11 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="fast-farm-theory">
-<span id="ff-theory"></span><h1><span class="section-number">4.19.7. </span>FAST.농장 이론<a class="headerlink" href="#fast-farm-theory" title="이 제목에 대한 영구 링크"></a></h1>
+<span id="ff-theory"></span><h1><span class="section-number">4.19.7. </span>FAST.농장 이론<a class="headerlink" href="#fast-farm-theory" title="이 제목의 고유 링크"></a></h1>
 <p>FAST.Farm은 풍력 발전소 내 풍력 터빈의 성능과 부하를 예측하기 위한 다중물리 엔지니어링 도구입니다. FAST.Farm 사용
 <a class="reference external" href="https://github.com/OpenFAST/openfast" target="_blank" rel="noopener noreferrer">OpenFAST</a> 각 개별 터빈의 에어로-하이드로-서보-탄성 역학을 해결하지만 대기 경계층의 풍력 발전 단지 전체 주변 바람에 대한 추가 물리학을 고려합니다. 그리고 적자, 이류, 편향, 사행 및 병합을 깨울 수 있습니다. FAST.Farm은 후류 구불구불한 수동 추적 모델링을 포함하여 DWM 모델의 원리를 기반으로 하지만 이전 DWM 구현의 많은 제한 사항을 해결합니다.</p>
 <div class="section" id="dynamic-wake-meandering-principles-and-limitations-addressed">
-<span id="ff-dwmprincipals"></span><h2><span class="section-number">4.19.7.1. </span>동적 웨이크 미앤더링 원리 및 제한 사항 해결<a class="headerlink" href="#dynamic-wake-meandering-principles-and-limitations-addressed" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="ff-dwmprincipals"></span><h2><span class="section-number">4.19.7.1. </span>동적 웨이크 미앤더링 원리 및 제한 사항 해결<a class="headerlink" href="#dynamic-wake-meandering-principles-and-limitations-addressed" title="이 제목의 고유 링크"></a></h2>
 <p>DWM 모델의 기본 아이디어는 후류 부족 진화(성능에 중요)와 후류 사행 및 후류 추가 난류(부하에 중요함)를 포함하여 풍력 발전 성능 및 풍력 터빈 부하의 정확한 예측과 관련된 주요 후류 특징을 포착하는 것입니다. <a class="reference internal" href="#ff-wat"><span class="std std-numref">섹션 4.19.7.2.3.4</span></a>). 기본 물리 법칙이 적용되지만 계산 비용을 최소화하기 위해 적절한 단순화가 이루어졌으며 HFM 솔루션을 사용하여 하위 모델을 알리고 보정합니다. DWM 모델에서 후류 흐름 과정은 작은 난류 와류(직경 2개 미만)가 후류 부족 진화에 영향을 미치고 큰 난류 와류(직경 2개 이상)가 후류 구불구불한 현상에 영향을 미치는 "스케일 분할"을 통해 처리됩니다.</p>
 <p>풍력 터빈 로터의 추력이 있으면 풍속이 감소하고 로터의 바람 바로 반대쪽에서 압력이 증가합니다. 로터의 바람 바로 아래에 있는 후류 영역에서 - 그림에 나와 있습니다.
 <a class="reference internal" href="#ff-nearwake"><span class="std std-numref">그림 4.66</span></a> – 응집성 와류가 파괴되고, 압력이 자유 흐름으로 회복되고, 풍속이 더 감소하고, 후류가 반경 방향으로 확장됩니다. 바람이 더 불어오는 먼 후류 지역에서 후류 부족은 대략 가우시안 수준이고 후류 전단층을 가로질러 주변 바람으로부터 후류로의 운동량의 난류 전달로 인해 자유 흐름으로 회복됩니다. 이러한 유속 감소와 자유 흐름으로의 점진적인 회복을 후류 부족 진화라고 합니다. 대부분의 DWM 구현에서 후류 부족 진화는 축 대칭 좌표의 준 정상 상태 조건에서 레이놀즈 평균 Navier-Stokes 방정식의 얇은 전단층 근사를 통해 모델링됩니다. <a class="reference internal" href="Introduction.html#ff-wakeadv"><span class="std std-numref">그림 4.58</span></a>. 난류 폐쇄는 작은 난류 소용돌이에 의존하는 와점도 공식을 사용하여 포착됩니다. 이 항적 부족 진화 솔루션은 먼 항적에서만 유효합니다. 풍력 터빈은 일반적으로 밀접하게 간격을 두고 있지 않기 때문에 이 먼 후류는 풍력 발전 단지 분석에 가장 중요합니다. 그러나 후류 부족 진화 솔루션은 로터에서 시작되기 때문에 원거리 솔루션의 정확도를 향상시키기 위해 입구 경계 조건에 근접 후류 수정이 적용됩니다.</p>
@@ -224,7 +224,7 @@
 </table>
 </div>
 <div class="section" id="fast-farm-theory-basis">
-<span id="ff-theorybasis"></span><h2><span class="section-number">4.19.7.2. </span>FAST.농장 이론 기초<a class="headerlink" href="#fast-farm-theory-basis" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="ff-theorybasis"></span><h2><span class="section-number">4.19.7.2. </span>FAST.농장 이론 기초<a class="headerlink" href="#fast-farm-theory-basis" title="이 제목의 고유 링크"></a></h2>
 <p>FAST.Farm은 각각 풍력 발전소의 서로 다른 물리 영역을 나타내는 여러 하위 모델로 구성된 비선형 시간 영역 다중 물리학 엔지니어링 도구입니다. FAST.Farm은 FAST 모듈화 프레임워크의 프로그래밍 요구 사항을 따르는 오픈 소스 소프트웨어로 구현됩니다(<span id="id4">[<a class="reference internal" href="zrefs.html#id22" title="J. 존크만. 고속 풍력 터빈 CAE 도구를 위한 새로운 모듈화 프레임워크입니다. 제51회 AIAA 항공우주과학회의에서. 댈러스, TX, 2013. AIAA.">ff-Jon13</a>]</span>), 하위 모델은 드라이버 코드를 통해 상호 연결된 모듈로 구현됩니다. FAST.Farm의 하위 모델 계층 구조는 다음과 같습니다.
 <a class="reference internal" href="Introduction.html#ff-ffarm"><span class="std std-numref">그림 4.56</span></a>. 항적 대류, 편향 및 사행; 깨어날 때 교정; 및 후류 부족 증가는 후류 역학의 하위 모델입니다(<em>WD</em>) 모델은 단일 모듈로 구현됩니다. 주변 바람과 후류 병합은 주변 바람과 배열 효과의 하위 모델입니다(<em>AWAE</em>) 모델은 단일 모듈로 구현됩니다. OpenFAST(<em>OF</em>) 모듈, FAST.Farm에는 3개의 모듈과 1개의 드라이버가 있습니다. 여러 가지 사례가 있습니다. <em>OF</em> 및
 <em>WD</em> 모듈 – 각 풍력 터빈/로터당 하나의 인스턴스입니다. 각 하위 모델/모듈은 아래 하위 섹션에 설명되어 있습니다.</p>
@@ -236,7 +236,7 @@
 </div>
 <p>풍력 발전 단지의 규모와 풍력 터빈의 수는 사용 가능한 RAM에 의해서만 제한됩니다. 병렬 모드에서는 OpenFAST 하위 모델의 각 인스턴스가 별도의 스레드에서 병렬로 실행될 수 있습니다. 동시에 주변의 바람도 <em>AWAE</em> 모듈이 다른 스레드의 메모리로 읽어지고 있습니다. 따라서 가장 빠른 시뮬레이션에는 풍력 발전소의 풍력 터빈 수보다 적어도 하나 이상의 코어가 필요합니다. 또한, <em>AWAE</em> 모듈은 별도의 스레드로 병렬화됩니다. 대규모 풍력 발전 단지의 모델링을 지원하려면 메모리 병렬화 및 다중 노드 HPC부터 MPI까지의 노드 간 병렬화를 포함하는 단일 시뮬레이션이 필요할 수 있습니다. MPI는 아직 FAST.Farm 내에서 구현되지 않았습니다. 그러나 다중 노드 HPC를 사용하면 별도의 노드에서 여러 직렬 또는 병렬 시뮬레이션을 병렬(배치 모드)로 실행할 수 있습니다. 직렬 모드에서는 여러 직렬 시뮬레이션을 별도의 코어 및/또는 노드에서 병렬(배치 모드)로 실행할 수 있습니다.</p>
 <div class="section" id="fast-farm-driver">
-<span id="ff-driver"></span><h3><span class="section-number">4.19.7.2.1. </span>FAST.Farm 드라이버<a class="headerlink" href="#fast-farm-driver" title="이 제목에 대한 영구 링크"></a></h3>
+<span id="ff-driver"></span><h3><span class="section-number">4.19.7.2.1. </span>FAST.Farm 드라이버<a class="headerlink" href="#fast-farm-driver" title="이 제목의 고유 링크"></a></h3>
 <p>"글루 코드"라고도 알려진 FAST.Farm 드라이버는 개별 모듈을 함께 결합하고 전체 시간 영역 솔루션을 발전시키는 코드입니다. 또한 FAST.Farm 드라이버는 시뮬레이션 매개변수의 입력 파일을 읽고, 이러한 매개변수의 유효성을 확인하고, 모듈을 초기화하고, 결과를 파일에 쓰고, 시뮬레이션이 끝나면 메모리를 해제합니다.</p>
 <p>FAST.Farm 드라이버의 결합 알고리즘을 단순화하고 계산 효율성을 보장하기 위해 모든 모듈 상태(<span class="math notranslate nohighlight">\(x^d\)</span>), 입력(<span class="math notranslate nohighlight">\(u^d\)</span>), 출력(<span class="math notranslate nohighlight">\(y^d\)</span>) 및 기능(<span class="math notranslate nohighlight">\(X^d\)</span> 상태 업데이트 및 <span class="math notranslate nohighlight">\(Y^d\)</span> 출력의 경우) FAST.Farm은 이산 시간으로 표현됩니다. <span class="math notranslate nohighlight">\(t=n\Delta t\)</span>, 어디 <span class="math notranslate nohighlight">\(t\)</span> 시간이다, <span class="math notranslate nohighlight">\(n\)</span>
 이산 시간 단계 카운터이고, <span class="math notranslate nohighlight">\(\Delta t\)</span> 사용자가 지정한 이산 시간 단계(증분)입니다. 따라서 FAST.Farm의 가장 일반적인 모듈 형태는 FAST 모듈화 프레임워크에서 허용하는 것보다 더 간단합니다(<span id="id5">[<a class="reference internal" href="zrefs.html#id22" title="J. 존크만. 고속 풍력 터빈 CAE 도구를 위한 새로운 모듈화 프레임워크입니다. 제51회 AIAA 항공우주과학회의에서. 댈러스, TX, 2013. AIAA.">ff-Jon13</a>]</span>), 수학적으로 다음과 같이 표현됩니다. <a class="footnote-reference brackets" href="#id34" id="id6">1</a></p>
@@ -359,7 +359,7 @@
 <p>작은 시간 척도와 정교한 물리학으로 인해 OpenFAST 하위 모델은 FAST.Farm 모듈 중 계산 속도가 가장 느립니다. 추가적으로, 출력 계산은 <em>AWAE</em> 모듈은 OpenFAST와 병렬로 풀 수 없는 유일한 주요 계산입니다. 이로 인해 가장 빠른 병렬화된 FAST.Farm 솔루션은 독립형 OpenFAST 시뮬레이션보다 약간 더 느리게 실행될 수 있습니다. 그 결과 풍력 터빈/농장 설계 및 분석에 필요한 많은 시뮬레이션을 실행할 수 있을 만큼 계산 비용이 적게 드는 시뮬레이션이 가능해졌습니다.</p>
 </div>
 <div class="section" id="openfast-of-module">
-<span id="ff-of"></span><h3><span class="section-number">4.19.7.2.2. </span>OpenFAST(OF 모듈)<a class="headerlink" href="#openfast-of-module" title="이 제목에 대한 영구 링크"></a></h3>
+<span id="ff-of"></span><h3><span class="section-number">4.19.7.2.2. </span>OpenFAST(OF 모듈)<a class="headerlink" href="#openfast-of-module" title="이 제목의 고유 링크"></a></h3>
 <p>FAST.Farm은 다음을 사용합니다.
 <a class="reference external" href="https://github.com/OpenFAST/openfast" target="_blank" rel="noopener noreferrer">OpenFAST</a> 풍력 발전소에 있는 개별 터빈의 역학(부하 및 동작)을 모델링합니다. OpenFAST는 환경 자극(해양 시스템의 경우 바람 유입, 파도, 해류 및 얼음)과 전체 시스템(로터, 드라이브트레인, 나셀, 타워, 컨트롤러, 해양 시스템의 경우 하부 구조 및 스테이션 유지 시스템)의 결합 시스템 응답을 캡처합니다. OpenFAST 자체는 결합된 에어로-하이드로-서보-탄성 솔루션의 서로 다른 물리적 영역에 각각 해당하는 다양한 모듈의 상호 연결입니다. OpenFAST 솔루션의 세부 사항은 이 문서의 범위를 벗어나지만 위의 하이퍼링크 및 관련 참조에서 찾을 수 있습니다.</p>
 <p>해당 <em>OF</em> FAST.Farm 모듈은 OpenFAST를 FAST.Farm에 연결하는 래퍼입니다. 이는 SOWFA에서 사용할 수 있는 OpenFAST 래퍼와 유사하지만 입력 및 출력이 다릅니다(아래 설명). 이 래퍼는 OpenFAST 상태 업데이트의 하위 순환도 제어합니다. OpenFAST 내에서 해결된 시간 척도는 FAST.Farm 내에서 해결된 시간 척도보다 훨씬 작습니다. 따라서 정확성과 수치적 안정성을 위해 OpenFAST 시간 단계는 일반적으로 그림에 표시된 대로 FAST.Farm에 필요한 단계보다 훨씬 작습니다. <a class="reference internal" href="#ff-timescales"><span class="std std-numref">그림 4.68</span></a>.</p>
@@ -409,7 +409,7 @@
 <span class="math notranslate nohighlight">\(\frac{1}{2}\rho {{\left( ^\text{DiskAvg}V_x^\text{Rel} \right)}^2}\)</span>.</p>
 </div>
 <div class="section" id="wake-dynamics-wd-module">
-<span id="ff-wd"></span><h3><span class="section-number">4.19.7.2.3. </span>웨이크 다이내믹스(WD 모듈)<a class="headerlink" href="#wake-dynamics-wd-module" title="이 제목에 대한 영구 링크"></a></h3>
+<span id="ff-wd"></span><h3><span class="section-number">4.19.7.2.3. </span>웨이크 다이내믹스(WD 모듈)<a class="headerlink" href="#wake-dynamics-wd-module" title="이 제목의 고유 링크"></a></h3>
 <p>해당 <em>WD</em> FAST.Farm 모듈은 후류 이류, 편향 및 사행을 포함하여 개별 로터에 대한 후류 역학을 계산합니다. 깨어나기 직전 교정; 그리고 각성 부족 증가. Near-Wake 보정은 Wake 적자의 Near-Wake(압력 구배 영역) 확장을 처리합니다. 후류 부족 증가는 준정상 상태 축대칭 후류 부족을 명목상 바람 방향으로 이동시킵니다. 각 하위 모델은 아래 하위 섹션에 설명되어 있습니다. 의 사례가 하나 있습니다. <em>WD</em> 각 로터에 대한 모듈.</p>
 <p>후류 역학 계산에는 실험 데이터 또는 HFM와 더 잘 일치하도록 보정할 수 있는 터빈 작동이나 대기 조건에 따라 달라질 수 있는 많은 사용자 지정 매개변수가 포함됩니다. <a class="reference external" href="https://github.com/NatLabRockies/SOWFA" target="_blank" rel="noopener noreferrer">SOWFA</a> (또는 이와 동등한 것)을 벤치마크로 사용합니다. 기본값은 다음을 기반으로 교정된 각 매개변수에 대해 파생되었습니다. <a class="reference external" href="https://github.com/NatLabRockies/SOWFA" target="_blank" rel="noopener noreferrer">SOWFA</a>
 시뮬레이션(<span id="id10">[<a class="reference internal" href="zrefs.html#id19" title="P. Doubrawa 및 그 외 여러분. sofa에 대한 fast.farm 매개변수의 최적화 기반 보정. 제36회 풍력에너지 심포지엄에서. 키시미, FL, 2018년 1월. AIAA. 도이:https://arc.aiaa.org/doi/pdf/10.2514/6.2018-0512.">ff-Deal18</a>]</span>), 그러나 FAST.Farm 사용자가 이를 덮어쓸 수 있습니다.</p>
@@ -439,7 +439,7 @@
 </ul>
 <p>자세한 내용은 이 설명서에서 생략되었지만 시동 중에(후류가 아직 모든 후류 평면을 통해 전파되지 않은 경우) 웨이크 평면의 수는 입력, 출력 및 상태를 설정할 필요가 없도록 경과 시간에 따라 제한됩니다. <em>WD</em> 및 <em>AWAE</em> 웨이크가 전파된 곳 너머의 모듈.</p>
 <div class="section" id="wake-advection-deflection-and-meandering">
-<span id="ff-advdefmean"></span><h4><span class="section-number">4.19.7.2.3.1. </span>항적 이류, 편향 및 사행<a class="headerlink" href="#wake-advection-deflection-and-meandering" title="이 제목에 대한 영구 링크"></a></h4>
+<span id="ff-advdefmean"></span><h4><span class="section-number">4.19.7.2.3.1. </span>항적 이류, 편향 및 사행<a class="headerlink" href="#wake-advection-deflection-and-meandering" title="이 제목의 고유 링크"></a></h4>
 <p>가로(수평 및 수직) 후류 구불구불한 후류를 위한 수동 추적 솔루션에 대한 간단한 확장을 통해 FAST.Farm의 후류 역학 솔루션은 후류 편향을 설명하도록 확장됩니다.
 <a class="reference internal" href="Introduction.html#ff-wakedefl"><span class="std std-numref">그림 4.57</span></a> – 그리고 웨이크 이류 – 그림에 설명된 바와 같이
 <a class="reference internal" href="Introduction.html#ff-wakeadv"><span class="std std-numref">그림 4.58</span></a> – 기타 물리적 개선 중. 다음 확장이 도입되었습니다.</p>
@@ -561,7 +561,7 @@ i.e., <span class="math notranslate nohighlight">\({Y^d(\quad)}=X^d(\quad)\)</sp
 모듈, 산출 <span class="math notranslate nohighlight">\(y^d\left[ n \right]=x^d\left[ n \right]\)</span>. 이 1회 단계 지연은 모든 출력에 적용됩니다. <em>WD</em> 모듈이며 FAST.Farm 내에서 해결되는 느린 시간 때문에 문제가 될 것으로 예상되지 않습니다.</p>
 </div>
 <div class="section" id="near-wake-correction">
-<span id="ff-snearwake"></span><h4><span class="section-number">4.19.7.2.3.2. </span>Near-Wake 보정<a class="headerlink" href="#near-wake-correction" title="이 제목에 대한 영구 링크"></a></h4>
+<span id="ff-snearwake"></span><h4><span class="section-number">4.19.7.2.3.2. </span>Near-Wake 보정<a class="headerlink" href="#near-wake-correction" title="이 제목의 고유 링크"></a></h4>
 <p>Near-Wake 보정 서브모델 <em>WD</em> 모듈은 다음에서 설명한 후류 부족 진화에 대한 입구 경계 조건으로 로터 디스크의 축방향 및 반경 방향 후류 속도 부족을 계산합니다.
 <a class="reference internal" href="#ff-deficit"><span class="std std-numref">섹션 4.19.7.2.3.3</span></a>. 원후류 솔루션의 정확성을 향상시키기 위해, 후류 부족 수정을 위한 솔루션에서 달리 설명되지 않는 로터 뒤의 압력 구배 영역에서 후류의 반경 방향 팽창과 풍속의 저하를 근접 후류 수정으로 설명합니다. 명확성을 위해 이 섹션의 방정식은 연속 변수를 사용하여 표현되지만 FAST.Farm 내에서는 방정식이 축대칭 유한차분 그리드에서 이산적으로 풀립니다.</p>
 <p>Near-Wake 보정은 낮은 추력 조건에 대해 다르게 계산됩니다(<span class="math notranslate nohighlight">\(C_T&lt;\frac{24}{25}\)</span>), 운동량 이론이 유효하며, 높은 추력 조건(<span class="math notranslate nohighlight">\(1.1&lt;C_T \le 2\)</span>), 어디 <span class="math notranslate nohighlight">\(C_T\)</span> 는 저역 통과 시간 필터링된 방위각 평균 추력 계수(로터 디스크에 수직)에서 파생된 로터 디스크 평균 추력 계수입니다. <span class="math notranslate nohighlight">\(^\text{FiltAzimAvg}{C_t}\left( r \right)\)</span>, 평가됨 <span class="math notranslate nohighlight">\(n+1\)</span>. 프로펠러 브레이크 영역은 매우 높은 추력 계수에 대해 발생합니다(<span class="math notranslate nohighlight">\(C_T \ge 2\)</span>) 고려되지 않습니다. 낮은 추력 영역과 높은 추력 영역 사이에서 두 솔루션의 선형 혼합은 다음을 기반으로 합니다. <span class="math notranslate nohighlight">\(C_T\)</span>,이 구현됩니다.</p>
@@ -605,7 +605,7 @@ i.e., <span class="math notranslate nohighlight">\({Y^d(\quad)}=X^d(\quad)\)</sp
 \[\sigma(C_T)=\frac{C_T}{2}+\frac{4}{25}\]</div>
 </div>
 <div class="section" id="wake-deficit-increment">
-<span id="ff-deficit"></span><h4><span class="section-number">4.19.7.2.3.3. </span>항적 부족 증가<a class="headerlink" href="#wake-deficit-increment" title="이 제목에 대한 영구 링크"></a></h4>
+<span id="ff-deficit"></span><h4><span class="section-number">4.19.7.2.3.3. </span>항적 부족 증가<a class="headerlink" href="#wake-deficit-increment" title="이 제목의 고유 링크"></a></h4>
 <p>대부분의 DWM 구현과 마찬가지로 <em>WD</em> FAST.Farm 모듈은 축대칭 좌표의 준정상 상태 조건에서 레이놀즈 평균 Navier-Stokes 방정식의 얇은 전단층 근사를 통해 후류 부족 진화를 모델링하며, 와점도 공식을 사용하여 난류 폐쇄를 포착합니다(<span id="id19">[<a class="reference internal" href="zrefs.html#id12" title="J. F. 에인슬리. 풍력 터빈의 결과로 유동장을 계산합니다. 풍력 공학 및 산업 공기 역학 저널, 27:213-224, 1988. doi:https://doi.org/10.1016/0167-6105(88)90037-2.">ff-Ain88</a>]</span>). 얇은 전단층 근사법은 압력 항을 낮추고 속도 구배가 축 방향보다 반경 방향에서 훨씬 더 크다고 가정합니다. 이러한 단순화를 통해 운동량 보존에 대한 분석적 표현(방정식&nbsp;<a class="reference internal" href="#equation-eq-6-16">(4.240)</a>) 및 질량 보존(연속성, 방정식&nbsp;<a class="reference internal" href="#equation-eq-6-17">(4.241)</a>)은 다음과 같습니다.</p>
 <div class="math notranslate nohighlight" id="equation-eq-6-16">
 <span class="eqno">(4.240)<a class="headerlink" href="#equation-eq-6-16" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}\begin{aligned}
@@ -737,7 +737,7 @@ i.e., <span class="math notranslate nohighlight">\({Y^d(\quad)}=X^d(\quad)\)</sp
 <span class="math notranslate nohighlight">\(1\le n_r\le N_r-1\)</span>. <a class="footnote-reference brackets" href="#id45" id="id25">9</a></p>
 </div>
 <div class="section" id="wake-added-turbulence-wat">
-<span id="ff-wat"></span><h4><span class="section-number">4.19.7.2.3.4. </span>후류 추가 난류(WAT)<a class="headerlink" href="#wake-added-turbulence-wat" title="이 제목에 대한 영구 링크"></a></h4>
+<span id="ff-wat"></span><h4><span class="section-number">4.19.7.2.3.4. </span>후류 추가 난류(WAT)<a class="headerlink" href="#wake-added-turbulence-wat" title="이 제목의 고유 링크"></a></h4>
 <p>후류 추가 난류는 후류의 난류 혼합으로 인해 생성된 추가 소규모 난류입니다. 이는 배경(교란되지 않은) 난류를 확대하여 모델링됩니다.</p>
 <p>WAT에 대한 이론은 다음에서 더 자세히 설명됩니다. <span id="id26">[<a class="reference internal" href="zrefs.html#id2" title="E. Branlard, J. Jonkman, A. Platt, R. Thedin, L. A. Martinez-Tossas 및 M. Kretschmer. fast.farm에서 개선된 후류 추가 난류 모델의 개발 및 검증. TORQUE 2024. 2024년 5월 이탈리아 피렌체. EAWE.">ff-BJP+24</a>]</span>.</p>
 <p>후류에 의한 난류의 기본 원리는 다음과 같습니다. <a class="reference internal" href="#ff-watsketch"><span class="std std-numref">그림 4.69</span></a>.</p>
@@ -812,7 +812,7 @@ i.e., <span class="math notranslate nohighlight">\({Y^d(\quad)}=X^d(\quad)\)</sp
 </div>
 </div>
 <div class="section" id="ambient-wind-and-array-effects-awae-module">
-<span id="ff-awae"></span><h3><span class="section-number">4.19.7.2.4. </span>주변 바람 및 배열 효과(AWAE 모듈)<a class="headerlink" href="#ambient-wind-and-array-effects-awae-module" title="이 제목에 대한 영구 링크"></a></h3>
+<span id="ff-awae"></span><h3><span class="section-number">4.19.7.2.4. </span>주변 바람 및 배열 효과(AWAE 모듈)<a class="headerlink" href="#ambient-wind-and-array-effects-awae-module" title="이 제목의 고유 링크"></a></h3>
 <p>해당 <em>AWAE</em> FAST.Farm 모듈은 주변 바람 및 후류 병합 하위 모델을 포함하여 풍력 발전소 전체에서 주변 바람 및 후류 상호 작용을 처리합니다. 주변풍 서브모듈은 충실도가 높은 전구체 시뮬레이션이나 인터페이스에서 풍력 발전 단지 전체에 걸쳐 주변풍을 처리합니다. <em>InflowWind</em> 모듈
 <a class="reference external" href="https://github.com/OpenFAST/openfast" target="_blank" rel="noopener noreferrer">OpenFAST</a>. 후류 병합 서브모듈은 풍력 발전소 전체의 모든 후류 사이의 중첩 영역을 식별하고 후류 부족을 병합합니다. 두 하위 모델 모두 아래 하위 섹션에 설명되어 있습니다.</p>
 <p>계산은 <em>AWAE</em> 모듈은 후류 평면에서 시작하여 두 후류 평면의 중심을 연결하는 선을 따라 다음 인접한 후류 평면으로 확장되는 (곡선일 수도 있는) 원통에 의해 형성된 볼륨인 후류 볼륨을 사용합니다. 인접한 후류 평면(실린더의 상단과 하단)이 평행하지 않은 경우(예: 나셀 요 각도의 변화를 포함하는 과도 시뮬레이션의 경우) 중심선은 직선이 아닌 곡선이 됩니다.
@@ -826,7 +826,7 @@ i.e., <span class="math notranslate nohighlight">\({Y^d(\quad)}=X^d(\quad)\)</sp
 <span class="math notranslate nohighlight">\(0\le n_p\le N_p-1\)</span>, <span class="math notranslate nohighlight">\(^\text{DiskAvg}V_x^\text{Wind}\)</span>, 및
 <span class="math notranslate nohighlight">\(TI_\text{Amb}\)</span> 각 개별 풍력 터빈의 후류 역학 계산에 필요합니다(에 대한 입력). <em>WD</em> 기준 치수).</p>
 <div class="section" id="ambient-wind">
-<span id="ff-ambwind"></span><h4><span class="section-number">4.19.7.2.4.1. </span>주변 바람<a class="headerlink" href="#ambient-wind" title="이 제목에 대한 영구 링크"></a></h4>
+<span id="ff-ambwind"></span><h4><span class="section-number">4.19.7.2.4.1. </span>주변 바람<a class="headerlink" href="#ambient-wind" title="이 제목의 고유 링크"></a></h4>
 <p>FAST.Farm에서 사용되는 주변 바람 데이터는 두 가지 방법 중 하나로 생성될 수 있습니다. 의 사용 <em>InflowWind</em> 모듈
 <a class="reference external" href="https://github.com/OpenFAST/openfast" target="_blank" rel="noopener noreferrer">OpenFAST</a> 균일한 바람, 개별적인 바람 이벤트 또는 합성으로 생성된 난류 바람 데이터와 같은 간단한 주변 바람을 사용할 수 있습니다. 합성적으로 생성된 난류는 예를 들어 TurbSim 또는 Mann 모델에서 나올 수 있으며, 여기서 바람은 Taylor의 동결 난류 가정을 사용하여 풍력 발전 단지를 통해 전파됩니다. 이 방법은 소규모 풍력 발전 단지나 대규모 풍력 발전 단지 내의 풍력 터빈의 하위 집합에 가장 적합합니다. FAST.Farm은 또한 다음의 ABLSolver 전처리기와 같이 전체 풍력 발전 단지(풍력 터빈 없이)에 대한 고충실도 전구체 LES 시뮬레이션에 의해 생성된 주변 바람을 사용할 수도 있습니다.
 <a class="reference external" href="https://github.com/NatLabRockies/SOWFA" target="_blank" rel="noopener noreferrer">SOWFA</a>. 이 대기 전구체 시뮬레이션은 그림에서 볼 수 있듯이 합성 난류보다 더 많은 물리학을 포착합니다. <a class="reference internal" href="Introduction.html#ff-ablsolver"><span class="std std-numref">그림 4.60</span></a> – 대기 안정성, 풍력 발전 단지 전체의 난류 길이 규모 및 복잡한 지형 효과를 포함합니다. 주변 바람 모델링 옵션을 사용하는 것보다 계산 비용이 더 많이 듭니다. <em>InflowWind</em>그러나 이는 a보다 계산 비용이 훨씬 저렴합니다. <a class="reference external" href="https://github.com/NatLabRockies/SOWFA" target="_blank" rel="noopener noreferrer">SOWFA</a>
@@ -859,7 +859,7 @@ i.e., <span class="math notranslate nohighlight">\({Y^d(\quad)}=X^d(\quad)\)</sp
 기준 치수. 후류에 의한 난류는 다음에 설명되어 있습니다. <a class="reference internal" href="#ff-wat"><span class="std std-numref">섹션 4.19.7.2.3.4</span></a>. 방정식에 유의하세요.&nbsp;<a class="reference internal" href="#equation-eq-ti">(4.252)</a> 보간 대신 폴라 그리드의 각 지점을 둘러싼 저해상도 영역의 8개 바람 데이터 지점을 사용합니다. 이는 저해상도 영역에서 삼선형 보간을 통해 후류 평면의 극 그리드에서 바람 데이터를 계산하면 공간 변화를 완화하고 계산된 난류 강도를 인위적으로 줄일 수 있기 때문입니다.</p>
 </div>
 <div class="section" id="wake-merging">
-<span id="ff-wmerging"></span><h4><span class="section-number">4.19.7.2.4.2. </span>웨이크 병합<a class="headerlink" href="#wake-merging" title="이 제목에 대한 영구 링크"></a></h4>
+<span id="ff-wmerging"></span><h4><span class="section-number">4.19.7.2.4.2. </span>웨이크 병합<a class="headerlink" href="#wake-merging" title="이 제목의 고유 링크"></a></h4>
 <p>DWM의 이전 구현에서는 풍력 터빈과 후류 역학이 양방향 후류 병합 상호 작용을 고려하지 않고 개별적으로 또는 연속적으로 해결되었습니다. 또한, 후류 중첩 구역에서 교란된 바람을 계산할 수 있는 방법이 없었습니다. 웨이크 병합은 다음과 같이 설명됩니다. <a class="reference external" href="https://github.com/NatLabRockies/SOWFA" target="_blank" rel="noopener noreferrer">SOWFA</a> 시뮬레이션 <a class="reference internal" href="Introduction.html#ff-wakemerg"><span class="std std-numref">그림 4.61</span></a>. FAST.Farm에서 웨이크 병합 하위 모델은 <em>AWAE</em> 모듈은 공간에서 겹치는 후류량을 찾아 풍력 발전소 전체의 모든 후류 사이의 후류 중첩 영역을 식별합니다. 후류 부족은 RSS 방법(<span id="id29">[<a class="reference internal" href="zrefs.html#id27" title="I. Kati\`c 및 그 외 여러분. 클러스터 효율성을 위한 간단한 모델입니다. 유럽 ​​풍력 에너지 협회 회의 및 전시회에서. 1986년 이탈리아 로마.">ff-Katiceal86</a>]</span>); 가로 구성 요소(방사형 후류 부족)는 벡터 합으로 겹쳐집니다. Katic et al. (<span id="id30">[<a class="reference internal" href="zrefs.html#id27" title="I. Kati\`c 및 그 외 여러분. 클러스터 효율성을 위한 간단한 모델입니다. 유럽 ​​풍력 에너지 협회 회의 및 전시회에서. 1986년 이탈리아 로마.">ff-Katiceal86</a>]</span>), RSS 방법은 후류 직경에 걸쳐 균일한 축방향 결함이 있는 후류에 적용되며 방사형 결함은 고려되지 않습니다. 이와 대조적으로 FAST.Farm의 RSS 방법은 지정된 바람 데이터 지점에 로컬로 적용됩니다. RSS 방법은 병합된 후류의 축 부족의 국지적 운동 에너지가 주어진 바람 데이터 지점에서 각 후류에 대한 축 결손의 국지적 에너지의 합과 같다고 가정합니다. RSS 방법은 스칼라 배열에만 적용되며, 이는 겹치는 후류가 유사한 축 방향을 가질 가능성이 높기 때문에 축 결손에 대해 잘 작동합니다. 그러나 이는 중첩에서는 벡터의 크기만이 중요하다는 것을 의미합니다. 주어진 반경방향은 축대칭 좌표계의 방위각에 의존하기 때문에 벡터 합은 횡방향 구성요소(방사형 후류 부족)에 적용됩니다.</p>
 <p>고해상도 및 저해상도 영역에 걸쳐 교란된(주변 및 후류) 풍속 - <span class="math notranslate nohighlight">\(\vec{V}_\text{Dist}^\text{High}\)</span> 각 터빈마다 <span class="math notranslate nohighlight">\(\vec{V}_\text{Dist}^\text{Low}\)</span>, 각각 – 방정식을 사용하여 계산됩니다.&nbsp;<a class="reference internal" href="#equation-eq-vdisthigh">(4.253)</a>
 및&nbsp;<a class="reference internal" href="#equation-eq-vdistlow">(4.254)</a>, 각각.</p>
@@ -1027,8 +1027,8 @@ i.e., <span class="math notranslate nohighlight">\({Y^d(\quad)}=X^d(\quad)\)</sp
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
-        <a href="ModelGuidance.html" class="btn btn-neutral float-left" title="4.19.6. 모델링 지침" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="ModelGuidance.html" class="btn btn-neutral float-left" title="4.19.6. 모델링 지침" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
         <a href="FutureWork.html" class="btn btn-neutral float-right" title="4.19.8. 미래의 일" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

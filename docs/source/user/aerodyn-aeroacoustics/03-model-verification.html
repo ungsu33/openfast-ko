@@ -21,7 +21,7 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="찾다" href="../../../search.html">
+    <link rel="search" title="검색" href="../../../search.html">
     <link rel="next" title="4.5.6. 결론" href="04-conclusions.html">
     <link rel="prev" title="4.5.4. 공력소음 모델" href="02-noise-models.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/aerodyn-aeroacoustics/03-model-verification.html"></head>
@@ -48,9 +48,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
@@ -69,7 +69,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="04-conclusions.html">4.5.6. 결론</a></li>
 <li class="toctree-l3"><a class="reference internal" href="App-usage.html">4.5.7. AeroDyn에서 공력소음 모델 사용하기</a></li>
-<li class="toctree-l3"><a class="reference internal" href="refs.html">4.5.8. 참고자료</a></li>
+<li class="toctree-l3"><a class="reference internal" href="refs.html">4.5.8. 참고문헌</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
@@ -94,16 +94,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -112,12 +112,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
           <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.5. </span>OpenFAST의 공력소음 모델</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.5.5. </span>모델 검증</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/aerodyn-aeroacoustics/03-model-verification.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
+            <a href="../../../_sources/source/user/aerodyn-aeroacoustics/03-model-verification.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -126,9 +126,9 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="model-verification">
-<span id="aa-model-verification"></span><h1><span class="section-number">4.5.5. </span>모델 검증<a class="headerlink" href="#model-verification" title="이 제목에 대한 영구 링크"></a></h1>
+<span id="aa-model-verification"></span><h1><span class="section-number">4.5.5. </span>모델 검증<a class="headerlink" href="#model-verification" title="이 제목의 고유 링크"></a></h1>
 <div class="section" id="reference-wind-turbine">
-<h2><span class="section-number">4.5.5.1. </span>참조 풍력 터빈<a class="headerlink" href="#reference-wind-turbine" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.5.5.1. </span>참조 풍력 터빈<a class="headerlink" href="#reference-wind-turbine" title="이 제목의 고유 링크"></a></h2>
 <p>OpenFAST의 소음 모델은 IEA Wind Task 37 육상 기반 기준 풍력 터빈(<span id="id1">[<a class="reference internal" href="refs.html#id3" title="Pietro Bortolotti, Helena Canet Tarres, Katherine Dykes, Karl Merz, Latha Sethuraman, David Verelst 및 Frederik Zahle. 풍력 에너지의 시스템 엔지니어링 - wp2.1 참조 풍력 터빈. 기술 보고서, IEA 기술 보고서, 2019. URL: https://www.nrel.gov/docs/fy19osti/73492.pdf.">aa-BTD+19</a>]</span>). 기준 풍력 터빈의 주요 특성은 다음과 같습니다. <a class="reference internal" href="#tab-ref-turb"><span class="std std-numref">표 4.2</span></a>.</p>
 <table class="docutils align-default" id="tab-ref-turb">
 <caption><span class="caption-number">표 4.2 </span><span class="caption-text">IEA 풍력 작업 37의 주요 특성 육상 기반 기준 풍력 터빈</span><a class="headerlink" href="#tab-ref-turb" title="이 테이블에 대한 영구 링크"></a></caption>
@@ -216,7 +216,7 @@
 <a class="reference external" href="https://github.com/OpenFAST/r-test" target="_blank" rel="noopener noreferrer">https://github.com/OpenFAST/r-test</a> 선택적으로 레퍼런스 OpenSource 컨트롤러에 연결됩니다. <a class="footnote-reference brackets" href="#id6" id="id2">2</a></p>
 </div>
 <div class="section" id="code-to-code-comparison">
-<h2><span class="section-number">4.5.5.2. </span>코드 간 비교<a class="headerlink" href="#code-to-code-comparison" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.5.5.2. </span>코드 간 비교<a class="headerlink" href="#code-to-code-comparison" title="이 제목의 고유 링크"></a></h2>
 <p>OpenFAST에 연결된 소음 모델의 구현을 독일 뮌헨 기술 대학의 풍력 에너지 연구소에서 사용할 수 있는 구현으로 검증하기 위해 상세한 코드 간 비교가 수행되었습니다. 후자는 Sucameli(<span id="id3">[<a class="reference internal" href="refs.html#id18" title="CR Sucameli, P Bortolotti, A Croce 및 CL Bottasso. BEM 공기역학과 결합된 일부 풍력 터빈 소음 방출 모델의 비교. 물리학 저널: 컨퍼런스 시리즈, 1037:022038, 2018년 6월. doi:10.1088/1742-6596/1037/2/022038.">aa-SBCB18</a>]</span>)는 다물체 기반 공력탄성 솔버 Cp-Lambda를 채택한 풍력 터빈 설계 프레임워크 Cp-Max에서 구현됩니다.</p>
 <p>단일 익형 프로파일과 전체 터빈 모두에 대해 주요 소음원(난류 유입 및 TBL-TE 소음)에 대해 비교가 수행되었습니다. 이는 몇 가지 구현 실수와 작은 불일치를 해결하는 데 도움이 되었습니다. 비교는 초당 8미터(m/s)의 정풍, 전단 없음, 정격 피치 각도 1.17도(deg), 고정 로터 속도 10.04rpm(분당 회전수)으로 수행됩니다. 입사 난류 강도에 대해 0.1의 고정 값이 가정됩니다. <span class="math notranslate nohighlight">\(I_{1}\)</span>.</p>
 <p><a class="reference internal" href="#aa-fig-ti-compare"><span class="std std-numref">그림 4.18</span></a> OpenFAST의 공격 각도 보정이 포함된 Amiet 모델, OpenFAST에 의해 생성된 Simplified Guidati 모델 및 Cp-Max의 Amiet 모델에 대한 SPL 측면의 예측을 보여줍니다.</p>
@@ -243,7 +243,7 @@
 </div>
 </div>
 <div class="section" id="model-usage">
-<span id="aa-sec-modelusage"></span><h2><span class="section-number">4.5.5.3. </span>모델 사용법<a class="headerlink" href="#model-usage" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="aa-sec-modelusage"></span><h2><span class="section-number">4.5.5.3. </span>모델 사용법<a class="headerlink" href="#model-usage" title="이 제목의 고유 링크"></a></h2>
 <p>OpenFAST의 항공음향 모델에는 출력에 대한 네 가지 옵션이 있습니다.</p>
 <ol class="arabic simple">
 <li><p>전체 음압 수준(dB/A 가중 데시벨[dBA]) - 관찰자당 시간 단계당 하나의 값이 생성됩니다.</p></li>
@@ -289,8 +289,8 @@
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
-        <a href="02-noise-models.html" class="btn btn-neutral float-left" title="4.5.4. 공력소음 모델" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="02-noise-models.html" class="btn btn-neutral float-left" title="4.5.4. 공력소음 모델" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
         <a href="04-conclusions.html" class="btn btn-neutral float-right" title="4.5.6. 결론" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

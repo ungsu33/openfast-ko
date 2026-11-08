@@ -10,7 +10,7 @@ Object.assign(cache,glossary);
 const skip='script,style,pre,code,kbd,samp,math,.math,.highlight,.notranslate,.headerlink,.section-number,.eqno,.citation-reference,.footnote-reference';
 const normalize=s=>s.replace(/\s+/g,' ').trim();
 const brands=new Set(['OpenFAST','AeroDyn','OLAF','AeroDisk','BeamDyn','SubDyn','ExtPtfm','ElastoDyn','HydroDyn','SeaState','InflowWind','MoorDyn','ServoDyn','TurbSim','FAST.Farm','Simulink','WaveTank']);
-function polish(v){return v?.replace(/접착제? 코드|접착 코드/g,'글루 코드').replace(/불안정한 공기\s*역학/g,'비정상 공력').replace(/동결 깨우기/g,'동결 후류').replace(/꾸준한 BEM/g,'정상 BEM').replace(/전위 흐름/g,'포텐셜 유동').replace(/다중 충실도/g,'다중정밀도').replace(/주차\/공회전/g,'정지/공회전');}
+function polish(v){return v?.replace(/접착제? 코드|접착 코드/g,'글루 코드').replace(/불안정한 공기\s*역학/g,'비정상 공력').replace(/동결 깨우기/g,'동결 후류').replace(/꾸준한 BEM/g,'정상 BEM').replace(/전위 흐름/g,'포텐셜 유동').replace(/다중 충실도/g,'다중정밀도').replace(/주차\/공회전/g,'정지/공회전').replace(/충수/g,'부록');}
 function lookup(key){const m=key.match(/^(\d+(?:\.\d+)*\.?\s+)(.+)$/);if(m){if(brands.has(m[2]))return m[1]+m[2];if(glossary[m[2]])return m[1]+glossary[m[2]];}return polish(cache[key]);}
 const counts={pages:0,textNodes:0,translated:0,unchanged:0};
 const search=[];
@@ -39,6 +39,8 @@ for(const file of files.filter(p=>p.endsWith('.html'))){
     if(/^(Parameter|Variable|Input|Name)$/i.test(firstHeader))$(table).find('tr').each((_,row)=>{const cell=$(row).find('td').first();if(/^[A-Za-z][A-Za-z0-9_]*$/.test(cell.text().trim()))cell.addClass('notranslate');});
   });
   translate($,$.root()[0]);
+  $('a[href$="#install-the-openfast-io-python-wrapper"]').each((_,el)=>{const code=$(el).find('code').first();if(code.length)$(el).html('2.3. '+$.html(code)+' Python 래퍼 설치');});
+  $('#install-the-openfast-io-python-wrapper > h2').each((_,el)=>{const num=$(el).find('.section-number').first(),code=$(el).find('code').first(),anchor=$(el).find('.headerlink').first();if(code.length)$(el).html($.html(num)+$.html(code)+' Python 래퍼 설치'+$.html(anchor));});
   for(const el of $('[title],[alt],[placeholder],[aria-label]').toArray())for(const attr of ['title','alt','placeholder','aria-label']){
     const v=$(el).attr(attr);if(v&&cache[normalize(v)])$(el).attr(attr,cache[normalize(v)]);
   }

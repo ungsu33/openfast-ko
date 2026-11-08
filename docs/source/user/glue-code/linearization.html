@@ -21,7 +21,7 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="찾다" href="../../../search.html">
+    <link rel="search" title="검색" href="../../../search.html">
     <link rel="next" title="4.3. AeroDyn 사용자 가이드 및 이론 매뉴얼" href="../aerodyn/index.html">
     <link rel="prev" title="4.2.4. 솔버" href="solver.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/glue-code/linearization.html"></head>
@@ -48,9 +48,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">4.2. 글루 코드</a><ul class="current">
@@ -96,16 +96,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -114,12 +114,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
           <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.2. </span>글루 코드</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.2.5. </span>선형화</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/glue-code/linearization.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
+            <a href="../../../_sources/source/user/glue-code/linearization.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -128,7 +128,7 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="linearization">
-<span id="glue-code-linearization"></span><h1><span class="section-number">4.2.5. </span>선형화<a class="headerlink" href="#linearization" title="이 제목에 대한 영구 링크"></a></h1>
+<span id="glue-code-linearization"></span><h1><span class="section-number">4.2.5. </span>선형화<a class="headerlink" href="#linearization" title="이 제목의 고유 링크"></a></h1>
 <p>OpenFAST는 주기적(또는 정적) 작동점에 대해 전체 다중 물리 시스템을 선형화하여 다음 형식의 연속시간 1차 상태공간 행렬을 생성할 수 있습니다.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\dot{\mathbf{x}} &amp;= A\,\mathbf{x} + B\,\mathbf{u} \\
@@ -149,7 +149,7 @@
 </ul>
 </div>
 <div class="section" id="user-inputs-for-linearization">
-<h2><a class="toc-backref" href="#id1"><span class="section-number">4.2.5.1. </span>선형화를 위한 사용자 입력</a><a class="headerlink" href="#user-inputs-for-linearization" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><a class="toc-backref" href="#id1"><span class="section-number">4.2.5.1. </span>선형화를 위한 사용자 입력</a><a class="headerlink" href="#user-inputs-for-linearization" title="이 제목의 고유 링크"></a></h2>
 <p>다음 매개변수는 기본 OpenFAST 입력 파일(<code class="docutils literal notranslate"><span class="pre">*.fst</span></code>) 아래 <strong>선형화</strong> 부분.</p>
 <table class="colwidths-given docutils align-default">
 <colgroup>
@@ -241,7 +241,7 @@
 </table>
 </div>
 <div class="section" id="module-support-for-linearization">
-<h2><a class="toc-backref" href="#id2"><span class="section-number">4.2.5.2. </span>선형화를 위한 모듈 지원</a><a class="headerlink" href="#module-support-for-linearization" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><a class="toc-backref" href="#id2"><span class="section-number">4.2.5.2. </span>선형화를 위한 모듈 지원</a><a class="headerlink" href="#module-support-for-linearization" title="이 제목의 고유 링크"></a></h2>
 <p>선형화 변수 순서에 나타나는 모듈(에서 설정)
 <code class="docutils literal notranslate"><span class="pre">ModGlue_Init</span></code>) 이다:</p>
 <p>InflowWind → SeaState → ServoDyn → ElastoDyn → BeamDyn → AeroDyn → HydroDyn → SubDyn → MAP++ → MoorDyn</p>
@@ -249,7 +249,7 @@
 <code class="docutils literal notranslate"><span class="pre">Linearize=True</span></code>.</p>
 </div>
 <div class="section" id="variable-selection">
-<h2><a class="toc-backref" href="#id3"><span class="section-number">4.2.5.3. </span>변수 선택</a><a class="headerlink" href="#variable-selection" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><a class="toc-backref" href="#id3"><span class="section-number">4.2.5.3. </span>변수 선택</a><a class="headerlink" href="#variable-selection" title="이 제목의 고유 링크"></a></h2>
 <p>동안 <code class="docutils literal notranslate"><span class="pre">ModGlue_Init</span></code>, <code class="docutils literal notranslate"><span class="pre">VF_Linearize</span></code> 플래그는 다음에 따라 변수에 적용됩니다. <code class="docutils literal notranslate"><span class="pre">LinInputs</span></code> 및 <code class="docutils literal notranslate"><span class="pre">LinOutputs</span></code> 설정:</p>
 <ul class="simple">
 <li><p><strong>상태(x)</strong>: <code class="docutils literal notranslate"><span class="pre">VF_Linearize</span></code> 플래그는 모든 참여 모듈의 모든 연속 상태 변수에 항상 설정됩니다.</p></li>
@@ -274,7 +274,7 @@
 ~을 통해 <code class="docutils literal notranslate"><span class="pre">ModGlue_CombineModules</span></code>.</p>
 </div>
 <div class="section" id="steady-state-trimming-calcsteady">
-<h2><a class="toc-backref" href="#id4"><span class="section-number">4.2.5.4. </span>정상 상태 트리밍(<code class="docutils literal notranslate"><span class="pre">CalcSteady</span></code>)</a><a class="headerlink" href="#steady-state-trimming-calcsteady" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><a class="toc-backref" href="#id4"><span class="section-number">4.2.5.4. </span>정상 상태 트리밍(<code class="docutils literal notranslate"><span class="pre">CalcSteady</span></code>)</a><a class="headerlink" href="#steady-state-trimming-calcsteady" title="이 제목의 고유 링크"></a></h2>
 <p>다음의 경우 <code class="docutils literal notranslate"><span class="pre">CalcSteady=True</span></code>, <code class="docutils literal notranslate"><span class="pre">ModGlue_CalcSteady</span></code> 주기성을 감지하기 위해 각 시간 단계에서 호출됩니다.</p>
 <ol class="arabic">
 <li><p>모듈 출력 태그가 지정되었습니다. <code class="docutils literal notranslate"><span class="pre">VF_Linearize</span></code> (을 제외한 <code class="docutils literal notranslate"><span class="pre">VF_WriteOut</span></code>)은 방위각으로 색인된 버퍼에 수집됩니다.</p></li>
@@ -292,7 +292,7 @@
 <p>버퍼 샘플 사이의 방위각 보간은 다음의 외삽 루틴을 사용합니다. <code class="docutils literal notranslate"><span class="pre">MV_ExtrapInterp</span></code> (사용 가능한 샘플 수에 따라 상수, 선형 및 2차 방식 지원)</p>
 </div>
 <div class="section" id="linearization-at-an-operating-point">
-<h2><a class="toc-backref" href="#id5"><span class="section-number">4.2.5.5. </span>동작점에서의 선형화</a><a class="headerlink" href="#linearization-at-an-operating-point" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><a class="toc-backref" href="#id5"><span class="section-number">4.2.5.5. </span>동작점에서의 선형화</a><a class="headerlink" href="#linearization-at-an-operating-point" title="이 제목의 고유 링크"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">ModGlue_Linearize_OP</span></code> 단일 작동 지점(시간/방위각)에서 전체 시스템 행렬을 조립합니다.</p>
 <ol class="arabic simple">
 <li><p><strong>모듈 야코비안</strong>: 각 모듈에 대해
@@ -315,7 +315,7 @@
 </ol>
 </div>
 <div class="section" id="output-file-format">
-<h2><a class="toc-backref" href="#id6"><span class="section-number">4.2.5.6. </span>출력 파일 형식</a><a class="headerlink" href="#output-file-format" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><a class="toc-backref" href="#id6"><span class="section-number">4.2.5.6. </span>출력 파일 형식</a><a class="headerlink" href="#output-file-format" title="이 제목의 고유 링크"></a></h2>
 <p>각 선형화 호출은 다음과 같은 파일을 생성합니다.
 <code class="docutils literal notranslate"><span class="pre">&lt;RootName&gt;.&lt;N&gt;.lin</span></code> 여기서 <em>N</em> 선형화 지수(1… <code class="docutils literal notranslate"><span class="pre">NLinTimes</span></code>). 파일은 일반 텍스트 ASCII 파일로 읽을 수 있습니다.
 <a class="reference external" href="https://github.com/OpenFAST/openfast_io" target="_blank" rel="noopener noreferrer">openfast_io</a> Python 라이브러리 또는
@@ -327,7 +327,7 @@
 </ul>
 </div>
 <div class="section" id="variable-naming-conventions">
-<h2><a class="toc-backref" href="#id7"><span class="section-number">4.2.5.7. </span>변수 명명 규칙</a><a class="headerlink" href="#variable-naming-conventions" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><a class="toc-backref" href="#id7"><span class="section-number">4.2.5.7. </span>변수 명명 규칙</a><a class="headerlink" href="#variable-naming-conventions" title="이 제목의 고유 링크"></a></h2>
 <p>선형화 출력 파일에서 각 채널 레이블은 다음 패턴을 따릅니다.</p>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;ModAbbr&gt;</span> <span class="pre">&lt;MeshName&gt;</span> <span class="pre">&lt;Field&gt;</span> <span class="pre">[,</span> <span class="pre">component</span> <span class="pre">[,</span> <span class="pre">node</span> <span class="pre">[,</span> <span class="pre">unit]]]</span></code></p>
 <p>예:</p>
@@ -340,7 +340,7 @@
 <code class="docutils literal notranslate"><span class="pre">MV_AddMeshVar</span></code> 그리고 <code class="docutils literal notranslate"><span class="pre">LinNames</span></code> 후처리 도구와의 일관성을 위해 이 규칙을 따르세요.</p>
 </div>
 <div class="section" id="module-developer-responsibilities">
-<h2><a class="toc-backref" href="#id8"><span class="section-number">4.2.5.8. </span>모듈 개발자의 책임</a><a class="headerlink" href="#module-developer-responsibilities" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><a class="toc-backref" href="#id8"><span class="section-number">4.2.5.8. </span>모듈 개발자의 책임</a><a class="headerlink" href="#module-developer-responsibilities" title="이 제목의 고유 링크"></a></h2>
 <p>선형화에 참여하려면 모듈은 다음을 수행해야 합니다.</p>
 <ol class="arabic simple">
 <li><p>부르다 <code class="docutils literal notranslate"><span class="pre">MV_AddVar</span></code> / <code class="docutils literal notranslate"><span class="pre">MV_AddMeshVar</span></code> 적절한 <code class="docutils literal notranslate"><span class="pre">VF_Linearize</span></code>
@@ -359,8 +359,8 @@
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
-        <a href="solver.html" class="btn btn-neutral float-left" title="4.2.4. 솔버" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="solver.html" class="btn btn-neutral float-left" title="4.2.4. 솔버" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
         <a href="../aerodyn/index.html" class="btn btn-neutral float-right" title="4.3. AeroDyn 사용자 가이드 및 이론 매뉴얼" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

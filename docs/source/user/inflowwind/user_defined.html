@@ -20,7 +20,7 @@
         <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="찾다" href="../../../search.html">
+    <link rel="search" title="검색" href="../../../search.html">
     <link rel="next" title="4.13.6. 충수" href="appendix.html">
     <link rel="prev" title="4.13.2. InflowWind 입력 파일" href="input.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/inflowwind/user_defined.html"></head>
@@ -47,9 +47,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
@@ -80,7 +80,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#additional-resources">4.13.5.9. 추가 리소스</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.13.6. 충수</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.13.6. 부록</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../moordyn/index.html">4.14. MoorDyn</a></li>
@@ -97,16 +97,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -115,12 +115,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.13. </span>InflowWind 사용자 가이드 및 이론 매뉴얼</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.13. </span>InflowWind 사용자 가이드 및 이론 설명서</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.13.5. </span>사용자 정의 바람 필드</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/inflowwind/user_defined.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
+            <a href="../../../_sources/source/user/inflowwind/user_defined.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -129,10 +129,10 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="user-defined-wind-fields">
-<span id="ifw-user-defined"></span><h1><span class="section-number">4.13.5. </span>사용자 정의 바람 필드<a class="headerlink" href="#user-defined-wind-fields" title="이 제목에 대한 영구 링크"></a></h1>
+<span id="ifw-user-defined"></span><h1><span class="section-number">4.13.5. </span>사용자 정의 바람 필드<a class="headerlink" href="#user-defined-wind-fields" title="이 제목의 고유 링크"></a></h1>
 <p>이 섹션에서는 다음을 사용하여 InflowWind에서 사용자 정의 바람 필드를 구현하는 방법을 설명합니다. <code class="docutils literal notranslate"><span class="pre">WindType</span> <span class="pre">=</span> <span class="pre">6</span></code>.</p>
 <div class="section" id="overview">
-<h2><span class="section-number">4.13.5.1. </span>개요<a class="headerlink" href="#overview" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.13.5.1. </span>개요<a class="headerlink" href="#overview" title="이 제목의 고유 링크"></a></h2>
 <p>사용자 정의 바람 필드 기능을 통해 개발자는 다음을 통해 사용자 정의 바람 모델을 구현할 수 있습니다.</p>
 <ol class="arabic simple">
 <li><p>바람 필드 매개변수를 보유하기 위한 데이터 구조 정의</p></li>
@@ -154,9 +154,9 @@
 </div>
 </div>
 <div class="section" id="implementation-steps">
-<h2><span class="section-number">4.13.5.2. </span>구현 단계<a class="headerlink" href="#implementation-steps" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.13.5.2. </span>구현 단계<a class="headerlink" href="#implementation-steps" title="이 제목의 고유 링크"></a></h2>
 <div class="section" id="step-1-define-data-structure">
-<h3><span class="section-number">4.13.5.2.1. </span>1단계: 데이터 구조 정의<a class="headerlink" href="#step-1-define-data-structure" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.13.5.2.1. </span>1단계: 데이터 구조 정의<a class="headerlink" href="#step-1-define-data-structure" title="이 제목의 고유 링크"></a></h3>
 <p>편집하다 <code class="docutils literal notranslate"><span class="pre">modules/inflowwind/src/IfW_FlowField.txt</span></code> 필드를 추가하고 <code class="docutils literal notranslate"><span class="pre">UserFieldType</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>typedef  ^              UserFieldType          ReKi                RefHeight           -     -         -     "reference height; used to center the wind"                   meters
 typedef  ^              ^                      IntKi               NumDataLines        -     0         -     "number of data lines (for time-varying user wind)"          -
@@ -168,7 +168,7 @@ typedef  ^              ^                      CHARACTER(1024)     FileName     
 <p>풍력 모델 구현에 필요한 사용자 정의 필드를 추가하세요.</p>
 </div>
 <div class="section" id="step-2-define-initialization-inputs">
-<h3><span class="section-number">4.13.5.2.2. </span>2단계: 초기화 입력 정의<a class="headerlink" href="#step-2-define-initialization-inputs" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.13.5.2.2. </span>2단계: 초기화 입력 정의<a class="headerlink" href="#step-2-define-initialization-inputs" title="이 제목의 고유 링크"></a></h3>
 <p>편집하다 <code class="docutils literal notranslate"><span class="pre">modules/inflowwind/src/InflowWind_IO.txt</span></code> 필드를 추가하고 <code class="docutils literal notranslate"><span class="pre">User_InitInputType</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>typedef  ^              User_InitInputType    CHARACTER(1024)         WindFileName            -     -     -     "name of file containing user-defined wind data (if applicable)" -
 typedef  ^              ^                     ReKi                    RefHt                   -     -     -     "reference height for user wind field"                        meters
@@ -178,7 +178,7 @@ typedef  ^              ^                     IntKi                   NumDataCol
 <p>바람 모델을 초기화하는 데 필요한 매개변수를 추가하세요.</p>
 </div>
 <div class="section" id="step-3-regenerate-type-files">
-<h3><span class="section-number">4.13.5.2.3. </span>3단계: 유형 파일 재생성<a class="headerlink" href="#step-3-regenerate-type-files" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.13.5.2.3. </span>3단계: 유형 파일 재생성<a class="headerlink" href="#step-3-regenerate-type-files" title="이 제목의 고유 링크"></a></h3>
 <p>레지스트리 파일을 수정한 후 프로젝트를 다시 빌드하여 유형 정의를 다시 생성하십시오. Visual Studio를 사용하여 Windows에서 OpenFAST를 빌드하면 형식 파일이 자동으로 다시 생성됩니다. CMake를 사용하는 경우 다음 명령을 실행하여 유형 파일 생성을 활성화합니다.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>build
 cmake<span class="w"> </span>..<span class="w"> </span>-DGENERATE_TYPES<span class="o">=</span>ON
@@ -188,7 +188,7 @@ make
 <p>빌드 프로세스는 자동으로 <code class="docutils literal notranslate"><span class="pre">*_Types.f90</span></code> 의 파일 <code class="docutils literal notranslate"><span class="pre">.txt</span></code> 레지스트리 파일.</p>
 </div>
 <div class="section" id="step-4-implement-initialization">
-<h3><span class="section-number">4.13.5.2.4. </span>4단계: 초기화 구현<a class="headerlink" href="#step-4-implement-initialization" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.13.5.2.4. </span>4단계: 초기화 구현<a class="headerlink" href="#step-4-implement-initialization" title="이 제목의 고유 링크"></a></h3>
 <p>편집하다 <code class="docutils literal notranslate"><span class="pre">modules/inflowwind/src/InflowWind_IO.f90</span></code> 그리고 구현 <code class="docutils literal notranslate"><span class="pre">IfW_User_Init()</span></code>:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">IfW_User_Init</span><span class="p">(</span><span class="n">InitInp</span><span class="p">,</span><span class="w"> </span><span class="n">SumFileUnit</span><span class="p">,</span><span class="w"> </span><span class="n">UF</span><span class="p">,</span><span class="w"> </span><span class="n">FileDat</span><span class="p">,</span><span class="w"> </span><span class="n">ErrStat</span><span class="p">,</span><span class="w"> </span><span class="n">ErrMsg</span><span class="p">)</span>
 <span class="w">   </span><span class="c">! Initialize UF%RefHeight, read data files, allocate arrays</span>
@@ -206,7 +206,7 @@ make
 </ul>
 </div>
 <div class="section" id="step-5-implement-velocity-function">
-<h3><span class="section-number">4.13.5.2.5. </span>5단계: 속도 기능 구현<a class="headerlink" href="#step-5-implement-velocity-function" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.13.5.2.5. </span>5단계: 속도 기능 구현<a class="headerlink" href="#step-5-implement-velocity-function" title="이 제목의 고유 링크"></a></h3>
 <p>편집하다 <code class="docutils literal notranslate"><span class="pre">modules/inflowwind/src/IfW_FlowField.f90</span></code> 그리고 구현 <code class="docutils literal notranslate"><span class="pre">UserField_GetVel()</span></code>:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">UserField_GetVel</span><span class="p">(</span><span class="n">UF</span><span class="p">,</span><span class="w"> </span><span class="nb">Time</span><span class="p">,</span><span class="w"> </span><span class="n">Position</span><span class="p">,</span><span class="w"> </span><span class="n">Velocity</span><span class="p">,</span><span class="w"> </span><span class="n">ErrStat</span><span class="p">,</span><span class="w"> </span><span class="n">ErrMsg</span><span class="p">)</span>
 <span class="w">   </span><span class="c">! Use UF data to compute velocity at Position and Time</span>
@@ -219,9 +219,9 @@ make
 </div>
 </div>
 <div class="section" id="coordinate-systems">
-<h2><span class="section-number">4.13.5.3. </span>좌표계<a class="headerlink" href="#coordinate-systems" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.13.5.3. </span>좌표계<a class="headerlink" href="#coordinate-systems" title="이 제목의 고유 링크"></a></h2>
 <div class="section" id="input-coordinates-position">
-<h3><span class="section-number">4.13.5.3.1. </span>입력 좌표(위치)<a class="headerlink" href="#input-coordinates-position" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.13.5.3.1. </span>입력 좌표(위치)<a class="headerlink" href="#input-coordinates-position" title="이 제목의 고유 링크"></a></h3>
 <ul class="simple">
 <li><p><strong>X</strong>: 하류 방향(InflowWind에 의해 회전 적용 후)</p></li>
 <li><p><strong>Y</strong>: 옆/측풍 방향</p></li>
@@ -230,7 +230,7 @@ make
 </ul>
 </div>
 <div class="section" id="output-velocities-velocity">
-<h3><span class="section-number">4.13.5.3.2. </span>출력 속도(Velocity)<a class="headerlink" href="#output-velocities-velocity" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.13.5.3.2. </span>출력 속도(Velocity)<a class="headerlink" href="#output-velocities-velocity" title="이 제목의 고유 링크"></a></h3>
 <ul class="simple">
 <li><p><strong>U</strong>: X를 따른 속도 구성요소(양수 = 풍하측)</p></li>
 <li><p><strong>V</strong>: Y 방향의 속도 성분(양수 = 풍하측을 볼 때 왼쪽)</p></li>
@@ -244,9 +244,9 @@ make
 </div>
 </div>
 <div class="section" id="example-implementation">
-<h2><span class="section-number">4.13.5.4. </span>구현 예<a class="headerlink" href="#example-implementation" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.13.5.4. </span>구현 예<a class="headerlink" href="#example-implementation" title="이 제목의 고유 링크"></a></h2>
 <div class="section" id="power-law-wind-profile">
-<h3><span class="section-number">4.13.5.4.1. </span>멱법칙 바람 프로필<a class="headerlink" href="#power-law-wind-profile" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.13.5.4.1. </span>멱법칙 바람 프로필<a class="headerlink" href="#power-law-wind-profile" title="이 제목의 고유 링크"></a></h3>
 <p>이 예에서는 간단한 거듭제곱 법칙 바람 프로필을 구현합니다.</p>
 <p><strong>속도 기능</strong> (안에 <code class="docutils literal notranslate"><span class="pre">IfW_FlowField.f90</span></code>):</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">UserField_GetVel</span><span class="p">(</span><span class="n">UF</span><span class="p">,</span><span class="w"> </span><span class="nb">Time</span><span class="p">,</span><span class="w"> </span><span class="n">Position</span><span class="p">,</span><span class="w"> </span><span class="n">Velocity</span><span class="p">,</span><span class="w"> </span><span class="n">ErrStat</span><span class="p">,</span><span class="w"> </span><span class="n">ErrMsg</span><span class="p">)</span>
@@ -312,38 +312,38 @@ make
 </div>
 </div>
 <div class="section" id="common-use-cases">
-<h2><span class="section-number">4.13.5.5. </span>일반적인 사용 사례<a class="headerlink" href="#common-use-cases" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.13.5.5. </span>일반적인 사용 사례<a class="headerlink" href="#common-use-cases" title="이 제목의 고유 링크"></a></h2>
 <div class="section" id="steady-analytical-wind-field">
-<h3><span class="section-number">4.13.5.5.1. </span>꾸준한 분석 바람 필드<a class="headerlink" href="#steady-analytical-wind-field" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.13.5.5.1. </span>꾸준한 분석 바람 필드<a class="headerlink" href="#steady-analytical-wind-field" title="이 제목의 고유 링크"></a></h3>
 <p>위치만의 함수로 바람을 정의합니다(무시 <code class="docutils literal notranslate"><span class="pre">Time</span></code> 매개변수).</p>
 <p><strong>예</strong>: 로그 바람 프로파일, 와류 바람장, 전단력이 있는 균일 흐름.</p>
 </div>
 <div class="section" id="time-varying-wind-field">
-<h3><span class="section-number">4.13.5.5.2. </span>시변 바람장<a class="headerlink" href="#time-varying-wind-field" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.13.5.5.2. </span>시변 바람장<a class="headerlink" href="#time-varying-wind-field" title="이 제목의 고유 링크"></a></h3>
 <p>시계열 배열에 바람 데이터를 저장하고 다음을 기반으로 보간합니다. <code class="docutils literal notranslate"><span class="pre">Time</span></code> 매개변수.</p>
 <p><strong>예</strong>: 측정된 바람 데이터, 규정된 바람 과도 현상, 항적 모델.</p>
 </div>
 <div class="section" id="wind-from-external-solver">
-<h3><span class="section-number">4.13.5.5.3. </span>외부 솔버의 바람<a class="headerlink" href="#wind-from-external-solver" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.13.5.5.3. </span>외부 솔버의 바람<a class="headerlink" href="#wind-from-external-solver" title="이 제목의 고유 링크"></a></h3>
 <p>순간적인 바람장을 얻으려면 외부 함수를 호출하세요.</p>
 <p><strong>예</strong>: CFD 커플링, 외부 후류 모델, 규정 난류.</p>
 </div>
 <div class="section" id="real-time-sensor-data">
-<h3><span class="section-number">4.13.5.5.4. </span>실시간 센서 데이터<a class="headerlink" href="#real-time-sensor-data" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.13.5.5.4. </span>실시간 센서 데이터<a class="headerlink" href="#real-time-sensor-data" title="이 제목의 고유 링크"></a></h3>
 <p>센서에서 측정된 바람 데이터를 로드하고 공간/시간적으로 보간합니다.</p>
 <p><strong>예</strong>: LIDAR 측정, 마스트 데이터, 현장 측정.</p>
 </div>
 </div>
 <div class="section" id="limitations-and-considerations">
-<h2><span class="section-number">4.13.5.6. </span>제한 사항 및 고려 사항<a class="headerlink" href="#limitations-and-considerations" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.13.5.6. </span>제한 사항 및 고려 사항<a class="headerlink" href="#limitations-and-considerations" title="이 제목의 고유 링크"></a></h2>
 <div class="section" id="current-limitations">
-<h3><span class="section-number">4.13.5.6.1. </span>현재 제한 사항<a class="headerlink" href="#current-limitations" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.13.5.6.1. </span>현재 제한 사항<a class="headerlink" href="#current-limitations" title="이 제목의 고유 링크"></a></h3>
 <ol class="arabic simple">
 <li><p><strong>가속 지원 없음</strong>: 사용자 정의 바람 필드는 현재 일부 모듈(예: MHK 터빈)에 필요한 가속도 계산을 지원하지 않습니다.</p></li>
 </ol>
 </div>
 <div class="section" id="performance-considerations">
-<h3><span class="section-number">4.13.5.6.2. </span>성능 고려 사항<a class="headerlink" href="#performance-considerations" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.13.5.6.2. </span>성능 고려 사항<a class="headerlink" href="#performance-considerations" title="이 제목의 고유 링크"></a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">UserField_GetVel()</span></code> 모든 시간 단계의 모든 지점에 대해 호출됩니다.</p></li>
 <li><p>효율적으로 구현하십시오. 값을 미리 계산 <code class="docutils literal notranslate"><span class="pre">IfW_User_Init()</span></code> 가능한 경우</p></li>
@@ -351,7 +351,7 @@ make
 </ul>
 </div>
 <div class="section" id="error-handling">
-<h3><span class="section-number">4.13.5.6.3. </span>오류 처리<a class="headerlink" href="#error-handling" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.13.5.6.3. </span>오류 처리<a class="headerlink" href="#error-handling" title="이 제목의 고유 링크"></a></h3>
 <ul class="simple">
 <li><p>항상 입력 매개변수의 유효성을 검사합니다. <code class="docutils literal notranslate"><span class="pre">IfW_User_Init()</span></code></p></li>
 <li><p>배열 경계를 확인하세요. <code class="docutils literal notranslate"><span class="pre">UserField_GetVel()</span></code></p></li>
@@ -361,7 +361,7 @@ make
 </div>
 </div>
 <div class="section" id="best-practices">
-<h2><span class="section-number">4.13.5.7. </span>모범 사례<a class="headerlink" href="#best-practices" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.13.5.7. </span>모범 사례<a class="headerlink" href="#best-practices" title="이 제목의 고유 링크"></a></h2>
 <ol class="arabic simple">
 <li><p><strong>간단하게 시작하세요</strong>: 복잡한 바람장을 구현하기 전에 분석 모델부터 시작하십시오.</p></li>
 <li><p><strong>철저하게 문서화하라</strong>: 구현 및 파일 형식을 설명하는 자세한 설명을 추가하세요.</p></li>
@@ -373,7 +373,7 @@ make
 </ol>
 </div>
 <div class="section" id="file-locations">
-<h2><span class="section-number">4.13.5.8. </span>파일 위치<a class="headerlink" href="#file-locations" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.13.5.8. </span>파일 위치<a class="headerlink" href="#file-locations" title="이 제목의 고유 링크"></a></h2>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 42%">
@@ -410,11 +410,11 @@ make
 </table>
 </div>
 <div class="section" id="additional-resources">
-<h2><span class="section-number">4.13.5.9. </span>추가 리소스<a class="headerlink" href="#additional-resources" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.13.5.9. </span>추가 리소스<a class="headerlink" href="#additional-resources" title="이 제목의 고유 링크"></a></h2>
 <ul class="simple">
 <li><p>원본 보기 <a class="reference download internal" download="" href="../../../_downloads/a231262e7763b4d61759ebe4e0fc30b2/InflowWind_Manual.pdf"><code class="xref download docutils literal notranslate"><span class="pre">InflowWind</span> <span class="pre">Manual</span></code></a> InflowWind의 일반 정보</p></li>
 <li><p>참조를 위해 소스 코드에서 기존 풍력 구현(Uniform, Grid3D)을 검토합니다.</p></li>
-<li><p>확인하다 <a class="reference internal" href="appendix.html#ifw-appendix"><span class="std std-ref">충수</span></a> 입력 파일 예제</p></li>
+<li><p>확인하다 <a class="reference internal" href="appendix.html#ifw-appendix"><span class="std std-ref">부록</span></a> 입력 파일 예제</p></li>
 <li><p>배열 할당 및 오류 처리 유틸리티는 NWTC 라이브러리 문서를 참조하세요.</p></li>
 <li><p>다음을 참조: <a class="reference internal" href="input.html#ifw-angles"><span class="std std-ref">InflowWind에 지정된 각도</span></a> 풍속 좌표계와 회전에 관한 정보</p></li>
 </ul>
@@ -424,8 +424,8 @@ make
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
-        <a href="input.html" class="btn btn-neutral float-left" title="4.13.2. InflowWind 입력 파일" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="input.html" class="btn btn-neutral float-left" title="4.13.2. InflowWind 입력 파일" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
         <a href="appendix.html" class="btn btn-neutral float-right" title="4.13.6. 충수" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

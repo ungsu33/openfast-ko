@@ -21,7 +21,7 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="찾다" href="../../../search.html">
+    <link rel="search" title="검색" href="../../../search.html">
     <link rel="next" title="4.9.4. 참고자료" href="zrefs.html">
     <link rel="prev" title="4.9.2. 입력 파일" href="input_files.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/extptfm/theory.html"></head>
@@ -48,9 +48,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
@@ -69,7 +69,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#state-space-representation-of-the-module-extptfm">4.9.3.3. 모듈의 상태공간 표현 <em>ExtPtfm</em></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.9.4. 참고자료</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.9.4. 참고문헌</a></li>
 <li class="toctree-l3"><a class="reference internal" href="appendix.html">4.9.5. 예제 파일</a></li>
 </ul>
 </li>
@@ -91,16 +91,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -109,12 +109,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
           <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.9. </span>ExtPtfm</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.9.3. </span>이론</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/extptfm/theory.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
+            <a href="../../../_sources/source/user/extptfm/theory.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -123,12 +123,12 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="theory">
-<span id="ep-theory"></span><h1><span class="section-number">4.9.3. </span>이론<a class="headerlink" href="#theory" title="이 제목에 대한 영구 링크"></a></h1>
+<span id="ep-theory"></span><h1><span class="section-number">4.9.3. </span>이론<a class="headerlink" href="#theory" title="이 제목의 고유 링크"></a></h1>
 <p>이 섹션에서는 ExtPtfm 모듈 뒤에 있는 이론에 중점을 둡니다. 이론은 다음 기사에 게재되었습니다. <span id="id1">[<a class="reference internal" href="zrefs.html#id2" title="E. Branlard, M. Shields, B. Anderson, R. Damiani, F. Wendt, J. Jonkman, W. Musial 및 B. Foley. OpenFAST의 순차적 하중 계산을 위한 하위 구조의 상위 요소 감소. 물리학 저널: 컨퍼런스 시리즈, 1452:012033, 2020년 1월. URL: https://doi.org/10.1088/1742-6596/1452/1/012033, doi:10.1088/1742-6596/1452/1/012033.">ep-BSA+20</a>]</span>
 (<a class="reference external" href="https://iopscience.iop.org/article/10.1088/1742-6596/1452/1/012033" target="_blank" rel="noopener noreferrer">여기에서 기사를 확인하세요</a>) 이 문서를 참조하는 데 사용될 수 있습니다.</p>
 <p>ExtPtfm는 Craig-Bampton(C-B) 방법을 통한 동적 시스템 감소에 의존합니다. <span id="id2">[<a class="reference internal" href="zrefs.html#id3" title="R. 크레이그와 M. 뱀프턴. 동적 해석을 위한 하위 구조의 결합. AIAA 저널, 6(7):1313-1319, 1968.">ep-CB68</a>]</span>.</p>
 <div class="section" id="reduction-of-the-equations-of-motion">
-<h2><span class="section-number">4.9.3.1. </span>운동 방정식의 감소<a class="headerlink" href="#reduction-of-the-equations-of-motion" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.9.3.1. </span>운동 방정식의 감소<a class="headerlink" href="#reduction-of-the-equations-of-motion" title="이 제목의 고유 링크"></a></h2>
 <p>구조의 역학은 다음과 같이 정의됩니다.
 <span class="math notranslate nohighlight">\(\boldsymbol{M}\boldsymbol{\ddot{x}}+\boldsymbol{C}\boldsymbol{\dot{x}}+\boldsymbol{K}\boldsymbol{x}=\boldsymbol{f}\)</span>, 어디 <span class="math notranslate nohighlight">\(\boldsymbol{M}\)</span>, <span class="math notranslate nohighlight">\(\boldsymbol{C}\)</span>,
 <span class="math notranslate nohighlight">\(\boldsymbol{K}\)</span> 질량, 감쇠 및 강성 행렬입니다.
@@ -283,7 +283,7 @@ DOF에 작용하는 하중의 벡터입니다. 이 방정식 시스템은 일반
 <span class="math notranslate nohighlight">\(n_\text{CB}\equiv 0\)</span>, Guyan 감소 방정식으로 이어집니다.</p>
 </div>
 <div class="section" id="coupling-with-another-structure">
-<h2><span class="section-number">4.9.3.2. </span>다른 구조와의 결합<a class="headerlink" href="#coupling-with-another-structure" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.9.3.2. </span>다른 구조와의 결합<a class="headerlink" href="#coupling-with-another-structure" title="이 제목의 고유 링크"></a></h2>
 <p>이 섹션에서는 수퍼요소가 다른 구조에 결합될 때 운동 방정식이 어떻게 설정되는지 보여줍니다. 아래에 제시된 모듈식 접근 방식은 OpenFAST에 구현된 접근 방식입니다. 여기서 초요소는 하부 구조(및 기초)를 나타내는 것으로 가정하지만 풍력 터빈의 다른 부분, 특히 전체 지지 구조에 적용될 수도 있습니다. 단순화를 위해 여기서는 모든 하위 구조 리더 DOF가 구조의 나머지 부분과 인터페이스를 갖고 있다고 가정합니다. 인터페이스 DOF는 인덱스로 표시됩니다. <span class="math notranslate nohighlight">\(1\)</span>, 하위 구조 내부 DOF를 색인으로 <span class="math notranslate nohighlight">\(2\)</span>, 나머지 DOF는 라벨이 붙어 있습니다 <span class="math notranslate nohighlight">\(0\)</span>. 아래첨자 <span class="math notranslate nohighlight">\(r\)</span> 이전 단락에서 사용된 것은 DOF에서는 삭제되었지만 행렬에서는 유지되었습니다. 이 라벨링을 통해 시스템은 <span class="math notranslate nohighlight">\(0\text{--}1\)</span> 타워와 로터 나셀 어셈블리로 구성됩니다. <span class="math notranslate nohighlight">\(1\text{--}2\)</span> 는 하부구조이고, 벡터는, <span class="math notranslate nohighlight">\(\boldsymbol{x}_1\)</span>는 전환 부분 상단의 6개 자유도입니다. 방정식을 단순화하기 위해 감쇠 항은 생략되었지만 포함 방법은 간단합니다. 다음에는 운동 방정식을 설정하는 두 가지 방법인 모놀리식 또는 모듈식 접근 방식이 제시됩니다(예: <span id="id4">[<a class="reference internal" href="zrefs.html#id2" title="E. Branlard, M. Shields, B. Anderson, R. Damiani, F. Wendt, J. Jonkman, W. Musial 및 B. Foley. OpenFAST의 순차적 하중 계산을 위한 하위 구조의 상위 요소 감소. 물리학 저널: 컨퍼런스 시리즈, 1452:012033, 2020년 1월. URL: https://doi.org/10.1088/1742-6596/1452/1/012033, doi:10.1088/1742-6596/1452/1/012033.">ep-BSA+20</a>]</span>).</p>
 <p><strong>모놀리식 접근 방식</strong>:</p>
 <p>이 접근 방식에서는 전체 방정식 시스템이 하나의 상태 벡터로 수집된 모든 DOF를 사용하여 해결됩니다. 방정식 시스템은 다양한 하위 시스템의 개별 질량 및 강성 행렬을 조합하여 얻습니다. 방정식을 사용하여. <a class="reference internal" href="#equation-craigbampton">(4.180)</a>, 모놀리식 형태로 작성된 시스템의 운동 방정식은 다음과 같습니다.</p>
@@ -383,7 +383,7 @@ DOF에 작용하는 하중의 벡터입니다. 이 방정식 시스템은 일반
     \end{aligned}\end{split}\]</div>
 </div>
 <div class="section" id="state-space-representation-of-the-module-extptfm">
-<h2><span class="section-number">4.9.3.3. </span>모듈의 상태공간 표현 <em>ExtPtfm</em><a class="headerlink" href="#state-space-representation-of-the-module-extptfm" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.9.3.3. </span>모듈의 상태공간 표현 <em>ExtPtfm</em><a class="headerlink" href="#state-space-representation-of-the-module-extptfm" title="이 제목의 고유 링크"></a></h2>
 <p>다음 섹션에서는 CB 접근 방식의 구현을 자세히 설명합니다.
 <em>ExtPtfm</em> 고정 바닥 하부 구조를 모델링합니다.</p>
 <p><em>ExtPtfm</em> 인터페이스에서 커플링 하중을 제공합니다.
@@ -482,8 +482,8 @@ DOF에 작용하는 하중의 벡터입니다. 이 방정식 시스템은 일반
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
-        <a href="input_files.html" class="btn btn-neutral float-left" title="4.9.2. 입력 파일" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="input_files.html" class="btn btn-neutral float-left" title="4.9.2. 입력 파일" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
         <a href="zrefs.html" class="btn btn-neutral float-right" title="4.9.4. 참고자료" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

@@ -21,7 +21,7 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="찾다" href="../../../search.html">
+    <link rel="search" title="검색" href="../../../search.html">
     <link rel="next" title="4.8.7. 알려진 제한 사항 및 향후 작업" href="future_work.html">
     <link rel="prev" title="4.8.5. 모델링 고려 사항" href="modeling.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/subdyn/theory.html"></head>
@@ -48,9 +48,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
@@ -77,8 +77,8 @@
 <li class="toctree-l4"><a class="reference internal" href="#summary-of-the-formulation-implemented">4.8.6.9. 구현된 공식의 요약</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="future_work.html">4.8.7. 알려진 제한 사항 및 향후 작업</a></li>
-<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.8.8. 참고자료</a></li>
+<li class="toctree-l3"><a class="reference internal" href="future_work.html">4.8.7. 알려진 한계와 향후 개발 계획</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.8.8. 참고문헌</a></li>
 <li class="toctree-l3"><a class="reference internal" href="appendixA.html">4.8.9. 부록 A. OC4 재킷 입력 파일</a></li>
 <li class="toctree-l3"><a class="reference internal" href="appendixB.html">4.8.10. 부록 B. OC4 재킷 드라이버 파일</a></li>
 <li class="toctree-l3"><a class="reference internal" href="appendixC.html">4.8.11. 부록 C. OC4 재킷 SSI 입력 파일</a></li>
@@ -106,16 +106,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -124,12 +124,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.8. </span>SubDyn 사용자 가이드 및 이론 매뉴얼</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.8. </span>SubDyn 사용자 가이드 및 이론 설명서</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.8.6. </span>SubDyn 이론</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/subdyn/theory.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
+            <a href="../../../_sources/source/user/subdyn/theory.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -138,9 +138,9 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="subdyn-theory">
-<span id="id1"></span><h1><span class="section-number">4.8.6. </span>SubDyn 이론<a class="headerlink" href="#subdyn-theory" title="이 제목에 대한 영구 링크"></a></h1>
+<span id="id1"></span><h1><span class="section-number">4.8.6. </span>SubDyn 이론<a class="headerlink" href="#subdyn-theory" title="이 제목의 고유 링크"></a></h1>
 <div class="section" id="overview">
-<h2><span class="section-number">4.8.6.1. </span>개요<a class="headerlink" href="#overview" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.8.6.1. </span>개요<a class="headerlink" href="#overview" title="이 제목의 고유 링크"></a></h2>
 <p>이 섹션에서는 SubDyn 모듈 뒤에 있는 이론에 중점을 둡니다.</p>
 <p>SubDyn는 (1) 선형 프레임 유한 요소 모델(LFEM), (2) 정적 개선 방법(SIM)과 함께 Craig-Bampton(C-B) 방법을 통한 동적 시스템 감소라는 두 가지 주요 엔지니어링 접근 방식을 사용하여 정확한 솔루션을 얻는 데 필요한 모드 수를 크게 줄입니다.</p>
 <p>해상 풍력 하부구조 모델에는 재료 비선형성, 굽힘으로 인한 축 단축, 큰 변위 등을 포함하여 많은 비선형성이 존재합니다. 대부분의 해양 다중 부재 지지 구조물은 강철을 사용하도록 설계되었으며 최대 응력은 재료의 항복 강도보다 낮도록 설계되었기 때문에 재료의 비선형성은 여기에서 고려되지 않습니다. <span id="id2">[<a class="reference internal" href="zrefs.html#id14" title="R. 다미아니, H. 송, A. 로버트슨, J. 존크만. 풍력 터빈 CAE 도구용 재킷 모델을 빠르게 개발하는 데 있어 비선형 구조적 특성의 중요성을 평가합니다. 2013년 제32차 해양, 해양 및 북극 엔지니어링에 관한 국제 컨퍼런스.">DSRJ13</a>]</span> 풍력 터빈 하부 구조를 분석할 때 선형 유한 요소 방법이 적합하다는 것을 입증합니다. 이 작업에서는 기본 형상, 하중 경로, 크기, 지지 타워 및 터빈 질량이 다양한 여러 풍력 터빈 구성을 비선형 및 선형 모델을 사용하여 극한 하중 하에서 분석했습니다. 결과는 비선형 거동이 주로 단일 타워 응답에 의해 발생하고 다중 부재 지지 구조에 거의 영향을 미치지 않음을 보여주었습니다. 따라서 하부구조에 대한 LFEM 모델은 풍력 터빈 하부구조에 적합한 것으로 간주됩니다. LFEM는 일정하거나 세로로 가늘어지는 단면의 Euler-Bernoulli 및 Timoshenko 빔 요소를 포함한 다양한 요소 유형을 수용할 수 있습니다(Timoshenko 빔 요소는 전단 변형을 설명하며 프레임 내에서 사용할 수 있는 낮은 종횡비 빔을 표현하고 프레임 내에서 하중을 전달하는 데 더 적합합니다).</p>
@@ -150,7 +150,7 @@
 <p>다음 섹션에서는 FAST 프레임워크 내 SubDyn 통합, 모듈에 사용되는 주요 좌표계, LFEM, C-B 감소 및 SIM와 관련된 이론에 대해 설명합니다. 시간 영역 시뮬레이션에 사용되는 상태공간 공식도 제시됩니다. 마지막 섹션에서는 염기 반응 계산 계산에 대해 설명합니다. 자세한 내용은 다음을 참조하세요. <span id="id3">[<a class="reference internal" href="zrefs.html#id3" title="H. 송, R. 다미아니, A. 로버트슨, J. 존크만. (2013). 풍력 터빈 컴퓨터 지원 엔지니어링 도구 FAST 내 해양 다중 부재 하부 구조를 위한 새로운 구조 역학 모듈. 제23차 국제 해양, 해양 및 극지 엔지니어링 회의 진행 중 - ISOPE 2013. 알래스카 앵커리지, 2013년 6월 30일~7월 5일. https://www.nrel.gov/docs/fy15osti/63165.pdf.">SDRJ13</a>]</span>.</p>
 </div>
 <div class="section" id="integration-with-the-fast-modularization-framework">
-<h2><span class="section-number">4.8.6.2. </span>FAST 모듈화 프레임워크와 통합<a class="headerlink" href="#integration-with-the-fast-modularization-framework" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.8.6.2. </span>FAST 모듈화 프레임워크와 통합<a class="headerlink" href="#integration-with-the-fast-modularization-framework" title="이 제목의 고유 링크"></a></h2>
 <p>새로운 모듈화 프레임워크 기반 <span id="id4">[<a class="reference internal" href="zrefs.html#id4" title="JJonkman. FAST 풍력 터빈 CAE 도구를 위한 새로운 모듈화 프레임워크입니다. 제51회 AIAA 항공우주과학 회의 및 제31회 ASME 풍력 에너지 심포지엄 진행 중. 텍사스주 그레이프바인, 2013년 1월 7~10일.">JJo13</a>]</span>, FAST는 공기 역학 모듈, 유체 역학 모듈, 제어 및 전기 시스템(서보) 모듈, 구조 역학(탄성) 모듈을 결합하여 시간 영역에서 육상 기반 및 해상 풍력 터빈의 결합된 비선형 공기-수력-서보-탄성 해석을 가능하게 합니다.  <a class="reference internal" href="#flow-chart2"><span class="std std-numref">그림 4.38</span></a> FAST 모듈화 프레임워크 내 SubDyn 모듈의 기본 레이아웃을 보여줍니다.</p>
 <div class="figure align-default" id="id14">
 <span id="flow-chart2"></span><a class="reference internal image-reference" href="../../../_images/flowchart2.png"><img alt="../../../_images/flowchart2.png" src="../../../_images/flowchart2.png" style="width: 70%;"></a>
@@ -161,13 +161,13 @@
 <p>SubDyn는 경계의 물리적 DOFs와 모든 내부 동작을 나타내는 모달 DOFs를 사용하여 하부 구조 시스템의 운동 방정식을 형성하는 상태공간 공식으로 구현됩니다. 각 시간 단계에서 드라이버 코드를 통해 모듈 간에 하중과 모션이 교환됩니다. 모달 응답은 SubDyn의 상태공간 모델 내에서 계산됩니다. 다음 시간 단계 응답은 느슨한 결합을 위한 SubDyn 적분기와 긴밀한 결합을 위한 전역 시스템 적분기에 의해 계산됩니다.</p>
 </div>
 <div class="section" id="coordinate-systems">
-<h2><span class="section-number">4.8.6.3. </span>좌표계<a class="headerlink" href="#coordinate-systems" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.8.6.3. </span>좌표계<a class="headerlink" href="#coordinate-systems" title="이 제목의 고유 링크"></a></h2>
 <div class="figure align-default" id="id15">
 <span id="global-cs"></span><a class="reference internal image-reference" href="../../../_images/global-cs.png"><img alt="../../../_images/global-cs.png" src="../../../_images/global-cs.png" style="width: 40%;"></a>
 <p class="caption"><span class="caption-number">그림 4.39 </span><span class="caption-text">전역(하부 구조와 일치) 좌표계. 또한 TP 기준점과 연관된 DOFs도 표시됩니다.</span><a class="headerlink" href="#id15" title="이 이미지에 대한 영구 링크"></a></p>
 </div>
 <div class="section" id="global-and-substructure-coordinate-system-x-y-z-or-x-ss-y-ss-z-ss-global-cs">
-<h3><span class="section-number">4.8.6.3.1. </span>전역 및 하위 구조 좌표계: (<em>X</em>, <em>Y</em>, <em>Z</em>) 또는 (<span class="math notranslate nohighlight">\({X_{SS}, Y_{SS}, Z_{SS}}\)</span>) (<a class="reference internal" href="#global-cs"><span class="std std-numref">그림 4.39</span></a>)<a class="headerlink" href="#global-and-substructure-coordinate-system-x-y-z-or-x-ss-y-ss-z-ss-global-cs" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.8.6.3.1. </span>전역 및 하위 구조 좌표계: (<em>X</em>, <em>Y</em>, <em>Z</em>) 또는 (<span class="math notranslate nohighlight">\({X_{SS}, Y_{SS}, Z_{SS}}\)</span>) (<a class="reference internal" href="#global-cs"><span class="std std-numref">그림 4.39</span></a>)<a class="headerlink" href="#global-and-substructure-coordinate-system-x-y-z-or-x-ss-y-ss-z-ss-global-cs" title="이 제목의 고유 링크"></a></h3>
 <ul class="simple">
 <li><p>전역 축은 단위 벡터로 표시됩니다. <span class="math notranslate nohighlight">\({\hat{I}, \hat{J}}\)</span>, 및 <span class="math notranslate nohighlight">\({\hat{K}}\)</span>.</p></li>
 <li><p>원점은 편향되지 않은 타워 중심선과 해양 시스템의 경우 평균 해수면(MSL) 또는 육상 기반 시스템의 경우 지면 수준으로 식별되는 수평면 사이의 교차점에 설정됩니다.</p></li>
@@ -177,7 +177,7 @@
 </ul>
 </div>
 <div class="section" id="member-or-element-local-coordinate-system-x-e-y-e-z-e-element-cs">
-<h3><span class="section-number">4.8.6.3.2. </span>멤버 또는 요소 로컬 좌표계(<span class="math notranslate nohighlight">\({x_e, y_e, z_e}\)</span>) (<a class="reference internal" href="#element-cs"><span class="std std-numref">그림 4.40</span></a>)<a class="headerlink" href="#member-or-element-local-coordinate-system-x-e-y-e-z-e-element-cs" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.8.6.3.2. </span>멤버 또는 요소 로컬 좌표계(<span class="math notranslate nohighlight">\({x_e, y_e, z_e}\)</span>) (<a class="reference internal" href="#element-cs"><span class="std std-numref">그림 4.40</span></a>)<a class="headerlink" href="#member-or-element-local-coordinate-system-x-e-y-e-z-e-element-cs" title="이 제목의 고유 링크"></a></h3>
 <ul class="simple">
 <li><p>축은 단위 벡터로 표현됩니다. <span class="math notranslate nohighlight">\({\hat{i}_e, \hat{j}_e, \hat{k}_e}\)</span>.</p></li>
 <li><p>원점은 시작 절점(S,MJointID1)에서 단면의 전단 중심으로 설정됩니다.</p></li>
@@ -191,7 +191,7 @@
 </div>
 </div>
 <div class="section" id="local-to-global-transformation">
-<h3><span class="section-number">4.8.6.3.3. </span>로컬에서 글로벌로의 전환<a class="headerlink" href="#local-to-global-transformation" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.8.6.3.3. </span>로컬에서 글로벌로의 전환<a class="headerlink" href="#local-to-global-transformation" title="이 제목의 고유 링크"></a></h3>
 <p>로컬 좌표계에서 전역 좌표계로의 변환은 다음 방정식으로 표현될 수 있습니다.</p>
 <blockquote>
 <div><div class="math notranslate nohighlight" id="equation-loc2glb">
@@ -235,9 +235,9 @@
 </div>
 </div>
 <div class="section" id="finite-element-model-elements-and-constraints">
-<span id="sd-fem"></span><h2><span class="section-number">4.8.6.4. </span>유한 요소 모델 - 요소 및 제약 조건<a class="headerlink" href="#finite-element-model-elements-and-constraints" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="sd-fem"></span><h2><span class="section-number">4.8.6.4. </span>유한 요소 모델 - 요소 및 제약 조건<a class="headerlink" href="#finite-element-model-elements-and-constraints" title="이 제목의 고유 링크"></a></h2>
 <div class="section" id="definitions">
-<h3><span class="section-number">4.8.6.4.1. </span>정의<a class="headerlink" href="#definitions" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.8.6.4.1. </span>정의<a class="headerlink" href="#definitions" title="이 제목의 고유 링크"></a></h3>
 <p>수치 <a class="reference internal" href="#fig-elementsdefinitions"><span class="std std-numref">그림 4.41</span></a> 사용된 정의 중 일부를 설명하는 데 사용됩니다. 하부 구조의 모델은 다양한 멤버로 구성되어 있다고 가정됩니다. 멤버는 두 개의 조인트로 구분됩니다. 조인트는 편향되지 않은 구조물의 한 점의 좌표와 유형(<em>JointType</em>). 접합 유형은 이 접합에 연결된 모든 부재의 경계 조건 또는 구속조건을 정의합니다. 다음 조인트가 지원됩니다:</p>
 <ul class="simple">
 <li><p>캔틸레버 조인트(<em>JointType=1</em>)</p></li>
@@ -260,7 +260,7 @@
 </div>
 </div>
 <div class="section" id="fem-process-from-elements-to-system-matrices">
-<span id="sd-fem-process"></span><h3><span class="section-number">4.8.6.4.2. </span>FEM 프로세스 - 요소부터 시스템 매트릭스까지<a class="headerlink" href="#fem-process-from-elements-to-system-matrices" title="이 제목에 대한 영구 링크"></a></h3>
+<span id="sd-fem-process"></span><h3><span class="section-number">4.8.6.4.2. </span>FEM 프로세스 - 요소부터 시스템 매트릭스까지<a class="headerlink" href="#fem-process-from-elements-to-system-matrices" title="이 제목의 고유 링크"></a></h3>
 <p>시스템의 FE 표현을 얻는 프로세스(초기화 시 수행됨)는 다음과 같습니다.</p>
 <ul class="simple">
 <li><p>요소: 각 요소의 질량 및 강성 행렬은 방향성 코사인 행렬을 사용하여 계산되고 전역 좌표로 변환됩니다.</p></li>
@@ -272,7 +272,7 @@
 <p>섹션의 나머지 부분에서는 요소 매트릭스와 조인트 및 강체 링크에 의해 발생하는 제약 조건에 대해 중점적으로 설명합니다. Craig-Bampton 감소는 다음에 설명되어 있습니다. <a class="reference internal" href="#genericcbreduction"><span class="std std-numref">섹션 4.8.6.5</span></a>.</p>
 </div>
 <div class="section" id="self-weight-loads">
-<h3><span class="section-number">4.8.6.4.3. </span>자중 하중<a class="headerlink" href="#self-weight-loads" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.8.6.4.3. </span>자중 하중<a class="headerlink" href="#self-weight-loads" title="이 제목의 고유 링크"></a></h3>
 <p>자중으로 인한 하중은 변위되지 않은 구성을 기반으로 초기화 중에 미리 계산됩니다. 그러므로 하부 구조에 대한 변위가 작고 P-델타 효과도 작다고 가정합니다. "추가" 순간은 플래그 사용으로 설명될 수 있습니다. <strong>GuyanLoadCorrection</strong>, 섹션 참조 <a class="reference internal" href="#sd-extramoment"><span class="std std-numref">섹션 4.8.6.6.4</span></a>. 테이퍼가 아닌 보 요소의 경우 끝 절점에 적용되는 중력으로 인한 집중 하중은 다음과 같습니다(전체 좌표계에서).</p>
 <div class="math notranslate nohighlight" id="equation-fg">
 <span class="eqno">(4.113)<a class="headerlink" href="#equation-fg" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}\left\{ F_G \right\} = \rho A_z g
@@ -292,7 +292,7 @@
 <p>또한 집중 질량이 존재하는 경우(지정된 관절에서 사용자가 선택) 해당 기여는 전역을 따라 집중된 힘으로 포함됩니다. <em>Z</em> 관련 노드에서.</p>
 </div>
 <div class="section" id="beam-element-formulation">
-<h3><span class="section-number">4.8.6.4.4. </span>빔 요소 공식<a class="headerlink" href="#beam-element-formulation" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.8.6.4.4. </span>빔 요소 공식<a class="headerlink" href="#beam-element-formulation" title="이 제목의 고유 링크"></a></h3>
 <p>균일하고 테이퍼진 오일러-베르누이 빔 요소는 변위 기반이며 요소 간 변위 및 회전 연속성을 보장하는 3차 보간 기능을 사용합니다. 균일한 Timoshenko 빔 요소는 균일한 오일러-베르누이 요소에 전단 변형을 도입하여 파생되므로 변위는 3차 보간 함수로도 표현됩니다. 고전적인 Timoshenko 빔 이론에 따라 일반적인 2노드 요소 강성과 일관된 질량 행렬은 다음과 같이 작성할 수 있습니다(예를 들어, <span id="id7">[<a class="reference internal" href="zrefs.html#id8" title="H. Panzer, J. Hubele, R. Eid 및 B. Lohmann. matlab을 사용하여 3D 캔틸레버 timoshenko 빔의 파라메트릭 유한 요소 모델 생성. 기술 보고서, Technische Universitat Munchen, 2009. 자동 제어에 관한 기술 보고서.">PHEL09</a>]</span>):</p>
 <div class="math notranslate nohighlight" id="equation-ke0">
 <span class="eqno">(4.114)<a class="headerlink" href="#equation-ke0" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}{\scriptstyle
@@ -367,12 +367,12 @@
 <p>여기서 <em>m</em> 및 <em>k</em> 전역 좌표계의 요소 행렬입니다.</p>
 </div>
 <div class="section" id="pretension-cable-element-formulation">
-<span id="sd-pretensioncable"></span><h3><span class="section-number">4.8.6.4.5. </span>프리텐션 케이블 요소 구성<a class="headerlink" href="#pretension-cable-element-formulation" title="이 제목에 대한 영구 링크"></a></h3>
+<span id="sd-pretensioncable"></span><h3><span class="section-number">4.8.6.4.5. </span>프리텐션 케이블 요소 구성<a class="headerlink" href="#pretension-cable-element-formulation" title="이 제목의 고유 링크"></a></h3>
 <p>FEM의 마스터 강성 방정식은 모든 변위도 사라지면 힘도 사라진다고 가정합니다. 즉, 힘과 변위 사이의 관계는 선형입니다.
 <span class="math notranslate nohighlight">\(\boldsymbol{f}=\boldsymbol{K}\boldsymbol{u}\)</span>. 재료가 소위 초기 변형, 프리스트레스의 초기 응력을 받는 경우에는 이 가정이 적용되지 않습니다. 이러한 효과는 온도 변화와 장력(또는 적합하지 않은 제작)으로 인해 발생할 수 있습니다. 이러한 효과는 예를 들어 Felippa의 노트에서 논의됩니다.&nbsp;<span id="id9">[<a class="reference internal" href="zrefs.html#id16" title="카를로스 A. 펠리파. 유한요소법 소개 - 강의 노트(asen 5007). 기술 보고서, 콜로라도대학교 항공우주공학과 및 항공우주 구조물 센터, 볼더, CO, USA, 2004.">Fel04</a>]</span>.</p>
 <p>초기 장력 케이블은 트러스 요소의 초기 신장을 가정하고 이 초기 신장이 세로 방향과 직교 방향 모두에서 가질 수 있는 복원력을 고려하여 모델링할 수 있습니다.</p>
 <div class="section" id="derivation">
-<h4><span class="section-number">4.8.6.4.5.1. </span>유도<a class="headerlink" href="#derivation" title="이 제목에 대한 영구 링크"></a></h4>
+<h4><span class="section-number">4.8.6.4.5.1. </span>유도<a class="headerlink" href="#derivation" title="이 제목의 고유 링크"></a></h4>
 <p>프리텐션 케이블이 <span class="math notranslate nohighlight">\(z\)</span>-방향이 고려됩니다. 유도를 단순화하기 위해 왼쪽 점은 고정된 것으로 가정하고 오른쪽 점만 편향됩니다. 표기법은 다음과 같습니다. <a class="reference internal" href="#fig-fepretension"><span class="std std-numref">그림 4.42</span></a>.</p>
 <div class="figure align-default" id="fig-fepretension">
 <a class="reference internal image-reference" href="../../../_images/FEPreTension.png"><img alt="요구" src="../../../_images/FEPreTension.png" style="width: 50.0%;"></a>
@@ -433,7 +433,7 @@
          \label{eq:PreTensionForce}\end{aligned}\end{split}\]</div>
 </div>
 <div class="section" id="finite-element-formulation-of-a-pretension-cable">
-<h4><span class="section-number">4.8.6.4.5.2. </span>초기 장력 케이블의 유한 요소 공식<a class="headerlink" href="#finite-element-formulation-of-a-pretension-cable" title="이 제목에 대한 영구 링크"></a></h4>
+<h4><span class="section-number">4.8.6.4.5.2. </span>초기 장력 케이블의 유한 요소 공식<a class="headerlink" href="#finite-element-formulation-of-a-pretension-cable" title="이 제목의 고유 링크"></a></h4>
 <p>이 케이블 요소에서는 이러한 자유도가 고려되지 않으므로 간결성을 위해 회전 자유도는 생략되었습니다. 의 선형 공식은 유한 요소의 두 노드에 적용되어 각 노드의 힘을 요소가 노드에 가하는 내부 힘으로 해석합니다. 이 규칙을 사용하여 초기 장력 케이블 요소는 요소 강성 행렬로 표현될 수 있습니다.
 <span class="math notranslate nohighlight">\(\boldsymbol{K}_e\)</span> 및 추가 노드 하중 벡터
 <span class="math notranslate nohighlight">\(\boldsymbol{f}_{e,0}\)</span> 따라서 요소의 정적 평형 방정식은 다음과 같습니다
@@ -503,7 +503,7 @@
 <span class="math notranslate nohighlight">\(L_0\)</span>).</p>
 </div>
 <div class="section" id="controlled-pretension-cable">
-<span id="sd-controlcable"></span><h4><span class="section-number">4.8.6.4.5.3. </span>제어된 초기 장력 케이블<a class="headerlink" href="#controlled-pretension-cable" title="이 제목에 대한 영구 링크"></a></h4>
+<span id="sd-controlcable"></span><h4><span class="section-number">4.8.6.4.5.3. </span>제어된 초기 장력 케이블<a class="headerlink" href="#controlled-pretension-cable" title="이 제목의 고유 링크"></a></h4>
 <p>컨트롤러는 각 시간 단계에서 케이블의 나머지 길이를 변경하여 케이블의 초기 장력 속성을 효과적으로 변경합니다. 주어진 시간에 케이블의 나머지 길이는 다음과 같습니다. <span class="math notranslate nohighlight">\(L_r(t)=L_e + \Delta L\)</span> (대신 <span class="math notranslate nohighlight">\(L_0\)</span>), 장력은 다음과 같습니다. <span class="math notranslate nohighlight">\(T(t)\)</span> (대신
 <span class="math notranslate nohighlight">\(T_0\)</span>). 장력은 다음과 같이 주어진다:</p>
 <div class="math notranslate nohighlight" id="equation-tensionunsteady">
@@ -570,7 +570,7 @@
 </div>
 </div>
 <div class="section" id="constraints-introduced-by-rotational-joints">
-<h3><span class="section-number">4.8.6.4.6. </span>회전 관절로 인한 제약 조건<a class="headerlink" href="#constraints-introduced-by-rotational-joints" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.8.6.4.6. </span>회전 관절로 인한 제약 조건<a class="headerlink" href="#constraints-introduced-by-rotational-joints" title="이 제목의 고유 링크"></a></h3>
 <p>에서 언급했듯이 <a class="reference internal" href="#sd-fem-process"><span class="std std-numref">섹션 4.8.6.4.2</span></a>, 제약조건 설명은 직접 제거 기술을 통해 수행됩니다. 이 기술은 변환 행렬을 계산하여 구현됩니다. <span class="math notranslate nohighlight">\(\boldsymbol{T}\)</span>
 이는 축소된 DOF 집합(제약조건 설명)과 전체 DOFs 집합 간의 관계를 제공합니다. 제약 조건이 없는 경우 이 행렬은 단위 행렬입니다. 이 섹션에서는 <span class="math notranslate nohighlight">\(\boldsymbol{T}\)</span> 회전 관절에 대해 매트릭스가 얻어집니다.</p>
 <p><strong>공식화</strong>
@@ -882,7 +882,7 @@
     \end{bmatrix}^{-1^\ast}\end{aligned}\end{split}\]</div>
 </div>
 <div class="section" id="rigid-links">
-<span id="sd-rigidlinks"></span><h3><span class="section-number">4.8.6.4.7. </span>리지드 링크<a class="headerlink" href="#rigid-links" title="이 제목에 대한 영구 링크"></a></h3>
+<span id="sd-rigidlinks"></span><h3><span class="section-number">4.8.6.4.7. </span>리지드 링크<a class="headerlink" href="#rigid-links" title="이 제목의 고유 링크"></a></h3>
 <p>강체 링크와 강체 요소는 여러 자유도 사이의 관계를 부과하므로 다음과 같이 처리될 수 있습니다. <em>선의</em> <em>다지점</em>
 제약. 강체 부재는 서로 다른 요소를 함께 결합하거나 두 탄성체 사이의 큰 강성 링크를 모델링하는 데 사용할 수 있습니다(Cook 참조). <span id="id10">[<a class="reference internal" href="zrefs.html#id17" title="로버트 D. 쿡. 유한요소해석의 개념과 응용. 존 와일리 &amp; 아들, 2001.">Coo01</a>]</span>). 강체 링크에 대한 질량 특성은 입력 파일에 제공될 수 있으며, 이 경우 빔 요소의 질량 행렬이 이 강체 링크에 사용됩니다.</p>
 <p>노드 사이의 견고한 링크 <span class="math notranslate nohighlight">\(j\)</span> 및 <span class="math notranslate nohighlight">\(k\)</span> 요소로 간주됩니다. <span class="math notranslate nohighlight">\(j-k\)</span>. 주어진 노드의 6개 자유도, 3개의 변위 및 3개의 회전이 기록됩니다.
@@ -947,7 +947,7 @@
 <p>구속조건은 전체 시스템이 조립된 후에 적용됩니다.</p>
 </div>
 <div class="section" id="spring-elements">
-<span id="sd-springelement"></span><h3><span class="section-number">4.8.6.4.8. </span>스프링 요소<a class="headerlink" href="#spring-elements" title="이 제목에 대한 영구 링크"></a></h3>
+<span id="sd-springelement"></span><h3><span class="section-number">4.8.6.4.8. </span>스프링 요소<a class="headerlink" href="#spring-elements" title="이 제목의 고유 링크"></a></h3>
 <p>스프링 부재를 육상 기반 시스템의 경계 조건으로 정의된 스프링과 혼동하지 마십시오. 스프링 요소는 대칭으로 가정되는(k_ij = k_ji) 6 x 6 강성 행렬을 통해 두 조인트를 연결합니다.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{aligned}
@@ -974,9 +974,9 @@
 </div>
 </div>
 <div class="section" id="craig-bampton-reduction-theory">
-<span id="genericcbreduction"></span><h2><span class="section-number">4.8.6.5. </span>Craig-Bampton 감소(이론)<a class="headerlink" href="#craig-bampton-reduction-theory" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="genericcbreduction"></span><h2><span class="section-number">4.8.6.5. </span>Craig-Bampton 감소(이론)<a class="headerlink" href="#craig-bampton-reduction-theory" title="이 제목의 고유 링크"></a></h2>
 <div class="section" id="full-system">
-<h3><span class="section-number">4.8.6.5.1. </span>전체 시스템<a class="headerlink" href="#full-system" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.8.6.5.1. </span>전체 시스템<a class="headerlink" href="#full-system" title="이 제목의 고유 링크"></a></h3>
 <p>SubDyn의 FEM 운동 방정식은 다음과 같이 작성됩니다.</p>
 <div class="math notranslate nohighlight" id="equation-main">
 <span class="eqno">(4.128)<a class="headerlink" href="#equation-main" title="이 방정식에 대한 영구 링크"></a></span>\[[M] \{ \ddot{U} \} +[C] \{ \dot{U} \} + [K] \{ U \} = \{ F \}\]</div>
@@ -985,7 +985,7 @@
 <p>Eq.와 연관된 DOFs의 수. <a class="reference internal" href="#equation-main">(4.128)</a> 일반적인 빔 프레임 하부 구조의 경우 수천 개까지 쉽게 확장할 수 있습니다. 이러한 요소는 터빈 동역학의 시간 영역 시뮬레이션의 필요성과 결합되어 FAST와 같은 공탄성 코드의 계산 효율성을 심각하게 저하시킬 수 있습니다(ElastoDyn의 일반적인 풍력 터빈 시스템 모델에는 약 20개의 DOFs가 있음을 참고하세요). 이러한 이유로 C-B 방법론을 사용하여 하부 구조 유한 요소 모델을 구조의 기본 저주파 응답 모드를 유지하는 축소된 DOF 모델로 재특성화했습니다. C-B 방법을 사용하면 하위 구조의 DOFs를 약 10으로 줄일 수 있습니다(사용자 정의, 섹션 참조). <a class="reference internal" href="modeling.html#cbguide"><span class="std std-numref">섹션 4.8.5.7</span></a>). 이 시스템 축소 방법은 다음과 같이 처음 도입되었습니다. <span id="id11">[<a class="reference internal" href="zrefs.html#id5" title="화장실 허티. 구성요소 모드를 사용한 구조 시스템의 동적 해석. 제51차 AIAA 연례 회의 진행 중. 워싱턴, DC, 1964년 6월 29일~7월 2일. AIAA 용지 번호 64-487.">Hur64</a>]</span> 나중에 확장됨 <span id="id12">[<a class="reference internal" href="zrefs.html#id6" title="R. 크레이그와 M. 뱀프턴. 동적 해석을 위한 하부구조 결합. AIAA 저널, 6:1313 – 1319, 1968.">CB68</a>]</span>.</p>
 </div>
 <div class="section" id="cb-reduced-system">
-<h3><span class="section-number">4.8.6.5.2. </span>CB 감소 시스템<a class="headerlink" href="#cb-reduced-system" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.8.6.5.2. </span>CB 감소 시스템<a class="headerlink" href="#cb-reduced-system" title="이 제목의 고유 링크"></a></h3>
 <p>이 섹션에서는 일반적인 Craig-Bampton 기술을 소개합니다. SubDyn의 특정 애플리케이션은 다음 섹션에 나와 있습니다. C-B 축소에서 구조 노드는 두 그룹으로 구분됩니다. 1) 경계 노드(아래 첨자 "로 식별됨)<em>R</em>" 다음에서) 구조의 바닥에 완전히 구속된 노드와 인터페이스 노드를 포함합니다. 2) 내부 노드(또는 아래 첨자 "로 식별되는 남은 노드)<em>L</em>"). 구조 바닥에 있는 부분적으로 구속된 노드 또는 "자유" 노드의 DOFs는 SSI 기능을 포함하는 이 SubDyn 버전의 "L" 하위 집합에 포함되어 있습니다.</p>
 <p>시스템 축소의 유도는 아래와 같습니다. Eq.의 시스템 운동 방정식. <a class="reference internal" href="#equation-main">(4.128)</a> 다음과 같이 분할할 수 있습니다.</p>
 <div class="math notranslate nohighlight" id="equation-main2">
@@ -1112,9 +1112,9 @@ F_m    &amp;= \Phi_m^T F_L  \nonumber
 </div>
 </div>
 <div class="section" id="fem-formulation-in-subdyn">
-<h2><span class="section-number">4.8.6.6. </span>SubDyn의 FEM 공식화<a class="headerlink" href="#fem-formulation-in-subdyn" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.8.6.6. </span>SubDyn의 FEM 공식화<a class="headerlink" href="#fem-formulation-in-subdyn" title="이 제목의 고유 링크"></a></h2>
 <div class="section" id="boundary-nodes-fixed-dofs-and-rigid-connection-to-tp">
-<span id="tp2interface"></span><h3><span class="section-number">4.8.6.6.1. </span>경계 노드: DOFs 고정 및 TP에 대한 고정 연결<a class="headerlink" href="#boundary-nodes-fixed-dofs-and-rigid-connection-to-tp" title="이 제목에 대한 영구 링크"></a></h3>
+<span id="tp2interface"></span><h3><span class="section-number">4.8.6.6.1. </span>경계 노드: DOFs 고정 및 TP에 대한 고정 연결<a class="headerlink" href="#boundary-nodes-fixed-dofs-and-rigid-connection-to-tp" title="이 제목의 고유 링크"></a></h3>
 <p>이 섹션에서는 경계 노드의 처리 방법을 제시합니다. 고정된 DOFs는 제거되고 인터페이스 DOFs는 TP 기준점에 대한 견고한 연결을 통해 압축됩니다.</p>
 <p>경계 노드는 인터페이스의 노드로 분할됩니다. <span class="math notranslate nohighlight">\({\bar{U}_R}\)</span>, 그리고 하단의 고정된 항목은 다음과 같습니다.</p>
 <div class="math notranslate nohighlight" id="equation-ur">
@@ -1196,13 +1196,13 @@ F_m    &amp;= \Phi_m^T F_L  \nonumber
 <p>초기화 중에 SubDyn는 다음을 계산합니다. 매개변수 행렬 <span class="math notranslate nohighlight">\({\tilde{M}_{BB}, \tilde{M}_{mB}, \tilde{M}_{Bm}, \tilde{K}_{BB}, \Phi_m, \Phi_R, T_I}\)</span>; 일정한 부하 배열 ; 내부 주파수 행렬 <span class="math notranslate nohighlight">\(\Omega_m\)</span> . 각 시간 단계의 하위 구조 응답은 다음 섹션에서 논의되는 상태공간 공식을 사용하여 얻을 수 있습니다.</p>
 </div>
 <div class="section" id="floating-or-fixed-bottom-structure">
-<h3><span class="section-number">4.8.6.6.2. </span>플로팅 또는 고정 바닥 구조<a class="headerlink" href="#floating-or-fixed-bottom-structure" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.8.6.6.2. </span>플로팅 또는 고정 바닥 구조<a class="headerlink" href="#floating-or-fixed-bottom-structure" title="이 제목의 고유 링크"></a></h3>
 <p>구조가 "고정 바닥"인지 "부동"인지에 따라 SubDyn에서는 다양한 공식이 사용됩니다.</p>
 <p>반응 노드가 없으면 구조는 "부동"인 것으로 간주됩니다.</p>
 <p>그 외의 경우에는 구조가 "고정 바닥"으로 간주됩니다.</p>
 </div>
 <div class="section" id="loads">
-<span id="sd-loads"></span><h3><span class="section-number">4.8.6.6.3. </span>잔뜩<a class="headerlink" href="#loads" title="이 제목에 대한 영구 링크"></a></h3>
+<span id="sd-loads"></span><h3><span class="section-number">4.8.6.6.3. </span>잔뜩<a class="headerlink" href="#loads" title="이 제목의 고유 링크"></a></h3>
 <p>이 섹션에서는 경계에 작용하는 하중(<em>R</em>) 및 인테리어(<em>L</em>) 노드와 전환 부분(<em>TP</em>) 노드.</p>
 <p>중력 하중이나 초기 장력 하중과 같이 SubDyn에 의해 설명되는 외부 하중은 아래 첨자로 표시됩니다. <em>g</em>. 하부 구조에 작용하고 추가 모듈에서 발생하는 외부 하중(예: 유체 역학, 계류 또는 토양 하중)은 아래 첨자로 표시됩니다. <em>e</em>. ElastoDyn가 SubDyn로 전송하는 커플링 하중은 아래 첨자로 표시됩니다. <em>CPL</em>. 모듈식 구현에서 SubDyn는 ElastoDyn로부터 이러한 커플링 하중을 수신하지 않고 대신 전환 부분의 변위를 수신하고 해당 하중을 출력합니다. 이는 상태공간 공식화와 관련이 있지만 이 섹션의 목적에 따라 결합 하중은 ElastoDyn에서 오는 것으로 생각할 수 있습니다.</p>
 <p>경계 노드의 외부 하중(<em>R</em>)는 SubDyn 중력 및 케이블 부하로 구성됩니다(<em>g</em>), ElastoDyn 커플링 하중(<em>CPL</em>) 및 다른 모듈의 외부 부하(<em>e</em>):</p>
@@ -1222,7 +1222,7 @@ F_m    &amp;= \Phi_m^T F_L  \nonumber
 <span class="eqno">(4.148)<a class="headerlink" href="#equation-ftptilde" title="이 방정식에 대한 영구 링크"></a></span>\[ \begin{align}\begin{aligned}\tilde{F}_{TP} &amp;= F_{TP,cpl} + T_I^T \left[ \bar{F}_{R,e}+ \bar{F}_{R,g} + \bar{\Phi}_{R}^T \left( F_{L,e} + F_{L,g} \right) \right]\\F_m &amp;= \Phi_m^t \left(F_{L,e}  +  F_{L,g}\right)\end{aligned}\end{align} \]</div>
 </div>
 <div class="section" id="corrections-to-the-baseline-formulation-guyanloadcorrection">
-<span id="sd-extramoment"></span><span id="sd-rotated-loads"></span><h3><span class="section-number">4.8.6.6.4. </span>기본 공식("GuyanLoadCorrection")에 대한 수정<a class="headerlink" href="#corrections-to-the-baseline-formulation-guyanloadcorrection" title="이 제목에 대한 영구 링크"></a></h3>
+<span id="sd-extramoment"></span><span id="sd-rotated-loads"></span><h3><span class="section-number">4.8.6.6.4. </span>기본 공식("GuyanLoadCorrection")에 대한 수정<a class="headerlink" href="#corrections-to-the-baseline-formulation-guyanloadcorrection" title="이 제목의 고유 링크"></a></h3>
 <p>변위된 위치에서 SubDyn에 하중이 제공된다는 사실과 플로팅 케이스의 강체 모션을 설명하기 위해 기본 FEM 구현을 수정해야 합니다. SubDyn의 이전 버전에서는 매개변수를 설정하여 수정 사항이 활성화됩니다. <strong>GuyanLoadCorrection</strong> 사실로. 이 입력 매개변수는 SubDyn 기본 입력 파일에서 제거되었으며 부하 수정은 SubDyn의 현재 및 향후 버전에서 항상 사용됩니다.</p>
 <p><strong>플로팅을 위한 좌표계 회전</strong></p>
 <p>플로팅 케이스에서는 FEM 공식을 본체 프레임으로 회전해야 합니다. 이 작업은 다음과 같은 경우에 수행됩니다. <strong>GuyanLoadCorrection</strong> True로 설정되어 있습니다. CB 및 정적 모드는 Guyan 모드의 강체 회전을 따르는 회전 참조 프레임에서 해결됩니다. 이 특수 사례에 대한 자세한 내용은 섹션을 참조하세요. <a class="reference internal" href="#sd-summary"><span class="std std-numref">섹션 4.8.6.9</span></a>.</p>
@@ -1306,7 +1306,7 @@ m_{TP,cpl} -u_{TP} \times f_{TP,cpl} \\
 <p>출력 방정식 <span class="math notranslate nohighlight">\(y_1= -F_{TP,cpl}\)</span> 그런 다음 이 추가 기여를 포함하도록 수정됩니다.</p>
 </div>
 <div class="section" id="damping-specifications">
-<span id="sd-dampingspecifications"></span><h3><span class="section-number">4.8.6.6.5. </span>댐핑 사양<a class="headerlink" href="#damping-specifications" title="이 제목에 대한 영구 링크"></a></h3>
+<span id="sd-dampingspecifications"></span><h3><span class="section-number">4.8.6.6.5. </span>댐핑 사양<a class="headerlink" href="#damping-specifications" title="이 제목의 고유 링크"></a></h3>
 <p>SubDyn에서 인터페이스 노드의 동작과 관련된 감쇠를 지정하는 방법에는 감쇠 없음, Rayleigh 감쇠 또는 사용자 정의 6x6 매트릭스 등 세 가지 방법이 있습니다.</p>
 <p>NOTE: 조인트와 관련된 댐핑은 아직 문서화되지 않았으며 아래 개발 내용이 변경됩니다.</p>
 <p>다음의 경우 <strong>GuyanDampMod=0</strong>, SubDyn는 교차 결합 없이 Guyan 모드에 대해 0 감쇠를 가정하고 CB 모드에 대해 모달 감쇠를 가정합니다.</p>
@@ -1320,7 +1320,7 @@ m_{TP,cpl} -u_{TP} \times f_{TP,cpl} \\
 <p>사건 <strong>GuyanDampMod=2</strong>, 사용자가 지정한다는 점을 제외하면 이전 사례와 유사합니다. <span class="math notranslate nohighlight">\(6\times6\)</span> 조건 <span class="math notranslate nohighlight">\(\tilde{C}_{BB}\)</span>.</p>
 </div>
 <div class="section" id="static-improvement-method">
-<span id="sd-sim"></span><span id="sim"></span><h3><span class="section-number">4.8.6.6.6. </span>정적 개선 방법<a class="headerlink" href="#static-improvement-method" title="이 제목에 대한 영구 링크"></a></h3>
+<span id="sd-sim"></span><span id="sim"></span><h3><span class="section-number">4.8.6.6.6. </span>정적 개선 방법<a class="headerlink" href="#static-improvement-method" title="이 제목의 고유 링크"></a></h3>
 <p>정적 중력(부재 자중)과 부력의 영향을 설명하려면 C-B 감소에 모든 구조적 축 모드를 포함해야 합니다. 이러한 포함은 실제 문제를 위해 유지되는 수백 가지 모드로 해석되는 경우가 많습니다. 따라서 이러한 제한을 줄이고 SubDyn 속도를 높이기 위한 대체 방법이 권장됩니다. 이 방법은 SIM로 표시되며 각 시간 단계에서 두 개의 정적 솔루션(전체 시스템 강성 행렬을 기반으로 하는 솔루션과 감소된 강성 매트릭스를 기반으로 하는 솔루션)을 계산합니다. 그런 다음 동적 솔루션은 이전 섹션에서 설명한 대로 진행되고 각 시간 단계에서 시간에 따라 변하는 동적 솔루션은 두 정적 솔루션 간의 차이에 중첩됩니다. 이는 동적 솔루션 내에 직접 포함되지 않은 모드의 기여도를 준정적으로 설명하는 것과 같습니다.</p>
 <p>SIM 공식은 내부 노드의 변위에 대한 보정을 제공합니다. 이제 수정되지 않은 변위가 기록됩니다. <span class="math notranslate nohighlight">\({\hat{U}}_{L}\)</span>, 수정된 변위가 기록되는 동안 <span class="math notranslate nohighlight">\(U_L\)</span>. SIM 보정은 추가 항으로 구성됩니다. <span class="math notranslate nohighlight">\(U_{L,\text{SIM}}\)</span> 모든 내부 DOFs(<span class="math notranslate nohighlight">\(U_{L0}\)</span>) CB 모드와 관련된 정적 편향을 뺀 값(<span class="math notranslate nohighlight">\(U_{L0m}\)</span>), 캐스팅된 대로 <a class="reference internal" href="#equation-sim">(4.152)</a> :</p>
 <div class="math notranslate nohighlight" id="equation-sim">
@@ -1339,7 +1339,7 @@ m_{TP,cpl} -u_{TP} \times f_{TP,cpl} \\
 </div>
 </div>
 <div class="section" id="state-space-formulation">
-<span id="ssformulation"></span><h2><span class="section-number">4.8.6.7. </span>상태공간 공식화<a class="headerlink" href="#state-space-formulation" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="ssformulation"></span><h2><span class="section-number">4.8.6.7. </span>상태공간 공식화<a class="headerlink" href="#state-space-formulation" title="이 제목의 고유 링크"></a></h2>
 <p>SubDyn를 FAST 모듈화 프레임워크 내에 통합하기 위해 하위 구조 구조 역학 문제의 상태 공간 공식이 고안되었습니다. 상태공간 공식은 입력, 출력, 상태 및 매개변수 측면에서 개발되었습니다. 여기에 강조된 표기법은 Jonkman(2013)에서 사용된 표기법과 일치합니다. 입력(식별: <em>u</em>)는 상태와 함께 미래 상태와 시스템 출력을 계산하는 데 필요한 SubDyn에 제공되는 값 세트입니다. 출력(<em>y</em>)는 출력 방정식(함수 포함)을 통해 상태, 입력 및/또는 매개변수에 따라 SubDyn에서 계산되고 반환된 값 집합입니다. <em>Y</em>). 상태는 입력의 영향을 받고 미래 상태 값과 출력을 계산하는 데 사용되는 SubDyn의 내부 값 집합입니다. SubDyn에서는 연속 상태만 고려됩니다. 연속상태(<em>x</em>)는 시간에 따라 미분 가능하고 연속 시간 미분 방정식(함수 포함)으로 특징지어지는 상태입니다.
 <em>X</em>). 매개변수(<em>p</em>)은 상태 및 입력과 독립적인 내부 시스템 값 세트입니다. 또한 초기화 시 매개변수를 완전히 정의하고 시스템의 상태 방정식과 출력 방정식을 특성화할 수 있습니다.</p>
 <p>SubDyn에서 입력은 다음과 같이 정의됩니다.</p>
@@ -1504,9 +1504,9 @@ Guyan 모션만 있는 반면 <span class="math notranslate nohighlight">\(y_3\)
       \end{bmatrix}\end{split}\end{aligned}\end{align} \]</div>
 </div>
 <div class="section" id="outputs-and-time-integration">
-<h2><span class="section-number">4.8.6.8. </span>출력 및 시간 적분<a class="headerlink" href="#outputs-and-time-integration" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.8.6.8. </span>출력 및 시간 적분<a class="headerlink" href="#outputs-and-time-integration" title="이 제목의 고유 링크"></a></h2>
 <div class="section" id="nodal-loads-calculation">
-<span id="sd-memberforce"></span><h3><span class="section-number">4.8.6.8.1. </span>노드 하중 계산<a class="headerlink" href="#nodal-loads-calculation" title="이 제목에 대한 영구 링크"></a></h3>
+<span id="sd-memberforce"></span><h3><span class="section-number">4.8.6.8.1. </span>노드 하중 계산<a class="headerlink" href="#nodal-loads-calculation" title="이 제목의 고유 링크"></a></h3>
 <p>절점 하중을 구하는 방법을 자세히 설명하기 전에 요소 하중을 계산하는 방법을 소개하는 것부터 시작합니다.</p>
 <p><strong>요소 부하</strong>:</p>
 <p>SubDyn는 요소의 전역 모션을 사용하여 요소 좌표계에서 12개 벡터 요소 하중을 계산합니다.</p>
@@ -1530,7 +1530,7 @@ F_{6}^{n_2}  = + F_{12}^e(7:12)\]</div>
 (보다 <a class="reference internal" href="#sd-reaction"><span class="std std-numref">섹션 4.8.6.8.2</span></a>)</p>
 </div>
 <div class="section" id="reaction-calculation">
-<span id="sd-reaction"></span><h3><span class="section-number">4.8.6.8.2. </span>반응 계산<a class="headerlink" href="#reaction-calculation" title="이 제목에 대한 영구 링크"></a></h3>
+<span id="sd-reaction"></span><h3><span class="section-number">4.8.6.8.2. </span>반응 계산<a class="headerlink" href="#reaction-calculation" title="이 제목의 고유 링크"></a></h3>
 <p>구조의 베이스에서의 반력은 베이스 노드에서의 절점 하중입니다.</p>
 <p>또한 사용자는 전반적인 반응을 요청할 수 있습니다.
 <span class="math notranslate nohighlight">\(\overrightarrow{R}\)</span> (6개의 힘과 모멘트)는 하부 구조(타워 중심선)의 중심과 진흙선, 즉 기준점(0,0,-)에 집중됩니다.<strong>WtrDpth</strong>) 전역 참조 프레임에서
@@ -1555,7 +1555,7 @@ F_{6}^{n_2}  = + F_{12}^e(7:12)\]</div>
 <p>여기서 <span class="math notranslate nohighlight">\({X_i,~Y_i}\)</span>, 및 <span class="math notranslate nohighlight">\(Z_i\)</span> (<span class="math notranslate nohighlight">\({i = 1 .. N_{\text{React}}}\)</span>)는 기준점을 기준으로 한 경계 노드의 좌표입니다.</p>
 </div>
 <div class="section" id="time-integration">
-<span id="timeintegration"></span><h3><span class="section-number">4.8.6.8.3. </span>시간 적분<a class="headerlink" href="#time-integration" title="이 제목에 대한 영구 링크"></a></h3>
+<span id="timeintegration"></span><h3><span class="section-number">4.8.6.8.3. </span>시간 적분<a class="headerlink" href="#time-integration" title="이 제목의 고유 링크"></a></h3>
 <p>시간에 <span class="math notranslate nohighlight">\({t=0}\)</span>, 초기 상태는 초기 조건(SubDyn에서는 모두 0으로 가정)으로 지정되고 초기 입력은 SubDyn에 제공됩니다. 각 후속 시간 단계 동안 입력과 상태는 알려진 값이며 입력은 다음과 같습니다. <span class="math notranslate nohighlight">\(u(t)\)</span> ElastoDyn 및 HydroDyn에서 발생하며 상태 <span class="math notranslate nohighlight">\(x(t)\)</span> 이전 시간 단계 통합에서 알려져 있습니다. 모든 매개변수 행렬은 SubDyn 시작 모듈에서 계산됩니다. 알려진 <span class="math notranslate nohighlight">\(u(t)\)</span> 및 <span class="math notranslate nohighlight">\(x(t)\)</span>, <span class="math notranslate nohighlight">\({\dot{x}(t)}\)</span> 상태 방정식을 사용하여 계산할 수 있습니다 <span class="math notranslate nohighlight">\({\dot{x}(t)=X(u,x,t)}\)</span> (식 참조. <a class="reference internal" href="#equation-state-eq">(4.158)</a>) 및 출력 <span class="math notranslate nohighlight">\(y_1(t)\)</span> 및 <span class="math notranslate nohighlight">\(y_2(t)\)</span> Eqs를 해결하여 계산할 수 있습니다. <a class="reference internal" href="#equation-bigy1">(4.164)</a> 및 <a class="reference internal" href="#equation-bigy2">(4.169)</a>. 요소 힘은 Eq.를 사용하여 계산할 수도 있습니다. <a class="reference internal" href="#equation-el-loads">(4.171)</a>. 다음 시간 단계 상태 <span class="math notranslate nohighlight">\({x(t + \Delta t)}\)</span> 통합을 통해 얻습니다.</p>
 <div class="math notranslate nohighlight" id="equation-integration">
 <span class="eqno">(4.175)<a class="headerlink" href="#equation-integration" title="이 방정식에 대한 영구 링크"></a></span>\[\left [ u(t), \dot{x}(t), x(t) \right ] \xrightarrow[]{\text{Integrate}}  x(t + \Delta t)\]</div>
@@ -1571,10 +1571,10 @@ F_{6}^{n_2}  = + F_{12}^e(7:12)\]</div>
 </div>
 </div>
 <div class="section" id="summary-of-the-formulation-implemented">
-<span id="sd-summary"></span><h2><span class="section-number">4.8.6.9. </span>구현된 공식의 요약<a class="headerlink" href="#summary-of-the-formulation-implemented" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="sd-summary"></span><h2><span class="section-number">4.8.6.9. </span>구현된 공식의 요약<a class="headerlink" href="#summary-of-the-formulation-implemented" title="이 제목의 고유 링크"></a></h2>
 <p>이 섹션에서는 현재 SubDyn에 구현된 방정식을 부동 바닥 케이스와 고정 바닥 케이스의 차이점으로 요약합니다. 사업자를 소개합니다 <span class="math notranslate nohighlight">\(R_{g2b}\)</span> (바디에 대한 전역 회전) 및 <span class="math notranslate nohighlight">\(R_{b2g}\)</span> (회전체를 전역으로), 연산자 오른쪽에 있는 배열에 작용합니다. 연산자는 배열에 있는 개별 3-벡터를 회전합니다. 하중 벡터에 적용되는 경우(예: <span class="math notranslate nohighlight">\(F_L\)</span>), 하중이 다음을 사용하여 축소된 시스템으로 전달되기 전에 실제로 전체 시스템의 하중에 회전이 적용됩니다. <span class="math notranslate nohighlight">\(\boldsymbol{T}\)</span> 행렬.</p>
 <div class="section" id="state-equation">
-<h3><span class="section-number">4.8.6.9.1. </span>상태 방정식<a class="headerlink" href="#state-equation" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.8.6.9.1. </span>상태 방정식<a class="headerlink" href="#state-equation" title="이 제목의 고유 링크"></a></h3>
 <p><strong>고정 바닥 케이스</strong></p>
 <div class="math notranslate nohighlight">
 \begin{align}
@@ -1601,7 +1601,7 @@ F_{6}^{n_2}  = + F_{12}^e(7:12)\]</div>
  \end{align}</div><p>참고: <span class="math notranslate nohighlight">\(F_L\)</span> <em>그렇지 않다</em> "추가 순간"을 포함합니다. TP의 (외부 + 중력) 하중과 가속도는 본체 좌표계로 회전됩니다.</p>
 </div>
 <div class="section" id="output-interface-reaction">
-<h3><span class="section-number">4.8.6.9.2. </span>출력: 인터페이스 반응<a class="headerlink" href="#output-interface-reaction" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.8.6.9.2. </span>출력: 인터페이스 반응<a class="headerlink" href="#output-interface-reaction" title="이 제목의 고유 링크"></a></h3>
 <p><strong>고정 바닥 케이스</strong></p>
 <div class="math notranslate nohighlight">
 \begin{align}
@@ -1655,7 +1655,7 @@ F_{6}^{n_2}  = + F_{12}^e(7:12)\]</div>
 \end{align}</div><p>참고: 1) <span class="math notranslate nohighlight">\(F_{L,\text{extra}}\)</span> 및 <span class="math notranslate nohighlight">\(F_{R,\text{extra}}\)</span> Guyan 기여에 "추가 순간"을 포함합니다. 2) Craig-Bampton 기여의 경우 하중은 연산자를 사용하여 신체 좌표계로 회전됩니다. <span class="math notranslate nohighlight">\(R_{g2b}\)</span> (전역에서 본체까지); 3) 회전 <span class="math notranslate nohighlight">\(R_{b2g}\tilde{M}_{Bm} \tilde{M}_{mB}R_{g2b}\)</span> 안정성 문제가 발생했기 때문에 수행되지 않습니다.</p>
 </div>
 <div class="section" id="output-nodal-motions">
-<h3><span class="section-number">4.8.6.9.3. </span>출력: 절점 동작<a class="headerlink" href="#output-nodal-motions" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.8.6.9.3. </span>출력: 절점 동작<a class="headerlink" href="#output-nodal-motions" title="이 제목의 고유 링크"></a></h3>
 <p><strong>고정 바닥 케이스</strong></p>
 <div class="math notranslate nohighlight" id="equation-nodalmotionfixed">
 <span class="eqno">(4.176)<a class="headerlink" href="#equation-nodalmotionfixed" title="이 방정식에 대한 영구 링크"></a></span>\[ \begin{align}\begin{aligned}\bar{U}_R  &amp;= T_I U_{TP}
@@ -1699,7 +1699,7 @@ F_{6}^{n_2}  = + F_{12}^e(7:12)\]</div>
 <p>여기서 <span class="math notranslate nohighlight">\(P\)</span> R 또는 L 노드 집합에 속하는 점입니다.</p>
 </div>
 <div class="section" id="outputs-to-file">
-<h3><span class="section-number">4.8.6.9.4. </span>파일로 출력:<a class="headerlink" href="#outputs-to-file" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.8.6.9.4. </span>파일로 출력:<a class="headerlink" href="#outputs-to-file" title="이 제목의 고유 링크"></a></h3>
 <p><strong>변</strong>: 파일에 기록된 절점 모션은 전역 좌표에 있습니다. 고정 바닥 케이스의 경우 <span class="math notranslate nohighlight">\(\bar{U}_L  = \bar{\Phi}_R \bar{U}_R +     \Phi_m q_m + U_{L,\text{SIM}}\)</span>
 (식 참조. <a class="reference internal" href="#equation-nodalmotionfixed">(4.176)</a>). 플로팅 케이스의 경우     <span class="math notranslate nohighlight">\(\bar{U}_L  = U_{L,\text{rigid}} + R_{b2g}(\Phi_m q_m +  U_{L,\text{SIM}})\)</span>. 부동 케이스의 출력에는 탄성 동작(MoorDyn에 반환된 것과 유사)이 포함되어 있지만 이러한 동작은 HydroDyn에 대한 글루 코드로 반환되지 않습니다(Eq.에 있는 "0" 참조). <a class="reference internal" href="#equation-nodalmotionfloating">(4.177)</a>).</p>
 <p><strong>잔뜩</strong>: 절점하중은 요소좌표계 파일에 기록됩니다. 바닥이 고정된 케이스와 플로팅 케이스의 경우 절차는 동일합니다.</p>
@@ -1710,8 +1710,8 @@ F_{6}^{n_2}  = + F_{12}^e(7:12)\]</div>
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
-        <a href="modeling.html" class="btn btn-neutral float-left" title="4.8.5. 모델링 고려 사항" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="modeling.html" class="btn btn-neutral float-left" title="4.8.5. 모델링 고려 사항" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
         <a href="future_work.html" class="btn btn-neutral float-right" title="4.8.7. 알려진 제한 사항 및 향후 작업" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

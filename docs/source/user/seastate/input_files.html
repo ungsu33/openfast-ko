@@ -21,7 +21,7 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="찾다" href="../../../search.html">
+    <link rel="search" title="검색" href="../../../search.html">
     <link rel="next" title="4.12.2. 출력 파일" href="output_files.html">
     <link rel="prev" title="4.12. SeaState 사용자 가이드 및 이론 매뉴얼" href="index.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/seastate/input_files.html"></head>
@@ -48,9 +48,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
@@ -91,16 +91,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -109,12 +109,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.12. </span>SeaState 사용자 가이드 및 이론 매뉴얼</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.12. </span>SeaState 사용자 가이드 및 이론 설명서</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.12.1. </span>입력 파일</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/seastate/input_files.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
+            <a href="../../../_sources/source/user/seastate/input_files.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -123,15 +123,15 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="input-files">
-<h1><span class="section-number">4.12.1. </span>입력 파일<a class="headerlink" href="#input-files" title="이 제목에 대한 영구 링크"></a></h1>
+<h1><span class="section-number">4.12.1. </span>입력 파일<a class="headerlink" href="#input-files" title="이 제목의 고유 링크"></a></h1>
 <p>사용자는 기본 SeaState 입력 파일을 통해 해상 상태 모델 매개변수를 구성합니다. 독립형 모드에서 사용하는 경우 추가 드라이버 입력 파일이 필요합니다. 이 드라이버 파일은 일반적으로 OpenFAST가 SeaState에 제공하는 초기화 입력을 지정합니다.</p>
 <p>행 수가 지정된 테이블을 제외하고는 입력 파일에서 행을 추가하거나 제거해서는 안 됩니다.</p>
 <div class="section" id="units">
-<h2><span class="section-number">4.12.1.1. </span>단위<a class="headerlink" href="#units" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.12.1.1. </span>단위<a class="headerlink" href="#units" title="이 제목의 고유 링크"></a></h2>
 <p>SeaState는 SI 시스템(kg, m, s)을 사용합니다.</p>
 </div>
 <div class="section" id="seastate-driver-input-file">
-<span id="sea-driver-input"></span><h2><span class="section-number">4.12.1.2. </span>SeaState 드라이버 입력 파일<a class="headerlink" href="#seastate-driver-input-file" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="sea-driver-input"></span><h2><span class="section-number">4.12.1.2. </span>SeaState 드라이버 입력 파일<a class="headerlink" href="#seastate-driver-input-file" title="이 제목의 고유 링크"></a></h2>
 <p>드라이버 입력 파일은 SeaState의 독립형 버전에만 필요하며 일반적으로 OpenFAST에서 생성된 입력을 포함합니다. 분리된 모델의 경우 해상 상태를 제어하는 ​​것이 필요합니다. SeaState 드라이버 입력 파일의 예는 부록 B에 나와 있습니다.</p>
 <p>다음을 설정합니다: <strong>Echo</strong> 원하는 경우 이 파일의 플래그를 TRUE로 지정하세요.
 <code class="docutils literal notranslate"><span class="pre">SeaStateDriver</span></code> 드라이버 입력 파일의 내용을 에코합니다(드라이버 파일의 오류를 디버깅하는 데 유용함). 에코 파일의 명명 규칙은 다음과 같습니다. <code class="docutils literal notranslate"><span class="pre">OutRootName.dvr.ech</span></code>. <strong>OutRootName</strong> 드라이버 입력 파일의 SEASTATE 섹션에 지정됩니다. 다음을 사용하여 중력 상수를 설정합니다. <strong>Gravity</strong> 매개변수. SeaState는 크기를 예상하므로 SI 단위에서는 9.80665로 설정됩니다. <span class="math notranslate nohighlight">\(\frac{m}{s^{2}}\)</span>.
@@ -145,15 +145,15 @@
 <strong>WrWvKinMod</strong> = 2 및 <strong>WaveElevSeriesFlag</strong> = TRUE는 둘 다 아래 설명된 기본 SeaState 입력 파일의 SPATIAL DISCRETIZATION 섹션에 의해 제어됩니다.</p>
 </div>
 <div class="section" id="seastate-primary-input-file">
-<span id="sea-primary-input"></span><h2><span class="section-number">4.12.1.3. </span>SeaState 기본 입력 파일<a class="headerlink" href="#seastate-primary-input-file" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="sea-primary-input"></span><h2><span class="section-number">4.12.1.3. </span>SeaState 기본 입력 파일<a class="headerlink" href="#seastate-primary-input-file" title="이 제목의 고유 링크"></a></h2>
 <p>SeaState 기본 입력 파일의 예가 부록 A에 나와 있습니다.</p>
 <div class="section" id="environmental-conditions">
-<h3><span class="section-number">4.12.1.3.1. </span>환경 조건<a class="headerlink" href="#environmental-conditions" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.12.1.3.1. </span>환경 조건<a class="headerlink" href="#environmental-conditions" title="이 제목의 고유 링크"></a></h3>
 <p>환경 조건은 이제 드라이버 입력 파일에 지정되지만 레거시 호환성을 위해 기본 입력 파일에 남아 있습니다. 드라이버 입력 파일에 지정된 값을 전달하려면 키워드 DEFAULT를 사용하십시오. 그렇지 않으면 기본 입력 파일에 제공된 값이 드라이버 입력 파일에 제공된 값을 덮어씁니다. <strong>WtrDens</strong> 물의 밀도를 지정하며 0보다 크거나 같은 값이어야 합니다. 바닷물의 일반적인 값은 약 1025kg/m입니다.<sup>3</sup>. <strong>WtrDpth</strong> MSL 참조를 기준으로 수심(평평한 해저의 깊이)을 지정하며 0보다 큰 값이어야 합니다. <strong>MSL2SWL</strong> MSL와 SWL 사이의 오프셋이며, SWL가 MSL보다 높을 때 양수입니다. 이 매개변수는 하부 구조 형상 정보를 변경하지 않고도 조수 또는 폭풍 해일 해수면 변화의 영향을 시뮬레이션할 때 유용합니다. 이 매개변수는 다음에서 사용되지 않습니다.
 <strong>WaveMod</strong> = 6이고 포텐셜 유동 모델을 사용하는 경우 0으로 설정해야 합니다(<strong>PotMod</strong> = 1 또는 2) HydroDyn.</p>
 </div>
 <div class="section" id="spatial-discretization">
-<h3><span class="section-number">4.12.1.3.2. </span>공간 이산화<a class="headerlink" href="#spatial-discretization" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.12.1.3.2. </span>공간 이산화<a class="headerlink" href="#spatial-discretization" title="이 제목의 고유 링크"></a></h3>
 <p>SPATIAL DISCRETIZATION 섹션은 웨이브 그리드 생성을 제어합니다. 이 파동 그리드는 주로 HydroDyn에서 사용되지만 OpenFAST의 다른 모듈에서도 수중 구조물에 대한 유체 역학 및 정수압 하중을 계산하는 데 사용됩니다. HydroDyn의 띠 이론 부재가 하중을 평가할 때 구조물의 순간 변위 위치에서 파동 운동학과 동적 압력을 사용할 수 있도록 파동 그리드가 추가되었습니다. 또한 높은 바람 추력으로 인한 것과 같은 수평면의 큰 표류 운동을 기반으로 HydroDyn의 포텐셜 유동 파동을 보정할 수 있습니다.</p>
 <p>OpenFAST의 이전 버전에서는 스트립 이론 부재에 대한 포텐셜 유동 파동 여기 및 파동장이 변위되지 않은 위치의 구조로 미리 계산되었습니다. 이 작동 모드는 더 이상 OpenFAST에 존재하지 않으며 사용자가 HydroDyn에서 스트립 이론 및/또는 포텐셜 유동 유체 역학 하중을 평가할 때 구조 변위를 고려하지 않기로 선택한 경우에도 파동 그리드를 항상 정의해야 합니다.</p>
 <p>현재 SeaState 웨이브 그리드는 항상 전역 원점의 중심에 있고 대칭을 기준으로 합니다. <em>XZ</em>-비행기와 <em>YZ</em>-비행기.</p>
@@ -167,7 +167,7 @@
 <p>OpenFAST는 시뮬레이션 시작 시 파동장 속도, 가속도, 동적 압력 및 파고를 미리 계산하고 저장합니다. 웨이브 그리드를 생성하고 유지하는 것은 긴 시뮬레이션의 경우 메모리 집약적일 수 있습니다. 사용자는 메모리 사용량을 줄이기 위해 웨이브 그리드를 필요한 것보다 더 크거나 더 미세하게 설정하지 않아야 합니다. 감소 <strong>WaveTMax</strong> 또는 증가 <strong>WaveDT</strong> (아래 WAVES 섹션 참조) 메모리 사용량도 줄어듭니다. 긴 볏파(방향성 확산 없음)의 경우 <em>X</em>-방향(또는 <em>Y</em>-방향), <strong>NY</strong> (또는 <strong>NX</strong>)는 메모리 절약을 위해 최소 허용 값인 2로 줄일 수 있습니다.</p>
 </div>
 <div class="section" id="waves">
-<h3><span class="section-number">4.12.1.3.3. </span>파도<a class="headerlink" href="#waves" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.12.1.3.3. </span>파도<a class="headerlink" href="#waves" title="이 제목의 고유 링크"></a></h3>
 <p>입력 파일의 WAVES 섹션은 HydroDyn의 스트립 이론 및 포텐셜 유동 모델링에서 사용되는 1차 파동의 내부 생성 또는 외부에서 생성된 파동의 사용을 제어합니다. 이 섹션의 파동 스펙트럼 설정은 1차 파동 주파수 구성요소에만 적용됩니다. 2차 항이 선택적으로 활성화된 경우 - 다음을 참조하세요.
 <a class="reference internal" href="#sea-2nd-order-waves-input"><span class="std std-ref">2차 파동</span></a> 및 <a class="reference internal" href="../hydrodyn/input_files.html#hd-2nd-order-floating-platform-forces-input"><span class="std std-ref">2차 부유식 플랫폼 힘</span></a>
 아래 섹션 - 2차 항은 1차 파동 성분 진폭을 사용하여 계산되며 추가 에너지가 파동 스펙트럼에 추가됩니다(차 및 주파수 합산).</p>
@@ -266,7 +266,7 @@
 <p>지정된 파동 성분은 1차 및 긴 파상으로 간주되지만 물리적 정확성은 확인되지 않습니다. 2차 항이 선택적으로 활성화된 경우 - 2를 참조하세요.<sup>ND</sup>-ORDER WAVES 섹션 아래 - 2차 항은 지정된 파동 구성 요소를 사용하여 계산되며 추가 에너지가 파동 스펙트럼에 추가됩니다(차 및 주파수 합산).</p>
 </div>
 <div class="section" id="nd-order-waves">
-<span id="sea-2nd-order-waves-input"></span><h3><span class="section-number">4.12.1.3.4. </span>2<sup>nd</sup>-오더 웨이브<a class="headerlink" href="#nd-order-waves" title="이 제목에 대한 영구 링크"></a></h3>
+<span id="sea-2nd-order-waves-input"></span><h3><span class="section-number">4.12.1.3.4. </span>2<sup>nd</sup>-오더 웨이브<a class="headerlink" href="#nd-order-waves" title="이 제목의 고유 링크"></a></h3>
 <p>2<sup>ND</sup>-ORDER WAVES 섹션(다음과 같은 경우에는 사용되지 않음) <strong>WaveMod</strong> = 0 또는 6) 입력 파일의 스트립 이론 솔루션에서 사용되는 파동 운동학에 2차 기여를 추가하는 옵션을 허용합니다. 2차 항이 선택적으로 활성화되면 2차 항은 1차 파동 성분 진폭을 사용하여 계산되고 추가 에너지가 파동 스펙트럼에 추가됩니다(차이 및 주파수 합산). 위 WAVES 섹션의 1차 항을 포함하지 않으면 2차 항을 계산할 수 없습니다. 2차 항을 활성화하면 실제 표면파의 비선형성 중 일부를 캡처할 수 있어 더 많은 계산 노력(주로 SeaState 초기화에서)을 희생하여 바다 상태 및 관련 파도 하중을 보다 정확하게 모델링할 수 있습니다.</p>
 <p>이 섹션의 차단 주파수는 SeaState(HydroDyn의 스트립 이론 부하에 사용됨)의 2차 파동 운동학과 <strong>2차 포텐셜 유동 하중</strong> HydroDyn에서는 2차 항 자체가 별도로 활성화됩니다. 스트립 이론에서 사용되는 2차 파동 운동학은 이 섹션에서 활성화되고 포텐셜 유동 이론의 2차 회절 하중은 다음에서 활성화됩니다. <a class="reference internal" href="../hydrodyn/input_files.html#hd-2nd-order-floating-platform-forces-input"><span class="std std-ref">2차 부유식 플랫폼 힘</span></a> 기본 HydroDyn 입력 파일의 섹션. SeaState의 파고 출력에는 이 섹션에서 2차 파동 운동학이 활성화된 경우 2차 기여만 포함됩니다.</p>
 <p>띠이론 해법에서 2차 파동 운동학을 사용하려면 다음을 설정하십시오.
@@ -277,7 +277,7 @@
 <p>2차 항은 1차 파동 성분 진폭을 사용하여 계산되므로 2차 차단 주파수(<strong>WvLowCOffD</strong>, <strong>WvHiCOffD</strong>, <strong>WvLowCOffS</strong>, 및 <strong>WvHiCOffS</strong>)는 1차 차단 주파수(<strong>WvLowCOff</strong> 및 <strong>WvHiCOff</strong>) WAVES 섹션에서. 그러나 2차 차단 주파수는 1차 효과에서만 파생되는 2차 차주파수 포텐셜 유동 하중에 대한 Newman의 근사치에서는 사용되지 않습니다.</p>
 </div>
 <div class="section" id="constrained-wave">
-<h3><span class="section-number">4.12.1.3.5. </span>제한된 파동<a class="headerlink" href="#constrained-wave" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.12.1.3.5. </span>제한된 파동<a class="headerlink" href="#constrained-wave" title="이 제목의 고유 링크"></a></h3>
 <p>해당 <strong>CONSTRAINED WAVE</strong> 섹션을 통해 사용자는 JONSWAP 확률론적 파동(<strong>WaveMod</strong> = 2), Taylor, Jonathan, Harland(1997)의 제한된 NewWave 방법을 따릅니다.</p>
 <p><strong>ConstWaveMod</strong> 내장파가 없는 경우 0으로, SWL에서 규정된 마루 높이가 있는 내장파의 경우 1, 규정된 마루에서 골까지의 파고가 있는 내장파의 경우 2로 설정할 수 있습니다.</p>
 <p><strong>CrestHmax</strong> (m 단위)는 다음과 같은 경우 SWL로부터 마루 고도의 두 배입니다. <strong>ConstWaveMod</strong> = 1 또는 다음과 같은 경우 최고점에서 최저점까지의 파고 <strong>ConstWaveMod</strong> = 2. <strong>CrestHmax</strong>
@@ -289,7 +289,7 @@
 <p>2차 파동 구성 요소가 없는 경우 마루 고도 또는 마루 높이가 사용자 입력과 일치합니다. <strong>CrestHmax</strong> 정확히. 다음 중 하나를 설정하여 2차 파동 성분이 포함된 경우 <strong>WvDiffQTF</strong> 또는 <strong>WvSumQTF</strong> TRUE로 결과적인 마루 표고 또는 마루 높이는 다음에서 벗어날 수 있습니다. <strong>CrestHmax</strong>.</p>
 </div>
 <div class="section" id="current">
-<h3><span class="section-number">4.12.1.3.6. </span>현재의<a class="headerlink" href="#current" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.12.1.3.6. </span>현재의<a class="headerlink" href="#current" title="이 제목의 고유 링크"></a></h3>
 <p>설정을 통해 현재 모델로 인한 유속을 포함할 수 있습니다.
 <strong>CurrMod</strong> = 1. 만약 <strong>CurrMod</strong> 0으로 설정되면 시뮬레이션에 전류가 포함되지 않습니다. <strong>CurrMod</strong> = 2는 다음을 요구합니다. <em>UserCurrent()</em>
 서브루틴 <em>전류.f90</em> 소스 파일은 사용자가 구현해야 하며 독립 실행형 SeaState 프로그램 또는 OpenFAST를 다시 컴파일해야 합니다. 전류는 HydroDyn의 띠 이론 구성원의 점성 항력 항(분산 및 덩어리 모두)을 통해 꾸준한 유체역학적 하중을 유도합니다. 전류는 포텐셜 유동 솔루션에서 사용되지 않습니다. <strong>WaveMod</strong> = 6.</p>
@@ -315,11 +315,11 @@
 <p>모든 곳에서 깊이와 무관한 전류 속도는 다음과 같습니다. <strong>CurrDIV</strong>. 이 흐름에는 진행 방향이 있습니다. <strong>CurrDIDir</strong>, 다음과 같은 규칙을 따릅니다. <strong>WaveDir</strong>.</p>
 </div>
 <div class="section" id="maccamy-fuchs-diffraction-model">
-<h3><span class="section-number">4.12.1.3.7. </span>MacCamy-Fuchs 회절 모델<a class="headerlink" href="#maccamy-fuchs-diffraction-model" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.12.1.3.7. </span>MacCamy-Fuchs 회절 모델<a class="headerlink" href="#maccamy-fuchs-diffraction-model" title="이 제목의 고유 링크"></a></h3>
 <p>HydroDyn는 이제 스트립 이론 구성원을 위한 MacCamy-Fuchs 파동 회절 솔루션을 지원합니다. 이 옵션은 파장이 부재 직경과 비슷하거나 작을 때 스트립 이론의 파동을 감쇠시켜 더 높은 주파수에서 보다 현실적인 부하를 제공합니다. 메모리 사용을 제한하기 위해 현재 OpenFAST 구현에서는 MacCamy-Fuchs 회절 솔루션을 사용하는 HydroDyn의 모든 스트립 이론 구성원이 다음과 같이 주어진 기준 직경의 +/-10% 이내의 직경을 가져야 합니다. <strong>MCFD</strong> 여기. MacCamy-Fuchs 회절 용액이 HydroDyn에서 사용되지 않는 경우, <strong>MCFD</strong> 메모리 사용 및 SeaState 초기화 시간을 줄이기 위해 0보다 작거나 같은 숫자로 설정합니다.</p>
 </div>
 <div class="section" id="output-channels">
-<h3><span class="section-number">4.12.1.3.8. </span>출력 채널<a class="headerlink" href="#output-channels" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.12.1.3.8. </span>출력 채널<a class="headerlink" href="#output-channels" title="이 제목의 고유 링크"></a></h3>
 <p>이 섹션에서는 SeaState에 의해 생성된 출력 수량을 제어합니다. 하나 이상의 출력 매개변수 이름을 포함하는 따옴표 붙은 문자열을 포함하는 하나 이상의 행을 입력하십시오. 쉼표, 세미콜론, 공백 및/또는 탭의 조합으로 출력 매개변수 이름을 구분합니다. 매개변수 이름 앞에 빼기 기호, "-", 밑줄, "_" 또는 문자 "m" 또는 "M"을 붙이면 SeaState는 데이터를 쓰기 전에 해당 채널의 값에 -1을 곱합니다. 매개변수는 반드시 입력 파일에 나열된 순서대로 작성되지는 않습니다. SeaState를 사용하면 여러 줄을 사용하여 목록을 의미 있는 그룹으로 나누고 줄을 더 짧게 만들 수 있습니다. 모든 행에서 닫는 따옴표 뒤에 설명을 입력할 수 있습니다. 줄 시작 부분이나 줄 시작 부분에 있는 따옴표 붙은 문자열의 시작 부분에 "END"라는 문자열이 포함된 줄을 입력하면 SeaState가 더 많은 채널 이름 줄 검색을 중단하게 됩니다. SeaState가 알 수 없거나 유효하지 않은 채널 이름을 발견하면 사용자에게 경고하지만 출력 파일에서 의심스러운 채널을 제거합니다. 가능한 출력 매개변수의 전체 목록은 부록 C를 참조하십시오.</p>
 <p>최대 9개의 파도 고도 출력을 생성할 수 있습니다. <strong>NWaveElev</strong>
 숫자(0에서 9 사이)와 공백으로 구분된 목록을 결정합니다. <strong>WaveElevxi</strong> 및 <strong>WaveElevyi</strong> 이들의 위치를 ​​결정 <strong>NWaveElev</strong> 전역 관성계 좌표계의 점 수.</p>
@@ -332,8 +332,8 @@
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
-        <a href="index.html" class="btn btn-neutral float-left" title="4.12. SeaState 사용자 가이드 및 이론 매뉴얼" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="index.html" class="btn btn-neutral float-left" title="4.12. SeaState 사용자 가이드 및 이론 매뉴얼" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
         <a href="output_files.html" class="btn btn-neutral float-right" title="4.12.2. 출력 파일" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

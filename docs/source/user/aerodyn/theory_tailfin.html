@@ -21,7 +21,7 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="찾다" href="../../../search.html">
+    <link rel="search" title="검색" href="../../../search.html">
     <link rel="next" title="4.3.10. 참고자료" href="zrefs.html">
     <link rel="prev" title="4.3.8. 불안정한 공기 역학" href="theory_ua.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/aerodyn/theory_tailfin.html"></head>
@@ -48,9 +48,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
@@ -69,8 +69,8 @@
 <li class="toctree-l4"><a class="reference internal" href="#unsteady-slender-body-model">4.3.9.3. 불안정한 날씬한 몸매 모델</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.3.10. 참고자료</a></li>
-<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.3.11. 충수</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.3.10. 참고문헌</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.3.11. 부록</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
@@ -97,16 +97,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -115,12 +115,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.3. </span>AeroDyn 사용자 가이드 및 이론 매뉴얼</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.3. </span>AeroDyn 사용자 가이드 및 이론 설명서</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.3.9. </span>꼬리지느러미 공기역학 이론</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/aerodyn/theory_tailfin.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
+            <a href="../../../_sources/source/user/aerodyn/theory_tailfin.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -129,9 +129,9 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="tail-fin-aerodynamics-theory">
-<span id="tf-aerotheory"></span><h1><span class="section-number">4.3.9. </span>꼬리지느러미 공기역학 이론<a class="headerlink" href="#tail-fin-aerodynamics-theory" title="이 제목에 대한 영구 링크"></a></h1>
+<span id="tf-aerotheory"></span><h1><span class="section-number">4.3.9. </span>꼬리지느러미 공기역학 이론<a class="headerlink" href="#tail-fin-aerodynamics-theory" title="이 제목의 고유 링크"></a></h1>
 <div class="section" id="notations">
-<h2><span class="section-number">4.3.9.1. </span>표기법<a class="headerlink" href="#notations" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.3.9.1. </span>표기법<a class="headerlink" href="#notations" title="이 제목의 고유 링크"></a></h2>
 <p><strong>꼬리 지느러미 공기 역학적 기준점</strong></p>
 <p>꼬리지느러미 공기역학적 기준점, <span class="math notranslate nohighlight">\(\boldsymbol{x}_\text{ref}\)</span>, 은 꼬리날개에 대한 공기역학적 하중이 계산되는 지점입니다. 구조 솔버는 각 시간 단계에서 기준점의 순간 위치, 속도, 가속도를 계산합니다. 타워 상단에 대한 기준점의 초기 위치는 사용자 입력입니다. 일반적인 선택은 핀의 앞쪽 가장자리/정점 또는 받음각이 0인 압력 중심에 가까운 지점입니다. 다른 공기역학적 입력(예: 공기역학적 모멘트 계수)은 기준점 선택과 일치해야 합니다.</p>
 <p><strong>꼬리 지느러미 좌표계</strong></p>
@@ -210,11 +210,11 @@ m_{z_\text{tf}} = \frac{1}{2}\rho V_{\text{rel},\perp}^2 Ac \, C_m(\alpha)\]</di
 <p>보다 발전된 모델은 후류 경계 외부에 있을 때 유도 속도를 0으로 설정하거나 타워 그림자와 같은 후류 모델을 포함할 수 있습니다. 해당 옵션은 아직 사용할 수 없습니다.</p>
 </div>
 <div class="section" id="polar-based-model">
-<h2><span class="section-number">4.3.9.2. </span>극좌표 기반 모델<a class="headerlink" href="#polar-based-model" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.3.9.2. </span>극좌표 기반 모델<a class="headerlink" href="#polar-based-model" title="이 제목의 고유 링크"></a></h2>
 <p>Polar 기반 모델에서는 사용자가 공기역학적 계수를 제공합니다. <span class="math notranslate nohighlight">\(C_l, C_d, C_m\)</span>, 표로 작성된 데이터로서 공격 각도의 기능. 공기역학적 모멘트는 기준점에서 제공되는 것으로 가정됩니다. 일반적인 관행은 극좌표 데이터에 대해 받음각이 0인 압력 중심을 사용하는 것이므로 사용자는 이러한 지점을 핀의 기준점으로 선택하기를 원할 수 있습니다. 표로 작성된 데이터는 다음과 같이 제공된 에어포일 목록의 일부로 제공됩니다. <cite>AFNames</cite> AeroDyn 입력 파일에서. 사용자는 인덱스만 표시하면 됩니다. <cite>TFinAFIndex</cite> 목록 내에서 <cite>AFNames</cite> 꼬리 지느러미에 사용할 극성을 나타냅니다.</p>
 </div>
 <div class="section" id="unsteady-slender-body-model">
-<h2><span class="section-number">4.3.9.3. </span>불안정한 날씬한 몸매 모델<a class="headerlink" href="#unsteady-slender-body-model" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.3.9.3. </span>불안정한 날씬한 몸매 모델<a class="headerlink" href="#unsteady-slender-body-model" title="이 제목의 고유 링크"></a></h2>
 <p>꼬리 지느러미의 비정상 공기 역학은 비정상 슬렌더 바디 이론(Unsteady Slender Body Theory)을 기반으로 모델링되었습니다. 이론은 높은 요각 효과를 포함하도록 확장되었습니다. <span id="id1">[<a class="reference internal" href="zrefs.html#id14" title="모하메드 M 함맘(Mohamed M Hammam), 데이비드 우드(David Wood), 브렌트 서머빌(Brent Summerville). 소형 풍력 터빈용 꼬리 핀의 요 동작 모델링: 2021년 11월 22일~2024년 5월 21일. 기술 보고서, 국립 재생 에너지 연구소(NREL), Golden, CO(미국), 2023.">ad-HWS23</a>]</span>. 구현을 단순화하기 위해 꼬리 지느러미의 암 길이가 현보다 훨씬 길고 특성 시간(현/풍속)이 작다고 가정합니다.</p>
 <p>꼬리 지느러미에 대한 수직력은 세 가지 기여(잠재적 양력, 와류 양력, 항력)의 합으로 설명할 수 있으며 분리 함수에 따라 가중치가 부여됩니다. <span class="math notranslate nohighlight">\(x_i\)</span> 처럼:</p>
 <div class="math notranslate nohighlight" id="equation-tfusbforce">
@@ -232,8 +232,8 @@ m_{z_\text{tf}} = \frac{1}{2}\rho V_{\text{rel},\perp}^2 Ac \, C_m(\alpha)\]</di
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
-        <a href="theory_ua.html" class="btn btn-neutral float-left" title="4.3.8. 불안정한 공기 역학" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="theory_ua.html" class="btn btn-neutral float-left" title="4.3.8. 불안정한 공기 역학" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
         <a href="zrefs.html" class="btn btn-neutral float-right" title="4.3.10. 참고자료" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

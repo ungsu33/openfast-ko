@@ -20,7 +20,7 @@
         <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="찾다" href="../../../search.html">
+    <link rel="search" title="검색" href="../../../search.html">
     <link rel="next" title="4.9.1. 용법" href="usage.html">
     <link rel="prev" title="4.8.14. 부록 F. SubDyn의 주요 변경 사항" href="../subdyn/appendixF.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/extptfm/index.html"></head>
@@ -47,9 +47,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
@@ -63,7 +63,7 @@
 <li class="toctree-l3"><a class="reference internal" href="usage.html">4.9.1. 용법</a></li>
 <li class="toctree-l3"><a class="reference internal" href="input_files.html">4.9.2. 입력 파일</a></li>
 <li class="toctree-l3"><a class="reference internal" href="theory.html">4.9.3. 이론</a></li>
-<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.9.4. 참고자료</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.9.4. 참고문헌</a></li>
 <li class="toctree-l3"><a class="reference internal" href="appendix.html">4.9.5. 예제 파일</a></li>
 </ul>
 </li>
@@ -85,16 +85,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -103,11 +103,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.9. </span>ExtPtfm</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/extptfm/index.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
+            <a href="../../../_sources/source/user/extptfm/index.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -116,7 +116,7 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="extptfm">
-<h1><span class="section-number">4.9. </span>ExtPtfm<a class="headerlink" href="#extptfm" title="이 제목에 대한 영구 링크"></a></h1>
+<h1><span class="section-number">4.9. </span>ExtPtfm<a class="headerlink" href="#extptfm" title="이 제목의 고유 링크"></a></h1>
 <p>이 문서에서는 ExtPtfm 모듈을 소개합니다. ExtPtfm 모듈은 수퍼엘리먼트를 사용하여 하부 구조(또는 지지 구조)를 모델링하는 데 사용됩니다.</p>
 <p>모듈의 프리젠테이션과 그 적용은 다음 기사에 게재되었습니다. <span id="id1">[<a class="reference internal" href="zrefs.html#id2" title="E. Branlard, M. Shields, B. Anderson, R. Damiani, F. Wendt, J. Jonkman, W. Musial 및 B. Foley. OpenFAST의 순차적 하중 계산을 위한 하위 구조의 상위 요소 감소. 물리학 저널: 컨퍼런스 시리즈, 1452:012033, 2020년 1월. URL: https://doi.org/10.1088/1742-6596/1452/1/012033, doi:10.1088/1742-6596/1452/1/012033.">ep-BSA+20</a>]</span>
 (사용 가능 <a class="reference external" href="https://iopscience.iop.org/article/10.1088/1742-6596/1452/1/012033" target="_blank" rel="noopener noreferrer">여기</a>) 참고자료로 활용 가능합니다.</p>
@@ -144,7 +144,7 @@
 <li class="toctree-l2"><a class="reference internal" href="theory.html#state-space-representation-of-the-module-extptfm">4.9.3.3. 모듈의 상태공간 표현 <em>ExtPtfm</em></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="zrefs.html">4.9.4. 참고자료</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zrefs.html">4.9.4. 참고문헌</a></li>
 <li class="toctree-l1"><a class="reference internal" href="appendix.html">4.9.5. 예제 파일</a></li>
 </ul>
 </div>
@@ -153,8 +153,8 @@
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
-        <a href="../subdyn/appendixF.html" class="btn btn-neutral float-left" title="4.8.14. 부록 F. SubDyn의 주요 변경 사항" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="../subdyn/appendixF.html" class="btn btn-neutral float-left" title="4.8.14. 부록 F. SubDyn의 주요 변경 사항" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
         <a href="usage.html" class="btn btn-neutral float-right" title="4.9.1. 용법" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

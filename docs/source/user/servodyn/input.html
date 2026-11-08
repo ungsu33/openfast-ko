@@ -20,7 +20,7 @@
         <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="찾다" href="../../../search.html">
+    <link rel="search" title="검색" href="../../../search.html">
     <link rel="next" title="4.15.2. 확장 블레이드 인터페이스" href="ExtendedBladedInterface.html">
     <link rel="prev" title="4.15. ServoDyn 사용자 가이드" href="index.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/servodyn/input.html"></head>
@@ -47,9 +47,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
@@ -86,16 +86,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -104,12 +104,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
           <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.15. </span>ServoDyn 사용자 가이드</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.15.1. </span>입력 파일</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/servodyn/input.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
+            <a href="../../../_sources/source/user/servodyn/input.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -118,17 +118,17 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="input-files">
-<span id="srvd-input"></span><h1><span class="section-number">4.15.1. </span>입력 파일<a class="headerlink" href="#input-files" title="이 제목에 대한 영구 링크"></a></h1>
+<span id="srvd-input"></span><h1><span class="section-number">4.15.1. </span>입력 파일<a class="headerlink" href="#input-files" title="이 제목의 고유 링크"></a></h1>
 <p>사용자는 기본 ServoDyn 입력 파일뿐만 아니라 구조 제어를 위한 별도의 입력 파일 및 컨트롤러 DLL를 통해 서보 역학 모델 매개변수를 구성합니다.  <em>이 정보는 불완전하며 나중에 여기에 문서화될 예정입니다.</em></p>
 <div class="section" id="units">
-<h2><span class="section-number">4.15.1.1. </span>단위<a class="headerlink" href="#units" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.15.1.1. </span>단위<a class="headerlink" href="#units" title="이 제목의 고유 링크"></a></h2>
 <p>ServoDyn는 SI 시스템(kg, m, s, N)을 사용합니다. 별도로 지정하지 않는 한 각도는 라디안 단위로 간주됩니다.</p>
 </div>
 <div class="section" id="servodyn-primary-input-file">
-<h2><span class="section-number">4.15.1.2. </span>ServoDyn 기본 입력 파일<a class="headerlink" href="#servodyn-primary-input-file" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.15.1.2. </span>ServoDyn 기본 입력 파일<a class="headerlink" href="#servodyn-primary-input-file" title="이 제목의 고유 링크"></a></h2>
 <p>기본 ServoDyn 입력 파일은 컨트롤러의 모델링 옵션을 정의합니다. 여기에는 일부 DLL 옵션과 구조 제어 옵션(일반적으로 조정된 질량 댐퍼 시스템)이 포함됩니다.</p>
 <div class="section" id="simulation-control">
-<h3><span class="section-number">4.15.1.2.1. </span>시뮬레이션 제어<a class="headerlink" href="#simulation-control" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.15.1.2.1. </span>시뮬레이션 제어<a class="headerlink" href="#simulation-control" title="이 제목의 고유 링크"></a></h3>
 <p><strong>Echo</strong> [깃발]</p>
 <blockquote>
 <div><p>&lt;RootName&gt;.ech에 대한 Echo 입력 데이터</p>
@@ -139,7 +139,7 @@
 </div></blockquote>
 </div>
 <div class="section" id="pitch-control">
-<h3><span class="section-number">4.15.1.2.2. </span>피치 제어<a class="headerlink" href="#pitch-control" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.15.1.2.2. </span>피치 제어<a class="headerlink" href="#pitch-control" title="이 제목의 고유 링크"></a></h3>
 <p><strong>PCMode</strong> [스위치]</p>
 <blockquote>
 <div><p>피치 제어 모드 {0: 없음, 3: 루틴 PitchCntrl에서 사용자 정의, 4: Simulink/Labview에서 사용자 정의, 5: Bladed 스타일 DLL에서 사용자 정의}</p>
@@ -225,7 +225,7 @@
 </div></blockquote>
 </div>
 <div class="section" id="generator-and-torque-control">
-<h3><span class="section-number">4.15.1.2.3. </span>발전기 및 토크 제어<a class="headerlink" href="#generator-and-torque-control" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.15.1.2.3. </span>발전기 및 토크 제어<a class="headerlink" href="#generator-and-torque-control" title="이 제목의 고유 링크"></a></h3>
 <p><strong>VSContrl</strong> [스위치]</p>
 <blockquote>
 <div><p>가변 속도 제어 모드 {0: 없음, 1: 단순 VS, 3: 루틴 UserVSCont에서 사용자 정의, 4: Simulink/Labview에서 사용자 정의, 5: Bladed 스타일 DLL에서 사용자 정의}</p>
@@ -261,7 +261,7 @@
 </div></blockquote>
 </div>
 <div class="section" id="simple-variable-speed-torque-control">
-<h3><span class="section-number">4.15.1.2.4. </span>간단한 가변 속도 토크 제어<a class="headerlink" href="#simple-variable-speed-torque-control" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.15.1.2.4. </span>간단한 가변 속도 토크 제어<a class="headerlink" href="#simple-variable-speed-torque-control" title="이 제목의 고유 링크"></a></h3>
 <p><strong>VS_RtGnSp</strong> [rpm]</p>
 <blockquote>
 <div><p>간단한 가변 속도 발전기 제어를 위한 정격 발전기 속도(HSS 측)
@@ -282,7 +282,7 @@
 </div></blockquote>
 </div>
 <div class="section" id="simple-induction-generator">
-<h3><span class="section-number">4.15.1.2.5. </span>단순 유도 발전기<a class="headerlink" href="#simple-induction-generator" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.15.1.2.5. </span>단순 유도 발전기<a class="headerlink" href="#simple-induction-generator" title="이 제목의 고유 링크"></a></h3>
 <p><strong>SIG_SlPc</strong>     [%]</p>
 <blockquote>
 <div><p>정격 발전기 슬립 비율 <em>[다음 경우에만 사용됩니다.</em> <strong>VSContrl==0</strong> <em>및</em>
@@ -304,7 +304,7 @@
 </div></blockquote>
 </div>
 <div class="section" id="thevenin-equivalent-induction-generator">
-<h3><span class="section-number">4.15.1.2.6. </span>테브닌 등가 유도 발생기<a class="headerlink" href="#thevenin-equivalent-induction-generator" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.15.1.2.6. </span>테브닌 등가 유도 발생기<a class="headerlink" href="#thevenin-equivalent-induction-generator" title="이 제목의 고유 링크"></a></h3>
 <p><strong>TEC_Freq</strong>     [Hz]</p>
 <blockquote>
 <div><p>라인 주파수 [50 또는 60] <em>[다음 경우에만 사용됩니다.</em> <strong>VSContrl==0</strong> <em>및</em>
@@ -345,7 +345,7 @@
 </div></blockquote>
 </div>
 <div class="section" id="high-speed-shaft-brake">
-<h3><span class="section-number">4.15.1.2.7. </span>고속 샤프트 브레이크<a class="headerlink" href="#high-speed-shaft-brake" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.15.1.2.7. </span>고속 샤프트 브레이크<a class="headerlink" href="#high-speed-shaft-brake" title="이 제목의 고유 링크"></a></h3>
 <p><strong>HSSBrMode</strong>     [스위치]</p>
 <blockquote>
 <div><p>HSS 브레이크 모델 {0: 없음, 1: 단순, 3: 루틴 UserHSSBr에서 사용자 정의, 4: Simulink/Labview에서 사용자 정의, 5: Bladed 스타일 DLL에서 사용자 정의}</p>
@@ -365,7 +365,7 @@
 </div></blockquote>
 </div>
 <div class="section" id="nacelle-yaw-control">
-<h3><span class="section-number">4.15.1.2.8. </span>나셀 요 제어<a class="headerlink" href="#nacelle-yaw-control" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.15.1.2.8. </span>나셀 요 제어<a class="headerlink" href="#nacelle-yaw-control" title="이 제목의 고유 링크"></a></h3>
 <p><strong>YCMode</strong>        [스위치]</p>
 <blockquote>
 <div><p>Yaw 제어 모드 {0: 없음, 3: 루틴 UserYawCont에서 사용자 정의, 4: Simulink/Labview에서 사용자 정의, 5: Bladed 스타일 DLL에서 사용자 정의}</p>
@@ -400,7 +400,7 @@
 </div></blockquote>
 </div>
 <div class="section" id="aerodynamic-flow-control">
-<span id="srvd-afc-inputs"></span><h3><span class="section-number">4.15.1.2.9. </span>공기 역학적 흐름 제어<a class="headerlink" href="#aerodynamic-flow-control" title="이 제목에 대한 영구 링크"></a></h3>
+<span id="srvd-afc-inputs"></span><h3><span class="section-number">4.15.1.2.9. </span>공기 역학적 흐름 제어<a class="headerlink" href="#aerodynamic-flow-control" title="이 제목의 고유 링크"></a></h3>
 <p><strong>AfCmode</strong>       [스위치]</p>
 <blockquote>
 <div><p>에어포일 제어 모드 {0: 없음, 1: 사인파 사이클, 4: Simulink/Labview에서 사용자 정의, 5: Bladed 스타일 DLL에서 사용자 정의}</p>
@@ -422,7 +422,7 @@
 <p>다음의 경우 <strong>AfCmode==1</strong>, 에어포일 흐름 제어를 위한 신호는 다음 식으로 설정됩니다. <em>AfC_Mean + p%AfC_Amp*cos( 방위각 + AfC_phase)</em> 여기서 방위각은 특정 블레이드의 방위각입니다(방위각=0은 수직으로 간주됩니다).</p>
 </div>
 <div class="section" id="cable-control">
-<span id="srvd-cablecontrol-inputs"></span><h3><span class="section-number">4.15.1.2.10. </span>케이블 제어<a class="headerlink" href="#cable-control" title="이 제목에 대한 영구 링크"></a></h3>
+<span id="srvd-cablecontrol-inputs"></span><h3><span class="section-number">4.15.1.2.10. </span>케이블 제어<a class="headerlink" href="#cable-control" title="이 제목의 고유 링크"></a></h3>
 <p>MoorDyn 또는 SubDyn 모듈에 지정된 케이블 요소의 제어는 블레이드형 컨트롤러에 의해 ServoDyn를 통해 제어될 수 있습니다. 각 케이블은 한 쌍의 컨트롤러 채널을 수신합니다. 하나는 요청된 케이블 길이 변경(DeltaL)용이고 다른 하나는 케이블 길이 변경 속도(DeltaLdot)용입니다. 채널 할당은 케이블 요소(현재 MoorDyn 및/또는 SubDyn)가 있는 모듈에 의해 요청되며 적절한 제어 채널에 매핑됩니다. 채널을 요청한 모듈에 대한 요약은 ServoDyn의 요약 파일 출력에서 ​​확인할 수 있습니다. DLL에 연결하는 경우 최대 100개의 채널 그룹이 요청될 수 있고, Simulink에 연결되는 경우에는 20개의 채널 그룹이 요청될 수 있습니다.</p>
 <p><strong>CCmode</strong>        [스위치]</p>
 <blockquote>
@@ -431,7 +431,7 @@
 </div></blockquote>
 </div>
 <div class="section" id="structural-control">
-<span id="srvd-stc-inputs"></span><h3><span class="section-number">4.15.1.2.11. </span>구조 제어<a class="headerlink" href="#structural-control" title="이 제목에 대한 영구 링크"></a></h3>
+<span id="srvd-stc-inputs"></span><h3><span class="section-number">4.15.1.2.11. </span>구조 제어<a class="headerlink" href="#structural-control" title="이 제목의 고유 링크"></a></h3>
 <p>다음을 참조: <a class="reference internal" href="../servodyn-stc/StC_input.html#stc-locations"><span class="std std-numref">섹션 4.17.1.2</span></a> 다음 각 옵션의 장착 위치에 대한 설명은 다음을 참조하세요.</p>
 <p><strong>NumBStC</strong>      [정수]</p>
 <blockquote>
@@ -467,7 +467,7 @@
 </div></blockquote>
 </div>
 <div class="section" id="bladed-controller-interface">
-<h3><span class="section-number">4.15.1.2.12. </span>블레이드 컨트롤러 인터페이스<a class="headerlink" href="#bladed-controller-interface" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.15.1.2.12. </span>블레이드 컨트롤러 인터페이스<a class="headerlink" href="#bladed-controller-interface" title="이 제목의 고유 링크"></a></h3>
 <p><strong>DLL_FileName</strong>  [-]</p>
 <blockquote>
 <div><p>Bladed-DLL 형식의 동적 라이브러리 {.dll [Windows] 또는 .so [Linux]}의 이름/위치 <em>[블레이드 인터페이스에만 사용]</em></p>
@@ -547,7 +547,7 @@
 </div></blockquote>
 </div>
 <div class="section" id="bladed-interface-torque-speed-look-up-table">
-<h3><span class="section-number">4.15.1.2.13. </span>블레이드 인터페이스 토크-속도 조회 테이블<a class="headerlink" href="#bladed-interface-torque-speed-look-up-table" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.15.1.2.13. </span>블레이드 인터페이스 토크-속도 조회 테이블<a class="headerlink" href="#bladed-interface-torque-speed-look-up-table" title="이 제목의 고유 링크"></a></h3>
 <p><strong>DLL_NumTrq</strong>    [-]</p>
 <blockquote>
 <div><p>기록 26: 토크-속도 조회 테이블의 포인트 수 {0 = 없음 및 최적 모드 매개변수 사용; 0이 아님 = 레코드 16을 0.0으로 설정하여 최적 모드 PARAMETERs를 무시} <em>[블레이드 인터페이스에만 사용]</em>
@@ -574,7 +574,7 @@
 </div></blockquote>
 </div>
 <div class="section" id="output">
-<span id="srvd-outputs"></span><h3><span class="section-number">4.15.1.2.14. </span>산출<a class="headerlink" href="#output" title="이 제목에 대한 영구 링크"></a></h3>
+<span id="srvd-outputs"></span><h3><span class="section-number">4.15.1.2.14. </span>산출<a class="headerlink" href="#output" title="이 제목의 고유 링크"></a></h3>
 <p><strong>SumPrint</strong>      [깃발]</p>
 <blockquote>
 <div><p>요약 데이터를 &lt;RootName&gt;.sum으로 인쇄합니다. 이 파일에는 입력 요약이 포함되어 있으며 사용 시 블레이드 스타일 컨트롤러와의 통신 채널에 대한 자세한 목록을 제공합니다. 이 정보는 컨트롤러를 디버깅하거나 ServoDyn 구성 방법을 확인하는 데 도움이 될 수 있습니다.</p>
@@ -604,8 +604,8 @@
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
-        <a href="index.html" class="btn btn-neutral float-left" title="4.15. ServoDyn 사용자 가이드" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="index.html" class="btn btn-neutral float-left" title="4.15. ServoDyn 사용자 가이드" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
         <a href="ExtendedBladedInterface.html" class="btn btn-neutral float-right" title="4.15.2. 확장 블레이드 인터페이스" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

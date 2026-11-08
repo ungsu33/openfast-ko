@@ -21,7 +21,7 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="찾다" href="../../../search.html">
+    <link rel="search" title="검색" href="../../../search.html">
     <link rel="next" title="4.7.6. 미래의 일" href="future_work.html">
     <link rel="prev" title="4.7.4. 출력 파일" href="output_files.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/beamdyn/theory.html"></head>
@@ -48,9 +48,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
@@ -75,9 +75,9 @@
 <li class="toctree-l4"><a class="reference internal" href="#calculation-of-blade-loads">4.7.5.9. 블레이드 하중 계산</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="future_work.html">4.7.6. 미래의 일</a></li>
-<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.7.7. 참고자료</a></li>
-<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.7.8. 충수</a></li>
+<li class="toctree-l3"><a class="reference internal" href="future_work.html">4.7.6. 향후 개발 계획</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.7.7. 참고문헌</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.7.8. 부록</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
@@ -100,16 +100,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -118,12 +118,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.7. </span>BeamDyn 사용자 가이드 및 이론 매뉴얼</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.7. </span>BeamDyn 사용자 가이드 및 이론 설명서</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.7.5. </span>BeamDyn 이론</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/beamdyn/theory.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
+            <a href="../../../_sources/source/user/beamdyn/theory.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -132,13 +132,13 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="beamdyn-theory">
-<span id="id1"></span><h1><span class="section-number">4.7.5. </span>BeamDyn 이론<a class="headerlink" href="#beamdyn-theory" title="이 제목에 대한 영구 링크"></a></h1>
+<span id="id1"></span><h1><span class="section-number">4.7.5. </span>BeamDyn 이론<a class="headerlink" href="#beamdyn-theory" title="이 제목의 고유 링크"></a></h1>
 <p>이 섹션에서는 BeamDyn 모듈 뒤에 있는 이론에 중점을 둡니다. 이론적 기초, 수치 도구 및 구현 시 일부 특수 처리 방법이 소개됩니다. 이론과 수치 도구를 자세히 설명하는 참고 자료가 각 섹션에 제공됩니다.</p>
 <p>이 장에서는 행렬 표기법을 사용하여 벡터 또는 벡터와 유사한 양을 나타냅니다. 예를 들어 밑줄은 벡터를 나타냅니다.
 <span class="math notranslate nohighlight">\(\underline{u}\)</span>, 오버 바는 단위 벡터를 나타냅니다. <span class="math notranslate nohighlight">\(\bar{n}\)</span>, 이중 밑줄은 텐서를 나타냅니다.
 <span class="math notranslate nohighlight">\(\underline{\underline{\Delta}}\)</span>. 때때로 밑줄은 해당 행렬의 차원만을 나타냅니다.</p>
 <div class="section" id="coordinate-systems">
-<h2><span class="section-number">4.7.5.1. </span>좌표계<a class="headerlink" href="#coordinate-systems" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.7.5.1. </span>좌표계<a class="headerlink" href="#coordinate-systems" title="이 제목의 고유 링크"></a></h2>
 <p><a class="reference internal" href="input_files.html#blade-geometry"><span class="std std-numref">그림 4.32</span></a> (안에 <a class="reference internal" href="input_files.html#bd-input-files"><span class="std std-numref">섹션 4.7.3</span></a>) 그리고
 <a class="reference internal" href="#bd-frame"><span class="std std-numref">그림 4.33</span></a> BeamDyn에서 사용되는 좌표계를 보여줍니다.</p>
 <div class="figure align-center" id="id13">
@@ -146,17 +146,17 @@
 <p class="caption"><span class="caption-number">그림 4.33 </span><span class="caption-text">BeamDyn의 전역, 블레이드 참조 및 내부 좌표계. 그림: 알 힉스(Al Hicks), NLR.</span><a class="headerlink" href="#id13" title="이 이미지에 대한 영구 링크"></a></p>
 </div>
 <div class="section" id="global-coordinate-system">
-<h3><span class="section-number">4.7.5.1.1. </span>전역 좌표계<a class="headerlink" href="#global-coordinate-system" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.7.5.1.1. </span>전역 좌표계<a class="headerlink" href="#global-coordinate-system" title="이 제목의 고유 링크"></a></h3>
 <p>전역 좌표계는 다음과 같이 표시됩니다. <code class="docutils literal notranslate"><span class="pre">X</span></code>, <code class="docutils literal notranslate"><span class="pre">Y</span></code>, 및 <code class="docutils literal notranslate"><span class="pre">Z</span></code>
 에서 <a class="reference internal" href="#bd-frame"><span class="std std-numref">그림 4.33</span></a>. 이것은 관성 프레임이며 FAST에서는 그 원점이 일반적으로 그림과 같이 타워 바닥에 배치됩니다.</p>
 </div>
 <div class="section" id="bd-coordinate-system">
-<h3><span class="section-number">4.7.5.1.2. </span>BD 좌표계<a class="headerlink" href="#bd-coordinate-system" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.7.5.1.2. </span>BD 좌표계<a class="headerlink" href="#bd-coordinate-system" title="이 제목의 고유 링크"></a></h3>
 <p>BD 좌표계는 다음과 같이 표시됩니다. <span class="math notranslate nohighlight">\(x_1\)</span>, <span class="math notranslate nohighlight">\(x_2\)</span>, 및
 <span class="math notranslate nohighlight">\(x_3\)</span> 다음에서 각각 <a class="reference internal" href="#bd-frame"><span class="std std-numref">그림 4.33</span></a>. BeamDyn 내부에서 사용되는 관성계(즉, 로터와 함께 회전하지 않음)로 블레이드 루트점의 초기 위치에 원점이 위치한다.</p>
 </div>
 <div class="section" id="blade-reference-coordinate-system">
-<h3><span class="section-number">4.7.5.1.3. </span>블레이드 기준 좌표계<a class="headerlink" href="#blade-reference-coordinate-system" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.7.5.1.3. </span>블레이드 기준 좌표계<a class="headerlink" href="#blade-reference-coordinate-system" title="이 제목의 고유 링크"></a></h3>
 <p>블레이드 기준 좌표계는 다음과 같이 표시됩니다.
 <span class="math notranslate nohighlight">\(X_{rt}\)</span>, <span class="math notranslate nohighlight">\(Y_{rt}\)</span>, 및
 <span class="math notranslate nohighlight">\(Z_{rt}\)</span> 에서 <a class="reference internal" href="#bd-frame"><span class="std std-numref">그림 4.33</span></a> 초기화 시(<span class="math notranslate nohighlight">\(t = 0\)</span>). 블레이드 기준 좌표계는 블레이드 루트에 부착되어 블레이드와 함께 회전하는 부동 프레임입니다. 그 원점은 블레이드 루트에 있고 IEC 표준을 따르는 축 방향입니다. 즉, <span class="math notranslate nohighlight">\(Z_r\)</span> 뿌리부터 끝까지 칼날 축을 따라 가리키고 있습니다. <span class="math notranslate nohighlight">\(Y_r\)</span> 명목상 블레이드의 뒷전을 향하고 비틀림이 없는 블레이드 위치의 코드선과 평행합니다. 그리고 <span class="math notranslate nohighlight">\(X_r\)</span> 는 와 직교한다
@@ -185,12 +185,12 @@
 </table>
 </div>
 <div class="section" id="local-blade-coordinate-system">
-<h3><span class="section-number">4.7.5.1.4. </span>블레이드 국부 좌표계<a class="headerlink" href="#local-blade-coordinate-system" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.7.5.1.4. </span>블레이드 국부 좌표계<a class="headerlink" href="#local-blade-coordinate-system" title="이 제목의 고유 링크"></a></h3>
 <p>로컬 블레이드 좌표계는 단면 질량 및 강성 행렬, 단면 힘 및 모멘트 결과와 같은 일부 입력 및 출력 수량에 사용됩니다. 이 좌표계는 블레이드 기준 좌표계와 다릅니다. <span class="math notranslate nohighlight">\(Z_l\)</span> 블레이드가 편향될 때 축은 항상 블레이드 축에 접합니다. 아래첨자에 주목하세요 <span class="math notranslate nohighlight">\(l\)</span> 로컬 블레이드 좌표계를 나타냅니다.</p>
 </div>
 </div>
 <div class="section" id="geometrically-exact-beam-theory">
-<h2><span class="section-number">4.7.5.2. </span>기하학적으로 정확한 빔 이론<a class="headerlink" href="#geometrically-exact-beam-theory" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.7.5.2. </span>기하학적으로 정확한 빔 이론<a class="headerlink" href="#geometrically-exact-beam-theory" title="이 제목의 고유 링크"></a></h2>
 <p>BeamDyn의 이론적 기초는 기하학적으로 정확한 빔 이론입니다. 이 이론은 초기에 구부러지고 비틀어지며 큰 변위와 회전을 받는 빔의 기능을 특징으로 합니다. 적절한 2차원(2D) 단면 분석과 함께 확장, 굽힘, 전단 및 비틀림을 포함하여 6개 DOFs 간의 결합 효과도 GEBT로 ​​포착할 수 있습니다. "기하학적으로 정확하다"는 용어는 방정식을 공식화할 때 초기 형상과 변형 형상을 모두 포함하는 형상에 대한 근사치가 없다는 사실을 의미합니다. <span id="id2">[<a class="reference internal" href="zrefs.html#id2" title="듀이 H. 호지스. 비선형 복합 빔 이론. AIAA, 2006.">Hod06</a>]</span>.</p>
 <p>기하학적으로 정확한 빔 이론에 대한 지배 운동 방정식은 다음과 같이 쓸 수 있습니다. <span id="id3">[<a class="reference internal" href="zrefs.html#id3" title="O. A. 바우샤우. 유연한 다물체 역학. 스프링거, 2010. doi:10.1007/978-94-007-0335-3.">Bau10</a>]</span></p>
 <div class="math notranslate nohighlight" id="equation-governgebt-1-2">
@@ -258,7 +258,7 @@ A_{21}-A_{12}
 <p>여기서 <span class="math notranslate nohighlight">\({\underline{k}} = axial [({\underline{\underline{R R_0}}})^\prime ({\underline{\underline{R R_0}}})^T]\)</span> 는 관성 기준으로 해석된 단면 곡률 벡터입니다. <span class="math notranslate nohighlight">\({\underline{\underline{R}}}_0\)</span> 초기 회전 텐서입니다. 그리고 <span class="math notranslate nohighlight">\(\bar{\imath}_1\)</span> 는 단위 벡터이다 <span class="math notranslate nohighlight">\(x_1\)</span> 관성 기준의 방향. 운동 방정식 Eq를 포함한 세 가지 방정식 세트.&nbsp;<a class="reference internal" href="#equation-governgebt-1-2">(4.77)</a>, 구성 방정식 Eq. <a class="reference internal" href="#equation-constitutivemass-stiff">(4.78)</a>, 운동 방정식 Eq.&nbsp;<a class="reference internal" href="#equation-1dstrain">(4.80)</a>, 빔 탄성 문제에 대한 완전한 수학적 설명을 제공합니다.</p>
 </div>
 <div class="section" id="numerical-implementation-with-legendre-spectral-finite-elements">
-<span id="num-imp"></span><h2><span class="section-number">4.7.5.3. </span>Legendre 스펙트럼 유한 요소를 사용한 수치 구현<a class="headerlink" href="#numerical-implementation-with-legendre-spectral-finite-elements" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="num-imp"></span><h2><span class="section-number">4.7.5.3. </span>Legendre 스펙트럼 유한 요소를 사용한 수치 구현<a class="headerlink" href="#numerical-implementation-with-legendre-spectral-finite-elements" title="이 제목의 고유 링크"></a></h2>
 <p>변위 기반 유한 요소 구현의 경우 각 노드에는 6개의 자유도(3개의 변위 구성요소와 3개의 회전 구성요소)가 있습니다. 여기서 우리는 <span class="math notranslate nohighlight">\({\underline{q}}\)</span> 요소 변위 배열을 다음과 같이 나타냅니다. <span class="math notranslate nohighlight">\(\underline{q}=\left[
 \underline{u}^T~~\underline{c}^T\right]\)</span> 여기서 <span class="math notranslate nohighlight">\({\underline{u}}\)</span>
 변위이고 <span class="math notranslate nohighlight">\({\underline{c}}\)</span> 회전 매개변수 벡터입니다. 따라서 가속도 배열은 다음과 같이 정의될 수 있습니다.
@@ -321,7 +321,7 @@ Gauss-Lobatto-Legendre(GLL) 점 <span class="math notranslate nohighlight">\([-1
 </div>
 </div>
 <div class="section" id="wiener-milenkovic-rotation-parameter">
-<h2><span class="section-number">4.7.5.4. </span>Wiener-Milenković 회전 매개변수<a class="headerlink" href="#wiener-milenkovic-rotation-parameter" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.7.5.4. </span>Wiener-Milenković 회전 매개변수<a class="headerlink" href="#wiener-milenkovic-rotation-parameter" title="이 제목의 고유 링크"></a></h2>
 <p>BeamDyn에서 3D 회전은 다음 방정식에 정의된 Wiener-Milenković 매개변수로 표시됩니다.</p>
 <div class="math notranslate nohighlight" id="equation-wmparameter">
 <span class="eqno">(4.85)<a class="headerlink" href="#equation-wmparameter" title="이 방정식에 대한 영구 링크"></a></span>\[{\underline{c}} = 4 \tan\left(\frac{\phi}{4} \right) \bar{n}\]</div>
@@ -354,7 +354,7 @@ c_0^2 + c_1^2 - c_2^2 - c_3^2 &amp; 2(c_1 c_2 - c_0 c_3) &amp; 2(c_1 c_3 + c_0 c
 및 <span id="id9">[<a class="reference internal" href="zrefs.html#id6" title="Q. Wang, W. Yu 및 M.A. Sprague. wiener-milenković 매개변수를 사용한 합성보의 보석학적 비선형 분석. 제54회 구조, 구조 역학 및 재료 회의 진행 중. 2013년 4월 매사추세츠 주 보스턴.">WYS13</a>]</span> 회전 매개변수와 GEBT를 사용한 구현에 대한 자세한 내용을 확인하세요.</p>
 </div>
 <div class="section" id="linearization-process">
-<h2><span class="section-number">4.7.5.5. </span>Linearization 프로세스<a class="headerlink" href="#linearization-process" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.7.5.5. </span>Linearization 프로세스<a class="headerlink" href="#linearization-process" title="이 제목의 고유 링크"></a></h2>
 <p>이전 섹션에서 소개한 비선형 지배 방정식은 선형화 과정이 필요한 Newton-Raphson 방법으로 해결됩니다. 지배 방정식의 각 항의 선형화가 이 섹션에 나와 있습니다.</p>
 <p>에 따르면 <span id="id10">[<a class="reference internal" href="zrefs.html#id3" title="O. A. 바우샤우. 유연한 다물체 역학. 스프링거, 2010. doi:10.1007/978-94-007-0335-3.">Bau10</a>]</span>, Eq.의 선형 지배 방정식.&nbsp; <a class="reference internal" href="#equation-governgebt-1-2">(4.77)</a> 의 형태로 되어있습니다</p>
 <div class="math notranslate nohighlight" id="equation-linearizedeqn">
@@ -424,7 +424,7 @@ m \tilde{\eta} \ddot{{\underline{u}}} +{\underline{\underline{\varrho}}}\dot{{\u
 \end{bmatrix}\end{split}\]</div>
 </div>
 <div class="section" id="damping-forces-and-linearization">
-<h2><span class="section-number">4.7.5.6. </span>감쇠력 및 Linearization<a class="headerlink" href="#damping-forces-and-linearization" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.7.5.6. </span>감쇠력 및 Linearization<a class="headerlink" href="#damping-forces-and-linearization" title="이 제목의 고유 링크"></a></h2>
 <p>구조적 감쇠 효과를 설명하기 위해 점성 감쇠 모델이 BeamDyn에 구현되었습니다. 감쇠력은 다음과 같이 정의됩니다.</p>
 <div class="math notranslate nohighlight" id="equation-damping">
 <span class="eqno">(4.94)<a class="headerlink" href="#equation-damping" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}{\underline{f}}_d = {\underline{\underline{\mu}}}~ {\underline{\underline{\mathcal{C}}}} \begin{Bmatrix}
@@ -524,7 +524,7 @@ m \tilde{\eta} \ddot{{\underline{u}}} +{\underline{\underline{\varrho}}}\dot{{\u
 <p>모달 감쇠는 사용자 모드별 감쇠 수준 제어를 제공하여 실험이나 이론적 감쇠 예측과 더 잘 일치합니다. 또한, 모달 감쇠는 주파수에 비례하여 증가할 필요가 없습니다(강성 비례 감쇠로 규정됨). 오히려 일부 실험과 모델 예측에서 관찰된 것처럼 주파수 전반에 걸쳐 보다 일정한 감쇠 인자를 사용할 수 있습니다.</p>
 </div>
 <div class="section" id="convergence-criterion-and-generalized-alpha-time-integrator">
-<span id="convergence-criterion"></span><h2><span class="section-number">4.7.5.7. </span>수렴기준과 일반화-<span class="math notranslate nohighlight">\(\alpha\)</span> 시간 적분기<a class="headerlink" href="#convergence-criterion-and-generalized-alpha-time-integrator" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="convergence-criterion"></span><h2><span class="section-number">4.7.5.7. </span>수렴기준과 일반화-<span class="math notranslate nohighlight">\(\alpha\)</span> 시간 적분기<a class="headerlink" href="#convergence-criterion-and-generalized-alpha-time-integrator" title="이 제목의 고유 링크"></a></h2>
 <p>Eqs의 비선형 방정식 시스템.&nbsp;<a class="reference internal" href="#equation-governgebt-1-2">(4.77)</a> 방정식의 선형화된 형식을 사용하여 Newton-Raphson 방법을 사용하여 해결됩니다.&nbsp;<a class="reference internal" href="#equation-linearizedeqn">(4.89)</a>. 현재 구현에서는 에너지와 같은 중지 기준이 선택되었으며 이는 다음과 같이 계산됩니다.</p>
 <div class="math notranslate nohighlight" id="equation-stoppingcriterion">
 <span class="eqno">(4.99)<a class="headerlink" href="#equation-stoppingcriterion" title="이 방정식에 대한 영구 링크"></a></span>\[| \Delta \mathbf{U}^{(i)T} \left( {^{t+\Delta t}} \mathbf{R} -  {^{t+\Delta t}} \mathbf{F}^{(i-1)}  \right) | \leq | \epsilon_E \left( \Delta \mathbf{U}^{(1)T} \left( {^{t+\Delta t}} \mathbf{R} - {^t}\mathbf{F} \right) \right) |\]</div>
@@ -537,7 +537,7 @@ m \tilde{\eta} \ddot{{\underline{u}}} +{\underline{\underline{\varrho}}}\dot{{\u
 방법은 에서 찾을 수 있습니다. <span id="id12">[<a class="reference internal" href="zrefs.html#id3" title="O. A. 바우샤우. 유연한 다물체 역학. 스프링거, 2010. doi:10.1007/978-94-007-0335-3.">Bau10</a>, <a class="reference internal" href="zrefs.html#id20" title="J. Chung과 G. M. Hulbert. 수치 소산이 개선된 구조 역학을 위한 시간 통합 알고리즘: 일반화된 α 방법. 응용역학 저널, 60:371–375, 1993. doi:10.1115/1.2900803.">CH93</a>]</span>.</p>
 </div>
 <div class="section" id="calculation-of-reaction-loads">
-<h2><span class="section-number">4.7.5.8. </span>반응 하중 계산<a class="headerlink" href="#calculation-of-reaction-loads" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.7.5.8. </span>반응 하중 계산<a class="headerlink" href="#calculation-of-reaction-loads" title="이 제목의 고유 링크"></a></h2>
 <p>변위 및 회전, 병진 및 각속도, 병진 및 각가속도를 포함한 풍력 터빈 블레이드의 루트 모션은 드라이버(독립 실행형 모드) 또는 FAST 글루 코드(FAST 결합 모드)에 의해 BeamDyn에 대한 입력으로 지정되므로 루트에서의 반력은 지배 방정식의 동일성을 충족하는 데 필요합니다. 루트의 반력 하중은 전체 터빈 해석에서 블레이드에서 허브로 전달되는 하중이기도 합니다.</p>
 <p>Eq.의 지배 방정식. <a class="reference internal" href="#equation-governgebt-1-2">(4.77)</a> 컴팩트한 형태로 다시 주조할 수 있습니다.</p>
 <div class="math notranslate nohighlight" id="equation-compactgovern">
@@ -549,7 +549,7 @@ m \tilde{\eta} \ddot{{\underline{u}}} +{\underline{\underline{\varrho}}}\dot{{\u
 는 반력 벡터이며 Eq.에서 풀 수 있습니다. <a class="reference internal" href="#equation-compactgovernroot">(4.101)</a> 이 시점에서 모션 필드가 알려져 있다는 점을 고려하면.</p>
 </div>
 <div class="section" id="calculation-of-blade-loads">
-<h2><span class="section-number">4.7.5.9. </span>블레이드 하중 계산<a class="headerlink" href="#calculation-of-blade-loads" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.7.5.9. </span>블레이드 하중 계산<a class="headerlink" href="#calculation-of-blade-loads" title="이 제목의 고유 링크"></a></h2>
 <p>BeamDyn는 블레이드 축을 따라 각 유한 요소 노드의 블레이드 하중도 계산할 수 있습니다. Eq.의 지배 방정식. <a class="reference internal" href="#equation-compactgovern">(4.100)</a> 다음과 같이 재구성됩니다.</p>
 <div class="math notranslate nohighlight" id="equation-governbf">
 <span class="eqno">(4.102)<a class="headerlink" href="#equation-governbf" title="이 방정식에 대한 영구 링크"></a></span>\[{\underline{\mathcal{F}}}^A + {\underline{\mathcal{F}}}^V - {\underline{\mathcal{F}}}^{C\prime} + {\underline{\mathcal{F}}}^D = {\underline{\mathcal{F}}}^{ext}\]</div>
@@ -576,8 +576,8 @@ m \tilde{\eta} \ddot{{\underline{u}}} + {\underline{\underline{\rho}}} \dot{{\un
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
-        <a href="output_files.html" class="btn btn-neutral float-left" title="4.7.4. 출력 파일" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="output_files.html" class="btn btn-neutral float-left" title="4.7.4. 출력 파일" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
         <a href="future_work.html" class="btn btn-neutral float-right" title="4.7.6. 미래의 일" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

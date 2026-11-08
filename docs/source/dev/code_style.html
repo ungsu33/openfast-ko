@@ -20,7 +20,7 @@
         <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../genindex.html">
-    <link rel="search" title="찾다" href="../../search.html">
+    <link rel="search" title="검색" href="../../search.html">
     <link rel="next" title="6.1.6.3. 문서 개발" href="build_doc.html">
     <link rel="prev" title="6.1.6.1. GitHub에서 OpenFAST 작업" href="github_workflow.html"> 
 <link rel="stylesheet" href="../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/dev/code_style.html"></head>
@@ -47,9 +47,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. 이 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. 이 문서에 대하여</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../working.html">3. OpenFAST 작업</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working.html">3. OpenFAST 사용하기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../user/index.html">4. 사용자 문서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">6. 개발자 문서</a><ul class="current">
@@ -76,16 +76,16 @@
 <li class="toctree-l2"><a class="reference internal" href="index.html#other-documentation">6.4. 기타 문서</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../license.html">7. 라이센스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">7. 라이선스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. 감사의 말씀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. 감사의 글</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../review.html">문서 상세 리뷰</a></li><li><a href="../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">OpenFAST</a>
       </nav>
@@ -94,11 +94,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home" aria-label="집"></a></li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="홈"></a></li>
           <li class="breadcrumb-item"><a href="index.html"><span class="section-number">6. </span>개발자 문서</a></li>
       <li class="breadcrumb-item active"><span class="section-number">6.1.6.2. </span>코드 스타일</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../_sources/source/dev/code_style.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
+            <a href="../../_sources/source/dev/code_style.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -107,7 +107,7 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="code-style">
-<span id="id1"></span><h1><span class="section-number">6.1.6.2. </span>코드 스타일<a class="headerlink" href="#code-style" title="이 제목에 대한 영구 링크"></a></h1>
+<span id="id1"></span><h1><span class="section-number">6.1.6.2. </span>코드 스타일<a class="headerlink" href="#code-style" title="이 제목의 고유 링크"></a></h1>
 <p>OpenFAST 및 해당 기본 모듈은 대부분 2003 표준을 준수하는 Fortran으로 작성되지만 모듈은 C 또는 C++로 작성할 수 있습니다. 그만큼
 <a class="reference download internal" download="" href="../../_downloads/2a9110b5e2a2b531c7dc05ea1fc86b89/NWTC_Programmers_Handbook.pdf"><code class="xref download docutils literal notranslate"><span class="pre">NWTC</span> <span class="pre">Programmer's</span> <span class="pre">Handbook</span></code></a>
 FAST 프레임워크 작업 및 OpenFAST에 코드 추가와 관련된 모든 질문에 대한 최종 참조입니다.</p>
@@ -117,8 +117,8 @@ FAST 프레임워크 작업 및 OpenFAST에 코드 추가와 관련된 모든 �
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
-        <a href="github_workflow.html" class="btn btn-neutral float-left" title="6.1.6.1. GitHub에서 OpenFAST 작업" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="github_workflow.html" class="btn btn-neutral float-left" title="6.1.6.1. GitHub에서 OpenFAST 작업" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
         <a href="build_doc.html" class="btn btn-neutral float-right" title="6.1.6.3. 문서 개발" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

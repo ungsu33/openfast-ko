@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-08",
+  "googleSites": {
+    "url": "https://sites.google.com/view/openfast-ko-ungsu33",
+    "mode": "full-page embed",
+    "embeddedUrl": "https://ungsu33.github.io/openfast-ko/",
+    "httpStatus": 200,
+    "title": "OpenFAST 한국어 문서"
+  },
+  "github": {
+    "repository": "https://github.com/ungsu33/openfast-ko",
+    "branch": "main",
+    "pages": "https://ungsu33.github.io/openfast-ko/",
+    "contentCommit": "ba1573c07dd8cbe75897c1a220bf8411b41b4e8a"
+  },
+  "validation": {
+    "indexedDocuments": 158,
+    "staticVerificationPassed": true,
+    "originalMathElementsPreserved": 3239,
+    "originalCodeElementsPreserved": 2415,
+    "originalTablesPreserved": 99,
+    "originalImageReferencesPreserved": 81,
+    "localLinksChecked": 13733,
+    "assetHashesChecked": 338,
+    "koreanSearchTest": {
+      "query": "선형화",
+      "results": 35
+    },
+    "mathJaxBrowserCheck": {
+      "renderedElements": 220,
+      "errors": 0
+    },
+    "freshCheckoutRebuild": "passed after excluding added review HTML from restored upstream cache"
+  },
+  "limits": [
+    "Unofficial machine translation with selected manual corrections; no professional full-text certification",
+    "Binary attachments and diagram lettering remain in their original language",
+    "Google Sites uses a GitHub Pages iframe; native Google Sites pages do not contain the complete editable document corpus",
+    "No OpenFAST numerical simulations were performed"
+  ]
+}

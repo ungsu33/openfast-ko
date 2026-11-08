@@ -21,7 +21,7 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="찾다" href="../../../search.html">
+    <link rel="search" title="검색" href="../../../search.html">
     <link rel="next" title="4.12.3. 부록 A: SeaState 기본 입력 파일의 예" href="appendix.html">
     <link rel="prev" title="4.12.1. 입력 파일" href="input_files.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/seastate/output_files.html"></head>
@@ -48,9 +48,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
@@ -93,16 +93,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -111,12 +111,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.12. </span>SeaState 사용자 가이드 및 이론 매뉴얼</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.12. </span>SeaState 사용자 가이드 및 이론 설명서</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.12.2. </span>출력 파일</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/seastate/output_files.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
+            <a href="../../../_sources/source/user/seastate/output_files.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -125,20 +125,20 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="output-files">
-<span id="sea-output"></span><h1><span class="section-number">4.12.2. </span>출력 파일<a class="headerlink" href="#output-files" title="이 제목에 대한 영구 링크"></a></h1>
+<span id="sea-output"></span><h1><span class="section-number">4.12.2. </span>출력 파일<a class="headerlink" href="#output-files" title="이 제목의 고유 링크"></a></h1>
 <p>SeaState는 에코 파일, 파고 파일, 파동 운동학 파일, 요약 파일, 시계열 파일 등 5가지 유형의 출력 파일을 생성합니다. 다음 섹션에서는 이러한 파일의 목적과 내용을 자세히 설명합니다.</p>
 <div class="section" id="echo-files">
-<h2><span class="section-number">4.12.2.1. </span>Echo 파일<a class="headerlink" href="#echo-files" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.12.2.1. </span>Echo 파일<a class="headerlink" href="#echo-files" title="이 제목의 고유 링크"></a></h2>
 <p>다음을 설정하면 <strong>Echo</strong> SeaState 드라이버 파일 또는 SeaState 기본 입력 파일의 TRUE에 플래그를 지정하면 해당 파일의 내용이 명명 규칙을 사용하여 파일에 반영됩니다. <strong>OutRootName</strong><em>.dvr.ech</em> 드라이버 입력 파일의 경우 <strong>OutRootName</strong><em>.SeaSt.ech</em> SeaState 기본 입력 파일의 경우. <strong>OutRootName</strong> 드라이버 입력 파일의 SEASTATE 섹션에 지정되거나 OpenFAST 프로그램에 의해 지정됩니다. 에코 파일은 입력 파일을 디버깅하는 데 유용합니다. SeaState가 입력 파일을 구문 분석하는 동안 오류가 발생하면 에코 파일의 내용이 잘립니다. 오류는 일반적으로 마지막으로 성공적으로 에코된 줄 다음 줄에 해당합니다.</p>
 </div>
 <div class="section" id="wave-elevation-file">
-<h2><span class="section-number">4.12.2.2. </span>파도 고도 파일<a class="headerlink" href="#wave-elevation-file" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.12.2.2. </span>파도 고도 파일<a class="headerlink" href="#wave-elevation-file" title="이 제목의 고유 링크"></a></h2>
 <p>환경 <strong>WaveElevSeriesFlag</strong> 드라이버 파일에서 TRUE로 설정하면 전체 SeaState 웨이브 그리드의 파도 고도를 이름이 있는 텍스트 기반 파일로 출력할 수 있습니다. <code class="docutils literal notranslate"><span class="pre">OutRootName.WaveElev.out</span></code>. 출력 웨이브 그리드는 기본 SeaState 입력 파일의 SPATIAL DISCRETIZATION 섹션에 의해 제어됩니다. 이러한 파도 고도는 다음과 같이 결정된 파도 고도와 별개이며 별도로 출력됩니다.
 <strong>NWaveElev</strong> 대신 시계열 출력 파일에 기록되는 SeaState 기본 입력 파일에 있습니다. 파고 출력 파일
 <code class="docutils literal notranslate"><span class="pre">OutRootName.WaveElev.out</span></code> 1차 항과 2차 항의 합인 총 파고 고도를 포함합니다(2차 파동 운동학이 선택적으로 활성화된 경우). 여기에 설명된 파고 파일은 시각화 목적으로 유용합니다.</p>
 </div>
 <div class="section" id="wave-kinematics-files">
-<h2><span class="section-number">4.12.2.3. </span>파동 운동학 파일<a class="headerlink" href="#wave-kinematics-files" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.12.2.3. </span>파동 운동학 파일<a class="headerlink" href="#wave-kinematics-files" title="이 제목의 고유 링크"></a></h2>
 <p><strong>WrWvKinMod</strong> SeaState 드라이버의 파동 운동학 출력을 제어합니다. 드라이버는 전역 원점(0,0)에서 파고 시계열을 별도의 출력으로 출력합니다. <em>.Elev</em> 다음과 같은 경우 파일을 제출하세요. <strong>WrWvKinMod</strong> = 1. 이 파일은 유효한 파일로도 사용됩니다. <strong>WvKinFile</strong> 대해 <strong>WaveMod</strong> = 기본 SeaState 입력 파일의 5(외부 생성 파고 시계열). 이는 다음을 사용하여 얻은 파동장 출력과 독립적인 별도의 파동 고도 출력입니다.
 <strong>WaveElevSeriesFlag</strong> = TRUE 및 다음으로 얻은 파고 시계열
 <strong>NWaveElev</strong> SeaState 기본 입력 파일에 있습니다.</p>
@@ -147,29 +147,29 @@
 <strong>WvKinFile</strong> 대해 <strong>WaveMod</strong> = 6(외부에서 생성된 전체 파동 운동학 시계열)이며 사용자가 자신의 입력 파일을 작성하려는 경우 템플릿으로 사용할 수 있습니다. <strong>WaveMod</strong> = 6.</p>
 </div>
 <div class="section" id="summary-file">
-<span id="sea-summary-file"></span><h2><span class="section-number">4.12.2.4. </span>요약 파일<a class="headerlink" href="#summary-file" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="sea-summary-file"></span><h2><span class="section-number">4.12.2.4. </span>요약 파일<a class="headerlink" href="#summary-file" title="이 제목의 고유 링크"></a></h2>
 <p>SeaState는 명명 규칙을 사용하여 요약 파일을 생성합니다.
 <strong>OutRootName</strong><em>.SeaSt.sum</em> 만약에 <strong>SeaStSum</strong> 매개변수는 TRUE로 설정됩니다. 이 파일에는 물 밀도, 수심, 정수위, 파도 격자, 1차 파도 주파수 구성 요소 및 사용자가 요청한 시계열 출력을 포함하여 바다 상태 모델에 대한 주요 정보가 요약되어 있습니다.</p>
 <div class="section" id="summary-of-user-requested-outputs">
-<h3><span class="section-number">4.12.2.4.1. </span>사용자 요청 출력 요약<a class="headerlink" href="#summary-of-user-requested-outputs" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.12.2.4.1. </span>사용자 요청 출력 요약<a class="headerlink" href="#summary-of-user-requested-outputs" title="이 제목의 고유 링크"></a></h3>
 <p>요약 파일에는 사용자가 요청한 모든 파고 및 파동 운동학 시계열 출력 채널에 대한 정보가 포함됩니다.</p>
 <div class="section" id="wave-kinematics-output-locations">
-<h4><span class="section-number">4.12.2.4.1.1. </span>파동운동학 출력 위치<a class="headerlink" href="#wave-kinematics-output-locations" title="이 제목에 대한 영구 링크"></a></h4>
+<h4><span class="section-number">4.12.2.4.1.1. </span>파동운동학 출력 위치<a class="headerlink" href="#wave-kinematics-output-locations" title="이 제목의 고유 링크"></a></h4>
 <p>첫 번째 열에는 SeaState 입력 파일의 OUTPUT CHANNELS 섹션에 입력된 파동 운동학 출력 위치의 인덱스가 나열됩니다.
 <strong>시</strong>, <strong>이</strong>, 및 <strong>지</strong> 전역 관성 프레임 좌표계에서 파동 운동학 출력 위치의 공간 좌표를 제공합니다.</p>
 </div>
 <div class="section" id="wave-elevation-output-locations">
-<h4><span class="section-number">4.12.2.4.1.2. </span>파고 출력 위치<a class="headerlink" href="#wave-elevation-output-locations" title="이 제목에 대한 영구 링크"></a></h4>
+<h4><span class="section-number">4.12.2.4.1.2. </span>파고 출력 위치<a class="headerlink" href="#wave-elevation-output-locations" title="이 제목의 고유 링크"></a></h4>
 <p>첫 번째 열에는 SeaState 입력 파일의 OUTPUT CHANNELS 섹션에 입력된 파고 출력 위치의 인덱스가 나열됩니다.
 <strong>시</strong> 및 <strong>이</strong> 전역 관성 프레임 좌표계에서 파고 출력 위치의 공간 좌표를 제공합니다.</p>
 </div>
 <div class="section" id="requested-output-channels">
-<h4><span class="section-number">4.12.2.4.1.3. </span>요청된 출력 채널<a class="headerlink" href="#requested-output-channels" title="이 제목에 대한 영구 링크"></a></h4>
+<h4><span class="section-number">4.12.2.4.1.3. </span>요청된 출력 채널<a class="headerlink" href="#requested-output-channels" title="이 제목의 고유 링크"></a></h4>
 <p>SeaState 입력 파일의 OUTPUT CHANNELS 섹션에 입력된 대로 요청된 모든 시계열 출력 채널의 문자열 레이블이 여기에 요약되어 있습니다.</p>
 </div>
 </div>
 <div class="section" id="wave-frequency-components">
-<h3><span class="section-number">4.12.2.4.2. </span>파동 주파수 성분<a class="headerlink" href="#wave-frequency-components" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.12.2.4.2. </span>파동 주파수 성분<a class="headerlink" href="#wave-frequency-components" title="이 제목의 고유 링크"></a></h3>
 <p>이 섹션에서는 자유 표면의 (0,0)에서 1차 파동 고도의 주파수 영역 설명(이산 푸리에 변환 또는 DFT 측면에서)을 제공하지만 다음과 같은 경우에는 기록되지 않습니다. <strong>WaveMod</strong> = 0 또는 6. 첫 번째 열, <strong>색인</strong>, 각 파동 주파수 구성 요소의 인덱스를 식별합니다. 유한 깊이 파수, 각주파수 및 파동 성분의 방향은 다음과 같이 지정됩니다. <strong>k</strong>, <strong>오메가</strong>, 및 <strong>방향</strong>, 각각. 마지막 두 열은 실수(<strong>REAL(DFT{WaveElev})</strong>) 및 상상의 (<strong>IMAG(DFT{WaveElev})</strong>) 1차 DFT 파동 진폭의 일부. DFT는 음의 주파수 성분과 양의 주파수 성분을 모두 생성합니다. 시간 영역 파고가 실수 값이기 때문에 음의 주파수 성분은 양의 주파수 성분의 켤레 복소수입니다. DFT의 음의 주파수 성분과 양의 주파수 성분 간의 관계는 다음과 같습니다.
 <span class="math notranslate nohighlight">\(k\left( - \omega \right) = - k\left( \omega \right)\)</span> 및
 <span class="math notranslate nohighlight">\(H\left( - \omega \right) = {H\left( \omega \right)}^{*}\)</span>, 어디
@@ -177,7 +177,7 @@
 </div>
 </div>
 <div class="section" id="results-file">
-<h2><span class="section-number">4.12.2.5. </span>결과 파일<a class="headerlink" href="#results-file" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.12.2.5. </span>결과 파일<a class="headerlink" href="#results-file" title="이 제목의 고유 링크"></a></h2>
 <p>SeaState 시계열 결과는 명명 규칙을 사용하여 텍스트 기반 파일에 기록됩니다. <code class="docutils literal notranslate"><span class="pre">OutRootName.SeaSt.out</span></code> 언제 <strong>OutSwtch</strong> 1 또는 3으로 설정됩니다. SeaState가 OpenFAST에 연결되고 <strong>OutSwtch</strong> 2 또는 3으로 설정되면 OpenFAST는 SeaState 결과를 포함하는 마스터 결과 파일을 생성합니다. 결과는 표 형식으로 되어 있으며, 각 열은 데이터 채널이고(첫 번째 열은 항상 시뮬레이션 시간임), 각 행은 시뮬레이션 출력 시간 단계에 해당합니다. 데이터 채널은 SeaState 기본 입력 파일의 OUTPUT CHANNELS 섹션에 지정됩니다. SeaState 생성 파일의 열 형식은 다음을 사용하여 지정됩니다. <strong>OutFmt</strong> 및
 <strong>OutSFmt</strong> 기본 입력 파일의 매개변수입니다.</p>
 </div>
@@ -186,8 +186,8 @@
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
-        <a href="input_files.html" class="btn btn-neutral float-left" title="4.12.1. 입력 파일" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="input_files.html" class="btn btn-neutral float-left" title="4.12.1. 입력 파일" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
         <a href="appendix.html" class="btn btn-neutral float-right" title="4.12.3. 부록 A: SeaState 기본 입력 파일의 예" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

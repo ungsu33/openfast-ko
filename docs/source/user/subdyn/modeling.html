@@ -21,7 +21,7 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="찾다" href="../../../search.html">
+    <link rel="search" title="검색" href="../../../search.html">
     <link rel="next" title="4.8.6. SubDyn 이론" href="theory.html">
     <link rel="prev" title="4.8.4. 출력 파일" href="output_files.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/subdyn/modeling.html"></head>
@@ -48,9 +48,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
@@ -76,8 +76,8 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="theory.html">4.8.6. SubDyn 이론</a></li>
-<li class="toctree-l3"><a class="reference internal" href="future_work.html">4.8.7. 알려진 제한 사항 및 향후 작업</a></li>
-<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.8.8. 참고자료</a></li>
+<li class="toctree-l3"><a class="reference internal" href="future_work.html">4.8.7. 알려진 한계와 향후 개발 계획</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.8.8. 참고문헌</a></li>
 <li class="toctree-l3"><a class="reference internal" href="appendixA.html">4.8.9. 부록 A. OC4 재킷 입력 파일</a></li>
 <li class="toctree-l3"><a class="reference internal" href="appendixB.html">4.8.10. 부록 B. OC4 재킷 드라이버 파일</a></li>
 <li class="toctree-l3"><a class="reference internal" href="appendixC.html">4.8.11. 부록 C. OC4 재킷 SSI 입력 파일</a></li>
@@ -105,16 +105,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -123,12 +123,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.8. </span>SubDyn 사용자 가이드 및 이론 매뉴얼</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.8. </span>SubDyn 사용자 가이드 및 이론 설명서</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.8.5. </span>모델링 시 고려사항</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/subdyn/modeling.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
+            <a href="../../../_sources/source/user/subdyn/modeling.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -137,11 +137,11 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="modeling-considerations">
-<span id="sd-modeling-considerations"></span><h1><span class="section-number">4.8.5. </span>모델링 시 고려사항<a class="headerlink" href="#modeling-considerations" title="이 제목에 대한 영구 링크"></a></h1>
+<span id="sd-modeling-considerations"></span><h1><span class="section-number">4.8.5. </span>모델링 시 고려사항<a class="headerlink" href="#modeling-considerations" title="이 제목의 고유 링크"></a></h1>
 <p>SubDyn는 육상 및 해상 응용 분야 모두를 위한 광범위한 하부 구조를 모델링하기 위한 유연한 도구로 설계되었습니다. 이 섹션에서는 SubDyn와 호환되는 모델을 구성하는 데 도움이 되는 몇 가지 일반적인 지침을 제공합니다.</p>
 <p>SubDyn 좌표계에 대한 자세한 내용은 섹션 6의 이론과 SubDyn에서 따랐던 이론적 접근 방식을 참조하세요.</p>
 <div class="section" id="model-discretization">
-<h2><span class="section-number">4.8.5.1. </span>모델 이산화<a class="headerlink" href="#model-discretization" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.8.5.1. </span>모델 이산화<a class="headerlink" href="#model-discretization" title="이 제목의 고유 링크"></a></h2>
 <p>SubDyn를 사용하면 임의의 다중 멤버 구조 형상을 지정할 수 있습니다. 사용자는 조인트와 부재를 사용하여 SubDyn에서 구조물의 형상을 정의합니다. 특히 사용자는 보의 끝점을 나타내는 조인트 목록과 각 조인트에 있는 하나 이상의 멤버 간의 연결을 지정합니다. 그런 다음 두 조인트 사이에 부재와 단면 속성이 정의됩니다. 회원은 여러 개(<strong>NDiv</strong>) 모델 해상도를 높이는 요소입니다. 수치 계산이 이루어지는 노드는 각 요소의 끝점에 위치합니다. 사용할 때 메쉬를 최대한 균일하게 유지하려면 <strong>NDiv</strong>, 초기 멤버 정의에도 대략 균일한 메시가 있어야 합니다. 테이퍼 멤버의 경우 설정을 권장합니다. <strong>NDiv</strong> &gt; 1. 멤버를 적절하게 분리하지 않으면 모델의 정확도가 떨어질 수 있습니다.</p>
 <p>SubDyn가 FAST에 결합되면 조인트와 부재가 HydroDyn와 SubDyn 사이에서 일치할 필요가 없습니다. FAST의 메쉬 매핑 유틸리티는 물리적으로 관련된 방식으로 메쉬 전체의 모션 및 하중 전달을 처리합니다. <span id="id1">[<a class="reference internal" href="zrefs.html#id7" title="MSprague, J.M. Jonkman 및 B.J. Jonkman. FAST 모듈식 풍력 터빈 CAE 도구: 일치하지 않는 공간적 및 시간적 메시. 제32회 ASME 풍력 에너지 심포지엄 진행 중. 2014년 1월, 메릴랜드주 내셔널하버.">MJJ14</a>]</span>, 그러나 HydroDyn 및 SubDyn의 조인트와 부재 간의 일관성이 권장됩니다.</p>
 <p>해양 응용 분야의 경우 수심에 따라 유체 역학 하중이 기하급수적으로 감소하기 때문에 HydroDyn는 파도가 정수면(SWL)을 중심으로 진동할 때 하중을 적절하게 포착하기 위해 물이 없는 표면 근처에서 더 높은 해상도가 필요합니다. HydroDyn 이산화는 자유 표면 영역(SWL 위아래로 5~10m)에서 요소 길이 0.5m, 깊이 25~50m 사이에서 1.0m, 깊은 물에서는 2.0m를 초과하지 않는 것이 좋습니다.</p>
@@ -149,16 +149,16 @@
 <p>SubDyn의 멤버는 직선 원형(및 테이퍼형) 원통형으로 가정됩니다. 보다 일반적인 단면 형상의 사용은 향후 릴리스에서 고려될 것입니다.</p>
 </div>
 <div class="section" id="foundations">
-<h2><span class="section-number">4.8.5.2. </span>기초<a class="headerlink" href="#foundations" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.8.5.2. </span>기초<a class="headerlink" href="#foundations" title="이 제목의 고유 링크"></a></h2>
 <p>SubDyn에서 기초 유연성이나 토양-구조 상호 작용을 모델링하는 데 사용할 수 있는 두 가지 방법이 있습니다. 첫 번째 방법은 섹션 3.3.4, 3.4 및 6에 설명된 대로 부분적으로 구속된 바닥 조인트의 SSI 강성과 질량 매트릭스를 만듭니다. 두 번째 방법은 겉보기(또는 유효) 고정성(AF) 길이 접근 방식을 통해 기초의 유연성을 모방하여 말뚝을 진흙선 위와 아래에서 서로 다른 특성을 갖는 캔틸레버 빔으로 이상화합니다. 머드라인 위의 보는 파일의 실제 특성(예: 직경, 두께 및 재료)을 가져야 합니다. 머드라인 아래의 보는 유효 특성과 머드라인 위 파일의 전체 반응이 실제와 동일하도록 조정된 가상의 길이(즉, 머드라인에서 캔틸레버 베이스까지의 거리)로 지정됩니다. 응답은 특정 조건에서만 동일할 수 있습니다. 그러나 가상 빔의 특성을 조정하여 해상 풍력 터빈이 정상적인 조건에서 작동할 때 존재하는 하중을 대표하는 진흙선 전단력 및 굽힘 모멘트에 의해 하중을 받을 때 진흙선 변위 및 회전이 현실적이 되도록 조정하는 것이 일반적입니다.</p>
 <p>HydroDyn에서 해저에 내장된 모든 부재(예: 파일 또는 흡입 버킷을 통해)에는 수심 아래에 위치하는 조인트가 있어야 합니다. SubDyn에서 바닥 조인트는 고정되거나 부분적으로 구속된 것으로 간주되므로 AF 접근 방식을 적용하지 않을 때 해저 아래에 위치할 필요가 없습니다. 예를 들어 수심이 20m로 설정되어 있고 사용자가 견고한 기초를 갖춘 고정 바닥 모노파일을 모델링하는 경우 SubDyn의 최하단 조인트는 다음과 같이 설정할 수 있습니다. <em>Z</em> = -20m; 그러나 HydroDyn에는 다음과 같은 Z 좌표가 필요합니다. <em>Z</em> &lt; -20m. 이 구성은 HydroDyn가 구조물 바닥의 물로부터 정적 및 동적 압력 하중을 가하는 것을 방지합니다. AF 접근법이 적용될 때 SubDyn의 가장 아래쪽 조인트는 로 설정되어야 합니다. <em>Z</em> &lt; -20 m.</p>
 </div>
 <div class="section" id="member-overlap">
-<h2><span class="section-number">4.8.5.3. </span>멤버 중복<a class="headerlink" href="#member-overlap" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.8.5.3. </span>멤버 중복<a class="headerlink" href="#member-overlap" title="이 제목의 고유 링크"></a></h2>
 <p>앞서 언급한 바와 같이, SubDyn의 현재 버전은 접합부에서 부재의 중첩을 처리할 수 없어 질량이 과대평가되고 잠재적으로 구조 강성이 높아질 수 있습니다. 이 단점을 극복하기 위한 한 가지 전략은 가상 부재를 사용하여 조인트에서 중첩되는 각 부재의 부분을 시뮬레이션하는 것입니다. 가상 부재는 낮은 자체 질량과 높은 강성을 특징으로 해야 합니다. 이는 유한 크기 부재의 대략적인 교차점에 가상 조인트를 도입한 다음 이러한 새 조인트에서 원래(중심선) 조인트까지 추가 부재를 지정함으로써 달성할 수 있습니다. 그런 다음 새로운 가상 멤버는 감소된 재료 밀도를 사용하고 영률과 전단 계수를 증가시킵니다. 시스템 매트릭스를 단수로 만들 수 있으므로 이러한 매개변수를 선택할 때 주의하는 것이 좋습니다. 요약 파일의 고유값 결과를 검사하여 허용 가능한 근사치가 달성되었는지 확인해야 합니다.</p>
 </div>
 <div class="section" id="substructure-tower-turbine-coupling">
-<span id="towerturbinecpling"></span><h2><span class="section-number">4.8.5.4. </span>하부구조 타워/터빈 커플링<a class="headerlink" href="#substructure-tower-turbine-coupling" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="towerturbinecpling"></span><h2><span class="section-number">4.8.5.4. </span>하부구조 타워/터빈 커플링<a class="headerlink" href="#substructure-tower-turbine-coupling" title="이 제목의 고유 링크"></a></h2>
 <p>SubDyn가 FAST에 연결되면 ElastoDyn 플랫폼의 6 DOFs가 터빈과 하부 구조 사이의 하중과 변위를 연결하도록 활성화되어야 합니다. ElastoDyn의 플랫폼 기준점 좌표는 사용자가 SubDyn 모델을 확인하기 위해 독립형 모드에서 설정할 수 있는 TP 기준점 좌표(일반적으로 타워 베이스 플랜지 위치, TP 중심 또는 TP 질량 중심을 나타냄)와 동일하게 설정되어야 합니다. SubDyn 인터페이스 조인트와 TP 기준점 사이의 견고한 연결(<span class="math notranslate nohighlight">\({\equiv}\)</span> 플랫폼 기준점)이 가정됩니다.</p>
 <p>전체 격자 지지 구조 또는 전환 부분이 없는 기타 구조의 경우 요 베어링까지 전체 지지 구조를 SubDyn 내에서 모델링할 수 있습니다. 예를 들어 ElastoDyn와 반대로 SubDyn에서 타워를 모델링하면 처음 두 가지 이상의 전후 및 좌우 굽힘 모드를 포함할 수 있으므로 타워와 해당 세그먼트의 보다 일반적인 유연성을 고려할 수 있습니다. 그러나 관형 타워의 경우 ElastoDyn가 SubDyn에서 처리되지 않은 기하학적 비선형성을 고려하기 때문에 ElastoDyn의 구조 모델이 더 정확한 경향이 있습니다. SubDyn를 사용하여 전체 격자 타워를 모델링할 때 ElastoDyn의 플랫폼 기준점은 요 베어링에 위치할 수 있습니다. 이 경우 ElastoDyn의 타워 굽힘 DOFs를 비활성화해야 합니다.</p>
 <p>FAST가 SubDyn와 함께 실행되고 HydroDyn와 함께 실행되지 않는 경우 수심은 자동으로 0m로 설정됩니다. 이는 반응 하중 계산에 영향을 미칩니다. 반응은 항상 가정된 진흙선에서 제공되므로 결과적으로 해양 터빈의 경우 반응이 올바르게 위치하지 않습니다. 따라서 바닥 고정 해상 풍력 터빈을 모델링할 때는 항상 HydroDyn를 활성화하는 것이 좋습니다.</p>
@@ -184,19 +184,19 @@
 <span class="eqno">(4.106)<a class="headerlink" href="#equation-ptfmheave" title="이 방정식에 대한 영구 링크"></a></span>\[PtfmHeave = -\dfrac{ \left( M_{33}^{(SD)}+M^{(ED)} \right) g}{K_{33}^{(SD)}}\]</div>
 </div>
 <div class="section" id="self-weight-calculations">
-<h2><span class="section-number">4.8.5.5. </span>자중 계산<a class="headerlink" href="#self-weight-calculations" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.8.5.5. </span>자중 계산<a class="headerlink" href="#self-weight-calculations" title="이 제목의 고유 링크"></a></h2>
 <p>SubDyn는 부재의 자중을 계산하고 요소 절점에 적절한 힘과 모멘트를 적용합니다. 덩어리진 질량은 지정된 관절에 집중된 중력 하중으로 간주됩니다. 코드가 DEBUG 컴파일러 지시어로 컴파일된 경우 자중력 배열은 요약 파일에서 볼 수 있습니다. 일반적으로 SubDyn는 하부 구조의 구조적 움직임이 작다고 가정합니다. 즉 (1) 작은 각도 가정이 구조적 회전에 적용되고 (2) 소위 P- <span class="math notranslate nohighlight">\({\Delta}\)</span> 효과는 무시할 수 있으므로 편향되지 않은 노드 위치는 자중 계산에 사용됩니다.</p>
 </div>
 <div class="section" id="note-on-other-load-calculations">
-<h2><span class="section-number">4.8.5.6. </span>기타 부하 계산에 대한 참고 사항<a class="headerlink" href="#note-on-other-load-calculations" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.8.5.6. </span>기타 부하 계산에 대한 참고 사항<a class="headerlink" href="#note-on-other-load-calculations" title="이 제목의 고유 링크"></a></h2>
 <p>SubDyn가 FAST를 통해 HydroDyn에 연결되면 부력, 해양 성장 중량, 파도 및 조류 하중을 포함하는 유체 역학 하중이 글루 코드의 메쉬 매핑 루틴에 의해 노드의 효과적인 편향 위치에 적용됩니다. 그러나 이러한 하중은 편향되지 않은 위치의 파동 운동학을 기반으로 합니다(자세한 내용은 Jonkman et al. 2014 참조).</p>
 </div>
 <div class="section" id="craig-bampton-guidelines">
-<span id="cbguide"></span><h2><span class="section-number">4.8.5.7. </span>크레이그-뱀튼 지침<a class="headerlink" href="#craig-bampton-guidelines" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="cbguide"></span><h2><span class="section-number">4.8.5.7. </span>크레이그-뱀튼 지침<a class="headerlink" href="#craig-bampton-guidelines" title="이 제목의 고유 링크"></a></h2>
 <p>SubDyn가 FAST와 결합될 때 충분한 수의 C-B 모드를 선택하여 결합 시스템의 진동 모드가 결합 모델에 의해 적절하게 포착되도록 하는 것이 중요합니다. 최소 2~3Hz의 모든 모드를 캡처하는 것이 좋습니다. 바람, 파도, 터빈 자극은 최대 2~3Hz의 주파수에 중요합니다. 선형화된 결합 시스템의 고유 분석을 통해 이 조건을 확인할 수 있으며 유지되는 모드 수를 선택하는 데 도움이 됩니다. 그러나 FAST v8에서는 선형화 프로세스가 아직 구현되지 않았습니다. 전체 시스템 선형화가 가능해질 때까지 경험에 따르면 최대 10Hz까지 모든 C-B 모드를 활성화하는 것으로 충분합니다(C-B 모드의 고유 주파수는 SubDyn 요약 파일에 기록됩니다). SIM인 경우(섹션 참조) <a class="reference internal" href="theory.html#sim"><span class="std std-numref">섹션 4.8.6.6.6</span></a>)가 활성화되지 않으면 주어진 주파수까지 물리적 모드를 캡처하는 것 외에도 가장 높은 C-B 모드에는 자중으로 인한 중력 하중이 SubDyn 내에서 적절하게 설명되도록 하부 구조 축 모드가 포함되어야 합니다. 이를 포함하려면 많은 수의 C-B 모드를 활성화해야 C-B 감소의 이점이 줄어들 수 있습니다. 따라서 SIM를 활성화한 상태에서 C-B 감소를 사용하는 것이 좋습니다. C-B 감소에서 하부 구조 경계 조건의 고정-고정 처리로 인해 C-B 모드는 항상 물리적 모드보다 더 높은 고유 진동수를 갖습니다.</p>
 </div>
 <div class="section" id="integration-time-step-guidelines">
-<h2><span class="section-number">4.8.5.8. </span>통합 시간 단계 지침<a class="headerlink" href="#integration-time-step-guidelines" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.8.5.8. </span>통합 시간 단계 지침<a class="headerlink" href="#integration-time-step-guidelines" title="이 제목의 고유 링크"></a></h2>
 <p>SubDyn 입력 파일을 생성할 때 고려해야 할 또 다른 사항은 시간 단계 크기입니다. SubDyn는 세 가지 명시적 시간 적분기, 즉 4차 Runge-Kutta(RK4), 4차 Adams-Bashforth(AB4), 4차 Adams-Bashforth-Moulton(ABM4) 방법 및 암시적 2차 Adams-Moulton(AM2) 방법을 제공합니다. 사용자는 글루 코드의 전역 시간 단계를 사용하거나 글루 코드 시간 단계보다 정수배 작은 대체 SubDyn 고유 시간 단계를 사용할 수 있습니다. 솔루션 정확도(시스템의 모든 주요 주파수를 특성화하는 데 충분한 샘플링 속도 제공), 선택한 명시적 시간 적분기의 수치적 안정성, FAST와의 결합이 수치적으로 안정적이라는 것을 보장하려면 충분히 작은 시간 간격을 사용하는 것이 중요합니다.</p>
 <p>RK4 및 ABM4 방법의 경우 SubDyn 시간 단계가 Eq.에 표시된 관계를 따르는 것이 좋습니다. <a class="reference internal" href="#equation-dtmax">(4.107)</a>, 어디 <span class="math notranslate nohighlight">\({f_{max}}\)</span> (1) 유지된 C-B 모드의 가장 높은 고유 주파수와 (2) FAST에 결합될 때 물리적 모드의 가장 높은 고유 주파수 중 더 높은 것입니다. 전자는 SubDyn 요약 파일에서 얻을 수 있지만 후자는 결합된 FAST 모델의 전체 시스템 선형화가 실현되기 전에는 추정하기 어렵습니다. 그때까지 경험에 따르면 SubDyn가 FAST에 결합될 때 가장 높은 물리적 모드는 종종 ElastoDyn의 플랫폼 이동 모드이며 주파수는 Eq. <a class="reference internal" href="#equation-freq">(4.108)</a>, 여기서 변수는 섹션 5.3에 정의되어 있습니다.</p>
 <div class="math notranslate nohighlight" id="equation-dtmax">
@@ -211,8 +211,8 @@
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
-        <a href="output_files.html" class="btn btn-neutral float-left" title="4.8.4. 출력 파일" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="output_files.html" class="btn btn-neutral float-left" title="4.8.4. 출력 파일" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
         <a href="theory.html" class="btn btn-neutral float-right" title="4.8.6. SubDyn 이론" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

@@ -20,7 +20,7 @@
         <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="찾다" href="../../../search.html">
+    <link rel="search" title="검색" href="../../../search.html">
     <link rel="next" title="4.2.4. 솔버" href="solver.html">
     <link rel="prev" title="4.2.2. 모듈 변수(ModVar)" href="modvar.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/glue-code/modglue.html"></head>
@@ -47,9 +47,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">4.2. 글루 코드</a><ul class="current">
@@ -92,16 +92,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -110,12 +110,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
           <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.2. </span>글루 코드</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.2.3. </span>ModGlue – 모듈을 글로벌 어레이로 결합</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/glue-code/modglue.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
+            <a href="../../../_sources/source/user/glue-code/modglue.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -124,7 +124,7 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="modglue-combining-modules-into-global-arrays">
-<span id="glue-code-modglue"></span><h1><span class="section-number">4.2.3. </span>ModGlue – 모듈을 글로벌 어레이로 결합<a class="headerlink" href="#modglue-combining-modules-into-global-arrays" title="이 제목에 대한 영구 링크"></a></h1>
+<span id="glue-code-modglue"></span><h1><span class="section-number">4.2.3. </span>ModGlue – 모듈을 글로벌 어레이로 결합<a class="headerlink" href="#modglue-combining-modules-into-global-arrays" title="이 제목의 고유 링크"></a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">ModGlue_CombineModules</span></code> 에 의해 등록된 모듈별 변수 설명을 변환하는 단일 루틴입니다. <code class="docutils literal notranslate"><span class="pre">MV_AddVar</span></code> /
 <code class="docutils literal notranslate"><span class="pre">MV_AddMeshVar</span></code> / <code class="docutils literal notranslate"><span class="pre">MV_AddModule</span></code> (보다 <a class="reference internal" href="modvar.html#glue-code-modvar"><span class="std std-ref">모듈 변수(ModVar)</span></a>)로
 <em>단단히 짜여 하나로 되어 있는</em> 결합 시스템의 모습. 루틴의 출력은 다음과 같습니다.
@@ -148,7 +148,7 @@
 </ul>
 </div>
 <div class="section" id="the-modgluetype-structure">
-<h2><a class="toc-backref" href="#id2"><span class="section-number">4.2.3.1. </span>해당 <code class="docutils literal notranslate"><span class="pre">ModGlueType</span></code> 구조</a><a class="headerlink" href="#the-modgluetype-structure" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><a class="toc-backref" href="#id2"><span class="section-number">4.2.3.1. </span>해당 <code class="docutils literal notranslate"><span class="pre">ModGlueType</span></code> 구조</a><a class="headerlink" href="#the-modgluetype-structure" title="이 제목의 고유 링크"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">ModGlueType</span></code> 에 정의되어 있습니다 <code class="docutils literal notranslate"><span class="pre">modules/openfast-library/src/Glue_Types.f90</span></code>:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">type </span><span class="n">ModGlueType</span>
 <span class="w">   </span><span class="kt">character</span><span class="p">(</span><span class="n">ChanLen</span><span class="p">)</span><span class="w">                    </span><span class="kd">::</span><span class="w"> </span><span class="n">Name</span><span class="w">     </span><span class="c">! Label (e.g. 'Solver', 'Lin')</span>
@@ -200,7 +200,7 @@
 </table>
 </div>
 <div class="section" id="the-iloc-index-range">
-<h2><a class="toc-backref" href="#id3"><span class="section-number">4.2.3.2. </span>해당 <code class="docutils literal notranslate"><span class="pre">iLoc</span></code> 인덱스 범위</a><a class="headerlink" href="#the-iloc-index-range" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><a class="toc-backref" href="#id3"><span class="section-number">4.2.3.2. </span>해당 <code class="docutils literal notranslate"><span class="pre">iLoc</span></code> 인덱스 범위</a><a class="headerlink" href="#the-iloc-index-range" title="이 제목의 고유 링크"></a></h2>
 <p>후에 <code class="docutils literal notranslate"><span class="pre">ModGlue_CombineModules</span></code> 반환, 각 변수
 <code class="docutils literal notranslate"><span class="pre">ModGlue%Vars%x</span> <span class="pre">/</span> <span class="pre">%u</span> <span class="pre">/</span> <span class="pre">%y</span></code> 운반하다 <code class="docutils literal notranslate"><span class="pre">iLoc(1:2)</span></code> 범위 안에 위치하는 범위 <em>접착제 수준</em> 데이터 벡터. 특히 위치에 있는 변수의 경우
 <em>k</em> 에서 <code class="docutils literal notranslate"><span class="pre">ModGlue%Vars%x</span></code>:</p>
@@ -212,7 +212,7 @@
 보기 및 선형화 <code class="docutils literal notranslate"><span class="pre">m%ModGlue</span></code> 각 컨텍스트에서 일관되고 겹치지 않는 인덱스 범위를 볼 수 있습니다.</p>
 </div>
 <div class="section" id="what-modglue-combinemodules-does">
-<h2><a class="toc-backref" href="#id4"><span class="section-number">4.2.3.3. </span>무엇 <code class="docutils literal notranslate"><span class="pre">ModGlue_CombineModules</span></code> 하다</a><a class="headerlink" href="#what-modglue-combinemodules-does" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><a class="toc-backref" href="#id4"><span class="section-number">4.2.3.3. </span>무엇 <code class="docutils literal notranslate"><span class="pre">ModGlue_CombineModules</span></code> 하다</a><a class="headerlink" href="#what-modglue-combinemodules-does" title="이 제목의 고유 링크"></a></h2>
 <p>서브루틴 서명은 다음과 같습니다.</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">ModGlue_CombineModules</span><span class="p">(</span><span class="n">ModGlue</span><span class="p">,</span><span class="w"> </span><span class="n">ModDataAry</span><span class="p">,</span><span class="w"> </span><span class="n">Mappings</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
 <span class="w">                                   </span><span class="n">iModAry</span><span class="p">,</span><span class="w"> </span><span class="n">FlagFilter</span><span class="p">,</span><span class="w"> </span><span class="n">Linearize</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
@@ -279,10 +279,10 @@
 </ol>
 </div>
 <div class="section" id="where-modglue-combinemodules-is-called">
-<h2><a class="toc-backref" href="#id5"><span class="section-number">4.2.3.4. </span>어디 <code class="docutils literal notranslate"><span class="pre">ModGlue_CombineModules</span></code> 라고</a><a class="headerlink" href="#where-modglue-combinemodules-is-called" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><a class="toc-backref" href="#id5"><span class="section-number">4.2.3.4. </span>어디 <code class="docutils literal notranslate"><span class="pre">ModGlue_CombineModules</span></code> 라고</a><a class="headerlink" href="#where-modglue-combinemodules-is-called" title="이 제목의 고유 링크"></a></h2>
 <p>루틴은 OpenFAST 초기화 중에 두 번 호출되어 두 개의 고유한 생성 <code class="docutils literal notranslate"><span class="pre">ModGlueType</span></code> 다양한 변수 선택이 있는 인스턴스:</p>
 <div class="section" id="m-mod-the-solver-glue-module-in-fast-solverinit">
-<h3><a class="toc-backref" href="#id6"><span class="section-number">4.2.3.4.1. </span><code class="docutils literal notranslate"><span class="pre">m%Mod</span></code> – 솔버 접착제 모듈(in <code class="docutils literal notranslate"><span class="pre">FAST_SolverInit</span></code>)</a><a class="headerlink" href="#m-mod-the-solver-glue-module-in-fast-solverinit" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><a class="toc-backref" href="#id6"><span class="section-number">4.2.3.4.1. </span><code class="docutils literal notranslate"><span class="pre">m%Mod</span></code> – 솔버 접착제 모듈(in <code class="docutils literal notranslate"><span class="pre">FAST_SolverInit</span></code>)</a><a class="headerlink" href="#m-mod-the-solver-glue-module-in-fast-solverinit" title="이 제목의 고유 링크"></a></h3>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">iMod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">p</span><span class="p">%</span><span class="n">iModTC</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">%</span><span class="n">iModOpt1</span><span class="p">]</span><span class="w">   </span><span class="c">! TC + Option-1 indices</span>
 
 <span class="k">call </span><span class="n">ModGlue_CombineModules</span><span class="p">(</span><span class="n">m</span><span class="p">%</span><span class="nb">Mod</span><span class="p">,</span><span class="w"> </span><span class="n">GlueModData</span><span class="p">,</span><span class="w"> </span><span class="n">GlueModMaps</span><span class="p">,</span><span class="w"> </span><span class="n">iMod</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
@@ -301,7 +301,7 @@
 </ul>
 </div>
 <div class="section" id="m-fast-modglue-the-linearization-glue-module-in-modglue-init">
-<h3><a class="toc-backref" href="#id7"><span class="section-number">4.2.3.4.2. </span><code class="docutils literal notranslate"><span class="pre">m_FAST%ModGlue</span></code> – Linearization 접착 모듈( <code class="docutils literal notranslate"><span class="pre">ModGlue_Init</span></code>)</a><a class="headerlink" href="#m-fast-modglue-the-linearization-glue-module-in-modglue-init" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><a class="toc-backref" href="#id7"><span class="section-number">4.2.3.4.2. </span><code class="docutils literal notranslate"><span class="pre">m_FAST%ModGlue</span></code> – Linearization 접착 모듈( <code class="docutils literal notranslate"><span class="pre">ModGlue_Init</span></code>)</a><a class="headerlink" href="#m-fast-modglue-the-linearization-glue-module-in-modglue-init" title="이 제목의 고유 링크"></a></h3>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">LinFlags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">VF_Linearize</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">VF_Mapping</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">VF_Mesh</span>
 
 <span class="k">call </span><span class="n">ModGlue_CombineModules</span><span class="p">(</span><span class="n">m</span><span class="p">%</span><span class="n">ModGlue</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">%</span><span class="n">ModData</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">%</span><span class="n">Mappings</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
@@ -324,7 +324,7 @@
 </div>
 </div>
 <div class="section" id="how-the-global-index-enables-matrix-assembly">
-<h2><a class="toc-backref" href="#id8"><span class="section-number">4.2.3.5. </span>글로벌 인덱스를 사용하여 매트릭스 어셈블리를 구현하는 방법</a><a class="headerlink" href="#how-the-global-index-enables-matrix-assembly" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><a class="toc-backref" href="#id8"><span class="section-number">4.2.3.5. </span>글로벌 인덱스를 사용하여 매트릭스 어셈블리를 구현하는 방법</a><a class="headerlink" href="#how-the-global-index-enables-matrix-assembly" title="이 제목의 고유 링크"></a></h2>
 <p>모든 변수 설명자는 <code class="docutils literal notranslate"><span class="pre">iLoc</span></code> 접착제의 범위
 <code class="docutils literal notranslate"><span class="pre">Vars</span></code> 전역 데이터 벡터에 대한 배열, 분산 및 수집 작업은 간단한 인덱스 범위 할당이 됩니다. 예를 들어, 모듈의 상태 벡터를 전역 솔버 벡터로 압축하려면 <code class="docutils literal notranslate"><span class="pre">x_global</span></code>:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">do </span><span class="n">iVar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">ModData</span><span class="p">%</span><span class="n">Vars</span><span class="p">%</span><span class="n">x</span><span class="p">)</span>
@@ -352,8 +352,8 @@
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
-        <a href="modvar.html" class="btn btn-neutral float-left" title="4.2.2. 모듈 변수(ModVar)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="modvar.html" class="btn btn-neutral float-left" title="4.2.2. 모듈 변수(ModVar)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
         <a href="solver.html" class="btn btn-neutral float-right" title="4.2.4. 솔버" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

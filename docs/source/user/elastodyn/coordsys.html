@@ -20,7 +20,7 @@
         <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="찾다" href="../../../search.html">
+    <link rel="search" title="검색" href="../../../search.html">
     <link rel="next" title="4.10.2. 입력 파일" href="input.html">
     <link rel="prev" title="4.10. ElastoDyn 사용자 가이드 및 이론 매뉴얼" href="index.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/elastodyn/coordsys.html"></head>
@@ -47,9 +47,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
@@ -69,7 +69,7 @@
 <li class="toctree-l3"><a class="reference internal" href="input.html">4.10.2. 입력 파일</a></li>
 <li class="toctree-l3"><a class="reference internal" href="theory.html">4.10.3. ElastoDyn 이론</a></li>
 <li class="toctree-l3"><a class="reference internal" href="theory.html#developer-notes">4.10.4. 개발자 노트</a></li>
-<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.10.5. 참고자료</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.10.5. 참고문헌</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
@@ -89,16 +89,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -107,12 +107,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.10. </span>ElastoDyn 사용자 가이드 및 이론 매뉴얼</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.10. </span>ElastoDyn 사용자 가이드 및 이론 설명서</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.10.1. </span>좌표계</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/elastodyn/coordsys.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
+            <a href="../../../_sources/source/user/elastodyn/coordsys.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -121,7 +121,7 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="coordinate-systems">
-<span id="ed-coordsys"></span><h1><span class="section-number">4.10.1. </span>좌표계<a class="headerlink" href="#coordinate-systems" title="이 제목에 대한 영구 링크"></a></h1>
+<span id="ed-coordsys"></span><h1><span class="section-number">4.10.1. </span>좌표계<a class="headerlink" href="#coordinate-systems" title="이 제목의 고유 링크"></a></h1>
 <p>아래 하위 섹션에 자세히 설명되지 않은 좌표계에 대해서는 다음 참고 자료를 참조하세요.</p>
 <ul class="simple">
 <li><p><a class="reference download internal" download="" href="../../../_downloads/58e8e5d57917c1fb844a50b953a02b6c/OpenFAST_coords.pdf"><code class="xref download docutils literal notranslate"><span class="pre">OpenFAST_coords.pdf</span></code></a>: OpenFAST의 일부 좌표계를 개요하는 2024년 프레젠테이션입니다.</p></li>
@@ -130,7 +130,7 @@
 <li><p><a class="reference download internal" download="" href="../../../_downloads/c9ae932057ea1e64c79154b36d3ab30a/FASTCoordinateSystems.doc"><code class="xref download docutils literal notranslate"><span class="pre">FASTCoordinateSystems.doc</span></code></a>: OpenFAST의 각 좌표계와 관련된 변환 행렬을 문서화합니다. 불행하게도 이 문서에는 이러한 좌표계를 나타내는 그림이 없습니다. 변환 행렬을 통해 시각화할 수 있기를 바랍니다.</p></li>
 </ul>
 <div class="section" id="rotor-furl-coordinate-system">
-<span id="ed-rfrl-coordsys"></span><h2><span class="section-number">4.10.1.1. </span>로터-펄(Rotor-Furl) 좌표계<a class="headerlink" href="#rotor-furl-coordinate-system" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="ed-rfrl-coordsys"></span><h2><span class="section-number">4.10.1.1. </span>로터-펄(Rotor-Furl) 좌표계<a class="headerlink" href="#rotor-furl-coordinate-system" title="이 제목의 고유 링크"></a></h2>
 <p>로터 퍼럴 DOF를 사용하면 사용자는 로터와 구동계가 타워 꼭대기 구조물의 요잉 부분을 중심으로 회전할 수 있도록 하는 특이한 베어링 구성을 모델링할 수 있습니다. 로터-펄 DOF는 로터-펄 축이 로터 샤프트 축과 정렬된 경우 기어박스 장착의 비틀림 유연성을 모델링하는 데 대안으로 사용할 수 있습니다. 모델에 로터 펄링을 포함시키려면 사용자는 입력을 설정하여 터빈을 펄링 기계로 지정해야 합니다. <code class="docutils literal notranslate"><span class="pre">Furling</span></code> 기본 입력 파일에서 True로. 그런 다음 사용자는 Furling 입력 파일을 조립해야 하며, <code class="docutils literal notranslate"><span class="pre">FurlFile</span></code>, 이 기능을 활성화하려면 로터 퍼럴 플래그 RFrlDOF를 사용하십시오. 각도 로터-펄 운동은 입력에 의해 정의된 로터-펄 축을 중심으로 발생합니다.
 <code class="docutils literal notranslate"><span class="pre">RFrlPnt_n</span></code>,
 <code class="docutils literal notranslate"><span class="pre">RFrlSkew</span></code>, 및 <code class="docutils literal notranslate"><span class="pre">RFrlTilt</span></code>. FurlFile에서 사용할 수 있습니다. 입력 <code class="docutils literal notranslate"><span class="pre">RFrlPnt_n</span></code> 타워 상단을 기준으로 로터 펄 축에서 임의의 지점을 찾습니다. 입력 <code class="docutils literal notranslate"><span class="pre">RFrlSkew</span></code>
@@ -139,7 +139,7 @@
 <p>펄링-로터 어셈블리의 구성 요소 형상은 타워 상단을 기준으로 정의되므로 이 형상은 로터-펄 각도에 따라 자연스럽게 변경됩니다. 서로 다른 로터-펄 위치(예: 초기 로터-펄 각도의 변화)에 대해 서로 다른 형상을 정의해야 하는 것을 피하기 위해 ElastoDyn는 펄링-로터 어셈블리의 구성 요소 형상이 로터-펄 각도 0에서 정의/입력될 것으로 예상합니다. 따라서 초기 로터-펄 각도는 다른 로터-펄 형상의 사양에 영향을 미치지 않습니다. 다르게 말하면, 로터-펄 어셈블리 구성 요소의 입력 형상은 초기 로터-펄 위치에 관계없이 로터-펄 각도가 0일 때 로터 구성을 정의합니다. 사용자는 Furling 입력 파일을 조합할 때 이 규칙을 명확히 해야 합니다.</p>
 </div>
 <div class="section" id="tail-furl-coordinate-system">
-<span id="ed-tfrl-coordsys"></span><h2><span class="section-number">4.10.1.2. </span>Tail-Furl 좌표계<a class="headerlink" href="#tail-furl-coordinate-system" title="이 제목에 대한 영구 링크"></a></h2>
+<span id="ed-tfrl-coordsys"></span><h2><span class="section-number">4.10.1.2. </span>Tail-Furl 좌표계<a class="headerlink" href="#tail-furl-coordinate-system" title="이 제목의 고유 링크"></a></h2>
 <p>tail-furl DOF를 사용하면 사용자는 타워 꼭대기 구조물의 요잉 부분을 중심으로 꼬리가 회전하도록 허용하는 베어링의 특이한 구성을 모델링할 수 있습니다. 모델에 테일 펄링을 포함시키려면 사용자는 입력을 설정하여 터빈을 펄링 기계로 지정해야 합니다. <code class="docutils literal notranslate"><span class="pre">Furling</span></code> ElastoDyn 입력 파일을 True로 변경합니다. 그런 다음 Furling 입력 파일을 어셈블해야 합니다.
 <code class="docutils literal notranslate"><span class="pre">FurlFile</span></code>, tail-furl 플래그를 사용합니다. <code class="docutils literal notranslate"><span class="pre">TFrlDOF</span></code>, 이 기능을 활성화합니다. 각진 tail-furl 동작은 입력에 의해 정의된 tail-furl 축을 중심으로 발생합니다. <code class="docutils literal notranslate"><span class="pre">TFrlPnt_n</span></code>, <code class="docutils literal notranslate"><span class="pre">TFrlSkew</span></code>, 및 <code class="docutils literal notranslate"><span class="pre">TFrlTilt</span></code> 에서 사용 가능
 <code class="docutils literal notranslate"><span class="pre">FurlFile</span></code>. 입력 <code class="docutils literal notranslate"><span class="pre">TFrlPnt_n</span></code> 타워 꼭대기를 기준으로 꼬리털 축에서 임의의 지점을 찾습니다. 보다 <a class="reference internal" href="#figtfaxes"><span class="std std-numref">그림 4.46</span></a> 회로도를 위해.</p>
@@ -163,8 +163,8 @@
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
-        <a href="index.html" class="btn btn-neutral float-left" title="4.10. ElastoDyn 사용자 가이드 및 이론 매뉴얼" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="index.html" class="btn btn-neutral float-left" title="4.10. ElastoDyn 사용자 가이드 및 이론 매뉴얼" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
         <a href="input.html" class="btn btn-neutral float-right" title="4.10.2. 입력 파일" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

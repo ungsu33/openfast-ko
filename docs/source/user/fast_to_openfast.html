@@ -21,7 +21,7 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../genindex.html">
-    <link rel="search" title="찾다" href="../../search.html">
+    <link rel="search" title="검색" href="../../search.html">
     <link rel="next" title="4.1.2. API 버전 간 변경" href="api_change.html">
     <link rel="prev" title="4.1. 일반적인" href="general.html"> 
 <link rel="stylesheet" href="../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/fast_to_openfast.html"></head>
@@ -48,9 +48,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. 이 문서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. 이 문서에 대하여</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../working.html">3. OpenFAST 작업</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working.html">3. OpenFAST 사용하기</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">4. 사용자 문서</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="general.html">4.1. 일반 고려사항</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">4.1.1. FAST v8 및 OpenFAST로의 전환</a><ul>
@@ -92,16 +92,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../license.html">7. 라이센스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">7. 라이선스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. 감사의 말씀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. 감사의 글</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../review.html">문서 상세 리뷰</a></li><li><a href="../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">OpenFAST</a>
       </nav>
@@ -110,12 +110,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home" aria-label="집"></a></li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="홈"></a></li>
           <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4. </span>사용자 문서</a></li>
-          <li class="breadcrumb-item"><a href="general.html"><span class="section-number">4.1. </span>일반적인</a></li>
+          <li class="breadcrumb-item"><a href="general.html"><span class="section-number">4.1. </span>일반 사항</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.1.1. </span>FAST v8 및 OpenFAST로의 전환</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../_sources/source/user/fast_to_openfast.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
+            <a href="../../_sources/source/user/fast_to_openfast.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -124,15 +124,15 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="fast-v8-and-the-transition-to-openfast">
-<span id="fast-to-openfast"></span><h1><span class="section-number">4.1.1. </span>FAST v8 및 OpenFAST로의 전환<a class="headerlink" href="#fast-v8-and-the-transition-to-openfast" title="이 제목에 대한 영구 링크"></a></h1>
+<span id="fast-to-openfast"></span><h1><span class="section-number">4.1.1. </span>FAST v8 및 OpenFAST로의 전환<a class="headerlink" href="#fast-v8-and-the-transition-to-openfast" title="이 제목의 고유 링크"></a></h1>
 <p>이 페이지에서는 풍력 터빈의 결합된 동적 응답을 시뮬레이션하기 위한 컴퓨터 지원 엔지니어링 도구인 FAST v8에서 OpenFAST로의 전환에 대해 설명합니다. OpenFAST는 미국 에너지부 풍력 에너지 기술 사무소(DOE-WETO)의 지원을 받은 국립 재생 에너지 연구소(NREL)의 연구원들에 의해 2017년에 설립되었습니다. 2025년 가을에 실험실 이름이 로키산맥 국립연구소(NLR)로 변경되었습니다.</p>
 <div class="section" id="fast-v8">
-<h2><span class="section-number">4.1.1.1. </span>FAST v8<a class="headerlink" href="#fast-v8" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.1.1.1. </span>FAST v8<a class="headerlink" href="#fast-v8" title="이 제목의 고유 링크"></a></h2>
 <p>FAST v8은 풍력 터빈의 결합된 동적 응답을 시뮬레이션하기 위한 컴퓨터 지원 엔지니어링 도구입니다. FAST는 공기 역학 모델, 해양 구조물용 유체 역학 모델, 제어 및 전기 시스템(서보) 역학 모델, 구조(탄성) 역학 모델을 결합하여 시간 영역에서 결합된 비선형 공기-유체-서보-탄성 시뮬레이션을 가능하게 합니다. FAST 도구를 사용하면 2블레이드 또는 3블레이드 수평축 로터, 피치 또는 실속 조절, 강성 또는 티터링 허브, 풍향 또는 풍하향 로터, 격자 또는 관형 타워를 포함한 다양한 풍력 터빈 구성을 분석할 수 있습니다. 풍력 터빈은 육지나 해상의 고정 바닥 또는 부유식 하부 구조로 모델링할 수 있습니다. FAST는 기본 법칙에서 파생되었지만 적절한 단순화와 가정을 갖춘 고급 엔지니어링 모델을 기반으로 하며 해당하는 경우 계산 솔루션 및 테스트 데이터로 보완됩니다.</p>
 <p>공기 역학 모델은 바람 유입 데이터를 사용하고 동적 실속을 포함한 로터 후류 효과와 블레이드 요소 공기 역학적 부하를 해결합니다. 유체역학 모델은 규칙적이거나 불규칙한 입사파와 해류를 시뮬레이션하고 해양 하부구조의 정수압, 복사, 회절 및 점성 하중을 해결합니다. 제어 및 전기 시스템 모델은 블레이드 피치, 발전기 토크, 나셀 요 및 기타 제어 장치의 컨트롤러 로직, 센서 및 액추에이터는 물론 전기 드라이브의 발전기 및 전력 변환기 구성 요소를 시뮬레이션합니다. 구조 역학 모델은 제어 및 전기 시스템 반응을 적용하고, 공기 역학 및 유체 역학 하중을 적용하고, 중력 하중을 추가하고, 로터, 구동계 및 지지 구조의 탄성을 시뮬레이션합니다. 모든 모델 간의 결합은 모듈식 인터페이스와 커플러를 통해 이루어집니다.</p>
 </div>
 <div class="section" id="transition-to-openfast">
-<h2><span class="section-number">4.1.1.2. </span>OpenFAST로 전환<a class="headerlink" href="#transition-to-openfast" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.1.1.2. </span>OpenFAST로 전환<a class="headerlink" href="#transition-to-openfast" title="이 제목의 고유 링크"></a></h2>
 <p>OpenFAST의 출시는 풍력 터빈 및 풍력 발전소의 FAST 기반 항공유력 서보탄성 엔지니어링 모델을 중심으로 연구 실험실, 산업계, 학계 전반의 오픈 소스 개발자 커뮤니티를 더 잘 지원하기 위한 전환을 의미합니다. OpenFAST는 잘 문서화된 소스 코드, 광범위한 자동 회귀 및 단위 테스트, 강력한 다중 플랫폼 및 컴파일러 빌드 시스템을 포함하여 FAST 개발을 위한 견고한 소프트웨어 엔지니어링 프레임워크를 제공하는 것을 목표로 합니다.</p>
 <p>OpenFAST에는 FAST v8.16과 관련하여 다음과 같은 조직 변경 사항이 포함되어 있습니다.</p>
 <ul class="simple">
@@ -161,10 +161,10 @@
 </ul>
 </div>
 <div class="section" id="release-notes-for-openfast">
-<h2><span class="section-number">4.1.1.3. </span>OpenFAST에 대한 릴리스 노트<a class="headerlink" href="#release-notes-for-openfast" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.1.1.3. </span>OpenFAST에 대한 릴리스 노트<a class="headerlink" href="#release-notes-for-openfast" title="이 제목의 고유 링크"></a></h2>
 <p>이 섹션에서는 태그가 지정된 각 릴리스에서 OpenFAST에 대한 중요한 수정 사항을 간략하게 설명합니다.</p>
 <div class="section" id="v0-1-0-april-2017">
-<h3><span class="section-number">4.1.1.3.1. </span>v0.1.0(2017년 4월)<a class="headerlink" href="#v0-1-0-april-2017" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.1.1.3.1. </span>v0.1.0(2017년 4월)<a class="headerlink" href="#v0-1-0-april-2017" title="이 제목의 고유 링크"></a></h3>
 <p>알고리즘적으로 OpenFAST v0.1.0은 FAST v8.16과 가장 밀접하게 관련된 릴리스입니다.</p>
 <ul>
 <li><p>조직 변화:</p>
@@ -200,7 +200,7 @@
 </ul>
 </div>
 <div class="section" id="v1-0-0-september-2017">
-<h3><span class="section-number">4.1.1.3.2. </span>v1.0.0(2017년 9월)<a class="headerlink" href="#v1-0-0-september-2017" title="이 제목에 대한 영구 링크"></a></h3>
+<h3><span class="section-number">4.1.1.3.2. </span>v1.0.0(2017년 9월)<a class="headerlink" href="#v1-0-0-september-2017" title="이 제목의 고유 링크"></a></h3>
 <ul class="simple">
 <li><p>조직 변화:</p>
 <ul>
@@ -277,7 +277,7 @@
 </div>
 </div>
 <div class="section" id="openfast-looking-forward">
-<h2><span class="section-number">4.1.1.4. </span>OpenFAST: 기대됩니다<a class="headerlink" href="#openfast-looking-forward" title="이 제목에 대한 영구 링크"></a></h2>
+<h2><span class="section-number">4.1.1.4. </span>OpenFAST: 기대됩니다<a class="headerlink" href="#openfast-looking-forward" title="이 제목의 고유 링크"></a></h2>
 <p>우리의 목표는 OpenFAST 문서를 지속적으로 개선하고 자동화된 단위 및 회귀 테스트의 범위를 늘리는 것입니다. 테스트 범위를 늘리고 강력한 소프트웨어를 유지하려면 다음이 필요합니다.</p>
 <ul class="simple">
 <li><p>새로운 모듈은 모듈 개발자가 적절한 OpenFAST 회귀 테스트와 함께 충분한 모듈별 단위 및 회귀 테스트를 갖추고 있습니다.</p></li>
@@ -293,8 +293,8 @@
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
-        <a href="general.html" class="btn btn-neutral float-left" title="4.1. 일반적인" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
+        <a href="general.html" class="btn btn-neutral float-left" title="4.1. 일반적인" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
         <a href="api_change.html" class="btn btn-neutral float-right" title="4.1.2. API 버전 간 변경" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
