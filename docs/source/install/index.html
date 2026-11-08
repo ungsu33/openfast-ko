@@ -20,9 +20,9 @@
         <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../genindex.html">
-    <link rel="search" title="검색" href="../../search.html">
-    <link rel="next" title="2.4.3.1. Visual Studio를 사용하여 Windows에서 OpenFAST 구축" href="install_vs_windows.html">
-    <link rel="prev" title="1. 이 문서에 대하여" href="../this_doc.html"> 
+    <link rel="search" title="찾다" href="../../search.html">
+    <link rel="next" title="2.4.3.1. Visual Studio를 사용하여 Windows에서 OpenFAST 빌드" href="install_vs_windows.html">
+    <link rel="prev" title="1. 이 문서" href="../this_doc.html"> 
 <link rel="stylesheet" href="../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/install/index.html"></head>
 
 <body class="wy-body-for-nav"> 
@@ -35,7 +35,7 @@
           
           <a href="../../index.html" class="icon icon-home">
             OpenFAST
-              <img src="../../_static/openfastlogo.jpg" class="logo" alt="로고">
+              <img src="../../_static/openfastlogo.jpg" class="logo" alt="심벌 마크">
           </a>
               <div class="version">5.0 · 한국어</div>
 <div role="search">
@@ -47,22 +47,22 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. 이 문서</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">2. OpenFAST 설치</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#download-binaries">2.1. 바이너리 다운로드</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#conda-installation">2.1.1. 콘다 설치</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#homebrew-installation">2.1.2. 홈브류 설치</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#github-releases">2.1.3. GitHub 릴리스</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#github-releases">2.1.3. GitHub 출시</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#running-openfast-with-docker">2.2. 도커를 사용하여 OpenFAST 실행</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#running-openfast-with-docker">2.2. 도커로 OpenFAST 실행</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#using-a-docker-image-from-docker-hub">2.2.1. Docker 허브에서 Docker 이미지 사용</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#using-a-docker-image-from-github-container-registry">2.2.2. GitHub 컨테이너 레지스트리의 Docker 이미지 사용</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#build-your-own-images">2.2.3. 나만의 이미지 구축</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#install-the-openfast-io-python-wrapper">2.3. 설치하다 <code class="docutils literal notranslate"><span class="pre">openfast_io</span></code> 파이썬 래퍼</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#compile-from-source">2.4. 소스에서 컴파일</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#compile-from-source">2.4. 소스 코드에서 컴파일</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#dependencies">2.4.1. 종속성</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#compilers">2.4.1.1. 컴파일러</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#math-libraries">2.4.1.2. 수학 도서관</a></li>
@@ -71,11 +71,11 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#get-the-code">2.4.2. 코드 받기</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#visual-studio-solution-for-windows">2.4.3. Windows용 Visual Studio 솔루션</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="install_vs_windows.html">2.4.3.1. Visual Studio를 사용하여 Windows에서 OpenFAST 구축</a></li>
+<li class="toctree-l4"><a class="reference internal" href="install_vs_windows.html">2.4.3.1. Visual Studio를 사용하여 Windows에서 OpenFAST 빌드</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#windows-with-the-linux-subsystem-and-vs-code">2.4.4. Linux 하위 시스템 및 VS 코드가 있는 Windows</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="OFcompile_WSL_VScode.html">2.4.4.1. 가이드: WSL 및 VS Code를 사용하여 Windows에서 OpenFAST 설정</a></li>
+<li class="toctree-l4"><a class="reference internal" href="OFcompile_WSL_VScode.html">2.4.4.1. 가이드: WSL 및 VS 코드를 사용하여 Windows에서 OpenFAST 설정</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#understanding-cmake">2.4.5. CMake 이해</a><ul>
@@ -85,8 +85,8 @@
 <li class="toctree-l4"><a class="reference internal" href="#id5">2.4.5.4. 수학 도서관</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#cmake-with-make-for-linux-macos">2.4.6. Linux/macOS용 Make를 사용한 CMake</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#cmake-with-visual-studio-for-windows">2.4.7. Windows용 Visual Studio를 사용한 CMake</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cmake-with-make-for-linux-macos">2.4.6. Linux용 Make가 포함된 CMake/macOS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cmake-with-visual-studio-for-windows">2.4.7. Windows용 Visual Studio를 사용하는 CMake</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#c-api">2.5. C++ API</a></li>
@@ -96,27 +96,27 @@
 <li class="toctree-l3"><a class="reference internal" href="#cmake">2.7.2. CMake</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#appendix">2.8. 부록</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="install_spack.html">2.8.1. Spack으로 OpenFAST 구축</a></li>
-<li class="toctree-l3"><a class="reference internal" href="install_cygwin.html">2.8.2. CMake 및 Cygwin 64비트를 사용하여 Windows에서 OpenFAST 구축</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#appendix">2.8. 충수</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="install_spack.html">2.8.1. Spack으로 OpenFAST 빌드하기</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install_cygwin.html">2.8.2. CMake 및 Cygwin 64비트를 사용하여 Windows에서 OpenFAST 빌드</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working.html">3. OpenFAST 작업</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../user/index.html">4. 사용자 문서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">7. 라이센스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. 감사의 글</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. 감사의 말씀</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../review.html">문서 상세 리뷰</a></li><li><a href="../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">OpenFAST</a>
       </nav>
@@ -125,10 +125,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="집"></a></li>
       <li class="breadcrumb-item active"><span class="section-number">2. </span>OpenFAST 설치</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../_sources/source/install/index.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+            <a href="../../_sources/source/install/index.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -137,17 +137,15 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="installing-openfast">
-<span id="installation"></span><h1><span class="section-number">2. </span>OpenFAST 설치<a class="headerlink" href="#installing-openfast" title="이 제목의 고유 링크"></a></h1>
-<p>사전 컴파일된 바이너리를 얻거나 소스 코드에서 OpenFAST를 컴파일하기 위한 지침 및 절차는 여기에 설명되어 있습니다. 동일한 결과를 달성하는 방법은 여러 가지가 있지만 OpenFAST 팀은 포괄적이고 세심하게 고안된 설치 시스템을 개발했습니다. 따라서 여기에 설명된 방법은 OpenFAST 실행 파일을 얻기 위해 공식적으로 지원되고 유지되는 유일한 경로입니다.</p>
-<p>대부분의 OpenFAST 사용자는 소스 코드를 수정하거나 컴파일할 필요가 없습니다. <strong>소스 코드를 변경하지 않고 OpenFAST를 가장 간단하게 설치하려면,</strong> 는 다음의 표를 참조하십시오. <a class="reference internal" href="#download-binaries"><span class="std std-ref">바이너리 다운로드</span></a> 또는 <a class="reference internal" href="#use-docker"><span class="std std-ref">도커로 OpenFAST 실행</span></a>
-섹션을 참조하고 특정 지침에 대해서는 해당 문서를 읽어보세요. 컴파일에 대한 지침은 다음을 참조하세요. <a class="reference internal" href="#compile-from-source"><span class="std std-ref">소스에서 컴파일</span></a>.</p>
+<span id="installation"></span><h1><span class="section-number">2. </span>OpenFAST 설치<a class="headerlink" href="#installing-openfast" title="이 제목에 대한 영구 링크"></a></h1>
+<p>여기에는 미리 컴파일된 바이너리를 얻거나 소스 코드에서 OpenFAST를 컴파일하기 위한 지침과 절차가 설명되어 있습니다. 동일한 결과를 달성하는 방법은 여러 가지가 있지만 OpenFAST 팀은 포괄적이고 신중한 설치 시스템을 개발했습니다. 따라서 여기에 설명된 방법은 OpenFAST 실행 파일을 얻기 위해 공식적으로 지원되고 유지되는 유일한 경로입니다.</p>
+<p>대부분의 OpenFAST 사용자는 소스 코드를 수정하거나 컴파일할 필요가 없습니다. <strong>소스 코드를 변경하지 않고 OpenFAST를 가장 간단하게 설치하려면,</strong> 의 표를 참조하세요. <a class="reference internal" href="#download-binaries"><span class="std std-ref">바이너리 다운로드</span></a> 또는 <a class="reference internal" href="#use-docker"><span class="std std-ref">도커로 OpenFAST 실행</span></a>
+섹션을 읽고 특정 지침에 대해서는 해당 문서를 읽어보세요. 컴파일에 대한 지침은 다음을 참조하세요. <a class="reference internal" href="#compile-from-source"><span class="std std-ref">소스 코드에서 컴파일</span></a>.</p>
 <p>Python을 사용하여 OpenFAST 파일을 조작하려면 다음을 참조하세요. <a class="reference internal" href="#python-wrapper"><span class="std std-ref">openfast_io Python 래퍼 설치</span></a>.</p>
 <div class="section" id="download-binaries">
-<span id="id1"></span><h2><span class="section-number">2.1. </span>바이너리 다운로드<a class="headerlink" href="#download-binaries" title="이 제목의 고유 링크"></a></h2>
-<p>소스 코드를 변경하지 않고 OpenFAST 시뮬레이션을 실행하려는 사용자의 경우 사전 컴파일된 바이너리를 사용한 설치를 권장합니다. 설치 절차는 지원되는 각 운영 체제마다 다르며, 아래 표에서는 바이너리를 얻는 방법에 운영 체제를 매핑합니다. "릴리스" 버전은 OpenFAST의 잘 테스트되고 안정적인 버전입니다. 새 릴리스는 다음의 병합에 해당합니다.
-저장소의 <code class="docutils literal notranslate"><span class="pre">dev</span></code>
-분기를
-버전 태그와 함께 <code class="docutils literal notranslate"><span class="pre">main</span></code> 분기. "시험판" 버전에는 최신 커밋이 포함되어 있습니다. <code class="docutils literal notranslate"><span class="pre">dev</span></code> 분기에는 불안정한 코드가 포함될 수 있지만 항상 최신 기능을 갖습니다.</p>
+<span id="id1"></span><h2><span class="section-number">2.1. </span>바이너리 다운로드<a class="headerlink" href="#download-binaries" title="이 제목에 대한 영구 링크"></a></h2>
+<p>소스 코드를 변경하지 않고 OpenFAST 시뮬레이션을 실행하려는 사용자의 경우 사전 컴파일된 바이너리를 사용하여 설치하는 것이 좋습니다. 설치 절차는 지원되는 각 운영 체제마다 다르며, 아래 표에서는 바이너리를 얻는 방법에 운영 체제를 매핑합니다. "릴리스" 버전은 OpenFAST의 잘 테스트되고 안정적인 버전입니다. 새 릴리스는 다음의 병합에 해당합니다. <code class="docutils literal notranslate"><span class="pre">dev</span></code>
+저장소의 분기 <code class="docutils literal notranslate"><span class="pre">main</span></code> 버전 태그와 함께 분기합니다. "시험판" 버전에는 최신 커밋이 포함되어 있습니다. <code class="docutils literal notranslate"><span class="pre">dev</span></code> 불안정한 코드가 포함될 수 있지만 항상 최신 기능을 갖습니다.</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 23%">
@@ -165,32 +163,31 @@
 <tbody>
 <tr class="row-even"><td><p>리눅스</p></td>
 <td><p>콘다</p></td>
-<td><p>출시, 시험판</p></td>
+<td><p>릴리스, 프리릴리즈</p></td>
 <td><p><a class="reference internal" href="#conda-install"><span class="std std-ref">콘다 설치</span></a></p></td>
 </tr>
 <tr class="row-odd"><td><p>macOS</p></td>
 <td><p>콘다</p></td>
-<td><p>출시, 시험판</p></td>
+<td><p>릴리스, 프리릴리즈</p></td>
 <td><p><a class="reference internal" href="#conda-install"><span class="std std-ref">콘다 설치</span></a></p></td>
 </tr>
 <tr class="row-even"><td><p>macOS</p></td>
-<td><p>홈브루</p></td>
-<td><p>출시</p></td>
-<td><p><a class="reference internal" href="#brew-install"><span class="std std-ref">홈브루 설치</span></a></p></td>
+<td><p>홈브류</p></td>
+<td><p>풀어 주다</p></td>
+<td><p><a class="reference internal" href="#brew-install"><span class="std std-ref">홈브류 설치</span></a></p></td>
 </tr>
 <tr class="row-odd"><td><p>윈도우</p></td>
-<td><p>GitHub 릴리스</p></td>
-<td><p>출시</p></td>
-<td><p><a class="reference internal" href="#gh-install"><span class="std std-ref">GitHub 릴리스</span></a></p></td>
+<td><p>GitHub 출시</p></td>
+<td><p>풀어 주다</p></td>
+<td><p><a class="reference internal" href="#gh-install"><span class="std std-ref">GitHub 출시</span></a></p></td>
 </tr>
 </tbody>
 </table>
 <div class="section" id="conda-installation">
-<span id="conda-install"></span><h3><span class="section-number">2.1.1. </span>콘다 설치<a class="headerlink" href="#conda-installation" title="이 제목의 고유 링크"></a></h3>
+<span id="conda-install"></span><h3><span class="section-number">2.1.1. </span>콘다 설치<a class="headerlink" href="#conda-installation" title="이 제목에 대한 영구 링크"></a></h3>
 <p>OpenFAST 릴리스는 다음을 통해 배포됩니다. <a class="reference external" href="https://anaconda.org/" target="_blank" rel="noopener noreferrer">아나콘다</a>
-패키지 관리자를 통해 <a class="reference external" href="https://anaconda.org/conda-forge/openfast/" target="_blank" rel="noopener noreferrer">OpenFAST 콘다 포지
-macOS 및 Linux용</a>
-채널. 설치에는 다음이 포함됩니다.</p>
+패키지 관리자를 통해 <a class="reference external" href="https://anaconda.org/conda-forge/openfast/" target="_blank" rel="noopener noreferrer">OpenFAST 콘다 포지</a>
+macOS 및 Linux용 채널입니다. 설치에는 다음이 포함됩니다.</p>
 <ul class="simple">
 <li><p>OpenFAST 글루 코드 실행 가능</p></li>
 <li><p>사용 가능한 모듈 드라이버</p></li>
@@ -212,18 +209,16 @@ which<span class="w"> </span>hydrodyn_driver
 hydrodyn_driver<span class="w"> </span>-v
 </pre></div>
 </div>
-<p>시험판은 다음을 지정하여 conda를 통해 설치할 수 있습니다.
-아래와 같이 <code class="docutils literal notranslate"><span class="pre">dev</span></code> 라벨.</p>
+<p>프리릴리즈는 conda를 통해 다음을 지정하여 설치할 수 있습니다. <code class="docutils literal notranslate"><span class="pre">dev</span></code> 아래와 같이 라벨을 붙입니다.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>conda-forge/label/dev<span class="w"> </span>openfast
 </pre></div>
 </div>
-<p>이는 항상 최신 커밋입니다.
-저장소의 <code class="docutils literal notranslate"><span class="pre">dev</span></code> 분기에는 OpenFAST에 대한 최신 변경 사항이 포함되어 있지만 이러한 빌드는 전체 릴리스 버전만큼 테스트되지 않았습니다.</p>
+<p>이는 항상 최신 커밋입니다. <code class="docutils literal notranslate"><span class="pre">dev</span></code> 저장소의 분기이며 OpenFAST에 대한 최신 변경 사항을 포함하지만 이러한 빌드는 전체 릴리스 버전만큼 테스트되지 않았습니다.</p>
 </div>
 <div class="section" id="homebrew-installation">
-<span id="brew-install"></span><h3><span class="section-number">2.1.2. </span>홈브루 설치<a class="headerlink" href="#homebrew-installation" title="이 제목의 고유 링크"></a></h3>
-<p>macOS 시스템의 경우 OpenFAST 릴리스는 다음을 통해 배포됩니다. <a class="reference external" href="https://brew.sh" target="_blank" rel="noopener noreferrer">홈브루</a> 패키지 관리자. 설치에는 OpenFAST 글루 코드 실행 파일만 포함됩니다.</p>
-<p>Homebrew를 설치하고 설치를 테스트하려면 다음 명령을 사용하십시오.</p>
+<span id="brew-install"></span><h3><span class="section-number">2.1.2. </span>홈브류 설치<a class="headerlink" href="#homebrew-installation" title="이 제목에 대한 영구 링크"></a></h3>
+<p>macOS 시스템의 경우 OpenFAST 릴리스는 다음을 통해 배포됩니다. <a class="reference external" href="https://brew.sh" target="_blank" rel="noopener noreferrer">홈브류</a> 패키지 관리자. 설치에는 OpenFAST 글루 코드 실행 파일만 포함됩니다.</p>
+<p>Homebrew를 사용하여 설치하고 설치를 테스트하려면 다음 명령을 사용하십시오.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Update Homebrew</span>
 brew<span class="w"> </span>update
 
@@ -238,8 +233,8 @@ openfast<span class="w"> </span>-v
 </div>
 </div>
 <div class="section" id="github-releases">
-<span id="gh-install"></span><h3><span class="section-number">2.1.3. </span>GitHub 릴리스<a class="headerlink" href="#github-releases" title="이 제목의 고유 링크"></a></h3>
-<p>Windows 시스템의 경우에만 사전 컴파일된 바이너리가 OpenFAST GitHub의 각 릴리스에 제공됩니다. <a class="reference external" href="https://github.com/openfast/openfast/releases/latest" target="_blank" rel="noopener noreferrer">출시</a>
+<span id="gh-install"></span><h3><span class="section-number">2.1.3. </span>GitHub 출시<a class="headerlink" href="#github-releases" title="이 제목에 대한 영구 링크"></a></h3>
+<p>Windows 시스템의 경우에만 사전 컴파일된 바이너리가 OpenFAST GitHub의 각 릴리스에 제공됩니다. <a class="reference external" href="https://github.com/openfast/openfast/releases/latest" target="_blank" rel="noopener noreferrer">릴리스</a>
 페이지. 바이너리는 Intel Fortran 컴파일러 버전 2020으로 컴파일됩니다.</p>
 <div class="admonition important">
 <p class="admonition-title">중요</p>
@@ -248,7 +243,7 @@ openfast<span class="w"> </span>-v
 </div>
 <p>OpenFAST 실행 파일은 각 릴리스의 "자산" 드롭다운에서 다운로드할 수 있습니다. "소스 코드"라는 두 자산은 필요하지 않습니다.</p>
 <img alt="../../_images/assets_download.jpg" class="align-center" src="../../_images/assets_download.jpg">
-<p>압축된 파일에는 다음 항목이 포함되어 있습니다:</p>
+<p>압축된 파일에는 다음 항목이 포함되어 있습니다.</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 38%">
@@ -275,21 +270,18 @@ openfast<span class="w"> </span>-v
 <tr class="row-even"><td><p>Map_x64.dll</p></td>
 <td><p>64비트 MAP++ 라이브러리</p></td>
 </tr>
-<tr class="row-odd"><td><p>DISCON_DLLS/&lt;64비트 또는 Win32&gt;/DISCON.dll
-Jonkman 5-MW용</p></td>
-<td><p>컨트롤러 라이브러리(이전에는 NREL 5-MW라고 함)</p></td>
+<tr class="row-odd"><td><p>DISCON_DLLS/&lt;64비트 또는 Win32&gt;/DISCON.dll</p></td>
+<td><p>Jonkman 5-MW(이전 명칭: NREL 5-MW)용 컨트롤러 라이브러리</p></td>
 </tr>
-<tr class="row-even"><td><p>DISCON_DLLS/&lt;64비트 또는 Win32&gt;/DISCON_ITIBarge.dll
-Jonkman 5-MW(이전의 NREL 5-MW)용</p></td>
-<td><p>컨트롤러 라이브러리 - ITI Barge</p></td>
+<tr class="row-even"><td><p>DISCON_DLLS/&lt;64비트 또는 Win32&gt;/DISCON_ITIBarge.dll</p></td>
+<td><p>Jonkman 5-MW(이전 명칭: NREL 5-MW)용 컨트롤러 라이브러리 - ITI Barge</p></td>
 </tr>
-<tr class="row-odd"><td><p>DISCON_DLLS/&lt;64비트 또는 Win32&gt;/DISCON_OC3Hywind.dll
-Jonkman 5-MW(이전의 NREL 5-MW)용</p></td>
-<td><p>컨트롤러 라이브러리 - OC3 Hywind</p></td>
+<tr class="row-odd"><td><p>DISCON_DLLS/&lt;64비트 또는 Win32&gt;/DISCON_OC3Hywind.dll</p></td>
+<td><p>Jonkman 5-MW(이전 명칭: NREL 5-MW)용 컨트롤러 라이브러리 - OC3 Hywind</p></td>
 </tr>
 </tbody>
 </table>
-<p>콘텐츠를 추출한 후 명령 프롬프트를 열고 실행 파일이 포함된 디렉터리로 이동한 후 간단한 테스트 명령을 실행하여 OpenFAST 실행 파일을 테스트할 수 있습니다.</p>
+<p>내용을 추출한 후 명령 프롬프트를 열고 실행 파일이 포함된 디렉터리로 이동한 후 간단한 테스트 명령을 실행하여 OpenFAST 실행 파일을 테스트할 수 있습니다.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>C:<span class="se">\y</span>our<span class="se">\p</span>ath<span class="se">\D</span>esktop<span class="se">\o</span>penfast_binaries<span class="se">\</span>
 openfast_x64.exe<span class="w"> </span>/h
 </pre></div>
@@ -297,10 +289,10 @@ openfast_x64.exe<span class="w"> </span>/h
 </div>
 </div>
 <div class="section" id="running-openfast-with-docker">
-<span id="use-docker"></span><h2><span class="section-number">2.2. </span>도커로 OpenFAST 실행<a class="headerlink" href="#running-openfast-with-docker" title="이 제목의 고유 링크"></a></h2>
+<span id="use-docker"></span><h2><span class="section-number">2.2. </span>도커로 OpenFAST 실행<a class="headerlink" href="#running-openfast-with-docker" title="이 제목에 대한 영구 링크"></a></h2>
 <p>OpenFAST는 버전 3.5.3부터 docker에서 실행할 수 있습니다. 세 가지 접근 방식이 아래에 공유되어 있습니다.</p>
 <div class="section" id="using-a-docker-image-from-docker-hub">
-<h3><span class="section-number">2.2.1. </span>Docker 허브에서 Docker 이미지 사용<a class="headerlink" href="#using-a-docker-image-from-docker-hub" title="이 제목의 고유 링크"></a></h3>
+<h3><span class="section-number">2.2.1. </span>Docker 허브에서 Docker 이미지 사용<a class="headerlink" href="#using-a-docker-image-from-docker-hub" title="이 제목에 대한 영구 링크"></a></h3>
 <p>OpenFAST의 여러 버전은 당사의 도커 이미지로도 제공됩니다. <a class="reference external" href="https://hub.docker.com/r/nrel/openfast" target="_blank" rel="noopener noreferrer">도커 레지스트리</a>. 사용 가능한 로컬 컴퓨터의 파일을 가져와서 실행하려면 다음을 실행하세요.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span>--volume<span class="o">=</span>/path/to/files:/files<span class="w"> </span>nrel/openfast:latest<span class="w"> </span>openfast<span class="w"> </span>/files/main.fst
 </pre></div>
@@ -310,48 +302,45 @@ openfast_x64.exe<span class="w"> </span>/h
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span>--volume<span class="o">=</span>/path/to/files:/files<span class="w"> </span>nrel/openfast:latest<span class="w"> </span>/bin/bash
 </pre></div>
 </div>
-<p>특정 릴리스를 가져오려면 다음 대신 버전 번호를 사용하십시오. <cite>최신
-위 명령의</cite> (예: <cite>nrel/openfast:3.5.3</cite>).</p>
+<p>특정 릴리스를 가져오려면 버전 번호 대신 버전 번호를 사용하세요. <cite>최신</cite> 위 명령에서(예: <cite>nrel/openfast:3.5.3</cite>).</p>
 </div>
 <div class="section" id="using-a-docker-image-from-github-container-registry">
-<h3><span class="section-number">2.2.2. </span>GitHub 컨테이너 레지스트리의 Docker 이미지 사용<a class="headerlink" href="#using-a-docker-image-from-github-container-registry" title="이 제목의 고유 링크"></a></h3>
-<p>Docker 허브에서 호스팅되는 이미지 외에도 당사에서는 Docker 이미지도 호스팅합니다.
+<h3><span class="section-number">2.2.2. </span>GitHub 컨테이너 레지스트리의 Docker 이미지 사용<a class="headerlink" href="#using-a-docker-image-from-github-container-registry" title="이 제목에 대한 영구 링크"></a></h3>
+<p>Docker 허브에 호스팅된 이미지 외에도 우리는 Docker 이미지도 호스팅합니다.
 <a class="reference external" href="https://github.com/orgs/OpenFAST/packages?repo_name=openfast" target="_blank" rel="noopener noreferrer">GitHub 컨테이너 레지스트리</a>. GitHub 컨테이너 리포지토리에서 이미지를 가져오는 명령은 Docker 허브에서 이미지를 가져오고 실행하는 명령과 유사합니다.</p>
-<p>로컬 파일을 가져와서 실행하려면:</p>
+<p>로컬 파일을 가져와서 실행하려면 다음을 수행하세요.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span>--volume<span class="o">=</span>/path/to/files:/files<span class="w"> </span>ghcr.io/openfast/openfast:latest<span class="w"> </span>openfast<span class="w"> </span>/files/main.fst
 </pre></div>
 </div>
-<p>컨테이너를 대화형으로 실행하는 경우:</p>
+<p>컨테이너를 대화형으로 실행하려면 다음을 수행하세요.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span>--volume<span class="o">=</span>/path/to/files:/files<span class="w"> </span>ghcr.io/openfast/openfast:latest<span class="w"> </span>/bin/bash
 </pre></div>
 </div>
-<p>특정 릴리스를 가져오려면 다음 대신 버전 번호를 사용하십시오. <cite>최신
-위 명령의</cite> (예: <cite>ghcr.io/openfast/openfast:3.5.3</cite>).</p>
+<p>특정 릴리스를 가져오려면 버전 번호 대신 버전 번호를 사용하세요. <cite>최신</cite> 위 명령에서(예: <cite>ghcr.io/openfast/openfast:3.5.3</cite>).</p>
 </div>
 <div class="section" id="build-your-own-images">
-<h3><span class="section-number">2.2.3. </span>나만의 이미지 구축<a class="headerlink" href="#build-your-own-images" title="이 제목의 고유 링크"></a></h3>
-<p>다음을 사용하여 사용자 정의 이미지를 구축할 수도 있습니다. <cite>도커파일</cite> 또는 당사의 이미지를 기반으로 하세요. 참조
-<a class="reference external" href="https://github.com/OpenFAST/openfast/blob/main/share/docker/README.md" target="_blank" rel="noopener noreferrer">도커 읽어보기
-이에 대한 자세한 내용은</a> 를 참조하세요.</p>
+<h3><span class="section-number">2.2.3. </span>나만의 이미지 구축<a class="headerlink" href="#build-your-own-images" title="이 제목에 대한 영구 링크"></a></h3>
+<p>또한 다음을 사용하여 자신만의 사용자 정의 이미지를 구축할 수도 있습니다. <cite>도커파일</cite> 또는 우리의 이미지를 기반으로 하세요. 참조
+<a class="reference external" href="https://github.com/OpenFAST/openfast/blob/main/share/docker/README.md" target="_blank" rel="noopener noreferrer">도커 읽어보기</a> 이에 대한 자세한 내용은</p>
 </div>
 </div>
 <div class="section" id="install-the-openfast-io-python-wrapper">
-<span id="python-wrapper"></span><h2><span class="section-number">2.3. </span>설치 <code class="docutils literal notranslate"><span class="pre">openfast_io</span></code> 파이썬 래퍼<a class="headerlink" href="#install-the-openfast-io-python-wrapper" title="이 제목의 고유 링크"></a></h2>
-<p>해당 <code class="docutils literal notranslate"><span class="pre">openfast_io</span></code> Python 패키지는 OpenFAST 파일을 Python 개체로/에서 변환하기 위한 판독기와 기록기로 구성된 래퍼입니다.</p>
-<p>사용하려면 <cite>openfast_io</cite> 는 다음을 통해 사용할 수 있습니다(이미 Python 환경을 설정했다고 가정).</p>
+<span id="python-wrapper"></span><h2><span class="section-number">2.3. </span>설치하다 <code class="docutils literal notranslate"><span class="pre">openfast_io</span></code> 파이썬 래퍼<a class="headerlink" href="#install-the-openfast-io-python-wrapper" title="이 제목에 대한 영구 링크"></a></h2>
+<p>해당 <code class="docutils literal notranslate"><span class="pre">openfast_io</span></code> python 패키지는 OpenFAST 파일을 Python 객체로/에서 변환하기 위한 판독기와 기록기로 구성된 래퍼입니다.</p>
+<p>사용하려면 <cite>openfast_io</cite> 다른 스크립트나 도구에 통합하기 위한 라이브러리로 다음을 통해 사용할 수 있습니다(이미 Python 환경을 설정했다고 가정).</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>openfast_io
 </pre></div>
 </div>
-<p>이 지침은 제품과 직접 상호 작용하기 위한 것입니다. <cite>openfast_io</cite> 소스 코드.</p>
+<p>이 지침은 <cite>openfast_io</cite> 소스 코드.</p>
 <ol class="arabic simple">
-<li><p>OpenFAST 저장소를 복제하지 않은 경우에만 이 단계를 따르십시오.</p></li>
+<li><p>OpenFAST 저장소를 복제하지 않은 경우에만 이 단계를 따르세요.</p></li>
 </ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/OpenFAST/OpenFAST.git
 <span class="nb">cd</span><span class="w"> </span>OpenFAST
 </pre></div>
 </div>
 <ol class="arabic simple" start="2">
-<li><p>OpenFAST 디렉토리 내에 있다고 가정합니다.</p></li>
+<li><p>OpenFAST 디렉터리에 있다고 가정합니다.</p></li>
 </ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>openfast_io
 pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
@@ -360,42 +349,35 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 <p>자세한 내용 및 설치 옵션은 다음을 참조하세요. <a class="reference external" href="https://github.com/OpenFAST/openfast/blob/main/openfast_python/README.md" target="_blank" rel="noopener noreferrer">OpenFAST Python 읽어보기</a>.</p>
 </div>
 <div class="section" id="compile-from-source">
-<span id="id2"></span><h2><span class="section-number">2.4. </span>소스에서 컴파일<a class="headerlink" href="#compile-from-source" title="이 제목의 고유 링크"></a></h2>
-<p>소스 코드에서 컴파일하기 위해 NLR OpenFAST 팀은 CMake를 사용하여 모든 플랫폼에 대한 빌드 파일을 생성하는 접근 방식을 개발했습니다. 현재 활성 개발을 수행하는 동안 Visual Studio에 대한 CMake 지원은 잘 지원되지 않으므로 OpenFAST는 Windows 개발자에게 효율적인 방식으로 코드 작성, 컴파일 및 디버깅을 위한 또 다른 옵션을 제공하는 Visual Studio 솔루션을 유지 관리합니다. 참조 <a class="reference internal" href="#vs-windows"><span class="std std-ref">Windows용 Visual Studio 솔루션
-자세한 내용은</span></a>
-를 참조하세요. Visual Studio가 Windows 개발의 요구 사항이 아닌 경우 CMake가 적합합니다. CMake의 배경은 다음과 같습니다.
-<a class="reference internal" href="#understanding-cmake"><span class="std std-ref">CMake 이해</span></a>및 구성 및 컴파일 절차는 다음과 같습니다.
-Linux/macOS용 Make가 포함된 <a class="reference internal" href="#cmake-unix"><span class="std std-ref">CMake
-Windows용 Visual Studio를 사용하는</span></a> 및 <a class="reference internal" href="#cmake-windows"><span class="std std-ref">CMake</span></a>.</p>
+<span id="id2"></span><h2><span class="section-number">2.4. </span>소스 코드에서 컴파일<a class="headerlink" href="#compile-from-source" title="이 제목에 대한 영구 링크"></a></h2>
+<p>소스 코드에서 컴파일하기 위해 NLR OpenFAST 팀은 CMake를 사용하여 모든 플랫폼에 대한 빌드 파일을 생성하는 접근 방식을 개발했습니다. 현재 활성 개발을 수행하는 동안 Visual Studio에 대한 CMake 지원은 잘 지원되지 않으므로 OpenFAST는 Windows 개발자에게 효율적인 방식으로 코드 작성, 컴파일 및 디버깅을 위한 또 다른 옵션을 제공하는 Visual Studio 솔루션을 유지 관리합니다. 보다 <a class="reference internal" href="#vs-windows"><span class="std std-ref">Windows용 Visual Studio 솔루션</span></a>
+자세한 내용은 Visual Studio가 Windows 개발 요구 사항이 아닌 경우 CMake가 적합합니다. CMake에 대한 배경 정보는 다음과 같습니다.
+<a class="reference internal" href="#understanding-cmake"><span class="std std-ref">CMake 이해</span></a>, 구성 및 컴파일 절차는 다음과 같습니다. <a class="reference internal" href="#cmake-unix"><span class="std std-ref">Linux용 Make가 포함된 CMake/macOS</span></a> 및 <a class="reference internal" href="#cmake-windows"><span class="std std-ref">Windows용 Visual Studio를 사용하는 CMake</span></a>.</p>
 <p>Linux 하위 시스템, cmake 및 VS 코드를 사용하여 Windows에서 컴파일하는 방법에 대한 지침은 다음을 참조하세요.
-Linux 하위 시스템 및 VS 코드가 포함된
-<a class="reference internal" href="#ofcompile-wsl-vscode"><span class="std std-ref">Windows</span></a>.</p>
-<p>일반적으로 컴파일하는 데 필요한 단계는 다음과 같습니다.</p>
+<a class="reference internal" href="#ofcompile-wsl-vscode"><span class="std std-ref">Linux 하위 시스템 및 VS 코드가 있는 Windows</span></a>.</p>
+<p>일반적으로 컴파일에 필요한 단계는 다음과 같습니다.</p>
 <ol class="arabic simple">
-<li><p>설치 종속성(섹션 <a class="reference internal" href="#dependencies"><span class="std std-numref">섹션 2.4.1</span></a>)</p></li>
-<li><p>빌드 시스템 구성(Visual Studio: <a class="reference internal" href="#vs-windows"><span class="std std-numref">섹션 2.4.3</span></a>, CMake: <a class="reference internal" href="#understanding-cmake"><span class="std std-numref">섹션 2.4.5</span></a>)</p></li>
-<li><p>컴파일 및 테스트 바이너리(Visual Studio: <a class="reference internal" href="#vs-windows"><span class="std std-numref">섹션 2.4.3</span></a>, CMake: <a class="reference internal" href="#cmake-unix"><span class="std std-numref">섹션 2.4.6</span></a> 및 <a class="reference internal" href="#cmake-windows"><span class="std std-numref">섹션 2.4.7</span></a> )</p></li>
+<li><p>종속성 설치(섹션 <a class="reference internal" href="#dependencies"><span class="std std-numref">섹션 2.4.1</span></a>)</p></li>
+<li><p>빌드 시스템을 구성합니다(Visual Studio: <a class="reference internal" href="#vs-windows"><span class="std std-numref">섹션 2.4.3</span></a>, CMake: <a class="reference internal" href="#understanding-cmake"><span class="std std-numref">섹션 2.4.5</span></a>)</p></li>
+<li><p>바이너리 컴파일 및 테스트(Visual Studio: <a class="reference internal" href="#vs-windows"><span class="std std-numref">섹션 2.4.3</span></a>, CMake: <a class="reference internal" href="#cmake-unix"><span class="std std-numref">섹션 2.4.6</span></a> 및 <a class="reference internal" href="#cmake-windows"><span class="std std-numref">섹션 2.4.7</span></a> )</p></li>
 </ol>
 <div class="section" id="dependencies">
-<span id="id3"></span><h3><span class="section-number">2.4.1. </span>종속성<a class="headerlink" href="#dependencies" title="이 제목의 고유 링크"></a></h3>
-<p>소스에서 OpenFAST를 컴파일하려면 OpenFAST 리포지토리와 함께 배포되지 않는 추가 라이브러리와 도구가 필요합니다. 최소 OpenFAST 컴파일에는 다음 각 구성 요소가 필요합니다.</p>
+<span id="id3"></span><h3><span class="section-number">2.4.1. </span>종속성<a class="headerlink" href="#dependencies" title="이 제목에 대한 영구 링크"></a></h3>
+<p>소스에서 OpenFAST를 컴파일하려면 OpenFAST 저장소와 함께 배포되지 않는 추가 라이브러리와 도구가 필요합니다. 최소 OpenFAST 컴파일에는 다음 각 구성 요소가 필요합니다.</p>
 <ul class="simple">
 <li><p>C++, C 및 Fortran 컴파일러</p></li>
 <li><p>BLAS 및 LAPACK 수학 라이브러리</p></li>
-<li><p>빌드 시스템</p></li>
+<li><p>시스템 구축</p></li>
 </ul>
-<p>대부분의 경우 이러한 도구는 시스템의 패키지 관리자(예:
-macOS용 <code class="docutils literal notranslate"><span class="pre">homebrew</span></code> ,
-CentOS/Red Hat용 <code class="docutils literal notranslate"><span class="pre">yum</span></code> 또는
-Ubuntu와 같은 Debian 기반 시스템의 경우
-<code class="docutils literal notranslate"><span class="pre">apt</span></code> ). Ubuntu 및 macOS의 경우 다음 명령은 필요한 모든 종속성을 설치합니다.</p>
+<p>대부분의 경우 이러한 도구는 시스템의 패키지 관리자(예: <code class="docutils literal notranslate"><span class="pre">homebrew</span></code> macOS의 경우, <code class="docutils literal notranslate"><span class="pre">yum</span></code> CentOS/Red Hat의 경우 또는
+<code class="docutils literal notranslate"><span class="pre">apt</span></code> Ubuntu와 같은 Debian 기반 시스템의 경우). Ubuntu 및 macOS의 경우 다음 명령은 필요한 모든 종속성을 설치합니다.</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 17%">
 <col style="width: 83%">
 </colgroup>
 <thead>
-<tr class="row-odd"><th class="head"><p>시스템</p></th>
+<tr class="row-odd"><th class="head"><p>체계</p></th>
 <th class="head"><p>종속성 설치 명령</p></th>
 </tr>
 </thead>
@@ -410,7 +392,7 @@ Ubuntu와 같은 Debian 기반 시스템의 경우
 </table>
 <p>종속성을 공급업체에서 직접 다운로드하는 경우 OpenFAST 빌드 시스템이 해당 종속성을 찾을 수 있도록 시스템의 표준 위치에 설치해야 합니다.</p>
 <div class="section" id="compilers">
-<h4><span class="section-number">2.4.1.1. </span>컴파일러<a class="headerlink" href="#compilers" title="이 제목의 고유 링크"></a></h4>
+<h4><span class="section-number">2.4.1.1. </span>컴파일러<a class="headerlink" href="#compilers" title="이 제목에 대한 영구 링크"></a></h4>
 <p>OpenFAST를 컴파일하려면 C, C++ 및 Fortran 컴파일러가 필요합니다. 다양한 옵션이 있지만 가장 일반적이고 가장 잘 지원되는 컴파일러가 아래에 나열되어 있습니다.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -421,14 +403,14 @@ Ubuntu와 같은 Debian 기반 시스템의 경우
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>공급업체/컴파일러</p></th>
-<th class="head"><p>적용 시스템</p></th>
+<th class="head"><p>적용 가능한 시스템</p></th>
 <th class="head"><p>최소 버전</p></th>
 <th class="head"><p>링크</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>GNU 컴파일러 컬렉션(gfortran, gcc, g++)</p></td>
-<td><p>맥OS, 리눅스</p></td>
+<td><p>macOS, 리눅스</p></td>
 <td><p>4.6.0</p></td>
 <td><p><a class="reference external" href="https://gcc.gnu.org" target="_blank" rel="noopener noreferrer">https://gcc.gnu.org</a></p></td>
 </tr>
@@ -439,12 +421,11 @@ Ubuntu와 같은 Debian 기반 시스템의 경우
 </tr>
 </tbody>
 </table>
-<p>다른 컴파일러 패키지도 작동할 수 있으며 특정 하드웨어에 적합할 수 있지만 해당 패키지의 마일리지는 OpenFAST에 따라 다를 수 있습니다. 예를 들어 MinGW, CygWin 및 LLVM은 다양한 시스템에서 컴파일러를 얻기 위한 옵션입니다. 위 버전 중 최신 버전을 사용하는 것이 좋습니다.</p>
+<p>다른 컴파일러 패키지도 작동할 수 있으며 특정 하드웨어에 적합할 수 있지만 해당 패키지의 마일리지는 OpenFAST에 따라 달라질 수 있습니다. 예를 들어, MinGW, CygWin 및 LLVM는 다양한 시스템에서 컴파일러를 얻기 위한 옵션입니다. 위 버전 중 최신 버전을 사용하는 것이 좋습니다.</p>
 </div>
 <div class="section" id="math-libraries">
-<h4><span class="section-number">2.4.1.2. </span>수학 라이브러리
-BLAS 및 LAPACK 인터페이스가 있는<a class="headerlink" href="#math-libraries" title="이 제목의 고유 링크"></a></h4>
-<p>수학 라이브러리도 필요합니다. 모든 주요 옵션은 무료로 다운로드할 수 있습니다. 가장 일반적인 옵션은 아래 표에 나열되어 있습니다.</p>
+<h4><span class="section-number">2.4.1.2. </span>수학 도서관<a class="headerlink" href="#math-libraries" title="이 제목에 대한 영구 링크"></a></h4>
+<p>BLAS 및 LAPACK 인터페이스가 있는 수학 라이브러리도 필요합니다. 모든 주요 옵션은 무료로 다운로드할 수 있습니다. 가장 일반적인 옵션은 아래 표에 나열되어 있습니다.</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 9%">
@@ -453,19 +434,19 @@ BLAS 및 LAPACK 인터페이스가 있는<a class="headerlink" href="#math-libra
 <col style="width: 70%">
 </colgroup>
 <thead>
-<tr class="row-odd"><th class="head"><p>라이브러리</p></th>
-<th class="head"><p>대리점</p></th>
+<tr class="row-odd"><th class="head"><p>도서관</p></th>
+<th class="head"><p>살수 장치</p></th>
 <th class="head"><p>오픈 소스?</p></th>
 <th class="head"><p>링크</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>BLAS/라팩</p></td>
+<tr class="row-even"><td><p>BLAS/LAPACK</p></td>
 <td><p>NetLib</p></td>
 <td><p>예</p></td>
 <td><p><a class="reference external" href="http://www.netlib.org/blas/" target="_blank" rel="noopener noreferrer">http://www.netlib.org/blas/</a>, <a class="reference external" href="http://www.netlib.org/lapack/" target="_blank" rel="noopener noreferrer">http://www.netlib.org/lapack/</a></p></td>
 </tr>
-<tr class="row-odd"><td><p>BLAS/라팩</p></td>
+<tr class="row-odd"><td><p>BLAS/LAPACK</p></td>
 <td><p>OpenBLAS</p></td>
 <td><p>예</p></td>
 <td><p><a class="reference external" href="https://www.openblas.net" target="_blank" rel="noopener noreferrer">https://www.openblas.net</a></p></td>
@@ -479,7 +460,7 @@ BLAS 및 LAPACK 인터페이스가 있는<a class="headerlink" href="#math-libra
 </table>
 </div>
 <div class="section" id="build-tools">
-<h4><span class="section-number">2.4.1.3. </span>빌드 도구<a class="headerlink" href="#build-tools" title="이 제목의 고유 링크"></a></h4>
+<h4><span class="section-number">2.4.1.3. </span>빌드 도구<a class="headerlink" href="#build-tools" title="이 제목에 대한 영구 링크"></a></h4>
 <p>환경별 빌드 시스템이 필요하며 아래 표에 나열된 패키지의 조합으로 구성될 수 있습니다.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -490,7 +471,7 @@ BLAS 및 LAPACK 인터페이스가 있는<a class="headerlink" href="#math-libra
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>패키지</p></th>
-<th class="head"><p>적용 시스템</p></th>
+<th class="head"><p>적용 가능한 시스템</p></th>
 <th class="head"><p>최소 버전</p></th>
 <th class="head"><p>링크</p></th>
 </tr>
@@ -501,8 +482,8 @@ BLAS 및 LAPACK 인터페이스가 있는<a class="headerlink" href="#math-libra
 <td><p>3.12</p></td>
 <td><p><a class="reference external" href="https://cmake.org" target="_blank" rel="noopener noreferrer">https://cmake.org</a></p></td>
 </tr>
-<tr class="row-odd"><td><p>GNU 제작</p></td>
-<td><p>맥OS, 리눅스</p></td>
+<tr class="row-odd"><td><p>GNU 만들기</p></td>
+<td><p>macOS, 리눅스</p></td>
 <td><p>1.8</p></td>
 <td><p><a class="reference external" href="https://www.gnu.org/software/make/" target="_blank" rel="noopener noreferrer">https://www.gnu.org/software/make/</a></p></td>
 </tr>
@@ -513,62 +494,58 @@ BLAS 및 LAPACK 인터페이스가 있는<a class="headerlink" href="#math-libra
 </tr>
 </tbody>
 </table>
-<p>Windows의 경우 CMake를 사용하여 OpenFAST를 컴파일하는 데 사용할 수 있는 Visual Studio 솔루션을 생성할 수 있습니다. OpenFAST에는 독립 실행형 Visual Studio 프로젝트도 포함되어 있습니다. <a class="reference internal" href="#vs-windows"><span class="std std-ref">Windows용 Visual Studio 솔루션
-자세한 내용은</span></a>.</p>
-<p>macOS 및 Linux의 경우 권장 도구는 CMake 및 GNU Make입니다. CMake는 GNU Make 프로그램에 대한 입력인 Makefile을 생성하는 데 사용됩니다. Linux 및 macOS(Xcode, Ninja)용 다른 빌드 도구가 있지만 OpenFAST 시스템에서는 이러한 도구를 제대로 지원하지 않습니다.</p>
+<p>Windows의 경우 CMake를 사용하여 Visual Studio 솔루션을 생성한 다음 OpenFAST를 컴파일하는 데 사용할 수 있습니다. OpenFAST에는 독립 실행형 Visual Studio 프로젝트도 포함되어 있습니다. <a class="reference internal" href="#vs-windows"><span class="std std-ref">Windows용 Visual Studio 솔루션</span></a>.</p>
+<p>macOS 및 Linux의 경우 권장 도구는 CMake 및 GNU Make입니다. CMake는 GNU Make 프로그램에 대한 입력인 Makefile을 생성하는 데 사용됩니다. Linux 및 macOS(Xcode, Ninja)용 다른 빌드 도구가 있지만 OpenFAST 시스템에서는 이러한 도구가 제대로 지원되지 않습니다.</p>
 </div>
 </div>
 <div class="section" id="get-the-code">
-<h3><span class="section-number">2.4.2. </span>코드 받기<a class="headerlink" href="#get-the-code" title="이 제목의 고유 링크"></a></h3>
-<p>OpenFAST는 해당 OpenFAST에서 복제(즉, 다운로드)될 수 있습니다. <a class="reference external" href="https://github.com/OpenFAST/OpenFAST" target="_blank" rel="noopener noreferrer">Github 저장소
-명령줄을 통해</a>
-:</p>
+<h3><span class="section-number">2.4.2. </span>코드 받기<a class="headerlink" href="#get-the-code" title="이 제목에 대한 영구 링크"></a></h3>
+<p>OpenFAST는 해당 위치에서 복제(즉, 다운로드)될 수 있습니다. <a class="reference external" href="https://github.com/OpenFAST/OpenFAST" target="_blank" rel="noopener noreferrer">Github 저장소</a>
+명령줄을 통해:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/OpenFAST/OpenFAST.git
 </pre></div>
 </div>
 <p>소스 코드 아카이브는 다음 링크에서 직접 다운로드할 수도 있습니다.</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/OpenFAST/openfast/archive/main.zip" target="_blank" rel="noopener noreferrer">"메인" 지점</a> - 안정 릴리스</p></li>
-<li><p><a class="reference external" href="https://github.com/OpenFAST/openfast/archive/dev.zip" target="_blank" rel="noopener noreferrer">"개발자" 지점</a> -최신 업데이트</p></li>
+<li><p><a class="reference external" href="https://github.com/OpenFAST/openfast/archive/main.zip" target="_blank" rel="noopener noreferrer">"메인" 지점</a> - 안정적인 출시</p></li>
+<li><p><a class="reference external" href="https://github.com/OpenFAST/openfast/archive/dev.zip" target="_blank" rel="noopener noreferrer">"개발" 브랜치</a> - 최신 업데이트</p></li>
 </ul>
 </div>
 <div class="section" id="visual-studio-solution-for-windows">
-<span id="vs-windows"></span><h3><span class="section-number">2.4.3. </span>Windows용 Visual Studio 솔루션
-자세한 내용은<a class="headerlink" href="#visual-studio-solution-for-windows" title="이 제목의 고유 링크"></a></h3>
+<span id="vs-windows"></span><h3><span class="section-number">2.4.3. </span>Windows용 Visual Studio 솔루션<a class="headerlink" href="#visual-studio-solution-for-windows" title="이 제목에 대한 영구 링크"></a></h3>
 <p>Windows 시스템에서 OpenFAST 작업을 위해 완전한 Visual Studio 솔루션이 유지관리됩니다. 시스템을 구성하고 빌드 프로세스를 진행하는 절차는 다음 섹션에 설명되어 있습니다.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="install_vs_windows.html">2.4.3.1. Visual Studio를 사용하여 Windows에서 OpenFAST 구축</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_vs_windows.html">2.4.3.1. Visual Studio를 사용하여 Windows에서 OpenFAST 빌드</a></li>
 </ul>
 </div>
 </div>
 <div class="section" id="windows-with-the-linux-subsystem-and-vs-code">
-<span id="ofcompile-wsl-vscode"></span><h3><span class="section-number">2.4.4. </span>Windows<a class="headerlink" href="#windows-with-the-linux-subsystem-and-vs-code" title="이 제목의 고유 링크"></a></h3>
-<p>이 가이드에서는 WSL(Linux용 Windows 하위 시스템)을 사용하여 Windows의 소스에서 OpenFAST를 컴파일하고, pyOpenFAST로 Python 환경을 설정하고, Jupyter 노트북을 사용하여 개발 및 테스트하기 위해 VS Code를 구성하는 단계별 지침을 제공합니다.</p>
+<span id="ofcompile-wsl-vscode"></span><h3><span class="section-number">2.4.4. </span>Linux 하위 시스템 및 VS 코드가 있는 Windows<a class="headerlink" href="#windows-with-the-linux-subsystem-and-vs-code" title="이 제목에 대한 영구 링크"></a></h3>
+<p>이 가이드에서는 WSL(Linux용 Windows 하위 시스템)를 사용하여 Windows의 소스에서 OpenFAST를 컴파일하고, pyOpenFAST로 ​​Python 환경을 설정하고, Jupyter 노트북을 사용하여 개발 및 테스트하기 위해 VS 코드를 구성하는 단계별 지침을 제공합니다.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="OFcompile_WSL_VScode.html">2.4.4.1. 가이드: WSL 및 VS Code를 사용하여 Windows에서 OpenFAST 설정</a></li>
+<li class="toctree-l1"><a class="reference internal" href="OFcompile_WSL_VScode.html">2.4.4.1. 가이드: WSL 및 VS 코드를 사용하여 Windows에서 OpenFAST 설정</a></li>
 </ul>
 </div>
 </div>
 <div class="section" id="understanding-cmake">
-<span id="id4"></span><h3><span class="section-number">2.4.5. </span>CMake 이해<a class="headerlink" href="#understanding-cmake" title="이 제목의 고유 링크"></a></h3>
+<span id="id4"></span><h3><span class="section-number">2.4.5. </span>CMake 이해<a class="headerlink" href="#understanding-cmake" title="이 제목에 대한 영구 링크"></a></h3>
 <p>CMake와 그 방법론을 더 완전히 이해하려면 다음 가이드를 방문하세요.
-CMake를 실행하는
 <a class="reference external" href="https://cmake.org/runningcmake/" target="_blank" rel="noopener noreferrer">CMake 실행</a>.</p>
-<p>CMake는 GNU Make, Visual Studio 또는 Ninja와 같은 빌드 도구에 대한 입력으로 파일을 생성하는 빌드 구성 시스템입니다. CMake는 코드를 직접 컴파일하거나 컴파일러를 실행하지 않고, 오히려 다른 도구가 컴파일러를 실행하고 바이너리를 생성하는 데 필요한 환경을 만듭니다. CMake 프로젝트는 다음과 같은 일련의 파일로 설명됩니다.
-<code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> 는 프로젝트 전체의 디렉토리에 있습니다. OpenFAST의 기본 CMake 파일은 다음 위치에 있습니다. <code class="docutils literal notranslate"><span class="pre">openfast/CMakeLists.txt</span></code> 및 각 모듈과 글루 코드에는 고유한 <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code>; 예를 들어 AeroDyn과 BeamDyn에는 하나가 있습니다. <code class="docutils literal notranslate"><span class="pre">openfast/modules/aerodyn/CMakeLists.txt</span></code> 및
-<code class="docutils literal notranslate"><span class="pre">openfast/modules/beamdyn/CMakeLists.txt</span></code>각각.</p>
+<p>CMake는 GNU Make, Visual Studio 또는 Ninja와 같은 빌드 도구에 대한 입력으로 파일을 생성하는 빌드 구성 시스템입니다. CMake는 코드를 직접 컴파일하거나 컴파일러를 실행하는 것이 아니라, 오히려 다른 도구가 컴파일러를 실행하고 바이너리를 생성하는 데 필요한 환경을 만듭니다. CMake 프로젝트는 다음과 같은 일련의 파일로 설명됩니다.
+<code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> 프로젝트 전체의 디렉토리에 위치합니다. OpenFAST의 기본 CMake 파일은 다음 위치에 있습니다. <code class="docutils literal notranslate"><span class="pre">openfast/CMakeLists.txt</span></code> 각 모듈과 글루 코드에는 고유한 <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code>; 예를 들어, AeroDyn 및 BeamDyn에는 다음 위치에 하나가 있습니다. <code class="docutils literal notranslate"><span class="pre">openfast/modules/aerodyn/CMakeLists.txt</span></code> 및
+<code class="docutils literal notranslate"><span class="pre">openfast/modules/beamdyn/CMakeLists.txt</span></code>, 각각.</p>
 <div class="section" id="running-cmake">
-<h4><span class="section-number">2.4.5.1. </span>CMake 실행<a class="headerlink" href="#running-cmake" title="이 제목의 고유 링크"></a></h4>
-<p>CMake와 빌드 도구를 실행하면 빌드의 다양한 단계에서 사용되는 많은 파일(텍스트 파일 및 바이너리)이 생성됩니다. 이런 이유로, <code class="docutils literal notranslate"><span class="pre">build</span></code> 폴더는 빌드 프로세스와 관련하여 생성된 모든 파일을 포함하도록 생성되어야 합니다. 여기에는 다음과 같은 중요한 파일이 있습니다. <code class="docutils literal notranslate"><span class="pre">CMakeCache.txt</span></code> 에는 CMake 구성에 대한 사용자 정의 설정이 포함되어 있습니다. 이 파일은 빌드를 위한 메모리 저장소와 같은 기능을 합니다. 처음에는 CMake 명령이 실행될 때 생성되고 초기 설정으로 채워집니다. 그러면 이후 설정 변경 사항이 업데이트되어 저장됩니다.</p>
+<h4><span class="section-number">2.4.5.1. </span>CMake 실행<a class="headerlink" href="#running-cmake" title="이 제목에 대한 영구 링크"></a></h4>
+<p>CMake 및 빌드 도구를 실행하면 빌드의 다양한 단계에서 사용되는 많은 파일(텍스트 파일 및 바이너리)이 생성됩니다. 이런 이유로, <code class="docutils literal notranslate"><span class="pre">build</span></code> 폴더는 빌드 프로세스와 관련하여 생성된 모든 파일을 포함하도록 생성되어야 합니다. 여기에는 다음과 같은 중요한 파일이 있습니다. <code class="docutils literal notranslate"><span class="pre">CMakeCache.txt</span></code> CMake 구성에 대한 사용자 정의 설정이 포함되어 있습니다. 이 파일은 빌드를 위한 메모리 저장소와 같은 기능을 합니다. CMake 명령이 처음 실행될 때 처음에 생성되고 초기 설정으로 채워집니다. 그러면 이후 설정 변경 사항이 업데이트되어 저장됩니다.</p>
 <p>CMake는 몇 가지 방법으로 실행할 수 있습니다.</p>
 <ul class="simple">
 <li><p>명령줄 인터페이스: <code class="docutils literal notranslate"><span class="pre">cmake</span></code></p></li>
 <li><p>명령줄 저주 인터페이스: <code class="docutils literal notranslate"><span class="pre">ccmake</span></code></p></li>
 <li><p>공식 CMake GUI</p></li>
 </ul>
-<p>CMake GUI는 Windows용으로만 배포되지만 다른 플랫폼용 소스에서 빌드할 수 있습니다. OpenFAST의 빌드 프로세스는 Linux/macOS 및 Windows 터미널 모두에 대한 CMake의 명령줄 실행에 중점을 둡니다. OpenFAST용 CMake를 실행하는 명령줄 구문은 일반적으로 다음과 같습니다.</p>
+<p>CMake GUI는 Windows용으로만 배포되지만 다른 플랫폼용 소스에서 빌드할 수 있습니다. OpenFAST의 빌드 프로세스는 Linux/macOS 및 Windows 터미널 모두에 대한 CMake의 명령줄 실행에 중점을 둡니다. OpenFAST에 대해 CMake를 실행하는 명령줄 구문은 일반적으로 다음과 같습니다.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>&lt;path-to-primary-CMakeLists.txt&gt;<span class="w"> </span><span class="o">[</span>options<span class="o">]</span>
 
 Options
@@ -576,7 +553,7 @@ Options
 </pre></div>
 </div>
 <p>예를 들어, 다음에서 실행되는 일반적인 CMake 명령은 <code class="docutils literal notranslate"><span class="pre">openfast/build</span></code>
-디렉토리는 다음과 같습니다.</p>
+디렉토리는 다음과 같습니다</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># cmake &lt;path-to-primary-CMakeLists.txt&gt; [options]</span>
 <span class="c1">#   where</span>
 <span class="c1">#     &lt;path-to-primary-CMakeLists.txt&gt; is ".."</span>
@@ -594,10 +571,10 @@ cmake<span class="w"> </span>..<span class="w"> </span>-DBUILD_SHARED_LIBS<span 
 <p>인터페이스는 터미널 창에 렌더링되며 모든 탐색은 키보드 입력을 통해 이루어집니다.</p>
 </div>
 <div class="section" id="openfast-cmake-options">
-<h4><span class="section-number">2.4.5.2. </span>OpenFAST CMake 옵션<a class="headerlink" href="#openfast-cmake-options" title="이 제목의 고유 링크"></a></h4>
-<p>CMake에는 사용 가능한 일반 구성 변수가 많이 있습니다. 유용한 CMake 변수에 대한 좋은 리소스는 다음 링크에 있습니다. <a class="reference external" href="https://gitlab.kitware.com/cmake/community/wikis/doc/cmake/Useful-Variables" target="_blank" rel="noopener noreferrer">GitLab CMake 변수</a>. 는 <a class="reference external" href="https://cmake.org/cmake/help/latest/" target="_blank" rel="noopener noreferrer">CMake API 문서</a>
-는 변수를 검색하고 결과 작업을 결정하는 데에도 유용합니다. 일반 옵션을 사용자 정의하기 전에 CMake 프로세스를 잘 이해해야 합니다.</p>
-<p>OpenFAST와 관련된 CMake 옵션과 기본 설정은 다음과 같습니다.</p>
+<h4><span class="section-number">2.4.5.2. </span>OpenFAST CMake 옵션<a class="headerlink" href="#openfast-cmake-options" title="이 제목에 대한 영구 링크"></a></h4>
+<p>CMake에는 사용 가능한 일반 구성 변수가 많이 있습니다. 유용한 CMake 변수에 대한 좋은 리소스는 다음 링크에 있습니다. <a class="reference external" href="https://gitlab.kitware.com/cmake/community/wikis/doc/cmake/Useful-Variables" target="_blank" rel="noopener noreferrer">GitLab CMake 변수</a>. 그만큼 <a class="reference external" href="https://cmake.org/cmake/help/latest/" target="_blank" rel="noopener noreferrer">CMake API 문서</a>
+변수를 검색하고 결과 작업을 결정하는 데에도 도움이 됩니다. 일반 옵션을 사용자 정의하기 전에 CMake 프로세스를 잘 이해해야 합니다.</p>
+<p>OpenFAST에 특정한 CMake 옵션과 기본 설정은 다음과 같습니다.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BUILD_DOCUMENTATION</span>            <span class="o">-</span> <span class="n">Build</span> <span class="n">documentation</span> <span class="p">(</span><span class="n">Default</span><span class="p">:</span> <span class="n">OFF</span><span class="p">)</span>
 <span class="n">BUILD_FASTFARM</span>                 <span class="o">-</span> <span class="n">Enable</span> <span class="n">FAST</span><span class="o">.</span><span class="n">Farm</span> <span class="n">capabilities</span> <span class="p">(</span><span class="n">Default</span><span class="p">:</span> <span class="n">OFF</span><span class="p">)</span>
 <span class="n">BUILD_OPENFAST_CPP_API</span>         <span class="o">-</span> <span class="n">Enable</span> <span class="n">building</span> <span class="n">OpenFAST</span> <span class="o">-</span> <span class="n">C</span><span class="o">++</span> <span class="n">API</span> <span class="p">(</span><span class="n">Default</span><span class="p">:</span> <span class="n">OFF</span><span class="p">)</span>
@@ -639,7 +616,7 @@ cmake<span class="w"> </span>..<span class="w"> </span>-DCMAKE_BUILD_TYPE<span c
 </pre></div>
 </div>
 <div class="section" id="cmake-build-type">
-<h5><span class="section-number">2.4.5.2.1. </span>CMAKE_BUILD_TYPE<a class="headerlink" href="#cmake-build-type" title="이 제목의 고유 링크"></a></h5>
+<h5><span class="section-number">2.4.5.2.1. </span>CMAKE_BUILD_TYPE<a class="headerlink" href="#cmake-build-type" title="이 제목에 대한 영구 링크"></a></h5>
 <p>이 옵션을 사용하면 컴파일러 최적화 수준 및 디버그 정보를 설정할 수 있습니다. 그 가치와 효과는 아래 표와 같습니다.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -652,33 +629,29 @@ cmake<span class="w"> </span>..<span class="w"> </span>-DCMAKE_BUILD_TYPE<span c
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>출시</p></td>
+<tr class="row-even"><td><p>풀어 주다</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">-O3</span></code> 최적화 수준</p></td>
 </tr>
 <tr class="row-odd"><td><p>RelWithDebInfo</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">-O2</span></code> 최적화 수준
-디버그 정보용 <code class="docutils literal notranslate"><span class="pre">-g</span></code> 플래그</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-O2</span></code> 최적화 수준 <code class="docutils literal notranslate"><span class="pre">-g</span></code> 디버그 정보 플래그</p></td>
 </tr>
 <tr class="row-even"><td><p>MinSizeRel</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">-O1</span></code> 최적화 수준</p></td>
 </tr>
 <tr class="row-odd"><td><p>디버그</p></td>
-<td><p>최적화 없음 및
-디버그 정보를 위한 <cite>-g</cite> 플래그; 추가 디버깅 플래그: <code class="docutils literal notranslate"><span class="pre">-fcheck=all</span> <span class="pre">-pedantic</span> <span class="pre">-fbacktrace</span></code></p></td>
+<td><p>최적화 없음 및 <cite>-g</cite> 디버그 정보를 위한 플래그; 추가 디버깅 플래그: <code class="docutils literal notranslate"><span class="pre">-fcheck=all</span> <span class="pre">-pedantic</span> <span class="pre">-fbacktrace</span></code></p></td>
 </tr>
 </tbody>
 </table>
-<p>사용
-디버거와 함께 사용할 디버그 기호를 추가하기 위해 활성 개발 중에 <code class="docutils literal notranslate"><span class="pre">Debug</span></code> . 또한 이 빌드 유형은 정의되지 않은 동작을 초래할 수 있는 런타임 검사를 생성하기 위한 플래그도 추가합니다. <code class="docutils literal notranslate"><span class="pre">MinSizeRel</span></code> 는 기본 최적화를 추가하고 생성된 실행 파일의 최소 크기를 목표로 합니다. 다음 레벨, <code class="docutils literal notranslate"><span class="pre">RelWithDebInfo</span></code>는 벡터화 및 기타 보다 공격적인 최적화를 가능하게 합니다. 또한 디버깅 기호를 추가하여 실행 파일 크기가 더 커집니다. 마지막으로 <code class="docutils literal notranslate"><span class="pre">Release</span></code> 는 컴파일 시간을 늘리면서 최고의 성능을 제공합니다.</p>
+<p>사용 <code class="docutils literal notranslate"><span class="pre">Debug</span></code> 활성 개발 중에 디버거와 함께 사용할 디버그 기호를 추가합니다. 또한 이 빌드 유형은 정의되지 않은 동작을 초래할 수 있는 런타임 검사를 생성하기 위한 플래그도 추가합니다. <code class="docutils literal notranslate"><span class="pre">MinSizeRel</span></code> 기본 최적화를 추가하고 생성된 실행 파일의 최소 크기를 목표로 합니다. 다음 레벨, <code class="docutils literal notranslate"><span class="pre">RelWithDebInfo</span></code>, 벡터화 및 기타 보다 공격적인 최적화가 가능합니다. 또한 디버깅 기호를 추가하여 실행 파일 크기가 더 커집니다. 마지막으로 <code class="docutils literal notranslate"><span class="pre">Release</span></code> 컴파일 시간을 늘리는 대신 최상의 성능을 얻으려면</p>
 <p>이 플래그는 다음 명령으로 설정할 수 있습니다.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>..<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>RelWithDebInfo
 </pre></div>
 </div>
 </div>
 <div class="section" id="cmake-install-prefix">
-<h5><span class="section-number">2.4.5.2.2. </span>CMAKE_INSTALL_PREFIX<a class="headerlink" href="#cmake-install-prefix" title="이 제목의 고유 링크"></a></h5>
-<p>이 플래그는 빌드 도구가 실행될 때 컴파일된 바이너리의 위치를 설정합니다. <code class="docutils literal notranslate"><span class="pre">install</span></code> 명령. 신중하게 선택한 위치의 전체 경로여야 합니다. 바이너리가 다음 위치에 복사됩니다. <code class="docutils literal notranslate"><span class="pre">include</span></code>, <code class="docutils literal notranslate"><span class="pre">lib</span></code>및
-이 플래그 값 아래에 <code class="docutils literal notranslate"><span class="pre">bin</span></code> 하위 폴더가 있습니다. 기본값은 저장소 내의 다음 폴더에 바이너리를 설치하는 것입니다. <code class="docutils literal notranslate"><span class="pre">install</span></code>.</p>
+<h5><span class="section-number">2.4.5.2.2. </span>CMAKE_INSTALL_PREFIX<a class="headerlink" href="#cmake-install-prefix" title="이 제목에 대한 영구 링크"></a></h5>
+<p>이 플래그는 빌드 도구가 실행될 때 컴파일된 바이너리의 위치를 ​​설정합니다. <code class="docutils literal notranslate"><span class="pre">install</span></code> 명령. 신중하게 선택한 위치의 전체 경로여야 합니다. 바이너리가 다음 위치에 복사됩니다. <code class="docutils literal notranslate"><span class="pre">include</span></code>, <code class="docutils literal notranslate"><span class="pre">lib</span></code>, 및 <code class="docutils literal notranslate"><span class="pre">bin</span></code> 이 플래그 값 아래의 하위 폴더. 기본값은 저장소 내의 다음 폴더에 바이너리를 설치하는 것입니다. <code class="docutils literal notranslate"><span class="pre">install</span></code>.</p>
 <p>이 플래그는 다음 명령으로 설정할 수 있습니다.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>..<span class="w"> </span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span><span class="s2">"/usr/local/"</span>
 </pre></div>
@@ -686,7 +659,7 @@ cmake<span class="w"> </span>..<span class="w"> </span>-DCMAKE_BUILD_TYPE<span c
 </div>
 </div>
 <div class="section" id="setting-the-build-tool">
-<h4><span class="section-number">2.4.5.3. </span>빌드 도구 설정<a class="headerlink" href="#setting-the-build-tool" title="이 제목의 고유 링크"></a></h4>
+<h4><span class="section-number">2.4.5.3. </span>빌드 도구 설정<a class="headerlink" href="#setting-the-build-tool" title="이 제목에 대한 영구 링크"></a></h4>
 <p>CMake는 다양한 빌드 도구를 대상으로 하거나 <em>발전기</em>. 현재 시스템에서 사용 가능한 생성기 목록을 얻으려면 빈 생성기 플래그를 사용하여 실행하고 목록에서 대상을 선택한 다음 생성기 플래그를 채운 상태에서 다시 실행하세요.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run with the empty -G flag to get a list of available generators</span>
 cmake<span class="w"> </span>..<span class="w"> </span>-G
@@ -720,20 +693,18 @@ cmake<span class="w"> </span>..<span class="w"> </span>-G<span class="s2">"Subli
 </div>
 </div>
 <div class="section" id="id5">
-<h4><span class="section-number">2.4.5.4. </span>수학 라이브러리
-BLAS 및 LAPACK 인터페이스가 있는<a class="headerlink" href="#id5" title="이 제목의 고유 링크"></a></h4>
-<p>CMake 프로젝트는 기본 위치에서 필요한 수학 라이브러리를 검색하도록 구성되었습니다. 그러나 수학 라이브러리를 찾을 수 없는 경우 CMake에 직접 지정할 수 있습니다. 두 가지 필수 라이브러리는 다음과 같습니다. <code class="docutils literal notranslate"><span class="pre">BLAS</span></code>
-및 <code class="docutils literal notranslate"><span class="pre">LAPACK</span></code>이며 해당 위치는 다음 명령 구문을 사용하여 CMake에 전달될 수 있습니다.</p>
+<h4><span class="section-number">2.4.5.4. </span>수학 도서관<a class="headerlink" href="#id5" title="이 제목에 대한 영구 링크"></a></h4>
+<p>CMake 프로젝트는 기본 위치에서 필요한 수학 라이브러리를 검색하도록 구성됩니다. 그러나 수학 라이브러리를 찾을 수 없는 경우 CMake에 직접 지정할 수 있습니다. 두 가지 필수 라이브러리는 다음과 같습니다. <code class="docutils literal notranslate"><span class="pre">BLAS</span></code>
+및 <code class="docutils literal notranslate"><span class="pre">LAPACK</span></code>, 해당 위치는 다음 명령 구문을 사용하여 CMake에 전달될 수 있습니다.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>..<span class="w"> </span>-DBLAS_LIBRARIES<span class="o">=</span><span class="s2">"/path/to/blas"</span><span class="w"> </span>-DLAPACK_LIBRARIES<span class="o">=</span><span class="s2">"/path/to/lapack"</span>
 </pre></div>
 </div>
-<p>지정된 경로는 라이브러리 자체가 아닌 라이브러리가 포함된 디렉터리여야 합니다.</p>
+<p>제공된 경로는 라이브러리 자체가 아닌 라이브러리가 포함된 디렉터리여야 합니다.</p>
 </div>
 </div>
 <div class="section" id="cmake-with-make-for-linux-macos">
-<span id="cmake-unix"></span><h3><span class="section-number">2.4.6. </span>CMake
-Windows용 Visual Studio를 사용하는<a class="headerlink" href="#cmake-with-make-for-linux-macos" title="이 제목의 고유 링크"></a></h3>
-<p>모든 종속성을 설치하고 읽은 후 <a class="reference internal" href="#understanding-cmake"><span class="std std-ref">CMake 이해</span></a>, OpenFAST 구성을 진행하세요. CMake 프로젝트는 Linux 및 macOS 시스템용으로 잘 개발되었으므로 기본 설정이 지정된 대로 작동해야 합니다. 이러한 설정은 사용자 정의 빌드가 필요한 경우에만 변경해야 합니다.</p>
+<span id="cmake-unix"></span><h3><span class="section-number">2.4.6. </span>Linux용 Make가 포함된 CMake/macOS<a class="headerlink" href="#cmake-with-make-for-linux-macos" title="이 제목에 대한 영구 링크"></a></h3>
+<p>모든 종속성을 설치하고 읽은 후 <a class="reference internal" href="#understanding-cmake"><span class="std std-ref">CMake 이해</span></a>, OpenFAST 구성을 진행하세요. CMake 프로젝트는 Linux 및 macOS 시스템용으로 잘 개발되었으므로 기본 설정이 주어진 대로 작동해야 합니다. 이러한 설정은 사용자 정의 빌드가 필요한 경우에만 변경해야 합니다.</p>
 <p>종속성 설치, CMake 구성 및 Linux 및 macOS 시스템에서 GNU Make로 컴파일하는 전체 절차는 다음과 같습니다.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># For Ubuntu Linux, this installs all dependencies</span>
 apt<span class="w"> </span>install<span class="w"> </span>git<span class="w"> </span>cmake<span class="w"> </span>libblas-dev<span class="w"> </span>liblapack-dev<span class="w"> </span>gfortran-10<span class="w"> </span>g++
@@ -776,15 +747,13 @@ make<span class="w"> </span>install
 </div>
 <div class="admonition tip">
 <p class="admonition-title">팁</p>
-<p>"-jN"을 추가하여 병렬로 컴파일합니다. <code class="docutils literal notranslate"><span class="pre">make</span></code> 명령 여기서 N은 사용할 병렬 프로세스 수입니다. 즉 <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">-j4</span> <span class="pre">openfast</span></code>.</p>
+<p>"-jN"를 추가하여 병렬로 컴파일하십시오. <code class="docutils literal notranslate"><span class="pre">make</span></code> 명령 여기서 N은 사용할 병렬 프로세스 수입니다. 즉. <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">-j4</span> <span class="pre">openfast</span></code>.</p>
 </div>
-<p>이것은 OpenFAST 프로젝트를 빌드합니다. <code class="docutils literal notranslate"><span class="pre">build</span></code> 디렉토리. 바이너리는 다음 위치에 있습니다. <code class="docutils literal notranslate"><span class="pre">openfast/build/glue-codes/</span></code> 및 <code class="docutils literal notranslate"><span class="pre">openfast/build/modules/</span></code>. 모든 빌드 관련 파일은 <code class="docutils literal notranslate"><span class="pre">build</span></code> 디렉토리인 경우, 단순히 빌드 디렉토리를 삭제하고 다시 시작하면 새로운 새로운 빌드 프로세스를 수행할 수 있습니다.</p>
+<p>그러면 OpenFAST 프로젝트가 다음 위치에 빌드됩니다. <code class="docutils literal notranslate"><span class="pre">build</span></code> 예배 규칙서. 바이너리는 다음 위치에 있습니다. <code class="docutils literal notranslate"><span class="pre">openfast/build/glue-codes/</span></code> 및 <code class="docutils literal notranslate"><span class="pre">openfast/build/modules/</span></code>. 모든 빌드 관련 파일은 <code class="docutils literal notranslate"><span class="pre">build</span></code> 디렉터리를 삭제하고 다시 시작하면 새로운 새로운 빌드 프로세스를 수행할 수 있습니다.</p>
 </div>
 <div class="section" id="cmake-with-visual-studio-for-windows">
-<span id="cmake-windows"></span><h3><span class="section-number">2.4.7. </span>CMake<a class="headerlink" href="#cmake-with-visual-studio-for-windows" title="이 제목의 고유 링크"></a></h3>
-<p>모든 종속성을 설치하고 읽은 후 <a class="reference internal" href="#understanding-cmake"><span class="std std-ref">CMake 이해</span></a>, OpenFAST 구성을 진행합니다. 이 구성 프로세스의 결과는 OpenFAST 내에서 모든 대상을 컴파일하는 데 완벽하게 작동하는 Visual Studio 솔루션이 됩니다. 그러나 이 방법은 지속적인 개발을 위한 지원이 부족합니다. 특히 Visual Studio 솔루션에서 직접 구성된 모든 설정은 CMake가 실행될 때마다 손실됩니다. 따라서 이 방법은 바이너리를 컴파일하는 데에만 사용해야 하며 조달 방법은 에 설명되어 있습니다.
-Windows에서 활성 OpenFAST 개발을 위해서는 <a class="reference internal" href="#vs-windows"><span class="std std-ref">Windows용 Visual Studio 솔루션
-자세한 내용은</span></a> 를 사용해야 합니다.</p>
+<span id="cmake-windows"></span><h3><span class="section-number">2.4.7. </span>Windows용 Visual Studio를 사용하는 CMake<a class="headerlink" href="#cmake-with-visual-studio-for-windows" title="이 제목에 대한 영구 링크"></a></h3>
+<p>모든 종속성을 설치하고 읽은 후 <a class="reference internal" href="#understanding-cmake"><span class="std std-ref">CMake 이해</span></a>, OpenFAST 구성을 진행하세요. 이 구성 프로세스의 결과는 OpenFAST 내의 모든 대상을 컴파일하는 데 완벽하게 작동하는 Visual Studio 솔루션이 됩니다. 그러나 이 방법은 지속적인 개발을 위한 지원이 부족합니다. 특히 Visual Studio 솔루션에서 직접 구성된 모든 설정은 CMake가 실행될 때마다 손실됩니다. 따라서 이 방법은 바이너리를 컴파일하는 데에만 사용해야 하며 조달 방법은 에 설명되어 있습니다. <a class="reference internal" href="#vs-windows"><span class="std std-ref">Windows용 Visual Studio 솔루션</span></a> Windows에서 활성 OpenFAST 개발에 사용해야 합니다.</p>
 <p>Windows 시스템에서 CMake를 구성하고 Visual Studio로 컴파일하는 절차는 다음과 같습니다.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clone the repository from GitHub using git</span>
 git<span class="w"> </span>clone<span class="w"> </span>https://github.com/OpenFAST/OpenFAST.git
@@ -806,25 +775,22 @@ cmake<span class="w"> </span>..<span class="w"> </span>-G<span class="w"> </span
 start<span class="w"> </span>OpenFAST.sln
 </pre></div>
 </div>
-<p>Visual Studio는 모든 OpenFAST 프로젝트가 포함된 솔루션을 열고 여기에서 모든 모듈 라이브러리, 모듈 드라이버 또는 글루 코드를 컴파일할 수 있습니다. 컴파일된 바이너리는 Visual Studio 빌드 유형(릴리스, 디버그 또는 RelWithDebInfo)에 의해 결정된 디렉터리 내에 있습니다.
-<code class="docutils literal notranslate"><span class="pre">openfast/build/glue-codes/</span></code> 및 <code class="docutils literal notranslate"><span class="pre">openfast/build/modules/</span></code>. 예를 들어 OpenFAST 실행 파일은 다음 위치에 있습니다.
-컴파일할 때 <code class="docutils literal notranslate"><span class="pre">openfast/build/glue-codes/Release/openfast.exe</span></code>
-다음 환경에서 컴파일할 때 <em>출시</em> 모드.
-Windows에서</p>
-<p><strong>CMake에서 생성된 Visual Studio 빌드는 현재 완전히 작동하지 않습니다.</strong>
-Visual Studio UI에서 솔루션에 대한 모든 구성은 CMake가 실행될 때 손실되며, 이는 파일 시스템의 구조가 변경될 때마다 또는 CMake 구성이 변경되는 경우 발생할 수 있습니다. 이 방법을 권장합니다 <strong>아님</strong> 는 Windows에서 디버깅 또는 활성 개발에 사용됩니다. 대신에 <a class="reference internal" href="#vs-windows"><span class="std std-ref">Windows용 Visual Studio 솔루션
-자세한 내용은</span></a>.</p>
+<p>Visual Studio는 모든 OpenFAST 프로젝트가 포함된 솔루션을 열고 여기에서 모든 모듈 라이브러리, 모듈 드라이버 또는 글루 코드를 컴파일할 수 있습니다. 컴파일된 바이너리는 Visual Studio 빌드 유형(릴리스, 디버그 또는 RelWithDebInfo)에 따라 결정된 디렉터리 내에 있습니다.
+<code class="docutils literal notranslate"><span class="pre">openfast/build/glue-codes/</span></code> 및 <code class="docutils literal notranslate"><span class="pre">openfast/build/modules/</span></code>. 예를 들어, OpenFAST 실행 파일은 다음 위치에 있습니다. <code class="docutils literal notranslate"><span class="pre">openfast/build/glue-codes/Release/openfast.exe</span></code>
+다음 환경에서 컴파일할 때 <em>풀어 주다</em> 방법.</p>
+<p><strong>CMake 생성 Visual Studio 빌드는 현재 완전히 작동하지 않습니다.</strong>
+Visual Studio UI의 솔루션에 대한 모든 구성은 CMake가 실행될 때 손실되며, 이는 파일 시스템 구조가 변경될 때마다 또는 CMake 구성이 변경될 때 발생할 수 있습니다. 이 방법을 권장합니다 <strong>~ 아니다</strong> Windows에서 디버깅 또는 활성 개발에 사용됩니다. 대신에 <a class="reference internal" href="#vs-windows"><span class="std std-ref">Windows용 Visual Studio 솔루션</span></a>.</p>
 </div>
 </div>
 <div class="section" id="c-api">
-<h2><span class="section-number">2.5. </span>C++ API<a class="headerlink" href="#c-api" title="이 제목의 고유 링크"></a></h2>
+<h2><span class="section-number">2.5. </span>C++ API<a class="headerlink" href="#c-api" title="이 제목에 대한 영구 링크"></a></h2>
 <p>C++ API를 컴파일할 때 다음과 같은 추가 종속성이 필요합니다.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://support.hdfgroup.org/HDF5/" target="_blank" rel="noopener noreferrer">HDF5</a></p></li>
 <li><p><a class="reference external" href="https://github.com/jbeder/yaml-cpp" target="_blank" rel="noopener noreferrer">yaml-cpp</a></p></li>
 <li><p><a class="reference external" href="http://libxmlplusplus.sourceforge.net/docs/manual/html/" target="_blank" rel="noopener noreferrer">libxml++</a></p></li>
 </ul>
-<p>C++ API는 CMake로만 컴파일되며 CMake에 일부 종속성을 찾을 수 있는 위치를 알려주는 것이 가능합니다. 다음 명령은 CMake를 구성하고 C++ 인터페이스를 컴파일합니다.</p>
+<p>C++ API는 CMake로만 컴파일되며 일부 종속성을 찾을 수 있는 CMake에 대한 힌트를 제공할 수 있습니다. 다음 명령은 CMake를 구성하고 C++ 인터페이스를 컴파일합니다.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enable compiling the C++ API</span>
 cmake<span class="w"> </span>..<span class="w"> </span>-DBUILD_OPENFAST_CPP_API:BOOL<span class="o">=</span>ON<span class="w"> </span>-DBUILD_SHARED_LIBS:BOOL<span class="o">=</span>ON
 
@@ -837,9 +803,8 @@ make<span class="w"> </span>openfastcpplib
 </div>
 </div>
 <div class="section" id="fast-farm">
-<h2><span class="section-number">2.6. </span>FAST.Farm<a class="headerlink" href="#fast-farm" title="이 제목의 고유 링크"></a></h2>
-<p>FAST.Farm 글루 코드는 OpenFAST 글루 코드와 유사하게 CMake 프로젝트에 포함되어 있습니다. 참조
-종속성 설치, 프로젝트 구성 및 컴파일에 대한 전체 설명은 <a class="reference internal" href="#compile-from-source"><span class="std std-ref">소스에서 컴파일</span></a> 입니다. FAST.Farm은 추가 플래그를 사용하여 CMake 프로젝트에서 활성화됩니다.</p>
+<h2><span class="section-number">2.6. </span>FAST.Farm<a class="headerlink" href="#fast-farm" title="이 제목에 대한 영구 링크"></a></h2>
+<p>FAST.Farm 글루 코드는 OpenFAST 글루 코드와 유사한 CMake 프로젝트에 포함되어 있습니다. 보다 <a class="reference internal" href="#compile-from-source"><span class="std std-ref">소스 코드에서 컴파일</span></a> 종속성 설치, 프로젝트 구성 및 컴파일에 대한 전체 설명을 참조하세요. FAST.Farm은 추가 플래그를 사용하여 CMake 프로젝트에서 활성화됩니다.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enable compiling FAST.Farm</span>
 cmake<span class="w"> </span>..<span class="w"> </span>-DBUILD_FASTFARM:BOOL<span class="o">=</span>ON
 
@@ -850,30 +815,27 @@ make<span class="w"> </span>FAST.Farm
 <p>OpenMP-Fortran은 FAST.Farm에 대한 추가 종속성입니다. 이러한 라이브러리는 macOS 및 Linux용 패키지 관리자를 사용하거나 Intel oneAPI 배포판을 통해 설치할 수 있습니다.</p>
 </div>
 <div class="section" id="simulink">
-<span id="installation-appendix"></span><h2><span class="section-number">2.7. </span>Simulink<a class="headerlink" href="#simulink" title="이 제목의 고유 링크"></a></h2>
-<p>OpenFAST를 Simulink에 결합하기 위한 MEX 기능을 구축하려면 플랫폼에 따라 두 가지 옵션이 있습니다.
-Visual Studio가 설치된</p>
+<span id="installation-appendix"></span><h2><span class="section-number">2.7. </span>Simulink<a class="headerlink" href="#simulink" title="이 제목에 대한 영구 링크"></a></h2>
+<p>OpenFAST를 Simulink에 결합하기 위한 MEX 기능을 구축하려면 플랫폼에 따라 두 가지 옵션이 있습니다.</p>
 <div class="section" id="windows-with-visual-studio">
-<h3><span class="section-number">2.7.1. </span>Windows<a class="headerlink" href="#windows-with-visual-studio" title="이 제목의 고유 링크"></a></h3>
-<p>Windows의 경우 다음을 사용하여 빌드하세요. <cite>Release_Matlab</cite> 옵션 <cite>vs-build/FAST/FAST.sln</cite>. 그런 다음 실행
-<cite>글루 코드/simulink/src/create_FAST_SFunc.m
-MATLAB의</cite> (이 파일 상단의 지침).</p>
+<h3><span class="section-number">2.7.1. </span>Visual Studio가 설치된 Windows<a class="headerlink" href="#windows-with-visual-studio" title="이 제목에 대한 영구 링크"></a></h3>
+<p>Windows의 경우 다음을 사용하여 빌드하세요. <cite>Release_Matlab</cite> Visual Studio 프로젝트의 옵션 <cite>vs-빌드/FAST/FAST.sln</cite>. 그런 다음 실행
+<cite>글루 코드/simulink/src/create_FAST_SFunc.m</cite> MATLAB에서(이 파일 상단의 지침)</p>
 </div>
 <div class="section" id="cmake">
-<h3><span class="section-number">2.7.2. </span>CMake<a class="headerlink" href="#cmake" title="이 제목의 고유 링크"></a></h3>
-<p>모든 플랫폼에서 CMake 빌드의 경우 <cite>-DBUILD_OPENFAST_SIMULINK_API=켜기
-CMake의</cite>
-옵션 및 빌드 <cite>FAST_SFunc</cite> 타겟. 그러면 결과가 배치됩니다. <cite>FAST_SFunc.mexXXXX</cite> 인
-<cite>&lt;빌드 디렉터리&gt;/glue-codes/simulink/FAST_SFunc.mexXXXX</cite> (그리고 다음의 설치 디렉터리에 있음) <cite>설치/bin/FAST_SFunc.mexXXXX</cite> 경우 <cite>설치 설치</cite> 가 호출되었습니다).</p>
+<h3><span class="section-number">2.7.2. </span>CMake<a class="headerlink" href="#cmake" title="이 제목에 대한 영구 링크"></a></h3>
+<p>모든 플랫폼에서 CMake 빌드의 경우 <cite>-DBUILD_OPENFAST_SIMULINK_API=켜기</cite>
+CMake의 옵션을 선택하고 빌드하세요. <cite>FAST_SFunc</cite> 목표. 그러면 결과가 배치됩니다. <cite>FAST_SFunc.mexXXXX</cite> 에서
+<cite>&lt;빌드 디렉터리&gt;/glue-codes/simulink/FAST_SFunc.mexXXXX</cite> (그리고 설치 디렉토리에 <cite>설치/bin/FAST_SFunc.mexXXXX</cite> 만약에 <cite>설치하다</cite> )라고 불렀습니다.</p>
 </div>
 </div>
 <div class="section" id="appendix">
-<h2><span class="section-number">2.8. </span>부록<a class="headerlink" href="#appendix" title="이 제목의 고유 링크"></a></h2>
+<h2><span class="section-number">2.8. </span>충수<a class="headerlink" href="#appendix" title="이 제목에 대한 영구 링크"></a></h2>
 <p>다음은 완전히 테스트되지 않았거나 향후 더 이상 사용되지 않을 수 있는 추가 설치 방법입니다.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="install_spack.html">2.8.1. Spack으로 OpenFAST 구축</a></li>
-<li class="toctree-l1"><a class="reference internal" href="install_cygwin.html">2.8.2. CMake 및 Cygwin 64비트를 사용하여 Windows에서 OpenFAST 구축</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_spack.html">2.8.1. Spack으로 OpenFAST 빌드하기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_cygwin.html">2.8.2. CMake 및 Cygwin 64비트를 사용하여 Windows에서 OpenFAST 빌드</a></li>
 </ul>
 </div>
 </div>
@@ -882,9 +844,9 @@ CMake의</cite>
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
-        <a href="../this_doc.html" class="btn btn-neutral float-left" title="1. 이 문서에 대하여" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
-        <a href="install_vs_windows.html" class="btn btn-neutral float-right" title="2.4.3.1. Visual Studio를 사용하여 Windows에서 OpenFAST 구축" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
+        <a href="../this_doc.html" class="btn btn-neutral float-left" title="1. 이 문서" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+        <a href="install_vs_windows.html" class="btn btn-neutral float-right" title="2.4.3.1. Visual Studio를 사용하여 Windows에서 OpenFAST 빌드" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr>
@@ -894,7 +856,7 @@ CMake의</cite>
   </div>
 
   다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">주제</a>
     제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
    
 

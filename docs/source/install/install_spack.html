@@ -2,7 +2,7 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>2.8.1. Spack을 사용하여 OpenFAST 구축 — OpenFAST v5.0.0 문서</title>
+  <title>2.8.1. Spack을 사용하여 OpenFAST 빌드 — OpenFAST v5.0.0 문서</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css">
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css">
       <link rel="stylesheet" type="text/css" href="../../_static/css/math_eq.css">
@@ -20,9 +20,9 @@
         <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../genindex.html">
-    <link rel="search" title="검색" href="../../search.html">
-    <link rel="next" title="2.8.2. CMake 및 Cygwin 64비트를 사용하여 Windows에서 OpenFAST 구축" href="install_cygwin.html">
-    <link rel="prev" title="2.4.4.1. 가이드: WSL 및 VS Code를 사용하여 Windows에서 OpenFAST 설정" href="OFcompile_WSL_VScode.html"> 
+    <link rel="search" title="찾다" href="../../search.html">
+    <link rel="next" title="2.8.2. CMake 및 Cygwin 64비트를 사용하여 Windows에서 OpenFAST 빌드" href="install_cygwin.html">
+    <link rel="prev" title="2.4.4.1. 가이드: WSL 및 VS 코드를 사용하여 Windows에서 OpenFAST 설정" href="OFcompile_WSL_VScode.html"> 
 <link rel="stylesheet" href="../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/install/install_spack.html"></head>
 
 <body class="wy-body-for-nav"> 
@@ -35,7 +35,7 @@
           
           <a href="../../index.html" class="icon icon-home">
             OpenFAST
-              <img src="../../_static/openfastlogo.jpg" class="logo" alt="로고">
+              <img src="../../_static/openfastlogo.jpg" class="logo" alt="심벌 마크">
           </a>
               <div class="version">5.0 · 한국어</div>
 <div role="search">
@@ -47,40 +47,40 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. 이 문서</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">2. OpenFAST 설치</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="index.html#download-binaries">2.1. 바이너리 다운로드</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#running-openfast-with-docker">2.2. 도커를 사용하여 OpenFAST 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#running-openfast-with-docker">2.2. 도커로 OpenFAST 실행</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#install-the-openfast-io-python-wrapper">2.3. 설치하다 <code class="docutils literal notranslate"><span class="pre">openfast_io</span></code> 파이썬 래퍼</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#compile-from-source">2.4. 소스에서 컴파일</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#compile-from-source">2.4. 소스 코드에서 컴파일</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#c-api">2.5. C++ API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#fast-farm">2.6. FAST.Farm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#simulink">2.7. Simulink</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html#appendix">2.8. 부록</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">2.8.1. Spack으로 OpenFAST 구축</a><ul>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#appendix">2.8. 충수</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">2.8.1. Spack으로 OpenFAST 빌드하기</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#dependencies">2.8.1.1. 종속성</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#building-openfast-semi-automatically-using-spack-on-macos-or-linux">2.8.1.2. macOS 또는 Linux에서 Spack을 사용하여 반자동으로 OpenFAST 구축</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#building-openfast-semi-automatically-using-spack-on-macos-or-linux">2.8.1.2. macOS 또는 Linux에서 Spack을 사용하여 반자동으로 OpenFAST 빌드</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="install_cygwin.html">2.8.2. CMake 및 Cygwin 64비트를 사용하여 Windows에서 OpenFAST 구축</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install_cygwin.html">2.8.2. CMake 및 Cygwin 64비트를 사용하여 Windows에서 OpenFAST 빌드</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working.html">3. OpenFAST 작업</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../user/index.html">4. 사용자 문서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">7. 라이센스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. 감사의 글</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. 감사의 말씀</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../review.html">문서 상세 리뷰</a></li><li><a href="../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">OpenFAST</a>
       </nav>
@@ -89,11 +89,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="집"></a></li>
           <li class="breadcrumb-item"><a href="index.html"><span class="section-number">2. </span>OpenFAST 설치</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">2.8.1. </span>Spack으로 OpenFAST 구축</li>
+      <li class="breadcrumb-item active"><span class="section-number">2.8.1. </span>Spack으로 OpenFAST 빌드하기</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../_sources/source/install/install_spack.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+            <a href="../../_sources/source/install/install_spack.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -102,28 +102,25 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="building-openfast-with-spack">
-<span id="install-spack"></span><h1><span class="section-number">2.8.1. </span>Spack으로 OpenFAST 구축<a class="headerlink" href="#building-openfast-with-spack" title="이 제목의 고유 링크"></a></h1>
+<span id="install-spack"></span><h1><span class="section-number">2.8.1. </span>Spack으로 OpenFAST 빌드하기<a class="headerlink" href="#building-openfast-with-spack" title="이 제목에 대한 영구 링크"></a></h1>
 <p>OpenFAST를 빌드하고 설치하는 프로세스
-<a class="reference external" href="https://spack.readthedocs.io/en/latest" target="_blank" rel="noopener noreferrer">스팩
-Linux 또는 macOS의</a>  는 여기에 설명되어 있습니다.</p>
+<a class="reference external" href="https://spack.readthedocs.io/en/latest" target="_blank" rel="noopener noreferrer">스팩</a>  Linux 또는 macOS에서는 여기에 설명되어 있습니다.</p>
 <div class="section" id="dependencies">
-<h2><span class="section-number">2.8.1.1. </span>종속성<a class="headerlink" href="#dependencies" title="이 제목의 고유 링크"></a></h2>
+<h2><span class="section-number">2.8.1.1. </span>종속성<a class="headerlink" href="#dependencies" title="이 제목에 대한 영구 링크"></a></h2>
 <p>OpenFAST에는 다음과 같은 종속성이 있습니다.</p>
 <ul class="simple">
-<li><p>LAPACK 라이브러리. 사용자가 설정해야 합니다.
-표준 경로에서 라이브러리를 찾을 수 없는 경우 CMake에 적합한 <code class="docutils literal notranslate"><span class="pre">BLAS_LIBRARIES</span></code> 및
-<code class="docutils literal notranslate"><span class="pre">LAPACK_LIBRARIES</span></code> 입니다. 사용 <cite>BLASLIB</cite> .</p></li>
+<li><p>LAPACK 라이브러리. 사용자가 설정해야 합니다. <code class="docutils literal notranslate"><span class="pre">BLAS_LIBRARIES</span></code> 및
+<code class="docutils literal notranslate"><span class="pre">LAPACK_LIBRARIES</span></code> 표준 경로에서 라이브러리를 찾을 수 없는 경우 CMake에 적합합니다. 사용 <cite>BLASLIB</cite> Intel MKL를 사용할 때의 예입니다.</p></li>
 <li><p>선택적 C++ API의 경우, <a class="reference external" href="https://support.hdfgroup.org/HDF5/" target="_blank" rel="noopener noreferrer">HDF5</a>
-(제공: <code class="docutils literal notranslate"><span class="pre">HDF5_ROOT</span></code>) 및
+(제공: <code class="docutils literal notranslate"><span class="pre">HDF5_ROOT</span></code>) 그리고
 <a class="reference external" href="https://github.com/jbeder/yaml-cpp" target="_blank" rel="noopener noreferrer">yaml-cpp</a> (제공: <code class="docutils literal notranslate"><span class="pre">YAML_ROOT</span></code>)</p></li>
-<li><p>선택적 테스트 프레임워크인 Python 3+ 및 Numpy</p></li>
+<li><p>선택적 테스트 프레임워크의 경우 Python 3+ 및 Numpy</p></li>
 </ul>
 </div>
 <div class="section" id="building-openfast-semi-automatically-using-spack-on-macos-or-linux">
-<h2><span class="section-number">2.8.1.2. </span>macOS 또는 Linux에서 Spack을 사용하여 반자동으로 OpenFAST 구축<a class="headerlink" href="#building-openfast-semi-automatically-using-spack-on-macos-or-linux" title="이 제목의 고유 링크"></a></h2>
+<h2><span class="section-number">2.8.1.2. </span>macOS 또는 Linux에서 Spack을 사용하여 반자동으로 OpenFAST 빌드<a class="headerlink" href="#building-openfast-semi-automatically-using-spack-on-macos-or-linux" title="이 제목에 대한 영구 링크"></a></h2>
 <p>다음은 다음을 사용하여 macOS에서 OpenFAST 및 해당 종속성을 대부분 자동으로 빌드하는 방법을 설명합니다.
-<a class="reference external" href="https://spack.readthedocs.io/en/latest" target="_blank" rel="noopener noreferrer">스팩
-Linux 또는 macOS의</a>. 이는 Spack을 사용하여 모든 Linux 시스템에서 OpenFAST를 구축하기 위한 템플릿으로 사용할 수도 있습니다.</p>
+<a class="reference external" href="https://spack.readthedocs.io/en/latest" target="_blank" rel="noopener noreferrer">스팩</a>. 이는 Spack이 있는 모든 Linux 시스템에서 OpenFAST를 빌드하기 위한 템플릿으로 사용할 수도 있습니다.</p>
 <p>이 지침은 Homebrew를 통해 설치된 다음 도구를 사용하여 macOS 10.11에서 개발되었습니다.</p>
 <ul class="simple">
 <li><p>GCC 6.3.0</p></li>
@@ -131,7 +128,7 @@ Linux 또는 macOS의</a>. 이는 Spack을 사용하여 모든 Linux 시스템�
 <li><p>pkg-config 0.29.2</p></li>
 </ul>
 <div class="section" id="step-1">
-<h3><span class="section-number">2.8.1.2.1. </span>1단계<a class="headerlink" href="#step-1" title="이 제목의 고유 링크"></a></h3>
+<h3><span class="section-number">2.8.1.2.1. </span>1단계<a class="headerlink" href="#step-1" title="이 제목에 대한 영구 링크"></a></h3>
 <p>github에서 공식 Spack 저장소를 확인하세요.
 <code class="docutils literal notranslate"><span class="pre">${HOME}</span></code>):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/LLNL/spack.git
@@ -139,17 +136,16 @@ Linux 또는 macOS의</a>. 이는 Spack을 사용하여 모든 Linux 시스템�
 </div>
 </div>
 <div class="section" id="step-2">
-<h3><span class="section-number">2.8.1.2.2. </span>2단계<a class="headerlink" href="#step-2" title="이 제목의 고유 링크"></a></h3>
-<p>Spack 쉘 지원을 추가하십시오.
-다음 줄을 추가하여 <code class="docutils literal notranslate"><span class="pre">.profile</span></code> :</p>
+<h3><span class="section-number">2.8.1.2.2. </span>2단계<a class="headerlink" href="#step-2" title="이 제목에 대한 영구 링크"></a></h3>
+<p>Spack 셸 지원을 추가하세요. <code class="docutils literal notranslate"><span class="pre">.profile</span></code> 다음 줄을 추가하여:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">SPACK_ROOT</span><span class="o">=</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/spack
 .<span class="w"> </span><span class="nv">$SPACK_ROOT</span>/share/spack/setup-env.sh
 </pre></div>
 </div>
 </div>
 <div class="section" id="step-3">
-<h3><span class="section-number">2.8.1.2.3. </span>3단계<a class="headerlink" href="#step-3" title="이 제목의 고유 링크"></a></h3>
-<p>복사 <a class="reference external" href="https://raw.githubusercontent.com/OpenFAST/openfast/dev/share/spack/package.py" target="_blank" rel="noopener noreferrer">https://raw.githubusercontent.com/OpenFAST/openfast/dev/share/spack/package.py</a> 파일을 Spack 설치에 추가합니다:</p>
+<h3><span class="section-number">2.8.1.2.3. </span>3단계<a class="headerlink" href="#step-3" title="이 제목에 대한 영구 링크"></a></h3>
+<p>복사 <a class="reference external" href="https://raw.githubusercontent.com/OpenFAST/openfast/dev/share/spack/package.py" target="_blank" rel="noopener noreferrer">https://raw.githubusercontent.com/OpenFAST/openfast/dev/share/spack/package.py</a> 파일을 Spack 설치에 추가하세요:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span><span class="si">${</span><span class="nv">SPACK_ROOT</span><span class="si">}</span>/var/spack/repos/builtin/packages/openfast
 <span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">SPACK_ROOT</span><span class="si">}</span>/var/spack/repos/builtin/packages/openfast
 wget<span class="w"> </span>--no-check-certificate<span class="w"> </span>https://raw.githubusercontent.com/OpenFAST/openfast/dev/share/spack/package.py
@@ -157,8 +153,8 @@ wget<span class="w"> </span>--no-check-certificate<span class="w"> </span>https:
 </div>
 </div>
 <div class="section" id="step-4">
-<h3><span class="section-number">2.8.1.2.4. </span>4단계<a class="headerlink" href="#step-4" title="이 제목의 고유 링크"></a></h3>
-<p>시도해 보세요 <code class="docutils literal notranslate"><span class="pre">spack</span> <span class="pre">info</span> <span class="pre">openfast</span></code> 를 사용하여 Spack이 작동하는지 확인하세요. 그렇다면 다음을 통해 사용 가능한 컴파일러를 확인하십시오.</p>
+<h3><span class="section-number">2.8.1.2.4. </span>4단계<a class="headerlink" href="#step-4" title="이 제목에 대한 영구 링크"></a></h3>
+<p>노력하다 <code class="docutils literal notranslate"><span class="pre">spack</span> <span class="pre">info</span> <span class="pre">openfast</span></code> Spack이 작동하는지 확인하세요. 그렇다면 다음을 통해 사용 가능한 컴파일러를 확인하십시오.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>machine:~<span class="w"> </span>user$<span class="w"> </span>spack<span class="w"> </span><span class="nv">compilers</span>
 <span class="o">==</span>&gt;<span class="w"> </span>Available<span class="w"> </span>compilers
 --<span class="w"> </span>gcc<span class="w"> </span>----------------------------------------------------------
@@ -170,16 +166,16 @@ clang@8.0.0-apple<span class="w">  </span>clang@7.3.0-apple
 </div>
 </div>
 <div class="section" id="step-5">
-<h3><span class="section-number">2.8.1.2.5. </span>5단계<a class="headerlink" href="#step-5" title="이 제목의 고유 링크"></a></h3>
+<h3><span class="section-number">2.8.1.2.5. </span>5단계<a class="headerlink" href="#step-5" title="이 제목에 대한 영구 링크"></a></h3>
 <p>선택한 GCC 버전으로 OpenFAST를 설치합니다.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>spack<span class="w"> </span>install<span class="w"> </span>openfast<span class="w"> </span>%gcc@6.3.0
 </pre></div>
 </div>
-<p>C++ API로 OpenFAST를 설치하려면 다음을 수행하십시오.</p>
+<p>C++ API와 함께 OpenFAST를 설치하려면 다음을 수행하십시오.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>spack<span class="w"> </span>install<span class="w"> </span>openfast+cxx<span class="w"> </span>%gcc@6.3.0
 </pre></div>
 </div>
-<p>그래야지! Spack은 별도로 지정하지 않는 한 자동으로 최신 종속성을 사용합니다. 예를 들어 OpenFAST가 일부 특정 종속성 버전을 사용하도록 제한하려면 Spack 설치 명령을 실행할 수 있습니다.</p>
+<p>그게 다야! Spack은 별도로 지정하지 않는 한 자동으로 최신 종속성을 사용합니다. 예를 들어 OpenFAST가 일부 특정 종속성 버전을 사용하도록 제한하려면 Spack 설치 명령을 실행할 수 있습니다.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>spack<span class="w"> </span>install<span class="w"> </span>openfast<span class="w"> </span>%gcc@6.3.0<span class="w"> </span>^hdf5@1.8.16
 </pre></div>
 </div>
@@ -187,8 +183,7 @@ clang@8.0.0-apple<span class="w">  </span>clang@7.3.0-apple
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>spack<span class="w"> </span>location<span class="w"> </span>-i<span class="w"> </span>openfast
 </pre></div>
 </div>
-<p>적절한 경로를 추가하십시오.
-OpenFAST를 실행하기 위한 <code class="docutils literal notranslate"><span class="pre">PATH</span></code> 및 <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code> .</p>
+<p>적절한 경로를 추가하십시오. <code class="docutils literal notranslate"><span class="pre">PATH</span></code> 및 <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code> OpenFAST를 실행합니다.</p>
 </div>
 </div>
 </div>
@@ -196,9 +191,9 @@ OpenFAST를 실행하기 위한 <code class="docutils literal notranslate"><span
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
-        <a href="OFcompile_WSL_VScode.html" class="btn btn-neutral float-left" title="2.4.4.1. 가이드: WSL 및 VS Code를 사용하여 Windows에서 OpenFAST 설정" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
-        <a href="install_cygwin.html" class="btn btn-neutral float-right" title="2.8.2. CMake 및 Cygwin 64비트를 사용하여 Windows에서 OpenFAST 구축" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
+        <a href="OFcompile_WSL_VScode.html" class="btn btn-neutral float-left" title="2.4.4.1. 가이드: WSL 및 VS 코드를 사용하여 Windows에서 OpenFAST 설정" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+        <a href="install_cygwin.html" class="btn btn-neutral float-right" title="2.8.2. CMake 및 Cygwin 64비트를 사용하여 Windows에서 OpenFAST 빌드" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr>
@@ -208,7 +203,7 @@ OpenFAST를 실행하기 위한 <code class="docutils literal notranslate"><span
   </div>
 
   다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">주제</a>
     제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
    
 

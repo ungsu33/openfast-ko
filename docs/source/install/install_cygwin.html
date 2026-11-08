@@ -2,7 +2,7 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>2.8.2. CMake 및 Cygwin 64비트를 사용하여 Windows에서 OpenFAST 구축 — OpenFAST v5.0.0 문서</title>
+  <title>2.8.2. CMake 및 Cygwin 64비트를 사용하여 Windows에서 OpenFAST 빌드 — OpenFAST v5.0.0 문서</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css">
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css">
       <link rel="stylesheet" type="text/css" href="../../_static/css/math_eq.css">
@@ -20,9 +20,9 @@
         <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../genindex.html">
-    <link rel="search" title="검색" href="../../search.html">
-    <link rel="next" title="3. OpenFAST 사용하기" href="../working.html">
-    <link rel="prev" title="2.8.1. Spack으로 OpenFAST 구축" href="install_spack.html"> 
+    <link rel="search" title="찾다" href="../../search.html">
+    <link rel="next" title="3. OpenFAST 작업" href="../working.html">
+    <link rel="prev" title="2.8.1. Spack으로 OpenFAST 빌드하기" href="install_spack.html"> 
 <link rel="stylesheet" href="../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/install/install_cygwin.html"></head>
 
 <body class="wy-body-for-nav"> 
@@ -35,7 +35,7 @@
           
           <a href="../../index.html" class="icon icon-home">
             OpenFAST
-              <img src="../../_static/openfastlogo.jpg" class="logo" alt="로고">
+              <img src="../../_static/openfastlogo.jpg" class="logo" alt="심벌 마크">
           </a>
               <div class="version">5.0 · 한국어</div>
 <div role="search">
@@ -47,20 +47,20 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. 이 문서</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">2. OpenFAST 설치</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="index.html#download-binaries">2.1. 바이너리 다운로드</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#running-openfast-with-docker">2.2. 도커를 사용하여 OpenFAST 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#running-openfast-with-docker">2.2. 도커로 OpenFAST 실행</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#install-the-openfast-io-python-wrapper">2.3. 설치하다 <code class="docutils literal notranslate"><span class="pre">openfast_io</span></code> 파이썬 래퍼</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#compile-from-source">2.4. 소스에서 컴파일</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#compile-from-source">2.4. 소스 코드에서 컴파일</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#c-api">2.5. C++ API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#fast-farm">2.6. FAST.Farm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#simulink">2.7. Simulink</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html#appendix">2.8. 부록</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="install_spack.html">2.8.1. Spack으로 OpenFAST 구축</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">2.8.2. CMake 및 Cygwin 64비트를 사용하여 Windows에서 OpenFAST 구축</a><ul>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#appendix">2.8. 충수</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="install_spack.html">2.8.1. Spack으로 OpenFAST 빌드하기</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">2.8.2. CMake 및 Cygwin 64비트를 사용하여 Windows에서 OpenFAST 빌드</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#installing-prerequisites">2.8.2.1. 필수 구성 요소 설치</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#compiling-openfast">2.8.2.2. OpenFAST 컴파일</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#compiling-openfast">2.8.2.2. OpenFAST 컴파일하기</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#other-tips">2.8.2.3. 기타 팁</a></li>
 </ul>
 </li>
@@ -68,20 +68,20 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working.html">3. OpenFAST 작업</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../user/index.html">4. 사용자 문서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">7. 라이센스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. 감사의 글</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. 감사의 말씀</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../review.html">문서 상세 리뷰</a></li><li><a href="../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">OpenFAST</a>
       </nav>
@@ -90,11 +90,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="집"></a></li>
           <li class="breadcrumb-item"><a href="index.html"><span class="section-number">2. </span>OpenFAST 설치</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">2.8.2. </span>CMake 및 Cygwin 64비트를 사용하여 Windows에서 OpenFAST 구축</li>
+      <li class="breadcrumb-item active"><span class="section-number">2.8.2. </span>CMake 및 Cygwin 64비트를 사용하여 Windows에서 OpenFAST 빌드</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../_sources/source/install/install_cygwin.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+            <a href="../../_sources/source/install/install_cygwin.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -103,35 +103,35 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="building-openfast-on-windows-with-cmake-and-cygwin-64-bit">
-<span id="install-cygwin"></span><h1><span class="section-number">2.8.2. </span>CMake 및 Cygwin 64비트를 사용하여 Windows에서 OpenFAST 구축<a class="headerlink" href="#building-openfast-on-windows-with-cmake-and-cygwin-64-bit" title="이 제목의 고유 링크"></a></h1>
-<p>경고: 이 빌드 프로세스에는 상당히 오랜 시간이 걸립니다. GNU 도구가 필요하지 않은 경우 Windows 사용자는 다음 섹션 중 하나를 참조하는 것이 좋습니다.</p>
+<span id="install-cygwin"></span><h1><span class="section-number">2.8.2. </span>CMake 및 Cygwin 64비트를 사용하여 Windows에서 OpenFAST 빌드<a class="headerlink" href="#building-openfast-on-windows-with-cmake-and-cygwin-64-bit" title="이 제목에 대한 영구 링크"></a></h1>
+<p>WARNING: 이 빌드 프로세스에는 상당히 오랜 시간이 걸립니다. GNU 도구가 필요하지 않은 경우 Windows 사용자는 다음 섹션 중 하나를 참조하는 것이 좋습니다.</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="index.html#download-binaries"><span class="std std-ref">바이너리 다운로드</span></a></p></li>
-<li><p><a class="reference internal" href="index.html#cmake-windows"><span class="std std-ref">CMake</span></a></p></li>
-<li><p><a class="reference internal" href="install_vs_windows.html#install-vs-windows"><span class="std std-ref">Visual Studio를 사용하여 Windows에서 OpenFAST 구축</span></a>.</p></li>
+<li><p><a class="reference internal" href="index.html#cmake-windows"><span class="std std-ref">Windows용 Visual Studio를 사용하는 CMake</span></a></p></li>
+<li><p><a class="reference internal" href="install_vs_windows.html#install-vs-windows"><span class="std std-ref">Visual Studio를 사용하여 Windows에서 OpenFAST 빌드</span></a>.</p></li>
 </ul>
 <div class="section" id="installing-prerequisites">
-<h2><span class="section-number">2.8.2.1. </span>전제조건 설치<a class="headerlink" href="#installing-prerequisites" title="이 제목의 고유 링크"></a></h2>
+<h2><span class="section-number">2.8.2.1. </span>필수 구성 요소 설치<a class="headerlink" href="#installing-prerequisites" title="이 제목에 대한 영구 링크"></a></h2>
 <ol class="arabic">
-<li><p>다운로드 및 설치 <a class="reference external" href="https://cygwin.com/setup-x86_64.exe" target="_blank" rel="noopener noreferrer">시그윈 64비트</a>. 당신은해야합니다 <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">as</span> <span class="pre">Administrator</span></code> 를 사용하여 설치 프로세스를 완료합니다.</p>
+<li><p>다운로드 및 설치 <a class="reference external" href="https://cygwin.com/setup-x86_64.exe" target="_blank" rel="noopener noreferrer">시그윈 64비트</a>. 당신은해야합니다 <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">as</span> <span class="pre">Administrator</span></code> 설치 프로세스를 완료하려면</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>선택 <code class="docutils literal notranslate"><span class="pre">Install</span> <span class="pre">from</span> <span class="pre">internet</span></code></p></li>
+<li><p>선택하다 <code class="docutils literal notranslate"><span class="pre">Install</span> <span class="pre">from</span> <span class="pre">internet</span></code></p></li>
 <li><p>기본 설치 위치 선택</p></li>
-<li><p>기본 패키지 다운로드 위치를 선택하세요</p></li>
-<li><p>선택 <code class="docutils literal notranslate"><span class="pre">Direct</span> <span class="pre">connection</span></code></p></li>
+<li><p>기본 패키지 다운로드 위치 선택</p></li>
+<li><p>선택하다 <code class="docutils literal notranslate"><span class="pre">Direct</span> <span class="pre">connection</span></code></p></li>
 <li><p>다운로드 사이트를 선택하세요</p></li>
-<li><p>다음 단계를 참조하세요. <code class="docutils literal notranslate"><span class="pre">select</span> <span class="pre">packages</span></code>. 또는 이 단계를 건너뛰고 실행할 수 있습니다. <code class="docutils literal notranslate"><span class="pre">setup-x86_64.exe</span></code> 는 나중에 언제든지 필수 소프트웨어를 선택하고 설치할 수 있습니다.</p></li>
+<li><p>다음 단계를 참조하세요. <code class="docutils literal notranslate"><span class="pre">select</span> <span class="pre">packages</span></code>. 또는 이 단계를 건너뛰고 실행할 수 있습니다. <code class="docutils literal notranslate"><span class="pre">setup-x86_64.exe</span></code> 나중에 언제든지 필요한 소프트웨어를 선택하고 설치할 수 있습니다.</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p>컴파일에 필요한 패키지 선택 <code class="docutils literal notranslate"><span class="pre">OpenFAST</span></code>. 선택 <code class="docutils literal notranslate"><span class="pre">binary</span></code>
+<li><p>컴파일에 필요한 패키지 선택 <code class="docutils literal notranslate"><span class="pre">OpenFAST</span></code>. 선택하다 <code class="docutils literal notranslate"><span class="pre">binary</span></code>
 패키지이며 소스 옵션이 아닙니다.</p>
 <blockquote>
 <div><ul>
-<li><p>선택 <code class="docutils literal notranslate"><span class="pre">Category</span></code> 보기, 우리는 다음에서 패키지를 설치할 것입니다.
+<li><p>선택하다 <code class="docutils literal notranslate"><span class="pre">Category</span></code> 보기에서 우리는 패키지를 설치할 것입니다
 <code class="docutils literal notranslate"><span class="pre">Devel</span></code> 및 <code class="docutils literal notranslate"><span class="pre">Math</span></code></p></li>
-<li><p>부터 <code class="docutils literal notranslate"><span class="pre">Devel</span></code> 는 다음 패키지를 설치용으로 표시합니다.</p>
+<li><p>에서 <code class="docutils literal notranslate"><span class="pre">Devel</span></code> 다음 패키지를 설치용으로 표시하세요</p>
 <blockquote>
 <div><ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">cmake</span></code></p></li>
@@ -147,7 +147,7 @@
 </ul>
 </div></blockquote>
 </li>
-<li><p>부터 <code class="docutils literal notranslate"><span class="pre">Math</span></code> 는 다음 패키지를 설치용으로 표시합니다.</p>
+<li><p>에서 <code class="docutils literal notranslate"><span class="pre">Math</span></code> 다음 패키지를 설치용으로 표시하세요</p>
 <blockquote>
 <div><ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">liblapack-devel</span></code></p></li>
@@ -163,28 +163,25 @@
 </ul>
 </div></blockquote>
 </li>
-<li><p>클릭 <code class="docutils literal notranslate"><span class="pre">Next</span></code> 및 종속성을 충족하기 위해 설치 프로세스에서 설치를 요청하는 모든 추가 패키지를 수락합니다.</p></li>
+<li><p>딸깍 하는 소리 <code class="docutils literal notranslate"><span class="pre">Next</span></code> 종속성을 충족하기 위해 설치 프로세스에서 설치를 요청하는 모든 추가 패키지를 수락합니다.</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p>입니다 <em>권장
-설치 후 시스템을 재부팅하는</em> 설치 후 컴퓨터를 다시 시작할 것을
-<code class="docutils literal notranslate"><span class="pre">Cygwin</span></code> 및 필요한 모든 패키지.</p></li>
+<li><p>그것은 <em>추천</em> 설치 후 컴퓨터를 다시 시작할 것을
+<code class="docutils literal notranslate"><span class="pre">Cygwin</span></code> 그리고 필요한 모든 패키지.</p></li>
 </ol>
 </div>
 <div class="section" id="compiling-openfast">
-<h2><span class="section-number">2.8.2.2. </span>OpenFAST 컴파일<a class="headerlink" href="#compiling-openfast" title="이 제목의 고유 링크"></a></h2>
+<h2><span class="section-number">2.8.2.2. </span>OpenFAST 컴파일하기<a class="headerlink" href="#compiling-openfast" title="이 제목에 대한 영구 링크"></a></h2>
 <p>여기에서 CMake 지침을 사용하여 Linux에서 선택하세요.
-<a class="reference internal" href="index.html#cmake-unix"><span class="std std-ref">CMake
-Windows용 Visual Studio를 사용하는</span></a>.</p>
+<a class="reference internal" href="index.html#cmake-unix"><span class="std std-ref">Linux용 Make가 포함된 CMake/macOS</span></a>.</p>
 </div>
 <div class="section" id="other-tips">
-<h2><span class="section-number">2.8.2.3. </span>기타 팁<a class="headerlink" href="#other-tips" title="이 제목의 고유 링크"></a></h2>
+<h2><span class="section-number">2.8.2.3. </span>기타 팁<a class="headerlink" href="#other-tips" title="이 제목에 대한 영구 링크"></a></h2>
 <ul>
-<li><p>실행하고 싶다면 <code class="docutils literal notranslate"><span class="pre">openfast.exe</span></code> 에서 <code class="docutils literal notranslate"><span class="pre">cmd</span></code> 터미널을 사용하려면 다음을 추가해야 합니다. <code class="docutils literal notranslate"><span class="pre">C:\cygwin64\lib\lapack</span></code> 및
-<code class="docutils literal notranslate"><span class="pre">C:\cygwin64\home\&lt;USERNAME&gt;\software\bin</span></code> 를 당신에게
-환경 설정의 <code class="docutils literal notranslate"><span class="pre">%PATH%</span></code> 변수입니다. 바꾸기 <code class="docutils literal notranslate"><span class="pre">&lt;USERNAME&gt;</span></code> 를 Windows 시스템의 계정 이름으로 바꿉니다.</p></li>
-<li><p>Cygwin용 최적화 레벨 2로 컴파일하는 것이 좋습니다. cmake 명령에서 빌드 모드를 변경하면 됩니다.</p>
+<li><p>달리고 싶다면 <code class="docutils literal notranslate"><span class="pre">openfast.exe</span></code> 에서 <code class="docutils literal notranslate"><span class="pre">cmd</span></code> 터미널을 추가한 다음 <code class="docutils literal notranslate"><span class="pre">C:\cygwin64\lib\lapack</span></code> 및
+<code class="docutils literal notranslate"><span class="pre">C:\cygwin64\home\&lt;USERNAME&gt;\software\bin</span></code> 당신에게 <code class="docutils literal notranslate"><span class="pre">%PATH%</span></code> 환경 설정의 변수입니다. 바꾸다 <code class="docutils literal notranslate"><span class="pre">&lt;USERNAME&gt;</span></code> Windows 시스템의 계정 이름으로.</p></li>
+<li><p>Cygwin의 경우 최적화 레벨 2로 컴파일하는 것이 좋습니다. cmake 명령에서 빌드 모드를 변경하면 됩니다.</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>..<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>RelWithDebInfo
 </pre></div>
@@ -198,9 +195,9 @@ Windows용 Visual Studio를 사용하는</span></a>.</p>
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
-        <a href="install_spack.html" class="btn btn-neutral float-left" title="2.8.1. Spack으로 OpenFAST 구축" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
-        <a href="../working.html" class="btn btn-neutral float-right" title="3. OpenFAST 사용하기" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
+        <a href="install_spack.html" class="btn btn-neutral float-left" title="2.8.1. Spack으로 OpenFAST 빌드하기" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+        <a href="../working.html" class="btn btn-neutral float-right" title="3. OpenFAST 작업" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr>
@@ -210,7 +207,7 @@ Windows용 Visual Studio를 사용하는</span></a>.</p>
   </div>
 
   다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">주제</a>
     제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
    
 

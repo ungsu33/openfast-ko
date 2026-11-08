@@ -29,5 +29,7 @@ await fs.mkdir('content',{recursive:true});await fs.writeFile('content/coverage.
 await fs.writeFile('reports/page-inventory.json',JSON.stringify({date:'2026-11-08',pages:pages.length,totals,inventory:pages},null,2));
 const catalog=JSON.parse(await fs.readFile('.cache/catalog.json','utf8'));
 const remaining=catalog.filter(k=>!cache[k]);
-await fs.writeFile('reports/translation-effective.json',JSON.stringify({catalogStrings:catalog.length,translatedOrReviewed:catalog.length-remaining.length,remaining,method:'Google Translate gtx + manual heading/terminology/fragment overrides; standalone technical identifiers retained',manualOverrides:Object.keys(JSON.parse(await fs.readFile('translations/overrides.json','utf8'))).length,professionalFullTextReview:false,binaryAttachmentsTranslated:false,externalSitesTranslated:false},null,2));
+const progress=JSON.parse(await fs.readFile('reports/translation-progress.json','utf8'));
+const manual=JSON.parse(await fs.readFile('translations/overrides.json','utf8'));
+await fs.writeFile('reports/translation-effective.json',JSON.stringify({catalogStrings:catalog.length,translatedOrReviewed:catalog.length-remaining.length,remaining,method:'Google Translate gtx independent q parameters + protected technical identifiers + manual heading/terminology/fragment overrides',manualOverrides:Object.keys(manual).length,unresolvedEnglishFallbacks:(progress.englishFallbacks||[]).filter(k=>!manual[k]),professionalFullTextReview:false,binaryAttachmentsTranslated:false,externalSitesTranslated:false},null,2));
 console.log(JSON.stringify({pages:pages.length,totals,remaining:remaining.length}));

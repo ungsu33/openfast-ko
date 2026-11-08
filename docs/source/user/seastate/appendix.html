@@ -2,7 +2,7 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>4.12.3. 부록 A: SeaState 기본 입력 파일 예 - OpenFAST v5.0.0 문서</title>
+  <title>4.12.3. 부록 A: SeaState 기본 입력 파일 예 — OpenFAST v5.0.0 문서</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css">
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css">
       <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css">
@@ -20,8 +20,8 @@
         <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="검색" href="../../../search.html">
-    <link rel="next" title="4.13. InflowWind 사용자 가이드 및 이론 설명서" href="../inflowwind/index.html">
+    <link rel="search" title="찾다" href="../../../search.html">
+    <link rel="next" title="4.13. InflowWind 사용자 가이드 및 이론 매뉴얼" href="../inflowwind/index.html">
     <link rel="prev" title="4.12.2. 출력 파일" href="output_files.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/seastate/appendix.html"></head>
 
@@ -35,7 +35,7 @@
           
           <a href="../../../index.html" class="icon icon-home">
             OpenFAST
-              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="심벌 마크">
           </a>
               <div class="version">5.0 · 한국어</div>
 <div role="search">
@@ -47,15 +47,15 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력소음</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
@@ -65,7 +65,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">4.12. SeaState</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="input_files.html">4.12.1. 입력 파일</a></li>
 <li class="toctree-l3"><a class="reference internal" href="output_files.html">4.12.2. 출력 파일</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">4.12.3. 부록 A: SeaState 기본 입력 파일 예</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.12.3. 부록 A: SeaState 기본 입력 파일의 예</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#appendix-b-example-seastate-driver-input-file">4.12.4. 부록 B: SeaState 드라이버 입력 파일의 예</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#appendix-c-list-of-output-channels">4.12.5. 부록 C. 출력 채널 목록</a></li>
 </ul>
@@ -85,16 +85,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -103,12 +103,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.12. </span>SeaState 사용자 가이드 및 이론 설명서</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">4.12.3. </span>부록 A: SeaState 기본 입력 파일 예</li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.12. </span>SeaState 사용자 가이드 및 이론 매뉴얼</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.12.3. </span>부록 A: SeaState 기본 입력 파일의 예</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/seastate/appendix.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+            <a href="../../../_sources/source/user/seastate/appendix.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -117,8 +117,8 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="appendix-a-example-seastate-primary-input-file">
-<span id="ss-primary-input-example"></span><h1><span class="section-number">4.12.3. </span>부록 A: SeaState 기본 입력 파일 예<a class="headerlink" href="#appendix-a-example-seastate-primary-input-file" title="이 제목의 고유 링크"></a></h1>
-<p>다음은 내부적으로 불규칙한(JONSWAP) 파동 구조를 생성하는 SeaState 기본 입력 파일입니다.</p>
+<span id="ss-primary-input-example"></span><h1><span class="section-number">4.12.3. </span>부록 A: SeaState 기본 입력 파일의 예<a class="headerlink" href="#appendix-a-example-seastate-primary-input-file" title="이 제목에 대한 영구 링크"></a></h1>
+<p>다음은 내부적으로 불규칙한 (JONSWAP) 파동 구조를 생성하는 SeaState 기본 입력 파일입니다.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>------- SeaState v1.00.* Input File --------------------------------------------
 Example SeaState primary input file
 False            Echo           - Echo the input file data (flag)
@@ -202,7 +202,7 @@ END
 </div>
 </div>
 <div class="section" id="appendix-b-example-seastate-driver-input-file">
-<h1><span class="section-number">4.12.4. </span>부록 B: SeaState 드라이버 입력 파일 예<a class="headerlink" href="#appendix-b-example-seastate-driver-input-file" title="이 제목의 고유 링크"></a></h1>
+<h1><span class="section-number">4.12.4. </span>부록 B: SeaState 드라이버 입력 파일의 예<a class="headerlink" href="#appendix-b-example-seastate-driver-input-file" title="이 제목에 대한 영구 링크"></a></h1>
 <p>다음은 SeaState 드라이버 입력 파일 구조입니다.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Seastate driver file
 Compatible with SeaState v1.00
@@ -225,8 +225,8 @@ END of driver input file
 </div>
 </div>
 <div class="section" id="appendix-c-list-of-output-channels">
-<span id="sea-output-channels"></span><h1><span class="section-number">4.12.5. </span>부록 C. 출력 채널 목록<a class="headerlink" href="#appendix-c-list-of-output-channels" title="이 제목의 고유 링크"></a></h1>
-<p>SeaState 모듈에 사용할 수 있는 모든 출력 채널 목록입니다. 이름은 의미별로 그룹화되어 있지만 적절하다고 판단되는 대로 기본 SeaState 입력 파일의 OUTPUT CHANNELS 섹션에서 순서를 지정할 수 있습니다. α는 기본 SeaState 입력 파일의 OUTPUT 섹션에 지정된 파도 고도 또는 파도 운동학에 대한 출력 위치를 나타냅니다. 여기서 α는 파도 고도 출력의 경우 [1,NWaveElev] 범위에 있고 파도 운동학 출력의 경우 [1,NWaveKin] 범위에 있는 숫자입니다. α &gt; NWaveElev 또는 α &gt; NWaveKin을 설정하면 잘못된 출력이 생성됩니다. 모든 출력은 전역 관성 프레임 좌표계에 있습니다.</p>
+<span id="sea-output-channels"></span><h1><span class="section-number">4.12.5. </span>부록 C. 출력 채널 목록<a class="headerlink" href="#appendix-c-list-of-output-channels" title="이 제목에 대한 영구 링크"></a></h1>
+<p>이것은 SeaState 모듈에 대해 가능한 모든 출력 채널의 목록입니다. 이름은 의미별로 그룹화되어 있지만 기본 SeaState 입력 파일의 OUTPUT CHANNELS 섹션에서 적절하게 정렬할 수 있습니다. α는 기본 SeaState 입력 파일의 OUTPUT 섹션에 지정된 파동 고도 또는 파동 운동학에 대한 출력 위치를 나타냅니다. 여기서 α는 파동 고도 출력의 경우 [1,NWaveElev] 범위에 있고 파동 운동학 출력의 경우 [1,NWaveKin] 범위에 있는 숫자입니다. α &gt; NWaveElev 또는 α &gt; NWaveKin를 설정하면 잘못된 출력이 생성됩니다. 모든 출력은 전역 관성 프레임 좌표계에 있습니다.</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 25%">
@@ -235,12 +235,12 @@ END of driver input file
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>채널 이름</p></th>
-<th class="head"><p>장치</p></th>
+<th class="head"><p>단위</p></th>
 <th class="head"><p>설명</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><strong>파고</strong></p></td>
+<tr class="row-even"><td><p><strong>파도 고도</strong></p></td>
 <td></td>
 <td></td>
 </tr>
@@ -251,14 +251,14 @@ END of driver input file
 </td>
 <td><p>총(1차 및 2차) 파고(지정 위치 최대 9개)</p></td>
 </tr>
-<tr class="row-even"><td><p>WaveαElv1</p></td>
+<tr class="row-even"><td><p>웨이브αElv1</p></td>
 <td><ol class="loweralpha simple" start="13">
 <li></li>
 </ol>
 </td>
 <td><p>1차 파고(지정 위치 최대 9개)</p></td>
 </tr>
-<tr class="row-odd"><td><p>WaveαElv2</p></td>
+<tr class="row-odd"><td><p>웨이브αElv2</p></td>
 <td><ol class="loweralpha simple" start="13">
 <li></li>
 </ol>
@@ -278,12 +278,12 @@ END of driver input file
 <td><p>α에서의 총(1차 및 2차 파동) 유체 가속도</p></td>
 </tr>
 <tr class="row-odd"><td><p>FDynPα</p></td>
-<td><p>(Pa)</p></td>
+<td><p>(아빠)</p></td>
 <td><p>α에서의 총(1차 및 2차 파동) 유체 동압</p></td>
 </tr>
 <tr class="row-even"><td><p>FAccMCFαxi, FAccMCFαyi, FAccMCFαzi</p></td>
 <td><p>(m/s<sup>2</sup>), (m/s<sup>2</sup>), (m/s<sup>2</sup>)</p></td>
-<td><p>α에서 HydroDyn의 MacCamy-Fuchs 구성원을 위한 확장된 1차 파동 유체 가속도</p></td>
+<td><p>α에서 HydroDyn의 MacCamy-Fuchs 멤버에 대한 확장된 1차 파동 유체 가속도</p></td>
 </tr>
 </tbody>
 </table>
@@ -292,9 +292,9 @@ END of driver input file
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
-        <a href="output_files.html" class="btn btn-neutral float-left" title="4.12.2. 출력 파일" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
-        <a href="../inflowwind/index.html" class="btn btn-neutral float-right" title="4.13. InflowWind 사용자 가이드 및 이론 설명서" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
+        <a href="output_files.html" class="btn btn-neutral float-left" title="4.12.2. 출력 파일" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+        <a href="../inflowwind/index.html" class="btn btn-neutral float-right" title="4.13. InflowWind 사용자 가이드 및 이론 매뉴얼" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr>
@@ -304,7 +304,7 @@ END of driver input file
   </div>
 
   다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">주제</a>
     제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
    
 

@@ -2,7 +2,7 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>4.2.5. 선형화 — OpenFAST v5.0.0 문서</title>
+  <title>4.2.5. Linearization — OpenFAST v5.0.0 문서</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css">
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css">
       <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css">
@@ -21,8 +21,8 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="검색" href="../../../search.html">
-    <link rel="next" title="4.3. AeroDyn 사용자 가이드 및 이론 설명서" href="../aerodyn/index.html">
+    <link rel="search" title="찾다" href="../../../search.html">
+    <link rel="next" title="4.3. AeroDyn 사용자 가이드 및 이론 매뉴얼" href="../aerodyn/index.html">
     <link rel="prev" title="4.2.4. 솔버" href="solver.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/glue-code/linearization.html"></head>
 
@@ -36,7 +36,7 @@
           
           <a href="../../../index.html" class="icon icon-home">
             OpenFAST
-              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="심벌 마크">
           </a>
               <div class="version">5.0 · 한국어</div>
 <div role="search">
@@ -48,11 +48,11 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">4.2. 글루 코드</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="overview.html">4.2.1. 글루 코드 개요</a></li>
 <li class="toctree-l3"><a class="reference internal" href="modvar.html">4.2.2. 모듈 변수(<code class="docutils literal notranslate"><span class="pre">ModVar</span></code>)</a></li>
@@ -73,7 +73,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력소음</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
@@ -96,16 +96,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -114,12 +114,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
           <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.2. </span>글루 코드</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.2.5. </span>선형화</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/glue-code/linearization.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+            <a href="../../../_sources/source/user/glue-code/linearization.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -128,33 +128,29 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="linearization">
-<span id="glue-code-linearization"></span><h1><span class="section-number">4.2.5. </span>선형화<a class="headerlink" href="#linearization" title="이 제목의 고유 링크"></a></h1>
-<p>OpenFAST는 주기적(또는 정적) 작동 지점에 대해 전체 다중 물리 시스템을 선형화하여 다음 형식의 연속 시간 1차 상태 공간 행렬을 생성할 수 있습니다.
-커플링 매트릭스와 함께</p>
+<span id="glue-code-linearization"></span><h1><span class="section-number">4.2.5. </span>선형화<a class="headerlink" href="#linearization" title="이 제목에 대한 영구 링크"></a></h1>
+<p>OpenFAST는 주기적(또는 정적) 작동점에 대해 전체 다중 물리 시스템을 선형화하여 다음 형식의 연속시간 1차 상태공간 행렬을 생성할 수 있습니다.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\dot{\mathbf{x}} &amp;= A\,\mathbf{x} + B\,\mathbf{u} \\
 \mathbf{y}       &amp;= C\,\mathbf{x} + D\,\mathbf{u}\end{split}\]</div>
-<p>다음 연성 행렬과 함께 <em>dUdu</em> (입력 간 피드스루) 및
-<em>dUdy</em> (출력-입력 커플링). 선형화 엔진은 다음 위치에 있습니다.
+<p>다음 연성 행렬과 함께 <em>dUdu</em> (입력-입력 피드스루) 및
+<em>dUdy</em> (출력-입력 커플 링). 선형화 엔진은 다음 위치에 있습니다.
 <code class="docutils literal notranslate"><span class="pre">modules/openfast-library/src/FAST_ModGlue.f90</span></code>.</p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><p><a class="reference internal" href="#user-inputs-for-linearization" id="id1">선형화를 위한 사용자 입력
-선형화를 위한</a></p></li>
-<li><p><a class="reference internal" href="#module-support-for-linearization" id="id2">모듈 지원</a></p></li>
+<li><p><a class="reference internal" href="#user-inputs-for-linearization" id="id1">선형화를 위한 사용자 입력</a></p></li>
+<li><p><a class="reference internal" href="#module-support-for-linearization" id="id2">선형화를 위한 모듈 지원</a></p></li>
 <li><p><a class="reference internal" href="#variable-selection" id="id3">변수 선택</a></p></li>
-<li><p><a class="reference internal" href="#steady-state-trimming-calcsteady" id="id4">정상 상태 트리밍(
-작동 지점에서<code class="docutils literal notranslate"><span class="pre">CalcSteady</span></code>)</a></p></li>
-<li><p><a class="reference internal" href="#linearization-at-an-operating-point" id="id5">선형화</a></p></li>
+<li><p><a class="reference internal" href="#steady-state-trimming-calcsteady" id="id4">정상 상태 트리밍(<code class="docutils literal notranslate"><span class="pre">CalcSteady</span></code>)</a></p></li>
+<li><p><a class="reference internal" href="#linearization-at-an-operating-point" id="id5">동작점에서의 선형화</a></p></li>
 <li><p><a class="reference internal" href="#output-file-format" id="id6">출력 파일 형식</a></p></li>
 <li><p><a class="reference internal" href="#variable-naming-conventions" id="id7">변수 명명 규칙</a></p></li>
-<li><p><a class="reference internal" href="#module-developer-responsibilities" id="id8">모듈 개발자 책임</a></p></li>
+<li><p><a class="reference internal" href="#module-developer-responsibilities" id="id8">모듈 개발자의 책임</a></p></li>
 </ul>
 </div>
 <div class="section" id="user-inputs-for-linearization">
-<h2><a class="toc-backref" href="#id1"><span class="section-number">4.2.5.1. </span>선형화를 위한 사용자 입력
-선형화를 위한</a><a class="headerlink" href="#user-inputs-for-linearization" title="이 제목의 고유 링크"></a></h2>
-<p>다음 매개변수는 기본 OpenFAST 입력 파일(<code class="docutils literal notranslate"><span class="pre">*.fst</span></code>) 아래 <strong>선형화</strong> 섹션.</p>
+<h2><a class="toc-backref" href="#id1"><span class="section-number">4.2.5.1. </span>선형화를 위한 사용자 입력</a><a class="headerlink" href="#user-inputs-for-linearization" title="이 제목에 대한 영구 링크"></a></h2>
+<p>다음 매개변수는 기본 OpenFAST 입력 파일(<code class="docutils literal notranslate"><span class="pre">*.fst</span></code>) 아래 <strong>선형화</strong> 부분.</p>
 <table class="colwidths-given docutils align-default">
 <colgroup>
 <col style="width: 25%">
@@ -168,17 +164,17 @@
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Linearize</span></code></p></td>
-<td><p>논리</p></td>
-<td><p>마스터 스위치. 다음으로 설정 <code class="docutils literal notranslate"><span class="pre">True</span></code> 는 모든 선형화 기능을 활성화합니다. 언제 <code class="docutils literal notranslate"><span class="pre">False</span></code> 다른 모든 선형화 매개변수는 무시됩니다.</p></td>
+<tr class="row-even"><td class="notranslate"><p><code class="docutils literal notranslate"><span class="pre">Linearize</span></code></p></td>
+<td><p>논리형</p></td>
+<td><p>마스터 스위치. 다음으로 설정 <code class="docutils literal notranslate"><span class="pre">True</span></code> 모든 선형화 기능을 활성화합니다. 언제 <code class="docutils literal notranslate"><span class="pre">False</span></code> 다른 모든 선형화 매개변수는 무시됩니다.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CalcSteady</span></code></p></td>
-<td><p>논리</p></td>
-<td><p>언제 <code class="docutils literal notranslate"><span class="pre">True</span></code>, OpenFAST는 먼저 각 목표 방위각의 출력이 하나의 로터 회전에서 다음 회전으로 수렴할 때까지(정상 상태 트리밍) 시뮬레이션을 실행한 다음 각 방위각에서 선형화를 수행합니다. 언제 <code class="docutils literal notranslate"><span class="pre">False</span></code>, 선형화는 사용자가 지정한 절대 시뮬레이션 시간(<code class="docutils literal notranslate"><span class="pre">LinTimes</span></code>).</p></td>
+<tr class="row-odd"><td class="notranslate"><p><code class="docutils literal notranslate"><span class="pre">CalcSteady</span></code></p></td>
+<td><p>논리형</p></td>
+<td><p>다음의 경우 <code class="docutils literal notranslate"><span class="pre">True</span></code>, OpenFAST는 먼저 각 목표 방위각의 출력이 하나의 로터 회전에서 다음 회전으로 수렴할 때까지(정상 상태 트리밍) 시뮬레이션을 실행한 다음 각 방위각에서 선형화를 수행합니다. 언제 <code class="docutils literal notranslate"><span class="pre">False</span></code>, 선형화는 사용자가 지정한 절대 시뮬레이션 시간(<code class="docutils literal notranslate"><span class="pre">LinTimes</span></code>).</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">TrimCase</span></code></p></td>
+<tr class="row-even"><td class="notranslate"><p><code class="docutils literal notranslate"><span class="pre">TrimCase</span></code></p></td>
 <td><p>정수</p></td>
-<td><p>컨트롤러 자유도가 트리밍되는 동안 <code class="docutils literal notranslate"><span class="pre">CalcSteady</span></code> 는 주기적인 정상 상태를 달성합니다.</p>
+<td><p>컨트롤러 자유도가 조정되는 동안 조정됨 <code class="docutils literal notranslate"><span class="pre">CalcSteady</span></code> 주기적인 정상상태를 달성하는 것입니다.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> – 요</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> – 발전기 토크</p></li>
@@ -186,87 +182,83 @@
 </ul>
 </td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">TrimTol</span></code></p></td>
-<td><p>진짜</p></td>
-<td><p>로터 1회전에 걸쳐 정규화된 출력 오류에 대한 RMS 수렴 허용 오차입니다. 오류가 이 값 아래로 떨어지면 트리밍이 중지됩니다. 일반적인 값: <code class="docutils literal notranslate"><span class="pre">1.0e-5</span></code>.</p></td>
+<tr class="row-odd"><td class="notranslate"><p><code class="docutils literal notranslate"><span class="pre">TrimTol</span></code></p></td>
+<td><p>실수</p></td>
+<td><p>RMS 로터 1회전에 걸쳐 정규화된 출력 오류에 대한 수렴 허용 오차입니다. 오류가 이 값 아래로 떨어지면 트리밍이 중지됩니다. 일반적인 값: <code class="docutils literal notranslate"><span class="pre">1.0e-5</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">TrimGain</span></code></p></td>
-<td><p>진짜</p></td>
+<tr class="row-even"><td class="notranslate"><p><code class="docutils literal notranslate"><span class="pre">TrimGain</span></code></p></td>
+<td><p>실수</p></td>
 <td><p>내장 트림 컨트롤러에서 사용되는 비례 게인입니다. 단위는 요/피치의 경우 rad/(rad/s)이고 토크의 경우 N·m/(rad/s)입니다.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Twr_Kdmp</span></code></p></td>
-<td><p>진짜</p></td>
+<tr class="row-odd"><td class="notranslate"><p><code class="docutils literal notranslate"><span class="pre">Twr_Kdmp</span></code></p></td>
+<td><p>실수</p></td>
 <td><p>인공 타워 감쇠 계수(N/(m/s))가 추가되었습니다.
-<code class="docutils literal notranslate"><span class="pre">CalcSteady</span></code> 는 과도 현상을 완화하고 안정 상태에 더 빠르게 도달하는 데 도움이 되도록 실행됩니다. 비활성화하려면 0으로 설정합니다.</p></td>
+<code class="docutils literal notranslate"><span class="pre">CalcSteady</span></code> 과도 현상을 완화하고 안정된 상태에 더 빨리 도달하도록 실행합니다. 비활성화하려면 0으로 설정합니다.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Bld_Kdmp</span></code></p></td>
-<td><p>진짜</p></td>
-<td><p>인공 블레이드 감쇠 계수(N/(m/s)) <code class="docutils literal notranslate"><span class="pre">CalcSteady</span></code>.</p></td>
+<tr class="row-even"><td class="notranslate"><p><code class="docutils literal notranslate"><span class="pre">Bld_Kdmp</span></code></p></td>
+<td><p>실수</p></td>
+<td><p>동안 인공 블레이드 감쇠 계수(N/(m/s)) <code class="docutils literal notranslate"><span class="pre">CalcSteady</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">NLinTimes</span></code></p></td>
+<tr class="row-odd"><td class="notranslate"><p><code class="docutils literal notranslate"><span class="pre">NLinTimes</span></code></p></td>
 <td><p>정수</p></td>
-<td><p>로터 회전당 선형화 시점 수(또는 동일한 간격의 절대 시간 순간 수) <code class="docutils literal notranslate"><span class="pre">CalcSteady=False</span></code>). ≥ 1이어야 합니다. 주기 모델의 경우 회전당 변동을 해결하려면 일반적으로 최소 12개의 방위각이 필요합니다.</p></td>
+<td><p>로터 회전당 선형화 시점 수(또는 동일한 간격의 절대 시점 수) <code class="docutils literal notranslate"><span class="pre">CalcSteady=False</span></code>). ≥ 1이어야 합니다. 주기 모델의 경우 회전당 변동을 해결하려면 일반적으로 최소 12개의 방위각이 필요합니다.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">LinTimes</span></code></p></td>
-<td><p>실제 배열</p></td>
-<td><p>다음과 같은 경우 선형화하는 절대 시뮬레이션 시간(초)입니다.
+<tr class="row-even"><td class="notranslate"><p><code class="docutils literal notranslate"><span class="pre">LinTimes</span></code></p></td>
+<td><p>실수 배열</p></td>
+<td><p>선형화할 절대 시뮬레이션 시간(초)
 <code class="docutils literal notranslate"><span class="pre">CalcSteady=False</span></code>. 길이는 동일해야 합니다. <code class="docutils literal notranslate"><span class="pre">NLinTimes</span></code>. 무시되는 경우
 <code class="docutils literal notranslate"><span class="pre">CalcSteady=True</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">LinInputs</span></code></p></td>
+<tr class="row-odd"><td class="notranslate"><p><code class="docutils literal notranslate"><span class="pre">LinInputs</span></code></p></td>
 <td><p>정수</p></td>
-<td><p>화면에 나타나는 입력 변수를 제어합니다. <strong>B</strong> 및 <strong>D</strong> 행렬.</p>
+<td><p>어떤 입력 변수가 표시되는지 제어합니다. <strong>B</strong> 및 <strong>D</strong> 행렬.</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> (<code class="docutils literal notranslate"><span class="pre">LIN_NONE</span></code>) – 입력 없음; 상태 행렬만 생성합니다.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> (<code class="docutils literal notranslate"><span class="pre">LIN_STANDARD</span></code>) – 플래그가 지정된 입력
-모듈에 의한 <code class="docutils literal notranslate"><span class="pre">VF_Linearize</span></code> (기본값은 각 모듈의 <code class="docutils literal notranslate"><span class="pre">InitVars</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> (<code class="docutils literal notranslate"><span class="pre">LIN_NONE</span></code>) – 입력이 없습니다. 상태 행렬만 생성합니다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> (<code class="docutils literal notranslate"><span class="pre">LIN_STANDARD</span></code>) – 플래그가 지정된 입력 <code class="docutils literal notranslate"><span class="pre">VF_Linearize</span></code> 모듈별(기본값은 각 모듈의 <code class="docutils literal notranslate"><span class="pre">InitVars</span></code>).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> (<code class="docutils literal notranslate"><span class="pre">LIN_ALL</span></code>) – 디버그 입력을 포함한 모든 모듈 입력.</p></li>
 </ul>
 </td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">LinOutputs</span></code></p></td>
+<tr class="row-even"><td class="notranslate"><p><code class="docutils literal notranslate"><span class="pre">LinOutputs</span></code></p></td>
 <td><p>정수</p></td>
 <td><p>표시되는 출력 변수를 제어합니다. <strong>C</strong> 및 <strong>D</strong> 행렬.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> (<code class="docutils literal notranslate"><span class="pre">LIN_NONE</span></code>) – 출력이 없습니다.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> (<code class="docutils literal notranslate"><span class="pre">LIN_STANDARD</span></code>) – <code class="docutils literal notranslate"><span class="pre">WriteOutput</span></code> 채널만 해당(<code class="docutils literal notranslate"><span class="pre">VF_WriteOut</span></code> 플래그).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> (<code class="docutils literal notranslate"><span class="pre">LIN_STANDARD</span></code>) – <code class="docutils literal notranslate"><span class="pre">WriteOutput</span></code> 채널만(<code class="docutils literal notranslate"><span class="pre">VF_WriteOut</span></code> 깃발).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> (<code class="docutils literal notranslate"><span class="pre">LIN_ALL</span></code>) – 모든 모듈 출력.</p></li>
 </ul>
 </td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">LinOutJac</span></code></p></td>
-<td><p>논리</p></td>
-<td><p>언제 <code class="docutils literal notranslate"><span class="pre">True</span></code> (필요 <code class="docutils literal notranslate"><span class="pre">LinInputs=LinOutputs=2</span></code>), 전체 모듈 야코비 행렬은 디버깅을 위해 선형화 출력 파일에 기록됩니다.</p></td>
+<tr class="row-odd"><td class="notranslate"><p><code class="docutils literal notranslate"><span class="pre">LinOutJac</span></code></p></td>
+<td><p>논리형</p></td>
+<td><p>다음의 경우 <code class="docutils literal notranslate"><span class="pre">True</span></code> (요구 <code class="docutils literal notranslate"><span class="pre">LinInputs=LinOutputs=2</span></code>), 디버깅을 위해 전체 모듈 야코비 행렬이 선형화 출력 파일에 기록됩니다.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">LinOutMod</span></code></p></td>
-<td><p>논리</p></td>
-<td><p>언제 <code class="docutils literal notranslate"><span class="pre">True</span></code>, 모듈별
-전체 시스템 파일 외에 <code class="docutils literal notranslate"><span class="pre">.lin</span></code> 파일이 작성됩니다.
-선형화 변수 순서에 나타나는</p></td>
+<tr class="row-even"><td class="notranslate"><p><code class="docutils literal notranslate"><span class="pre">LinOutMod</span></code></p></td>
+<td><p>논리형</p></td>
+<td><p>다음의 경우 <code class="docutils literal notranslate"><span class="pre">True</span></code>, 모듈별 <code class="docutils literal notranslate"><span class="pre">.lin</span></code> 파일은 전체 시스템 파일에 추가로 기록됩니다.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="module-support-for-linearization">
-<h2><a class="toc-backref" href="#id2"><span class="section-number">4.2.5.2. </span>모듈 지원</a><a class="headerlink" href="#module-support-for-linearization" title="이 제목의 고유 링크"></a></h2>
-<p>모듈(에서 설정)
-<code class="docutils literal notranslate"><span class="pre">ModGlue_Init</span></code>)는 다음과 같습니다.</p>
+<h2><a class="toc-backref" href="#id2"><span class="section-number">4.2.5.2. </span>선형화를 위한 모듈 지원</a><a class="headerlink" href="#module-support-for-linearization" title="이 제목에 대한 영구 링크"></a></h2>
+<p>선형화 변수 순서에 나타나는 모듈(에서 설정)
+<code class="docutils literal notranslate"><span class="pre">ModGlue_Init</span></code>) 이다:</p>
 <p>InflowWind → SeaState → ServoDyn → ElastoDyn → BeamDyn → AeroDyn → HydroDyn → SubDyn → MAP++ → MoorDyn</p>
 <p>이 순서 목록에 없는 모듈은 다음과 같은 경우 치명적인 오류를 발생시킵니다.
 <code class="docutils literal notranslate"><span class="pre">Linearize=True</span></code>.</p>
 </div>
 <div class="section" id="variable-selection">
-<h2><a class="toc-backref" href="#id3"><span class="section-number">4.2.5.3. </span>변수 선택</a><a class="headerlink" href="#variable-selection" title="이 제목의 고유 링크"></a></h2>
-<p>중 <code class="docutils literal notranslate"><span class="pre">ModGlue_Init</span></code>, <code class="docutils literal notranslate"><span class="pre">VF_Linearize</span></code> 플래그는 다음에 따라 변수에 적용됩니다. <code class="docutils literal notranslate"><span class="pre">LinInputs</span></code> 및 <code class="docutils literal notranslate"><span class="pre">LinOutputs</span></code> 설정:</p>
+<h2><a class="toc-backref" href="#id3"><span class="section-number">4.2.5.3. </span>변수 선택</a><a class="headerlink" href="#variable-selection" title="이 제목에 대한 영구 링크"></a></h2>
+<p>동안 <code class="docutils literal notranslate"><span class="pre">ModGlue_Init</span></code>, <code class="docutils literal notranslate"><span class="pre">VF_Linearize</span></code> 플래그는 다음에 따라 변수에 적용됩니다. <code class="docutils literal notranslate"><span class="pre">LinInputs</span></code> 및 <code class="docutils literal notranslate"><span class="pre">LinOutputs</span></code> 설정:</p>
 <ul class="simple">
 <li><p><strong>상태(x)</strong>: <code class="docutils literal notranslate"><span class="pre">VF_Linearize</span></code> 플래그는 모든 참여 모듈의 모든 연속 상태 변수에 항상 설정됩니다.</p></li>
 <li><p><strong>입력(u)</strong>:</p>
 <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">LIN_NONE</span></code> → 모든 입력 변수에서 플래그가 지워졌습니다.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">LIN_STANDARD</span></code> → 무엇이든 유지 <code class="docutils literal notranslate"><span class="pre">VF_Linearize</span></code> 플래그가 모듈의 <code class="docutils literal notranslate"><span class="pre">InitVars</span></code>; 모듈 개발자는 <em>표준</em> 입력 세트.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LIN_NONE</span></code> → 모든 입력 변수에서 플래그가 지워집니다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LIN_STANDARD</span></code> → 뭐든지 지킨다 <code class="docutils literal notranslate"><span class="pre">VF_Linearize</span></code> 플래그가 모듈에 설정되었습니다. <code class="docutils literal notranslate"><span class="pre">InitVars</span></code>; 모듈 개발자는 <em>기준</em> 입력 세트.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">LIN_ALL</span></code> → 모든 입력 변수에 플래그가 설정됩니다.</p></li>
-<li><p>변수 <code class="docutils literal notranslate"><span class="pre">VF_NoLin</span></code> 는 항상
-위 설정에 관계없이 <code class="docutils literal notranslate"><span class="pre">VF_Linearize</span></code> 가 지워집니다.</p></li>
+<li><p>변수 <code class="docutils literal notranslate"><span class="pre">VF_NoLin</span></code> 항상 가지고있다 <code class="docutils literal notranslate"><span class="pre">VF_Linearize</span></code> 위 설정과 상관없이 지워집니다.</p></li>
 </ul>
 </li>
 <li><p><strong>출력(y)</strong>:</p>
@@ -274,71 +266,68 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">LIN_NONE</span></code> → 모든 출력 변수에서 플래그가 지워집니다.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">LIN_STANDARD</span></code> → 플래그는 다음을 전달하는 출력에만 설정됩니다. <code class="docutils literal notranslate"><span class="pre">VF_WriteOut</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">LIN_ALL</span></code> → 모든 출력 변수에 플래그가 설정됩니다.</p></li>
-<li><p>변수 <code class="docutils literal notranslate"><span class="pre">VF_NoLin</span></code> 는 항상 제외됩니다.</p></li>
+<li><p>변수 <code class="docutils literal notranslate"><span class="pre">VF_NoLin</span></code> 항상 제외됩니다.</p></li>
 </ul>
 </li>
 </ul>
-<p>결합된 변수 세트는 <code class="docutils literal notranslate"><span class="pre">ModGlueType</span></code> 라는 이름이 붙었습니다. <code class="docutils literal notranslate"><span class="pre">Lin</span></code>
-를 통해 <code class="docutils literal notranslate"><span class="pre">ModGlue_CombineModules</span></code>.</p>
+<p>결합된 변수 세트는 <code class="docutils literal notranslate"><span class="pre">ModGlueType</span></code> 명명된 <code class="docutils literal notranslate"><span class="pre">Lin</span></code>
+~을 통해 <code class="docutils literal notranslate"><span class="pre">ModGlue_CombineModules</span></code>.</p>
 </div>
 <div class="section" id="steady-state-trimming-calcsteady">
-<h2><a class="toc-backref" href="#id4"><span class="section-number">4.2.5.4. </span>정상 상태 트리밍(
-작동 지점에서<code class="docutils literal notranslate"><span class="pre">CalcSteady</span></code>)</a><a class="headerlink" href="#steady-state-trimming-calcsteady" title="이 제목의 고유 링크"></a></h2>
-<p>언제 <code class="docutils literal notranslate"><span class="pre">CalcSteady=True</span></code>, <code class="docutils literal notranslate"><span class="pre">ModGlue_CalcSteady</span></code> 는 주기성을 감지하기 위해 각 시간 단계에서 호출됩니다.</p>
+<h2><a class="toc-backref" href="#id4"><span class="section-number">4.2.5.4. </span>정상 상태 트리밍(<code class="docutils literal notranslate"><span class="pre">CalcSteady</span></code>)</a><a class="headerlink" href="#steady-state-trimming-calcsteady" title="이 제목에 대한 영구 링크"></a></h2>
+<p>다음의 경우 <code class="docutils literal notranslate"><span class="pre">CalcSteady=True</span></code>, <code class="docutils literal notranslate"><span class="pre">ModGlue_CalcSteady</span></code> 주기성을 감지하기 위해 각 시간 단계에서 호출됩니다.</p>
 <ol class="arabic">
-<li><p>태그가 지정된 모듈 출력 <code class="docutils literal notranslate"><span class="pre">VF_Linearize</span></code> (제외 <code class="docutils literal notranslate"><span class="pre">VF_WriteOut</span></code>)는 방위각으로 색인된 버퍼에 수집됩니다.</p></li>
+<li><p>모듈 출력 태그가 지정되었습니다. <code class="docutils literal notranslate"><span class="pre">VF_Linearize</span></code> (을 제외한 <code class="docutils literal notranslate"><span class="pre">VF_WriteOut</span></code>)은 방위각으로 색인된 버퍼에 수집됩니다.</p></li>
 <li><p>각각의 완전한 회전 후에 각 출력의 출력은 <code class="docutils literal notranslate"><span class="pre">NLinTimes</span></code>
 방위각 목표는 정규화된 RMS 오류를 통해 이전 회전과 비교됩니다.</p>
 <div class="math notranslate nohighlight">
 \[\varepsilon = \sqrt{\frac{1}{N} \sum_{i=1}^{N}
   \left(\frac{y_i^{\rm current} - y_i^{\rm previous}}{r_i}\right)^2}\]</div>
-<p>여기서 <span class="math notranslate nohighlight">\(r_i = \max(y_{i,\rm max} - y_{i,\rm min},\, 0.01)\)</span> 는 현재 회전의 출력 범위입니다(거의 0으로 나누기를 피하기 위한 플로어 포함).</p>
+<p>여기서 <span class="math notranslate nohighlight">\(r_i = \max(y_{i,\rm max} - y_{i,\rm min},\, 0.01)\)</span> 는 현재 회전의 출력 범위입니다(거의 0으로 나누는 것을 방지하기 위한 바닥 포함).</p>
 </li>
-<li><p>언제 <span class="math notranslate nohighlight">\(\varepsilon &lt; \texttt{TrimTol}\)</span>, <code class="docutils literal notranslate"><span class="pre">FoundSteady=True</span></code> 및 선형화 전혀 <code class="docutils literal notranslate"><span class="pre">NLinTimes</span></code> 방위각은 자동으로 진행됩니다.</p></li>
+<li><p>다음의 경우 <span class="math notranslate nohighlight">\(\varepsilon &lt; \texttt{TrimTol}\)</span>, <code class="docutils literal notranslate"><span class="pre">FoundSteady=True</span></code> 그리고 선형화 전혀 <code class="docutils literal notranslate"><span class="pre">NLinTimes</span></code> 방위각은 자동으로 진행됩니다.</p></li>
 <li><p>시뮬레이션이 약 2회전 이내에 도달하면 <code class="docutils literal notranslate"><span class="pre">TMax</span></code>
-가 수렴하지 않으면 경고가 발생하고 선형화가 강제됩니다.</p></li>
+수렴하지 않으면 경고가 발생하고 선형화가 강제됩니다.</p></li>
 </ol>
-<p>버퍼 샘플 간의 방위각 보간은 다음의 외삽 루틴을 사용합니다. <code class="docutils literal notranslate"><span class="pre">MV_ExtrapInterp</span></code> (사용 가능한 샘플 수에 따라 상수, 선형 및 2차 방식 지원)</p>
+<p>버퍼 샘플 사이의 방위각 보간은 다음의 외삽 루틴을 사용합니다. <code class="docutils literal notranslate"><span class="pre">MV_ExtrapInterp</span></code> (사용 가능한 샘플 수에 따라 상수, 선형 및 2차 방식 지원)</p>
 </div>
 <div class="section" id="linearization-at-an-operating-point">
-<h2><a class="toc-backref" href="#id5"><span class="section-number">4.2.5.5. </span>선형화</a><a class="headerlink" href="#linearization-at-an-operating-point" title="이 제목의 고유 링크"></a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">ModGlue_Linearize_OP</span></code> 는 단일 작동 지점(시간/방위각)에서 전체 시스템 매트릭스를 조립합니다.</p>
+<h2><a class="toc-backref" href="#id5"><span class="section-number">4.2.5.5. </span>동작점에서의 선형화</a><a class="headerlink" href="#linearization-at-an-operating-point" title="이 제목에 대한 영구 링크"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">ModGlue_Linearize_OP</span></code> 단일 작동 지점(시간/방위각)에서 전체 시스템 행렬을 조립합니다.</p>
 <ol class="arabic simple">
-<li><p><strong>모듈 야코비안</strong>: 각 모듈마다,
-<code class="docutils literal notranslate"><span class="pre">FAST_JacobianPInput</span></code> 및 <code class="docutils literal notranslate"><span class="pre">FAST_JacobianPContState</span></code> 는 모듈별 하위 행렬을 계산하기 위해 호출됩니다. <em>dYdu</em>, <em>dXdu</em>, <em>dYdx</em>, <em>dXdx</em> . 섭동 크기는 각 변수의 <code class="docutils literal notranslate"><span class="pre">Perturb</span></code> 필드(참조 <a class="reference internal" href="modvar.html#glue-code-modvar"><span class="std std-ref">모듈 변수(ModVar)</span></a>).</p></li>
-<li><p><strong>동작점 추출</strong>: <code class="docutils literal notranslate"><span class="pre">FAST_GetOP</span></code> 는 현재 상태, 입력 및 출력을 선형화 배열(<code class="docutils literal notranslate"><span class="pre">ModGlue%Lin%x</span></code>, <code class="docutils literal notranslate"><span class="pre">%u</span></code>, <code class="docutils literal notranslate"><span class="pre">%y</span></code>).</p></li>
-<li><p><strong>커플링 매트릭스</strong>: 입출력 결합 행렬 <em>dUdu</em> 및 <em>dUdy</em>
-는 일부 모듈 입력이 다른 모듈 출력의 함수라는 사실을 설명하기 위해 메시 매핑 야코비안으로 조립됩니다.</p></li>
-<li><p><strong>전체 시스템 조립</strong>: 모듈별 하위 행렬은 다음을 사용하여 결합된 글루 레벨 행렬에 배치됩니다.
-각각에 저장된 <code class="docutils literal notranslate"><span class="pre">iGlu</span></code> 인덱스 범위 <code class="docutils literal notranslate"><span class="pre">ModVarType</span></code>.</p></li>
-<li><p><strong>출력</strong>: <code class="docutils literal notranslate"><span class="pre">ModGlue_CalcWriteLinearMatrices</span></code> 는 다음을 씁니다.
-다음을 포함하는 <code class="docutils literal notranslate"><span class="pre">.lin</span></code> 파일:</p>
+<li><p><strong>모듈 야코비안</strong>: 각 모듈에 대해
+<code class="docutils literal notranslate"><span class="pre">FAST_JacobianPInput</span></code> 및 <code class="docutils literal notranslate"><span class="pre">FAST_JacobianPContState</span></code> 모듈별 하위 행렬을 계산하기 위해 호출됩니다. <em>dYdu</em>, <em>dXdu</em>, <em>dYdx</em>, <em>dXdx</em> 중심차 유한 미분에 의한 것입니다. 섭동 크기는 각 변수의 <code class="docutils literal notranslate"><span class="pre">Perturb</span></code> 필드(참조 <a class="reference internal" href="modvar.html#glue-code-modvar"><span class="std std-ref">모듈 변수(ModVar)</span></a>).</p></li>
+<li><p><strong>작동점 추출</strong>: <code class="docutils literal notranslate"><span class="pre">FAST_GetOP</span></code> 현재 상태, 입력 및 출력을 선형화 배열(<code class="docutils literal notranslate"><span class="pre">ModGlue%Lin%x</span></code>, <code class="docutils literal notranslate"><span class="pre">%u</span></code>, <code class="docutils literal notranslate"><span class="pre">%y</span></code>).</p></li>
+<li><p><strong>커플링 매트릭스</strong>: 입력-출력 결합 행렬 <em>dUdu</em> 및 <em>dUdy</em>
+일부 모듈 입력이 다른 모듈 출력의 함수라는 사실을 설명하기 위해 메시 매핑 야코비 행렬로 조립됩니다.</p></li>
+<li><p><strong>전체 시스템 조립</strong>: 모듈별 하위 행렬은 다음을 사용하여 결합된 글루 수준 행렬에 배치됩니다. <code class="docutils literal notranslate"><span class="pre">iGlu</span></code> 각각에 저장된 인덱스 범위 <code class="docutils literal notranslate"><span class="pre">ModVarType</span></code>.</p></li>
+<li><p><strong>산출</strong>: <code class="docutils literal notranslate"><span class="pre">ModGlue_CalcWriteLinearMatrices</span></code> 를 쓴다 <code class="docutils literal notranslate"><span class="pre">.lin</span></code> 다음을 포함하는 파일:</p>
 <ul class="simple">
 <li><p>작동점 값(<strong>x_op</strong>, <strong>u_op</strong>, <strong>y_op</strong>)</p></li>
-<li><p>선형화 채널 이름(~ <code class="docutils literal notranslate"><span class="pre">LinNames</span></code>)</p></li>
+<li><p>선형화 채널 이름( <code class="docutils literal notranslate"><span class="pre">LinNames</span></code>)</p></li>
 <li><p>파생 순서 표시기(<code class="docutils literal notranslate"><span class="pre">VF_DerivOrder1</span></code>, <code class="docutils literal notranslate"><span class="pre">VF_DerivOrder2</span></code>)</p></li>
 <li><p>회전 프레임 플래그(<code class="docutils literal notranslate"><span class="pre">VF_RotFrame</span></code>)</p></li>
 <li><p>전체 시스템 매트릭스 <strong>A</strong>, <strong>B</strong>, <strong>C</strong>, <strong>D</strong>, <strong>dUdu</strong>, <strong>dUdy</strong></p></li>
-<li><p>모듈별 매트릭스(인 경우 <code class="docutils literal notranslate"><span class="pre">LinOutMod=True</span></code>)</p></li>
+<li><p>모듈별 행렬(만약 <code class="docutils literal notranslate"><span class="pre">LinOutMod=True</span></code>)</p></li>
 <li><p>완전 야코비안(만약 <code class="docutils literal notranslate"><span class="pre">LinOutJac=True</span></code>)</p></li>
 </ul>
 </li>
 </ol>
 </div>
 <div class="section" id="output-file-format">
-<h2><a class="toc-backref" href="#id6"><span class="section-number">4.2.5.6. </span>출력 파일 형식</a><a class="headerlink" href="#output-file-format" title="이 제목의 고유 링크"></a></h2>
+<h2><a class="toc-backref" href="#id6"><span class="section-number">4.2.5.6. </span>출력 파일 형식</a><a class="headerlink" href="#output-file-format" title="이 제목에 대한 영구 링크"></a></h2>
 <p>각 선형화 호출은 다음과 같은 파일을 생성합니다.
-<code class="docutils literal notranslate"><span class="pre">&lt;RootName&gt;.&lt;N&gt;.lin</span></code> 여기서 <em>N</em> 는 선형화 지수(1… <code class="docutils literal notranslate"><span class="pre">NLinTimes</span></code>). 파일은 다음에서 읽을 수 있는 일반 텍스트 ASCII 파일입니다.
+<code class="docutils literal notranslate"><span class="pre">&lt;RootName&gt;.&lt;N&gt;.lin</span></code> 여기서 <em>N</em> 선형화 지수(1… <code class="docutils literal notranslate"><span class="pre">NLinTimes</span></code>). 파일은 일반 텍스트 ASCII 파일로 읽을 수 있습니다.
 <a class="reference external" href="https://github.com/OpenFAST/openfast_io" target="_blank" rel="noopener noreferrer">openfast_io</a> Python 라이브러리 또는
 <a class="reference external" href="https://github.com/OpenFAST/pyFAST" target="_blank" rel="noopener noreferrer">pyFAST</a> 후처리 도구.</p>
 <p>파일 헤더의 주요 필드:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Rotor_Speed</span></code> – 선형화 시간의 로터 속도(RPM)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Azimuth</span></code> – 선형화 시간의 블레이드-1 방위각(도)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Rotor_Speed</span></code> – 선형화 시 회전자 속도(RPM)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Azimuth</span></code> – 선형화 시간의 블레이드-1 방위각(deg)</p></li>
 </ul>
 </div>
 <div class="section" id="variable-naming-conventions">
-<h2><a class="toc-backref" href="#id7"><span class="section-number">4.2.5.7. </span>변수 명명 규칙</a><a class="headerlink" href="#variable-naming-conventions" title="이 제목의 고유 링크"></a></h2>
+<h2><a class="toc-backref" href="#id7"><span class="section-number">4.2.5.7. </span>변수 명명 규칙</a><a class="headerlink" href="#variable-naming-conventions" title="이 제목에 대한 영구 링크"></a></h2>
 <p>선형화 출력 파일에서 각 채널 레이블은 다음 패턴을 따릅니다.</p>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;ModAbbr&gt;</span> <span class="pre">&lt;MeshName&gt;</span> <span class="pre">&lt;Field&gt;</span> <span class="pre">[,</span> <span class="pre">component</span> <span class="pre">[,</span> <span class="pre">node</span> <span class="pre">[,</span> <span class="pre">unit]]]</span></code></p>
 <p>예:</p>
@@ -347,24 +336,22 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">AD</span> <span class="pre">B1N001Fx</span> <span class="pre">force,</span> <span class="pre">node</span> <span class="pre">1,</span> <span class="pre">N</span></code> – AeroDyn 블레이드 1 노드 1 X-force 입력</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">BD_1</span> <span class="pre">B1TipTDxr</span> <span class="pre">translation</span> <span class="pre">displacement,</span> <span class="pre">node</span> <span class="pre">10,</span> <span class="pre">m</span></code> – BeamDyn 인스턴스 1</p></li>
 </ul>
-<p>모듈 개발자는 다음을 확인해야 합니다. <code class="docutils literal notranslate"><span class="pre">Name</span></code> 인수에 대한 <code class="docutils literal notranslate"><span class="pre">MV_AddVar</span></code> /
-<code class="docutils literal notranslate"><span class="pre">MV_AddMeshVar</span></code> 및 항목 <code class="docutils literal notranslate"><span class="pre">LinNames</span></code> 는 후처리 도구와의 일관성을 위해 이 규칙을 따릅니다.</p>
+<p>모듈 개발자는 다음을 보장해야 합니다. <code class="docutils literal notranslate"><span class="pre">Name</span></code> 주장 <code class="docutils literal notranslate"><span class="pre">MV_AddVar</span></code> /
+<code class="docutils literal notranslate"><span class="pre">MV_AddMeshVar</span></code> 그리고 <code class="docutils literal notranslate"><span class="pre">LinNames</span></code> 후처리 도구와의 일관성을 위해 이 규칙을 따르세요.</p>
 </div>
 <div class="section" id="module-developer-responsibilities">
-<h2><a class="toc-backref" href="#id8"><span class="section-number">4.2.5.8. </span>모듈 개발자 책임</a><a class="headerlink" href="#module-developer-responsibilities" title="이 제목의 고유 링크"></a></h2>
-<p>선형화에 참여하려면 모듈이 다음을 수행해야 합니다.</p>
+<h2><a class="toc-backref" href="#id8"><span class="section-number">4.2.5.8. </span>모듈 개발자의 책임</a><a class="headerlink" href="#module-developer-responsibilities" title="이 제목에 대한 영구 링크"></a></h2>
+<p>선형화에 참여하려면 모듈은 다음을 수행해야 합니다.</p>
 <ol class="arabic simple">
-<li><p>통화
-적절한 <code class="docutils literal notranslate"><span class="pre">MV_AddVar</span></code> / <code class="docutils literal notranslate"><span class="pre">MV_AddMeshVar</span></code> 적절한 <code class="docutils literal notranslate"><span class="pre">VF_Linearize</span></code>
-플래그 및 공급
-표준 선형화 세트에 나타날 수 있는 모든 변수에 대한 <code class="docutils literal notranslate"><span class="pre">LinNames</span></code> .</p></li>
-<li><p>구현 <code class="docutils literal notranslate"><span class="pre">&lt;Mod&gt;_JacobianPInput</span></code> 및 <code class="docutils literal notranslate"><span class="pre">&lt;Mod&gt;_JacobianPContState</span></code>
-서브루틴(또는 레지스트리를 통해 분석 야코비 행렬 제공) 글루 코드는 다음을 통해 이를 호출합니다. <code class="docutils literal notranslate"><span class="pre">FAST_JacobianPInput</span></code> /
+<li><p>부르다 <code class="docutils literal notranslate"><span class="pre">MV_AddVar</span></code> / <code class="docutils literal notranslate"><span class="pre">MV_AddMeshVar</span></code> 적절한 <code class="docutils literal notranslate"><span class="pre">VF_Linearize</span></code>
+깃발과 공급 <code class="docutils literal notranslate"><span class="pre">LinNames</span></code> 표준 선형화 세트에 나타날 수 있는 모든 변수에 대해.</p></li>
+<li><p>구현하다 <code class="docutils literal notranslate"><span class="pre">&lt;Mod&gt;_JacobianPInput</span></code> 및 <code class="docutils literal notranslate"><span class="pre">&lt;Mod&gt;_JacobianPContState</span></code>
+서브루틴(또는 레지스트리를 통해 분석적 야코비 행렬 제공) 글루 코드는 다음을 통해 이를 호출합니다. <code class="docutils literal notranslate"><span class="pre">FAST_JacobianPInput</span></code> /
 <code class="docutils literal notranslate"><span class="pre">FAST_JacobianPContState</span></code> 래퍼 <code class="docutils literal notranslate"><span class="pre">FAST_Funcs.f90</span></code>.</p></li>
-<li><p>구현 <code class="docutils literal notranslate"><span class="pre">&lt;Mod&gt;_GetOP</span></code> (레지스트리를 통해) 상태, 입력 및 출력의 작동점 값을 추출합니다.</p></li>
-<li><p>표시해야 할 변수 <strong>아님</strong> 는 선형화에 참여합니다.
+<li><p>구현하다 <code class="docutils literal notranslate"><span class="pre">&lt;Mod&gt;_GetOP</span></code> (레지스트리를 통해) 상태, 입력 및 출력의 작동점 값을 추출합니다.</p></li>
+<li><p>표시해야 하는 변수 <strong>~ 아니다</strong> 선형화에 참여
 <code class="docutils literal notranslate"><span class="pre">VF_NoLin</span></code>.</p></li>
-<li><p>회전 참조 프레임의 변수를 다음과 같이 표시합니다. <code class="docutils literal notranslate"><span class="pre">VF_RotFrame</span></code> 를 사용하면 후처리 도구에 의해 적용되는 MBC(다중 블레이드 좌표) 변환이 이러한 변수를 인식할 수 있습니다.</p></li>
+<li><p>회전 참조 프레임의 변수를 다음과 같이 표시합니다. <code class="docutils literal notranslate"><span class="pre">VF_RotFrame</span></code> 후처리 도구에 의해 적용되는 다중 블레이드 좌표(MBC) 변환은 이러한 변수를 인식합니다.</p></li>
 </ol>
 </div>
 </div>
@@ -372,9 +359,9 @@
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
-        <a href="solver.html" class="btn btn-neutral float-left" title="4.2.4. 솔버" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
-        <a href="../aerodyn/index.html" class="btn btn-neutral float-right" title="4.3. AeroDyn 사용자 가이드 및 이론 설명서" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
+        <a href="solver.html" class="btn btn-neutral float-left" title="4.2.4. 솔버" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+        <a href="../aerodyn/index.html" class="btn btn-neutral float-right" title="4.3. AeroDyn 사용자 가이드 및 이론 매뉴얼" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr>
@@ -384,7 +371,7 @@
   </div>
 
   다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">주제</a>
     제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
    
 

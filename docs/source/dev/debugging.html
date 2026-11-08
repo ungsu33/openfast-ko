@@ -20,7 +20,7 @@
         <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../genindex.html">
-    <link rel="search" title="검색" href="../../search.html">
+    <link rel="search" title="찾다" href="../../search.html">
     <link rel="next" title="6.1.6.6. 성능 프로파일링 및 튜닝" href="performance.html">
     <link rel="prev" title="6.1.6.4. 유형 파일 및 OpenFAST 레지스트리" href="types_files.html"> 
 <link rel="stylesheet" href="../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/dev/debugging.html"></head>
@@ -35,7 +35,7 @@
           
           <a href="../../index.html" class="icon icon-home">
             OpenFAST
-              <img src="../../_static/openfastlogo.jpg" class="logo" alt="로고">
+              <img src="../../_static/openfastlogo.jpg" class="logo" alt="심벌 마크">
           </a>
               <div class="version">5.0 · 한국어</div>
 <div role="search">
@@ -47,24 +47,24 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. 이 문서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working.html">3. OpenFAST 작업</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../user/index.html">4. 사용자 문서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">6. 개발자 문서</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="index.html#development-philosophy-and-guidelines">6.1. 개발 철학 및 지침</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="index.html#engagement-with-nlr">6.1.1. NLR과의 참여</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#engagement-with-nlr">6.1.1. NLR와의 참여</a></li>
 <li class="toctree-l3"><a class="reference internal" href="index.html#development-plan-implementation-plan">6.1.2. 개발 계획/실행 계획</a></li>
 <li class="toctree-l3"><a class="reference internal" href="index.html#qualities-of-a-good-submission">6.1.3. 좋은 제출의 조건</a></li>
 <li class="toctree-l3"><a class="reference internal" href="index.html#submit-for-review-and-nlr-feedback">6.1.4. 검토 및 NLR 피드백을 위해 제출</a></li>
 <li class="toctree-l3"><a class="reference internal" href="index.html#bug-fixes">6.1.5. 버그 수정</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="index.html#additional-guidance">6.1.6. 추가 지침</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="github_workflow.html">6.1.6.1. GitHub에서 OpenFAST로 작업하기</a></li>
+<li class="toctree-l4"><a class="reference internal" href="github_workflow.html">6.1.6.1. GitHub에서 OpenFAST 작업</a></li>
 <li class="toctree-l4"><a class="reference internal" href="code_style.html">6.1.6.2. 코드 스타일</a></li>
 <li class="toctree-l4"><a class="reference internal" href="build_doc.html">6.1.6.3. 문서 개발</a></li>
 <li class="toctree-l4"><a class="reference internal" href="types_files.html">6.1.6.4. 유형 파일 및 OpenFAST 레지스트리</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">6.1.6.5. OpenFAST 디버깅</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">6.1.6.5. OpenFAST 디버깅 중</a></li>
 <li class="toctree-l4"><a class="reference internal" href="performance.html">6.1.6.6. 성능 프로파일링 및 튜닝</a></li>
 <li class="toctree-l4"><a class="reference internal" href="versioning.html">6.1.6.7. 버전 관리</a></li>
 </ul>
@@ -76,16 +76,16 @@
 <li class="toctree-l2"><a class="reference internal" href="index.html#other-documentation">6.4. 기타 문서</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">7. 라이센스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. 감사의 글</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. 감사의 말씀</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../review.html">문서 상세 리뷰</a></li><li><a href="../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">OpenFAST</a>
       </nav>
@@ -94,11 +94,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="집"></a></li>
           <li class="breadcrumb-item"><a href="index.html"><span class="section-number">6. </span>개발자 문서</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">6.1.6.5. </span>OpenFAST 디버깅</li>
+      <li class="breadcrumb-item active"><span class="section-number">6.1.6.5. </span>OpenFAST 디버깅 중</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../_sources/source/dev/debugging.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+            <a href="../../_sources/source/dev/debugging.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -107,32 +107,30 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="debugging-openfast">
-<span id="debugging"></span><h1><span class="section-number">6.1.6.5. </span>OpenFAST 디버깅<a class="headerlink" href="#debugging-openfast" title="이 제목의 고유 링크"></a></h1>
-<p>Fortran 프로젝트인 OpenFAST는 디버깅하기 어려울 수 있으며 프로세스는 각 시스템 및 환경마다 고유합니다. 일부 OpenFAST 사례는 메모리 공간이 상당히 클 수 있으며 코드에서 관심 지점에 도달하는 데 오랜 시간이 걸릴 수 있다는 점을 명심하세요. 테스트 사례를 신중하게 선택하면 상당한 시간을 절약할 수 있습니다.</p>
-<p>OpenFAST를 시작하기 전에 모든 디버깅 도구가 올바르게 설정되었는지 확인하기 위해 작은 포트란 프로그램을 작성하는 것이 도움이 될 수 있습니다. 할당되지 않은 배열 요소에 액세스하는 등의 작업을 수행하여 버그를 시뮬레이션하고 주어진 도구 세트를 사용하여 버그를 잡을 수 있는지 확인하십시오.</p>
+<span id="debugging"></span><h1><span class="section-number">6.1.6.5. </span>OpenFAST 디버깅 중<a class="headerlink" href="#debugging-openfast" title="이 제목에 대한 영구 링크"></a></h1>
+<p>Fortran 프로젝트이기 때문에 OpenFAST는 디버깅하기 어려울 수 있으며 프로세스는 각 시스템 및 환경마다 고유합니다. 일부 OpenFAST 사례는 메모리 공간이 상당히 클 수 있으며 코드에서 관심 지점에 도달하는 데 오랜 시간이 걸릴 수 있다는 점을 명심하세요. 테스트 사례를 신중하게 선택하면 상당한 시간을 절약할 수 있습니다.</p>
+<p>OpenFAST에 들어가기 전에 모든 디버깅 도구가 올바르게 설정되었는지 확인하기 위해 작은 포트란 프로그램을 작성하는 것이 도움이 될 수 있습니다. 할당되지 않은 배열 요소에 액세스하는 등의 작업을 수행하여 버그를 시뮬레이션하고 주어진 도구 세트를 사용하여 버그를 잡을 수 있는지 확인하십시오.</p>
 <div class="admonition note">
 <p class="admonition-title">참고</p>
-<p>모든 시스템의 요구 사항은 OpenFAST를 다음 형식으로 컴파일하는 것입니다. <strong>디버그</strong> 모드.
-Windows에서</p>
+<p>모든 시스템의 요구 사항은 OpenFAST를 다음과 같이 컴파일하는 것입니다. <strong>디버그</strong> 방법.</p>
 </div>
 <div class="section" id="debugging-on-windows">
-<span id="debugging-windows"></span><h2><span class="section-number">6.1.6.5.1. </span>디버깅<a class="headerlink" href="#debugging-on-windows" title="이 제목의 고유 링크"></a></h2>
+<span id="debugging-windows"></span><h2><span class="section-number">6.1.6.5.1. </span>Windows에서 디버깅<a class="headerlink" href="#debugging-on-windows" title="이 제목에 대한 영구 링크"></a></h2>
 <p>Intel 도구를 사용하는 Windows 개발자는 디버깅을 위해 OpenFAST 리포지토리에 포함된 Visual Studio 솔루션을 사용할 수 있습니다. 이는 인텔의 많은 지원을 받는 간단한 프로세스입니다.</p>
-<p>그렇지 않으면 Unix 스타일 환경에서 컴파일하는 Windows 개발자는 다음을 진행해야 합니다.
-Linux 및 macOS에서 <a class="reference internal" href="#debugging-linux"><span class="std std-ref">디버깅</span></a>.</p>
+<p>그렇지 않은 경우 Unix 스타일 환경에서 컴파일하는 Windows 개발자는 다음 단계를 진행해야 합니다. <a class="reference internal" href="#debugging-linux"><span class="std std-ref">Linux 및 macOS에서 디버깅</span></a>.</p>
 </div>
 <div class="section" id="debugging-on-linux-and-macos">
-<span id="debugging-linux"></span><h2><span class="section-number">6.1.6.5.2. </span>디버깅<a class="headerlink" href="#debugging-on-linux-and-macos" title="이 제목의 고유 링크"></a></h2>
-<p>먼저 설정을 통해 디버그 모드에서 OpenFAST를 컴파일합니다. <code class="docutils literal notranslate"><span class="pre">CMAKE_BUILD_TYPE</span></code> 를 "디버그"로 변경합니다. 이 작업은 명령줄에서 다음을 사용하여 수행할 수 있습니다.</p>
+<span id="debugging-linux"></span><h2><span class="section-number">6.1.6.5.2. </span>Linux 및 macOS에서 디버깅<a class="headerlink" href="#debugging-on-linux-and-macos" title="이 제목에 대한 영구 링크"></a></h2>
+<p>먼저 다음 설정을 통해 디버그 모드에서 OpenFAST를 컴파일합니다. <code class="docutils literal notranslate"><span class="pre">CMAKE_BUILD_TYPE</span></code> "디버그"로. 이 작업은 명령줄에서 다음을 사용하여 수행할 수 있습니다.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>..<span class="w"> </span>-D<span class="w"> </span><span class="nv">CMAKE_BUILD_TYPE</span><span class="o">=</span>Debug
 </pre></div>
 </div>
-<p>또는 다음을 사용하여 <code class="docutils literal notranslate"><span class="pre">ccmake</span></code> 를 사용하여 명령줄 cmake gui를 열어 변경합니다.</p>
-<p>GNU 디버거, <code class="docutils literal notranslate"><span class="pre">gdb</span></code>는 컴파일된 코드를 디버깅하는 데 적합합니다. 개발자가 중단점을 추가하고 변수를 검사할 수 있는 포괄적인 명령줄 인터페이스가 있습니다.</p>
+<p>또는 사용하여 <code class="docutils literal notranslate"><span class="pre">ccmake</span></code> 명령줄 cmake gui를 열어 변경합니다.</p>
+<p>GNU 디버거, <code class="docutils literal notranslate"><span class="pre">gdb</span></code>, 컴파일된 코드를 디버깅하는 데 적합합니다. 개발자가 중단점을 추가하고 변수를 검사할 수 있는 포괄적인 명령줄 인터페이스가 있습니다.</p>
 <p>IDE를 통해 디버거를 구동하면 코드를 훨씬 더 효율적으로 검사할 수 있습니다. 잘 작동하는 것으로 알려진 IDE 중 하나는 다음과 같습니다. <a class="reference external" href="https://code.visualstudio.com" target="_blank" rel="noopener noreferrer">비주얼 스튜디오 코드</a>
 와 함께 <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=webfreak.debug" target="_blank" rel="noopener noreferrer">네이티브 디버그</a>
-확장. 당신은 설정할 수 있습니다 <a class="reference external" href="https://code.visualstudio.com/docs/editor/debugging#_launch-configurations" target="_blank" rel="noopener noreferrer">출시 구성</a>
-를 사용하면 IDE를 통해 특정 OpenFAST 사례를 디버깅할 수 있습니다. 이렇게 하려면 시작 구성을 열고 다음과 유사한 블록을 추가하세요.</p>
+확대. 당신은 설정할 수 있습니다 <a class="reference external" href="https://code.visualstudio.com/docs/editor/debugging#_launch-configurations" target="_blank" rel="noopener noreferrer">실행 구성</a>
+IDE를 통해 특정 OpenFAST 사례를 디버깅할 수 있습니다. 이렇게 하려면 시작 구성을 열고 다음과 유사한 블록을 추가하세요.</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AOC_WSt"</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gdb"</span><span class="p">,</span>
@@ -148,13 +146,13 @@ Linux 및 macOS에서 <a class="reference internal" href="#debugging-linux"><spa
 </pre></div>
 </div>
 <div class="section" id="macos-specific-configuration">
-<h3><span class="section-number">6.1.6.5.2.1. </span>macOS 관련 구성<a class="headerlink" href="#macos-specific-configuration" title="이 제목의 고유 링크"></a></h3>
-<p>macOS의 GDB는 시스템이 프로세스를 인계받기 전에 몇 가지 구성이 필요합니다. 권장되는 사항은 다음과 같습니다. <code class="docutils literal notranslate"><span class="pre">gdb</span></code> 는 홈브류와 함께 설치됩니다.</p>
+<h3><span class="section-number">6.1.6.5.2.1. </span>macOS 관련 구성<a class="headerlink" href="#macos-specific-configuration" title="이 제목에 대한 영구 링크"></a></h3>
+<p>macOS의 GDB는 시스템이 프로세스를 인계받기 전에 몇 가지 구성이 필요합니다. 권장되는 사항은 다음과 같습니다. <code class="docutils literal notranslate"><span class="pre">gdb</span></code> 홈브류와 함께 설치</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>brew<span class="w"> </span>info<span class="w"> </span>gdb
 brew<span class="w"> </span>install<span class="w"> </span>gdb
 </pre></div>
 </div>
-<p>완료 후 반드시 주의사항을 따라 설치를 완료해 주세요. 에 대한 <code class="docutils literal notranslate"><span class="pre">gdb</span> <span class="pre">8.2.1</span></code>, 다음과 같습니다:</p>
+<p>완료 후에는 반드시 주의사항을 따라 설치를 완료해 주세요. 을 위한 <code class="docutils literal notranslate"><span class="pre">gdb</span> <span class="pre">8.2.1</span></code>, 다음과 같습니다.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">==</span>&gt;<span class="w"> </span>Caveats
 gdb<span class="w"> </span>requires<span class="w"> </span>special<span class="w"> </span>privileges<span class="w"> </span>to<span class="w"> </span>access<span class="w"> </span>Mach<span class="w"> </span>ports.
 You<span class="w"> </span>will<span class="w"> </span>need<span class="w"> </span>to<span class="w"> </span>codesign<span class="w"> </span>the<span class="w"> </span>binary.<span class="w"> </span>For<span class="w"> </span>instructions,<span class="w"> </span>see:
@@ -179,8 +177,8 @@ On<span class="w"> </span><span class="m">10</span>.12<span class="w"> </span><s
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
-        <a href="types_files.html" class="btn btn-neutral float-left" title="6.1.6.4. 유형 파일 및 OpenFAST 레지스트리" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
+        <a href="types_files.html" class="btn btn-neutral float-left" title="6.1.6.4. 유형 파일 및 OpenFAST 레지스트리" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
         <a href="performance.html" class="btn btn-neutral float-right" title="6.1.6.6. 성능 프로파일링 및 튜닝" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -191,7 +189,7 @@ On<span class="w"> </span><span class="m">10</span>.12<span class="w"> </span><s
   </div>
 
   다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">주제</a>
     제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
    
 

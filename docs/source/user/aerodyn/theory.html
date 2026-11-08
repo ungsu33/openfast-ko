@@ -21,7 +21,7 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="검색" href="../../../search.html">
+    <link rel="search" title="찾다" href="../../../search.html">
     <link rel="next" title="4.3.8. 불안정한 공기 역학" href="theory_ua.html">
     <link rel="prev" title="4.3.6. AeroDyn 드라이버" href="driver.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/aerodyn/theory.html"></head>
@@ -36,7 +36,7 @@
           
           <a href="../../../index.html" class="icon icon-home">
             OpenFAST
-              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="심벌 마크">
           </a>
               <div class="version">5.0 · 한국어</div>
 <div role="search">
@@ -48,11 +48,11 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">4.3. AeroDyn</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="introduction.html">4.3.1. 소개</a></li>
@@ -62,21 +62,21 @@
 <li class="toctree-l3"><a class="reference internal" href="modeling.html">4.3.5. 모델링 시 고려사항</a></li>
 <li class="toctree-l3"><a class="reference internal" href="driver.html">4.3.6. AeroDyn 드라이버</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">4.3.7. AeroDyn 이론</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#steady-bem">4.3.7.1. 꾸준한 BEM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#steady-bem">4.3.7.1. 정상 BEM</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#dynamic-bem-theory-dbemt">4.3.7.2. 동적 BEM 이론(DBEMT)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#tower-shadow-models">4.3.7.3. 타워 그림자 모델</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#buoyancy">4.3.7.4. 부력</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#added-mass-and-fluid-inertia">4.3.7.5. 추가된 질량 및 유체 관성</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="theory_ua.html">4.3.8. 불안정한 공기 역학</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory_ua.html">4.3.8. 비정상 공력</a></li>
 <li class="toctree-l3"><a class="reference internal" href="theory_tailfin.html">4.3.9. 꼬리지느러미 공기역학 이론</a></li>
-<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.3.10. 참고문헌</a></li>
-<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.3.11. 부록</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.3.10. 참고자료</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.3.11. 충수</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력소음</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
@@ -99,16 +99,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -117,12 +117,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.3. </span>AeroDyn 사용자 가이드 및 이론 설명서</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.3. </span>AeroDyn 사용자 가이드 및 이론 매뉴얼</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.3.7. </span>AeroDyn 이론</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/aerodyn/theory.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+            <a href="../../../_sources/source/user/aerodyn/theory.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -131,16 +131,16 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="aerodyn-theory">
-<span id="ad-theory"></span><h1><span class="section-number">4.3.7. </span>AeroDyn 이론<a class="headerlink" href="#aerodyn-theory" title="이 제목의 고유 링크"></a></h1>
-<p>이 이론 매뉴얼은 진행 중입니다. 자세한 내용은 AeroDyn 14 매뉴얼을 참조하십시오. <span id="id1">[<a class="reference internal" href="zrefs.html#id2" title="P. J. Moriarty 및 A. Craig Hansen. 에어로딘 이론 매뉴얼. 기술 보고서, 국립 재생 에너지 연구소, 2005년 12월. NREL/EL-500-36881.">광고-MH05</a>]</span>. AeroDyn 14 이후로 많은 변경 사항이 발생했습니다(예: BEM 공식화, BEM 방정식에 사용된 좌표계, 동적 실속, 동적 BEM). 그러나 이러한 변경 사항은 아직 여기에 문서화되어 있지 않습니다.</p>
+<span id="ad-theory"></span><h1><span class="section-number">4.3.7. </span>AeroDyn 이론<a class="headerlink" href="#aerodyn-theory" title="이 제목에 대한 영구 링크"></a></h1>
+<p>이 이론 매뉴얼은 작업 중입니다. 자세한 내용은 AeroDyn 14 매뉴얼을 참조하세요. <span id="id1">[<a class="reference internal" href="zrefs.html#id2" title="P. J. 모리어티와 A. 크레이그 한센. 에어로딘 이론 매뉴얼. 기술 보고서, 국립 재생 에너지 연구소, 2005년 12월. NREL/EL-500-36881.">ad-MH05</a>]</span>. AeroDyn 14 이후 많은 변경 사항이 발생했습니다(예: BEM 공식화, BEM 방정식에 사용된 좌표계, 동적 실속, 동적 BEM). 그러나 이러한 변경 사항은 아직 여기에 문서화되지 않았습니다.</p>
 <div class="section" id="steady-bem">
-<h2><span class="section-number">4.3.7.1. </span>꾸준한 BEM<a class="headerlink" href="#steady-bem" title="이 제목의 고유 링크"></a></h2>
-<p>정상 블레이드 요소 운동량(BEM) 방정식은 구속 방정식으로 풀이되며 공식은 Ning의 설명을 따릅니다. <span id="id2">[<a class="reference internal" href="zrefs.html#id8" title="S. 앤드류 닝. 수렴이 보장된 블레이드 요소 운동량 방정식에 대한 간단한 솔루션 방법입니다. 풍력 에너지, 17(9):1327-1345, 2014. doi:https://doi.org/10.1002/we.1636.">애드닌14</a>]</span>.</p>
+<h2><span class="section-number">4.3.7.1. </span>정상 BEM<a class="headerlink" href="#steady-bem" title="이 제목에 대한 영구 링크"></a></h2>
+<p>정상 블레이드 요소 운동량(BEM) 방정식은 구속 방정식으로 풀이되며 공식은 Ning의 설명을 따릅니다. <span id="id2">[<a class="reference internal" href="zrefs.html#id8" title="S. 앤드류 닝. 수렴이 보장된 블레이드 요소 운동량 방정식에 대한 간단한 솔루션 방법입니다. 풍력 에너지, 17(9):1327-1345, 2014. doi:https://doi.org/10.1002/we.1636.">ad-Nin14</a>]</span>.</p>
 </div>
 <div class="section" id="dynamic-bem-theory-dbemt">
-<span id="ad-dbemt"></span><h2><span class="section-number">4.3.7.2. </span>동적 BEM 이론(DBEMT)<a class="headerlink" href="#dynamic-bem-theory-dbemt" title="이 제목의 고유 링크"></a></h2>
-<p>Oye의 동적 유입 모델의 두 가지 버전이 AeroDyn에서 구현됩니다. 첫 번째는 이산 시간을 사용하며 상수-tau1 모델과 함께 사용할 수 있습니다(<code class="docutils literal notranslate"><span class="pre">DBEMT_Mod=1</span></code>) 또는 가변 tau1 모델(<code class="docutils literal notranslate"><span class="pre">DBEMT_Mod=2</span></code>), 선형화에는 사용할 수 없습니다. 두 번째 버전은 연속시간 상태공간 공식(<code class="docutils literal notranslate"><span class="pre">DBEMT_Mod=1</span></code>), 이는 상수-tau1을 가정하고 선형화에 사용될 수 있습니다. 동일한 값에 대해 <span class="math notranslate nohighlight">\(\tau_1\)</span>, 이산시간 공식과 연속시간 공식은 정확히 동일한 결과를 반환합니다.</p>
-<p>Oye의 동적 유입 모델은 두 개의 1차 미분 방정식으로 구성됩니다(참조: <span id="id3">[<a class="reference internal" href="zrefs.html#id5" title="E. 브란라드. 풍력터빈 공기역학 및 와도 기반 방법: 기초 및 최근 응용. 스프링거 국제 출판, 2017. ISBN 978-3-319-55163-0. 도이:10.1007/978-3-319-55164-7.">광고-Bra17</a>]</span>):</p>
+<span id="ad-dbemt"></span><h2><span class="section-number">4.3.7.2. </span>동적 BEM 이론(DBEMT)<a class="headerlink" href="#dynamic-bem-theory-dbemt" title="이 제목에 대한 영구 링크"></a></h2>
+<p>Oye의 동적 유입 모델의 두 가지 버전이 AeroDyn에 구현되었습니다. 첫 번째는 이산 시간을 사용하며 상수-tau1 모델과 함께 사용할 수 있습니다(<code class="docutils literal notranslate"><span class="pre">DBEMT_Mod=1</span></code>) 또는 가변 tau1 모델(<code class="docutils literal notranslate"><span class="pre">DBEMT_Mod=2</span></code>), 그러나 선형화에는 사용할 수 없습니다. 두 번째 버전은 연속시간 상태공간 공식(<code class="docutils literal notranslate"><span class="pre">DBEMT_Mod=1</span></code>), 이는 상수-tau1을 가정하고 선형화에 사용될 수 있습니다. 동일한 값에 대해 <span class="math notranslate nohighlight">\(\tau_1\)</span>, 이산시간 공식과 연속시간 공식은 정확히 동일한 결과를 반환합니다.</p>
+<p>Oye의 동적 유입 모델은 두 개의 1차 미분 방정식으로 구성됩니다(참조: <span id="id3">[<a class="reference internal" href="zrefs.html#id5" title="E. 브랜라드. 풍력 터빈 공기역학 및 와도 기반 방법: 기초 및 최근 응용. 스프링거 국제 출판, 2017. ISBN 978-3-319-55163-0. 도이:10.1007/978-3-319-55164-7.">ad-Bra17</a>]</span>):</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{aligned}
     \boldsymbol{W}_\text{int}+\tau_1    \boldsymbol{\dot{W}}_\text{int} &amp;= \boldsymbol{W}_\text{qs} + k \tau_1 \boldsymbol{\dot{W}}_\text{qs} \\
@@ -148,16 +148,15 @@
 \end{aligned}\end{split}\]</div>
 <p>여기서
 <span class="math notranslate nohighlight">\(\boldsymbol{W}\)</span> 는 로터(주어진 블레이드 위치 및 반경 방향 위치)에서의 동적 유도 벡터입니다.
-<span class="math notranslate nohighlight">\(\boldsymbol{W}_\text{qs}\)</span> 는 준안정 유도이며,
-<span class="math notranslate nohighlight">\(\boldsymbol{W}_\text{int}\)</span> 는 준정상 유도와 실제 유도를 결합하는 중간 값입니다(준정상 유도가 불연속인 경우 불연속일 수 있음). 그리고
-<span class="math notranslate nohighlight">\((\dot{\ })\)</span> 는 시간 미분을 나타냅니다. 결합 상수
-0과 1 사이의 값을 갖는 <span class="math notranslate nohighlight">\(k\)</span>는 일반적으로 다음과 같이 선택됩니다. <span class="math notranslate nohighlight">\(k=0.6\)</span>. Oye의 동적 유입 모델은 두 가지 시간 상수에 의존합니다. <span class="math notranslate nohighlight">\(\tau_1\)</span> 및 <span class="math notranslate nohighlight">\(\tau_2\)</span> :</p>
+<span class="math notranslate nohighlight">\(\boldsymbol{W}_\text{qs}\)</span> 준정상 유도는,
+<span class="math notranslate nohighlight">\(\boldsymbol{W}_\text{int}\)</span> 준정상 유도와 실제 유도를 결합하는 중간 값입니다(준정상 유도가 불연속인 경우 불연속일 수 있음). 그리고
+<span class="math notranslate nohighlight">\((\dot{\ })\)</span> 시간 미분을 나타냅니다. 결합 상수 <span class="math notranslate nohighlight">\(k\)</span>0과 1 사이의 값을 갖는 는 일반적으로 다음과 같이 선택됩니다. <span class="math notranslate nohighlight">\(k=0.6\)</span>. Oye의 동적 유입 모델은 두 가지 시간 상수에 의존합니다. <span class="math notranslate nohighlight">\(\tau_1\)</span> 및 <span class="math notranslate nohighlight">\(\tau_2\)</span> :</p>
 <div class="math notranslate nohighlight">
 \[\tau_1=\frac{1.1}{1-1.3 \min(\overline{a},0.5)} \frac{R}{\overline{U}_0}
 , \qquad
 \tau_2 =\left[ 0.39-0.26\left(\frac{r}{R}\right)^2\right] \tau_1\]</div>
-<p>여기서 <span class="math notranslate nohighlight">\(R\)</span> 는 로터 반경, <span class="math notranslate nohighlight">\(\overline{U}_0\)</span> 는 로터 위의 평균 풍속이며, <span class="math notranslate nohighlight">\(\overline{a}\)</span> 는 로터에 대한 평균 축 유도이고, <span class="math notranslate nohighlight">\(r\)</span> 는 블레이드를 따른 반경 방향 위치입니다. 에 대한 <code class="docutils literal notranslate"><span class="pre">DBEMT_Mod=1</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">DBEMT_Mod=3</span></code>, 사용자는 다음 값을 제공해야 합니다. <span class="math notranslate nohighlight">\(\tau_1\)</span>.</p>
-<p>동적 유입 모델의 연속시간 상태공간 공식화(<code class="docutils literal notranslate"><span class="pre">DBEMT_Mod=3</span></code>)는 다음에서 파생되었습니다. <span id="id4">[<a class="reference internal" href="zrefs.html#id6" title="E Branlard, B Jonkman, G R Pirrung, K Dixon 및 J Jonkman. OpenFAST의 모달 및 안정성 분석을 위한 동적 유입 및 비정상 공기역학 모델. 물리학 저널: 컨퍼런스 시리즈, 2265(3):032044, 2022. doi:10.1088/1742-6596/2265/3/032044.">광고-BJP+22</a>]</span>.</p>
+<p>여기서 <span class="math notranslate nohighlight">\(R\)</span> 로터 반경이고, <span class="math notranslate nohighlight">\(\overline{U}_0\)</span> 는 로터 위의 평균 풍속이고, <span class="math notranslate nohighlight">\(\overline{a}\)</span> 는 회 전자에 대한 평균 축 방향 유도입니다. <span class="math notranslate nohighlight">\(r\)</span> 블레이드를 따른 반경 방향 위치입니다. 을 위한 <code class="docutils literal notranslate"><span class="pre">DBEMT_Mod=1</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">DBEMT_Mod=3</span></code>, 사용자는 다음 값을 제공해야 합니다. <span class="math notranslate nohighlight">\(\tau_1\)</span>.</p>
+<p>동적 유입 모델의 연속시간 상태공간 공식화(<code class="docutils literal notranslate"><span class="pre">DBEMT_Mod=3</span></code>)는에서 파생되었습니다 <span id="id4">[<a class="reference internal" href="zrefs.html#id6" title="E Branlard, B Jonkman, G R Pirrung, K Dixon 및 J Jonkman. OpenFAST의 모달 및 안정성 해석을 위한 동적 유입 및 비정상 공기 역학 모델. 물리학 저널: 컨퍼런스 시리즈, 2265(3):032044, 2022. doi:10.1088/1742-6596/2265/3/032044.">ad-BJP+22</a>]</span>.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{align}
    \begin{bmatrix}
@@ -182,15 +181,15 @@
   \boldsymbol{W}_\text{qs}
 \end{align}\end{split}\]</div>
 <p>여기서
-<span class="math notranslate nohighlight">\(\boldsymbol{I}_2\)</span> 는 2x2 단위 행렬입니다.
-<span class="math notranslate nohighlight">\(\boldsymbol{W}_\text{red}\)</span> 는 다음과 같이 정의되는 준정상 유도의 연속, 확장 및 지연 버전인 감소 유도입니다.</p>
+<span class="math notranslate nohighlight">\(\boldsymbol{I}_2\)</span> 는 2x2 단위 행렬이고,
+<span class="math notranslate nohighlight">\(\boldsymbol{W}_\text{red}\)</span> 준정상 유도의 연속적이고 확장되고 지연된 버전인 감소 유도는 다음과 같이 정의됩니다.</p>
 <div class="math notranslate nohighlight">
 \[\boldsymbol{W}_\text{int} = \boldsymbol{W}_\text{red} + k \boldsymbol{W}_\text{qs}\]</div>
-<p>모델의 이산시간 버전은 DBEMT의 미발표 매뉴얼에 문서화되어 있습니다. 현재의 이산시간 공식은 복잡하며 앞으로는 다음을 사용하여 단순화할 수 있습니다. <span class="math notranslate nohighlight">\(\boldsymbol{W}_\text{red}\)</span>.</p>
+<p>모델의 이산시간 버전은 DBEMT의 미공개 매뉴얼에 문서화되어 있습니다. 현재의 이산시간 공식은 복잡하며 앞으로는 다음을 사용하여 단순화할 수 있습니다. <span class="math notranslate nohighlight">\(\boldsymbol{W}_\text{red}\)</span>.</p>
 </div>
 <div class="section" id="tower-shadow-models">
-<span id="ad-twr-shadow"></span><h2><span class="section-number">4.3.7.3. </span>타워 섀도우 모델<a class="headerlink" href="#tower-shadow-models" title="이 제목의 고유 링크"></a></h2>
-<p>Powles 타워 섀도우 모델(<strong>TwrShadow=1</strong>)는 다음과 같이 주어진다:</p>
+<span id="ad-twr-shadow"></span><h2><span class="section-number">4.3.7.3. </span>타워 그림자 모델<a class="headerlink" href="#tower-shadow-models" title="이 제목에 대한 영구 링크"></a></h2>
+<p>Powles 타워 그림자 모델(<strong>TwrShadow=1</strong>)는 다음과 같이 주어진다:</p>
 <div class="math notranslate nohighlight">
 \[u_{TwrShadow} = - \frac{C_d}{  \sqrt{\overline{r}}  }
             \cos\left( \frac{\pi/2 \overline{y}}{\sqrt{\overline{r}}}\right)^2\]</div>
@@ -199,89 +198,85 @@
 <div class="math notranslate nohighlight">
 \[u_{TwrShadow} = -\frac{C_d}{ TI \: \overline{x} \, \sqrt{2 \pi }  }
             \exp{\left(  -\frac{1}{2}  \left(\frac{ \overline{y}}{ TI \: \overline{x} } \right)^2 \right) }\]</div>
-<p>여기서 <span class="math notranslate nohighlight">\(TI\)</span> 는 타워 노드의 난류 강도입니다.</p>
+<p>여기서 <span class="math notranslate nohighlight">\(TI\)</span> 타워 노드의 난류 강도입니다.</p>
 </div>
 <div class="section" id="buoyancy">
-<span id="ad-buoyancy"></span><h2><span class="section-number">4.3.7.4. </span>부력<a class="headerlink" href="#buoyancy" title="이 제목의 고유 링크"></a></h2>
+<span id="ad-buoyancy"></span><h2><span class="section-number">4.3.7.4. </span>부력<a class="headerlink" href="#buoyancy" title="이 제목에 대한 영구 링크"></a></h2>
 <p>고체 물체가 유체에 잠기면 표면에 작용하는 정수압 유체 압력으로 인해 순 힘, 즉 부력을 경험하게 됩니다. 이 힘은 공기와 같이 밀도가 낮은 유체에서는 종종 무시될 수 있지만 물과 같은 밀도가 높은 유체에서는 중요할 수 있습니다. MHK 터빈에 대한 이 힘의 효과를 포착하기 위해 터빈 블레이드, 타워, 허브 및 나셀에 대한 부력이 계산됩니다. 해양 성장은 모든 구성 요소에서 무시됩니다. <a class="reference internal" href="#ad-buoy-coords"><span class="std std-numref">섹션 4.3.7.4.1</span></a> -
-<a class="reference internal" href="#ad-buoy-hubnacelle"><span class="std std-numref">섹션 4.3.7.4.3</span></a> 는 좌표계와 블레이드, 타워, 허브 및 나셀 부력 계산을 자세히 설명합니다.</p>
+<a class="reference internal" href="#ad-buoy-hubnacelle"><span class="std std-numref">섹션 4.3.7.4.3</span></a> 좌표계와 블레이드, 타워, 허브 및 나셀 부력 계산을 자세히 설명합니다.</p>
 <div class="section" id="coordinate-systems">
-<span id="ad-buoy-coords"></span><h3><span class="section-number">4.3.7.4.1. </span>좌표계<a class="headerlink" href="#coordinate-systems" title="이 제목의 고유 링크"></a></h3>
-<p>요소에 작용하는 부력은 순간적인 방향과 깊이에 따라 달라집니다. 방향은 모든 시간 단계에서 각 요소에 대해 계산되는 방향 및 경사각으로 정의됩니다. 총 수심은 정수위(또는 AeroDyn 드라이버를 사용하여 독립 실행형 모드에서 AeroDyn을 실행할 때 평균 해수면)를 기준으로 사용자가 정의합니다. 각 요소의 순간 깊이는 각 시간 단계의 전역 좌표 위치를 기반으로 합니다.</p>
+<span id="ad-buoy-coords"></span><h3><span class="section-number">4.3.7.4.1. </span>좌표계<a class="headerlink" href="#coordinate-systems" title="이 제목에 대한 영구 링크"></a></h3>
+<p>요소에 작용하는 부력은 순간적인 방향과 깊이에 따라 달라집니다. 방향은 모든 시간 단계에서 각 요소에 대해 계산되는 방향 및 경사각으로 정의됩니다. 총 수심은 정수위(또는 AeroDyn 드라이버를 사용하여 독립형 모드에서 AeroDyn를 실행할 때 평균 해수면)를 기준으로 사용자가 정의합니다. 각 요소의 순간 깊이는 각 시간 단계의 전역 좌표 위치를 기반으로 합니다.</p>
 </div>
 <div class="section" id="blades-and-tower">
-<span id="ad-buoy-bladestower"></span><h3><span class="section-number">4.3.7.4.2. </span>블레이드 및 타워<a class="headerlink" href="#blades-and-tower" title="이 제목의 고유 링크"></a></h3>
-<p>효율적인 분석 솔루션을 허용하기 위해 블레이드와 타워는 테이퍼형 실린더로 모델링됩니다. 테이퍼형 실린더의 단면적은 블레이드 또는 타워 단면적과 동일하게 설정됩니다. 하중은 블레이드 또는 타워를 주어진 길이의 요소로 분할하고 각 요소의 젖은 영역에 대한 정수압을 통합하여 추정됩니다. 블레이드의 경우 사용자가 지정한 부력 중심에 하중이 적용됩니다. 타워의 경우 하중은 중심선에 적용됩니다. 적용 가능한 경우 요소의 노출된 축 면에 대한 유체 압력을 계산하여 최종 효과를 설명합니다. 타워는 해저에 매립되거나 다른 지지 구조물 부재에 부착되어 타워 베이스에 최종 효과가 필요하지 않은 것으로 가정됩니다. 지지 구조(즉, 해저에 내장된 단순한 타워가 아닌 모든 구조)가 있는 MHK 터빈의 경우 현재 HydroDyn에서 타워를 포함한 전체 지지 구조를 모델링하는 것이 권장됩니다. 향후 릴리스에는 AeroDyn에서 모델링한 타워와 HydroDyn에서 모델링한 플랫폼 사이의 인터페이스에서 유체 하중을 무시하는 기능이 포함될 것입니다.</p>
+<span id="ad-buoy-bladestower"></span><h3><span class="section-number">4.3.7.4.2. </span>블레이드와 타워<a class="headerlink" href="#blades-and-tower" title="이 제목에 대한 영구 링크"></a></h3>
+<p>효율적인 분석 솔루션을 허용하기 위해 블레이드와 타워는 테이퍼형 실린더로 모델링되었습니다. 테이퍼형 실린더의 단면적은 블레이드 또는 타워 단면적과 동일하게 설정됩니다. 하중은 블레이드 또는 타워를 주어진 길이의 요소로 분할하고 각 요소의 젖은 영역에 대한 정수압을 통합하여 추정됩니다. 블레이드의 경우 사용자가 지정한 부력 중심에 하중이 적용됩니다. 타워의 경우 하중은 중심선에 적용됩니다. 적용 가능한 경우 요소의 노출된 축 면에 대한 유체 압력을 계산하여 최종 효과를 설명합니다. 타워는 해저에 매립되거나 다른 지지 구조물 부재에 부착되어 타워 베이스에 최종 효과가 필요하지 않은 것으로 가정됩니다. 지지 구조(즉, 해저에 내장된 단순한 타워가 아닌 모든 구조)가 있는 MHK 터빈의 경우 현재 HydroDyn에서 타워를 포함한 전체 지지 구조를 모델링하는 것이 권장됩니다. 향후 릴리스에는 AeroDyn로 ​​모델링된 타워와 HydroDyn로 모델링된 플랫폼 사이의 인터페이스에서 유체 부하를 무시하는 기능이 포함될 것입니다.</p>
 <p>블레이드와 타워의 부력 계산은 다음 단계에 따라 완료됩니다.</p>
 <ol class="arabic simple">
 <li><p>시간에 따라 변하지 않는 요소의 형상과 관련된 매개변수를 계산합니다.</p></li>
 <li><p>자유 표면을 가로지르거나 해저 아래로 들어가는 요소가 없는지 확인하십시오.</p></li>
-<li><p>각 요소의 순간 방향과 깊이를 계산합니다.</p></li>
-<li><p>각 요소의 젖은 표면에 정수압 유체 압력을 통합하고 부력 중심에 작용하는 힘으로 표현합니다.</p></li>
-<li><p>블레이드의 경우 블레이드 루트와 팁의 축면에 가해지는 부력을 계산합니다. 인접한 요소에 팁 힘을 추가하고 루트 힘을 저장합니다.</p></li>
-<li><p>타워의 경우, 타워 상단 축면의 부력을 계산하고 저장합니다.</p></li>
-<li><p>부력 중심에서 공기역학적 중심으로 부력 하중을 이동합니다.
-OpenFAST에서 예상하는 형태의</p></li>
-<li><p>Express 부력 하중</p></li>
+<li><p>각 요소의 순간적인 방향과 깊이를 계산합니다.</p></li>
+<li><p>각 요소의 젖은 표면에 정수압 유체 압력을 통합하고 부력 중심에 작용하는 힘으로 표현</p></li>
+<li><p>블레이드의 경우 블레이드 루트와 팁의 축면에 대한 부력을 계산합니다. 인접한 요소에 팁 힘을 추가하고 루트 힘을 저장합니다.</p></li>
+<li><p>타워의 경우, 타워 상단의 축면에 가해지는 부력을 계산하고 저장합니다.</p></li>
+<li><p>부력 중심에서 공기역학적 중심으로 부력 하중을 이동시킵니다.</p></li>
+<li><p>OpenFAST에서 예상되는 형태의 부력 하중을 표현합니다.</p></li>
 <li><p>공기역학적 하중에 부력 하중 추가</p></li>
 </ol>
 <p>블레이드 및 타워 부력은 부피를 기준으로 하지 않지만 이러한 구성 요소의 부피는 참조용으로 AeroDyn 요약 파일에 기록됩니다. 블레이드와 타워의 부피는 테이퍼형 원통으로 가정하여 각 요소의 부피를 합산하여 계산됩니다. 단일 요소의 부피 <span class="math notranslate nohighlight">\((V_{elem})\)</span>
-는 다음과 같이 제공됩니다.</p>
+다음과 같이 주어진다:</p>
 <div class="math notranslate nohighlight">
 \[V_{elem} = \frac{\pi}{3} (r_i^2 + r_i r_{i+1} + r_{i+1}^2) dl\]</div>
-<p>여기서 <span class="math notranslate nohighlight">\(r_i\)</span> 는 노드의 요소 반경입니다. <span class="math notranslate nohighlight">\(i\)</span>, <span class="math notranslate nohighlight">\(r_{i+1}\)</span> 는 노드의 요소 반경입니다.
-<span class="math notranslate nohighlight">\(i+1\)</span>및
-이 플래그 값 아래에 <span class="math notranslate nohighlight">\(dl\)</span> 는 요소 길이입니다.</p>
+<p>여기서 <span class="math notranslate nohighlight">\(r_i\)</span> 노드의 요소 반경입니다 <span class="math notranslate nohighlight">\(i\)</span>, <span class="math notranslate nohighlight">\(r_{i+1}\)</span> 노드의 요소 반경입니다
+<span class="math notranslate nohighlight">\(i+1\)</span>, 및 <span class="math notranslate nohighlight">\(dl\)</span> 요소 길이입니다.</p>
 </div>
 <div class="section" id="hub-and-nacelle">
-<span id="ad-buoy-hubnacelle"></span><h3><span class="section-number">4.3.7.4.3. </span>허브 및 나셀<a class="headerlink" href="#hub-and-nacelle" title="이 제목의 고유 링크"></a></h3>
-<p>허브와 나셀은 별도의 구성 요소로 취급됩니다. 부력은 허브나 나셀의 부피에 따라 결정되며 사용자가 지정한 부력 중심에 적용됩니다. 조인트 위치가 유체 압력에 노출되지 않기 때문에 허브와 블레이드, 나셀과 타워 사이의 조인트를 고려하여 수정이 이루어졌습니다. 허브와 나셀 사이의 접합 부분에는 수정이 이루어지지 않았습니다.</p>
+<span id="ad-buoy-hubnacelle"></span><h3><span class="section-number">4.3.7.4.3. </span>허브와 나셀<a class="headerlink" href="#hub-and-nacelle" title="이 제목에 대한 영구 링크"></a></h3>
+<p>허브와 나셀은 별도의 구성요소로 취급됩니다. 부력은 허브나 나셀의 부피에 따라 결정되며 사용자가 지정한 부력 중심에 적용됩니다. 조인트 위치가 유체 압력에 노출되지 않기 때문에 허브와 블레이드, 나셀과 타워 사이의 조인트를 고려하여 수정이 이루어졌습니다. 허브와 나셀 사이의 접합 부분에는 수정이 이루어지지 않았습니다.</p>
 <p>허브와 나셀의 부력 계산은 다음 단계에 따라 완료됩니다.</p>
 <ol class="arabic simple">
 <li><p>부품이 자유 표면을 가로지르거나 해저 아래로 들어가지 않는지 확인하십시오.</p></li>
-<li><p>부품의 순간 깊이를 계산합니다.</p></li>
-<li><p>부품의 부피에서 부력을 계산합니다.</p></li>
-<li><p>부력 중심에서 공기역학적 중심으로 부력 하중을 이동합니다.
-OpenFAST에서 예상하는 형태의</p></li>
+<li><p>부품의 순간 깊이 계산</p></li>
+<li><p>부품의 부피로부터 부력을 계산합니다.</p></li>
+<li><p>부력 중심에서 공기역학적 중심으로 부력 하중을 이동시킵니다.</p></li>
 <li><p>허브의 경우 각 블레이드와의 조인트를 고려하여 올바른 하중</p></li>
-<li><p>나셀의 경우 타워와의 접합부를 고려하여 올바른 하중</p></li>
+<li><p>나셀의 경우 타워와의 연결을 고려하여 올바른 하중</p></li>
 </ol>
 </div>
 </div>
 <div class="section" id="added-mass-and-fluid-inertia">
-<span id="ad-addedmass-inertia"></span><h2><span class="section-number">4.3.7.5. </span>질량 및 유체 관성 추가<a class="headerlink" href="#added-mass-and-fluid-inertia" title="이 제목의 고유 링크"></a></h2>
+<span id="ad-addedmass-inertia"></span><h2><span class="section-number">4.3.7.5. </span>추가된 질량 및 유체 관성<a class="headerlink" href="#added-mass-and-fluid-inertia" title="이 제목에 대한 영구 링크"></a></h2>
 <p>추가된 질량 하중은 신체 및 유체 가속으로 인해 발생합니다. 이러한 힘은 공기와 같이 밀도가 낮은 유체에서는 종종 무시될 수 있지만 물과 같이 밀도가 높은 유체에서는 중요할 수 있습니다. MHK 터빈에 대한 이러한 힘의 영향을 포착하기 위해 터빈 블레이드와 타워에 대해 추가된 질량 및 유체 관성 ​​부하가 계산됩니다. 단위 길이당 하중은 모리슨 방정식의 적절한 항에 따라 추가된 질량과 유체 관성력을 계산하여 각 블레이드 또는 타워 노드에서 추정됩니다. 결과 하중은 이전에 계산된 유체 역학 및/또는 단위 길이당 부력 하중과 합산됩니다. 블레이드에 대한 하중은 공기역학적 중심에 적용됩니다. 타워의 하중은 중심선에 적용됩니다. 해양 성장과 최종 효과는 무시되며 구성원은 자유 표면을 횡단하는 것이 허용되지 않습니다(즉, 구성원은 항상 완전히 물속에 잠겨 있습니다). 안정기는 고려되지 않습니다. 노드의 간격은 균일할 필요가 없으며 축 하중은 무시됩니다. 타워는 축대칭(두 가로 방향에 동일한 계수가 사용됨)으로 가정되지만 블레이드는 그렇지 않습니다(현에 대해 수직 및 접선 방향 계수가 다르며 피치에 추가된 질량 계수가 있음).</p>
 <div class="section" id="morison-s-equation">
-<span id="ad-addedmass-inertia-morison"></span><h3><span class="section-number">4.3.7.5.1. </span>모리슨의 방정식<a class="headerlink" href="#morison-s-equation" title="이 제목의 고유 링크"></a></h3>
-<p>추가 질량 및 유체 관성 하중은 모리슨 방정식의 적절한 항에 따라 계산됩니다. 추가된 질량력은 다음과 같이 주어진다.</p>
+<span id="ad-addedmass-inertia-morison"></span><h3><span class="section-number">4.3.7.5.1. </span>모리슨의 방정식<a class="headerlink" href="#morison-s-equation" title="이 제목에 대한 영구 링크"></a></h3>
+<p>추가된 질량 및 유체 관성 ​​하중은 모리슨 방정식의 적절한 항에 따라 계산됩니다. 추가된 질량력은 다음과 같이 주어진다.</p>
 <div class="math notranslate nohighlight">
 \[F_{a} = \rho C_a V (\dot{u} - \dot{v})\]</div>
-<p>여기서 <span class="math notranslate nohighlight">\(\rho\)</span> 는 유체 밀도, <span class="math notranslate nohighlight">\(C_a\)</span> 는 추가된 질량 계수이고, <span class="math notranslate nohighlight">\(V\)</span> 는 요소 체적, <span class="math notranslate nohighlight">\(\dot{u}\)</span> 는 유체 가속도이고, <span class="math notranslate nohighlight">\(\dot{v}\)</span> 는 신체 가속도입니다.</p>
+<p>여기서 <span class="math notranslate nohighlight">\(\rho\)</span> 유체 밀도, <span class="math notranslate nohighlight">\(C_a\)</span> 추가된 질량 계수입니다. <span class="math notranslate nohighlight">\(V\)</span> 요소 볼륨입니다. <span class="math notranslate nohighlight">\(\dot{u}\)</span> 유체 가속도이고, <span class="math notranslate nohighlight">\(\dot{v}\)</span> 신체 가속도이다.</p>
 <p>유체 관성력은 다음과 같이 주어진다.</p>
 <div class="math notranslate nohighlight">
 \[F_{i} = \rho C_p V \dot{u}\]</div>
-<p>여기서 <span class="math notranslate nohighlight">\(C_p\)</span> 는 동압 계수입니다.</p>
-<p>유체 밀도, 추가 질량 및 동압 계수는 사용자가 지정합니다. 추가된 질량 및 유체 관성 ​​하중은 관련 계수를 0으로 설정하여 끌 수 있습니다. 추가된 질량 계수 계산에 대한 추가 정보는 다음에서 찾을 수 있습니다. <a class="reference internal" href="index.html#ad-user-guide"><span class="std std-numref">섹션 4.3</span></a> ("전산유체역학을 사용한 부유식 유체역학 터빈 블레이드의 추가 질량 계수 결정"). 신체 및 유체 가속도는 내부적으로 계산되어 AeroDyn으로 전달됩니다. 몸체 가속도는 구조 솔버(또는 드라이버)에서 사용할 수 있으며 유체 가속도는 유입 속도 시계열을 기반으로 계산됩니다. 추가된 질량 및 유체 관성 ​​하중은 AeroDyn 내에서 단위 길이당으로 계산됩니다. 그러므로, <span class="math notranslate nohighlight">\(V\)</span> 는 관심 노드의 단면적으로 사용됩니다. 블레이드의 경우 법선 및 접선 항에 대한 기준 단면적은 현*두께(<span class="math notranslate nohighlight">\(ct\)</span>). 이는 다음과 같이 표현됩니다. <span class="math notranslate nohighlight">\((c^2)(t/c)\)</span>, 여기서 <span class="math notranslate nohighlight">\(t/c\)</span> (i.e., <code class="docutils literal notranslate"><span class="pre">t_c</span></code>)는 AeroDyn 블레이드 입력 파일에 지정되며 0보다 작을 수 없습니다. 타워의 경우 참조 단면적은 다음과 같습니다. <span class="math notranslate nohighlight">\(\pi r^2\)</span> 여기서 <span class="math notranslate nohighlight">\(r\)</span>
-는 다음과 같이 계산됩니다. (0.5 <code class="docutils literal notranslate"><span class="pre">TwrDiam</span></code>). 에 대한 정규화 <code class="docutils literal notranslate"><span class="pre">BlCpn</span></code>, <code class="docutils literal notranslate"><span class="pre">BlCpt</span></code>, <code class="docutils literal notranslate"><span class="pre">BlCan</span></code>및
-이 플래그 값 아래에 <code class="docutils literal notranslate"><span class="pre">BlCat</span></code> 계수는 다음과 같아야 합니다. <span class="math notranslate nohighlight">\(\rho ct\)</span>; 에 대한 정규화 <code class="docutils literal notranslate"><span class="pre">BlCam</span></code> 계수는 다음과 같아야 합니다. <span class="math notranslate nohighlight">\((1/12)\rho ct(c^2+t^2)\)</span>; 그리고 정규화는 <code class="docutils literal notranslate"><span class="pre">TwrCp</span></code> 및 <code class="docutils literal notranslate"><span class="pre">TwrCa</span></code> 계수는 다음과 같아야 합니다. <span class="math notranslate nohighlight">\(\rho\pi(0.5\)</span> <code class="docutils literal notranslate"><span class="pre">TwrDiam</span></code>) <span class="math notranslate nohighlight">\(^2\)</span>.</p>
+<p>여기서 <span class="math notranslate nohighlight">\(C_p\)</span> 동적 압력 계수입니다.</p>
+<p>유체 밀도, 추가된 질량 및 동적 압력 계수는 사용자가 지정합니다. 추가된 질량 및 유체 관성 ​​하중은 관련 계수를 0으로 설정하여 끌 수 있습니다. 추가된 질량 계수 계산에 대한 추가 정보는 다음에서 찾을 수 있습니다. <a class="reference internal" href="index.html#ad-user-guide"><span class="std std-numref">섹션 4.3</span></a> ("전산유체역학을 사용한 부유식 유체역학 터빈 블레이드의 추가 질량 계수 결정"). 신체 및 유체 가속도는 내부적으로 계산되어 AeroDyn로 전달됩니다. 몸체 가속도는 구조 솔버(또는 드라이버)에서 사용할 수 있으며 유체 가속도는 유입 속도 시계열을 기반으로 계산됩니다. 추가된 질량 및 유체 관성 ​​하중은 AeroDyn 내에서 단위 길이당으로 계산됩니다. 그러므로, <span class="math notranslate nohighlight">\(V\)</span> 관심 노드의 단면적으로 간주됩니다. 블레이드의 경우 법선 및 접선 항에 대한 기준 단면적은 현*두께(<span class="math notranslate nohighlight">\(ct\)</span>). 이는 다음과 같이 표현됩니다. <span class="math notranslate nohighlight">\((c^2)(t/c)\)</span>, 어디 <span class="math notranslate nohighlight">\(t/c\)</span> (i.e., <code class="docutils literal notranslate"><span class="pre">t_c</span></code>)은 AeroDyn 블레이드 입력 파일에 지정되며 0보다 작을 수 없습니다. 타워의 경우 참조 단면적은 다음과 같습니다. <span class="math notranslate nohighlight">\(\pi r^2\)</span> 여기서 <span class="math notranslate nohighlight">\(r\)</span>
+다음과 같이 계산됩니다. (0.5 <code class="docutils literal notranslate"><span class="pre">TwrDiam</span></code>). 에 대한 정규화 <code class="docutils literal notranslate"><span class="pre">BlCpn</span></code>, <code class="docutils literal notranslate"><span class="pre">BlCpt</span></code>, <code class="docutils literal notranslate"><span class="pre">BlCan</span></code>, 및 <code class="docutils literal notranslate"><span class="pre">BlCat</span></code> 계수는 다음과 같아야 합니다. <span class="math notranslate nohighlight">\(\rho ct\)</span>; 에 대한 정규화 <code class="docutils literal notranslate"><span class="pre">BlCam</span></code> 계수는 다음과 같아야 합니다. <span class="math notranslate nohighlight">\((1/12)\rho ct(c^2+t^2)\)</span>; 그리고 정규화는 <code class="docutils literal notranslate"><span class="pre">TwrCp</span></code> 및 <code class="docutils literal notranslate"><span class="pre">TwrCa</span></code> 계수는 다음과 같아야 합니다. <span class="math notranslate nohighlight">\(\rho\pi(0.5\)</span> <code class="docutils literal notranslate"><span class="pre">TwrDiam</span></code>) <span class="math notranslate nohighlight">\(^2\)</span>.</p>
 </div>
 <div class="section" id="blade-added-mass-and-fluid-inertia">
-<h3><span class="section-number">4.3.7.5.2. </span>블레이드에 질량 및 유체 관성이 추가됨<a class="headerlink" href="#blade-added-mass-and-fluid-inertia" title="이 제목의 고유 링크"></a></h3>
-<p>추가 질량 및 유체 관성 하중은 블레이드 좌표계의 법선-현, 접선-현 및 피치 방향에 대해 계산됩니다. 다음 계수는 AeroDyn 블레이드 입력 파일에서 사용자가 정의합니다.</p>
+<h3><span class="section-number">4.3.7.5.2. </span>블레이드에 추가된 질량 및 유체 관성<a class="headerlink" href="#blade-added-mass-and-fluid-inertia" title="이 제목에 대한 영구 링크"></a></h3>
+<p>추가된 질량 및 유체 관성 ​​하중은 블레이드 좌표계의 법선-현, 접선-현 및 피치 방향에 대해 계산됩니다. 다음 계수는 AeroDyn 블레이드 입력 파일에서 사용자가 정의합니다.</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">BlCpn</span></code> 는 블레이드의 법선-현 동압 계수를 지정합니다. 블레이드의 수직-현재 유체 관성 부하를 무시하려면 다음을 설정하십시오. <code class="docutils literal notranslate"><span class="pre">BlCpn</span></code> ~ 0</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">BlCpt</span></code> 는 블레이드 접선-현 동압 계수를 지정합니다. 블레이드의 접선-현재 유체 관성 하중을 무시하려면 다음을 설정하십시오. <code class="docutils literal notranslate"><span class="pre">BlCpt</span></code> ~ 0</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">BlCan</span></code> 는 블레이드 법선-현 추가 질량 계수를 지정하며 0보다 작을 수 없습니다. 블레이드에 수직-현 추가 질량 하중을 무시하려면 다음을 설정하십시오. <code class="docutils literal notranslate"><span class="pre">BlCan</span></code> ~ 0</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">BlCat</span></code> 는 블레이드 접선-현 추가 질량 계수를 지정하며 0보다 작을 수 없습니다. 블레이드에 접선-현재 추가 질량 하중을 무시하려면 다음을 설정하십시오. <code class="docutils literal notranslate"><span class="pre">BlCat</span></code> ~ 0</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">BlCam</span></code> 는 블레이드 피치 추가 질량 계수를 지정하며 0보다 작을 수 없습니다. 블레이드에 추가된 질량 하중을 무시하려면 다음을 설정하십시오. <code class="docutils literal notranslate"><span class="pre">BlCam</span></code> ~ 0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BlCpn</span></code> 블레이드 법선-현재 동압 계수를 지정합니다. 블레이드의 수직-현재 유체 관성 ​​부하를 무시하려면 다음을 설정하십시오. <code class="docutils literal notranslate"><span class="pre">BlCpn</span></code> 0으로</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BlCpt</span></code> 블레이드 접선-현재 동압 계수를 지정합니다. 블레이드의 접선-현재 유체 관성 ​​하중을 무시하려면 다음을 설정하십시오. <code class="docutils literal notranslate"><span class="pre">BlCpt</span></code> 0으로</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BlCan</span></code> 블레이드 법선-현 추가 질량 계수를 지정하며 0보다 작을 수 없습니다. 블레이드에 수직-현 추가 질량 하중을 무시하려면 다음을 설정하십시오. <code class="docutils literal notranslate"><span class="pre">BlCan</span></code> 0으로</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BlCat</span></code> 블레이드 접선-현 추가 질량 계수를 지정하며 0보다 작을 수 없습니다. 블레이드에 접선-현재 추가 질량 하중을 무시하려면 다음을 설정하십시오. <code class="docutils literal notranslate"><span class="pre">BlCat</span></code> 0으로</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BlCam</span></code> 블레이드 피치 추가 질량 계수를 지정하며 0보다 작을 수 없습니다. 블레이드에 추가된 질량 하중을 무시하려면 다음을 설정하십시오. <code class="docutils literal notranslate"><span class="pre">BlCam</span></code> 0으로</p></li>
 </ul>
 </div>
 <div class="section" id="tower-added-mass-and-fluid-inertia">
-<h3><span class="section-number">4.3.7.5.3. </span>타워에 질량 및 유체 관성이 추가됨<a class="headerlink" href="#tower-added-mass-and-fluid-inertia" title="이 제목의 고유 링크"></a></h3>
-<p>추가된 질량 및 유체 관성 하중은 타워 좌표계의 가로 방향에 대해 계산됩니다. 다음 계수는 AeroDyn 기본 입력 파일에서 사용자가 정의합니다.</p>
+<h3><span class="section-number">4.3.7.5.3. </span>타워에 질량 및 유체 관성이 추가됨<a class="headerlink" href="#tower-added-mass-and-fluid-inertia" title="이 제목에 대한 영구 링크"></a></h3>
+<p>추가된 질량 및 유체 관성 ​​하중은 타워 좌표계의 가로 방향에 대해 계산됩니다. 다음 계수는 AeroDyn 기본 입력 파일에서 사용자가 정의합니다.</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">TwrCp</span></code> 는 타워 횡동압 계수를 지정합니다. 타워의 유체 관성 부하를 무시하려면 다음을 설정하십시오. <code class="docutils literal notranslate"><span class="pre">TwrCp</span></code> ~ 0</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">TwrCa</span></code> 는 타워 횡 추가 질량 계수를 지정하며 0보다 작을 수 없습니다. 타워에 추가된 질량 하중을 무시하려면 다음을 설정하십시오. <code class="docutils literal notranslate"><span class="pre">TwrCa</span></code> ~ 0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TwrCp</span></code> 타워 횡동압 계수를 지정합니다. 타워의 유체 관성 ​​부하를 무시하려면 다음을 설정하십시오. <code class="docutils literal notranslate"><span class="pre">TwrCp</span></code> 0으로</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TwrCa</span></code> 타워 가로 추가 질량 계수를 지정하며 0보다 작을 수 없습니다. 타워에 추가된 질량 하중을 무시하려면 다음을 설정하십시오. <code class="docutils literal notranslate"><span class="pre">TwrCa</span></code> 0으로</p></li>
 </ul>
 </div>
 </div>
@@ -290,8 +285,8 @@ OpenFAST에서 예상하는 형태의</p></li>
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
-        <a href="driver.html" class="btn btn-neutral float-left" title="4.3.6. AeroDyn 드라이버" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
+        <a href="driver.html" class="btn btn-neutral float-left" title="4.3.6. AeroDyn 드라이버" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
         <a href="theory_ua.html" class="btn btn-neutral float-right" title="4.3.8. 불안정한 공기 역학" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -302,7 +297,7 @@ OpenFAST에서 예상하는 형태의</p></li>
   </div>
 
   다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">주제</a>
     제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
    
 

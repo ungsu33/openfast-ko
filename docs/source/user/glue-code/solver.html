@@ -21,8 +21,8 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="검색" href="../../../search.html">
-    <link rel="next" title="4.2.5. 선형화" href="linearization.html">
+    <link rel="search" title="찾다" href="../../../search.html">
+    <link rel="next" title="4.2.5. Linearization" href="linearization.html">
     <link rel="prev" title="4.2.3. ModGlue – 모듈을 글로벌 어레이로 결합" href="modglue.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/glue-code/solver.html"></head>
 
@@ -36,7 +36,7 @@
           
           <a href="../../../index.html" class="icon icon-home">
             OpenFAST
-              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="심벌 마크">
           </a>
               <div class="version">5.0 · 한국어</div>
 <div role="search">
@@ -48,11 +48,11 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">4.2. 글루 코드</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="overview.html">4.2.1. 글루 코드 개요</a></li>
 <li class="toctree-l3"><a class="reference internal" href="modvar.html">4.2.2. 모듈 변수(<code class="docutils literal notranslate"><span class="pre">ModVar</span></code>)</a></li>
@@ -70,7 +70,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력소음</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
@@ -93,16 +93,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -111,12 +111,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
           <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.2. </span>글루 코드</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.2.4. </span>솔버</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/glue-code/solver.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+            <a href="../../../_sources/source/user/glue-code/solver.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -125,29 +125,29 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="solver">
-<span id="glue-code-solver"></span><h1><span class="section-number">4.2.4. </span>솔버<a class="headerlink" href="#solver" title="이 제목의 고유 링크"></a></h1>
-<p>OpenFAST 긴밀 결합 솔버는 다음에서 구현됩니다.
+<span id="glue-code-solver"></span><h1><span class="section-number">4.2.4. </span>솔버<a class="headerlink" href="#solver" title="이 제목에 대한 영구 링크"></a></h1>
+<p>OpenFAST 밀착 결합 솔버는 다음에서 구현됩니다.
 <code class="docutils literal notranslate"><span class="pre">modules/openfast-library/src/FAST_Solver.f90</span></code>. 이는 연속 상태를 통합하고 Newton-Raphson 수렴 반복과 함께 일반화된 알파 체계를 사용하여 모듈 간의 입력-출력 결합을 해결합니다.</p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#user-input-parameters" id="id1">사용자 입력 매개변수</a></p></li>
-<li><p><a class="reference internal" href="#generalized-alpha-integration" id="id2">일반화 알파 통합</a></p></li>
+<li><p><a class="reference internal" href="#generalized-alpha-integration" id="id2">일반화된 알파 통합</a></p></li>
 <li><p><a class="reference internal" href="#module-ordering" id="id3">모듈 주문</a></p></li>
 <li><p><a class="reference internal" href="#jacobian-construction" id="id4">야코비안 구조</a></p>
 <ul>
-<li><p><a class="reference internal" href="#variable-selection-vf-solve-flag" id="id5">변수 선택(<code class="docutils literal notranslate"><span class="pre">VF_Solve</span></code> 플래그)</a></p></li>
-<li><p><a class="reference internal" href="#jacobian-structure-tc-jacobian" id="id6">야코비안 구조(TC 야코비안)</a></p></li>
+<li><p><a class="reference internal" href="#variable-selection-vf-solve-flag" id="id5">변수선택(<code class="docutils literal notranslate"><span class="pre">VF_Solve</span></code> 깃발)</a></p></li>
+<li><p><a class="reference internal" href="#jacobian-structure-tc-jacobian" id="id6">야코비 구조(TC 야코비 행렬)</a></p></li>
 <li><p><a class="reference internal" href="#jacobian-update-strategy" id="id7">야코비안 업데이트 전략</a></p></li>
-<li><p><a class="reference internal" href="#per-module-jacobian-contributions" id="id8">모듈당 야코비안 기여</a></p></li>
-<li><p><a class="reference internal" href="#linear-solve" id="id9">선형 해석</a></p></li>
-<li><p><a class="reference internal" href="#convergence-check" id="id10">수렴 검사</a></p></li>
+<li><p><a class="reference internal" href="#per-module-jacobian-contributions" id="id8">모듈별 야코비안 기여</a></p></li>
+<li><p><a class="reference internal" href="#linear-solve" id="id9">선형 해결</a></p></li>
+<li><p><a class="reference internal" href="#convergence-check" id="id10">수렴 확인</a></p></li>
 </ul>
 </li>
 <li><p><a class="reference internal" href="#output-channels-from-the-solver" id="id11">솔버의 출력 채널</a></p></li>
 </ul>
 </div>
 <div class="section" id="user-input-parameters">
-<span id="glue-code-solver-inputs"></span><h2><a class="toc-backref" href="#id1"><span class="section-number">4.2.4.1. </span>사용자 입력 매개변수</a><a class="headerlink" href="#user-input-parameters" title="이 제목의 고유 링크"></a></h2>
+<span id="glue-code-solver-inputs"></span><h2><a class="toc-backref" href="#id1"><span class="section-number">4.2.4.1. </span>사용자 입력 매개변수</a><a class="headerlink" href="#user-input-parameters" title="이 제목에 대한 영구 링크"></a></h2>
 <p>모든 솔버 매개변수는 기본 OpenFAST 입력 파일(<code class="docutils literal notranslate"><span class="pre">*.fst</span></code>) 아래 <strong>기능 스위치 및 플래그</strong> 및
 <strong>밀착 결합/솔버</strong> 섹션.</p>
 <table class="colwidths-given docutils align-default">
@@ -163,110 +163,107 @@
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DT</span></code></p></td>
-<td><p>진짜</p></td>
+<tr class="row-even"><td class="notranslate"><p><code class="docutils literal notranslate"><span class="pre">DT</span></code></p></td>
+<td><p>실수</p></td>
 <td><p>글로벌(솔버) 시간 단계(초)입니다. 모든 모듈 시간 단계는 다음과 같거나 정수 제수여야 합니다. <code class="docutils literal notranslate"><span class="pre">DT</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ModCoupling</span></code></p></td>
+<tr class="row-odd"><td class="notranslate"><p><code class="docutils literal notranslate"><span class="pre">ModCoupling</span></code></p></td>
 <td><p>정수</p></td>
-<td><p>결합 방식.</p>
+<td><p>결합 방법.</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> – 느슨한 결합: 구조 모듈(ED/BD/SD)은 옵션 1로 처리되며 <strong>아님</strong> 는 엄격한 뉴턴 루프에 참여합니다.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> – 고정된 야코비안 업데이트와 긴밀한 결합(<code class="docutils literal notranslate"><span class="pre">DT_UJac</span></code>
-는 업데이트 빈도를 제어합니다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> – 느슨한 결합: 구조 모듈(ED/BD/SD)은 옵션 1로 처리되며 <strong>~ 아니다</strong> 엄격한 뉴턴 루프에 참여하십시오.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> – 고정된 야코비안 업데이트와의 긴밀한 결합(<code class="docutils literal notranslate"><span class="pre">DT_UJac</span></code>
+업데이트 빈도를 제어합니다).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">3</span></code> – 적응형 야코비안 업데이트와의 긴밀한 결합(뉴턴 루프가 반복 예산 내에서 수렴하지 못할 때마다 야코비안이 다시 작성됨)</p></li>
 </ul>
 </td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RhoInf</span></code></p></td>
-<td><p>진짜</p></td>
-<td><p>일반화된 알파 적분기에 대한 수치적 감쇠 매개변수 ρ. 범위 [0, 1]; 1 = 수치적 감쇠 없음(2차 정확도), 0 = 최대 감쇠(1차 정확도). 일반적인 값: <strong>0.9</strong>. 감소
-1 미만의 <code class="docutils literal notranslate"><span class="pre">RhoInf</span></code> 는 정확도가 약간 떨어지는 대신 고주파수 수치 노이즈를 감쇠시킵니다.</p></td>
+<tr class="row-even"><td class="notranslate"><p><code class="docutils literal notranslate"><span class="pre">RhoInf</span></code></p></td>
+<td><p>실수</p></td>
+<td><p>일반화된 알파 적분기에 대한 수치적 감쇠 매개변수 ρπ. 범위 [0, 1]; 1 = 수치적 감쇠 없음(2차 정확도), 0 = 최대 감쇠(1차 정확도). 일반적인 값: <strong>0.9</strong>. 감소 <code class="docutils literal notranslate"><span class="pre">RhoInf</span></code> 1 미만이면 정확도가 약간 떨어지지만 고주파수 수치 노이즈가 감쇠됩니다.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MaxConvIter</span></code></p></td>
+<tr class="row-odd"><td class="notranslate"><p><code class="docutils literal notranslate"><span class="pre">MaxConvIter</span></code></p></td>
 <td><p>정수</p></td>
-<td><p>솔버가 수렴 실패를 선언하기 전의 시간 단계당 뉴턴 수렴 반복의 최대 수입니다. 일반적인 값: <strong>20</strong>. 와 <code class="docutils literal notranslate"><span class="pre">ModCoupling=2</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">1</span></code>, 실패 시 치명적인 오류가 발생합니다. 와 <code class="docutils literal notranslate"><span class="pre">ModCoupling=3</span></code> Jacobian이 먼저 재구축되고 경고가 발생하기 전에 단계가 재시도됩니다.</p></td>
+<td><p>솔버가 수렴 실패를 선언하기 전 시간 단계당 뉴턴 수렴 반복의 최대 횟수입니다. 일반적인 값: <strong>20</strong>. 와 함께 <code class="docutils literal notranslate"><span class="pre">ModCoupling=2</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">1</span></code>, 실패 시 치명적인 오류가 발생합니다. ~와 함께 <code class="docutils literal notranslate"><span class="pre">ModCoupling=3</span></code> 야코비 행렬이 먼저 재구축되고 경고가 발생하기 전에 단계가 다시 시도됩니다.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ConvTol</span></code></p></td>
-<td><p>진짜</p></td>
-<td><p>수렴 허용 오차. 평균이 다음과 같을 때 반복이 중지됩니다.
-<cite>L2</cite>- 뉴턴 업데이트 벡터의 표준은 이 값보다 낮습니다. 일반적인 값: <code class="docutils literal notranslate"><span class="pre">1.0e-4</span></code>. 허용오차가 엄격하면 계산 비용이 증가하지만 엄격한 문제에는 필요할 수 있습니다.</p></td>
+<tr class="row-even"><td class="notranslate"><p><code class="docutils literal notranslate"><span class="pre">ConvTol</span></code></p></td>
+<td><p>실수</p></td>
+<td><p>수렴 내성. 평균이 다음과 같을 때 반복이 중지됩니다.
+<cite>L2</cite>-뉴턴 업데이트 벡터의 표준은 이 값보다 낮습니다. 일반적인 값: <code class="docutils literal notranslate"><span class="pre">1.0e-4</span></code>. 허용오차가 엄격하면 계산 비용이 증가하지만 엄격한 문제에는 필요할 수 있습니다.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DT_UJac</span></code></p></td>
-<td><p>진짜</p></td>
+<tr class="row-odd"><td class="notranslate"><p><code class="docutils literal notranslate"><span class="pre">DT_UJac</span></code></p></td>
+<td><p>실수</p></td>
 <td><p>야코비안 재구축 사이의 시간 간격(초)
 <code class="docutils literal notranslate"><span class="pre">ModCoupling=2</span></code>.</p>
 <ul class="simple">
-<li><p>경우 <code class="docutils literal notranslate"><span class="pre">DT_UJac</span> <span class="pre">&lt;</span> <span class="pre">DT</span></code>: 야코비 행렬은 수렴 반복 예산의 일부만으로 재구축됩니다.</p></li>
-<li><p>경우 <code class="docutils literal notranslate"><span class="pre">DT_UJac</span> <span class="pre">≥</span> <span class="pre">DT</span></code>: 야코비 행렬은 매
+<li><p>다음의 경우 <code class="docutils literal notranslate"><span class="pre">DT_UJac</span> <span class="pre">&lt;</span> <span class="pre">DT</span></code>: 야코비안은 수렴 반복 예산의 일부만으로 재구축됩니다.</p></li>
+<li><p>다음의 경우 <code class="docutils literal notranslate"><span class="pre">DT_UJac</span> <span class="pre">≥</span> <span class="pre">DT</span></code>: 야코비 행렬은 매 번 재구성됩니다.
 <code class="docutils literal notranslate"><span class="pre">CEILING(DT_UJac/DT)</span></code> 시간 단계.</p></li>
-<li><p>설정 <code class="docutils literal notranslate"><span class="pre">DT_UJac</span></code> 매우 큼(예: <code class="docutils literal notranslate"><span class="pre">9999</span></code>)는 전체 시뮬레이션에 대해 야코비안을 고정합니다. 프로파일링에 유용하거나 시스템이 거의 선형이고 야코비 행렬이 비용이 많이 드는 경우에 유용합니다.</p></li>
+<li><p>환경 <code class="docutils literal notranslate"><span class="pre">DT_UJac</span></code> 매우 크다(예: <code class="docutils literal notranslate"><span class="pre">9999</span></code>) 전체 시뮬레이션에 대해 야코비안을 고정합니다. 프로파일링에 유용하거나 시스템이 거의 선형이고 야코비 행렬이 비용이 많이 드는 경우에 유용합니다.</p></li>
 </ul>
 </td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">UJacSclFact</span></code></p></td>
-<td><p>진짜</p></td>
-<td><p>야코비 행렬의 행과 열을 로드하는 데 적용되는 조건 조정 배율입니다. 선형 해석 전에 힘과 모멘트 변수를 이 계수로 나누고 나중에 다시 곱하여 변위/속도 항목에 상대적인 하중 항목의 크기를 동일하게 만듭니다. 일반적인 값:
-해양 시스템용 <strong>1.0e5</strong> ; 매우 크거나 매우 작은 터빈의 경우 조정이 필요할 수 있습니다.</p></td>
+<tr class="row-even"><td class="notranslate"><p><code class="docutils literal notranslate"><span class="pre">UJacSclFact</span></code></p></td>
+<td><p>실수</p></td>
+<td><p>야코비안의 행과 열을 로드하는 데 적용되는 조건 조정 배율 인자입니다. 선형 해석 전에 힘과 모멘트 변수를 이 계수로 나누고 나중에 다시 곱하여 변위/속도 항목에 상대적인 하중 항목의 크기를 동일하게 만듭니다. 일반적인 값: <strong>1.0e5</strong> 해양 시스템용; 매우 크거나 매우 작은 터빈의 경우 조정이 필요할 수 있습니다.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CompElast</span></code></p></td>
+<tr class="row-odd"><td class="notranslate"><p><code class="docutils literal notranslate"><span class="pre">CompElast</span></code></p></td>
 <td><p>정수</p></td>
-<td><p>구조 역학 모듈을 선택합니다. <code class="docutils literal notranslate"><span class="pre">1</span></code> = 엘라스토다인,
-<code class="docutils literal notranslate"><span class="pre">2</span></code> = BeamDyn(블레이드만, ElastoDyn은 여전히 타워/플랫폼을 처리함),
-<code class="docutils literal notranslate"><span class="pre">3</span></code> = 단순화된 ElastoDyn. 선택한 모듈은 다음과 같은 경우에 TC 회원이 됩니다.
+<td><p>구조 역학 모듈을 선택합니다: <code class="docutils literal notranslate"><span class="pre">1</span></code> = ElastoDyn,
+<code class="docutils literal notranslate"><span class="pre">2</span></code> = BeamDyn(블레이드만 해당, ElastoDyn는 여전히 타워/플랫폼을 처리함),
+<code class="docutils literal notranslate"><span class="pre">3</span></code> = 단순화된 ElastoDyn. 선택한 모듈은 다음과 같은 경우 TC 구성원이 됩니다.
 <code class="docutils literal notranslate"><span class="pre">ModCoupling</span> <span class="pre">≥</span> <span class="pre">2</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CompSub</span></code></p></td>
+<tr class="row-even"><td class="notranslate"><p><code class="docutils literal notranslate"><span class="pre">CompSub</span></code></p></td>
 <td><p>정수</p></td>
-<td><p>하위 구조 모듈: <code class="docutils literal notranslate"><span class="pre">0</span></code> = 없음, <code class="docutils literal notranslate"><span class="pre">1</span></code> = 서브다인, <code class="docutils literal notranslate"><span class="pre">2</span></code> = ExtPtfm,
-<code class="docutils literal notranslate"><span class="pre">3</span></code> = SlD(SoilDyn). SubDyn은 다음과 같은 경우에 TC 세트에 합류합니다.
+<td><p>하위 구조 모듈: <code class="docutils literal notranslate"><span class="pre">0</span></code> = 없음, <code class="docutils literal notranslate"><span class="pre">1</span></code> = SubDyn, <code class="docutils literal notranslate"><span class="pre">2</span></code> = ExtPtfm,
+<code class="docutils literal notranslate"><span class="pre">3</span></code> = SlD(SoilDyn). SubDyn는 다음과 같은 경우 TC 세트에 합류합니다.
 <code class="docutils literal notranslate"><span class="pre">ModCoupling</span> <span class="pre">≥</span> <span class="pre">2</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CompHydro</span></code></p></td>
+<tr class="row-odd"><td class="notranslate"><p><code class="docutils literal notranslate"><span class="pre">CompHydro</span></code></p></td>
 <td><p>정수</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code> = 없음, <code class="docutils literal notranslate"><span class="pre">1</span></code> = 하이드로다인. HydroDyn은 항상 옵션 1입니다.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code> = 없음, <code class="docutils literal notranslate"><span class="pre">1</span></code> = HydroDyn. HydroDyn는 항상 옵션 1입니다.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CompMooring</span></code></p></td>
+<tr class="row-even"><td class="notranslate"><p><code class="docutils literal notranslate"><span class="pre">CompMooring</span></code></p></td>
 <td><p>정수</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code> = 없음, <code class="docutils literal notranslate"><span class="pre">1</span></code> = 지도++, <code class="docutils literal notranslate"><span class="pre">2</span></code> = FEA계류, <code class="docutils literal notranslate"><span class="pre">3</span></code> = 무어다인,
-<code class="docutils literal notranslate"><span class="pre">4</span></code> = 오르카플렉스. 계류 모듈은 항상 옵션 1입니다.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code> = 없음, <code class="docutils literal notranslate"><span class="pre">1</span></code> = MAP++, <code class="docutils literal notranslate"><span class="pre">2</span></code> = FEAMooring, <code class="docutils literal notranslate"><span class="pre">3</span></code> = MoorDyn,
+<code class="docutils literal notranslate"><span class="pre">4</span></code> = OrcaFlex. 계류 모듈은 항상 옵션 1입니다.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CompAero</span></code></p></td>
+<tr class="row-odd"><td class="notranslate"><p><code class="docutils literal notranslate"><span class="pre">CompAero</span></code></p></td>
 <td><p>정수</p></td>
-<td><p>공기역학 모듈: <code class="docutils literal notranslate"><span class="pre">0</span></code> = 없음, <code class="docutils literal notranslate"><span class="pre">1</span></code> = 에어로디스크, <code class="docutils literal notranslate"><span class="pre">2</span></code> = 에어로다인. AeroDyn은 육상 터빈용 옵션 2이고 MHK용 옵션 1입니다.</p></td>
+<td><p>공기역학 모듈: <code class="docutils literal notranslate"><span class="pre">0</span></code> = 없음, <code class="docutils literal notranslate"><span class="pre">1</span></code> = AeroDisk, <code class="docutils literal notranslate"><span class="pre">2</span></code> = AeroDyn. AeroDyn는 육상 터빈의 경우 옵션 2이고 MHK의 경우 옵션 1입니다.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CompServo</span></code></p></td>
+<tr class="row-even"><td class="notranslate"><p><code class="docutils literal notranslate"><span class="pre">CompServo</span></code></p></td>
 <td><p>정수</p></td>
-<td><p>컨트롤러 모듈: <code class="docutils literal notranslate"><span class="pre">0</span></code> = 없음, <code class="docutils literal notranslate"><span class="pre">1</span></code> = ServoDyn. ServoDyn은 기본적으로 사후 해결이지만 구조 컨트롤러(타워, 블레이드, 나셀 StC)가 활성화되면 옵션 1이 됩니다.</p></td>
+<td><p>컨트롤러 모듈: <code class="docutils literal notranslate"><span class="pre">0</span></code> = 없음, <code class="docutils literal notranslate"><span class="pre">1</span></code> = ServoDyn. ServoDyn는 기본적으로 사후 해결이지만 구조 컨트롤러(타워, 블레이드, 나셀 StC)가 활성화되면 옵션 1이 됩니다.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="generalized-alpha-integration">
-<h2><a class="toc-backref" href="#id2"><span class="section-number">4.2.4.2. </span>일반화 알파 통합</a><a class="headerlink" href="#generalized-alpha-integration" title="이 제목의 고유 링크"></a></h2>
-<p>밀착 결합 솔버는 다음 형식의 2차 ODE를 통합합니다.</p>
+<h2><a class="toc-backref" href="#id2"><span class="section-number">4.2.4.2. </span>일반화된 알파 통합</a><a class="headerlink" href="#generalized-alpha-integration" title="이 제목에 대한 영구 링크"></a></h2>
+<p>밀착 결합 솔버는 다음 형식의 2차 ODEs를 적분합니다.</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{M}\,\ddot{\mathbf{q}} + \mathbf{f}(\mathbf{q}, \dot{\mathbf{q}}, t) = 0\]</div>
-<p>를 사용하여 <strong>일반화 알파 방법</strong> (정 &amp; 헐버트, 1993). 다음과 같이 지정된 스펙트럼 반경 ρρ가 주어지면 <code class="docutils literal notranslate"><span class="pre">RhoInf</span></code>, 메소드 매개변수는 다음과 같습니다.</p>
+<p>사용하여 <strong>일반화 알파 방법</strong> (정 &amp; 헐버트, 1993). 다음과 같이 지정된 스펙트럼 반경 ρρ가 주어지면 <code class="docutils literal notranslate"><span class="pre">RhoInf</span></code>, 메소드 매개변수는 다음과 같습니다.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\alpha_m &amp;= \frac{2\rho_\infty - 1}{\rho_\infty + 1} \\
 \alpha_f &amp;= \frac{\rho_\infty}{\rho_\infty + 1} \\
 \gamma   &amp;= \tfrac{1}{2} - \alpha_m + \alpha_f \\
 \beta    &amp;= \tfrac{1}{4}(1 - \alpha_m + \alpha_f)^2\end{split}\]</div>
-<p>수렴 루프 전체에 사용되는 두 가지 파생 계수는 다음과 같습니다.</p>
+<p>수렴 루프 전체에서 사용되는 두 가지 파생 계수는 다음과 같습니다.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\beta'   &amp;= h^2 \beta \frac{1 - \alpha_f}{1 - \alpha_m} \\
 \gamma'  &amp;= h \gamma  \frac{1 - \alpha_f}{1 - \alpha_m}\end{split}\]</div>
 <p>여기서 <em>h</em> = <code class="docutils literal notranslate"><span class="pre">DT</span></code>.</p>
-<p><strong>상태 벡터 레이아웃</strong> – 솔버는 모듈당 <em>일반화 좌표
-4개의 열이 있는</em> (q) 벡터:</p>
+<p><strong>상태 벡터 레이아웃</strong> – 솔버는 모듈별로 유지합니다. <em>일반화된 좌표</em> (q) 4개의 열이 있는 벡터:</p>
 <table class="colwidths-given docutils align-default">
 <colgroup>
 <col style="width: 15%">
 <col style="width: 85%">
 </colgroup>
 <thead>
-<tr class="row-odd"><th class="head"><p>칼럼</p></th>
+<tr class="row-odd"><th class="head"><p>열</p></th>
 <th class="head"><p>의미</p></th>
 </tr>
 </thead>
@@ -291,68 +288,61 @@
 v_{n+1}^{\rm pred}  &amp;= v_n + h[(1-\gamma)a_n + \gamma\, a_{n+1}]\end{split}\]</div>
 </div>
 <div class="section" id="module-ordering">
-<h2><a class="toc-backref" href="#id3"><span class="section-number">4.2.4.3. </span>모듈 주문</a><a class="headerlink" href="#module-ordering" title="이 제목의 고유 링크"></a></h2>
-<p>중 <code class="docutils literal notranslate"><span class="pre">FAST_SolverInit</span></code> 각 모듈은 다음을 기준으로 분류됩니다. <code class="docutils literal notranslate"><span class="pre">ModCoupling</span></code>
-및 자체 물리 유형이며 순서가 지정된 인덱스 배열 중 하나에 할당됩니다. <code class="docutils literal notranslate"><span class="pre">Glue_TCParam</span></code> 구조:</p>
+<h2><a class="toc-backref" href="#id3"><span class="section-number">4.2.4.3. </span>모듈 주문</a><a class="headerlink" href="#module-ordering" title="이 제목에 대한 영구 링크"></a></h2>
+<p>동안 <code class="docutils literal notranslate"><span class="pre">FAST_SolverInit</span></code> 각 모듈은 다음을 기준으로 분류됩니다. <code class="docutils literal notranslate"><span class="pre">ModCoupling</span></code>
+자체 물리 유형을 가지며 순서가 지정된 인덱스 배열 중 하나에 할당됩니다. <code class="docutils literal notranslate"><span class="pre">Glue_TCParam</span></code> 구조:</p>
 <table class="colwidths-given docutils align-default">
 <colgroup>
 <col style="width: 20%">
 <col style="width: 80%">
 </colgroup>
 <thead>
-<tr class="row-odd"><th class="head"><p>어레이</p></th>
+<tr class="row-odd"><th class="head"><p>정렬</p></th>
 <th class="head"><p>모듈(순서대로)</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">iModTC</span></code></p></td>
-<td><p>ElastoDyn, BeamDyn, SubDyn(때 <code class="docutils literal notranslate"><span class="pre">ModCoupling</span> <span class="pre">≥</span> <span class="pre">2</span></code>)</p></td>
+<td><p>ElastoDyn, BeamDyn, SubDyn(일 때 <code class="docutils literal notranslate"><span class="pre">ModCoupling</span> <span class="pre">≥</span> <span class="pre">2</span></code>)</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">iModOpt1</span></code></p></td>
-<td><p>ServoDyn(StC 활성 시), SED, AD(MHK), ExtPtfm, HydroDyn, OrcaFlex, MoorDyn; ED/BD/SD도 여기에 표시됩니다. <code class="docutils literal notranslate"><span class="pre">ModCoupling</span> <span class="pre">=</span> <span class="pre">1</span></code></p></td>
+<td><p>ServoDyn(StC 활성화 시), SED, AD(MHK), ExtPtfm, HydroDyn, OrcaFlex, MoorDyn; ED/BD/SD는 다음과 같은 경우에도 여기에 나타납니다. <code class="docutils literal notranslate"><span class="pre">ModCoupling</span> <span class="pre">=</span> <span class="pre">1</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">iModOpt2</span></code></p></td>
-<td><p>ServoDyn, SED, ED, BD, SD, InflowWind, SeaState, AeroDyn(육상), AeroDisk, ExtLoads, MAP++, FEAMooring, IceDyn, IceFloe, SoilDyn</p></td>
+<td><p>ServoDyn, SED, ED, BD, SD, InflowWind, SeaState, AeroDyn (육상), AeroDisk, ExtLoads, MAP++, FEAMooring, IceDyn, IceFloe, SoilDyn</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">iModPost</span></code></p></td>
-<td><p>ServoDyn, 외부 유입</p></td>
+<td><p>ServoDyn, ExternalInflow</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">iModInit</span></code></p></td>
-<td><p>SED, ED, BD, SD, InflowWind, ExtLoads(0단계 초기화만 해당)</p></td>
+<td><p>SED, ED, BD, SD, InflowWind, ExtLoads (0단계 초기화만 해당)</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="jacobian-construction">
-<h2><a class="toc-backref" href="#id4"><span class="section-number">4.2.4.4. </span>야코비안 구조</a><a class="headerlink" href="#jacobian-construction" title="이 제목의 고유 링크"></a></h2>
+<h2><a class="toc-backref" href="#id4"><span class="section-number">4.2.4.4. </span>야코비안 구조</a><a class="headerlink" href="#jacobian-construction" title="이 제목에 대한 영구 링크"></a></h2>
 <p>두 개의 별도 야코비 행렬이 조립됩니다.</p>
 <ol class="arabic simple">
-<li><p><strong>TC/옵션-1 야코비안</strong> (<code class="docutils literal notranslate"><span class="pre">BuildJacobianTC</span></code>) - 기본 시간 단계 수렴 루프용입니다.</p></li>
-<li><p><strong>IO 야코비안</strong> (<code class="docutils literal notranslate"><span class="pre">BuildJacobianIO</span></code>) — 초기 및 선형화 입력-출력 해결을 위해.</p></li>
+<li><p><strong>TC/Option-1 야코비안</strong> (<code class="docutils literal notranslate"><span class="pre">BuildJacobianTC</span></code>) — 주요 시간 단계 수렴 루프의 경우.</p></li>
+<li><p><strong>IO 야코비안</strong> (<code class="docutils literal notranslate"><span class="pre">BuildJacobianIO</span></code>) - 초기 및 선형화 입력-출력 해결을 위해.</p></li>
 </ol>
 <div class="section" id="variable-selection-vf-solve-flag">
-<h3><a class="toc-backref" href="#id5"><span class="section-number">4.2.4.4.1. </span>변수 선택(<code class="docutils literal notranslate"><span class="pre">VF_Solve</span></code> 플래그)</a><a class="headerlink" href="#variable-selection-vf-solve-flag" title="이 제목의 고유 링크"></a></h3>
-<p>중 <code class="docutils literal notranslate"><span class="pre">FAST_SolverInit</span> <span class="pre">→</span> <span class="pre">SetVarSolveFlags</span></code>, <code class="docutils literal notranslate"><span class="pre">VF_Solve</span></code> 플래그는 야코비 행렬에 나타나야 하는 변수에 설정됩니다.</p>
+<h3><a class="toc-backref" href="#id5"><span class="section-number">4.2.4.4.1. </span>변수선택(<code class="docutils literal notranslate"><span class="pre">VF_Solve</span></code> 깃발)</a><a class="headerlink" href="#variable-selection-vf-solve-flag" title="이 제목에 대한 영구 링크"></a></h3>
+<p>동안 <code class="docutils literal notranslate"><span class="pre">FAST_SolverInit</span> <span class="pre">→</span> <span class="pre">SetVarSolveFlags</span></code>, <code class="docutils literal notranslate"><span class="pre">VF_Solve</span></code> 플래그는 야코비 행렬에 나타나야 하는 변수에 설정됩니다.</p>
 <ul class="simple">
-<li><p><strong>연속 상태
-모든 TC 모듈의</strong> (자동).</p></li>
-<li><p><strong>모션 메시
-TC-to-TC 매핑의</strong> 입력/출력(모든 필드).
-TC-옵션1 또는 옵션1-TC 매핑의</p></li>
-<li><p><strong>모션 메시
-TC-to-TC 매핑의</strong> 입력 가속.</p></li>
-<li><p><strong>로드 메쉬
-모든 TC/Option1 매핑과 관련된</strong> 입력 및 출력입니다.
-매핑이 모멘트를 전달할 때 대상 모듈의</p></li>
-<li><p><strong>로드 메쉬
-모든 TC/Option1 매핑과 관련된</strong> 변위 출력입니다(모멘트 암 야코비안 항에 필요함).</p></li>
-<li><p><strong>변수 대 변수</strong> 는 TC/Option1 모듈의 입력/출력을 매핑했습니다.</p></li>
-<li><p>다음을 포함하는 모든 변수 <code class="docutils literal notranslate"><span class="pre">VF_NoLin</span></code> 는 제외됩니다. <code class="docutils literal notranslate"><span class="pre">VF_Solve</span></code>.</p></li>
+<li><p><strong>연속 상태</strong> 모든 TC 모듈의 (자동).</p></li>
+<li><p><strong>모션 메시</strong> TC-to-TC 매핑의 입력/출력(모든 필드).</p></li>
+<li><p><strong>모션 메시</strong> TC-to-Option1 또는 Option1-to-TC 매핑의 입력 가속.</p></li>
+<li><p><strong>메쉬 로드</strong> TC/Option1 매핑과 관련된 입력 및 출력.</p></li>
+<li><p><strong>메쉬 로드</strong> 매핑이 모멘트를 전달할 때 대상 모듈의 변위 출력(모멘트 암 야코비안 항에 필요)</p></li>
+<li><p><strong>변수 대 변수</strong> TC/Option1 모듈의 매핑된 입력/출력.</p></li>
+<li><p>다음을 포함하는 모든 변수 <code class="docutils literal notranslate"><span class="pre">VF_NoLin</span></code> 에서 제외됩니다 <code class="docutils literal notranslate"><span class="pre">VF_Solve</span></code>.</p></li>
 </ul>
 </div>
 <div class="section" id="jacobian-structure-tc-jacobian">
-<h3><a class="toc-backref" href="#id6"><span class="section-number">4.2.4.4.2. </span>야코비안 구조(TC 야코비안)</a><a class="headerlink" href="#jacobian-structure-tc-jacobian" title="이 제목의 고유 링크"></a></h3>
-<p>조립된 TC Jacobian <strong>J</strong> 에는 크기가 있습니다 <code class="docutils literal notranslate"><span class="pre">NumJ</span> <span class="pre">×</span> <span class="pre">NumJ</span></code>, 여기서:</p>
+<h3><a class="toc-backref" href="#id6"><span class="section-number">4.2.4.4.2. </span>야코비 구조(TC 야코비 행렬)</a><a class="headerlink" href="#jacobian-structure-tc-jacobian" title="이 제목에 대한 영구 링크"></a></h3>
+<p>조립된 TC 야코비안 <strong>J</strong> 크기가 있다 <code class="docutils literal notranslate"><span class="pre">NumJ</span> <span class="pre">×</span> <span class="pre">NumJ</span></code>, 어디:</p>
 <div class="math notranslate nohighlight">
 \[N_J = \underbrace{N_Q}_{\text{TC states}} +
       \underbrace{N_{U_T}}_{\text{TC inputs}} +
@@ -365,67 +355,65 @@ TC-to-TC 매핑의</strong> 입력 가속.</p></li>
 \end{bmatrix}\end{split}\]</div>
 <p>여기서</p>
 <ul class="simple">
-<li><p><strong>J₁₁</strong> (<code class="docutils literal notranslate"><span class="pre">NumQ</span> <span class="pre">×</span> <span class="pre">NumQ</span></code>) - TC 변위/속도 상태에 대한 가속 잔류의 미분(모듈에서 형성됨)
+<li><p><strong>J₁₁</strong> (<code class="docutils literal notranslate"><span class="pre">NumQ</span> <span class="pre">×</span> <span class="pre">NumQ</span></code>) — TC 변위/속도 상태에 대한 가속도 잔차의 미분(모듈에서 형성됨)
 <code class="docutils literal notranslate"><span class="pre">dXdx</span></code> 하위 야코비 행렬과 일반화된 알파 탄젠트).</p></li>
 <li><p><strong>J₁₂</strong> (<code class="docutils literal notranslate"><span class="pre">NumQ</span> <span class="pre">×</span> <span class="pre">NumU_T</span></code>) — TC 입력에 대한 가속도 잔차의 미분(에서 <code class="docutils literal notranslate"><span class="pre">dXdu</span></code>).</p></li>
 <li><p><strong>J₂₁</strong> (<code class="docutils literal notranslate"><span class="pre">NumU_T</span> <span class="pre">×</span> <span class="pre">NumQ</span></code>) — TC 상태에 대한 입력 잔차의 도함수(에서 <code class="docutils literal notranslate"><span class="pre">dUdx</span> <span class="pre">=</span> <span class="pre">dUdy</span> <span class="pre">·</span> <span class="pre">dydx</span></code>).</p></li>
-<li><p><strong>J₂₂</strong> (<code class="docutils literal notranslate"><span class="pre">NumU</span> <span class="pre">×</span> <span class="pre">NumU</span></code>) — 로드 조절 행/열을 포함하여 입력에 대한 입력 잔차의 파생물입니다.</p></li>
+<li><p><strong>J₂₂</strong> (<code class="docutils literal notranslate"><span class="pre">NumU</span> <span class="pre">×</span> <span class="pre">NumU</span></code>) - 로드 조절 행/열을 포함하여 입력에 대한 입력 잔차의 파생물입니다.</p></li>
 </ul>
 <p>오른쪽(XB)에는 잔차가 포함됩니다.</p>
 <ul class="simple">
 <li><p><strong>상태 잔여</strong> (행 <code class="docutils literal notranslate"><span class="pre">iJX</span></code>): 예측된 속도 미분과 모듈에서 계산한 가속도 간의 차이입니다.</p></li>
-<li><p><strong>입력 잔여</strong> (행 <code class="docutils literal notranslate"><span class="pre">iJU</span></code>): 메쉬 매핑에서 계산된 입력 간의 차이(<code class="docutils literal notranslate"><span class="pre">FAST_InputSolve</span></code>) 및 현재 반복입니다.</p></li>
+<li><p><strong>입력 잔차</strong> (행 <code class="docutils literal notranslate"><span class="pre">iJU</span></code>): 메시 매핑에서 계산된 입력 간의 차이(<code class="docutils literal notranslate"><span class="pre">FAST_InputSolve</span></code>) 및 현재 반복.</p></li>
 </ul>
-<p>부하 부분(행 <code class="docutils literal notranslate"><span class="pre">iJL</span></code>)는 다음과 같이 미리 나누어집니다.
-조건화를 개선하기 위해 인수분해 전의 <code class="docutils literal notranslate"><span class="pre">UJacSclFact</span></code> .</p>
+<p>하중 부분(행 <code class="docutils literal notranslate"><span class="pre">iJL</span></code>)는 다음과 같이 미리 나누어집니다. <code class="docutils literal notranslate"><span class="pre">UJacSclFact</span></code> 조건화를 개선하기 위해 인수분해하기 전.</p>
 </div>
 <div class="section" id="jacobian-update-strategy">
-<h3><a class="toc-backref" href="#id7"><span class="section-number">4.2.4.4.3. </span>야코비안 업데이트 전략</a><a class="headerlink" href="#jacobian-update-strategy" title="이 제목의 고유 링크"></a></h3>
+<h3><a class="toc-backref" href="#id7"><span class="section-number">4.2.4.4.3. </span>야코비안 업데이트 전략</a><a class="headerlink" href="#jacobian-update-strategy" title="이 제목에 대한 영구 링크"></a></h3>
 <dl>
-<dt><code class="docutils literal notranslate"><span class="pre">ModCoupling</span> <span class="pre">=</span> <span class="pre">2</span></code> (고정 업데이트)</dt><dd><p>다음 카운터 중 하나가 0에 도달하면 야코비 행렬이 다시 작성됩니다.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">ModCoupling</span> <span class="pre">=</span> <span class="pre">2</span></code> (수정된 업데이트)</dt><dd><p>다음 카운터 중 하나가 0에 도달하면 야코비 행렬이 다시 작성됩니다.</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">UJacStepsRemain</span></code> — 남은 단계; 초기화됨
-<code class="docutils literal notranslate"><span class="pre">CEILING(DT_UJac/DT)</span></code> 는 야코비 행렬이 재구성될 때마다 발생합니다.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">UJacIterRemain</span></code> — 반복 예산; 초기화됨
-<code class="docutils literal notranslate"><span class="pre">CEILING(DT_UJac/DT</span> <span class="pre">·</span> <span class="pre">MaxConvIter)</span></code> 때 <code class="docutils literal notranslate"><span class="pre">DT_UJac</span> <span class="pre">&lt;</span> <span class="pre">DT</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UJacStepsRemain</span></code> - 남은 단계; 초기화됨
+<code class="docutils literal notranslate"><span class="pre">CEILING(DT_UJac/DT)</span></code> 야코비 행렬이 재구성될 때마다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UJacIterRemain</span></code> - 반복 예산 초기화됨
+<code class="docutils literal notranslate"><span class="pre">CEILING(DT_UJac/DT</span> <span class="pre">·</span> <span class="pre">MaxConvIter)</span></code> 언제 <code class="docutils literal notranslate"><span class="pre">DT_UJac</span> <span class="pre">&lt;</span> <span class="pre">DT</span></code>.</p></li>
 </ul>
-<p>수렴 실패 시 솔버는 즉시 치명적인 오류를 반환합니다.</p>
+<p>수렴이 실패하면 솔버는 즉시 치명적인 오류를 반환합니다.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">ModCoupling</span> <span class="pre">=</span> <span class="pre">3</span></code> (적응형 업데이트)</dt><dd><p>수렴 루프가 처음 실패하면 야코비 행렬이 다시 작성됩니다. 강제 재구축 후에도 단계가 여전히 수렴되지 않으면 치명적이지 않은 경고가 발행되고 시뮬레이션이 진행됩니다.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">ModCoupling</span> <span class="pre">=</span> <span class="pre">3</span></code> (적응형 업데이트)</dt><dd><p>야코비 행렬은 수렴 루프가 처음 실패할 때 다시 작성됩니다. 강제 재구축 후에도 단계가 여전히 수렴되지 않으면 치명적이지 않은 경고가 발행되고 시뮬레이션이 진행됩니다.</p>
 </dd>
 </dl>
 </div>
 <div class="section" id="per-module-jacobian-contributions">
-<h3><a class="toc-backref" href="#id8"><span class="section-number">4.2.4.4.4. </span>모듈당 야코비안 기여</a><a class="headerlink" href="#per-module-jacobian-contributions" title="이 제목의 고유 링크"></a></h3>
-<p>모듈 수준 야코비 행렬은 내부의 유한 차분을 통해 계산됩니다. <code class="docutils literal notranslate"><span class="pre">BuildJacobianTC</span></code> 및 <code class="docutils literal notranslate"><span class="pre">BuildJacobianIO</span></code> 를 사용하여 <code class="docutils literal notranslate"><span class="pre">MV_Perturb</span></code> /
+<h3><a class="toc-backref" href="#id8"><span class="section-number">4.2.4.4.4. </span>모듈별 야코비안 기여</a><a class="headerlink" href="#per-module-jacobian-contributions" title="이 제목에 대한 영구 링크"></a></h3>
+<p>모듈 수준 야코비안 부분 행렬은 내부의 유한 차분을 통해 계산됩니다. <code class="docutils literal notranslate"><span class="pre">BuildJacobianTC</span></code> 및 <code class="docutils literal notranslate"><span class="pre">BuildJacobianIO</span></code> 사용하여 <code class="docutils literal notranslate"><span class="pre">MV_Perturb</span></code> /
 <code class="docutils literal notranslate"><span class="pre">MV_ComputeDiff</span></code> / <code class="docutils literal notranslate"><span class="pre">MV_ComputeCentralDiff</span></code> 유틸리티 <code class="docutils literal notranslate"><span class="pre">ModVar</span></code>. 플래그가 지정된 각 변수에 대해 <code class="docutils literal notranslate"><span class="pre">VF_Solve</span></code>:</p>
 <ol class="arabic simple">
-<li><p>양의 크기 섭동 적용 <code class="docutils literal notranslate"><span class="pre">Var%Perturb</span></code> 를 작업 상태/입력 배열에 추가합니다.</p></li>
-<li><p>통화
-적절한 <code class="docutils literal notranslate"><span class="pre">FAST_CalcOutput</span></code> (또는 <code class="docutils literal notranslate"><span class="pre">FAST_GetContStateDeriv</span></code>).</p></li>
+<li><p>양의 크기 섭동 적용 <code class="docutils literal notranslate"><span class="pre">Var%Perturb</span></code> 작업 상태/입력 배열에.</p></li>
+<li><p>부르다 <code class="docutils literal notranslate"><span class="pre">FAST_CalcOutput</span></code> (또는 <code class="docutils literal notranslate"><span class="pre">FAST_GetContStateDeriv</span></code>).</p></li>
 <li><p>동일한 음의 섭동을 적용합니다.</p></li>
 <li><p>다시 전화하세요.</p></li>
-<li><p>중심차를 계산합니다. <code class="docutils literal notranslate"><span class="pre">(y_plus</span> <span class="pre">-</span> <span class="pre">y_minus)</span> <span class="pre">/</span> <span class="pre">(2·Perturb)</span></code>.</p></li>
+<li><p>중심차를 계산합니다: <code class="docutils literal notranslate"><span class="pre">(y_plus</span> <span class="pre">-</span> <span class="pre">y_minus)</span> <span class="pre">/</span> <span class="pre">(2·Perturb)</span></code>.</p></li>
 </ol>
 <p>방향 변수의 경우(<code class="docutils literal notranslate"><span class="pre">FieldOrientation</span></code>), 섭동은 직접 추가보다는 쿼터니언 구성에 의해 적용됩니다(<code class="docutils literal notranslate"><span class="pre">MV_Perturb</span></code>), 차이점은 회전 벡터(<code class="docutils literal notranslate"><span class="pre">MV_ComputeDiff</span></code>).</p>
 </div>
 <div class="section" id="linear-solve">
-<h3><a class="toc-backref" href="#id9"><span class="section-number">4.2.4.4.5. </span>선형 해석</a><a class="headerlink" href="#linear-solve" title="이 제목의 고유 링크"></a></h3>
-<p>LU 인수분해 <strong>J</strong> 는 다음과 같이 계산됩니다. <code class="docutils literal notranslate"><span class="pre">LAPACK_getrf</span></code> 및 시스템은 다음과 같이 해결됩니다. <code class="docutils literal notranslate"><span class="pre">LAPACK_getrs</span></code> (포장 <code class="docutils literal notranslate"><span class="pre">NWTC_LAPACK</span></code>). 업데이트 전략이 재구축을 트리거할 때까지 동일한 인수분해된 행렬이 수렴 반복 전반에 걸쳐 재사용됩니다.</p>
+<h3><a class="toc-backref" href="#id9"><span class="section-number">4.2.4.4.5. </span>선형 해결</a><a class="headerlink" href="#linear-solve" title="이 제목에 대한 영구 링크"></a></h3>
+<p>LU 인수분해 <strong>J</strong> 으로 계산됩니다 <code class="docutils literal notranslate"><span class="pre">LAPACK_getrf</span></code> 시스템은 다음과 같이 해결됩니다. <code class="docutils literal notranslate"><span class="pre">LAPACK_getrs</span></code> (포장 <code class="docutils literal notranslate"><span class="pre">NWTC_LAPACK</span></code>). 업데이트 전략이 재구축을 트리거할 때까지 동일한 인수분해된 행렬이 수렴 반복 전반에 걸쳐 재사용됩니다.</p>
 </div>
 <div class="section" id="convergence-check">
-<h3><a class="toc-backref" href="#id10"><span class="section-number">4.2.4.4.6. </span>수렴 검사</a><a class="headerlink" href="#convergence-check" title="이 제목의 고유 링크"></a></h3>
-<p>각 뉴턴 단계 후 수렴 오류는 평균입니다. <cite>L2</cite>-업데이트 벡터의 표준:</p>
+<h3><a class="toc-backref" href="#id10"><span class="section-number">4.2.4.4.6. </span>수렴 확인</a><a class="headerlink" href="#convergence-check" title="이 제목에 대한 영구 링크"></a></h3>
+<p>각 뉴턴 단계 이후 수렴 오류는 평균입니다. <cite>L2</cite>-업데이트 벡터의 표준:</p>
 <div class="math notranslate nohighlight">
 \[e = \frac{\|\Delta \mathbf{z}\|_2}{N_J}\]</div>
-<p>여기서 <span class="math notranslate nohighlight">\(\Delta \mathbf{z}\)</span> 는 상태 및 입력 업데이트를 결합합니다. 다음과 같은 경우 루프가 종료됩니다. <code class="docutils literal notranslate"><span class="pre">e</span> <span class="pre">&lt;</span> <span class="pre">ConvTol</span></code> (<code class="docutils literal notranslate"><span class="pre">ErrID_None</span></code>) 또는 반복 횟수가 다음과 같습니다.
-<code class="docutils literal notranslate"><span class="pre">MaxConvIter</span></code> (<code class="docutils literal notranslate"><span class="pre">ErrID_Fatal</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">ErrID_Warn</span></code> 에 따라 다름
+<p>여기서 <span class="math notranslate nohighlight">\(\Delta \mathbf{z}\)</span> 상태 및 입력 업데이트를 결합합니다. 다음과 같은 경우 루프가 종료됩니다. <code class="docutils literal notranslate"><span class="pre">e</span> <span class="pre">&lt;</span> <span class="pre">ConvTol</span></code> (<code class="docutils literal notranslate"><span class="pre">ErrID_None</span></code>) 또는 반복 횟수가 도달하면
+<code class="docutils literal notranslate"><span class="pre">MaxConvIter</span></code> (<code class="docutils literal notranslate"><span class="pre">ErrID_Fatal</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">ErrID_Warn</span></code> 에 따라
 <code class="docutils literal notranslate"><span class="pre">ModCoupling</span></code>).</p>
 </div>
 </div>
 <div class="section" id="output-channels-from-the-solver">
-<h2><a class="toc-backref" href="#id11"><span class="section-number">4.2.4.5. </span>솔버의 출력 채널</a><a class="headerlink" href="#output-channels-from-the-solver" title="이 제목의 고유 링크"></a></h2>
-<p>3개의 출력 채널이 기록됩니다. <code class="docutils literal notranslate"><span class="pre">DriverWriteOutput</span></code> 각 단계는 활성화되면 출력 파일에 나타납니다.</p>
+<h2><a class="toc-backref" href="#id11"><span class="section-number">4.2.4.5. </span>솔버의 출력 채널</a><a class="headerlink" href="#output-channels-from-the-solver" title="이 제목에 대한 영구 링크"></a></h2>
+<p>세 개의 출력 채널이 기록됩니다. <code class="docutils literal notranslate"><span class="pre">DriverWriteOutput</span></code> 활성화되면 각 단계가 출력 파일에 표시됩니다.</p>
 <table class="colwidths-given docutils align-default">
 <colgroup>
 <col style="width: 20%">
@@ -444,7 +432,7 @@ TC-to-TC 매핑의</strong> 입력 가속.</p></li>
 <td><p>최종 수렴 오류(<code class="docutils literal notranslate"><span class="pre">ConvError</span></code>)</p></td>
 </tr>
 <tr class="row-even"><td><p>3</p></td>
-<td><p>단계의 야코비안 재구축 수(<code class="docutils literal notranslate"><span class="pre">NumUJac</span></code>)</p></td>
+<td><p>해당 단계의 야코비안 재구축 횟수(<code class="docutils literal notranslate"><span class="pre">NumUJac</span></code>)</p></td>
 </tr>
 </tbody>
 </table>
@@ -454,9 +442,9 @@ TC-to-TC 매핑의</strong> 입력 가속.</p></li>
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
-        <a href="modglue.html" class="btn btn-neutral float-left" title="4.2.3. ModGlue – 모듈을 글로벌 어레이로 결합" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
-        <a href="linearization.html" class="btn btn-neutral float-right" title="4.2.5. 선형화" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
+        <a href="modglue.html" class="btn btn-neutral float-left" title="4.2.3. ModGlue – 모듈을 글로벌 어레이로 결합" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+        <a href="linearization.html" class="btn btn-neutral float-right" title="4.2.5. Linearization" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr>
@@ -466,7 +454,7 @@ TC-to-TC 매핑의</strong> 입력 가속.</p></li>
   </div>
 
   다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">주제</a>
     제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
    
 

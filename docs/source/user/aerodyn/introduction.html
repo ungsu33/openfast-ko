@@ -21,9 +21,9 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="검색" href="../../../search.html">
+    <link rel="search" title="찾다" href="../../../search.html">
     <link rel="next" title="4.3.2. 좌표계" href="coordsys.html">
-    <link rel="prev" title="4.3. AeroDyn 사용자 가이드 및 이론 설명서" href="index.html"> 
+    <link rel="prev" title="4.3. AeroDyn 사용자 가이드 및 이론 매뉴얼" href="index.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/aerodyn/introduction.html"></head>
 
 <body class="wy-body-for-nav"> 
@@ -36,7 +36,7 @@
           
           <a href="../../../index.html" class="icon icon-home">
             OpenFAST
-              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="심벌 마크">
           </a>
               <div class="version">5.0 · 한국어</div>
 <div role="search">
@@ -48,11 +48,11 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">4.3. AeroDyn</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">4.3.1. 소개</a></li>
@@ -62,14 +62,14 @@
 <li class="toctree-l3"><a class="reference internal" href="modeling.html">4.3.5. 모델링 시 고려사항</a></li>
 <li class="toctree-l3"><a class="reference internal" href="driver.html">4.3.6. AeroDyn 드라이버</a></li>
 <li class="toctree-l3"><a class="reference internal" href="theory.html">4.3.7. AeroDyn 이론</a></li>
-<li class="toctree-l3"><a class="reference internal" href="theory_ua.html">4.3.8. 불안정한 공기 역학</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory_ua.html">4.3.8. 비정상 공력</a></li>
 <li class="toctree-l3"><a class="reference internal" href="theory_tailfin.html">4.3.9. 꼬리지느러미 공기역학 이론</a></li>
-<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.3.10. 참고문헌</a></li>
-<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.3.11. 부록</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.3.10. 참고자료</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.3.11. 충수</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력소음</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
@@ -92,16 +92,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -110,12 +110,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.3. </span>AeroDyn 사용자 가이드 및 이론 설명서</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.3. </span>AeroDyn 사용자 가이드 및 이론 매뉴얼</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.3.1. </span>소개</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/aerodyn/introduction.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+            <a href="../../../_sources/source/user/aerodyn/introduction.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -124,30 +124,30 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="introduction">
-<span id="ad-intro"></span><h1><span class="section-number">4.3.1. </span>소개<a class="headerlink" href="#introduction" title="이 제목의 고유 링크"></a></h1>
-<p>AeroDyn은 수평축 터빈의 공탄성 시뮬레이션을 지원하기 위해 OpenFAST 다중 물리 엔지니어링 도구에 결합된 시간 영역 풍력터빈 공기역학 모듈입니다. AeroDyn은 OpenFAST에서 분리된 풍력터빈 공기 역학적 응답을 계산하기 위해 독립 실행형 코드로 구동될 수도 있습니다. OpenFAST에 결합되면 AeroDyn은 완전 결합 솔루션의 선형화의 일부로 선형화될 수도 있습니다(선형화는 독립 실행형 모드에서는 사용할 수 없음). AeroDyn은 원래 풍력터빈 공기 역학 모델링을 위해 개발되었습니다. 그러나 모듈은 해양 유체 동력학(MHK) 터빈의 유체 역학에도 동일하게 적용됩니다(본 문서에서 "풍력터빈", "타워", "공기 역학" 등의 용어는 MHK 터빈에 대한 "MHK 터빈", "MHK 지지 구조", "유체 역학" 등을 의미함). AeroDyn에서 계산하는 풍력터빈에는 적용되지 않지만 MHK 터빈에 중요한 추가 물리학에는 캐비테이션 검사, 블레이드, 타워, 허브 및 나셀의 부력 및 모멘트, 블레이드와 타워의 추가 질량 및 관성력 및 모멘트가 포함됩니다. 이 문서는 OpenFAST github 저장소의 AeroDyn 버전과 관련이 있습니다. OpenFAST 1.0.0과 함께 출시된 AeroDyn 버전은 레거시 버전 번호 지정에서 AeroDyn 버전 15와 가장 밀접하게 관련되어 있습니다. AeroDyn 버전 15는 이전 버전의 AeroDyn을 완전히 개편한 것입니다. AeroDyn 버전 15 이상은 FAST 모듈화 프레임워크의 요구 사항을 따릅니다.</p>
-<p>AeroDyn은 블레이드와 타워 모두의 공기역학적 부하를 계산합니다. AeroDyn 내의 공기역학적 계산은 몸체 주위의 3차원(3D) 흐름이 단면의 국부적인 2차원(2D) 흐름에 의해 근사화되고 분산 압력 및 전단 응력이 2D 단면의 노드에 집중된 양력, 항력 및 피칭 모멘트에 의해 근사화되는 액츄에이터 라인의 원리를 기반으로 합니다. 해석 노드는 각 블레이드와 타워의 길이를 따라 분포되어 있으며, 각 노드에서의 2차원 힘과 모멘트는 단위 길이당 분포하중으로 계산되며, 길이에 따른 2차원 분포하중을 적분하여 총 3차원 공기역학적 하중을 구합니다. AeroDyn이 OpenFAST에 결합되면 블레이드 및 타워 분석 노드 이산화는 구조 모듈의 노드 이산화와 독립적일 수 있습니다. 액츄에이터 선 근사치는 모델의 유효성을 가는 구조로 제한하고 3D 동작은 무시되거나 모델에 내재된 수정(예: 팁 손실, 허브 손실 또는 왜곡된 후류 수정)을 통해 캡처되거나 입력 데이터(예: 에어포일 데이터에 적용된 회전 확대 수정)에서 캡처됩니다.</p>
-<p>AeroDyn은 터빈 형상이 단일 타워 위에 1개, 2개 또는 3개의 블레이드 로터로 구성되어 있다고 가정합니다. 편향되지 않은 타워는 직선 및 수직인 것으로 가정하지만 편향되지 않은 블레이드는 평면 외 곡률 및 평면 내 스윕을 고려할 수 있습니다. 블레이드의 경우 공기역학적 해석이 수행되는 2D 단면은 면외 곡률을 따를 수 있지만 면내 스윕은 2D 단면의 회전이 아닌 전단에 의해 수행되는 것으로 가정됩니다. 각 블레이드 간의 기하학적 차이를 사용하면 공기역학적 불균형이 발생할 수 있습니다.</p>
-<p>AeroDyn이 OpenFAST에 결합되면 AeroDyn은 타워, 허브 및 블레이드에 있는 해석 노드의 순간(변위/편향 가능) 구조적 위치, 방향 및 속도를 수신합니다. 곡률 및 스윕과 마찬가지로 블레이드 공기역학적 해석이 수행되는 2D 단면은 평면 외 편향을 따르지만 평면 내 편향은 2D 단면의 회전이 아닌 전단에 의해 수행되는 것으로 가정됩니다. AeroDyn은 또한 타워와 블레이드 노드에서 국부 자유류(교란되지 않은) 유체 속도를 수신합니다. (유체 및 구조 계산은 AeroDyn 모듈 외부에서 이루어지며 드라이버 코드에 의해 AeroDyn에 입력으로 전달됩니다.) 유체 및 구조 모션은 각 커플링 시간 단계에서 제공되며 AeroDyn은 블레이드 및 타워 노드의 공기 역학적 하중을 계산하고 공력 탄성 계산의 일부로 OpenFAST로 다시 반환합니다. 독립 실행형 모드에서 AeroDyn에 대한 입력은 공탄성 결합 없이 간단한 드라이버 코드로 규정됩니다.</p>
-<p>AeroDyn은 7개의 하위 모델로 구성됩니다. (1) 로터 후류/유도, (2) 블레이드 에어포일 공기 역학, (3) 블레이드 노드에 국부적인 유체에 대한 타워 영향, (4) 타워 및 나셀 항력, (5) 공기 음향학, (6) 블레이드, 허브, 나셀 및 타워(MHK 터빈의 경우)의 부력, (7) 추가 질량 및 유체 관성 블레이드 및 타워(MHK 터빈용). 나셀, 허브 및 테일베인 유체 영향 및 하중(나셀 항력, 나셀 및 허브 부력 하중 제외), 풍력 발전소의 여러 터빈 간의 후류 및 배열 효과는 AeroDyn에서 아직 사용할 수 없습니다. MHK 터빈에는 공력음향을 사용할 수 없습니다.</p>
-<p>작동 풍력 및 MHK 터빈 로터의 경우 AeroDyn은 반복적인 비선형 해석이 필요한 준정상 블레이드 요소/운동량(BEM) 이론을 기반으로 유도 계수를 통해 후류의 영향을 계산합니다(브렌트 방법을 통해 구현됨). 준안정이란 유도가 부하 변화에 즉각적으로 반응한다는 것을 의미합니다. 유도 계산과 그에 따른 유입 속도 및 각도는 유체와 구조물 사이의 상대 속도(활성화된 기능에 따라 국지적 유입 스큐, 전단, 난류, 타워 흐름 교란 및 구조적 동작의 영향 포함)를 기반으로 각 블레이드의 각 분석 노드에 대한 국지적인 흐름을 기반으로 합니다. Glauert의 경험적 수정(Buhl 수정 포함)은 높은 축 유도 계수에서 선형 운동량 균형을 대체합니다. BEM 솔루션에서 Prandtl 팁 손실, Prandtl 허브 손실, Pitt 및 Peters 왜곡 웨이크는 모두 선택적으로 적용할 수 있는 3D 보정입니다. Skewed-wake 보정이 활성화되면 BEM 반복 후에 적용됩니다. 추가적으로, 각운동량 균형으로부터의 접선 유도 계산, 축 유도 계산에서 항력의 사용 및 접선 유도 계산에서 항력의 사용은 모두 BEM 반복에 선택적으로 포함될 수 있는 용어입니다(BEM 반복에서 항력이 사용되지 않은 경우에도 유도가 발견되면 항력은 여전히 ​​절점 하중을 계산하는 데 사용됩니다). 후류/유도 계산은 주차되거나 유휴 상태인 로터를 모델링할 목적으로 완전히 우회될 수 있으며, 이 경우 유입 속도와 각도는 순전히 기하학적으로 결정됩니다. OpenFAST 및 BEM이 활성화된 AeroDyn을 사용한 선형화 해석 중에 후류는 동결된 것으로 가정할 수 있습니다(즉, 축 및 접선 유도 속도, <span class="math notranslate nohighlight">\(-V_x a\)</span> 및 <span class="math notranslate nohighlight">\(V_y a'\)</span>는 선형화 중에 작동점 값으로 고정되거나 BEM 이론을 사용하여 선형화 중에 유도를 다시 계산할 수 있습니다. 과도 상태의 결과로 유도 역학을 설명하는 동적 웨이크는 AeroDyn v15 이상에서는 아직 사용할 수 없습니다.</p>
-<p>블레이드 에어포일 공기역학은 안정되거나 비정상일 수 있습니다. 단, MHK에 대해 캐비테이션 검사가 요청되는 경우는 제외됩니다. 이 경우 정상 공기역학만 지원됩니다. 정상 모델에서는 양력, 항력, 선택적 피칭 모멘트 및 최소 압력 계수 대 받음각(AoA)을 포함하여 제공된 정적 익형 데이터가 절점 하중을 계산하는 데 직접 사용됩니다. 는
-<a class="reference external" href="https://nwtc.nrel.gov/AirFoilPrep" target="_blank" rel="noopener noreferrer">AirfoilPrep</a> 전처리기를 사용하면 수정되지 않은 2D 데이터(예: 풍동에서의 익형 테스트 또는
-<a class="reference external" href="http://web.mit.edu/drela/Public/web/xfoil/" target="_blank" rel="noopener noreferrer">XFoil</a>)에는 서로 다른 익형 간의 데이터를 혼합하고, 3D 회전 증대를 적용하고, 높은 AoA로 추정하는 기능이 포함되어 있습니다. 비정상 익형 공기역학(UA) 모델은 비정상 부착 흐름, 뒷전 흐름 분리, 동적 실속 및 흐름 재부착을 포함한 흐름 히스테리시스를 설명합니다. UA 모델은 시간에 따라 변하는 유입 속도와 각도의 결과로 정적 익형 반응에 대한 2D 동적 보정으로 간주될 수 있습니다. 세 가지 반경험적 UA 모델을 사용할 수 있습니다. Beddoes-Leishman(B-L)의 원래 이론적 개발, González가 개발한 B-L 확장, Minnema/Pierce가 개발한 B-L 모델 확장입니다. <strong>모든 UA 모델이 이 설명서에 설명되어 있지만 원래 B-L 모델은 아직 작동하지 않습니다. 테스트 결과, UA 모델 매개변수가 주어진 에어포일, 레이놀즈 수 및/또는 마하수에 대해 적절하게 설정된 경우 González 및 Minnema/Pierce 모델은 수직력, 접선력 및 피칭 모멘트 계수의 합리적인 히스테리시스를 생성하는 것으로 나타났습니다. 그러나 기본 UA 모델 매개변수를 사용하더라도 버전 간 UA 모델 로직의 차이로 인해 결과가 이전 버전의 AeroDyn(B-L에 대한 Minnema/Pierce 확장을 기반으로 함)과 약간 다를 수 있습니다. 사용자는 균일한 바람 유입과 고정된 요 오류(예: 독립형 AeroDyn 드라이버를 통해)로 테스트 사례를 실행하여 수직력, 접선력 및 피칭 모멘트 계수 히스테리시스의 정확성을 검사하고 UA 모델 매개변수를 적절하게 조정하는 것이 좋습니다.</strong> UA 모델의 익형, 레이놀즈, 마하 종속 매개변수는 정적 익형 데이터에서 파생될 수 있습니다. 이러한 UA 모델은 일반적인 로터 작동 시 소형에서 중간 정도의 AoA에 유효합니다. 주차 또는 공회전 조건에서는 꾸준한 모델이 더 적합합니다. 정적 익형 데이터는 항상 BEM 반복에 사용됩니다. UA가 활성화되면 BEM 반복 후 및 왜곡된 웨이크 보정 후에 적용됩니다. UA 모델은 선형화를 지원하도록 설정되지 않았으므로 OpenFAST에 연결된 AeroDyn을 사용한 선형화 해석 중에는 UA를 비활성화해야 합니다. 레이놀즈 수 또는 공기 역학 제어 설정(예: 플랩)을 기반으로 한 익형 데이터 보간은 아직 AeroDyn v15 이상에서 사용할 수 없습니다.</p>
-<p>블레이드에 국지적인 유체 흐름에 대한 타워의 영향은 전위 흐름 및/또는 타워 그림자 모델을 기반으로 합니다. 전위 흐름 모델은 바람이 불어오는 로터에 대한 타워 댐 효과를 모델링하기 위해 실린더 주변 흐름에 대한 분석적 전위 흐름 솔루션을 사용합니다. 이 모델에서 각 블레이드 노드의 자유류(교란되지 않은) 흐름은 타워에 대한 블레이드 노드의 위치와 타워 직경에 따라 교란됩니다. 여기에는 타워 상류 및 하류의 낮은 속도, 타워 왼쪽 및 오른쪽의 높은 속도, 교차류 흐름이 포함됩니다. Bak 보정은 선택적으로 타워 상류 교란을 증가시키고 타워 항력 계수를 기반으로 하는 풍하 방향 로터에 대한 타워 후류를 개선하는 전위 흐름 모델에 포함될 수 있습니다. 타워 그림자 모델은 바람이 불어가는 로터의 타워 후류 부족을 설명하기 위해 활성화될 수도 있습니다. 이 모델에는 Powles의 연구에 기초한 타워 직경 및 항력 계수와 타워에 대한 블레이드 노드의 위치에 따른 각 블레이드 노드의 자유류 유체에 대한 축류 부족이 포함됩니다. 두 타워 영향 모델은 모두 준안정 모델입니다. 즉, 동역학 없이 블레이드 노드의 자유류 유체에 외란이 직접 적용되고 BEM 반복 내에 적용됩니다.</p>
-<p>타워의 공기역학적 하중은 타워 직경, 항력 계수, 그리고 각 타워 분석 노드의 자유류(교란되지 않은) 흐름과 구조 사이의 국부 상대 유체 속도(활성화된 기능에 따라 국부 전단, 난류 및 구조적 운동의 효과 포함)를 기반으로 합니다. 타워 항력 하중 계산은 준안정적이며 흐름 모델에 대한 타워 영향과 독립적입니다.</p>
-<p>마찬가지로 나셀의 공기역학적 항력 하중은 나셀 형상, 항력 계수, 자유류(교란되지 않은) 흐름과 나셀 사이의 국부 상대 유체 속도를 사용하여 계산됩니다. 나셀 항력 하중 계산은 준안정적이며 흐름 모델에 대한 로터 영향으로부터 독립적입니다.</p>
-<p>기본 AeroDyn 입력 파일은 모델링 옵션, 환경 조건(자유 흐름 제외), 익형, 타워 노드 이산화 및 속성, 타워, 허브 및 나셀 속성은 물론 출력 파일 사양을 정의합니다. 에어포일 데이터 속성은 전용 입력 파일(각 에어포일당 하나)에서 읽혀지며 양력 계수, 항력, 선택적 피칭 모멘트, AoA 대비 최소 압력, UA 모델 매개변수가 포함됩니다. (캐비테이션 검사가 요청되는 경우 AoA에 대한 최소 압력 계수도 익형 입력 파일에 포함됩니다.) 블레이드 절점 이산화, 형상, 비틀림, 코드, 익형 식별자 및 부력 특성도 마찬가지로 별도의 입력 파일(각 블레이드에 대해 하나씩)에서 읽혀집니다.</p>
-<p><a class="reference internal" href="input.html#ad-input"><span class="std std-numref">섹션 4.3.3</span></a> 는 AeroDyn 입력 파일을 설명합니다.
-<a class="reference internal" href="output.html#ad-output"><span class="std std-numref">섹션 4.3.4</span></a> 는 AeroDyn에서 생성된 출력 파일에 대해 설명합니다. 여기에는 에코 파일, 요약 파일 및 결과 파일이 포함됩니다.
-<a class="reference internal" href="modeling.html#ad-modeling"><span class="std std-numref">섹션 4.3.5</span></a> 는 AeroDyn 사용 시 모델링 지침을 제공합니다. 예제 입력 파일은 다음에 포함되어 있습니다. <a class="reference internal" href="appendix.html#ad-input-files"><span class="std std-numref">섹션 4.3.11.1</span></a>. 사용 가능한 출력 채널의 요약을 찾을 수 있습니다. <a class="reference internal" href="appendix.html#ad-output-channels"><span class="std std-numref">섹션 4.3.11.2</span></a>.</p>
+<span id="ad-intro"></span><h1><span class="section-number">4.3.1. </span>소개<a class="headerlink" href="#introduction" title="이 제목에 대한 영구 링크"></a></h1>
+<p>AeroDyn는 OpenFAST 다중 물리 엔지니어링 도구에 결합되어 수평축 터빈의 공탄성 시뮬레이션을 가능하게 하는 시간 영역 풍력 터빈 공기역학 모듈입니다. AeroDyn는 OpenFAST에서 분리된 풍력 터빈 공기 역학적 응답을 계산하기 위해 독립 실행형 코드로 구동될 수도 있습니다. OpenFAST에 결합된 경우 AeroDyn는 완전 결합 솔루션의 선형화의 일부로 선형화될 수도 있습니다(선형화는 독립 실행형 모드에서 사용할 수 없음). AeroDyn는 원래 풍력 터빈 공기역학 모델링을 위해 개발되었습니다. 그러나 모듈은 해양 유체 역학(MHK) 터빈의 유체 역학에도 동일하게 적용됩니다(이 문서에서 "풍력 터빈", "타워", "공기 역학" 등의 용어는 MHK 터빈에 대한 "MHK 터빈", "MHK 지지 구조", "유체 역학" 등을 의미합니다). AeroDyn로 계산된 MHK 터빈에 중요한 추가 물리학에는 캐비테이션 검사, 블레이드, 타워, 허브 및 나셀의 부력과 모멘트, 블레이드와 타워의 추가 질량 및 관성력과 모멘트가 포함됩니다. 이 문서는 OpenFAST github 저장소의 AeroDyn 버전과 관련이 있습니다. OpenFAST 1.0.0과 함께 출시된 AeroDyn 버전은 레거시 버전 번호 지정에서 AeroDyn 버전 15와 가장 밀접하게 관련되어 있습니다. AeroDyn 버전 15는 이전 버전의 AeroDyn를 완전히 개편한 것입니다. AeroDyn 버전 15 이상은 FAST 모듈화 프레임워크의 요구 사항을 따릅니다.</p>
+<p>AeroDyn는 블레이드와 타워 모두의 공기역학적 하중을 계산합니다. AeroDyn 내의 공기역학적 계산은 몸체 주위의 3차원(3D) 흐름이 단면의 국부적인 2차원(2D) 흐름에 의해 근사화되고 분산 압력 및 전단 응력이 2D 단면의 노드에 집중된 양력, 항력 및 피칭 모멘트에 의해 근사화되는 액츄에이터 라인의 원리를 기반으로 합니다. 해석 노드는 각 블레이드와 타워의 길이를 따라 분포되어 있으며, 각 노드에서의 2차원 힘과 모멘트는 단위 길이당 분포하중으로 계산되며, 길이에 따른 2차원 분포하중을 적분하여 총 3차원 공기역학적 하중을 구합니다. AeroDyn가 OpenFAST에 결합되면 블레이드 및 타워 분석 노드 이산화는 구조 모듈의 노드 이산화와 독립적일 수 있습니다. 액츄에이터 선 근사치는 모델의 유효성을 가는 구조로 제한하고 3D 동작은 무시되거나 모델에 내재된 수정(예: 팁 손실, 허브 손실 또는 왜곡된 후류 수정)을 통해 캡처되거나 입력 데이터(예: 에어포일 데이터에 적용된 회전 확대 수정)에서 캡처됩니다.</p>
+<p>AeroDyn는 터빈 형상이 단일 타워 위에 1개, 2개 또는 3개의 블레이드 로터로 구성되어 있다고 가정합니다. 편향되지 않은 타워는 직선 및 수직인 것으로 가정하지만 편향되지 않은 블레이드는 평면 외 곡률 및 평면 내 스윕을 고려할 수 있습니다. 블레이드의 경우 공기역학적 해석이 수행되는 2D 단면은 면외 곡률을 따를 수 있지만 면내 스윕은 2D 단면의 회전이 아닌 전단에 의해 수행되는 것으로 가정됩니다. 각 블레이드 간의 기하학적 차이를 사용하면 공기역학적 불균형이 발생할 수 있습니다.</p>
+<p>AeroDyn가 OpenFAST에 결합되면 AeroDyn는 타워, 허브 및 블레이드에 있는 해석 노드의 순간(변위/편향 가능) 구조 위치, 방향 및 속도를 수신합니다. 곡률 및 스윕과 마찬가지로 블레이드 공기역학적 해석이 수행되는 2D 단면은 평면 외 편향을 따르지만 평면 내 편향은 2D 단면의 회전이 아닌 전단에 의해 수행되는 것으로 가정됩니다. AeroDyn는 또한 타워 및 블레이드 노드에서 국부 자유류(교란되지 않은) 유체 속도를 수신합니다. (유체 및 구조 계산은 AeroDyn 모듈 외부에서 이루어지며 드라이버 코드에 의해 AeroDyn에 입력으로 전달됩니다.) 유체 및 구조 동작은 각 결합 시간 단계에서 제공되며 AeroDyn는 블레이드 및 타워 노드의 공기 역학적 하중을 계산하고 공탄성 계산의 일부로 OpenFAST로 다시 반환합니다. 독립형 모드에서 AeroDyn에 대한 입력은 공탄성 커플링 없이 간단한 드라이버 코드로 규정됩니다.</p>
+<p>AeroDyn는 7개의 하위 모델로 구성됩니다. (1) 로터 후류/유도, (2) 블레이드 에어포일 공기 역학, (3) 블레이드 노드에 국부적인 유체에 대한 타워 영향, (4) 타워 및 나셀 항력, (5) 공력 음향학, (6) 블레이드, 허브, 나셀 및 타워의 부력(MHK 터빈의 경우), (7) 블레이드에 추가된 질량 및 유체 관성 및 타워(MHK 터빈용). 나셀, 허브 및 꼬리날개 유체 영향 및 하중(나셀 항력, 나셀 및 허브 부력 하중 제외), 풍력 발전소의 여러 터빈 간의 후류 및 배열 효과는 아직 AeroDyn에서 사용할 수 없습니다. MHK 터빈에는 공력음향을 사용할 수 없습니다.</p>
+<p>작동 풍력 및 MHK 터빈 로터의 경우 AeroDyn는 준안정 블레이드 요소/운동량(BEM) 이론을 기반으로 유도 계수를 통해 후류의 영향을 계산합니다. 이는 반복적인 비선형 해석이 필요합니다(브렌트 방법을 통해 구현됨). 준안정이란 유도가 부하 변화에 즉각적으로 반응한다는 것을 의미합니다. 유도 계산과 그에 따른 유입 속도 및 각도는 유체와 구조물 사이의 상대 속도(활성화된 기능에 따라 국지적 유입 스큐, 전단, 난류, 타워 흐름 교란 및 구조적 동작의 영향 포함)를 기반으로 각 블레이드의 각 분석 노드에 대한 국지적인 흐름을 기반으로 합니다. Glauert의 경험적 수정(Buhl 수정 포함)은 높은 축 유도 계수에서 선형 운동량 균형을 대체합니다. BEM 솔루션에서 Prandtl 팁 손실, Prandtl 허브 손실, Pitt 및 Peters 편향 웨이크는 모두 선택적으로 적용할 수 있는 3D 보정입니다. 편향 후각 수정이 활성화되면 BEM 반복 후에 적용됩니다. 또한 각 운동량 균형에서 접선 유도 계산, 축 유도 계산에서 항력 사용 및 접선 유도 계산에서 항력 사용은 모두 선택적으로 BEM 반복에 포함될 수 있는 용어입니다(BEM 반복에서 항력이 사용되지 않은 경우에도 유도가 발견되면 항력은 여전히 ​​절점 하중을 계산하는 데 사용됩니다). 후류/유도 계산은 주차되거나 유휴 상태인 로터를 모델링할 목적으로 완전히 우회될 수 있으며, 이 경우 유입 속도와 각도는 순전히 기하학적으로 결정됩니다. OpenFAST에 연결된 AeroDyn 및 활성화된 BEM를 사용한 선형화 해석 중에 후류는 동결된 것으로 가정할 수 있습니다(즉, 축 방향 및 접선 방향이 속도를 유도합니다. <span class="math notranslate nohighlight">\(-V_x a\)</span> 및 <span class="math notranslate nohighlight">\(V_y a'\)</span>, 선형화 중에 작동점 값으로 고정됨) 또는 BEM 이론을 사용하여 선형화 중에 유도를 다시 계산할 수 있습니다. 과도 상태의 결과로 유도 역학을 설명하는 동적 웨이크는 AeroDyn v15 이상에서는 아직 사용할 수 없습니다.</p>
+<p>블레이드 에어포일 공기역학은 안정되거나 비정상일 수 있습니다. 단, MHK에 대해 캐비테이션 검사가 요청되는 경우는 제외됩니다. 이 경우 정상 공기역학만 지원됩니다. 정상 모델에서는 양력, 항력, 선택적 피칭 모멘트 및 최소 압력 계수 대 받음각(AoA)을 포함하여 제공된 정적 익형 데이터가 절점 하중을 계산하는 데 직접 사용됩니다. 그만큼
+<a class="reference external" href="https://nwtc.nrel.gov/AirFoilPrep" target="_blank" rel="noopener noreferrer">AirfoilPrep</a> 전처리기를 사용하여 수정되지 않은 2D 데이터를 기반으로 필요한 정적 익형 데이터를 생성할 수 있습니다(예: 풍동에서의 익형 테스트 또는
+<a class="reference external" href="http://web.mit.edu/drela/Public/web/xfoil/" target="_blank" rel="noopener noreferrer">XFoil</a>)에는 서로 다른 익형 간의 데이터를 혼합하고, 3D 회전 증대를 적용하고, 높은 AoA로 추정하는 기능이 포함되어 있습니다. 비정상 익형 공기역학(UA) 모델은 비정상 부착 흐름, 뒷전 흐름 분리, 동적 실속 및 흐름 재부착을 포함한 흐름 히스테리시스를 설명합니다. UA 모델은 시간에 따라 변하는 유입 속도와 각도의 결과로 정적 익형 반응에 대한 2D 동적 보정으로 간주될 수 있습니다. 세 가지 반경험적 UA 모델을 사용할 수 있습니다. Beddoes-Leishman(B-L)의 원래 이론적 개발, González가 개발한 B-L 확장, Minnema/Pierce가 개발한 B-L 모델 확장입니다. <strong>모든 UA 모델이 이 설명서에 설명되어 있지만 원래 B-L 모델은 아직 작동하지 않습니다. 테스트 결과 UA 모델 매개변수가 주어진 에어포일, 레이놀즈 수 및/또는 마하수에 대해 적절하게 설정된 경우 González 및 Minnema/Pierce 모델은 수직력, 접선력 및 피칭 모멘트 계수의 합리적인 히스테리시스를 생성하는 것으로 나타났습니다. 그러나 기본 UA 모델 매개변수를 사용하더라도 버전 간 UA 모델 논리의 차이로 인해 결과가 이전 버전의 AeroDyn(B-L에 대한 Minnema/Pierce 확장을 기반으로 함)와 약간 다릅니다. 사용자는 균일한 바람 유입과 고정된 요 오류(예: 독립형 AeroDyn 드라이버를 통해)로 테스트 사례를 실행하여 수직력, 접선력 및 피칭 모멘트 계수 히스테리시스의 정확성을 검사하고 UA 모델 매개변수를 적절하게 조정하는 것이 좋습니다.</strong> UA 모델의 익형, 레이놀즈 및 마하 종속 매개변수는 정적 익형 데이터에서 파생될 수 있습니다. 이러한 UA 모델은 일반 로터 작동 시 소형에서 중형 AoA에 유효합니다. 주차 또는 공회전 조건에서는 꾸준한 모델이 더 적합합니다. 정적 익형 데이터는 BEM 반복에서 항상 사용됩니다. UA가 활성화되면 BEM 반복 후와 왜곡된 웨이크 수정 후에 적용됩니다. UA 모델은 선형화를 지원하도록 설정되지 않았으므로 OpenFAST에 연결된 AeroDyn를 사용하여 선형화 분석 중에 UA를 비활성화해야 합니다. 레이놀즈 수 또는 공기 역학 제어 설정(예: 플랩)을 기반으로 한 익형 데이터 보간은 AeroDyn v15 이상에서는 아직 사용할 수 없습니다.</p>
+<p>블레이드에 국한된 유체 흐름에 대한 타워의 영향은 포텐셜 유동 및/또는 타워 그림자 모델을 기반으로 합니다. 포텐셜 유동 모델은 바람이 불어오는 로터에 대한 타워 댐 효과를 모델링하기 위해 실린더 주변 흐름에 대한 분석적 포텐셜 유동 솔루션을 사용합니다. 이 모델에서 각 블레이드 노드의 자유류(교란되지 않은) 흐름은 타워에 대한 블레이드 노드의 위치와 타워 직경에 따라 교란됩니다. 여기에는 타워 상류 및 하류의 낮은 속도, 타워 왼쪽 및 오른쪽의 높은 속도, 교차류 흐름이 포함됩니다. Bak 보정은 선택적으로 타워 상류 교란을 증가시키고 타워 항력 계수를 기반으로 하는 풍하 방향 로터에 대한 타워 후류를 개선하는 포텐셜 유동 모델에 포함될 수 있습니다. 타워 그림자 모델은 바람이 불어가는 로터의 타워 후류 부족을 설명하기 위해 활성화될 수도 있습니다. 이 모델에는 Powles의 연구에 기초한 타워 직경 및 항력 계수와 타워에 대한 블레이드 노드의 위치에 따른 각 블레이드 노드의 자유류 유체에 대한 축류 부족이 포함됩니다. 두 타워 영향 모델은 모두 준안정 모델입니다. 즉, 동역학 없이 블레이드 노드의 자유류 유체에 외란이 직접 적용되고 BEM 반복 내에서 적용됩니다.</p>
+<p>타워의 공기역학적 하중은 타워 직경, 항력 계수, 자유류(교란되지 않은) 흐름과 각 타워 분석 노드의 구조 사이의 국부 상대 유체 속도(활성화된 기능에 따라 로컬 전단, 난류 및 구조적 운동의 효과 포함)를 직접 기반으로 합니다. 타워 항력 하중 계산은 준안정적이며 흐름 모델에 대한 타워 영향과 독립적입니다.</p>
+<p>마찬가지로, 나셀의 공기역학적 항력 하중은 나셀 형상, 항력 계수, 자유류(교란되지 않은) 흐름과 나셀 사이의 국부 상대 유체 속도를 사용하여 계산됩니다. 나셀 항력 하중 계산은 준안정적이며 흐름 모델에 대한 로터 영향으로부터 독립적입니다.</p>
+<p>기본 AeroDyn 입력 파일은 모델링 옵션, 환경 조건(자유 흐름 제외), 익형, 타워 노드 이산화 및 속성, 타워, 허브 및 나셀 속성은 물론 출력 파일 사양을 정의합니다. 에어포일 데이터 속성은 전용 입력 파일(각 에어포일당 하나)에서 읽혀지며 양력, 항력, 선택적인 피칭 모멘트 및 AoA 대비 최소 압력 계수와 UA 모델 매개변수가 포함됩니다. (캐비테이션 검사가 요청되는 경우 AoA에 대한 최소 압력 계수도 익형 입력 파일에 포함됩니다.) 블레이드 절점 이산화, 형상, 비틀림, 현, 익형 식별자 및 부력 특성도 마찬가지로 별도의 입력 파일(각 블레이드에 대해 하나씩)에서 읽혀집니다.</p>
+<p><a class="reference internal" href="input.html#ad-input"><span class="std std-numref">섹션 4.3.3</span></a> AeroDyn 입력 파일에 대해 설명합니다.
+<a class="reference internal" href="output.html#ad-output"><span class="std std-numref">섹션 4.3.4</span></a> AeroDyn에 의해 생성된 출력 파일에 대해 논의합니다. 여기에는 에코 파일, 요약 파일 및 결과 파일이 포함됩니다.
+<a class="reference internal" href="modeling.html#ad-modeling"><span class="std std-numref">섹션 4.3.5</span></a> AeroDyn 사용 시 모델링 지침을 제공합니다. 예제 입력 파일은 다음에 포함되어 있습니다. <a class="reference internal" href="appendix.html#ad-input-files"><span class="std std-numref">섹션 4.3.11.1</span></a>. 사용 가능한 출력 채널의 요약을 찾을 수 있습니다. <a class="reference internal" href="appendix.html#ad-output-channels"><span class="std std-numref">섹션 4.3.11.2</span></a>.</p>
 </div>
 
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
-        <a href="index.html" class="btn btn-neutral float-left" title="4.3. AeroDyn 사용자 가이드 및 이론 설명서" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
+        <a href="index.html" class="btn btn-neutral float-left" title="4.3. AeroDyn 사용자 가이드 및 이론 매뉴얼" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
         <a href="coordsys.html" class="btn btn-neutral float-right" title="4.3.2. 좌표계" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -158,7 +158,7 @@
   </div>
 
   다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">주제</a>
     제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
    
 

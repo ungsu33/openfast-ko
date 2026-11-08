@@ -20,9 +20,9 @@
         <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="검색" href="../../../search.html">
+    <link rel="search" title="찾다" href="../../../search.html">
     <link rel="next" title="4.9. ExtPtfm" href="../extptfm/index.html">
-    <link rel="prev" title="4.8.13. 부록 E. 독립형 SubDyn 컴파일하기" href="appendixE.html"> 
+    <link rel="prev" title="4.8.13. 부록 E. 독립 실행형 SubDyn 컴파일하기" href="appendixE.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/subdyn/appendixF.html"></head>
 
 <body class="wy-body-for-nav"> 
@@ -35,7 +35,7 @@
           
           <a href="../../../index.html" class="icon icon-home">
             OpenFAST
-              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="심벌 마크">
           </a>
               <div class="version">5.0 · 한국어</div>
 <div role="search">
@@ -47,15 +47,15 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력소음</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">4.8. SubDyn</a><ul class="current">
@@ -64,18 +64,18 @@
 <li class="toctree-l3"><a class="reference internal" href="input_files.html">4.8.3. 입력 파일</a></li>
 <li class="toctree-l3"><a class="reference internal" href="output_files.html">4.8.4. 출력 파일</a></li>
 <li class="toctree-l3"><a class="reference internal" href="modeling.html">4.8.5. 모델링 시 고려사항</a></li>
-<li class="toctree-l3"><a class="reference internal" href="theory.html">4.8.6. 서브다인 이론</a></li>
-<li class="toctree-l3"><a class="reference internal" href="future_work.html">4.8.7. 알려진 한계와 향후 개발 계획</a></li>
-<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.8.8. 참고문헌</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory.html">4.8.6. SubDyn 이론</a></li>
+<li class="toctree-l3"><a class="reference internal" href="future_work.html">4.8.7. 알려진 제한 사항 및 향후 작업</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.8.8. 참고자료</a></li>
 <li class="toctree-l3"><a class="reference internal" href="appendixA.html">4.8.9. 부록 A. OC4 재킷 입력 파일</a></li>
 <li class="toctree-l3"><a class="reference internal" href="appendixB.html">4.8.10. 부록 B. OC4 재킷 드라이버 파일</a></li>
 <li class="toctree-l3"><a class="reference internal" href="appendixC.html">4.8.11. 부록 C. OC4 재킷 SSI 입력 파일</a></li>
 <li class="toctree-l3"><a class="reference internal" href="appendixD.html">4.8.12. 부록 D. 출력 채널 목록</a></li>
-<li class="toctree-l3"><a class="reference internal" href="appendixE.html">4.8.13. 부록 E. 독립형 SubDyn 컴파일하기</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendixE.html">4.8.13. 부록 E. 독립 실행형 SubDyn 컴파일하기</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">4.8.14. 부록 F. SubDyn의 주요 변경 사항</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#v1-05-00-october-2021">4.8.14.1. V1.05.00(2021년 10월)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#v1-04-00-september-2020">4.8.14.2. V1.04.00(2020년 9월)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#v1-03-00a-rrd-september-2017">4.8.14.3. V1.03.00a-rrd(2017년 9월)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#v1-05-00-october-2021">4.8.14.1. V1.05.00 (2021년 10월)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#v1-04-00-september-2020">4.8.14.2. V1.04.00 (2020년 9월)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#v1-03-00a-rrd-september-2017">4.8.14.3. V1.03.00a-rrd (2017년 9월)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#v1-01-01a-rrd-september-2014">4.8.14.4. V1.01.01a-rrd(2014년 9월)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#v1-01-00a-rrd-june-2014">4.8.14.5. V1.01.00a-rrd(2014년 6월)</a></li>
 </ul>
@@ -101,16 +101,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -119,12 +119,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.8. </span>SubDyn 사용자 가이드 및 이론 설명서</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.8. </span>SubDyn 사용자 가이드 및 이론 매뉴얼</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.8.14. </span>부록 F. SubDyn의 주요 변경 사항</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/subdyn/appendixF.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+            <a href="../../../_sources/source/user/subdyn/appendixF.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -133,14 +133,13 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="appendix-f-major-changes-in-subdyn">
-<span id="sd-appendix-f"></span><h1><span class="section-number">4.8.14. </span>부록 F. SubDyn의 주요 변경 사항<a class="headerlink" href="#appendix-f-major-changes-in-subdyn" title="이 제목의 고유 링크"></a></h1>
-<p>처음 출시되었을 때 SubDyn(v0.4)은 FAST v8의 문서화되지 않은 기능으로 포함되었으며 독립 실행형 아카이브로 패키지되었습니다. v0.4부터 SubDyn은 FAST v8 및 OpenFast에 잘 통합되었으며 독립형 형태도 사용 가능합니다. 이 부록에서는 v0.4 이후 SubDyn에 대한 중요한 수정 사항을 간략하게 설명합니다. 다음은 사용자가 느낄 수 있는 주요 변경 사항입니다. 자세한 내용은 <em>변경 로그.txt
-공식 아카이브 및 GitHub 로그 내의</em> 텍스트 파일입니다.</p>
+<span id="sd-appendix-f"></span><h1><span class="section-number">4.8.14. </span>부록 F. SubDyn의 주요 변경 사항<a class="headerlink" href="#appendix-f-major-changes-in-subdyn" title="이 제목에 대한 영구 링크"></a></h1>
+<p>처음 출시되었을 때 SubDyn(v0.4)는 FAST v8의 문서화되지 않은 기능으로 포함되었으며 독립 실행형 아카이브로 패키지되었습니다. v0.4부터 SubDyn는 FAST v8 및 OpenFast에 잘 통합되었으며 독립형 형태도 사용 가능합니다. 이 부록에서는 v0.4 이후 SubDyn에 대한 중요한 수정 사항을 간략하게 설명합니다. 다음은 사용자가 느낄 수 있는 주요 변경 사항입니다. 자세한 내용은 <em>변경 로그.txt</em> 공식 아카이브 및 GitHub 로그 내의 텍스트 파일입니다.</p>
 <div class="section" id="v1-05-00-october-2021">
-<h2><span class="section-number">4.8.14.1. </span>V1.05.00 (2021년 10월)<a class="headerlink" href="#v1-05-00-october-2021" title="이 제목의 고유 링크"></a></h2>
+<h2><span class="section-number">4.8.14.1. </span>V1.05.00 (2021년 10월)<a class="headerlink" href="#v1-05-00-october-2021" title="이 제목에 대한 영구 링크"></a></h2>
 <ul class="simple">
 <li><p>버전 1.05.00은 OpenFAST 버전 3.1+와 통합됩니다.</p></li>
-<li><p>SubDyn 드라이버는 지정된 노드에서 로드를 지원합니다.</p></li>
+<li><p>SubDyn 드라이버는 특정 노드에서 로드를 지원합니다.</p></li>
 <li><p>시각화를 위해 Craig-Bampton/Guyan 및 FEM 모드를 JSON 형식으로 출력</p></li>
 <li><p>다양한 지점에 강체 질량 매트릭스가 포함된 간소화된 yaml 파일 출력</p></li>
 <li><p>견고한 어셈블리에 대한 버그 수정.</p></li>
@@ -148,74 +147,73 @@
 </ul>
 </div>
 <div class="section" id="v1-04-00-september-2020">
-<h2><span class="section-number">4.8.14.2. </span>V1.04.00 (2020년 9월)<a class="headerlink" href="#v1-04-00-september-2020" title="이 제목의 고유 링크"></a></h2>
+<h2><span class="section-number">4.8.14.2. </span>V1.04.00 (2020년 9월)<a class="headerlink" href="#v1-04-00-september-2020" title="이 제목에 대한 영구 링크"></a></h2>
 <ul class="simple">
 <li><p>버전 1.04.00은 OpenFAST 버전 2.4와 통합됩니다.</p></li>
-<li><p>부재 유형: 빔, 고정 링크, 프리텐션 케이블</p></li>
+<li><p>부재 유형: 빔, 강성 링크, 프리텐션 케이블</p></li>
 <li><p>조인트 유형: 캔틸레버, 유니버설, 핀, 볼</p></li>
-<li><p>집중질량에 대한 모든 항 입력</p></li>
-<li><p>Guyan 댐핑 매트릭스</p></li>
+<li><p>집중질량에 대한 모든 항의 입력</p></li>
+<li><p>Guyan 감쇠 행렬</p></li>
 <li><p>추가 레버 암</p></li>
-<li><p>SoilDyn의 커플 링</p></li>
-<li><p>제한된 노드에서 유연한 고정도를 통한 토양-구조 상호 작용(SSI)과 해당 노드에서 경계 조건을 시뮬레이션하는 6x6 강성 및 질량 매트릭스를 허용하는 새로운 입력 파일이 포함됩니다.</p></li>
+<li><p>커플링 시스 SoilDyn</p></li>
+<li><p>구속된 노드의 유연한 고정도를 통한 토양-구조 상호 작용(SSI)과 해당 노드에서 경계 조건을 시뮬레이션하는 6x6 강성 및 질량 매트릭스를 허용하는 새로운 입력 파일이 포함됩니다.</p></li>
 <li><p>제어 가능한 초기 장력 케이블 요소</p></li>
 </ul>
 </div>
 <div class="section" id="v1-03-00a-rrd-september-2017">
-<h2><span class="section-number">4.8.14.3. </span>V1.03.00a-rrd(2017년 9월)<a class="headerlink" href="#v1-03-00a-rrd-september-2017" title="이 제목의 고유 링크"></a></h2>
+<h2><span class="section-number">4.8.14.3. </span>V1.03.00a-rrd (2017년 9월)<a class="headerlink" href="#v1-03-00a-rrd-september-2017" title="이 제목에 대한 영구 링크"></a></h2>
 <ul class="simple">
 <li><p>버전 1.03.00a-rrd는  <a class="reference external" href="https://github.com/OpenFAST/OpenFAST" target="_blank" rel="noopener noreferrer">OpenFast 소프트웨어</a>.</p></li>
 </ul>
 </div>
 <div class="section" id="v1-01-01a-rrd-september-2014">
-<h2><span class="section-number">4.8.14.4. </span>V1.01.01a-rrd(2014년 9월)<a class="headerlink" href="#v1-01-01a-rrd-september-2014" title="이 제목의 고유 링크"></a></h2>
+<h2><span class="section-number">4.8.14.4. </span>V1.01.01a-rrd(2014년 9월)<a class="headerlink" href="#v1-01-01a-rrd-september-2014" title="이 제목에 대한 영구 링크"></a></h2>
 <p>버전 1.01.01a-rrd는 <a class="reference external" href="http://wind.nrel.gov/designcodes/simulators/fast8" target="_blank" rel="noopener noreferrer">FAST v8 소프트웨어</a>
 v8.09.00a-bjj.</p>
 <ul class="simple">
 <li><p>유한 요소 고유값 버그 수정: 전체 시스템 고유값이 요약 파일에 잘못 보고되었지만 결과에는 더 이상 영향이 없습니다. 이 버그는 이제 수정되었습니다.</p></li>
-<li><p>전단 면적 보정 계수 개선: Timoshenko 처리의 전단 면적 보정 계수가 이제 Steinboeck et al.과 일치합니다. (2013).</p></li>
-<li><p>TP 반응에 대한 공식이 이론 매뉴얼을 준수하도록 재배열되었으며 출력 결과에 아무런 영향도 미치지 않습니다.</p></li>
+<li><p>전단 면적 보정 계수 개선: Timoshenko 처리의 전단 면적 보정 계수는 이제 Steinboeck et al.과 일치합니다. (2013).</p></li>
+<li><p>TP 반응의 공식은 이론 매뉴얼을 준수하도록 재배열되었으며 출력 결과에는 아무런 영향도 미치지 않습니다.</p></li>
 </ul>
 </div>
 <div class="section" id="v1-01-00a-rrd-june-2014">
-<h2><span class="section-number">4.8.14.5. </span>V1.01.00a-rrd(2014년 6월)<a class="headerlink" href="#v1-01-00a-rrd-june-2014" title="이 제목의 고유 링크"></a></h2>
+<h2><span class="section-number">4.8.14.5. </span>V1.01.00a-rrd(2014년 6월)<a class="headerlink" href="#v1-01-00a-rrd-june-2014" title="이 제목에 대한 영구 링크"></a></h2>
 <p>버전 1.00.01a-rrd는 <a class="reference external" href="http://wind.nrel.gov/designcodes/simulators/fast8" target="_blank" rel="noopener noreferrer">FAST v8 소프트웨어</a>
 v8.08.00c-bjj.</p>
-<p>새로운 구현에는 잘 정의된 데이터 교환 인터페이스(
-FAST 모듈화 프레임워크를 따르는<a class="reference external" href="http://wind.nrel.gov/designcodes/simulators/developers/" target="_blank" rel="noopener noreferrer">FAST 모듈화 프레임워크에 따라</a>)는 SubDyn을 다른 다중물리 소프트웨어 패키지에 훨씬 더 간단하게 통합할 수 있게 해줍니다.</p>
-<p>버전 v0.4 이후 몇 가지 개선 사항과 버그 수정이 구현되었으며 모듈은 광범위한 검증 노력을 거쳐 좋은 결과를 얻었습니다.</p>
+<p>새로운 구현에는 잘 정의된 데이터 교환 인터페이스(<a class="reference external" href="http://wind.nrel.gov/designcodes/simulators/developers/" target="_blank" rel="noopener noreferrer">FAST 모듈화 프레임워크에 따라</a>) SubDyn를 다른 다중물리 소프트웨어 패키지에 훨씬 간단하게 통합할 수 있습니다.</p>
+<p>v0.4 버전 이후 몇 가지 개선 사항과 버그 수정이 구현되었으며 모듈은 광범위한 검증 노력을 거쳐 좋은 결과를 얻었습니다.</p>
 <ul class="simple">
-<li><p>Eigensolver 버그 수정: LAPACK 솔버는 단정밀도에서 불안정한 것으로 판명되었으며 이제는 코드의 다른 부분에서 사용되는 정밀도에 관계없이 배정밀도로만 실행됩니다.</p></li>
+<li><p>Eigensolver 버그 수정: LAPACK 솔버는 단정밀도에서 불안정한 것으로 입증되었으며 이제는 코드의 다른 부분에서 사용되는 정밀도에 관계없이 배정밀도에서만 실행됩니다.</p></li>
 <li><p>입력 파일 형식이 변경되었습니다. 부록 A의 샘플 입력 파일과 다음 참고 사항을 참조하세요.</p>
 <ul>
 <li><p>첫 번째 헤더 줄이 제거되었습니다.</p></li>
 <li><p>시뮬레이션 제어 섹션:</p>
 <ul>
-<li><p><strong>SDeltaT</strong>: 이제 "DEFAULT" 키워드(0.0 대신)가 SubDyn의 시간 통합에 글루 코드 시간 단계가 사용됨을 나타내는 데 사용됩니다.</p></li>
-<li><p><strong>IntMethod</strong>: 허용되는 값은 이제 1-4(0-3 대신)입니다.</p></li>
-<li><p><strong>SttcSolve</strong>: 새로운 플래그가 도입되었습니다. TRUE로 설정하면 SIM(정적 개선 방법)이 사용됩니다.</p></li>
+<li><p><strong>SDeltaT</strong>: 이제 "DEFAULT" 키워드(0.0 대신)가 SubDyn에 의한 시간 통합에 글루 코드 시간 단계가 사용됨을 나타내는 데 사용됩니다.</p></li>
+<li><p><strong>IntMethod</strong>: 허용되는 값은 이제 1-4입니다(0-3 대신).</p></li>
+<li><p><strong>SttcSolve</strong>: 새로운 플래그가 도입되었습니다. TRUE로 설정하면 정적 개선 방법(SIM)이 사용됩니다.</p></li>
 </ul>
 </li>
 <li><p>FEA 및 Craig-Bampton 매개변수 섹션:</p>
 <ul>
-<li><p>v0.4에서는 유지된 모든 Craig-Bampton 모드에 대해 감쇠 계수를 지정하거나 모든 모드에 대해 한 번만 지정해야 했습니다(만일 <strong>CBMod</strong> = 거짓). 이 버전에서는 사용자가 감쇠 계수를 원하는 만큼 입력할 수 있습니다. 유지된 C-B 모드의 개수(<strong>N모드</strong>)는 입력된 감쇠 계수 수(<strong>J댐핑</strong>), 마지막 댐핑 값은 나머지 모든 모드에 대해 복제됩니다.</p></li>
+<li><p>v0.4에서는 유지된 모든 Craig-Bampton 모드에 대해 감쇠 계수를 지정하거나 모든 모드에 대해 한 번만 지정해야 했습니다. <strong>CBMod</strong> = FALSE). 이 버전에서는 사용자가 감쇠 계수를 원하는 만큼 입력할 수 있습니다. 유지된 C-B 모드의 개수(<strong>NModes</strong>)는 입력된 감쇠계수 수(<strong>JDampings</strong>), 마지막 댐핑 값은 나머지 모든 모드에 대해 복제됩니다.</p></li>
 </ul>
 </li>
-<li><p>기본 반응 조인트, 인터페이스 조인트, 멤버 및 멤버 코사인 행렬 섹션:</p>
+<li><p>기본 반응 접합, 인터페이스 접합, 멤버 및 멤버 코사인 행렬 섹션:</p>
 <ul>
 <li><p>입력 파일의 모든 테이블에는 헤더 아래에 단위가 있는 한 줄이 있어야 합니다.</p></li>
 </ul>
 </li>
-<li><p>출력: 요약 및 Outfile 섹션:</p>
+<li><p>출력: 요약 및 아웃파일 섹션:</p>
 <ul>
-<li><p>이 섹션에는 이제 "출력: Fast/Subdyn 출력 파일 변수"라는 제목의 섹션에서 이전에 할당된 매개변수도 포함되어 있습니다.</p></li>
+<li><p>이제 이 섹션에는 "출력: Fast/Subdyn 출력 파일 변수"라는 제목의 섹션에서 이전에 할당된 매개변수도 포함되어 있습니다.</p></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p>요약 파일의 수량 중 일부가 수정되었습니다. 실제로 일부 출력 행렬은 인덱스 불일치로 인해 잘못된 값으로 출력되었습니다. 새 요약 파일은 더 짧으며 컴파일러 지시어 DEBUG가 설정되지 않은 한 일부 CB 메서드 매트릭스를 포함하지 않습니다.</p></li>
-<li><p>SIM. 이 새로운 구현은 특정 부하(정적 중력 및 부력 부하 또는 터빈에서 전달되는 고주파 부하 등)의 영향을 포착하는 데 필요한 모드 수를 최소화하는 데 도움이 됩니다. 이전 버전에서는 정적 및 고주파수 힘에 의해 자극된 하부 구조 모드를 사용하기 위해 많은 수의 내부 모드가 필요했습니다. 이러한 모드는 더 이상 필요하지 않으며 정확한 결과를 얻으면서도 더 적은 수의 모드를 유지할 수 있습니다(참조: <a class="reference internal" href="theory.html#subdyn-theory"><span class="std std-numref">섹션 4.8.6</span></a>). SIM이 활성화되면 Craig-Bampton 감소에 의해 고려되지 않는 모든 모드가 준정적으로 처리됩니다.</p></li>
-<li><p>이제 하위 구조의 첫 번째 고유 주파수가 전체 시스템의 예상 에너지 포함 모드보다 훨씬 높은 경우 내부 C-B 모드를 유지하지 않고 SIM에만 의존할 가능성이 있습니다.</p></li>
+<li><p>요약 파일의 수량 중 일부가 수정되었습니다. 실제로 일부 출력 행렬은 인덱스 불일치로 인해 잘못된 값으로 출력되었습니다. 새 요약 파일은 더 짧으며 컴파일러 지시어 DEBUG가 설정되지 않는 한 일부 CB 메서드 행렬을 포함하지 않습니다.</p></li>
+<li><p>SIM. 이 새로운 구현은 특정 부하(정적 중력 및 부력 부하 또는 터빈에서 전달되는 고주파 부하 등)의 영향을 포착하는 데 필요한 모드 수를 최소화하는 데 도움이 됩니다. 이전 버전에서는 정적 및 고주파수 힘에 의해 자극된 하부 구조 모드를 사용하기 위해 많은 수의 내부 모드가 필요했습니다. 이러한 모드는 더 이상 필요하지 않으며 정확한 결과를 얻으면서도 더 적은 수의 모드를 유지할 수 있습니다(참조: <a class="reference internal" href="theory.html#subdyn-theory"><span class="std std-numref">섹션 4.8.6</span></a>). SIM를 활성화하면 Craig-Bampton 감소에 의해 고려되지 않는 모든 모드가 준정적으로 처리됩니다.</p></li>
+<li><p>이제 내부 C-B 모드를 유지하지 않고 SIM에만 의존할 가능성이 있으며, 하위 구조의 첫 번째 고유 주파수가 전체 시스템의 예상 에너지 포함 모드보다 훨씬 높은 경우입니다.</p></li>
 <li><p>FAST 내의 SubDyn 결합에는 이제 HydroDyn 유체 역학 모듈과의 완전한 유체 탄성 결합이 포함됩니다.</p></li>
 </ul>
 </div>
@@ -224,8 +222,8 @@ FAST 모듈화 프레임워크를 따르는<a class="reference external" href="h
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
-        <a href="appendixE.html" class="btn btn-neutral float-left" title="4.8.13. 부록 E. 독립형 SubDyn 컴파일하기" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
+        <a href="appendixE.html" class="btn btn-neutral float-left" title="4.8.13. 부록 E. 독립 실행형 SubDyn 컴파일하기" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
         <a href="../extptfm/index.html" class="btn btn-neutral float-right" title="4.9. ExtPtfm" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -236,7 +234,7 @@ FAST 모듈화 프레임워크를 따르는<a class="reference external" href="h
   </div>
 
   다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">주제</a>
     제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
    
 

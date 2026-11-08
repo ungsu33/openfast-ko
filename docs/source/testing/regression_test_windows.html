@@ -20,7 +20,7 @@
         <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../genindex.html">
-    <link rel="search" title="검색" href="../../search.html">
+    <link rel="search" title="찾다" href="../../search.html">
     <link rel="next" title="6. 개발자 문서" href="../dev/index.html">
     <link rel="prev" title="5.2. 회귀 테스트" href="regression_test.html"> 
 <link rel="stylesheet" href="../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/testing/regression_test_windows.html"></head>
@@ -35,7 +35,7 @@
           
           <a href="../../index.html" class="icon icon-home">
             OpenFAST
-              <img src="../../_static/openfastlogo.jpg" class="logo" alt="로고">
+              <img src="../../_static/openfastlogo.jpg" class="logo" alt="심벌 마크">
           </a>
               <div class="version">5.0 · 한국어</div>
 <div role="search">
@@ -47,9 +47,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. 이 문서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working.html">3. OpenFAST 작업</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../user/index.html">4. 사용자 문서</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">5. OpenFAST 테스트</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="unit_test.html">5.1. 단위 테스트</a></li>
@@ -72,16 +72,16 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">7. 라이센스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. 감사의 글</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. 감사의 말씀</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../review.html">문서 상세 리뷰</a></li><li><a href="../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">OpenFAST</a>
       </nav>
@@ -90,12 +90,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="집"></a></li>
           <li class="breadcrumb-item"><a href="index.html"><span class="section-number">5. </span>OpenFAST 테스트</a></li>
           <li class="breadcrumb-item"><a href="regression_test.html"><span class="section-number">5.2. </span>회귀 테스트</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">5.2.5.4.1. </span>Windows</li>
+      <li class="breadcrumb-item active"><span class="section-number">5.2.5.4.1. </span>Visual Studio 회귀 테스트를 사용하는 Windows</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../_sources/source/testing/regression_test_windows.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+            <a href="../../_sources/source/testing/regression_test_windows.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -104,15 +104,15 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="windows-with-visual-studio-regression-test">
-<span id="regression-test-windows"></span><h1><span class="section-number">5.2.5.4.1. </span>Windows<a class="headerlink" href="#windows-with-visual-studio-regression-test" title="이 제목의 고유 링크"></a></h1>
+<span id="regression-test-windows"></span><h1><span class="section-number">5.2.5.4.1. </span>Visual Studio 회귀 테스트를 사용하는 Windows<a class="headerlink" href="#windows-with-visual-studio-regression-test" title="이 제목에 대한 영구 링크"></a></h1>
 <ol class="arabic">
-<li><p>openfast repo를 복제하고 테스트 데이터베이스를 초기화합니다.</p>
+<li><p>openfast 저장소를 복제하고 테스트 데이터베이스를 초기화합니다.</p>
 <blockquote>
 <div><ol class="loweralpha simple">
-<li><p>git 명령 셸 창 열기(git bash와 같은)</p></li>
-<li><p>작업 디렉터리를 로컬 저장소를 배치할 위치 위의 위치로 변경합니다. 저장소는 이 위치의 openfast라는 폴더에 배치됩니다.</p></li>
+<li><p>git 명령 셸 창 열기(예: git bash)</p></li>
+<li><p>작업 디렉터리를 로컬 저장소가 위치할 위의 위치로 변경합니다. 저장소는 이 위치의 openfast라는 폴더에 배치됩니다.</p></li>
 </ol>
-<p>다. 유형:  <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/openfast/openfast.git</span></code> (이렇게 하면 컴퓨터에 openfast 저장소의 로컬 버전이 생성됩니다). 다음과 같은 내용이 표시됩니다.</p>
+<p>기음. 유형:  <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/openfast/openfast.git</span></code> (이렇게 하면 컴퓨터에 openfast 저장소의 로컬 버전이 생성됩니다). 다음과 같은 내용이 표시됩니다.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Cloning</span> <span class="n">into</span> <span class="s1">'openfast'</span><span class="o">...</span>
 <span class="n">remote</span><span class="p">:</span> <span class="n">Counting</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">23801</span><span class="p">,</span> <span class="n">done</span><span class="o">.</span>
 <span class="n">remote</span><span class="p">:</span> <span class="n">Compressing</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">80</span><span class="o">/</span><span class="mi">80</span><span class="p">),</span> <span class="n">done</span><span class="o">.</span>
@@ -123,7 +123,7 @@
 </pre></div>
 </div>
 <ol class="loweralpha simple" start="4">
-<li><p>유형: <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">openfast</span></code>  (작업 디렉토리를 openfast 폴더로 변경)</p></li>
+<li><p>유형: <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">openfast</span></code>  (작업 디렉토리를 openfast 폴더로 변경하세요)</p></li>
 <li><p>유형: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">dev</span></code> (이것은 openfast repo의 올바른 분기에 로컬 repo를 배치합니다)</p></li>
 <li><p>유형: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">submodule</span> <span class="pre">update</span> <span class="pre">--init</span> <span class="pre">--recursive</span></code> (이렇게 하면 테스트 데이터베이스가 컴퓨터에 다운로드됩니다.) 다음과 같은 내용이 표시됩니다.</p></li>
 </ol>
@@ -140,54 +140,51 @@
 </div>
 </div></blockquote>
 </li>
-<li><p>회귀 테스트 DISCON DLL 구축</p>
+<li><p>회귀 테스트 DISCON DLLs 구축</p>
 <blockquote>
 <div><ol class="loweralpha simple">
-<li><p>Visual Studio 솔루션(<code class="docutils literal notranslate"><span class="pre">Discon.sln</span></code>)에 위치 <code class="docutils literal notranslate"><span class="pre">openfast\vs-build\Discon</span></code> 폴더</p></li>
+<li><p>Visual Studio 솔루션(<code class="docutils literal notranslate"><span class="pre">Discon.sln</span></code>)에 위치 <code class="docutils literal notranslate"><span class="pre">openfast\vs-build\Discon</span></code> 접는 사람</p></li>
 <li><p>솔루션 구성 및 솔루션 플랫폼에 대해 각각 릴리스 및 x64를 선택합니다.</p></li>
 <li><p>메뉴 표시줄에서 선택 <code class="docutils literal notranslate"><span class="pre">Build-&gt;Build</span> <span class="pre">Solution</span></code></p></li>
-<li><p>이제 파일이 표시됩니다.
-당신의 <code class="docutils literal notranslate"><span class="pre">Discon.dll</span></code>, <code class="docutils literal notranslate"><span class="pre">Discon_ITIBarge.dll</span></code>및
-이 플래그 값 아래에 <code class="docutils literal notranslate"><span class="pre">Discon_OC3Hywind.dll</span></code> 사용 중인 <code class="docutils literal notranslate"><span class="pre">openfast\reg_tests\r-test\glue-codes\fast\5MW_Baseline\ServoData</span></code> 폴더.</p></li>
+<li><p>이제 파일이 표시됩니다. <code class="docutils literal notranslate"><span class="pre">Discon.dll</span></code>, <code class="docutils literal notranslate"><span class="pre">Discon_ITIBarge.dll</span></code>, 및 <code class="docutils literal notranslate"><span class="pre">Discon_OC3Hywind.dll</span></code> 사용 중인 <code class="docutils literal notranslate"><span class="pre">openfast\reg_tests\r-test\glue-codes\fast\5MW_Baseline\ServoData</span></code> 접는 사람.</p></li>
 </ol>
 </div></blockquote>
 </li>
 <li><p>Visual Studio를 사용하여 OpenFAST 빌드</p>
 <blockquote>
 <div><ol class="loweralpha simple">
-<li><p>Visual Studio 솔루션(<code class="docutils literal notranslate"><span class="pre">FAST.sln</span></code>)에 위치 <code class="docutils literal notranslate"><span class="pre">openfast\vs-build\FAST</span></code> 폴더</p></li>
-<li><p>솔루션 구성 및 솔루션 플랫폼에 대해 각각 Release_Double 및 x64를 선택합니다.</p></li>
+<li><p>Visual Studio 솔루션(<code class="docutils literal notranslate"><span class="pre">FAST.sln</span></code>)에 위치 <code class="docutils literal notranslate"><span class="pre">openfast\vs-build\FAST</span></code> 접는 사람</p></li>
+<li><p>솔루션 구성 및 솔루션 플랫폼으로 각각 Release_Double 및 x64를 선택합니다.</p></li>
 <li><p>메뉴 표시줄에서 선택 <code class="docutils literal notranslate"><span class="pre">Build-&gt;Build</span> <span class="pre">Solution</span></code></p>
 <ol class="lowerroman simple">
-<li><p>이것이 처음으로 openfast 빌드를 시도하는 경우 빌드 오류가 발생합니다!!! [(ii) 및 (iii)단계를 계속 진행하고, 그렇지 않은 경우 FAST가 성공적으로 빌드되면 (3d)단계를 계속 진행합니다.]</p></li>
+<li><p>openfast 빌드를 처음 시도하는 경우 빌드 오류가 발생합니다!!! [(ii) 및 (iii) 단계를 계속 진행하고, 그렇지 않으면 FAST가 성공적으로 빌드되면 (3d) 단계를 계속 진행합니다.]</p></li>
 <li><dl class="simple">
-<dt>메뉴 표시줄을 사용하여 빌드 취소 <code class="docutils literal notranslate"><span class="pre">Build-&gt;Cancel</span></code></dt><dd><p>[ VS는 FASTlib에 있는 프로젝트 파일의 빌드 순서/종속성에 대해 혼란스러워하지만 VS를 취소하고 다시 시작하면 이제 이 문제를 해결하는 데 부분 빌드의 정보가 충분합니다.]</p>
+<dt>메뉴 표시줄을 사용하여 빌드 취소 <code class="docutils literal notranslate"><span class="pre">Build-&gt;Cancel</span></code></dt><dd><p>[ VS는 FASTlib에 있는 프로젝트 파일의 빌드 순서/종속성에 대해 혼란스러워하지만 VS를 취소하고 다시 시작하면 어떻게든 부분 빌드의 정보로 이 문제를 바로잡기에 충분합니다.]</p>
 </dd>
 </dl>
 </li>
-<li><p>Visual Studio를 닫은 다음 (a)부터 (c)까지의 단계를 반복하세요.</p></li>
+<li><p>Visual Studio를 닫은 다음 (a)~(c) 단계를 반복합니다.</p></li>
 </ol>
 </li>
-<li><p>이제 파일이 표시됩니다. <code class="docutils literal notranslate"><span class="pre">openfast_x64_Double.exe</span></code> 사용 중인 <code class="docutils literal notranslate"><span class="pre">openfast\build\bin</span></code> 폴더.</p></li>
+<li><p>이제 파일이 표시됩니다. <code class="docutils literal notranslate"><span class="pre">openfast_x64_Double.exe</span></code> 사용 중인 <code class="docutils literal notranslate"><span class="pre">openfast\build\bin</span></code> 접는 사람.</p></li>
 </ol>
 </div></blockquote>
 </li>
 <li><p>회귀 테스트 준비</p>
 <blockquote>
 <div><ol class="loweralpha simple">
-<li><p>라는 하위 디렉터리를 만듭니다. <code class="docutils literal notranslate"><span class="pre">reg_tests</span></code> 사용 중인 <code class="docutils literal notranslate"><span class="pre">openfast\build</span></code> 폴더.</p></li>
-<li><p>내용 복사 <code class="docutils literal notranslate"><span class="pre">openfast\reg_tests\r-test</span></code> 에
-액추에이터 라인 애플리케이션용 <code class="docutils literal notranslate"><span class="pre">openfast\build\reg_tests</span></code>.</p></li>
+<li><p>라는 하위 디렉터리를 만듭니다. <code class="docutils literal notranslate"><span class="pre">reg_tests</span></code> 사용 중인 <code class="docutils literal notranslate"><span class="pre">openfast\build</span></code> 접는 사람.</p></li>
+<li><p>내용을 복사하세요. <code class="docutils literal notranslate"><span class="pre">openfast\reg_tests\r-test</span></code> 까지 <code class="docutils literal notranslate"><span class="pre">openfast\build\reg_tests</span></code>.</p></li>
 </ol>
 </div></blockquote>
 </li>
 <li><p>OpenFAST 회귀 테스트 실행</p>
 <blockquote>
 <div><ol class="loweralpha simple">
-<li><p>Python용으로 구성된 명령 프롬프트를 엽니다 [ Anaconda3 처럼 ]</p></li>
+<li><p>Python용으로 구성된 명령 프롬프트를 엽니다(예: Anaconda3).</p></li>
 <li><p>작업 디렉토리를 다음으로 변경하십시오. <code class="docutils literal notranslate"><span class="pre">openfast\reg_tests</span></code></p></li>
 <li><dl class="simple">
-<dt>유형: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">manualRegressionTest.py</span> <span class="pre">..\build\bin\openfast_x64_Double.exe</span> <span class="pre">2.0</span> <span class="pre">1.9</span></code></dt><dd><p>다음이 표시됩니다. <code class="docutils literal notranslate"><span class="pre">executing</span> <span class="pre">AWT_YFix_WSt</span></code></p>
+<dt>유형: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">manualRegressionTest.py</span> <span class="pre">..\build\bin\openfast_x64_Double.exe</span> <span class="pre">2.0</span> <span class="pre">1.9</span></code></dt><dd><p>당신은 이것을보아야합니다 : <code class="docutils literal notranslate"><span class="pre">executing</span> <span class="pre">AWT_YFix_WSt</span></code></p>
 </dd>
 </dl>
 </li>
@@ -222,8 +219,7 @@
 </pre></div>
 </div>
 <ol class="loweralpha simple" start="5">
-<li><p>개별 테스트가 성공하면 다음과 같이 표시됩니다. <code class="docutils literal notranslate"><span class="pre">PASS</span></code> 그렇지 않으면 보게 될 것입니다
-해당 테스트 이름 뒤에 <code class="docutils literal notranslate"><span class="pre">FAIL</span></code> 해당 테스트 이름 뒤에</p></li>
+<li><p>개별 테스트가 성공하면 다음과 같이 표시됩니다. <code class="docutils literal notranslate"><span class="pre">PASS</span></code> 그렇지 않으면 너는 보게 될 것이다 <code class="docutils literal notranslate"><span class="pre">FAIL</span></code> 해당 테스트 이름 뒤에</p></li>
 </ol>
 </div></blockquote>
 </li>
@@ -233,8 +229,8 @@
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
-        <a href="regression_test.html" class="btn btn-neutral float-left" title="5.2. 회귀 테스트" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
+        <a href="regression_test.html" class="btn btn-neutral float-left" title="5.2. 회귀 테스트" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
         <a href="../dev/index.html" class="btn btn-neutral float-right" title="6. 개발자 문서" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -245,7 +241,7 @@
   </div>
 
   다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">주제</a>
     제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
    
 

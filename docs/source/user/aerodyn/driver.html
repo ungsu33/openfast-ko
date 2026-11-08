@@ -21,9 +21,9 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="검색" href="../../../search.html">
+    <link rel="search" title="찾다" href="../../../search.html">
     <link rel="next" title="4.3.7. AeroDyn 이론" href="theory.html">
-    <link rel="prev" title="4.3.5. 모델링 시 고려사항" href="modeling.html"> 
+    <link rel="prev" title="4.3.5. 모델링 고려 사항" href="modeling.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/aerodyn/driver.html"></head>
 
 <body class="wy-body-for-nav"> 
@@ -36,7 +36,7 @@
           
           <a href="../../../index.html" class="icon icon-home">
             OpenFAST
-              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="심벌 마크">
           </a>
               <div class="version">5.0 · 한국어</div>
 <div role="search">
@@ -48,11 +48,11 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">4.3. AeroDyn</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="introduction.html">4.3.1. 소개</a></li>
@@ -63,19 +63,19 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">4.3.6. AeroDyn 드라이버</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#compiling-the-driver">4.3.6.1. 드라이버 컴파일하기</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#driver-inputs-and-options">4.3.6.2. 드라이버 입력 및 옵션</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#aerodyn-inputs-for-multiple-turbines">4.3.6.3. 다중 터빈을 위한 AeroDyn 입력</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#aerodyn-inputs-for-multiple-turbines">4.3.6.3. 다중 터빈용 AeroDyn 입력</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#examples-of-driver-input-files">4.3.6.4. 드라이버 입력 파일의 예</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="theory.html">4.3.7. AeroDyn 이론</a></li>
-<li class="toctree-l3"><a class="reference internal" href="theory_ua.html">4.3.8. 불안정한 공기 역학</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory_ua.html">4.3.8. 비정상 공력</a></li>
 <li class="toctree-l3"><a class="reference internal" href="theory_tailfin.html">4.3.9. 꼬리지느러미 공기역학 이론</a></li>
-<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.3.10. 참고문헌</a></li>
-<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.3.11. 부록</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.3.10. 참고자료</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.3.11. 충수</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력소음</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
@@ -98,16 +98,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -116,12 +116,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.3. </span>AeroDyn 사용자 가이드 및 이론 설명서</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.3. </span>AeroDyn 사용자 가이드 및 이론 매뉴얼</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.3.6. </span>AeroDyn 드라이버</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/aerodyn/driver.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+            <a href="../../../_sources/source/user/aerodyn/driver.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -130,44 +130,44 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="aerodyn-driver">
-<span id="ad-driver"></span><h1><span class="section-number">4.3.6. </span>AeroDyn 드라이버<a class="headerlink" href="#aerodyn-driver" title="이 제목의 고유 링크"></a></h1>
-<p>강체 운동(고정, 정현파 또는 임의)을 받는 강체 터빈의 공기역학적 시뮬레이션을 수행하기 위해 독립형 AeroDyn 드라이버가 제공됩니다. 독립 실행형 AeroDyn 드라이버 코드는 별도의 풍력터빈 로터 성능 도구인 WT_Perf에서 이전에 사용할 수 있었던 기능을 개선합니다. 이 드라이버는 현재 OpenFAST에서 지원하지 않는 터빈 구성도 지원합니다.</p>
-<p>응용 프로그램의 예는 다음과 같습니다.</p>
+<span id="ad-driver"></span><h1><span class="section-number">4.3.6. </span>AeroDyn 드라이버<a class="headerlink" href="#aerodyn-driver" title="이 제목에 대한 영구 링크"></a></h1>
+<p>강체 운동(고정, 정현파 또는 임의)을 받는 강체 터빈의 공기역학적 시뮬레이션을 수행하기 위해 독립형 AeroDyn 드라이버가 제공됩니다. 독립형 AeroDyn 드라이버 코드는 이전에 별도의 풍력 터빈 로터 성능 도구 WT_Perf에서 사용할 수 있었던 기능을 개선합니다. 드라이버는 현재 OpenFAST에서 지원하지 않는 터빈 구성도 지원합니다.</p>
+<p>응용 프로그램의 예는 다음과 같습니다</p>
 <ul class="simple">
-<li><p>수평/수직 축 풍력터빈, 연, 쿼드 로터, 다중 로터 및 날개의 시뮬레이션.</p></li>
-<li><p>풍속, 피치, 요, 로터 속도의 지정된 시계열을 사용한 시뮬레이션입니다.</p></li>
-<li><p>결합된 사례 분석을 통해 다양한 작동 조건에서 터빈 응답을 평가합니다(예: 전력 계수 표면 계산(C)).<sub>P</sub>), 추력계수(C<sub>T</sub>) 및/또는 토크 계수(C<sub>Q</sub>)를 TSR(팁 속도 비율)과 블레이드 피치 각도의 함수로 표현합니다.</p></li>
+<li><p>수평/수직 축 풍력 터빈, 연, 쿼드 로터, 다중 로터 및 날개의 시뮬레이션.</p></li>
+<li><p>규정된 풍속, 피치, 요, 로터 속도의 시계열을 사용한 시뮬레이션입니다.</p></li>
+<li><p>예를 들어 출력 계수(C)의 표면을 계산하기 위해 다양한 작동 조건에서 터빈 응답을 평가하기 위한 결합 사례 분석<sub>P</sub>), 추력계수(C<sub>T</sub>) 및/또는 토크 계수(C<sub>Q</sub>) 팁 속도 비율(TSR)과 블레이드 피치 각도의 함수로 표시됩니다.</p></li>
 <li><p>다양한 진폭과 주파수에서 타워 베이스의 진동 운동을 시뮬레이션합니다.</p></li>
 </ul>
 <p>자세한 내용은 아래에 제공됩니다.</p>
 <div class="section" id="compiling-the-driver">
-<h2><span class="section-number">4.3.6.1. </span>드라이버 컴파일<a class="headerlink" href="#compiling-the-driver" title="이 제목의 고유 링크"></a></h2>
-<p>AeroDyn 드라이버의 컴파일 단계는 OpenFAST의 컴파일 단계와 유사합니다(참조: <a class="reference internal" href="../../install/index.html#installation"><span class="std std-numref">섹션 2</span></a>). CMake 워크플로를 사용하면 드라이버가 실행될 때 자동으로 컴파일됩니다. <cite>제조사</cite>. 드라이버만 컴파일하려면 다음을 사용하십시오. <cite>는 aerodyn_driver를 만듭니다</cite>. 드라이버는 폴더에 있습니다 <cite>/빌드/모듈/에어로딘/</cite>. Windows용 Visual Studio 솔루션은 폴더에서 사용할 수 있습니다.  <cite>/vs-build/AeroDyn</cite>.</p>
+<h2><span class="section-number">4.3.6.1. </span>드라이버 컴파일하기<a class="headerlink" href="#compiling-the-driver" title="이 제목에 대한 영구 링크"></a></h2>
+<p>AeroDyn 드라이버의 컴파일 단계는 OpenFAST의 컴파일 단계와 유사합니다(참조: <a class="reference internal" href="../../install/index.html#installation"><span class="std std-numref">섹션 2</span></a>). CMake 워크플로를 사용하면 드라이버가 실행될 때 자동으로 컴파일됩니다. <cite>만들다</cite>. 드라이버만 컴파일하려면 다음을 사용하십시오. <cite>aerodyn_driver를 만드세요</cite>. 드라이버는 폴더에 있습니다 <cite>/build/modules/aerodyn/</cite>. Windows용 Visual Studio 솔루션은 폴더에서 사용할 수 있습니다.  <cite>/vs-build/AeroDyn</cite>.</p>
 </div>
 <div class="section" id="driver-inputs-and-options">
-<span id="addm-driver-input-file"></span><h2><span class="section-number">4.3.6.2. </span>드라이버 입력 및 옵션<a class="headerlink" href="#driver-inputs-and-options" title="이 제목의 고유 링크"></a></h2>
+<span id="addm-driver-input-file"></span><h2><span class="section-number">4.3.6.2. </span>드라이버 입력 및 옵션<a class="headerlink" href="#driver-inputs-and-options" title="이 제목에 대한 영구 링크"></a></h2>
 <p><strong>주요 개념</strong></p>
 <p>드라이버는 다음을 지원합니다.</p>
 <ul class="simple">
 <li><p>두 종류의 터빈 정의: 기본(HAWT) 및 고급.</p></li>
-<li><p>두 가지 종류의 유입 정의: 기본(균일 거듭제곱 법칙) 및 고급(InflowWind)</p></li>
-<li><p>세 가지 유형의 분석(<cite>AnalysisType</cite>): 1) 하나 또는 여러 개의 터빈에 대한 단일 시뮬레이션, 2) 시간 종속 입력 하에서 하나의 풍력터빈에 대한 단일 시뮬레이션, 3) 하나의 풍력터빈의 결합 사례</p></li>
+<li><p>두 종류의 유입 정의: 기본(균일 거듭제곱 법칙) 및 고급(InflowWind)</p></li>
+<li><p>세 가지 유형의 분석(<cite>AnalysisType</cite>): 1) 하나 또는 여러 개의 터빈에 대한 단일 시뮬레이션, 2) 시간 종속 입력 하에서 하나의 풍력 터빈에 대한 단일 시뮬레이션, 3) 하나의 풍력 터빈의 결합 사례</p></li>
 </ul>
 <p>현재 제한사항은 다음과 같습니다.</p>
 <ul class="simple">
 <li><p>블레이드당 노드 수는 모든 블레이드와 모든 로터에 대해 동일해야 합니다.</p></li>
 <li><p>터빈에는 하나의(선택적) 타워만 있습니다.</p></li>
-<li><p>분석 유형 2 및 3은 터빈 1개로 제한됩니다.</p></li>
+<li><p>해석 유형 2와 3은 터빈 1개로 제한됩니다.</p></li>
 </ul>
-<p>입력 파일의 다양한 섹션에 대한 자세한 내용이 아래에 제공됩니다.</p>
+<p>입력 파일의 다양한 섹션이 설명되는 자세한 내용은 아래에 제공됩니다.</p>
 <p><strong>헤더 및 입력 구성</strong></p>
-<p>입력 파일은 헤더로 시작하며, 사용자는 두 번째 줄에 모델에 대한 관련 설명을 배치할 수 있습니다. 입력 구성 섹션은 다음과 같습니다. 사용자는 플래그를 전환할 수 있습니다. <cite>에코</cite> 는 드라이버가 구문 분석한 입력 파일을 디스크에 다시 씁니다. 는 <cite>MHK</cite> 스위치를 사용하면 사용자는 터빈이 MHK 터빈인지 여부를 지정할 수 있습니다. <cite>MHK=0</cite> 는 MHK 터빈이 아님을 나타냅니다. <cite>MHK=1</cite> 는 고정식 MHK 터빈을 나타내며, <cite>MHK=2</cite> 는 플로팅 MHK 터빈을 나타냅니다. 드라이버는 세 가지 종류의 분석을 지원하지만 각 분석 유형에 모든 터빈 형식과 유입 유형을 사용할 수 있는 것은 아닙니다.</p>
+<p>입력 파일은 헤더로 시작하며, 사용자는 두 번째 줄에 모델에 대한 관련 설명을 배치할 수 있습니다. 입력 구성 섹션은 다음과 같습니다. 사용자는 플래그를 전환할 수 있습니다. <cite>Echo</cite> 드라이버가 구문 분석한 대로 입력 파일을 디스크에 다시 씁니다. 그만큼 <cite>MHK</cite> 스위치를 사용하면 터빈이 MHK 터빈인지 여부를 지정할 수 있습니다. <cite>MHK=0</cite> MHK 터빈이 아님을 나타냅니다. <cite>MHK=1</cite> 고정 MHK 터빈을 나타내며, <cite>MHK=2</cite> 플로팅 MHK 터빈을 나타냅니다. 드라이버는 세 가지 종류의 분석을 지원하지만 각 분석 유형에 모든 터빈 형식과 유입 유형을 사용할 수 있는 것은 아닙니다.</p>
 <ul class="simple">
-<li><p><cite>분석 유형=1</cite>: 기본(HAWT) 또는 임의 형상(HAWT/VAWT, 쿼드 로터 등)을 갖춘 하나 이상의 로터 시뮬레이션, 기본 또는 고급 바람 입력, 선택적으로 타워 베이스, 나셀 및 개별 피치 각도의 시변 모션. 타워 베이스의 임의 운동 또는 정현파 운동이 가능합니다.</p></li>
-<li><p><cite>분석 유형=2</cite>: 기본 시변 바람, 나셀 모션, 피치를 사용하여 하나의 터빈을 시뮬레이션합니다. 아래의 "시간 종속 분석"을 참조하세요.</p></li>
-<li><p><cite>분석 유형=3</cite>: 기본 정상풍을 갖춘 하나의 터빈에 대한 결합 사례 분석. 케이스 테이블은 드라이버에 의해 순차적으로 실행됩니다. 아래의 “결합 사례 분석”을 참조하세요.</p></li>
+<li><p><cite>AnalysisType=1</cite>: 기본(HAWT) 또는 임의 형상(HAWT/VAWT, 쿼드 로터 등), 기본 또는 고급 바람 입력, 선택적으로 타워 베이스, 나셀 및 개별 피치 각도의 시변 모션을 사용하여 하나 또는 여러 로터를 시뮬레이션합니다. 타워 베이스의 임의 운동 또는 정현파 운동이 가능합니다.</p></li>
+<li><p><cite>AnalysisType=2</cite>: 기본 시변 바람, 나셀 모션, 피치를 사용하여 하나의 터빈을 시뮬레이션합니다. 아래의 "시간 종속 분석"을 참조하세요.</p></li>
+<li><p><cite>AnalysisType=3</cite>: 기본 정상풍을 갖춘 하나의 터빈에 대한 결합 사례 분석. 케이스 테이블은 드라이버에 의해 순차적으로 실행됩니다. 아래의 “결합 사례 분석”을 참조하세요.</p></li>
 </ul>
-<p>섹션은 총 시뮬레이션 시간(<cite>티맥스</cite>) 및 시뮬레이션에 사용된 시간 단계(<cite>DT</cite>). 이러한 입력은 다음 용도로 사용됩니다. <cite>분석 유형=1</cite> 및 <cite>분석 유형=2</cite>. 사용자는 변수를 통해 AeroDyn 기본 파일의 위치를 지정합니다. <cite>AeroFile</cite>. 경로는 AeroDyn 드라이버 파일에 대한 절대 경로이거나 상대 경로일 수 있습니다.</p>
+<p>섹션은 총 시뮬레이션 시간의 정의와 함께 이어집니다(<cite>TMax</cite>) 및 시뮬레이션에 사용된 시간 단계(<cite>DT</cite>). 이러한 입력은 다음 용도로 사용됩니다. <cite>AnalysisType=1</cite> 및 <cite>AnalysisType=2</cite>. 사용자는 변수를 통해 AeroDyn 기본 파일의 위치를 ​​지정합니다. <cite>AeroFile</cite>. 경로는 AeroDyn 드라이버 파일에 대한 절대 경로이거나 상대 경로일 수 있습니다.</p>
 <p>헤더 및 입력 구성의 예는 다음과 같습니다.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>----- AeroDyn Driver Input File ---------------------------------------------------------
 Three bladed wind turbine, using basic geometry input
@@ -181,21 +181,16 @@ False           Echo         - Echo input parameters to "&lt;rootname&gt;.ech"?
 </pre></div>
 </div>
 <p><strong>환경 조건</strong></p>
-<p>환경 조건은 여기에서 지정되고 AeroDyn에 전달됩니다. <cite>FldDens</cite> (동등
-AeroDyn 기본 입력 파일의 <cite>AirDens</cite> )는 유체 밀도를 지정하며 0보다 큰 값이어야 합니다. 일반적인 값은 약 1.225kg/m입니다.
-공기(풍력터빈) 및 1025kg/m용<sup>3</sup> 해수용(MHK 터빈)<sup>3</sup> . <cite>KinVisc</cite> 는 유체의 동점도를 지정합니다(레이놀즈 수 계산에 사용됨). 일반적인 값은 약 1.460E-5m입니다.
-공기(풍력터빈) 및 1.004E-6m의 경우<sup>2</sup>/s
-해수용<sup>2</sup>/s(MHK 터빈). <cite>SpdSound</cite> 는 유체 내 소리의 속도입니다(비정상 익형 공기 역학 계산 내에서 마하 수를 계산하는 데 사용됨). 일반적인 값은 공기(풍력터빈)의 경우 약 340.3m/s이고 해수(MHK 터빈)의 경우 1500m/s입니다. 이 섹션의 다음 두 매개변수는 다음과 같은 경우에만 사용됩니다. <cite>CavitCheck = TRUE
-MHK 터빈용</cite> . <cite>패텀</cite> 는 자유 표면 위의 대기압입니다. 일반적으로 약 101,325 Pa입니다. <cite>Pvap</cite> 는 유체의 증기압입니다. 바닷물의 경우 이는 일반적으로 약 2,000Pa입니다. <cite>WtrDpth</cite> 는 해저부터 평균 해수면(MSL)까지의 수심입니다.</p>
+<p>환경 조건은 여기에서 지정되며 AeroDyn로 전달됩니다. <cite>FldDens</cite> (동등 <cite>AirDens</cite> AeroDyn 기본 입력 파일에서) 유체 밀도를 지정하며 0보다 큰 값이어야 합니다. 일반적인 값은 약 1.225kg/m입니다.<sup>3</sup> 공기용(풍력 터빈) 및 1025kg/m<sup>3</sup> 해수용(MHK 터빈). <cite>KinVisc</cite> 유체의 동점도를 지정합니다(레이놀즈 수 계산에 사용됨). 일반적인 값은 약 1.460E-5m입니다.<sup>2</sup>/s(공기, 풍력터빈) 및 1.004E-6 m<sup>2</sup>/s(해수, MHK 터빈)입니다. <cite>SpdSound</cite> 는 유체 내 소리의 속도입니다(비정상 익형 공기 역학 계산 내에서 마하 수를 계산하는 데 사용됨). 일반적인 값은 공기(풍력 터빈)의 경우 약 340.3m/s이고 해수(MHK 터빈)의 경우 1500m/s입니다. 이 섹션의 다음 두 매개변수는 다음과 같은 경우에만 사용됩니다. <cite>CavitCheck = TRUE</cite> MHK 터빈용. <cite>팻</cite> 자유 표면 위의 대기압입니다. 일반적으로 약 101,325 Pa입니다. <cite>PVP</cite> 유체의 증기압입니다. 바닷물의 경우 이는 일반적으로 약 2,000Pa입니다. <cite>WtrDpth</cite> 는 해저에서 평균 해수면까지의 수심(MSL)입니다.</p>
 <p><strong>유입 데이터</strong></p>
 <p>유입은 두 가지 방법으로 제공될 수 있습니다.</p>
 <ul class="simple">
-<li><p>기본(<cite>CompInflow=0</cite>): 멱법칙 전단이 있는 균일한 바람. 바람은 기준 높이(<cite>RefHt</cite>), 멱법칙 지수(<cite>PExp</cite>) 및 기준 높이에서의 풍속(<cite>HWindSpeed</cite>). 와 <cite>분석 유형=2</cite>, 기준 풍속 및 전력 법칙은 시계열로 별도로 정의됩니다("시간 종속 분석" 참조). 와 <cite>분석 유형=3</cite>, 이러한 매개변수는 별도의 표에 제공됩니다("결합 사례 분석" 참조). 참조 높이는 허브 높이와 다를 수 있으므로 모든 해석 유형에 사용됩니다. 특정 노드의 바람은 다음 방정식을 사용하여 결정됩니다. <span class="math notranslate nohighlight">\(Z\)</span> 는 육상 풍력터빈의 경우 지면 위, 해상 풍력터빈의 경우 평균 해수면(MSL) 위, 고정 및 부유식 MHK 터빈의 경우 해저 위 노드의 순간 고도입니다.</p></li>
+<li><p>기초적인 (<cite>CompInflow=0</cite>): 멱법칙 전단이 있는 균일한 바람. 바람은 기준 높이(<cite>RefHt</cite>), 멱법칙 지수(<cite>PLExp</cite>), 기준 높이에서의 풍속(<cite>HWindSpeed</cite>). 와 함께 <cite>AnalysisType=2</cite>, 기준 풍속 및 전력 법칙은 시계열로 별도로 정의됩니다("시간 종속 분석" 참조). 와 함께 <cite>AnalysisType=3</cite>, 이러한 매개변수는 별도의 표에 제공됩니다("결합 사례 분석" 참조). 참조 높이는 허브 높이와 다를 수 있으므로 모든 해석 유형에 사용됩니다. 특정 노드의 바람은 다음 방정식을 사용하여 결정됩니다. <span class="math notranslate nohighlight">\(Z\)</span> 육상 기반 풍력 터빈의 경우 지면 위, 해상 풍력 터빈의 경우 평균 해수면(MSL) 위, 고정 및 부동 MHK 터빈의 경우 해저 위 노드의 순간 고도입니다.</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[U(Z) = \mathrm{HWindSpeed} \left( \frac{Z}{\mathrm{RefHt}} \right)^\mathrm{PLExp}\]</div>
 <ul class="simple">
-<li><p>고급(<cite>CompInflow=1</cite>): InflowWind 모듈은 유입량을 계산하는 데 사용되며 InflowWind의 사용 가능한 모든 옵션을 사용할 수 있습니다. 사용자는 InflowWind 입력 파일의 (상대 또는 절대) 경로를 제공해야 합니다(<cite>InflowFile</cite>). 이 기능은 다음으로 제한됩니다. <cite>분석 유형=1</cite>.</p></li>
+<li><p>고급의 (<cite>CompInflow=1</cite>): InflowWind 모듈은 유입량을 계산하는 데 사용되며 InflowWind의 사용 가능한 모든 옵션을 사용할 수 있습니다. 사용자는 InflowWind 입력 파일의 (상대 또는 절대) 경로를 제공해야 합니다(<cite>InflowFile</cite>). 이 기능은 다음으로 제한됩니다. <cite>AnalysisType=1</cite>.</p></li>
 </ul>
 <p>입력의 예는 다음과 같습니다.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-----</span> <span class="n">Inflow</span> <span class="n">Data</span> <span class="o">---------------------------------------------------------------</span>
@@ -207,7 +202,7 @@ MHK 터빈용</cite> . <cite>패텀</cite> 는 자유 표면 위의 대기압입
 </pre></div>
 </div>
 <p><strong>SeaState 데이터</strong></p>
-<p>SeaState는 AeroDyn 드라이버에 의해 호출되어 유입 정보의 일부로 파도 필드를 정의할 수 있습니다. 파도와 해류가 있는 MHK 터빈의 경우 SeaState는 InflowWind를 쿼리하고 파도와 해류 필드의 속도와 가속도를 합산합니다. SeaState가 활성화되면 InflowWind도 활성화되어야 하지만 원하는 경우 전류를 0으로 설정할 수 있습니다. 이 섹션의 입력 예는 다음과 같습니다.</p>
+<p>SeaState는 AeroDyn 드라이버에 의해 호출되어 유입 정보의 일부로 웨이브 필드를 정의할 수 있습니다. 파도와 전류가 있는 MHK 터빈의 경우 SeaState는 InflowWind를 쿼리하고 파도와 전류장의 속도와 가속도를 합산합니다. SeaState가 활성화되면 InflowWind도 활성화되어야 하지만 원하는 경우 전류를 0으로 설정할 수 있습니다. 이 섹션의 입력 예는 다음과 같습니다.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-----</span> <span class="n">SeaState</span> <span class="n">Data</span> <span class="o">---------------------------------------------------------------------</span>
 <span class="mi">1</span>                               <span class="n">CompSeaSt</span>   <span class="o">-</span> <span class="n">Compute</span> <span class="n">wave</span> <span class="n">velocities</span> <span class="p">(</span><span class="n">switch</span><span class="p">)</span> <span class="p">{</span><span class="mi">0</span><span class="o">=</span><span class="n">No</span> <span class="n">Waves</span><span class="p">;</span> <span class="mi">1</span><span class="o">=</span><span class="n">SeaState</span><span class="p">}</span>
 <span class="s2">"MHK_RM1_Floating_SeaState.dat"</span> <span class="n">SeaStFile</span>   <span class="o">-</span> <span class="n">Name</span> <span class="n">of</span> <span class="n">the</span> <span class="n">SeaState</span> <span class="nb">input</span> <span class="n">file</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">CompSeaSt</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>
@@ -219,25 +214,21 @@ MHK 터빈용</cite> . <cite>패텀</cite> 는 자유 표면 위의 대기압입
 <span class="mi">1</span>   <span class="n">NumTurbines</span>  <span class="o">-</span> <span class="n">Number</span> <span class="n">of</span> <span class="n">turbines</span> <span class="p">(</span><span class="n">should</span> <span class="n">be</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">AnalysisType</span><span class="o">=</span><span class="mi">2</span> <span class="ow">or</span> <span class="n">AnalysisType</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>설명에 언급된 대로 터빈 수는 1이어야 합니다. <cite>분석 유형=2</cite> 및 <cite>분석 유형=3</cite>. 이 섹션 이후에는 각 터빈의 형상과 모션이 제공됩니다. 각 터빈의 입력에는 접미사가 있어야 합니다. <cite>(i)</cite> 여기서 <cite>i</cite> 는 터빈 번호입니다( <cite>터빈 수=1</cite>그러면 <cite>i=1</cite>). 각 터빈의 출력은 접미사를 사용하여 별도의 파일에 기록됩니다. <cite>.Ti</cite> 여기서 <cite>i</cite> 는 터빈 번호입니다(터빈 1개만 사용하는 경우 접미사는 추가되지 않음).</p>
-<p>두 개의 풍력터빈을 사용한 구성의 예는 다음과 같습니다. <a class="reference internal" href="#fig-multirotor"><span class="std std-numref">그림 4.7</span></a>. 그림은 터빈 베이스 프레임(t), 나셀 프레임(n), 허브 프레임(h), 블레이드 프레임(b) 등 각 터빈과 연관된 다양한 프레임과 원점을 정의합니다. 표기법과 규칙은 터빈 프레임이 타워 베이스에서 시작되지 않는다는 점을 제외하면 OpenFAST 프레임을 따릅니다. 터빈의 규정된 동작은 터빈 원점에서 발생합니다. Yawing은 주변에서 발생합니다. <span class="math notranslate nohighlight">\(z_n\)</span> 축, 로터는 <span class="math notranslate nohighlight">\(x_h\)</span> 축 및 블레이드 피칭이 개인 주위에서 발생합니다. <span class="math notranslate nohighlight">\(z_b\)</span> 축. 다양한 프레임의 정의는 기본(HAWT) 입력 형식 정의를 사용할 때 표준화되고, 고급 입력 형식을 사용할 때 임의로 정의됩니다. 자세한 내용은 다음 단락에 설명되어 있습니다.</p>
+<p>설명에서 언급했듯이 터빈 수는 1이어야 합니다. <cite>AnalysisType=2</cite> 및 <cite>AnalysisType=3</cite>. 이 섹션 이후에는 각 터빈의 형상과 모션이 제공됩니다. 각 터빈의 입력에는 접미사가 있어야 합니다. <cite>(i)</cite> 여기서 <cite>i</cite> 터빈 번호입니다( <cite>NumTurbines=1</cite>, 그 다음에 <cite>i=1</cite>). 각 터빈의 출력은 접미사를 사용하여 별도의 파일에 기록됩니다. <cite>.Ti</cite> 여기서 <cite>i</cite> 는 터빈 번호입니다(터빈을 1개만 사용할 경우 접미사는 추가되지 않습니다).</p>
+<p>두 개의 풍력 터빈을 사용한 구성의 예가 그림에 나와 있습니다. <a class="reference internal" href="#fig-multirotor"><span class="std std-numref">그림 4.7</span></a>. 그림은 터빈 베이스 프레임(t), 나셀 프레임(n), 허브 프레임(h), 블레이드 프레임(b) 등 각 터빈과 관련된 다양한 프레임과 원점을 정의합니다. 표기법과 규칙은 터빈 프레임이 타워 베이스에서 시작되지 않는다는 점을 제외하고는 OpenFAST 프레임을 따릅니다. 터빈의 규정된 동작은 터빈 원점에서 발생합니다. Yawing은 주변에서 발생합니다. <span class="math notranslate nohighlight">\(z_n\)</span> 축을 중심으로 로터가 회전합니다. <span class="math notranslate nohighlight">\(x_h\)</span> 축과 블레이드 피칭이 개인 주위에서 발생합니다. <span class="math notranslate nohighlight">\(z_b\)</span> 축. 다양한 프레임의 정의는 기본(HAWT) 입력 형식 정의를 사용할 때 표준화되고, 고급 입력 형식을 사용할 때 임의로 정의됩니다. 자세한 내용은 다음 단락에 설명되어 있습니다.</p>
 <div class="figure align-default" id="fig-multirotor">
 <a class="reference internal image-reference" href="../../../_images/MultiRotor.png"><img alt="../../../_images/MultiRotor.png" src="../../../_images/MultiRotor.png" style="width: 80%;"></a>
 <p class="caption"><span class="caption-number">그림 4.7 </span><span class="caption-text">다중 로터의 정의.</span><a class="headerlink" href="#fig-multirotor" title="이 이미지에 대한 영구 링크"></a></p>
 </div>
-<p><strong>터빈 형상 정의</strong></p>
+<p><strong>터빈 기하학 정의</strong></p>
 <p>두 가지 터빈 입력 형식이 지원됩니다.</p>
 <ul>
-<li><p>기본(<cite>BasicHAWTFormat=True</cite>): 기본 수평축 풍력터빈(HAWT) 형식입니다. 이 형식에서 터빈 형상은 전적으로 블레이드 수(<cite>NumBlades</cite>), 허브 반경(<cite>HubRad</cite>), 허브 높이(<cite>HubHt</cite>), 오버행(<cite>오버행</cite>), 샤프트 기울기(<cite>ShftTilt</cite>), 프리콘(<cite>프리콘</cite>), 타워 상단에서 로터 샤프트까지의 수직 거리(<cite>Twr2Shft</cite>), 그림과 같이 <a class="reference internal" href="#fig-basicgeometry"><span class="std std-numref">그림 4.8</span></a>. 각 매개변수의 정의는 ElastoDyn 규칙을 따릅니다. 예를 들어, <cite>HubRad</cite> 는 블레이드 피치 축을 따라 회전 중심에서 블레이드 루트까지의 반경을 지정하며 0보다 커야 합니다. <cite>HubHt</cite> 는 해상 풍력 및 부유식 MHK 터빈의 경우 평균 해수면(MSL)을 기준으로, 고정 MHK 터빈의 경우 해저를 기준으로 육상 기반 풍력터빈의 경우 지상 위 허브 중심의 고도를 지정합니다. MSL 아래에 허브가 위치한 플로팅 MHK 터빈의 경우, <cite>HubHt</cite> 는 음수여야 합니다. <cite>오버행</cite> 는 타워 중심선과 허브 중심 사이의(기울어질 수 있는) 로터 샤프트를 따라 거리를 지정하며 양의 풍하 방향입니다(상풍 로터의 경우 음수 사용). <cite>ShftTilt</cite> 는 로터 샤프트와 수평면 사이의 각도(도)이며 양수입니다. <cite>ShftTilt</cite> 는 샤프트의 풍하측 끝이 가장 높다는 것을 의미합니다(상향형 터빈은 음수 값을 갖습니다).
-향상된 타워 클리어런스를 위한 <cite>ShftTilt</cite> ). 부유식 MHK 터빈의 경우 다음 기호가 표시됩니다.
-동일한 샤프트 기울기를 얻으려면 <cite>ShftTilt</cite> 를 뒤집어야 합니다. 예를 들어, 부유식 역풍 MHK 터빈은 긍정적인 특성을 갖습니다.
-향상된 타워 클리어런스를 위한 <cite>ShftTilt</cite> . <cite>프리콘</cite> 는 편평한 로터 디스크와 블레이드에 의해 스윕되는 원뿔 사이의 각도(도)입니다. 양의 바람 방향(바람 방향 터빈은 음의 방향)입니다.
-향상된 타워 클리어런스를 위한 <cite>프리콘</cite> ). <cite>Twr2Shft</cite> 는 타워 상단에서 로터 샤프트까지의 수직 거리입니다. 타워 상단 아래에 로터가 있는 플로팅 MHK 터빈의 경우 이 값은 음수여야 합니다.</p>
+<li><p>기초적인 (<cite>BasicHAWTFormat=참</cite>): 기본 수평축 풍력 터빈(HAWT) 형식입니다. 이 형식에서 터빈 형상은 전적으로 블레이드 수(<cite>NumBlades</cite>), 허브 반경(<cite>HubRad</cite>), 허브 높이(<cite>HubHt</cite>), 돌출부(<cite>위에 걸리다</cite>), 샤프트 기울기(<cite>ShftTilt</cite>), 프리콘(<cite>프리콘</cite>), 타워 상단에서 로터 샤프트까지의 수직 거리(<cite>Twr2Shft</cite>)에 표시된 것처럼 <a class="reference internal" href="#fig-basicgeometry"><span class="std std-numref">그림 4.8</span></a>. 각 매개변수의 정의는 ElastoDyn 규칙을 따릅니다. 예를 들어, <cite>HubRad</cite> 블레이드 피치 축을 따라 회전 중심에서 블레이드 루트까지의 반경을 지정하며 0보다 커야 합니다. <cite>HubHt</cite> 해상 풍력 및 부유식 MHK 터빈의 경우 평균 해수면(MSL)을 기준으로, 고정형 MHK 터빈의 경우 해저를 기준으로 육상 기반 풍력 터빈의 경우 지상 위 허브 중심의 고도를 지정합니다. MSL 아래에 허브가 위치한 플로팅 MHK 터빈의 경우, <cite>HubHt</cite> 음수여야 합니다. <cite>위에 걸리다</cite> 타워 중심선과 허브 중심 사이의(기울어질 수 있는) 로터 샤프트를 따라 거리를 지정하며 양의 바람 방향입니다(바람이 불어오는 로터에는 음수 사용). <cite>ShftTilt</cite> 는 로터 샤프트와 수평면 사이의 각도(도)이며 양수입니다. <cite>ShftTilt</cite> 이는 샤프트의 풍하측 끝이 가장 높다는 것을 의미합니다(상풍 터빈은 음수 값을 갖습니다). <cite>ShftTilt</cite> 향상된 타워 클리어런스를 위해). 플로팅 MHK 터빈의 경우 다음 기호가 표시됩니다. <cite>ShftTilt</cite> 동일한 샤프트 기울기를 얻으려면 뒤집어야 합니다. 예를 들어, 부유식 역풍 MHK 터빈은 양의 값을 갖습니다. <cite>ShftTilt</cite> 향상된 타워 클리어런스를 위해. <cite>프리콘</cite> 편평한 로터 디스크와 블레이드에 의해 스윕되는 원뿔 사이의 각도(도)입니다. 양의 바람이 불어오는 방향(바람을 받는 터빈은 음의 바람을 갖습니다) <cite>프리콘</cite> 향상된 타워 클리어런스를 위해). <cite>Twr2Shft</cite> 는 타워 꼭대기에서 로터 샤프트까지의 수직 거리입니다. 로터가 타워 상단 아래에 있는 플로팅 MHK 터빈의 경우 이 값은 음수여야 합니다.</p>
 <div class="figure align-default" id="fig-basicgeometry">
 <a class="reference internal image-reference" href="../../../_images/aerodyn_driver_geom.png"><img alt="../../../_images/aerodyn_driver_geom.png" src="../../../_images/aerodyn_driver_geom.png" style="width: 60%;"></a>
 <p class="caption"><span class="caption-number">그림 4.8 </span><span class="caption-text">기본 터빈 형상의 정의.</span><a class="headerlink" href="#fig-basicgeometry" title="이 이미지에 대한 영구 링크"></a></p>
 </div>
-<p>또한 사용자는 터빈 베이스의 원점을 다음 위치에 제공해야 합니다. <cite>t=0</cite> (<cite>BaseOriginInit</cite>). 고정식 MHK 터빈의 경우, <cite>BaseOriginInit</cite> 는 해저를 기준으로 입력됩니다. 부유식 MHK 터빈의 경우, <cite>BaseOriginInit</cite> 는 MSL을 기준으로 입력되며, 터빈 베이스가 MSL 아래에 있는 경우 수직 성분은 음수입니다. 기본 입력의 예는 다음과 같습니다.</p>
+<p>또한 사용자는 터빈 베이스의 원점을 다음 위치에 제공해야 합니다. <cite>t=0</cite> (<cite>BaseOriginInit</cite>). 고정식 MHK 터빈의 경우, <cite>BaseOriginInit</cite> 해저를 기준으로 입력됩니다. 플로팅 MHK 터빈의 경우, <cite>BaseOriginInit</cite> 는 MSL에 상대적인 입력이고, 터빈 베이스가 MSL 아래에 있으면 수직 성분은 음수입니다. 기본 입력의 예는 다음과 같습니다.</p>
 </li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-----</span> <span class="n">Turbine</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="n">Geometry</span> <span class="o">-------------------------------------------------------</span>
@@ -253,11 +244,10 @@ MHK 터빈용</cite> . <cite>패텀</cite> 는 자유 표면 위의 대기압입
 </pre></div>
 </div>
 <ul>
-<li><p>고급(<cite>BasicHAWTFormat=거짓</cite>): 타워 베이스, 나셀, 허브 및 개별 블레이드의 위치와 방향을 임의로 정의할 수 있습니다. 이는 HAWT 및 기타 터빈 개념에 사용될 수 있습니다. 다양한 프레임의 정의는 다음과 같습니다. <a class="reference internal" href="#fig-multirotor"><span class="std std-numref">그림 4.7</span></a>. 위치(<cite>BaseOriginInit</cite>) 및 방향(<cite>BaseOrientationInit</cite>)는 전역 프레임을 기준으로 정의됩니다. 수직 구성 요소 <cite>BaseOriginInit</cite> 는 고정식 MHK 터빈의 경우 해저를 기준으로 정의되고 부유식 MHK 터빈의 경우 MSL을 기준으로 정의됩니다. 방향은 세 개의 연속 회전 값(x-y-z 오일러 각도 시퀀스)을 사용하여 제공됩니다. 베이스가 모션을 겪는 경우 베이스 프레임의 방향은 시간에 따라 변하는 회전과 이러한 초기 회전으로 구성됩니다.</p>
-<p>터빈에 타워가 있는지 여부를 나타내는 플래그가 다음 줄에 제공됩니다(<cite>HasTower</cite>). 이 플래그는 현재 VTK 출력에 영향을 미치며 아직 AeroDyn에는 영향을 미치지 않습니다. 사용자는 여전히 각 터빈에 대해 AeroDyn에 타워 입력 데이터를 제공해야 합니다(참조: <a class="reference internal" href="#ad-inputs-multirot"><span class="std std-numref">섹션 4.3.6.3</span></a>). 다음 줄은 AeroDyn이 계산에 사용할 투영을 나타냅니다. 사용하는 것이 좋습니다 <cite>HAWT투영=참
-HAWT용</cite> 는 AeroDyn에서 사용되는 기본 투영(원뿔 피치 축의 투영)입니다. 다른 로터 개념의 경우 다음을 설정하십시오. <cite>HAWT투영=거짓</cite>. 다음 줄은 타워, 나셀 및 허브의 위치와 방향을 나타냅니다.</p>
-<p>타워와 나셀은 터빈 베이스(t) 원점과 프레임을 기준으로 정의됩니다. 타워 꼭대기는 나셀 원점과 일치하는 것으로 가정됩니다. AeroDyn 입력 파일에 정의된 타워 스테이션은 지상/MSL을 참조로 사용하는 OpenFAST와 달리 타워 원점을 기준으로 제공되는 것으로 가정됩니다. <a class="reference internal" href="#ad-inputs-multirot"><span class="std std-numref">섹션 4.3.6.3</span></a>). 부유형 MHK 터빈의 경우, <cite>TwrOrigin_t</cite> 및 <cite>NacOrigin_t</cite> 는 타워 원점과 나셀 원점이 터빈 베이스 아래에 있는 경우 음수입니다. 허브는 나셀 원점과 프레임(n)을 기준으로 정의됩니다. 수직 구성 요소 <cite>HubOrigin_n</cite> 는 허브 원점이 나셀 원점 아래에 있는 경우(즉, 타워 상단) 플로팅 MHK 터빈에 대해 음수입니다.</p>
-<p>블레이드의 정의는 블레이드 수로 시작하여 따릅니다. <cite>NumBlades</cite>. 블레이드가 없는 로터가 지원되며 격리된 타워를 모델링하는 데 사용할 수 있습니다. AeroDyn에서 타워 그림자/전위가 사용되는 경우 OLAF를 사용할 때 격리된 타워가 와류 후류의 흐름을 방해합니다. BEM을 사용하면 특정 터빈 블레이드의 흐름이 해당 터빈 타워에 의해서만 방해를 받습니다. 터빈 입력 <cite>i</cite> 및 블레이드 <cite>j</cite> 라벨이 붙어 있습니다 <cite>(i_j)</cite>. 원산지 (<cite>BldOrigin_h</cite>) 및 방향(<cite>BldOrientation_h</cite>)는 허브 원점과 프레임(h)을 기준으로 지정됩니다. 허브 반경 입력(<cite>BldHubRad_Bl</cite>)는 편의를 위해 제공됩니다. 그들은 블레이드 원점을 따라 블레이드 원점을 효과적으로 상쇄합니다. <span class="math notranslate nohighlight">\(z_b\)</span> 축. 고급 형상 정의에 대한 입력 예는 다음과 같습니다. 이 예는 6도의 경사(OpenFAST에서 -6) 및 -4도의 프리콘(블레이드가 상류로 기울어짐)을 갖는 3 블레이드 역풍 HAWT의 일반적인 값에 해당합니다.</p>
+<li><p>고급의 (<cite>BasicHAWTFormat=거짓</cite>): 타워 베이스, 나셀, 허브 및 개별 블레이드의 위치와 방향을 임의로 정의할 수 있습니다. 이는 HAWT 및 기타 터빈 개념에 사용될 수 있습니다. 다양한 프레임의 정의는 다음과 같습니다. <a class="reference internal" href="#fig-multirotor"><span class="std std-numref">그림 4.7</span></a>. 위치(<cite>BaseOriginInit</cite>) 및 방향(<cite>BaseOrientationInit</cite>)의 터빈 베이스 프레임은 전역 프레임을 기준으로 정의됩니다. 수직 구성 요소 <cite>BaseOriginInit</cite> 고정식 MHK 터빈의 경우 해저를 기준으로 정의되고 부유식 MHK 터빈의 경우 MSL를 기준으로 정의됩니다. 방향은 세 개의 연속 회전 값(x-y-z 오일러 각도 시퀀스)을 사용하여 제공됩니다. 베이스가 모션을 겪는 경우 베이스 프레임의 방향은 시간에 따라 변하는 회전과 이러한 초기 회전으로 구성됩니다.</p>
+<p>터빈에 타워가 있는지 여부를 나타내는 플래그가 다음 줄에 제공됩니다(<cite>HasTower</cite>). 이 플래그는 현재 VTK 출력에 영향을 미치며 아직 AeroDyn에는 영향을 미치지 않습니다. 사용자는 여전히 각 터빈에 대해 AeroDyn에 타워 입력 데이터를 제공해야 합니다(참조: <a class="reference internal" href="#ad-inputs-multirot"><span class="std std-numref">섹션 4.3.6.3</span></a>). 다음 줄은 계산에 사용할 투영 AeroDyn를 나타냅니다. 사용하는 것이 좋습니다 <cite>HAWTprojection=참</cite> HAWT의 경우 AeroDyn(원뿔 피치 축의 프로젝트)에 사용되는 기본 투영입니다. 다른 로터 개념의 경우 다음을 설정하십시오. <cite>HAWTprojection=거짓</cite>. 다음 줄은 타워, 나셀 및 허브의 위치와 방향을 나타냅니다.</p>
+<p>타워와 나셀은 터빈 베이스(t) 원점과 프레임을 기준으로 정의됩니다. 타워 꼭대기는 나셀 원점과 일치하는 것으로 가정됩니다. AeroDyn 입력 파일에 정의된 타워 스테이션은 지상/MSL를 참조로 사용하는 OpenFAST와 달리 타워 원점을 기준으로 제공되는 것으로 가정됩니다(참조). <a class="reference internal" href="#ad-inputs-multirot"><span class="std std-numref">섹션 4.3.6.3</span></a>). 플로팅 MHK 터빈의 경우 수직 구성 요소 <cite>TwrOrigin_t</cite> 및 <cite>NacOrigin_t</cite> 타워 원점과 나셀 원점이 터빈 베이스 아래에 있으면 음수입니다. 허브는 나셀 원점과 프레임(n)을 기준으로 정의됩니다. 수직 구성 요소 <cite>HubOrigin_n</cite> 허브 원점이 나셀 원점 아래에 있는 경우(즉, 타워 상단) 플로팅 MHK 터빈의 경우 음수입니다.</p>
+<p>블레이드의 정의는 블레이드 수부터 시작됩니다. <cite>NumBlades</cite>. 블레이드가 없는 로터가 지원되며 격리된 타워를 모델링하는 데 사용할 수 있습니다. AeroDyn에서 타워 그림자/전위가 사용되는 경우 격리된 타워는 OLAF를 사용할 때 와류 후류의 흐름을 방해합니다. BEM를 사용하면 해당 터빈 블레이드의 흐름이 해당 터빈 타워에 의해서만 방해를 받습니다. 터빈 입력 <cite>i</cite> 그리고 블레이드 <cite>j</cite> 라벨이 붙어있다 <cite>(i_j)</cite>. 원산지(<cite>BldOrigin_h</cite>) 및 방향(<cite>BldOrientation_h</cite>) 각 블레이드의 허브 원점 및 프레임(h)에 대해 제공됩니다. 허브 반경 입력(<cite>BldHubRad_Bl</cite>) 편의를 위해 제공됩니다. 그들은 블레이드 원점을 따라 블레이드 원점을 효과적으로 상쇄합니다. <span class="math notranslate nohighlight">\(z_b\)</span> 중심선. 고급 형상 정의에 대한 입력 예는 다음과 같습니다. 이 예는 6도의 경사(OpenFAST에서 -6) 및 -4도의 프리콘(블레이드가 상류로 기울어짐)을 갖는 3개의 블레이드 역풍 HAWT의 일반적인 값에 해당합니다.</p>
 </li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-----</span> <span class="n">Turbine</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="n">Geometry</span> <span class="o">-------------------------------------------------------</span>
@@ -284,9 +274,9 @@ HAWT용</cite> 는 AeroDyn에서 사용되는 기본 투영(원뿔 피치 축의
 </pre></div>
 </div>
 <p><strong>터빈 모션 정의</strong></p>
-<p>터빈 동작의 정의는 다음과 같은 경우에만 사용됩니다. <cite>분석 유형=1</cite>, 그러나 항상 입력 파일에 있어야 합니다.</p>
-<p>기본 형상이나 고급 형상에 대해서도 동일한 방식으로 베이스 모션이 제공됩니다. 베이스의 움직임은 다음과 같습니다. 고정(<cite>베이스모션유형=0</cite>), 정현파(<cite>베이스모션유형=1</cite>) 또는 임의(<cite>베이스모션유형=2</cite>). 터빈 베이스 모션은 터빈 베이스의 초기 위치와 방향을 적용하기 전에 각 시간 단계에서 적용됩니다. 정현파 운동은 1개의 자유도(<cite>DegreeOfFreedom</cite>)는 주어진 진폭(<cite>진폭</cite>) 및 주파수(<cite>주파수</cite>(Hz), 위상이 0입니다. 6가지 가능한 자유도는 전역 좌표(g)(예: 서지, 흔들림, 히브, 롤, 피치, 요)에서 기본 프레임의 변환 또는 회전에 해당합니다. 임의의 동작은 CSV 파일을 통해 지정됩니다(<cite>BaseMotionFileName</cite>)에는 시간, 3개의 변환(전역), 3개의 연속 회전(전역), 3개의 변환 속도, 3개의 회전 속도(오메가, 전역), 3개의 변환 가속도 및 3개의 회전 가속도(알파, 전역) 등 19개의 열이 포함되어 있습니다. 임의 입력 파일의 예는 다음과 같습니다. <a class="reference internal" href="#ad-inputfiles-examples"><span class="std std-numref">섹션 4.3.6.4</span></a>. 모션 파일의 시간 벡터는 오름차순이어야 하지만 선형일 필요는 없습니다. 드라이버는 선형 보간을 사용하여 주어진 시간에 입력을 결정합니다. 변위/방향, 속도 및 가속도는 일관성을 위해 내부적으로 확인되지 않습니다.</p>
-<p>사인파 서지 모션에 대한 입력의 예는 다음과 같습니다.</p>
+<p>터빈 운동의 정의는 다음과 같은 경우에만 사용됩니다. <cite>AnalysisType=1</cite>이지만 항상 입력 파일에 있어야 합니다.</p>
+<p>기본 모션은 기본 또는 고급 형상에 대해 동일한 방식으로 제공됩니다. 베이스의 움직임은 다음과 같습니다. 고정(<cite>BaseMotionType=0</cite>), 정현파(<cite>BaseMotionType=1</cite>) 또는 임의의 (<cite>BaseMotionType=2</cite>). 터빈 베이스 모션은 터빈 베이스의 초기 위치와 방향을 적용하기 전에 각 시간 단계에서 적용됩니다. 정현파 운동은 1개의 자유도(<cite>DegreeOfFreedom</cite>) 터빈 베이스는 주어진 진폭(<cite>진폭</cite>) 및 빈도(<cite>빈도</cite>, Hz 단위), 위상이 0입니다. 6가지 가능한 자유도는 전역 좌표(g)(예: 서지, 흔들림, 히브, 롤, 피치, 요)에서 기본 프레임의 변환 또는 회전에 해당합니다. 임의의 모션은 CSV 파일을 통해 지정됩니다(<cite>BaseMotionFileName</cite>)에는 시간, 3개의 변환(전역), 3개의 연속 회전(전역), 3개의 변환 속도, 3개의 회전 속도(오메가, 전역), 3개의 변환 가속도 및 3개의 회전 가속도(전역에서 알파) 등 19개의 열이 포함되어 있습니다. 임의 입력 파일의 예는 다음과 같습니다. <a class="reference internal" href="#ad-inputfiles-examples"><span class="std std-numref">섹션 4.3.6.4</span></a>. 모션 파일의 시간 벡터는 오름차순이어야 하지만 선형일 필요는 없습니다. 드라이버는 선형 보간을 사용하여 주어진 시간에 입력을 결정합니다. 변위/방향, 속도 및 가속도는 일관성을 위해 내부적으로 확인되지 않습니다.</p>
+<p>사인곡선 서지 모션에 대한 입력의 예는 다음과 같습니다.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-----</span> <span class="n">Turbine</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="n">Motion</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">AnalysisType</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span> <span class="o">--------------------------</span>
 <span class="mi">1</span>         <span class="n">BaseMotionType</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>      <span class="o">-</span> <span class="n">Type</span> <span class="n">of</span> <span class="n">motion</span> <span class="n">prescribed</span> <span class="k">for</span> <span class="n">this</span> <span class="n">base</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="n">fixed</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="n">Sinusoidal</span> <span class="n">motion</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="n">arbitrary</span> <span class="n">motion</span><span class="p">}</span> <span class="p">(</span><span class="n">flag</span><span class="p">)</span>
 <span class="mi">1</span>         <span class="n">DegreeOfFreedom</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>     <span class="o">-</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span><span class="n">xg</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="n">yg</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span><span class="n">zg</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span><span class="n">theta_xg</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span><span class="n">theta_yg</span><span class="p">,</span> <span class="mi">6</span><span class="p">:</span><span class="n">theta_zg</span><span class="p">}</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">BaseMotionType</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span> <span class="p">(</span><span class="n">flag</span><span class="p">)</span>
@@ -297,7 +287,7 @@ HAWT용</cite> 는 AeroDyn에서 사용되는 기본 투영(원뿔 피치 축의
 </div>
 <p>기본 및 고급 형상에 대한 다양한 입력은 다음과 같습니다.</p>
 <ul class="simple">
-<li><p>기본: 기본 터빈의 모션은 일정한 나셀 요(<cite>NacYaw</cite>, 수직 타워 축을 기준으로 나셀의 양의 회전(아래를 볼 때 시계 반대 방향), 로터 속도(<cite>RotSpeed</cite>, 바람이 불어오는 쪽을 바라보며 양의 시계 방향) 및 블레이드 피치(<cite>BldPitch</cite>, 주변에 음수 <span class="math notranslate nohighlight">\(z_b\)</span>). 부유식 MHK 터빈의 경우, <cite>NacYaw</cite> 는 동일한 전체 요 방향(즉, 아래쪽을 볼 때 시계 방향으로 수직 타워 축을 중심으로 나셀이 양의 회전)을 달성하도록 뒤집어야 합니다. 예는 다음과 같습니다.</p></li>
+<li><p>기본: 기본 터빈의 운동은 일정한 나셀 요(<cite>NacYaw</cite>, 수직 타워 축을 기준으로 나셀의 양의 회전, 아래쪽을 볼 때 시계 반대 방향), 로터 속도(<cite>RotSpeed</cite>, 바람이 부는 쪽을 바라보며 시계 방향으로 양의 값) 및 블레이드 피치(<cite>BldPitch</cite>, 주위에 부정적인 <span class="math notranslate nohighlight">\(z_b\)</span>). 플로팅 MHK 터빈의 경우, <cite>NacYaw</cite> 동일한 전체 요 방향을 달성하려면 뒤집어야 합니다(즉, 아래쪽을 볼 때 시계 방향으로 수직 타워 축을 중심으로 나셀이 양의 회전). 예는 다음과 같습니다.</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span>         <span class="n">NacYaw</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>        <span class="o">-</span> <span class="n">Yaw</span> <span class="n">angle</span> <span class="p">(</span><span class="n">about</span> <span class="n">z_t</span><span class="p">)</span> <span class="n">of</span> <span class="n">the</span> <span class="n">nacelle</span> <span class="p">(</span><span class="n">deg</span><span class="p">)</span>
 <span class="mi">7</span>         <span class="n">RotSpeed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>      <span class="o">-</span> <span class="n">Rotational</span> <span class="n">speed</span> <span class="n">of</span> <span class="n">rotor</span> <span class="ow">in</span> <span class="n">rotor</span> <span class="n">coordinates</span> <span class="p">(</span><span class="n">rpm</span><span class="p">)</span>
@@ -305,7 +295,7 @@ HAWT용</cite> 는 AeroDyn에서 사용되는 기본 투영(원뿔 피치 축의
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>고급: 고급 형상이 제공되고 블레이드 수가 0이 아닌 경우 모션 섹션에는 나셀 모션, 로터 모션 및 개별 블레이드 피치 모션에 대한 옵션이 포함됩니다. 이러한 각 동작의 구문은 유형(고정 또는 시변) 정의, 고정 사례에 대한 값 또는 시변 사례에 대한 파일로 구성됩니다. 입력 파일은 시간, 위치, 속도, 가속도가 포함된 CSV 파일입니다. 파일의 예는 다음과 같습니다. <a class="reference internal" href="#ad-inputfiles-examples"><span class="std std-numref">섹션 4.3.6.4</span></a>. 변위/방향, 속도 및 가속도는 일관성을 위해 내부적으로 확인되지 않습니다. 모션 파일의 시간 벡터는 오름차순이어야 하지만 선형일 필요는 없습니다. 드라이버는 선형 보간을 사용하여 주어진 시간에 입력을 결정합니다. CSV 파일의 각도 및 회전 데이터는 rad 및 rad/s로 정의되는 반면, 드라이버 입력 파일에서는 deg 및 rpm으로 정의됩니다. 고정된 회전 속도에 대한 예가 아래에 나와 있습니다.</p></li>
+<li><p>고급: 고급 형상이 제공되고 블레이드 수가 0이 아닌 경우 모션 섹션에는 나셀 모션, 로터 모션 및 개별 블레이드 피치 모션에 대한 옵션이 포함됩니다. 이러한 각 동작의 구문은 유형(고정 또는 시변) 정의, 고정 사례에 대한 값 또는 시변 사례에 대한 파일로 구성됩니다. 입력 파일은 시간, 위치, 속도 및 가속도가 포함된 CSV 파일입니다. 파일의 예는 다음과 같습니다. <a class="reference internal" href="#ad-inputfiles-examples"><span class="std std-numref">섹션 4.3.6.4</span></a>. 변위/방향, 속도 및 가속도는 일관성을 위해 내부적으로 확인되지 않습니다. 모션 파일의 시간 벡터는 오름차순이어야 하지만 선형일 필요는 없습니다. 드라이버는 선형 보간을 사용하여 주어진 시간에 입력을 결정합니다. CSV 파일의 각도 및 회전 데이터는 rad 및 rad/s로 정의되는 반면, 드라이버 입력 파일에서는 deg 및 rpm으로 정의됩니다. 고정된 회전 속도에 대한 예가 아래에 나와 있습니다.</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span>         <span class="n">NacMotionType</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>       <span class="o">-</span> <span class="n">Type</span> <span class="n">of</span> <span class="n">motion</span> <span class="n">prescribed</span> <span class="k">for</span> <span class="n">the</span> <span class="n">nacelle</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="n">fixed</span> <span class="n">yaw</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="n">time</span> <span class="n">varying</span> <span class="n">yaw</span> <span class="n">angle</span><span class="p">}</span> <span class="p">(</span><span class="n">flag</span><span class="p">)</span>
 <span class="mi">0</span>         <span class="n">NacYaw</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>              <span class="o">-</span> <span class="n">Yaw</span> <span class="n">angle</span> <span class="p">(</span><span class="n">about</span> <span class="n">z_t</span><span class="p">)</span> <span class="n">of</span> <span class="n">the</span> <span class="n">nacelle</span> <span class="p">[</span><span class="n">user</span> <span class="n">only</span> <span class="n">when</span> <span class="n">NacMotionType</span><span class="o">=</span><span class="mi">0</span><span class="p">]</span> <span class="p">(</span><span class="n">deg</span><span class="p">)</span>
@@ -322,14 +312,14 @@ HAWT용</cite> 는 AeroDyn에서 사용되는 기본 투영(원뿔 피치 축의
 <span class="s2">"unused"</span>  <span class="n">BldMotionFileName</span><span class="p">(</span><span class="mi">1_3</span><span class="p">)</span> <span class="o">-</span> <span class="n">Filename</span> <span class="n">containing</span> <span class="n">blade</span> <span class="n">pitch</span> <span class="n">motion</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">BldMotionType</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
-<p><strong>시간 종속 분석</strong></p>
-<p>시간 종속 분석은 시뮬레이션 중에 몇 가지 표준 변수를 변경하는 데 사용됩니다. 변수는 다음과 같습니다. 기준 풍속(<cite>HWndSpeed</cite>), 멱법칙 지수(<cite>PExp</cite>), 로터 속도(<cite>RotSpd</cite>), 집단 피치(<cite>피치</cite>) 및 나셀 요(<cite>요</cite>). 각 변수의 시계열은 CSV 파일(<cite>TimeAnalysisFileName</cite>). 시간 의존적 분석은 다음을 사용하여 선택됩니다. <cite>분석 유형=2</cite>. 하나의 터빈으로 제한됩니다(<cite>수터빈=1</cite>).</p>
+<p><strong>시간 의존적 분석</strong></p>
+<p>시간 종속 분석은 시뮬레이션 중에 몇 가지 표준 변수를 변경하는 데 사용됩니다. 변수는 다음과 같습니다. 기준 풍속(<cite>HWndSpeed</cite>), 거듭제곱법칙 지수(<cite>PLExp</cite>), 로터 속도(<cite>RotSpd</cite>), 집합피치(<cite>정점</cite>) 및 나셀 요(<cite>편주</cite>). 각 변수의 시계열은 CSV 파일(<cite>TimeAnalysisFileName</cite>). 시간 의존적 분석은 다음을 사용하여 선택됩니다. <cite>AnalysisType=2</cite>. 하나의 터빈으로 제한됩니다(<cite>numTurbines=1</cite>).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-----</span> <span class="n">Time</span><span class="o">-</span><span class="n">dependent</span> <span class="n">Analysis</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">AnalysisType</span><span class="o">=</span><span class="mi">2</span> <span class="ow">and</span> <span class="n">numTurbines</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span> <span class="o">------</span>
 <span class="s2">"TimeSeries.csv"</span> <span class="n">TimeAnalysisFileName</span> <span class="o">-</span> <span class="n">Filename</span> <span class="n">containing</span> <span class="n">time</span> <span class="n">series</span> <span class="p">(</span><span class="mi">6</span> <span class="n">column</span><span class="p">:</span> <span class="n">Time</span><span class="p">,</span> <span class="n">HWndSpeed</span><span class="p">,</span> <span class="n">PLExp</span><span class="p">,</span> <span class="n">RotSpd</span><span class="p">,</span> <span class="n">Pitch</span><span class="p">,</span> <span class="n">Yaw</span><span class="p">)</span><span class="o">.</span>
 </pre></div>
 </div>
 <p><strong>결합 사례 분석</strong></p>
-<p>결합 사례 분석은 한 번의 실행으로 파라메트릭 연구를 실행하는 데 사용됩니다. 그들은 다음을 사용하여 선택됩니다. <cite>분석 유형=3</cite>, 하나의 터빈으로 제한됩니다(<cite>수터빈=1</cite>). 각 시뮬레이션에 대해 변경할 수 있는 변수는 다음과 같습니다. 기준 풍속(<cite>HWndSpeed</cite>), 멱법칙 지수(<cite>PExp</cite>), 로터 속도(<cite>RotSpd</cite>), 집단 피치(<cite>피치</cite>), 나셀 요(<cite>요</cite>), 시간 단계(<cite>dT</cite>), 시뮬레이션 시간(<cite>티맥스</cite>) 및 정현파 모션 매개변수(자유도, <cite>DOF</cite>, 진폭 및 주파수). 언제 <cite>DOF=0</cite>, 터빈 베이스가 고정되어 있습니다.</p>
+<p>결합 사례 분석은 한 번의 실행으로 파라메트릭 연구를 실행하는 데 사용됩니다. 그들은 다음을 사용하여 선택됩니다. <cite>AnalysisType=3</cite>, 하나의 터빈으로 제한됩니다(<cite>numTurbines=1</cite>). 각 시뮬레이션에 대해 변경할 수 있는 변수는 다음과 같습니다. 기준 풍속(<cite>HWndSpeed</cite>), 거듭제곱법칙 지수(<cite>PLExp</cite>), 로터 속도(<cite>RotSpd</cite>), 집합피치(<cite>정점</cite>), 나셀 요(<cite>편주</cite>), 시간 단계(<cite>dT</cite>), 시뮬레이션 시간(<cite>티맥스</cite>) 및 정현파 모션 매개변수(자유도, <cite>DOF</cite>, 진폭 및 주파수). 언제 <cite>DOF=0</cite>, 터빈 베이스가 고정되어 있습니다.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-----</span> <span class="n">Combined</span><span class="o">-</span><span class="n">Case</span> <span class="n">Analysis</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">AnalysisType</span><span class="o">=</span><span class="mi">3</span> <span class="ow">and</span> <span class="n">numTubines</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span> <span class="o">------</span>
          <span class="mi">4</span>  <span class="n">NumCases</span>     <span class="o">-</span> <span class="n">Number</span> <span class="n">of</span> <span class="n">cases</span> <span class="n">to</span> <span class="n">run</span>
 <span class="n">HWndSpeed</span>  <span class="n">PLExp</span>   <span class="n">RotSpd</span>   <span class="n">Pitch</span>   <span class="n">Yaw</span>    <span class="n">dT</span>      <span class="n">Tmax</span>   <span class="n">DOF</span>   <span class="n">Amplitude</span>  <span class="n">Frequency</span>
@@ -341,7 +331,7 @@ HAWT용</cite> 는 AeroDyn에서 사용되는 기본 투영(원뿔 피치 축의
 </pre></div>
 </div>
 <p><strong>출력</strong></p>
-<p>출력 섹션은 OpenFAST 출력과 유사하게 표 형식 출력 파일 및 VTK 파일의 형식을 제어합니다. 사용자는 VTK 시각화를 위해 허브 반경과 나셀 치수를 제어할 수 있습니다. 허브는 반경(<cite>VTKHubRad</cite>), 원점과 나셀 좌표에 평행한 세 개의 길이를 사용하여 정의된 평행육면체를 갖춘 나셀(<cite>VTKNacDim</cite>).</p>
+<p>출력 섹션은 OpenFAST 출력과 유사하게 표 형식 출력 파일 및 VTK 파일의 형식을 제어합니다. 사용자는 VTK 시각화를 위해 허브 반경과 나셀 치수를 제어할 수 있습니다. 허브는 반경(<cite>VTKHubRad</cite>), 원점과 나셀 좌표에 평행한 세 개의 길이를 사용하여 정의된 평행육면체를 갖는 나셀(<cite>VTKNacDim</cite>).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-----</span> <span class="n">Output</span> <span class="n">Settings</span> <span class="o">-------------------------------------------------------------------</span>
   <span class="s2">"ES15.8E2"</span>     <span class="n">OutFmt</span>      <span class="o">-</span> <span class="n">Format</span> <span class="n">used</span> <span class="k">for</span> <span class="n">text</span> <span class="n">tabular</span> <span class="n">output</span><span class="p">,</span> <span class="n">excluding</span> <span class="n">the</span> <span class="n">time</span> <span class="n">channel</span><span class="o">.</span>  <span class="n">Resulting</span> <span class="n">field</span> <span class="n">should</span> <span class="n">be</span> <span class="mi">10</span> <span class="n">characters</span><span class="o">.</span> <span class="p">(</span><span class="n">quoted</span> <span class="n">string</span><span class="p">)</span>
 <span class="mi">2</span>                <span class="n">OutFileFmt</span>  <span class="o">-</span> <span class="n">Format</span> <span class="k">for</span> <span class="n">tabular</span> <span class="p">(</span><span class="n">time</span><span class="o">-</span><span class="n">marching</span><span class="p">)</span> <span class="n">output</span> <span class="n">file</span> <span class="p">(</span><span class="n">switch</span><span class="p">)</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="n">text</span> <span class="n">file</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">RootName</span><span class="o">&gt;.</span><span class="n">out</span><span class="p">],</span> <span class="mi">2</span><span class="p">:</span> <span class="n">binary</span> <span class="n">file</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">RootName</span><span class="o">&gt;.</span><span class="n">outb</span><span class="p">],</span> <span class="mi">3</span><span class="p">:</span> <span class="n">both</span><span class="p">}</span>
@@ -352,12 +342,12 @@ HAWT용</cite> 는 AeroDyn에서 사용되는 기본 투영(원뿔 피치 축의
 </div>
 </div>
 <div class="section" id="aerodyn-inputs-for-multiple-turbines">
-<span id="ad-inputs-multirot"></span><h2><span class="section-number">4.3.6.3. </span>AeroDyn 입력<a class="headerlink" href="#aerodyn-inputs-for-multiple-turbines" title="이 제목의 고유 링크"></a></h2>
-<p>하나의 터빈을 사용할 때 AeroDyn 입력 파일을 변경할 필요가 없습니다. 다중 터빈 구현의 영향을 최소화하기 위해 드라이버는 현재 모든 터빈에 대해 하나의 AeroDyn 입력 파일만 사용합니다. 이는 AeroDyn 옵션이 현재 모든 로터에 대해 동일하다는 것을 의미합니다.</p>
+<span id="ad-inputs-multirot"></span><h2><span class="section-number">4.3.6.3. </span>다중 터빈용 AeroDyn 입력<a class="headerlink" href="#aerodyn-inputs-for-multiple-turbines" title="이 제목에 대한 영구 링크"></a></h2>
+<p>하나의 터빈을 사용하는 경우 AeroDyn 입력 파일을 변경할 필요가 없습니다. 다중 터빈 구현의 영향을 최소화하기 위해 드라이버는 현재 모든 터빈에 대해 하나의 AeroDyn 입력 파일만 사용합니다. 이는 AeroDyn 옵션이 현재 모든 로터에 대해 동일하다는 것을 의미합니다.</p>
 <p>블레이드 파일과 타워, 허브 및 나셀 입력의 정의는 3개 이상의 블레이드가 사용되고 2개 이상의 터빈이 사용되는 경우 조정되어야 합니다.</p>
 <p><strong>블레이드 파일</strong></p>
 <p>레거시 AeroDyn 형식에는 최소 3개의 블레이드 파일 이름이 필요합니다. 이러한 이유로 현재 모든 로터의 블레이드는 연속적으로 표시됩니다. <cite>ADBlFile</cite> 목록. 목록은 터빈과 터빈 블레이드에 대한 루프를 통해 채워지며, 블레이드 인덱스가 가장 빠른 인덱스입니다. 현재로서는 모든 블레이드에 대해 스테이션 수가 동일해야 합니다.</p>
-<p>두 개의 터빈에 대한 예가 아래에 나와 있습니다. 첫 번째 터빈에는 3개의 블레이드가 있고 두 번째 터빈에는 2개의 블레이드가 있습니다.</p>
+<p>아래에는 두 개의 터빈에 대한 예가 나와 있습니다. 첫 번째 터빈에는 3개의 블레이드가 있고 두 번째 터빈에는 2개의 블레이드가 있습니다.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>======  Rotor/Blade Properties  =====================================================================
 True                   UseBlCm     - Include aerodynamic pitching moment in calculations?  (flag)
 "AD_Turbine1_blade1.dat" ADBlFile(1) - Name of file containing distributed aerodynamic properties for Blade #1 (-)
@@ -368,7 +358,7 @@ True                   UseBlCm     - Include aerodynamic pitching moment in calc
 </pre></div>
 </div>
 <p><strong>허브 및 나셀 입력</strong></p>
-<p>허브 및 나셀 매개변수를 정의하는 섹션도 각 터빈에 대해 재현되어야 합니다.</p>
+<p>허브와 나셀 매개변수를 정의하는 섹션도 각 터빈에 대해 재현되어야 합니다.</p>
 <p>아래에는 두 개의 터빈에 대한 예가 나와 있습니다.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">======</span>  <span class="n">Hub</span> <span class="n">Properties</span> <span class="o">==============================================================================</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">MHK</span><span class="o">=</span><span class="mi">1</span> <span class="ow">or</span> <span class="mi">2</span><span class="p">]</span>
 <span class="mf">7.0</span>   <span class="n">VolHub</span>                <span class="o">-</span> <span class="n">Hub</span> <span class="n">volume</span> <span class="p">(</span><span class="n">m</span><span class="o">^</span><span class="mi">3</span><span class="p">)</span>
@@ -391,7 +381,7 @@ True                   UseBlCm     - Include aerodynamic pitching moment in calc
 </pre></div>
 </div>
 <p><strong>공기역학적 타워 입력</strong></p>
-<p>AeroDyn의 전체 타워 입력 섹션은 타워가 없도록 설정된 터빈을 포함하여 각 터빈에 대해 재현되어야 합니다(<cite>hasTower=거짓</cite>). 스테이션 수는 터빈마다 다를 수 있습니다. AeroDyn 입력 파일에 정의된 타워 스테이션은 지상/MSL을 기준으로 사용하는 OpenFAST와 달리 타워 원점을 기준으로 제공되는 것으로 가정됩니다.</p>
+<p>AeroDyn의 전체 타워 입력 섹션은 타워가 없도록 설정된 터빈을 포함하여 각 터빈에 대해 재현되어야 합니다(<cite>hasTower=거짓</cite>). 스테이션 수는 터빈마다 다를 수 있습니다. AeroDyn 입력 파일에 정의된 타워 스테이션은 지상/MSL를 기준으로 사용하는 OpenFAST와 달리 타워 원점을 기준으로 제공되는 것으로 가정됩니다.</p>
 <p>아래에는 두 개의 터빈에 대한 예가 나와 있습니다.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">======</span>  <span class="n">Turbine</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="n">Tower</span> <span class="n">Influence</span> <span class="ow">and</span> <span class="n">Aerodynamics</span> <span class="o">================================================</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">TwrPotent</span><span class="o">/=</span><span class="mi">0</span><span class="p">,</span> <span class="n">TwrShadow</span><span class="o">/=</span><span class="mi">0</span><span class="p">,</span> <span class="n">TwrAero</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="ow">or</span> <span class="n">MHK</span><span class="o">=</span><span class="mi">1</span> <span class="ow">or</span> <span class="mi">2</span><span class="p">]</span>
 <span class="mi">2</span>   <span class="n">NumTwrNds</span>   <span class="o">-</span> <span class="n">Number</span> <span class="n">of</span> <span class="n">tower</span> <span class="n">nodes</span> <span class="n">used</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">analysis</span>  <span class="p">(</span><span class="o">-</span><span class="p">)</span> <span class="p">[</span><span class="n">used</span> <span class="n">only</span> <span class="n">when</span> <span class="n">TwrPotent</span><span class="o">/=</span><span class="mi">0</span><span class="p">,</span> <span class="n">TwrShadow</span><span class="o">/=</span><span class="mi">0</span><span class="p">,</span> <span class="n">TwrAero</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="ow">or</span> <span class="n">MHK</span><span class="o">=</span><span class="mi">1</span> <span class="ow">or</span> <span class="mi">2</span><span class="p">]</span>
@@ -410,14 +400,14 @@ True                   UseBlCm     - Include aerodynamic pitching moment in calc
 </div>
 </div>
 <div class="section" id="examples-of-driver-input-files">
-<span id="ad-inputfiles-examples"></span><h2><span class="section-number">4.3.6.4. </span>드라이버 입력 파일의 예<a class="headerlink" href="#examples-of-driver-input-files" title="이 제목의 고유 링크"></a></h2>
+<span id="ad-inputfiles-examples"></span><h2><span class="section-number">4.3.6.4. </span>드라이버 입력 파일의 예<a class="headerlink" href="#examples-of-driver-input-files" title="이 제목에 대한 영구 링크"></a></h2>
 <p>드라이버의 다양한 기능을 사용하는 작업 예제는 r-test 저장소에 제공됩니다.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/OpenFAST/r-test/tree/dev/modules/aerodyn/" target="_blank" rel="noopener noreferrer">개발 브랜치</a> .</p></li>
 <li><p><a class="reference external" href="https://github.com/OpenFAST/r-test/tree/main/modules/aerodyn/" target="_blank" rel="noopener noreferrer">본점</a> .</p></li>
 </ul>
 <div class="section" id="main-driver-input-files">
-<h3><span class="section-number">4.3.6.4.1. </span>메인 드라이버 입력 파일<a class="headerlink" href="#main-driver-input-files" title="이 제목의 고유 링크"></a></h3>
+<h3><span class="section-number">4.3.6.4.1. </span>주요 드라이버 입력 파일<a class="headerlink" href="#main-driver-input-files" title="이 제목에 대한 영구 링크"></a></h3>
 <p>기본 유입, 기본 HAWT 및 결합 사례 분석을 위한 AeroDyn 드라이버의 예는 다음과 같습니다.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>----- AeroDyn Driver Input File ---------------------------------------------------------
 Three bladed wind turbine, using basic geometry input
@@ -485,9 +475,9 @@ HWndSpeed  PLExp  RotSpd  Pitch   Yaw   dT    Tmax  DOF  Amplitude Frequency
 </div>
 </div>
 <div class="section" id="motion-input-files">
-<h3><span class="section-number">4.3.6.4.2. </span>모션 입력 파일<a class="headerlink" href="#motion-input-files" title="이 제목의 고유 링크"></a></h3>
+<h3><span class="section-number">4.3.6.4.2. </span>모션 입력 파일<a class="headerlink" href="#motion-input-files" title="이 제목에 대한 영구 링크"></a></h3>
 <p>모션 파일의 시간 벡터는 오름차순이어야 하지만 선형일 필요는 없습니다. 드라이버는 선형 보간을 사용하여 주어진 시간에 입력을 결정합니다.</p>
-<p>임의 기본 모션 파일:</p>
+<p>임의의 기본 모션 파일:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">time_</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">x_</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>    <span class="p">,</span> <span class="n">y_</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>    <span class="p">,</span> <span class="n">z_</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>    <span class="p">,</span> <span class="n">theta_x_</span><span class="p">[</span><span class="n">rad</span><span class="p">]</span> <span class="p">,</span> <span class="n">theta_y_</span><span class="p">[</span><span class="n">rad</span><span class="p">]</span> <span class="p">,</span> <span class="n">theta_z_</span><span class="p">[</span><span class="n">rad</span><span class="p">]</span> <span class="p">,</span> <span class="n">xdot_</span><span class="p">[</span><span class="n">m</span><span class="o">/</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">ydot_</span><span class="p">[</span><span class="n">m</span><span class="o">/</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">zdot_</span><span class="p">[</span><span class="n">m</span><span class="o">/</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">omega_x_g_</span><span class="p">[</span><span class="n">rad</span><span class="o">/</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">omega_y_g_</span><span class="p">[</span><span class="n">rad</span><span class="o">/</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">omega_z_g_</span><span class="p">[</span><span class="n">rad</span><span class="o">/</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">xddot_</span><span class="p">[</span><span class="n">m</span><span class="o">^</span><span class="mi">2</span><span class="o">/</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">yddot_</span><span class="p">[</span><span class="n">m</span><span class="o">^</span><span class="mi">2</span><span class="o">/</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">zddot_</span><span class="p">[</span><span class="n">m</span><span class="o">^</span><span class="mi">2</span><span class="o">/</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">alpha_x_g_</span><span class="p">[</span><span class="n">rad</span><span class="o">/</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">alpha_y_g_</span><span class="p">[</span><span class="n">rad</span><span class="o">/</span><span class="n">s</span><span class="p">]</span> <span class="p">,</span> <span class="n">alpha_z_g_</span><span class="p">[</span><span class="n">rad</span><span class="o">/</span><span class="n">s</span><span class="p">]</span>
 <span class="mf">0.000000</span> <span class="p">,</span> <span class="mf">0.000000</span> <span class="p">,</span> <span class="mf">0.000000</span> <span class="p">,</span> <span class="mf">0.000000</span> <span class="p">,</span> <span class="mf">0.000000</span>      <span class="p">,</span> <span class="mf">0.000000</span>      <span class="p">,</span> <span class="mf">0.000000</span>      <span class="p">,</span> <span class="mf">0.000000</span>   <span class="p">,</span> <span class="mf">0.000000</span>   <span class="p">,</span> <span class="mf">10.053096</span>  <span class="p">,</span> <span class="mf">0.000000</span>          <span class="p">,</span> <span class="mf">0.000000</span>          <span class="p">,</span> <span class="mf">0.000000</span>          <span class="p">,</span> <span class="mf">0.000000</span>      <span class="p">,</span> <span class="mf">0.000000</span>      <span class="p">,</span> <span class="o">-</span><span class="mf">0.000000</span>     <span class="p">,</span> <span class="mf">0.000000</span>          <span class="p">,</span> <span class="mf">0.000000</span>          <span class="p">,</span> <span class="mf">0.000000</span>
 <span class="mf">0.100000</span> <span class="p">,</span> <span class="mf">0.000000</span> <span class="p">,</span> <span class="mf">0.000000</span> <span class="p">,</span> <span class="mf">0.963507</span> <span class="p">,</span> <span class="mf">0.000000</span>      <span class="p">,</span> <span class="mf">0.000000</span>      <span class="p">,</span> <span class="mf">0.000000</span>      <span class="p">,</span> <span class="mf">0.000000</span>   <span class="p">,</span> <span class="mf">0.000000</span>   <span class="p">,</span> <span class="mf">8.809596</span>   <span class="p">,</span> <span class="mf">0.000000</span>          <span class="p">,</span> <span class="mf">0.000000</span>          <span class="p">,</span> <span class="mf">0.000000</span>          <span class="p">,</span> <span class="mf">0.000000</span>      <span class="p">,</span> <span class="mf">0.000000</span>      <span class="p">,</span> <span class="o">-</span><span class="mf">24.344157</span>    <span class="p">,</span> <span class="mf">0.000000</span>          <span class="p">,</span> <span class="mf">0.000000</span>          <span class="p">,</span> <span class="mf">0.000000</span>
@@ -519,8 +509,8 @@ HWndSpeed  PLExp  RotSpd  Pitch   Yaw   dT    Tmax  DOF  Amplitude Frequency
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
-        <a href="modeling.html" class="btn btn-neutral float-left" title="4.3.5. 모델링 시 고려사항" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
+        <a href="modeling.html" class="btn btn-neutral float-left" title="4.3.5. 모델링 고려 사항" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
         <a href="theory.html" class="btn btn-neutral float-right" title="4.3.7. AeroDyn 이론" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -531,7 +521,7 @@ HWndSpeed  PLExp  RotSpd  Pitch   Yaw   dT    Tmax  DOF  Amplitude Frequency
   </div>
 
   다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">주제</a>
     제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
    
 

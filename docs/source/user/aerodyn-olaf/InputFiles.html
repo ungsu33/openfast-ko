@@ -2,7 +2,7 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>4.4.4. 입력 파일 - OpenFAST v5.0.0 문서</title>
+  <title>4.4.4. 입력 파일 — OpenFAST v5.0.0 문서</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css">
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css">
       <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css">
@@ -21,9 +21,9 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="검색" href="../../../search.html">
+    <link rel="search" title="찾다" href="../../../search.html">
     <link rel="next" title="4.4.5. 출력 파일" href="OutputFiles.html">
-    <link rel="prev" title="4.4.3. OLAF와 협력하기" href="RunningOLAF.html"> 
+    <link rel="prev" title="4.4.3. OLAF 작업" href="RunningOLAF.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/aerodyn-olaf/InputFiles.html"></head>
 
 <body class="wy-body-for-nav"> 
@@ -36,7 +36,7 @@
           
           <a href="../../../index.html" class="icon icon-home">
             OpenFAST
-              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="심벌 마크">
           </a>
               <div class="version">5.0 · 한국어</div>
 <div role="search">
@@ -48,17 +48,17 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">4.4. OLAF</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="Introduction.html">4.4.1. 소개</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Acronyms.html">4.4.2. 기호 목록</a></li>
-<li class="toctree-l3"><a class="reference internal" href="RunningOLAF.html">4.4.3. OLAF와 협력하기</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RunningOLAF.html">4.4.3. OLAF 작업</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">4.4.4. 입력 파일</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#units">4.4.4.1. 단위</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#olaf-primary-input-file">4.4.4.2. OLAF 기본 입력 파일</a></li>
@@ -67,15 +67,15 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="OutputFiles.html">4.4.5. 출력 파일</a></li>
 <li class="toctree-l3"><a class="reference internal" href="OLAFTheory.html">4.4.6. OLAF 이론</a></li>
-<li class="toctree-l3"><a class="reference internal" href="StateSpace.html">4.4.7. 상태공간 표현 및 OpenFAST와의 통합</a></li>
-<li class="toctree-l3"><a class="reference internal" href="FutureWork.html">4.4.8. 향후 개발 계획</a></li>
-<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.4.9. 참고문헌</a></li>
+<li class="toctree-l3"><a class="reference internal" href="StateSpace.html">4.4.7. 상태공간 표현과 OpenFAST 연동</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FutureWork.html">4.4.8. 미래의 일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.4.9. 참고자료</a></li>
 <li class="toctree-l3"><a class="reference internal" href="AppendixA.html">4.4.10. 부록 A: OLAF 기본 입력 파일</a></li>
 <li class="toctree-l3"><a class="reference internal" href="AppendixB.html">4.4.11. 부록 B: 규정된 순환 입력 파일</a></li>
-<li class="toctree-l3"><a class="reference internal" href="AppendixC.html">4.4.12. 부록 C: 출력 채널의 OLAF 목록</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixC.html">4.4.12. 부록 C: OLAF 출력 채널 목록</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력소음</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
@@ -98,16 +98,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -116,12 +116,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.4. </span>OLAF 사용자 가이드 및 이론 설명서 (AeroDyn의 자유 와류 후류)</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.4. </span>OLAF 사용자 가이드 및 이론 매뉴얼(AeroDyn의 Free Vortex Wake)</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.4.4. </span>입력 파일</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/aerodyn-olaf/InputFiles.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+            <a href="../../../_sources/source/user/aerodyn-olaf/InputFiles.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -130,115 +130,101 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="input-files">
-<span id="olaf-input-files"></span><h1><span class="section-number">4.4.4. </span>입력 파일<a class="headerlink" href="#input-files" title="이 제목의 고유 링크"></a></h1>
-<p>행 수가 지정된 테이블을 제외하고 입력 파일에서 행을 추가하거나 제거해서는 안됩니다.</p>
+<span id="olaf-input-files"></span><h1><span class="section-number">4.4.4. </span>입력 파일<a class="headerlink" href="#input-files" title="이 제목에 대한 영구 링크"></a></h1>
+<p>행 수가 지정된 테이블을 제외하고는 입력 파일에서 행을 추가하거나 제거해서는 안 됩니다.</p>
 <div class="section" id="units">
-<h2><span class="section-number">4.4.4.1. </span>장치<a class="headerlink" href="#units" title="이 제목의 고유 링크"></a></h2>
+<h2><span class="section-number">4.4.4.1. </span>단위<a class="headerlink" href="#units" title="이 제목에 대한 영구 링크"></a></h2>
 <p>OLAF는 국제 단위계(예: kg, m, s, N)를 사용합니다. 별도로 지정하지 않는 한 각도는 도 단위로 간주됩니다.</p>
 </div>
 <div class="section" id="olaf-primary-input-file">
-<h2><span class="section-number">4.4.4.2. </span>OLAF 기본 입력 파일<a class="headerlink" href="#olaf-primary-input-file" title="이 제목의 고유 링크"></a></h2>
+<h2><span class="section-number">4.4.4.2. </span>OLAF 기본 입력 파일<a class="headerlink" href="#olaf-primary-input-file" title="이 제목에 대한 영구 링크"></a></h2>
 <p>기본 OLAF 입력 파일은 일반 자유 항적 옵션, 순환 모델 선택 및 사양, 근거리 및 원거리 항적 길이, 항적 시각화 옵션을 정의합니다. 파일 내의 각 섹션은 OLAF 모델의 측면에 해당합니다. 대부분의 매개변수에 대해 사용자는 "기본값"(따옴표 포함 또는 제외) 값을 지정할 수 있으며, 이 경우 아래에 정의된 기본값이 프로그램에서 사용됩니다.</p>
-<p>참조
-자세한 내용은 <a class="reference internal" href="AppendixA.html#olaf-primary-input-file"><span class="std std-numref">섹션 4.4.10
-샘플 OLAF 기본 입력 파일의 경우</span></a> 입니다.</p>
+<p>다음을 참조: <a class="reference internal" href="AppendixA.html#olaf-primary-input-file"><span class="std std-numref">섹션 4.4.10</span></a> 샘플 OLAF 기본 입력 파일의 경우.</p>
 <div class="section" id="general-options">
-<h3><span class="section-number">4.4.4.2.1. </span>일반 옵션<a class="headerlink" href="#general-options" title="이 제목의 고유 링크"></a></h3>
-<p><strong>IntMethod</strong> [스위치]는 라그랑지안 마커를 대류하는 데 사용할 통합 방법을 지정합니다. 4가지 옵션이 있습니다: 1) 4차 Runge-Kutta <em>[1]</em>, 2) 4차 Adams-Bashforth <em>[2]</em>, 3) 4차 Adams-Bashforth-Moulton <em>[3]</em>, 및 4) 1차 순방향 오일러 <em>[5]</em>. 기본 옵션은 <em>[5]</em>. 현재 옵션만 있음 <em>[1]</em> 및 <em>[5]</em> 가 구현되었습니다. 이러한 방법은 다음에 지정되어 있습니다. <a class="reference internal" href="OLAFTheory.html#sec-vortconv"><span class="std std-numref">섹션 4.4.6.4</span></a>.</p>
-<p><strong>DTfvw</strong> [초]는 모듈이 웨이크를 업데이트하는 시간 간격을 지정합니다. 시간 간격은 다음에서 사용하는 시간 단계의 배수여야 합니다.
-<em>AeroDyn</em>. 블레이드 순환은 중간 블레이드 위치와 풍속을 기반으로 각 중간 시간 단계에서 업데이트됩니다. 기본값은 다음과 같습니다. <span class="math notranslate nohighlight">\(dt_{aero}\)</span>, 여기서 <span class="math notranslate nohighlight">\(dt_{aero}\)</span> 는 AeroDyn에서 사용하는 시간 단계입니다.</p>
-<p><strong>FreeWakeStart</strong> [초]는 후류 진화가 "자유"로 분류되는 시간을 지정합니다. 이 지점에 도달하기 전에 라그랑지 마커는 단순히 자유류 속도로 대류됩니다. 이 지점 이후에는 유도 속도가 계산되어 마커 대류에 영향을 미칩니다. 0보다 작거나 같은 시간이 주어지면 시뮬레이션 시작부터 항적은 "무료"입니다. 기본값은 다음과 같습니다. <span class="math notranslate nohighlight">\(0\)</span>.</p>
-<p><strong>FullCircStart</strong> [초]는 블레이드 순환이 최대 강도에 도달하는 시간을 지정합니다. 이 값이 다음과 같이 지정되면 <span class="math notranslate nohighlight">\(&gt;0\)</span>, 순환에 다음 요소를 곱합니다. <span class="math notranslate nohighlight">\(0\)</span> 에 <span class="math notranslate nohighlight">\(t=0\)</span> 및 선형적으로 다음 요소로 증가 <span class="math notranslate nohighlight">\(1\)</span> 용 <span class="math notranslate nohighlight">\(t&gt;\textit{FullCircStart}\)</span>. 기본값은 다음과 같습니다. <span class="math notranslate nohighlight">\(0\)</span>.</p>
+<h3><span class="section-number">4.4.4.2.1. </span>일반 옵션<a class="headerlink" href="#general-options" title="이 제목에 대한 영구 링크"></a></h3>
+<p><strong>IntMethod</strong> [스위치]는 라그랑주 마커를 대류하는 데 사용할 통합 방법을 지정합니다. 4가지 옵션이 있습니다: 1) 4차 Runge-Kutta <em>[1]</em>, 2) 4차 Adams-Bashforth <em>[2]</em>, 3) 4차 Adams-Bashforth-Moulton <em>[3]</em>, 및 4) 1차 순방향 오일러 <em>[5]</em>. 기본 옵션은 <em>[5]</em>. 현재 옵션만 있음 <em>[1]</em> 및 <em>[5]</em> 구현됩니다. 이러한 방법은 다음에 지정되어 있습니다. <a class="reference internal" href="OLAFTheory.html#sec-vortconv"><span class="std std-numref">섹션 4.4.6.4</span></a>.</p>
+<p><strong>DTfvw</strong> [초]는 모듈이 깨우기를 업데이트하는 시간 간격을 지정합니다. 시간 간격은 다음에서 사용하는 시간 단계의 배수여야 합니다.
+<em>AeroDyn</em>. 블레이드 순환은 중간 블레이드 위치와 풍속을 기반으로 각 중간 시간 단계에서 업데이트됩니다. 기본값은 다음과 같습니다. <span class="math notranslate nohighlight">\(dt_{aero}\)</span>, 어디 <span class="math notranslate nohighlight">\(dt_{aero}\)</span> AeroDyn에서 사용하는 시간 단계입니다.</p>
+<p><strong>FreeWakeStart</strong> [초]는 후류 진화가 "자유"로 분류되는 시간을 지정합니다. 이 지점에 도달하기 전에 라그랑지 마커는 단순히 자유류 속도로 대류됩니다. 이 지점 이후에는 유도 속도가 계산되어 마커 대류에 영향을 줍니다. 0보다 작거나 같은 시간이 주어지면 시뮬레이션 시작부터 항적은 "무료"입니다. 기본값은 다음과 같습니다. <span class="math notranslate nohighlight">\(0\)</span>.</p>
+<p><strong>FullCircStart</strong> [초]는 블레이드 순환이 최대 강도에 도달하는 시간을 지정합니다. 이 값이 다음과 같이 지정되면 <span class="math notranslate nohighlight">\(&gt;0\)</span>, 순환에 다음 요소를 곱합니다. <span class="math notranslate nohighlight">\(0\)</span> ~에 <span class="math notranslate nohighlight">\(t=0\)</span> 선형적으로 증가하는 요인은 다음과 같습니다. <span class="math notranslate nohighlight">\(1\)</span> 대해 <span class="math notranslate nohighlight">\(t&gt;\textit{FullCircStart}\)</span>. 기본값은 다음과 같습니다. <span class="math notranslate nohighlight">\(0\)</span>.</p>
 </div>
 <div class="section" id="circulation-specifications">
-<h3><span class="section-number">4.4.4.2.2. </span>순환 사양<a class="headerlink" href="#circulation-specifications" title="이 제목의 고유 링크"></a></h3>
-<p><strong>CircSolvMethod</strong> [스위치]는 사용되는 순환 방법을 지정합니다. 세 가지 옵션이 있습니다: 1) <span class="math notranslate nohighlight">\(C_l\)</span>기반 반복 절차 <em>[1]</em>, 2) 흐름 없음 <em>[2]</em>및 3) 규정 <em>[3]</em>. 기본 옵션은 <em>[1]</em>. 이러한 방법은 다음에 설명되어 있습니다. <a class="reference internal" href="OLAFTheory.html#sec-circ"><span class="std std-numref">섹션 4.4.6.3</span></a>.</p>
+<h3><span class="section-number">4.4.4.2.2. </span>순환 사양<a class="headerlink" href="#circulation-specifications" title="이 제목에 대한 영구 링크"></a></h3>
+<p><strong>CircSolvMethod</strong> [스위치]는 사용되는 순환 방법을 지정합니다. 세 가지 옵션이 있습니다: 1) <span class="math notranslate nohighlight">\(C_l\)</span>기반 반복 절차 <em>[1]</em>, 2) 흐름 없음 <em>[2]</em>, 그리고 3) 규정된 <em>[3]</em>. 기본 옵션은 <em>[1]</em>. 이러한 방법은 다음에 설명되어 있습니다. <a class="reference internal" href="OLAFTheory.html#sec-circ"><span class="std std-numref">섹션 4.4.6.3</span></a>.</p>
 <p><strong>CircSolvConvCrit</strong> [-]는 순환을 해결하는 데 사용되는 무차원 수렴 기준을 지정합니다. 이 변수는 다음 경우에만 사용됩니다.
 <em>CircSolvMethod</em> = <em>[1]</em>. 기본값은 다음과 같습니다.
-<span class="math notranslate nohighlight">\(0.001\)</span>에 해당
-두 반복 간의 순환에 <span class="math notranslate nohighlight">\(0.1\%\)</span> 오류가 발생했습니다.</p>
+<span class="math notranslate nohighlight">\(0.001\)</span>, 에 해당 <span class="math notranslate nohighlight">\(0.1\%\)</span> 두 번의 반복 사이의 순환 오류.</p>
 <p><strong>CircSolvRelaxation</strong> [-]는 순환을 해결하는 데 사용되는 완화 계수를 지정합니다. 이 변수는 다음 경우에만 사용됩니다. <em>CircSolvMethod</em> =
 <em>[1]</em>. 기본값은 다음과 같습니다. <span class="math notranslate nohighlight">\(0.1\)</span>.</p>
 <p><strong>CircSolvMaxIter</strong> [-]는 순환을 해결하는 데 사용되는 최대 반복 횟수를 지정합니다. 이 변수는 다음 경우에만 사용됩니다. <em>CircSolvMethod</em> = <em>[1]</em>. 기본값은 다음과 같습니다. <span class="math notranslate nohighlight">\(30\)</span>.</p>
-<p><strong>PrescribedCircFile</strong> [인용 문자열]은 규정된 블레이드 순환이 포함된 파일을 지정합니다. 이 옵션은 다음 경우에만 사용됩니다. <em>CircSolvMethod</em> =
-<em>[3]</em>. 순환 파일 형식은 헤더 라인 1개와 열 2개로 구분된 파일입니다. 첫 번째 열은 무차원 반경 위치[r/R]입니다. 두 번째 열은 [m의 경계 순환 값입니다.<span class="math notranslate nohighlight">\(^2\)</span>/초]. 방사형 위치는 AeroDyn 노드 위치와 일치할 필요가 없습니다. 샘플 규정 순환 파일은 다음과 같습니다. <a class="reference internal" href="AppendixB.html#prescribed-circulation-input-file"><span class="std std-numref">섹션 4.4.11</span></a>.</p>
+<p><strong>PrescribedCircFile</strong> [인용된 문자열]은 규정된 블레이드 순환이 포함된 파일을 지정합니다. 이 옵션은 다음 경우에만 사용됩니다. <em>CircSolvMethod</em> =
+<em>[3]</em>. 순환 파일 형식은 헤더 라인 1개와 열 2개로 구분된 파일입니다. 첫 번째 열은 무차원 반경 위치[r/R]입니다. 두 번째 열은 [m의 경계 순환 값입니다.<span class="math notranslate nohighlight">\(^2\)</span>/s]입니다. 반경 방향 위치는 AeroDyn 절점 위치와 일치할 필요가 없습니다. 순환 지정 파일 예제는 다음에 제시되어 있습니다: <a class="reference internal" href="AppendixB.html#prescribed-circulation-input-file"><span class="std std-numref">섹션 4.4.11</span></a>.</p>
 </div>
 <div class="section" id="wake-extent-and-discretization-options">
-<h3><span class="section-number">4.4.4.2.3. </span>웨이크 범위 및 이산화 옵션<a class="headerlink" href="#wake-extent-and-discretization-options" title="이 제목의 고유 링크"></a></h3>
-<p><strong>nNWPanels</strong> [-]는 NW(near-wake) 패널 수(예: FVW 시간 단계, <strong>DTfvw</strong>)는 Near-Wake 격자의 범위에 사용됩니다. 참조 <a class="reference internal" href="RunningOLAF.html#guidelines-olaf"><span class="std std-numref">섹션 4.4.3.2
-이 매개변수 설정에 대한 권장사항은</span></a> 를 참조하세요.</p>
-<p><strong>nNWPanelsFree</strong> [-]는 후류가 "자유"로 대류되는 근접 후류 패널 수(FVW 시간 간격)를 지정합니다. 만약에 <em>nNWPanelsFree</em> 는 다음과 같습니다.
-<em>nNWPanels</em>그러면 전체 Near Wake가 무료입니다. 그렇지 않으면 완충 구역(“후류 근처 동결”) 내에 위치한 라그랑지 마커는 다음과 같이 구분됩니다. <em>nNWPanelsFree</em> 및 <em>nNWsPanel</em>
-는 모두 공통 및 붕괴 유도 속도로 대류되지만 자유 흐름은 다양합니다. (참조 <a class="reference internal" href="OLAFTheory.html#sec-vortconvfrozen"><span class="std std-numref">섹션 4.4.6.6</span></a>). 이 옵션은 시뮬레이션 속도를 높이고 "near-wake" 영역의 끝을 안정화하는 데 사용할 수 있습니다. 이는 잠재적으로 먼 후류 지역의 필요성을 제거할 수 있습니다. 현재 동결된 후류 부근의 유도 속도는 자유 후류의 마지막 20개 패널에 대한 평균으로 임의로 결정됩니다. 대류 속도의 감소는 유도된 속도가 후류 근처의 결빙 끝에서 약 50%가 되도록 합니다. 얼어붙은 후류의 대류 속도에는 추가적인 확인과 검증이 필요하며 향후 릴리스에서는 변경될 수 있습니다. "동결된" 근접 후류 영역이 사용되는 경우 "자유로운" 원거리 후류 영역의 길이는 0이어야 합니다(<strong>nFWPanelsFree=0</strong>) 기본적으로 이 변수는 다음과 같이 설정됩니다. <strong>nNWPanels</strong> (동결 웨이크 없음). 참조
-이 매개변수 설정에 대한 권장 사항은 <a class="reference internal" href="RunningOLAF.html#guidelines-olaf"><span class="std std-numref">섹션 4.4.3.2
-이 매개변수 설정에 대한 권장사항은</span></a> 를 참조하세요.</p>
-<p><strong>nFWPanels</strong> [-]는 원거리 후류(계산 시간 속도를 높이기 위해 팁과 루트 소용돌이가 롤업되는 곳)에 사용되는 패널(FVW 시간 단계) 수를 지정합니다. 참조
-이 매개변수 설정에 대한 권장 사항은 <a class="reference internal" href="RunningOLAF.html#guidelines-olaf"><span class="std std-numref">섹션 4.4.3.2
-이 매개변수 설정에 대한 권장사항은</span></a> 를 참조하세요. 기본값: 0.</p>
-<p><strong>nFWPanelsFree</strong> [-]는 후류가 "자유"로 대류되는 원거리 후류 패널 수(FVW 시간 간격)를 지정합니다. 만약에 <em>nFWPanelsFree</em> 는 다음과 같습니다.
-<em>nFWPanels</em>, 그러면 전체 원거리가 무료입니다. 그렇지 않으면 완충 구역("동결 먼 항적") 내에 위치한 라그랑지 마커는 다음과 같이 구분됩니다. <em>nNWPanelsFree</em> 및 <em>nNWPanels</em>
-는 모두 공통 유도 속도로 대류되지만 자유 흐름은 다양합니다. 현재, 얼어붙은 먼 후류에 대해 유도된 속도는 다음과 같은 경우 자유 먼 후류에 대한 평균으로 결정됩니다. <strong>nNWPanelsFree=nNWPanels</strong> (즉, 후류 근처에 결빙되지 않음) 또는 그렇지 않으면 결빙 근처 후류의 끝과 동일한 대류를 사용합니다. 기본적으로 이 변수는 다음으로 설정됩니다. <strong>nFWPanels</strong>. 참조 <a class="reference internal" href="RunningOLAF.html#guidelines-olaf"><span class="std std-numref">섹션 4.4.3.2
-이 매개변수 설정에 대한 권장사항은</span></a> 를 참조하세요.</p>
-<p><strong>FWShedVorticity</strong> [플래그]는 먼 항류에 발산 와도가 포함되는지 여부를 지정합니다. 기본값은 다음과 같습니다. <em>[거짓]</em>, 먼 항적은 루트 및 팁 와류의 후행 와도로만 구성됨을 지정합니다.</p>
+<h3><span class="section-number">4.4.4.2.3. </span>웨이크 범위 및 이산화 옵션<a class="headerlink" href="#wake-extent-and-discretization-options" title="이 제목에 대한 영구 링크"></a></h3>
+<p><strong>nNWPanels</strong> [-]는 Near-Wake(NW) 패널의 수를 지정합니다(예: FVW 시간 단계, <strong>DTfvw</strong>) Near-wake 격자의 범위에 사용됩니다. 보다 <a class="reference internal" href="RunningOLAF.html#guidelines-olaf"><span class="std std-numref">섹션 4.4.3.2</span></a> 이 매개변수 설정에 대한 권장사항을 확인하세요.</p>
+<p><strong>nNWPanelsFree</strong> [-]는 후류가 "자유"로 대류되는 근접 후류 패널 수(FVW 시간 간격)를 지정합니다. 만약에 <em>nNWPanelsFree</em> 는 다음과 같다
+<em>nNWPanels</em>, 그러면 Near Wake 전체가 무료입니다. 그렇지 않으면 완충 구역(“후류 근처 동결”) 내에 위치한 라그랑지 마커는 다음과 같이 구분됩니다. <em>nNWPanelsFree</em> 및 <em>nNWsPanel</em>
+모두 공통적이고 붕괴되는 유도 속도로 대류되지만 자유 흐름은 다양합니다. (보다 <a class="reference internal" href="OLAFTheory.html#sec-vortconvfrozen"><span class="std std-numref">섹션 4.4.6.6</span></a>). 이 옵션은 시뮬레이션 속도를 높이고 "near-wake" 영역의 끝을 안정화하는 데 사용할 수 있습니다. 이는 잠재적으로 먼 후류 지역의 필요성을 제거할 수 있습니다. 현재 동결된 후류 부근의 유도 속도는 자유 후류의 마지막 20개 패널에 대한 평균으로 임의로 결정됩니다. 대류 속도의 감소는 유도된 속도가 후류 근처의 결빙 끝에서 약 50%가 되도록 합니다. 얼어붙은 후류의 대류 속도에는 추가적인 확인과 검증이 필요하며 향후 릴리스에서는 변경될 수 있습니다. "동결된" 근접 후류 영역이 사용되는 경우 "자유로운" 원거리 후류 영역의 길이는 0이어야 합니다(<strong>nFWPanelsFree=0</strong>) 기본적으로 이 변수는 다음과 같이 설정됩니다. <strong>nNWPanels</strong> (얼어붙지 않음). 보다 <a class="reference internal" href="RunningOLAF.html#guidelines-olaf"><span class="std std-numref">섹션 4.4.3.2</span></a> 이 매개변수 설정에 대한 권장사항을 확인하세요.</p>
+<p><strong>nFWPanels</strong> [-]는 먼 후류(계산 시간을 단축하기 위해 팁과 루트 소용돌이가 롤업되는 곳)에 사용되는 패널 수(FVW 시간 단계)를 지정합니다. 보다 <a class="reference internal" href="RunningOLAF.html#guidelines-olaf"><span class="std std-numref">섹션 4.4.3.2</span></a> 이 매개변수 설정에 대한 권장사항을 확인하세요. 기본값: 0.</p>
+<p><strong>nFWPanelsFree</strong> [-]는 후류가 "무료"로 대류되는 원거리 후류 패널 수(FVW 시간 간격)를 지정합니다. 만약에 <em>nFWPanelsFree</em> 는 다음과 같다
+<em>nFWPanels</em>, 그러면 Far-Wake 전체가 무료입니다. 그렇지 않으면 완충 구역("동결 먼 항적") 내에 위치한 라그랑지 마커는 다음과 같이 구분됩니다. <em>nNWPanelsFree</em> 및 <em>nNWPanels</em>
+모두 공통 유도 속도로 대류되지만 자유 흐름은 다양합니다. 현재, 얼어붙은 먼 후류에 대해 유도된 속도는 다음과 같은 경우 자유 먼 후류에 대한 평균으로 결정됩니다. <strong>nNWPanelsFree=nNWPanels</strong> (즉, 후류 근처에 동결되지 않음) 또는 그렇지 않으면 후류 근처에 동결된 끝과 동일한 대류를 사용합니다. 기본적으로 이 변수는 다음으로 설정됩니다. <strong>nFWPanels</strong>. 보다 <a class="reference internal" href="RunningOLAF.html#guidelines-olaf"><span class="std std-numref">섹션 4.4.3.2</span></a> 이 매개변수 설정에 대한 권장사항을 확인하세요.</p>
+<p><strong>FWShedVorticity</strong> [플래그]는 먼 항적에 발산 소용돌이도가 포함되는지 여부를 지정합니다. 기본값은 다음과 같습니다. <em>[거짓]</em>, 먼 항적은 뿌리와 끝 소용돌이의 후행 소용돌이로만 구성됨을 지정합니다.</p>
 </div>
 <div class="section" id="wake-regularization-and-diffusion-options">
-<h3><span class="section-number">4.4.4.2.4. </span>웨이크 정규화 및 확산 옵션<a class="headerlink" href="#wake-regularization-and-diffusion-options" title="이 제목의 고유 링크"></a></h3>
-<p><strong>DiffusionMethod</strong> [스위치]는 점성 확산을 설명하는 데 사용되는 확산 방법을 지정합니다. 두 가지 옵션이 있습니다: 1) 확산 없음 <em>[0]</em> 및 2) 코어 확산 방식 <em>[1]</em>. 기본 옵션은 <em>[0]</em>.</p>
-<p><strong>RegDeterMethod</strong> [스위치]는 정규화 매개변수를 결정하는 데 사용되는 방법을 지정합니다. 네 가지 옵션이 있습니다. 1) 상수 <em>[0]</em> 및 2) 최적화 <em>[1]</em>, 3) 코드 <em>[2]</em>및 4) 스팬 <em>[3]</em>. 최적화된 옵션은 사용자를 위해 이 섹션의 모든 매개변수를 결정합니다. 최적화된 옵션은 아직 작업 중이므로 권장되지 않습니다. 상수 옵션을 사용하려면 사용자가 이 섹션에 있는 모든 매개변수를 지정해야 합니다. 기본 및 권장 옵션은 다음과 같습니다. <em>[3]</em>.</p>
+<h3><span class="section-number">4.4.4.2.4. </span>웨이크 정규화 및 확산 옵션<a class="headerlink" href="#wake-regularization-and-diffusion-options" title="이 제목에 대한 영구 링크"></a></h3>
+<p><strong>DiffusionMethod</strong> [스위치]는 점성 확산을 설명하는 데 사용되는 확산 방법을 지정합니다. 두 가지 옵션이 있습니다: 1) 확산 없음 <em>[0]</em> 2) 코어 확산 방법 <em>[1]</em>. 기본 옵션은 <em>[0]</em>.</p>
+<p><strong>RegDeterMethod</strong> [switch]는 정규화 매개변수를 결정하는 데 사용되는 방법을 지정합니다. 네 가지 옵션이 있습니다. 1) 상수 <em>[0]</em> 2) 최적화 <em>[1]</em>, 3) 코드 <em>[2]</em>및 4) 범위 <em>[3]</em>. 최적화된 옵션은 사용자를 위해 이 섹션의 모든 매개변수를 결정합니다. 최적화된 옵션은 아직 작업 중이므로 권장되지 않습니다. 상수 옵션을 사용하려면 사용자가 이 섹션에 있는 모든 매개변수를 지정해야 합니다. 기본 및 권장 옵션은 다음과 같습니다. <em>[3]</em>.</p>
 <div class="math notranslate nohighlight">
 \[r_{c,\text{wake}}(r) = \text{WakeRegParam}
 ,\quad
 r_{c,\text{blade}}(r) = \text{WingRegParam}\]</div>
-<p>언제 <strong>RegDeterMethod==2</strong>, 정규화 매개변수는 로컬 코드에 따라 설정됩니다.</p>
+<p>다음의 경우 <strong>RegDeterMethod==2</strong>, 정규화 매개변수는 로컬 코드에 따라 설정됩니다.</p>
 <div class="math notranslate nohighlight">
 \[r_{c,\text{wake}}(r) = \text{WakeRegParam} \cdot c(r)
 ,\quad
 r_{c,,\text{blade}}(r) = \text{WingRegParam} \cdot c(r)\]</div>
-<p>언제 <strong>RegDeterMethod==3</strong>, 정규화 매개변수는 범위별 이산화에 따라 설정됩니다.</p>
+<p>다음의 경우 <strong>RegDeterMethod==3</strong>, 정규화 매개변수는 스팬별 이산화에 따라 설정됩니다.</p>
 <div class="math notranslate nohighlight">
 \[r_{c,\text{wake}}(r) = \text{WakeRegParam} \cdot \Delta  r(r)
 ,\quad
 r_{c,,\text{blade}}(r) = \text{WingRegParam} \cdot \Delta r(r)\]</div>
-<p>여기서 <span class="math notranslate nohighlight">\(Delta r\)</span> 는 스팬방향 스테이션의 길이입니다. 참조 <a class="reference internal" href="RunningOLAF.html#guidelines-olaf"><span class="std std-numref">섹션 4.4.3.2
-이 매개변수 설정에 대한 권장사항은</span></a> 를 참조하세요.</p>
+<p>여기서 <span class="math notranslate nohighlight">\(Delta r\)</span> 스팬 방향 스테이션의 길이입니다. 보다 <a class="reference internal" href="RunningOLAF.html#guidelines-olaf"><span class="std std-numref">섹션 4.4.3.2</span></a> 이 매개변수 설정에 대한 권장사항을 확인하세요.</p>
 <p><strong>RegFunction</strong> [스위치]는 다음에 지정된 대로 소용돌이 요소의 특이점을 제거하는 데 사용되는 정규화 함수를 지정합니다.
-<a class="reference internal" href="OLAFTheory.html#sec-vortconv"><span class="std std-numref">섹션 4.4.6.4</span></a>. 5가지 옵션이 있습니다: 1) 수정 없음 <em>[0]</em>, 2) 랭킨법 <em>[1]</em>, 3) Lamb-Oseen 방법 <em>[2]</em>, 4) 바티스타스 방식 <em>[3]</em>및 5) 분모 오프셋 방법 <em>[4]</em>. 기능은 다음과 같습니다. <a class="reference internal" href="OLAFTheory.html#sec-regularizationfunction"><span class="std std-numref">섹션 4.4.6.8.3</span></a>. 기본 옵션은 <em>[3]</em>.</p>
-<p><strong>WakeRegMethod</strong> [스위치]는 점성 코어 반경을 결정하는 방법(즉, 정규화 매개변수)을 지정합니다. 세 가지 옵션이 있습니다: 1) 상수 <em>[1]</em>, 2) 스트레칭 <em>[2]</em>및 3) 연령 <em>[3]</em>. 방법은 다음에 설명되어 있습니다. <a class="reference internal" href="OLAFTheory.html#sec-corerad"><span class="std std-numref">섹션 4.4.6.8.4</span></a>. 기본 옵션은 <em>[3]</em>.</p>
-<p><strong>WakeRegFactor</strong> [m 또는 -]는 소용돌이 요소의 초기화에 사용되는 정규화 값인 항적 정규화 매개변수를 지정합니다. 정규화 방법이 "일정"인 경우 이 값은 전체 항적에 사용됩니다. 참조 <a class="reference internal" href="RunningOLAF.html#guidelines-olaf"><span class="std std-numref">섹션 4.4.3.2
-이 매개변수 설정에 대한 권장사항은</span></a> 를 참조하세요.</p>
-<p><strong>WingRegFactor</strong> [m 또는 -]는 블레이드에 바인딩된 와도 요소에 사용되는 정규화 값인 바인딩 와도 정규화 매개변수를 지정합니다. 참조 <a class="reference internal" href="RunningOLAF.html#guidelines-olaf"><span class="std std-numref">섹션 4.4.3.2
-이 매개변수 설정에 대한 권장사항은</span></a> 를 참조하세요.</p>
+<a class="reference internal" href="OLAFTheory.html#sec-vortconv"><span class="std std-numref">섹션 4.4.6.4</span></a>. 5가지 옵션이 있습니다: 1) 수정 없음 <em>[0]</em>, 2) 랭킨법 <em>[1]</em>, 3) Lamb-Oseen 방법 <em>[2]</em>, 4) 바티스타스 방법 <em>[3]</em>, 5) 분모 오프셋 방법 <em>[4]</em>. 기능은 다음과 같습니다. <a class="reference internal" href="OLAFTheory.html#sec-regularizationfunction"><span class="std std-numref">섹션 4.4.6.8.3</span></a>. 기본 옵션은 <em>[3]</em>.</p>
+<p><strong>WakeRegMethod</strong> [스위치]는 점성 코어 반경(즉, 정규화 매개변수)을 결정하는 방법을 지정합니다. 세 가지 옵션이 있습니다: 1) 상수 <em>[1]</em>, 2) 스트레칭 <em>[2]</em>, 그리고 3) 나이 <em>[3]</em>. 방법은 다음에 설명되어 있습니다. <a class="reference internal" href="OLAFTheory.html#sec-corerad"><span class="std std-numref">섹션 4.4.6.8.4</span></a>. 기본 옵션은 <em>[3]</em>.</p>
+<p><strong>WakeRegFactor</strong> [m 또는 -]는 소용돌이 요소의 초기화에 사용되는 정규화 값인 항적 정규화 매개변수를 지정합니다. 정규화 방법이 "일정"인 경우 이 값은 전체 항적에 사용됩니다. 보다 <a class="reference internal" href="RunningOLAF.html#guidelines-olaf"><span class="std std-numref">섹션 4.4.3.2</span></a> 이 매개변수 설정에 대한 권장사항을 확인하세요.</p>
+<p><strong>WingRegFactor</strong> [m 또는 -]는 블레이드에 바인딩된 와도 요소에 사용되는 정규화 값인 바인딩 와도 정규화 매개변수를 지정합니다. 보다 <a class="reference internal" href="RunningOLAF.html#guidelines-olaf"><span class="std std-numref">섹션 4.4.3.2</span></a> 이 매개변수 설정에 대한 권장사항을 확인하세요.</p>
 <p><strong>CoreSpreadEddyVisc</strong> [-]는 소용돌이 점도 매개변수를 지정합니다.
-<span class="math notranslate nohighlight">\(\delta\)</span>. 이 매개변수는 코어 확산 방법에 사용됩니다(<em>DiffusionMethod</em> = <em>[1]</em>) 및 연령에 따른 정규화 방법(<em>WakeRegMethod</em> = <em>[3]</em>). 변수 <span class="math notranslate nohighlight">\(\delta\)</span> 는 다음에 설명되어 있습니다.
+<span class="math notranslate nohighlight">\(\delta\)</span>. 이 매개변수는 코어 확산 방법에 사용됩니다(<em>DiffusionMethod</em> = <em>[1]</em>) 및 연령에 따른 정규화 방법(<em>WakeRegMethod</em> = <em>[3]</em>). 변수 <span class="math notranslate nohighlight">\(\delta\)</span> 에 설명되어 있습니다.
 <a class="reference internal" href="OLAFTheory.html#sec-corerad"><span class="std std-numref">섹션 4.4.6.8.4</span></a>. 기본값은 다음과 같습니다. <span class="math notranslate nohighlight">\(100\)</span>.</p>
 </div>
 <div class="section" id="wake-treatment-options">
-<h3><span class="section-number">4.4.4.2.5. </span>웨이크 처리 옵션<a class="headerlink" href="#wake-treatment-options" title="이 제목의 고유 링크"></a></h3>
-<p><strong>TwrShadowOnWake</strong> [플래그]는 타워 전위 흐름과 타워 그림자가 후류 대류에 영향을 미치는지 여부를 지정합니다. AeroDyn에서 활성화된 타워 섀도우 모델은 항상 리프팅 라인에 영향을 미치므로 블레이드에 대한 유도 및 하중이 발생합니다. 이 옵션은 깨우기에만 관련됩니다. 기본 옵션은 <em>[거짓]</em>.</p>
-<p><strong>ShearVorticityModel</strong> [스위치]는 다음과 같이 규정된 전단 유입에 추가로 전단 와도를 모델링할지 여부를 지정합니다. <em>InflowWind</em>. 두 가지 옵션이 있습니다: 1) 치료 없음 <em>[0]</em> 및 2) 미러링된 와도 <em>[1]</em>. 거울에 비친 소용돌이도는 지면 효과를 설명합니다. 전단 와도를 설명하는 전용 옵션은 나중에 구현될 예정입니다. 전단 속도 프로파일은 다음과 같이 처리됩니다.
-이 입력과 관계없이 <em>InflowWind</em> 입니다. 기본 옵션은
+<h3><span class="section-number">4.4.4.2.5. </span>웨이크 트리트먼트 옵션<a class="headerlink" href="#wake-treatment-options" title="이 제목에 대한 영구 링크"></a></h3>
+<p><strong>TwrShadowOnWake</strong> [flag]는 타워 포텐셜 유동과 타워 그림자가 후류 대류에 영향을 미치는지 여부를 지정합니다. AeroDyn에서 활성화된 타워 섀도우 모델은 항상 리프팅 라인에 영향을 미치므로 블레이드의 유도 및 부하가 발생합니다. 이 옵션은 깨우기에만 관련됩니다. 기본 옵션은 <em>[거짓]</em>.</p>
+<p><strong>ShearVorticityModel</strong> [스위치]는 다음과 같이 규정된 전단 유입에 추가하여 전단 와도를 모델링할지 여부를 지정합니다. <em>InflowWind</em>. 두 가지 옵션이 있습니다: 1) 치료 없음 <em>[0]</em> 2) 거울에 비친 와도 <em>[1]</em>. 거울에 비친 소용돌이도는 지면 효과를 설명합니다. 전단 와도를 설명하는 전용 옵션은 나중에 구현될 예정입니다. 전단 속도 프로파일은 다음과 같이 처리됩니다. <em>InflowWind</em> 이 입력과 상관없이. 기본 옵션은
 <em>[0]</em>.</p>
 </div>
 <div class="section" id="speedup-options">
-<h3><span class="section-number">4.4.4.2.6. </span>속도 향상 옵션<a class="headerlink" href="#speedup-options" title="이 제목의 고유 링크"></a></h3>
-<p><strong>VelocityMethod</strong> [스위치]는 속도를 결정하는 데 사용되는 방법을 지정합니다. 네 가지 옵션이 있습니다: 1) <span class="math notranslate nohighlight">\(N^2\)</span> 소용돌이 세그먼트에 대한 Biot-Savart 계산 <em>[1]</em>, 2) 입자-트리 공식화 <em>[2]</em>,
-3) <span class="math notranslate nohighlight">\(N^2\)</span> 입자 표현을 이용한 Biot-Savart 계산, 4) Segment-Tree 공식화. 옵션 <em>[2]</em> 및 <em>[3]</em> 에는 다음의 사양이 필요합니다. <em>PartPerSegment</em> (아래 참조). 옵션 <em>[4]</em> 는 옵션에 가까운 결과를 제공할 것으로 예상됩니다. <em>[1]</em> 는 상당한 속도 향상을 제공하며 이 옵션에는 다음의 사양이 필요하지 않습니다. <em>PartPerSegment</em>. 기본 옵션은 <em>[2]</em>.</p>
-<p><strong>TreeBranchFactor</strong> [-]는 분기 반경에서 직접 평가 대신 다중극 계산이 사용되는 무차원 거리를 지정합니다. 다음 경우에만 사용됩니다. <em>VelocityMethod</em> = <em>[2,4]</em>. 기본값: 1.5.</p>
-<p><strong>PartPerSegment</strong> [-]는 소용돌이 부분을 소용돌이 입자로 나타낼 때 사용되는 입자 수를 지정합니다. 다음 경우에만 사용됩니다. <em>VelocityMethod</em> = <em>[2,3]</em>). 기본값은 다음과 같습니다. <span class="math notranslate nohighlight">\(1\)</span>.</p>
+<h3><span class="section-number">4.4.4.2.6. </span>속도 향상 옵션<a class="headerlink" href="#speedup-options" title="이 제목에 대한 영구 링크"></a></h3>
+<p><strong>VelocityMethod</strong> [스위치]는 속도를 결정하는 데 사용되는 방법을 지정합니다. 네 가지 옵션이 있습니다: 1) <span class="math notranslate nohighlight">\(N^2\)</span> 소용돌이 세그먼트에 대한 Biot-Savart 계산 <em>[1]</em>, 2) 입자-나무 공식화 <em>[2]</em>,
+3) <span class="math notranslate nohighlight">\(N^2\)</span> 입자 표현을 이용한 Biot-Savart 계산, 4) Segment-Tree 공식화. 옵션 <em>[2]</em> 및 <em>[3]</em> 의 사양이 필요합니다. <em>PartPerSegment</em> (아래 참조). 옵션 <em>[4]</em> 옵션에 가까운 결과를 제공할 것으로 예상됩니다. <em>[1]</em> 상당한 속도 향상을 제공하며 이 옵션에는 다음의 사양이 필요하지 않습니다. <em>PartPerSegment</em>. 기본 옵션은 <em>[2]</em>.</p>
+<p><strong>TreeBranchFactor</strong> [-]는 직접 평가 대신 다중극 계산이 사용되는 분기 반경 내 무차원 거리를 지정합니다. 다음 경우에만 사용됩니다. <em>VelocityMethod</em> = <em>[2,4]</em>. 기본값: 1.5.</p>
+<p><strong>PartPerSegment</strong> [-]는 소용돌이 세그먼트가 소용돌이 입자로 표현될 때 사용되는 입자 수를 지정합니다. 다음 경우에만 사용됩니다. <em>VelocityMethod</em> = <em>[2,3]</em>). 기본값은 다음과 같습니다. <span class="math notranslate nohighlight">\(1\)</span>.</p>
 </div>
 <div class="section" id="output-options">
-<h3><span class="section-number">4.4.4.2.7. </span>출력 옵션<a class="headerlink" href="#output-options" title="이 제목의 고유 링크"></a></h3>
-<p><strong>WrVTK</strong> [플래그]는 VTK(Visualization Toolkit) 시각화 파일을 작성할지 여부를 지정합니다. <em>WrVTK</em> = <em>[0]</em> 는 ​​VTK 파일을 작성하지 않습니다. <em>WrVTK</em>
-= <em>[1]</em> 는 다음에 의해 정의된 시간 단계에서 VTK 파일을 출력합니다. <em>VTK_fps</em>.
-<em>WrVTK*= *[2]</em>, 다음과 같이 정의된 시간 간격으로 출력합니다. <em>VTK_fps</em>, 그러나 시뮬레이션의 시작과 끝에서 파일이 기록되도록 보장합니다(일반적으로 <cite>VTK_fps=0</cite> 는 시뮬레이션이 끝날 때만 출력됩니다. 출력은 폴더에 기록됩니다. <code class="docutils literal notranslate"><span class="pre">vtk_fvw.</span></code>   매개변수 <em>WrVTK</em>, <em>VTKCoord</em>및
-이 플래그 값 아래에 <em>VTK_fps</em> 는 글루 코드 VTK 출력 옵션과 무관합니다. 기본값: 0.</p>
+<h3><span class="section-number">4.4.4.2.7. </span>출력 옵션<a class="headerlink" href="#output-options" title="이 제목에 대한 영구 링크"></a></h3>
+<p><strong>WrVTK</strong> [flag]는 Visualization Toolkit(VTK) 시각화 파일을 작성할지 여부를 지정합니다. <em>WrVTK</em> = <em>[0]</em> VTK 파일을 쓰지 않습니다. <em>WrVTK</em>
+= <em>[1]</em> 다음에 의해 정의된 시간 단계에서 VTK 파일을 출력합니다. <em>VTK_fps</em>.
+<em>WrVTK*= *[2]</em>, 다음으로 정의된 시간 단계에서 출력됩니다. <em>VTK_fps</em>, 그러나 시뮬레이션의 시작과 끝에서 파일이 기록되도록 보장합니다(일반적으로 <cite>VTK_fps=0</cite> 시뮬레이션이 끝날 때만 출력됩니다). 출력은 폴더에 기록됩니다. <code class="docutils literal notranslate"><span class="pre">vtk_fvw.</span></code>   매개변수 <em>WrVTK</em>, <em>VTKCoord</em>, 및 <em>VTK_fps</em> 글루 코드 VTK 출력 옵션과 무관합니다. 기본값: 0.</p>
 <p><strong>nVTKBlades</strong> [-]는 기록할 블레이드 VTK 파일 수를 지정합니다.
-<em>nVTKBlades</em> <span class="math notranslate nohighlight">\(= n\)</span> 는 VTK 파일을 출력합니다. <span class="math notranslate nohighlight">\(n\)</span> 블레이드, 포함 <span class="math notranslate nohighlight">\(0\)</span>
-는 허용되는 값입니다. 기본값은 다음과 같습니다. <span class="math notranslate nohighlight">\(0\)</span>.</p>
-<p><strong>VTKCoord</strong> [스위치]는 VTK 파일이 기록되는 좌표계를 지정합니다. 두 가지 옵션이 있습니다. 1) 전역 좌표계 <em>[1]</em> 및 2) 허브 좌표계 <em>[2]</em>. 기본 옵션은 <em>[1]</em>.</p>
-<p><strong>VTK_fps</strong> [<span class="math notranslate nohighlight">\(1\)</span>/sec]는 VTK 파일의 출력 빈도를 지정합니다. 제공된 값은 시간 단계의 가장 가까운 허용 배수로 반올림됩니다. 기본값은 다음과 같습니다. <span class="math notranslate nohighlight">\(1/dt_\text{fvw}\)</span>. 지정 <em>VTK_fps</em> = <em>[전체]</em>는 값을 사용하는 것과 같습니다. <span class="math notranslate nohighlight">\(1/dt_\text{aero}\)</span>. 만약에 <em>VTK_fps&lt;0</em>다음을 제외하고는 출력이 생성되지 않습니다. <em>WrVTK=2</em>.</p>
-<p><strong>nGridOut</strong> [-]는 그리드 출력 수를 지정합니다. 기본값은 0입니다. 그리드 출력은 일반 데카르트 그리드로 내보내지는 필드(속도, 와도)입니다. 두 줄의 헤더가 있는 후속 줄에 이어지는 테이블을 사용하여 정의됩니다. 사용자는 이름(<strong>GridName</strong>)는 VTK 출력 파일 이름에 사용되며 그리드 유형(<strong>GridType</strong>), 시작 시간(<strong>T시작</strong>), 종료 시간(<strong>TEnd</strong>), 시간 간격(<strong>DT아웃</strong>) 및 각 방향의 그리드 범위(예: <strong>XStart</strong>, <strong>XEnd</strong>, <strong>nX</strong>. 언제 <strong>GridType</strong> 가 1이면 속도 필드가 디스크에 기록됩니다. <strong>GridType</strong> 가 2이면 속도장과 와도장(유한차를 사용하여 계산)이 모두 기록됩니다. 한 지점에서 필드를 내보낼 수 있습니다(<strong>nX=nY=nZ=1</strong>), 선, 평면 또는 3D 그리드입니다. “default”로 설정하면 시작 시간은 0, 종료 시간은 시뮬레이션 종료 시간으로 설정됩니다. 출력은 다음을 위해 수행됩니다. <span class="math notranslate nohighlight">\(t_{Start}\leq t \leq t_{End}\)</span>
-변수가 있을 때 <strong>DT아웃</strong> 가 "all"로 설정되면 AeroDyn 시간 간격이 사용되며, "default"로 설정되면 OLAF 시간 간격이 사용됩니다. 입력 예는 다음과 같습니다.</p>
+<em>nVTKBlades</em> <span class="math notranslate nohighlight">\(= n\)</span> VTK 파일을 출력합니다. <span class="math notranslate nohighlight">\(n\)</span> 블레이드, 와 <span class="math notranslate nohighlight">\(0\)</span>
+받아들일 수 있는 값이다. 기본값은 다음과 같습니다. <span class="math notranslate nohighlight">\(0\)</span>.</p>
+<p><strong>VTKCoord</strong> [스위치]는 VTK 파일이 기록되는 좌표계를 지정합니다. 두 가지 옵션이 있습니다. 1) 전역 좌표계 <em>[1]</em> 2) 허브 좌표계 <em>[2]</em>. 기본 옵션은 <em>[1]</em>.</p>
+<p><strong>VTK_fps</strong> [<span class="math notranslate nohighlight">\(1\)</span>/sec]는 VTK 파일의 출력 주파수를 지정합니다. 입력값은 시간 간격의 허용 배수 중 가장 가까운 값으로 반올림됩니다. 기본값은 <span class="math notranslate nohighlight">\(1/dt_\text{fvw}\)</span>. 지정 <em>VTK_fps</em> = <em>[모두]</em>, 값을 사용하는 것과 같습니다. <span class="math notranslate nohighlight">\(1/dt_\text{aero}\)</span>. 만약에 <em>VTK_fps&lt;0</em>이면 출력이 생성되지 않습니다. <em>WrVTK=2</em>.</p>
+<p><strong>nGridOut</strong> [-]는 그리드 출력 수를 지정합니다. 기본값은 0입니다. 그리드 출력은 일반 데카르트 그리드로 내보내지는 필드(속도, 와도)입니다. 두 줄의 헤더가 있는 후속 줄에 이어지는 테이블을 사용하여 정의됩니다. 사용자는 이름(<strong>GridName</strong>)는 VTK 출력 파일 이름에 사용되며 그리드 유형(<strong>GridType</strong>), 시작 시간(<strong>TStart</strong>), 종료 시간(<strong>TEnd</strong>), 시간 간격(<strong>DTOut</strong>) 및 각 방향의 그리드 범위(예: <strong>XStart</strong>, <strong>XEnd</strong>, <strong>nX</strong>. 언제 <strong>GridType</strong> 가 1이면 속도 필드가 디스크에 기록됩니다. <strong>GridType</strong> 가 2이면 속도장과 와도장(유한차를 사용하여 계산됨)이 모두 기록됩니다. 한 지점에서 필드를 내보낼 수 있습니다(<strong>nX=nY=nZ=1</strong>), 선, 평면 또는 3D 그리드입니다. “default”로 설정하면 시작 시간은 0, 종료 시간은 시뮬레이션 종료 시간으로 설정됩니다. 출력은 다음을 위해 수행됩니다. <span class="math notranslate nohighlight">\(t_{Start}\leq t \leq t_{End}\)</span>
+변수가 있을 때 <strong>DTOut</strong> “all”로 설정하면 AeroDyn 시간 간격이 사용되고, “default”로 설정되면 OLAF 시간 간격이 사용됩니다. 입력 예는 다음과 같습니다.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span>       <span class="n">nGridOut</span>           <span class="n">Number</span> <span class="n">of</span> <span class="n">grid</span> <span class="n">outputs</span>
 <span class="n">GridName</span>  <span class="n">GridType</span>  <span class="n">TStart</span>  <span class="n">TEnd</span>     <span class="n">DTOut</span>     <span class="n">XStart</span>    <span class="n">XEnd</span>   <span class="n">nX</span>    <span class="n">YStart</span>   <span class="n">YEnd</span>    <span class="n">nY</span>    <span class="n">ZStart</span>   <span class="n">ZEnd</span>   <span class="n">nZ</span>
 <span class="p">(</span><span class="o">-</span><span class="p">)</span>         <span class="p">(</span><span class="o">-</span><span class="p">)</span>      <span class="p">(</span><span class="n">s</span><span class="p">)</span>     <span class="p">(</span><span class="n">s</span><span class="p">)</span>      <span class="p">(</span><span class="n">s</span><span class="p">)</span>        <span class="p">(</span><span class="n">m</span><span class="p">)</span>      <span class="p">(</span><span class="n">m</span><span class="p">)</span>    <span class="p">(</span><span class="o">-</span><span class="p">)</span>    <span class="p">(</span><span class="n">m</span><span class="p">)</span>     <span class="p">(</span><span class="n">m</span><span class="p">)</span>     <span class="p">(</span><span class="o">-</span><span class="p">)</span>    <span class="p">(</span><span class="n">m</span><span class="p">)</span>     <span class="p">(</span><span class="n">m</span><span class="p">)</span>    <span class="p">(</span><span class="o">-</span><span class="p">)</span>
@@ -250,16 +236,15 @@ r_{c,,\text{blade}}(r) = \text{WingRegParam} \cdot \Delta r(r)\]</div>
 <p>이 예에서 "box"라는 이름의 첫 번째 그리드는 AeroDyn 시간 간격으로 내보내지며 모양이 5x20x30이고 크기가 1200x300x295인 상자로 구성됩니다. 그리드에는 속도와 와도가 모두 포함됩니다. 다른 두 그리드는 속도만 포함하는 수직 및 수평 평면입니다.</p>
 </div>
 <div class="section" id="advanced-options">
-<h3><span class="section-number">4.4.4.2.8. </span>고급 옵션<a class="headerlink" href="#advanced-options" title="이 제목의 고유 링크"></a></h3>
+<h3><span class="section-number">4.4.4.2.8. </span>고급 옵션<a class="headerlink" href="#advanced-options" title="이 제목에 대한 영구 링크"></a></h3>
 <p>고급 옵션(일반적으로 개발자 또는 베타 기능에 사용됨)은 OLAF 입력 파일 끝에 배치할 수 있습니다.</p>
 <ul class="simple">
-<li><p>이 옵션은 일반 형식을 사용합니다.  <cite>값 키 - 설명</cite>.</p></li>
+<li><p>이러한 옵션은 일반 형식을 사용합니다.  <cite>값 키 - 설명</cite>.</p></li>
 <li><p>임의의 순서로 배치할 수 있습니다.</p></li>
-<li><p>다음과 같이 주석 처리할 수 있습니다.
-줄 시작 부분에 <cite>!</cite> 문자가 있습니다.</p></li>
+<li><p>그들은 다음과 같이 주석 처리될 수 있습니다. <cite>!</cite> 줄의 시작 부분에 있는 문자입니다.</p></li>
 <li><p>빈 줄이나 지원되지 않는 옵션은 무시됩니다(화면에 표시).</p></li>
-<li><p>제공하지 않을 경우 기본값이 사용되지만 고급 옵션에는 “DEFAULT” 키워드가 지원되지 않습니다.</p></li>
-<li><p>이것들은 <strong>베타 기능</strong> 이며 주로 개발자가 사용해야 합니다.</p></li>
+<li><p>제공하지 않으면 기본값이 사용되지만 고급 옵션에는 "DEFAULT" 키워드가 지원되지 않습니다.</p></li>
+<li><p>이들은 <strong>베타 기능</strong> 개발자가 주로 사용해야 합니다.</p></li>
 </ul>
 <p>OLAF 입력 파일의 끝은 다음과 같습니다.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[...]
@@ -291,8 +276,8 @@ GridName  GridType  TStart  TEnd     DTGrid    XStart    XEnd   nX    YStart   Y
 <span class="mf">0.1</span>           <span class="n">zGroundPush</span>    <span class="o">-</span> <span class="n">Ground</span> <span class="n">push</span> <span class="n">back</span><span class="p">,</span> <span class="n">vortices</span> <span class="n">that</span> <span class="n">are</span> <span class="n">lower</span> <span class="n">than</span> <span class="n">zGround</span> <span class="n">are</span> <span class="n">placed</span> <span class="n">back</span> <span class="n">at</span> <span class="n">zGroundPush</span> <span class="p">{</span><span class="n">default</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">}</span>
 </pre></div>
 </div>
-<p><strong>SrcPanlFile</strong> [문자열]은 소스 패널 방법에 사용되는 VTK 파일의 이름을 지정합니다. VTK 파일은 DATASET POLYDATA POINTS 및 POLYGONS가 포함된 레거시 ASCII VTK 파일이어야 합니다. XY 평면에서 일반 그리드를 형성하는 두 개의 패널에 대한 샘플 VTK 파일이 아래에 제공됩니다. 다각형의 연결은 법선이 몸체에서 떨어져 유체를 향하도록 해야 합니다. 아래 예에서는 위에서 볼 때 다각형이 시계 방향으로 정의되어 있으며, 그 결과 OLAF가 내부적으로 정의한 법선이 생성됩니다. <cite>+z</cite> 방향. 이 구성은 유체가 위에 있는 바닥 벽의 전형적인 형태입니다. OLAF 법선은 벽에서 유체를 향합니다. 그러나 오른손 법칙을 적용하면 결과 법선은 유체에서 몸체 내부를 향합니다. 사용시 <strong>WrVTK</strong>, OLAF는 압력 계수, 면적, 면적당 힘, 법선 등 소스 패널과 관련된 다양한 정보가 포함된 별도의 VTK 파일을 작성합니다. 법선의 방향을 보는 것이 매우 중요합니다(Paraview에서는 3D Glyph, Arrows를 선택하고 <cite>노멀</cite> 출력, <cite>노멀</cite>). BodyID CELL_DATA는 다양한 패치를 분리하는 데 사용될 수 있으며 이는 사후 처리에 도움이 될 수 있습니다. 이는 선택 사항이며 OLAF는 현재 이를 사용하지 않지만 OLAF의 출력 파일에 다시 기록됩니다.</p>
-<p>호기심 많은 독자는 단위 테스트를 볼 수 있습니다. <cite>Test_SrcPnl_Sphere</cite> .</p>
+<p><strong>SrcPanlFile</strong> [string]은 소스 패널 방법에 사용되는 VTK 파일의 이름을 지정합니다. VTK 파일은 DATASET POLYDATA POINTS 및 POLYGONS가 포함된 레거시 ASCII VTK 파일이어야 합니다. XY 평면에서 일반 그리드를 형성하는 두 개의 패널에 대한 샘플 VTK 파일이 아래에 제공됩니다. 다각형의 연결은 법선이 몸체에서 떨어져 유체를 향하도록 해야 합니다. 아래 예에서 다각형은 위에서 볼 때 시계 방향으로 정의되며, 그 결과 내부적으로 OLAF가 가리키는 법선이 정의됩니다. <cite>+z</cite> 방향. 이 구성은 유체가 위에 있는 바닥 벽의 전형적인 형태입니다. OLAF 법선은 벽에서 유체를 향합니다. 그러나 오른손 법칙을 적용하면 결과 법선은 유체에서 몸체 내부를 향합니다. 사용시 <strong>WrVTK</strong>, OLAF는 압력 계수, 면적, 면적당 힘, 법선 등 소스 패널과 관련된 다양한 정보가 포함된 별도의 VTK 파일을 작성합니다. 법선의 방향을 보는 것이 매우 중요합니다(Paraview에서는 3D Glyph, Arrows를 선택하고 <cite>법선</cite> 출력, 크기 조정 <cite>법선</cite>). BodyID CELL_DATA는 다양한 패치를 분리하는 데 사용할 수 있으며 이는 사후 처리에 도움이 될 수 있습니다. 이는 선택 사항이며 OLAF는 현재 사용하지 않지만 OLAF의 출력 파일에 다시 기록됩니다.</p>
+<p>호기심이 많은 독자는 단위 테스트를 볼 수 있습니다. <cite>Test_SrcPnl_Sphere</cite> 구에 대한 압력 계수를 테스트하는 OLAF의.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># vtk DataFile Version 2.0</span>
 <span class="n">Comment</span>
 <span class="n">ASCII</span>
@@ -317,37 +302,33 @@ GridName  GridType  TStart  TEnd     DTGrid    XStart    XEnd   nX    YStart   Y
 </pre></div>
 </div>
 <p><strong>nSrcPnlUpdate</strong> [int] 소스 패널이 업데이트되는 빈도를 정의합니다(OLAF의 시간 단계). 기본값은 <cite>1</cite>, 각 시간 단계에서.</p>
-<p><strong>유도</strong>  [스위치] 유도된 속도를 계산합니다. 그렇지 않으면 모든 유도된 속도는 0입니다(웨이크 없음, 패널 없음 등) ! 기본값은 <cite>참
-입력 블록에 있는 AeroDyn 기본 입력 파일의 14번째 줄에 있는</cite>.</p>
-<p><strong>InductionAtCP</strong> [스위치] 양력선 계산을 수행할 때 노드(False) 또는 제어점(CP, True)에서 유도 속도를 계산합니다. 기본값은 <cite>참
-입력 블록에 있는 AeroDyn 기본 입력 파일의 14번째 줄에 있는</cite>.</p>
-<p><strong>WakeAtTE</strong> [스위치] 후행 가장자리(True)에서 웨이크를 시작하거나 LL(False, 코드 방향 패널 없음)에서 직접 시작합니다. 기본값은 <cite>참
-입력 블록에 있는 AeroDyn 기본 입력 파일의 14번째 줄에 있는</cite>.</p>
-<p><strong>DStallOnWake</strong> [스위치] 후류에 대한 동적 실속의 영향을 포함합니다(True). 즉, 리프팅 라인과 후류 패널의 순환을 업데이트하기 위해 동적 Cl을 사용합니다. 기본값은 <cite>거짓</cite>.</p>
-<p><strong>kFrozenNWStart</strong> [float] 동결 후류 시작 시 후류 유도 속도의 비율, 기본값은 다음과 같습니다. <cite>0.75</cite>. Frozen NW와 관련된 OLAF 이론을 참조하세요. <a class="reference internal" href="OLAFTheory.html#sec-vortconvfrozen"><span class="std std-numref">섹션 4.4.6.6</span></a>.</p>
-<p><strong>kFrozenNWEnd</strong> [float] 동결 후류 끝에서 후류 유도 속도의 비율, 기본값은 다음과 같습니다. <cite>0.5</cite>. Frozen NW와 관련된 OLAF 이론을 참조하세요. <a class="reference internal" href="OLAFTheory.html#sec-vortconvfrozen"><span class="std std-numref">섹션 4.4.6.6</span></a>.</p>
-<p><strong>zGround</strong> [float] 소용돌이 점이 허용되지 않는 미터 단위의 높이입니다. 소용돌이 점이 있는 경우 정의된 높이에서 땅 위로 다시 밀려납니다. <strong>zGroundPush</strong> (미터 단위). 기본값은 <cite>0.0</cite>. MHK의 경우 수심에 따른 해저 위치가 추가됩니다. <strong>zGround</strong>.</p>
+<p><strong>유도</strong>  [스위치] 유도된 속도를 계산합니다. 그렇지 않으면 모든 유도된 속도는 0입니다(후류 없음, 패널 없음 등) ! 기본값은 <cite>진실</cite>.</p>
+<p><strong>InductionAtCP</strong> [switch] 양력선 계산을 수행할 때 노드(False) 또는 제어점(CP, True)에서 유도 속도를 계산합니다. 기본값은 <cite>진실</cite>.</p>
+<p><strong>WakeAtTE</strong> [스위치] 후행 가장자리(True)에서 웨이크를 시작하거나 LL(False, 코드 방향 패널 없음)에서 직접 시작합니다. 기본값은 <cite>진실</cite>.</p>
+<p><strong>DStallOnWake</strong> [switch] 후류에 대한 동적 실속의 영향을 포함합니다(True). 즉, 동적 Cl을 사용하여 리프팅 라인과 후류 패널의 순환을 업데이트합니다. 기본값은 <cite>거짓</cite>.</p>
+<p><strong>kFrozenNWStart</strong> [float] 동결된 항적 시작 시 항적에 의한 속도의 비율, 기본값은 다음과 같습니다. <cite>0.75</cite>. 겨울왕국 NW와 관련된 OLAF 이론을 참조하세요. <a class="reference internal" href="OLAFTheory.html#sec-vortconvfrozen"><span class="std std-numref">섹션 4.4.6.6</span></a>.</p>
+<p><strong>kFrozenNWEnd</strong> [float] 동결된 항적의 끝에서 항적에 의한 속도의 비율, 기본값은 다음과 같습니다. <cite>0.5</cite>. 겨울왕국 NW와 관련된 OLAF 이론을 참조하세요. <a class="reference internal" href="OLAFTheory.html#sec-vortconvfrozen"><span class="std std-numref">섹션 4.4.6.6</span></a>.</p>
+<p><strong>zGround</strong> [float] 소용돌이 점이 허용되지 않는 미터 단위의 높이입니다. 소용돌이 점이 있는 경우 다음과 같이 정의된 높이에서 땅 위로 다시 밀려납니다. <strong>zGroundPush</strong> (미터 단위). 기본값은 <cite>0.0</cite>. MHK의 경우 수심에 따른 해저 위치가 추가됩니다. <strong>zGround</strong>.</p>
 <p><strong>zGroundPush</strong> [float] 지면 푸시백, 참조 <strong>zGround</strong>. 기본값은 <cite>0.1</cite>.</p>
 </div>
 </div>
 <div class="section" id="aerodyn-input-file">
-<h2><span class="section-number">4.4.4.3. </span>AeroDyn 입력 파일<a class="headerlink" href="#aerodyn-input-file" title="이 제목의 고유 링크"></a></h2>
+<h2><span class="section-number">4.4.4.3. </span>AeroDyn 입력 파일<a class="headerlink" href="#aerodyn-input-file" title="이 제목에 대한 영구 링크"></a></h2>
 <div class="section" id="input-file-modifications">
-<h3><span class="section-number">4.4.4.3.1. </span>입력 파일 수정<a class="headerlink" href="#input-file-modifications" title="이 제목의 고유 링크"></a></h3>
-<p>OLAF가 <em>AeroDyn</em> 모듈에 웨이크 계산 옵션이 추가되었습니다. <em>AeroDyn</em> 입력 파일과 라인이 추가되었습니다. 이러한 추가 사항은 다음과 같습니다.</p>
-<p><strong>WakeMod</strong> 는 사용되는 웨이크 모델 유형을 지정합니다.
-사용자가 기존 BEM 방식에서 OLAF 방식으로 전환할 수 있도록 <em>WakeMod</em> = <em>[3]</em> 가 추가되었습니다.</p>
-<p><strong>FVW파일</strong> [문자열]은 OLAF 모듈 파일을 지정합니다. 경로는 절대 경로가 제공되지 않는 한 AeroDyn 파일을 기준으로 합니다.</p>
+<h3><span class="section-number">4.4.4.3.1. </span>입력 파일 수정<a class="headerlink" href="#input-file-modifications" title="이 제목에 대한 영구 링크"></a></h3>
+<p>OLAF가 통합됨에 따라 <em>AeroDyn</em> 모듈에는 wake 계산 옵션이 추가되었습니다. <em>AeroDyn</em> 입력 파일과 한 줄이 추가되었습니다. 이러한 추가 사항은 다음과 같습니다.</p>
+<p><strong>WakeMod</strong> 사용되는 웨이크 모델 유형을 지정합니다. <em>WakeMod</em> = <em>[3]</em> 사용자가 기존 BEM 방법에서 OLAF 방법으로 전환할 수 있도록 추가되었습니다.</p>
+<p><strong>FVWFile</strong> [string]은 OLAF 모듈 파일을 지정하며, 절대 경로가 제공되지 않는 한 경로는 AeroDyn 파일을 기준으로 합니다.</p>
 </div>
 <div class="section" id="relevant-sections">
-<h3><span class="section-number">4.4.4.3.2. </span>관련 섹션<a class="headerlink" href="#relevant-sections" title="이 제목의 고유 링크"></a></h3>
+<h3><span class="section-number">4.4.4.3.2. </span>관련 섹션<a class="headerlink" href="#relevant-sections" title="이 제목에 대한 영구 링크"></a></h3>
 <p>BEM 옵션(예: 팁 손실, 스큐 및 동적 모델)은 다음과 같은 경우 읽고 삭제됩니다. <em>WakeMod</em> = <em>[3]</em>. 다음 섹션과 매개변수는 관련성을 유지하며 소용돌이 코드에서 사용됩니다.</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>일반 옵션(예: 익형 및 타워 모델링);</p></li>
+<li><p>일반 옵션(예: 익형 및 타워 모델링)</p></li>
 <li><p>환경 조건;</p></li>
 <li><p>동적 실속 모델 옵션;</p></li>
-<li><p>에어포일 및 블레이드 정보;</p></li>
+<li><p>익형 및 블레이드 정보;</p></li>
 <li><p>타워 공기역학; 그리고</p></li>
 <li><p>출력.</p></li>
 </ul>
@@ -359,8 +340,8 @@ GridName  GridType  TStart  TEnd     DTGrid    XStart    XEnd   nX    YStart   Y
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
-        <a href="RunningOLAF.html" class="btn btn-neutral float-left" title="4.4.3. OLAF와 협력하기" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
+        <a href="RunningOLAF.html" class="btn btn-neutral float-left" title="4.4.3. OLAF 작업" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
         <a href="OutputFiles.html" class="btn btn-neutral float-right" title="4.4.5. 출력 파일" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -371,7 +352,7 @@ GridName  GridType  TStart  TEnd     DTGrid    XStart    XEnd   nX    YStart   Y
   </div>
 
   다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">주제</a>
     제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
    
 

@@ -2,7 +2,7 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>4.9.1. 사용법 - OpenFAST v5.0.0 문서</title>
+  <title>4.9.1. 사용법 — OpenFAST v5.0.0 문서</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css">
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css">
       <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css">
@@ -21,7 +21,7 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="검색" href="../../../search.html">
+    <link rel="search" title="찾다" href="../../../search.html">
     <link rel="next" title="4.9.2. 입력 파일" href="input_files.html">
     <link rel="prev" title="4.9. ExtPtfm" href="index.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/extptfm/usage.html"></head>
@@ -36,7 +36,7 @@
           
           <a href="../../../index.html" class="icon icon-home">
             OpenFAST
-              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="심벌 마크">
           </a>
               <div class="version">5.0 · 한국어</div>
 <div role="search">
@@ -48,29 +48,29 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력소음</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">4.9. ExtPtfm</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">4.9.1. 사용법</a><ul>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.9.1. 용법</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#typical-sequentially-coupled-workflow-with-extptfm">4.9.1.1. 일반적인 순차적 결합 워크플로우 <em>ExtPtfm</em></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#using-the-module">4.9.1.2. 모듈 사용</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#recommendations">4.9.1.3. 권장 사항</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#openfast-5-0">4.9.1.4. 오픈패스트 5.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#recommendations">4.9.1.3. 권장사항</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#openfast-5-0">4.9.1.4. OpenFAST 5.0</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="input_files.html">4.9.2. 입력 파일</a></li>
 <li class="toctree-l3"><a class="reference internal" href="theory.html">4.9.3. 이론</a></li>
-<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.9.4. 참고문헌</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.9.4. 참고자료</a></li>
 <li class="toctree-l3"><a class="reference internal" href="appendix.html">4.9.5. 예제 파일</a></li>
 </ul>
 </li>
@@ -92,16 +92,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -110,12 +110,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
           <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.9. </span>ExtPtfm</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">4.9.1. </span>사용법</li>
+      <li class="breadcrumb-item active"><span class="section-number">4.9.1. </span>용법</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/extptfm/usage.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+            <a href="../../../_sources/source/user/extptfm/usage.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -124,28 +124,24 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="usage">
-<span id="ep-usage"></span><h1><span class="section-number">4.9.1. </span>사용법<a class="headerlink" href="#usage" title="이 제목의 고유 링크"></a></h1>
-<p>해당 <em>ExtPtfm</em> 모듈은 사용자가 제공한 지지 구조의 슈퍼요소 속성(예: 질량, 강성, 감쇠 및 가진력의 시계열)을 사용하여 인터페이스에서 지지 구조의 반응을 계산합니다. 이 모듈은 선형 공식을 사용하며 내부적으로 Guyan 및 Craig-Bampton 자유도를 추적합니다.</p>
+<span id="ep-usage"></span><h1><span class="section-number">4.9.1. </span>용법<a class="headerlink" href="#usage" title="이 제목에 대한 영구 링크"></a></h1>
+<p>해당 <em>ExtPtfm</em> 모듈은 사용자가 제공한 지지 구조의 상위 요소 속성(예: 질량, 강성, 감쇠 및 가진력의 시계열)을 사용하여 인터페이스에서 지지 구조의 반응을 계산합니다. 이 모듈은 선형 공식을 사용하며 내부적으로 Guyan 및 Craig-Bampton 자유도를 추적합니다.</p>
 <div class="section" id="typical-sequentially-coupled-workflow-with-extptfm">
-<h2><span class="section-number">4.9.1.1. </span>일반적인 순차적 결합 워크플로우 <em>ExtPtfm</em><a class="headerlink" href="#typical-sequentially-coupled-workflow-with-extptfm" title="이 제목의 고유 링크"></a></h2>
-<p>전체 작업 흐름에는 다음 단계가 포함됩니다.</p>
+<h2><span class="section-number">4.9.1.1. </span>일반적인 순차적 결합 워크플로우 <em>ExtPtfm</em><a class="headerlink" href="#typical-sequentially-coupled-workflow-with-extptfm" title="이 제목에 대한 영구 링크"></a></h2>
+<p>전체 워크플로에는 다음 단계가 포함됩니다.</p>
 <ul class="simple">
-<li><p>하부 구조 설계자는 초요소 모델을 생성할 수 있는 유한 요소 도구와 같은 외부 도구를 사용하여 주어진 해상 상태에서 격리된 하부 구조의 시간 영역 시뮬레이션을 수행합니다. 외부 도구 뒤에 있는 기본 모델과 부하의 시계열은 다음에 설명된 CB 기술을 사용하여 감소됩니다. <a class="reference internal" href="theory.html#ep-theory"><span class="std std-ref">이론</span></a>, 여기서 리더 DOF는 하위 구조 인터페이스 노드의 DOF로 선택됩니다. 축소 결과는 축소된 시스템 행렬이 포함된 파일에 기록됩니다. <span class="math notranslate nohighlight">\(\boldsymbol{M}_r\)</span>,
-<span class="math notranslate nohighlight">\(\boldsymbol{C}_r\)</span>, <span class="math notranslate nohighlight">\(\boldsymbol{K}_r\)</span>및 감소된 부하의 시계열, <span class="math notranslate nohighlight">\(\boldsymbol{f}_r\)</span>.</p></li>
-<li><p>파일을 다음 위치로 가져왔습니다. <em>OpenFAST</em> 다음에 의해 <em>ExtPtfm</em> 모듈과 전체 풍력터빈의 시간 영역 시뮬레이션은 하부 구조의 축소된 표현으로 실행됩니다. 매 단계마다,
+<li><p>하부 구조 설계자는 초요소 모델을 생성할 수 있는 유한 요소 도구와 같은 외부 도구를 사용하여 주어진 해상 상태에서 격리된 하부 구조의 시간 영역 시뮬레이션을 수행합니다. 외부 도구 뒤에 있는 기본 모델과 부하의 시계열은 다음에 설명된 CB 기술을 사용하여 감소됩니다. <a class="reference internal" href="theory.html#ep-theory"><span class="std std-ref">이론</span></a>여기서 리더 DOF는 하위 구조 인터페이스 노드의 리더로 선택됩니다. 축소 결과는 축소된 시스템 행렬이 포함된 파일에 기록됩니다. <span class="math notranslate nohighlight">\(\boldsymbol{M}_r\)</span>,
+<span class="math notranslate nohighlight">\(\boldsymbol{C}_r\)</span>, <span class="math notranslate nohighlight">\(\boldsymbol{K}_r\)</span>, 감소된 부하의 시계열, <span class="math notranslate nohighlight">\(\boldsymbol{f}_r\)</span>.</p></li>
+<li><p>파일을 다음 위치로 가져왔습니다. <em>OpenFAST</em> 다음에 의해 <em>ExtPtfm</em> 모듈, 전체 풍력 터빈의 시간 영역 시뮬레이션은 하부 구조의 축소된 표현으로 실행됩니다. 매 단계마다,
 <em>ExtPtfm</em> 모듈은 인터페이스 지점의 변위, 속도 및 가속도를 입력으로 받고 이 지점의 하중을 반환합니다.</p></li>
-<li><p><em>OpenFAST</em> 는 인터페이스에서 시계열의 하중 및 변위를 내보낸 다음 하위 구조 설계자에게 반환합니다. 이러한 입력은 외부 도구에 대한 경계 조건으로 사용된 다음 하위 구조의 또 다른 시간 영역 시뮬레이션이 실행됩니다. 응력 집중이 계산되고 코드 검사가 수행됩니다.</p></li>
+<li><p><em>OpenFAST</em> 인터페이스에서 일련의 하중 및 변위를 내보낸 다음 하위 구조 설계자에게 반환합니다. 이러한 입력은 외부 도구에 대한 경계 조건으로 사용된 다음 하위 구조의 또 다른 시간 영역 시뮬레이션이 실행됩니다. 응력 집중이 계산되고 코드 검사가 수행됩니다.</p></li>
 </ul>
 </div>
 <div class="section" id="using-the-module">
-<h2><span class="section-number">4.9.1.2. </span>모듈 사용<a class="headerlink" href="#using-the-module" title="이 제목의 고유 링크"></a></h2>
-<p>해당 <code class="docutils literal notranslate"><span class="pre">ExtPtfm</span></code> 모듈은 플래그를 설정하여 활성화됩니다.
-기본 OpenFAST 입력 파일의 <code class="docutils literal notranslate"><span class="pre">CompSub</span></code> 에
-액추에이터 라인 애플리케이션용
-<span class="math notranslate nohighlight">\(2\)</span> . 변수
-동일한 파일의 <code class="docutils literal notranslate"><span class="pre">SubFile</span></code> 는 모듈에 대한 유효한 입력 파일로 설정되어야 합니다(참조:
-입력 파일 사양의 경우
-<a class="reference internal" href="input_files.html#ep-input-files"><span class="std std-ref">입력 파일</span></a> ).</p>
+<h2><span class="section-number">4.9.1.2. </span>모듈 사용<a class="headerlink" href="#using-the-module" title="이 제목에 대한 영구 링크"></a></h2>
+<p>해당 <code class="docutils literal notranslate"><span class="pre">ExtPtfm</span></code> 모듈은 플래그를 설정하여 활성화됩니다. <code class="docutils literal notranslate"><span class="pre">CompSub</span></code> 까지
+<span class="math notranslate nohighlight">\(2\)</span> 기본 OpenFAST 입력 파일에 있습니다. 변수 <code class="docutils literal notranslate"><span class="pre">SubFile</span></code> 이 동일한 파일에서 모듈에 대한 유효한 입력 파일로 설정되어야 합니다(참조:
+<a class="reference internal" href="input_files.html#ep-input-files"><span class="std std-ref">입력 파일</span></a> 입력 파일 사양의 경우).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---</span>  <span class="p">[</span><span class="o">...</span><span class="p">]</span>
   <span class="mi">2</span>  <span class="n">CompSub</span> <span class="o">-</span> <span class="n">Compute</span> <span class="n">sub</span><span class="o">-</span><span class="n">structural</span> <span class="n">dynamics</span> <span class="p">(</span><span class="n">switch</span><span class="p">)</span> <span class="p">{</span><span class="mi">0</span><span class="o">=</span><span class="kc">None</span><span class="p">;</span> <span class="mi">1</span><span class="o">=</span><span class="n">SubDyn</span><span class="p">;</span> <span class="mi">2</span><span class="o">=</span><span class="n">ExtPtfm</span><span class="p">}</span>
 <span class="o">---</span>  <span class="p">[</span><span class="o">...</span><span class="p">]</span>
@@ -154,26 +150,25 @@
 </div>
 </div>
 <div class="section" id="recommendations">
-<h2><span class="section-number">4.9.1.3. </span>권장 사항<a class="headerlink" href="#recommendations" title="이 제목의 고유 링크"></a></h2>
-<p><strong>시간 단계</strong> 수퍼엘리먼트에는 고주파수가 포함될 수 있습니다. 경험상 다음 기준을 만족하는 시간 단계를 사용하는 것이 좋습니다. <span class="math notranslate nohighlight">\(\Delta t=\frac{1}{10 f_\text{max}}\)</span>, 여기서 <span class="math notranslate nohighlight">\(f_\text{max}\)</span> 는 슈퍼엘리먼트 또는 전체 OpenFAST 모델에 존재하는 최대 주파수입니다.</p>
-<p><strong>Craig-Bampton 모드 수</strong> 수렴에 도달하는 데 필요한 모드 수에 대한 아이디어를 얻고 어떤 모드가 시스템 응답에 가장 많이 기여하는지 확인하려면 점점 더 많은 수의 Craig-Bampton 모드에 대한 결과의 민감도 분석을 수행하는 것이 좋습니다.</p>
+<h2><span class="section-number">4.9.1.3. </span>권장사항<a class="headerlink" href="#recommendations" title="이 제목에 대한 영구 링크"></a></h2>
+<p><strong>시간 단계</strong> 슈퍼엘리먼트는 고주파수를 포함할 수 있습니다. 경험상 다음 기준을 만족하는 시간 단계를 사용하는 것이 좋습니다. <span class="math notranslate nohighlight">\(\Delta t=\frac{1}{10 f_\text{max}}\)</span>, 어디 <span class="math notranslate nohighlight">\(f_\text{max}\)</span> 슈퍼엘리먼트 또는 전체 OpenFAST 모델에 존재하는 최대 주파수입니다.</p>
+<p><strong>Craig-Bampton 모드 수</strong> 수렴에 도달하는 데 필요한 모드 수에 대한 아이디어를 얻고 시스템 응답에 가장 많이 기여하는 모드를 확인하려면 점점 더 많은 수의 Craig-Bampton 모드에 대한 결과의 민감도 분석을 수행하는 것이 좋습니다.</p>
 </div>
 <div class="section" id="openfast-5-0">
-<h2><span class="section-number">4.9.1.4. </span>오픈패스트 5.0<a class="headerlink" href="#openfast-5-0" title="이 제목의 고유 링크"></a></h2>
-<p>OpenFAST 5.0이 출시되면서 ExtPtfm의 입력 파일과 내부 공식이 크게 변경되었습니다. ExtPtfm과 HydroDyn 사이, ExtPtfm과 계류 모듈 사이의 커플링이 활성화되어 유연한 부유 구조물을 보다 편리하게 시뮬레이션할 수 있습니다. 마지막으로 이제 ExtPtfm을 사용한 선형화가 가능합니다.</p>
-<p>ExtPtfm에서 부유 구조물을 시뮬레이션할 때 HydroDyn을 글루 코드에서 활성화하여 강체 모드와 추가 일반화된 자유도 모두에 대한 전위 흐름 파동 여기 및 방사 하중과 정수압 하중을 계산하고 제공할 수 있습니다. <cite>NAddDOF</cite> 옵션(HydroDyn 설명서 참조). 이 설정을 사용하면 ExtPtfm의 활성 모드 수가 다음과 같아야 합니다.
-HydroDyn의 <span class="math notranslate nohighlight">\(6+NAddDOF\)</span> , 처음 6개 모드는 강체 모드이고 그 뒤에는 다양한 탄성 모드가 있습니다.</p>
-<p>HydroDyn에 스트립 이론 멤버도 포함된 경우 결과 스트립 이론 하중은 모두 탄성 모드가 아닌 ExtPtfm 강체 모드에만 매핑됩니다. 따라서 사용자는 HydroDyn에서 스트립 이론 전용 멤버를 사용하지 않는 것이 좋습니다. HydroDyn의 해양 성장과 밸러스트/홍수에도 동일하게 적용됩니다. 그러나 드래그만 있는 하이브리드 멤버는 더 탄력적인 플로터 모션을 얻는 데 도움이 되는 경우가 많습니다. 항력은 작은 경향이 있으며 구조적 하중에 강한 직접적인 영향을 미치지 않습니다. 이 경우 항력을 강체 모드에만 매핑하는 것이 허용 가능한 단순화일 수 있습니다. 아직 일반화된 자유도를 지원하지 않는 HydroDyn의 2차 전위 흐름 옵션에도 동일한 고려 사항이 적용됩니다.</p>
-<p>계류에 연결하는 경우 ExtPtfm 모듈에서 연결점 세트를 정의해야 합니다. 이러한 연결 지점은 계류 모델의 도삭선에 연결됩니다. 일반적으로 ExtPtfm의 연결점은 계류 모델에서 도삭선으로 사용되는 점 세트와 동일해야 합니다. 그러나 OpenFAST가 두 개의 견고한 연결 가정 사이에 자동으로 가장 가까운 이웃 매핑을 도입하므로 정확히 동일할 필요는 없습니다.</p>
-<p>ExtPtfm을 HydroDyn에 결합하고 계류하는 위의 워크플로우는 아직 진행 중입니다.</p>
+<h2><span class="section-number">4.9.1.4. </span>OpenFAST 5.0<a class="headerlink" href="#openfast-5-0" title="이 제목에 대한 영구 링크"></a></h2>
+<p>OpenFAST 5.0이 출시되면서 ExtPtfm의 입력 파일과 내부 공식이 크게 변경되었습니다. ExtPtfm와 HydroDyn 사이, ExtPtfm와 계류 모듈 사이의 커플링이 활성화되어 유연한 부유 구조물을 보다 편리하게 시뮬레이션할 수 있습니다. 마지막으로 이제 ExtPtfm를 사용한 선형화가 가능합니다.</p>
+<p>ExtPtfm에서 부유 구조물을 시뮬레이션할 때 글루 코드에서 HydroDyn를 활성화하여 강체 모드와 추가 일반화된 자유도 모두에 대한 포텐셜 유동 파동 여기 및 방사 하중과 정수압 하중을 계산하고 제공할 수 있습니다. <cite>NAddDOF</cite> 옵션(HydroDyn 문서 참조). 이 설정을 사용하면 ExtPtfm의 활성 모드 수가 다음과 같아야 합니다. <span class="math notranslate nohighlight">\(6+NAddDOF\)</span> HydroDyn에서는 처음 6개 모드가 강체 모드이고 그 다음에는 여러 탄성 모드가 있습니다.</p>
+<p>HydroDyn에도 스트립 이론 멤버가 포함된 경우 결과 스트립 이론 하중은 모두 탄성 모드가 아닌 ExtPtfm 강체 모드에만 매핑됩니다. 따라서 사용자는 HydroDyn에서 스트립 이론 전용 멤버를 사용하지 않는 것이 좋습니다. HydroDyn의 해양 성장과 밸러스트/홍수에도 동일하게 적용됩니다. 그러나 드래그만 있는 하이브리드 멤버는 더 탄력적인 플로터 모션을 얻는 데 도움이 되는 경우가 많습니다. 항력은 작은 경향이 있으며 구조적 하중에 강한 직접적인 영향을 미치지 않습니다. 이 경우 항력을 강체 모드에만 매핑하는 것이 허용 가능한 단순화일 수 있습니다. 아직 일반화된 자유도를 지원하지 않는 HydroDyn의 2차 포텐셜 유동 옵션에도 동일한 고려 사항이 적용됩니다.</p>
+<p>계류에 연결하는 경우 ExtPtfm 모듈에서 연결점 세트를 정의해야 합니다. 이러한 연결 지점은 계류 모델의 도삭선에 연결됩니다. 일반적으로 ExtPtfm의 연결 지점은 계류 모델에서 도삭으로 사용되는 지점 세트와 동일해야 합니다. 그러나 OpenFAST가 두 개의 고정 연결 가정 사이에 자동으로 가장 가까운 이웃 매핑을 도입하므로 정확히 동일할 필요는 없습니다.</p>
+<p>ExtPtfm를 HydroDyn에 연결하고 계류하는 위의 작업흐름은 아직 진행 중입니다.</p>
 </div>
 </div>
 
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
-        <a href="index.html" class="btn btn-neutral float-left" title="4.9. ExtPtfm" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
+        <a href="index.html" class="btn btn-neutral float-left" title="4.9. ExtPtfm" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
         <a href="input_files.html" class="btn btn-neutral float-right" title="4.9.2. 입력 파일" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -184,7 +179,7 @@ HydroDyn의 <span class="math notranslate nohighlight">\(6+NAddDOF\)</span> , �
   </div>
 
   다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">주제</a>
     제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
    
 

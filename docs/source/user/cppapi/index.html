@@ -20,8 +20,8 @@
         <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="검색" href="../../../search.html">
-    <link rel="next" title="4.21. 웨이브탱크" href="../other/index.html">
+    <link rel="search" title="찾다" href="../../../search.html">
+    <link rel="next" title="4.21. WaveTank" href="../other/index.html">
     <link rel="prev" title="4.19.12. 출력 채널 목록" href="../fast.farm/AppendixC.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/cppapi/index.html"></head>
 
@@ -35,7 +35,7 @@
           
           <a href="../../../index.html" class="icon icon-home">
             OpenFAST
-              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="심벌 마크">
           </a>
               <div class="version">5.0 · 한국어</div>
 <div role="search">
@@ -47,15 +47,15 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력소음</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
@@ -83,16 +83,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -101,11 +101,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.20. </span>C++ API 사용자 가이드</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/cppapi/index.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+            <a href="../../../_sources/source/user/cppapi/index.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -114,10 +114,10 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="c-api-users-guide">
-<h1><span class="section-number">4.20. </span>C++ API 사용자 가이드<a class="headerlink" href="#c-api-users-guide" title="이 제목의 고유 링크"></a></h1>
+<h1><span class="section-number">4.20. </span>C++ API 사용자 가이드<a class="headerlink" href="#c-api-users-guide" title="이 제목에 대한 영구 링크"></a></h1>
 <p>이 문서는 C++ API 및 글루 코드에 대한 빠른 참조 가이드를 제공합니다. 일반 사용자가 다른 OpenFAST 매뉴얼과 함께 사용하도록 고안되었습니다. 설명서는 새 릴리스가 출시될 때마다 업데이트되며 소프트웨어의 개선 또는 수정에 대한 추가 정보를 제공하기 위해 필요에 따라 업데이트됩니다.</p>
-<p>C++ API는 C++ 글루 코드를 통해 OpenFAST를 실행하기 위한 고급 API를 제공합니다. C++ API의 주요 목적은 일반적으로 C++로 작성된 CFD 솔버와 같은 외부 프로그램에 OpenFAST를 연결하는 데 도움을 주는 것입니다. C++ API 설치는 CMake를 통해 활성화됩니다. <code class="xref std std-cmakeval docutils literal notranslate"><span class="pre">BUILD_OPENFAST_CPP_API</span></code> 플래그입니다.</p>
-<p>샘플 글루 코드 <a class="reference external" href="https://github.com/OpenFAST/openfast/blob/dev/glue-codes/openfast-cpp/src/FAST_Prog.cpp" target="_blank" rel="noopener noreferrer">FAST_Prog.cpp</a> 는 C++ API 사용법의 데모로 제공됩니다. 글루 코드를 사용하면 여러 프로세서에 걸쳐 OpenFAST를 병렬로 사용하여 여러 터빈을 시뮬레이션할 수 있습니다. 글루 코드는 다음과 같은 단일 입력 파일을 사용합니다. <code class="docutils literal notranslate"><span class="pre">cDriver.i</span></code> (<a class="reference download internal" download="" href="../../../_downloads/bb8956a54105ff4ca274c4f53a89aefe/cDriver.i"><code class="xref download docutils literal notranslate"><span class="pre">download</span></code></a>).</p>
+<p>C++ API는 C++ 글루코드를 통해 OpenFAST를 실행하기 위한 높은 수준의 API를 제공합니다. C++ API의 주요 목적은 일반적으로 C++로 작성된 CFD 솔버와 같은 외부 프로그램에 OpenFAST를 인터페이스하는 데 도움을 주는 것입니다. C++ API 설치는 다음을 켜면 CMake를 통해 활성화됩니다. <code class="xref std std-cmakeval docutils literal notranslate"><span class="pre">BUILD_OPENFAST_CPP_API</span></code> 깃발.</p>
+<p>샘플 글루 코드 <a class="reference external" href="https://github.com/OpenFAST/openfast/blob/dev/glue-codes/openfast-cpp/src/FAST_Prog.cpp" target="_blank" rel="noopener noreferrer">FAST_Prog.cpp</a> C++ API 사용법의 데모로 제공됩니다. 글루 코드를 사용하면 여러 프로세서에서 병렬로 OpenFAST를 사용하여 여러 터빈을 시뮬레이션할 수 있습니다. 글루 코드는 다음과 같은 단일 입력 파일을 사용합니다. <code class="docutils literal notranslate"><span class="pre">cDriver.i</span></code> (<a class="reference download internal" download="" href="../../../_downloads/bb8956a54105ff4ca274c4f53a89aefe/cDriver.i"><code class="xref download docutils literal notranslate"><span class="pre">download</span></code></a>).</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- mode: yaml -*-</span>
 <span class="c1">#</span>
 <span class="c1"># C++ glue-code for OpenFAST - Example input file</span>
@@ -181,46 +181,46 @@
 </pre></div>
 </div>
 <div class="section" id="command-line-invocation">
-<h2><span class="section-number">4.20.1. </span>명령줄 호출<a class="headerlink" href="#command-line-invocation" title="이 제목의 고유 링크"></a></h2>
+<h2><span class="section-number">4.20.1. </span>명령줄 호출<a class="headerlink" href="#command-line-invocation" title="이 제목에 대한 영구 링크"></a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpiexec<span class="w"> </span>-np<span class="w"> </span>&lt;N&gt;<span class="w"> </span>openfastcpp
 </pre></div>
 </div>
 </div>
 <div class="section" id="common-input-file-options">
-<h2><span class="section-number">4.20.2. </span>공통 입력 파일 옵션<a class="headerlink" href="#common-input-file-options" title="이 제목의 고유 링크"></a></h2>
+<h2><span class="section-number">4.20.2. </span>공통 입력 파일 옵션<a class="headerlink" href="#common-input-file-options" title="이 제목에 대한 영구 링크"></a></h2>
 <dl class="std confval">
 <dt class="sig sig-object std" id="confval-n_turbines_glob">
 <span class="sig-name descname"><span class="pre">n_turbines_glob</span></span><a class="headerlink" href="#confval-n_turbines_glob" title="이 정의에 대한 영구 링크"></a></dt>
-<dd><p>시뮬레이션에 포함된 총 터빈 수입니다. 입력 파일에는 여러 개의 터빈 관련 섹션(<cite>터빈0</cite>, <cite>터빈1</cite>, …, <cite>터빈(n-1)</cite>)와 일치합니다. <cite>nTurbinesGlob</cite>.</p>
+<dd><p>시뮬레이션에 포함된 총 터빈 수입니다. 입력 파일에는 여러 개의 터빈 관련 섹션(<cite>터빈0</cite>, <cite>터빈1</cite>, …, <cite>터빈(n-1)</cite>) 이는 다음과 일치한다. <cite>nTurbinesGlob</cite>.</p>
 </dd></dl>
 
 <dl class="std confval">
 <dt class="sig sig-object std" id="confval-debug">
 <span class="sig-name descname"><span class="pre">디버그</span></span><a class="headerlink" href="#confval-debug" title="이 정의에 대한 영구 링크"></a></dt>
-<dd><p>true로 설정된 경우 디버그 출력 활성화</p>
+<dd><p>true로 설정된 경우 디버그 출력을 활성화합니다.</p>
 </dd></dl>
 
 <dl class="std confval">
 <dt class="sig sig-object std" id="confval-dry_run">
 <span class="sig-name descname"><span class="pre">dry_run</span></span><a class="headerlink" href="#confval-dry_run" title="이 정의에 대한 영구 링크"></a></dt>
-<dd><p>dryRun이 true로 설정된 경우 시뮬레이션이 실행되지 않습니다. 그러나 시뮬레이션에서는 입력 파일을 읽고, 터빈을 프로세서에 할당하고, 개별 터빈 인스턴스 실행을 준비합니다. 이 플래그는 시뮬레이션을 실행하기 전에 시뮬레이션 설정을 테스트하는 데 유용합니다.</p>
+<dd><p>dryRun가 true로 설정된 경우 시뮬레이션이 실행되지 않습니다. 그러나 시뮬레이션에서는 입력 파일을 읽고, 터빈을 프로세서에 할당하고, 개별 터빈 인스턴스 실행을 준비합니다. 이 플래그는 시뮬레이션을 실행하기 전에 시뮬레이션 설정을 테스트하는 데 유용합니다.</p>
 </dd></dl>
 
 <dl class="std confval">
 <dt class="sig sig-object std" id="confval-sim_start">
 <span class="sig-name descname"><span class="pre">sim_start</span></span><a class="headerlink" href="#confval-sim_start" title="이 정의에 대한 영구 링크"></a></dt>
-<dd><p>시뮬레이션이 처음부터 시작되는지 아니면 다시 시작되는지를 나타내는 플래그입니다. <code class="docutils literal notranslate"><span class="pre">sim_start</span></code> 는 세 가지 값 중 하나를 취합니다.</p>
+<dd><p>시뮬레이션이 처음부터 시작되는지 아니면 다시 시작되는지를 나타내는 플래그입니다. <code class="docutils literal notranslate"><span class="pre">sim_start</span></code> 다음 세 가지 값 중 하나를 취합니다.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">init</span></code> - 시뮬레이션을 시작할 때 이 옵션을 사용하십시오. <cite>t=0s</cite>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">trueRestart</span></code> - OpenFAST를 사용하면 터빈 시뮬레이션을 다시 시작할 수 있지만 Bladed 스타일 컨트롤러와 같은 외부 구성 요소는 그렇지 않을 수도 있습니다. 시뮬레이션의 모든 구성요소가 다시 시작되는 것으로 알려진 경우 이 옵션을 사용하십시오.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">restartDriverInitFAST</span></code> - 언제 <code class="docutils literal notranslate"><span class="pre">restartDriverInitFAST</span></code> 옵션이 선택되면 개별 터빈 모델은 다음에서 시작됩니다. <cite>t=0s</cite> 를 실행하고 hdf5 파일의 액추에이터 노드에 저장된 유입 데이터를 사용하여 지정된 재시작 시간까지 실행합니다. C++ API는 모든 OpenFAST 시간 단계에서 액츄에이터 노드의 유입 데이터를 hdf5 파일에 저장한 다음 이 다시 시작 옵션을 사용할 때 다시 읽습니다. 이 다시 시작 옵션은 글루 코드가 CFD 솔버일 때 특히 유용합니다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">trueRestart</span></code> - OpenFAST에서는 터빈 시뮬레이션을 다시 시작할 수 있지만 Bladed 스타일 컨트롤러와 같은 외부 구성 요소는 그렇지 않을 수도 있습니다. 시뮬레이션의 모든 구성요소가 다시 시작되는 것으로 알려진 경우 이 옵션을 사용하십시오.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">restartDriverInitFAST</span></code> - 언제 <code class="docutils literal notranslate"><span class="pre">restartDriverInitFAST</span></code> 옵션이 선택되면 개별 터빈 모델은 다음에서 시작됩니다. <cite>t=0s</cite> hdf5 파일의 액츄에이터 노드에 저장된 유입 데이터를 사용하여 지정된 재시작 시간까지 실행됩니다. C++ API는 모든 OpenFAST 시간 단계에서 hdf5 파일의 액츄에이터 노드에 유입 데이터를 저장한 다음 이 다시 시작 옵션을 사용할 때 다시 읽습니다. 이 다시 시작 옵션은 글루 코드가 CFD 솔버인 경우 특히 유용합니다.</p></li>
 </ul>
 </dd></dl>
 
 <dl class="std confval">
 <dt class="sig sig-object std" id="confval-coupling_mode">
 <span class="sig-name descname"><span class="pre">coupling_mode</span></span><a class="headerlink" href="#confval-coupling_mode" title="이 정의에 대한 영구 링크"></a></dt>
-<dd><p>커플링 모드 선택. <code class="docutils literal notranslate"><span class="pre">coupling_mode</span></code> 는 다음 두 값 중 하나를 사용합니다. <code class="docutils literal notranslate"><span class="pre">strong</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">classic</span></code>. <code class="docutils literal notranslate"><span class="pre">strong</span></code> 결합 모드는 모든 드라이버 시간 단계에 대해 2개의 외부 반복을 사용합니다. <code class="docutils literal notranslate"><span class="pre">classic</span></code> 커플링 모드 호출 <cite>step()</cite> 기능은 느슨한 결합 모드를 사용합니다.</p>
+<dd><p>커플링 모드 선택. <code class="docutils literal notranslate"><span class="pre">coupling_mode</span></code> 다음 두 값 중 하나를 사용합니다. <code class="docutils literal notranslate"><span class="pre">strong</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">classic</span></code>. <code class="docutils literal notranslate"><span class="pre">strong</span></code> 커플링 모드는 모든 드라이버 시간 단계에 대해 2개의 외부 반복을 사용합니다. <code class="docutils literal notranslate"><span class="pre">classic</span></code> 커플링 모드는 <cite>step()</cite> 느슨한 결합 모드를 사용하는 기능입니다.</p>
 </dd></dl>
 
 <dl class="std confval">
@@ -232,7 +232,7 @@
 <dl class="std confval">
 <dt class="sig sig-object std" id="confval-t_end">
 <span class="sig-name descname"><span class="pre">t_end</span></span><a class="headerlink" href="#confval-t_end" title="이 정의에 대한 영구 링크"></a></dt>
-<dd><p>시뮬레이션 종료 시간입니다. t_end &lt;= t_max</p>
+<dd><p>시뮬레이션 종료 시간. t_end &lt;= t_max</p>
 </dd></dl>
 
 <dl class="std confval">
@@ -244,7 +244,7 @@
 <dl class="std confval">
 <dt class="sig sig-object std" id="confval-dt_fast">
 <span class="sig-name descname"><span class="pre">dt_fast</span></span><a class="headerlink" href="#confval-dt_fast" title="이 정의에 대한 영구 링크"></a></dt>
-<dd><p>FAST의 시간 간격입니다. 모든 터빈은 동일한 시간 간격을 가져야 합니다.</p>
+<dd><p>FAST의 시간 단계입니다. 모든 터빈은 동일한 시간 간격을 가져야 합니다.</p>
 </dd></dl>
 
 <dl class="std confval">
@@ -256,7 +256,7 @@
 <dl class="std confval">
 <dt class="sig sig-object std" id="confval-n_checkpoint">
 <span class="sig-name descname"><span class="pre">n_checkpoint</span></span><a class="headerlink" href="#confval-n_checkpoint" title="이 정의에 대한 영구 링크"></a></dt>
-<dd><p>재시작 파일은 많은 시간 단계마다 기록됩니다.</p>
+<dd><p>재시작 파일은 여러 단계마다 기록됩니다.</p>
 </dd></dl>
 
 <dl class="std confval">
@@ -267,7 +267,7 @@
 
 </div>
 <div class="section" id="turbine-specific-input-options">
-<h2><span class="section-number">4.20.3. </span>터빈별 입력 옵션<a class="headerlink" href="#turbine-specific-input-options" title="이 제목의 고유 링크"></a></h2>
+<h2><span class="section-number">4.20.3. </span>터빈별 입력 옵션<a class="headerlink" href="#turbine-specific-input-options" title="이 제목에 대한 영구 링크"></a></h2>
 <dl class="std confval">
 <dt class="sig sig-object std" id="confval-turbine_base_pos">
 <span class="sig-name descname"><span class="pre">turbine_base_pos</span></span><a class="headerlink" href="#confval-turbine_base_pos" title="이 정의에 대한 영구 링크"></a></dt>
@@ -277,13 +277,13 @@
 <dl class="std confval">
 <dt class="sig sig-object std" id="confval-num_force_pts_blade">
 <span class="sig-name descname"><span class="pre">num_force_pts_blade</span></span><a class="headerlink" href="#confval-num_force_pts_blade" title="이 정의에 대한 영구 링크"></a></dt>
-<dd><p>액추에이터 라인 시뮬레이션을 위한 각 블레이드의 액추에이터 포인트 수</p>
+<dd><p>액추에이터 라인 시뮬레이션을 위한 각 블레이드의 액추에이터 지점 수</p>
 </dd></dl>
 
 <dl class="std confval">
 <dt class="sig sig-object std" id="confval-num_force_pts_tower">
 <span class="sig-name descname"><span class="pre">num_force_pts_tower</span></span><a class="headerlink" href="#confval-num_force_pts_tower" title="이 정의에 대한 영구 링크"></a></dt>
-<dd><p>액추에이터 라인 시뮬레이션을 위한 타워를 따른 액추에이터 포인트 수입니다.</p>
+<dd><p>액추에이터 라인 시뮬레이션을 위해 타워를 따라 있는 액추에이터 지점의 수입니다.</p>
 </dd></dl>
 
 <dl class="std confval">
@@ -295,7 +295,7 @@
 <dl class="std confval">
 <dt class="sig sig-object std" id="confval-FAST_input_filename">
 <span class="sig-name descname"><span class="pre">FAST_input_filename</span></span><a class="headerlink" href="#confval-FAST_input_filename" title="이 정의에 대한 영구 링크"></a></dt>
-<dd><p>이 터빈의 FAST 입력 파일</p>
+<dd><p>이 터빈에 대한 FAST 입력 파일</p>
 </dd></dl>
 
 <dl class="std confval">
@@ -310,9 +310,9 @@
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
-        <a href="../fast.farm/AppendixC.html" class="btn btn-neutral float-left" title="4.19.12. 출력 채널 목록" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
-        <a href="../other/index.html" class="btn btn-neutral float-right" title="4.21. 웨이브탱크" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
+        <a href="../fast.farm/AppendixC.html" class="btn btn-neutral float-left" title="4.19.12. 출력 채널 목록" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+        <a href="../other/index.html" class="btn btn-neutral float-right" title="4.21. WaveTank" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr>
@@ -322,7 +322,7 @@
   </div>
 
   다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">주제</a>
     제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
    
 

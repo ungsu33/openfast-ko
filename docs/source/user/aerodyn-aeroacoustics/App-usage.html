@@ -2,7 +2,7 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>4.5.7. AeroDyn에서 공기음향 모델 사용 — OpenFAST v5.0.0 문서</title>
+  <title>4.5.7. AeroDyn에서 공력음향 모델 사용 — OpenFAST v5.0.0 문서</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css">
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css">
       <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css">
@@ -21,8 +21,8 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="검색" href="../../../search.html">
-    <link rel="next" title="4.5.8. 참고문헌" href="refs.html">
+    <link rel="search" title="찾다" href="../../../search.html">
+    <link rel="next" title="4.5.8. 참고자료" href="refs.html">
     <link rel="prev" title="4.5.6. 결론" href="04-conclusions.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/aerodyn-aeroacoustics/App-usage.html"></head>
 
@@ -36,7 +36,7 @@
           
           <a href="../../../index.html" class="icon icon-home">
             OpenFAST
-              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="심벌 마크">
           </a>
               <div class="version">5.0 · 한국어</div>
 <div role="search">
@@ -48,15 +48,15 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.5. 공력음향학</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.5. 공력소음</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="acronyms.html">4.5.1. 약어 목록</a></li>
 <li class="toctree-l3"><a class="reference internal" href="symbols.html">4.5.2. 기호 목록</a></li>
 <li class="toctree-l3"><a class="reference internal" href="01-introduction.html">4.5.3. 소개</a></li>
@@ -66,11 +66,10 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">4.5.7. AeroDyn에서 공력소음 모델 사용하기</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#main-input-file">4.5.7.1. 기본 입력 파일</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#boundary-layer-inputs-and-trailing-edge-geometry">4.5.7.2. 경계층 입력 및 후행 가장자리 기하학</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#observer-positions">4.5.7.3. 관찰자 위치
-AeroDyn에서 공력소음 모델을 사용하는</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#observer-positions">4.5.7.3. 관찰자 위치</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="refs.html">4.5.8. 참고문헌</a></li>
+<li class="toctree-l3"><a class="reference internal" href="refs.html">4.5.8. 참고자료</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
@@ -95,16 +94,16 @@ AeroDyn에서 공력소음 모델을 사용하는</a></li>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -113,12 +112,12 @@ AeroDyn에서 공력소음 모델을 사용하는</a></li>
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.5. </span>공력소음 소음 모델</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.5. </span>OpenFAST의 공력소음 모델</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.5.7. </span>AeroDyn에서 공력소음 모델 사용하기</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/aerodyn-aeroacoustics/App-usage.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+            <a href="../../../_sources/source/user/aerodyn-aeroacoustics/App-usage.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -127,12 +126,10 @@ AeroDyn에서 공력소음 모델을 사용하는</a></li>
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="using-the-aeroacoustics-model-in-aerodyn">
-<span id="aa-usage"></span><h1><span class="section-number">4.5.7. </span>AeroDyn에서 공력소음 모델 사용하기<a class="headerlink" href="#using-the-aeroacoustics-model-in-aerodyn" title="이 제목의 고유 링크"></a></h1>
+<span id="aa-usage"></span><h1><span class="section-number">4.5.7. </span>AeroDyn에서 공력소음 모델 사용하기<a class="headerlink" href="#using-the-aeroacoustics-model-in-aerodyn" title="이 제목에 대한 영구 링크"></a></h1>
 <p>이 문서의 라이브 버전은 다음에서 확인할 수 있습니다.
-<a class="reference external" href="https://openfast.readthedocs.io/" target="_blank" rel="noopener noreferrer">https://openfast.readthedocs.io/</a>. 항공음향 모델을 실행하려면 플래그 <strong>CompAA</strong> 를 다음으로 설정해야 합니다. <strong>참
-입력 블록에 있는 AeroDyn 기본 입력 파일의 14번째 줄에 있는</strong> AeroDyn 주 입력 파일의 입력 블록 14번째 줄에 <strong>일반 옵션</strong>. 플래그가 다음으로 설정되면
-<strong>참
-입력 블록에 있는 AeroDyn 기본 입력 파일의 14번째 줄에 있는</strong>, 다음 줄에는 공력음향 모델에 대한 입력이 포함된 파일의 이름이 포함되어야 합니다. 이에 대해서는 다음에서 설명합니다.
+<a class="reference external" href="https://openfast.readthedocs.io/" target="_blank" rel="noopener noreferrer">https://openfast.readthedocs.io/</a>. 항공음향 모델을 실행하려면 플래그 <strong>CompAA</strong> 으로 설정해야 합니다. <strong>진실</strong> AeroDyn 주 입력 파일의 입력 블록 14번째 줄에 <strong>일반 옵션</strong>. 플래그가 다음으로 설정되면
+<strong>진실</strong>, 다음 줄에는 공력음향 모델에 대한 입력이 포함된 파일의 이름이 포함되어야 합니다. 이에 대해서는 다음에서 설명합니다.
 <a class="reference internal" href="#aa-sec-maininput"><span class="std std-numref">섹션 4.5.7.1</span></a>. 현재 이 모듈은 MHK 터빈과 함께 사용할 수 없습니다.</p>
 <div class="docutils container" id="aa-tab-aerodyn">
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>------- AERODYN INPUT FILE -----------------------------------------------
@@ -156,43 +153,41 @@ AeroDyn에서 공력소음 모델을 사용하는</a></li>
 </div>
 </div>
 <div class="section" id="main-input-file">
-<span id="aa-sec-maininput"></span><h2><span class="section-number">4.5.7.1. </span>기본 입력 파일<a class="headerlink" href="#main-input-file" title="이 제목의 고유 링크"></a></h2>
+<span id="aa-sec-maininput"></span><h2><span class="section-number">4.5.7.1. </span>기본 입력 파일<a class="headerlink" href="#main-input-file" title="이 제목에 대한 영구 링크"></a></h2>
 <p>항공음향학 기본 입력 파일은 실행해야 하는 분석에 따라 적절하게 설정되어야 하는 일련의 입력 및 플래그로 구성됩니다. 이는 일반 옵션, 공력음향 모델, 관찰자 ​​입력 및 출력 하위 필드로 나뉩니다.</p>
 <p>일반 옵션부터 시작하면 다음과 같습니다.</p>
 <ul class="simple">
-<li><p><strong>에코</strong> – True/False: 올바른 템플릿으로 입력 파일을 다시 작성하는 옵션</p></li>
-<li><p><strong>DT_AA</strong> – 부동(Float): 공력음향 계산의 시간 단계. 시간 단계의 배수만 <strong>DTAero
-AeroDyn의</strong> 를 사용할 수 있습니다. 기본값으로 설정하면 DTAero 시간 단계가 채택됩니다.</p></li>
+<li><p><strong>Echo</strong> – True/False: 올바른 템플릿으로 입력 파일을 다시 작성하는 옵션</p></li>
+<li><p><strong>DT_AA</strong> – Float: 공력음향 계산의 시간 단계. 시간 단계의 배수만 <strong>DTAero</strong> AeroDyn 중 하나를 사용할 수 있습니다. 기본값으로 설정하면 시간 단계 DTAero가 채택됩니다.</p></li>
 <li><p><strong>AAStart</strong> – 부동(Float): AeroAcoustics 모듈이 실행된 후의 시간입니다.</p></li>
-<li><p><strong>BldPrcnt</strong> – 플로트: 소음 방출에 기여하는 블레이드 팁에서 측정된 블레이드 범위의 백분율 값입니다. 100%는 칼날 끝부터 뿌리까지 전체 칼날에 해당합니다.</p></li>
+<li><p><strong>BldPrcnt</strong> – 플로트(Float): 소음 방출에 기여하는 블레이드 팁에서 측정된 블레이드 범위의 백분율 값입니다. 100%는 칼날 끝부터 뿌리까지 전체 칼날에 해당합니다.</p></li>
 </ul>
 <p>Aeroacoustics Models 필드에는 실제 소음 모델에 대한 모든 플래그가 나열됩니다.</p>
 <ul class="simple">
-<li><p><strong>티모드</strong> – 정수 0/1/2: 난류 유입 소음 모델을 설정하는 플래그; 0은 끄고, 1은 다음에서 논의된 Amiet 모델에 해당합니다.
+<li><p><strong>TIMod</strong> – 정수 0/1/2: ​​난류 유입 소음 모델을 설정하는 플래그; 0은 끄고, 1은 다음에서 논의된 Amiet 모델에 해당합니다.
 <a class="reference internal" href="02-noise-models.html#aa-amiet"><span class="std std-numref">섹션 4.5.4.1.1</span></a>, 2는 제시된 단순화된 Guidati 모델에 해당합니다.
 <a class="reference internal" href="02-noise-models.html#aa-guidati"><span class="std std-numref">섹션 4.5.4.1.2</span></a>.</p></li>
 <li><p><strong>TICalcMeth</strong> – 정수 1/2: 입사 난류 강도에 대한 계산 방법을 설정하는 플래그입니다. 1로 설정하면 입사 난류 강도가 사용자 정의됩니다. 2로 설정하면 입사 유동의 시간 이력으로부터 입사 난류 강도가 추정됩니다.</p></li>
-<li><p><strong>TI</strong> – 부동 소수점: 사용자 정의 값 <span class="math notranslate nohighlight">\(TI\)</span>는 Amiet 모델에 사용된 회전자 입사 난류 강도입니다.</p></li>
+<li><p><strong>TI</strong> – Float: 사용자가 정의한 값 <span class="math notranslate nohighlight">\(TI\)</span>는 Amiet 모델에 사용된 로터 입사 난류 강도입니다.</p></li>
 <li><p><strong>avgV</strong> – Float: 스케일링에 사용되는 평균 풍속 값 <span class="math notranslate nohighlight">\(TI\)</span>
-를 블레이드 섹션 입사 난류 강도로 변환합니다.</p></li>
-<li><p><strong>리터브</strong> – 부동 소수점: 값 <span class="math notranslate nohighlight">\(L_{turb}\)</span> 는 Amiet 모델에 사용된 난류 길이 척도를 추정하는 데 사용되었습니다.</p></li>
-<li><p><strong>TBLTEMod</strong> – 정수 0/1/2: TBL-TE 노이즈 모델을 설정하는 플래그; 0은 모델을 끄고, 1은 Brooks-Pope-Marcolini(BPM) 에어포일 소음 모델을 사용합니다(참조). <a class="reference internal" href="02-noise-models.html#aa-turb-te-bpm"><span class="std std-numref">섹션 4.5.4.2.1</span></a>), 2는 다음에 설명된 TNO 모델을 사용합니다.
+이를 블레이드 단면 입사 난류 강도로 변환합니다.</p></li>
+<li><p><strong>리터브</strong> – 부동소수점: 값 <span class="math notranslate nohighlight">\(L_{turb}\)</span> Amiet 모델에 사용된 난류 길이 척도를 추정하는 데 사용됩니다.</p></li>
+<li><p><strong>TBLTEMod</strong> – 정수 0/1/2: ​​TBL-TE 노이즈 모델을 설정하는 플래그; 0은 모델을 끄고, 1은 Brooks-Pope-Marcolini(BPM) 익형 소음 모델을 사용합니다(참조). <a class="reference internal" href="02-noise-models.html#aa-turb-te-bpm"><span class="std std-numref">섹션 4.5.4.2.1</span></a>), 2는 다음에 설명된 TNO 모델을 사용합니다.
 <a class="reference internal" href="02-noise-models.html#aa-turb-te-tno"><span class="std std-numref">섹션 4.5.4.2.2</span></a>.</p></li>
-<li><p><strong>BLMod</strong> – 정수 1/2: 경계층 특성에 대한 계산 방법을 설정하는 플래그; 1은 BPM 모델의 단순화된 방정식을 사용하고, 2는 다음에 설명된 대로 파일을 로드합니다. <a class="reference internal" href="#aa-sec-blinputs"><span class="std std-numref">섹션 4.5.7.2</span></a>. 다음과 같은 경우에만 사용됩니다. <strong>TBLTEMod</strong> 는 0과 다릅니다.</p></li>
-<li><p><strong>TripMod</strong> – 정수 0/1/2: BLMod가 1로 설정된 경우 다른 반경험적 매개변수가 트립되지 않은 경계층에 사용됩니다(<strong>TRipMod=0</strong>), 심하게 트립된 경계층(<strong>TRipMod=1</strong>) 또는 약간 트립된 경계층(<strong>TRipMod=2</strong>); 2는 일반적으로 작동 중인 풍력터빈에 사용되는 반면, 1은 풍동 익형 모델에 자주 사용됩니다.</p></li>
+<li><p><strong>BLMod</strong> – 정수 1/2: 경계층 특성에 대한 계산 방법을 설정하는 플래그; 1은 BPM 모델의 단순화된 방정식을 사용하고, 2는 다음에 설명된 대로 파일을 로드합니다. <a class="reference internal" href="#aa-sec-blinputs"><span class="std std-numref">섹션 4.5.7.2</span></a>. 다음과 같은 경우에만 사용됩니다. <strong>TBLTEMod</strong> 0과는 다릅니다.</p></li>
+<li><p><strong>TripMod</strong> – 정수 0/1/2: ​​BLMod가 1로 설정되면 다른 반경험적 매개변수가 트립되지 않은 경계층에 사용됩니다(<strong>TRipMod=0</strong>), 심하게 트립된 경계층(<strong>TRipMod=1</strong>) 또는 가볍게 넘어진 경계층(<strong>TRipMod=2</strong>); 2는 일반적으로 작동 중인 풍력 터빈에 사용되는 반면, 1은 풍동 익형 모델에 자주 사용됩니다.</p></li>
 <li><p><strong>LamMod</strong> – 정수 0/1: 층류 경계층을 활성화하기 위한 플래그 – 와류 발산 모델, <a class="reference internal" href="02-noise-models.html#aa-laminar-vortex"><span class="std std-numref">섹션 4.5.4.3</span></a>.</p></li>
-<li><p><strong>TipMod</strong> – 정수 0/1: 팁 소용돌이 모델을 활성화하기 위한 플래그, <a class="reference internal" href="02-noise-models.html#aa-tip-vortex"><span class="std std-numref">섹션 4.5.4.4</span></a>.</p></li>
+<li><p><strong>TipMod</strong> – 정수 0/1: 팁 소용돌이 모델을 활성화하기 위한 플래그입니다. <a class="reference internal" href="02-noise-models.html#aa-tip-vortex"><span class="std std-numref">섹션 4.5.4.4</span></a>.</p></li>
 <li><p><strong>RoundedTip</strong> – 참/거짓: if <strong>TipMod=1</strong>, 이 플래그는 둥근 팁(True)과 사각형 팁(False) 사이를 전환합니다. <a class="reference internal" href="02-noise-models.html#aa-tip-vortex"><span class="std std-numref">섹션 4.5.4.4</span></a>.</p></li>
-<li><p><strong>알프라트</strong> – 플로트: 블레이드 팁의 양력 계수 곡선의 기울기 값. 참조 <a class="reference internal" href="02-noise-models.html#aa-tip-vortex"><span class="std std-numref">섹션 4.5.4.4</span></a>.</p></li>
-<li><p><strong>BluntMod</strong> – 정수 0/1: 활성화할 플래그(<strong>블런트모드=1</strong>) 뒷전 무뚝뚝함 – 와류 발산 모델, 참조 <a class="reference internal" href="02-noise-models.html#aa-te-vortex"><span class="std std-numref">섹션 4.5.4.5</span></a>. 플래그가 1로 설정되면 후행 에지 형상은 다음에 설명된 대로 파일에 지정되어야 합니다. <a class="reference internal" href="#aa-sec-blinputs"><span class="std std-numref">섹션 4.5.7.2</span></a>.</p></li>
+<li><p><strong>알프라트</strong> – 플로트(Float): 블레이드 팁의 양력 계수 곡선의 기울기 값. 보다 <a class="reference internal" href="02-noise-models.html#aa-tip-vortex"><span class="std std-numref">섹션 4.5.4.4</span></a>.</p></li>
+<li><p><strong>BluntMod</strong> – 정수 0/1: 활성화할 플래그(<strong>BluntMod=1</strong>) 뒷전 무뚝뚝함 – 와류 발산 모델, 참조 <a class="reference internal" href="02-noise-models.html#aa-te-vortex"><span class="std std-numref">섹션 4.5.4.5</span></a>. 플래그가 1로 설정되면 후행 에지 형상은 다음에 설명된 대로 파일에 지정되어야 합니다. <a class="reference internal" href="#aa-sec-blinputs"><span class="std std-numref">섹션 4.5.7.2</span></a>.</p></li>
 </ul>
-<p>관찰자 위치 필드에는 관찰자 수(NrObsLoc)와 해당 위치가 지정된 파일에 대한 경로가 포함됩니다. 참조 <a class="reference internal" href="#aa-sec-obspos"><span class="std std-numref">섹션 4.5.7.3</span></a>.</p>
-<p>마지막으로 출력 세트에는 출력 데이터에 대한 몇 가지 옵션이 포함되어 있습니다.</p>
+<p>관찰자 위치 필드에는 관찰자 수(NrObsLoc)와 해당 위치가 지정된 파일에 대한 경로가 포함됩니다. 보다 <a class="reference internal" href="#aa-sec-obspos"><span class="std std-numref">섹션 4.5.7.3</span></a>.</p>
+<p>마지막으로, 출력 세트에는 출력 데이터에 대한 몇 가지 옵션이 포함되어 있습니다.</p>
 <ul class="simple">
-<li><p><strong>A가중치</strong> – True/False: A-가중치 보정을 사용하여(True) 또는 없이(False) 음압 레벨을 보고할지 여부를 설정하는 플래그입니다. 참조 <a class="reference internal" href="03-model-verification.html#aa-sec-modelusage"><span class="std std-numref">섹션 4.5.5.3</span></a>.</p></li>
-<li><p><strong>NAAOutFile</strong> – 정수 1/2/3/4: 원하는 출력 파일을 설정하는 플래그. 1로 설정하면 매 순간 전체 음압 레벨의 값이
-관찰자당 <strong>DT_AA</strong> 시간 간격이 파일에 인쇄됩니다. 2로 설정하면 첫 번째 출력에는 총 음압 레벨 스펙트럼이 관찰자별 시간 단계별로 인쇄되는 두 번째 파일이 수반됩니다. 3으로 설정하면 두 개의 첫 번째 출력 파일에는 소음 메커니즘당 음압 레벨 스펙트럼이 관찰자별 시간 단계별로 인쇄되는 세 번째 파일이 수반됩니다. 4로 설정하면 노드당, 블레이드당, 관찰자당 및 시간 단계당 전체 음압 레벨 값이 포함된 네 번째 파일이 생성됩니다.</p></li>
-<li><p>다음 줄은, <strong>AAOutFile</strong>에는 출력을 저장하는 데 사용되는 파일의 루트 이름이 포함되어 있습니다. "default"로 설정하면 기본 출력 파일 루트 이름이 사용됩니다. 파일 이름에는 다음을 기준으로 1, 2, 3, 4 플래그가 추가됩니다.
+<li><p><strong>AWeighting</strong> – True/False: A-가중치 보정을 사용하여(True) 또는 없이(False) 음압 레벨을 보고할지 여부를 설정하는 플래그입니다. 보다 <a class="reference internal" href="03-model-verification.html#aa-sec-modelusage"><span class="std std-numref">섹션 4.5.5.3</span></a>.</p></li>
+<li><p><strong>NAAOutFile</strong> – 정수 1/2/3/4: 원하는 출력 파일을 설정하는 플래그입니다. 1로 설정하면 매 순간 전체 음압 레벨의 값이 <strong>DT_AA</strong> 관찰자당 시간 단계가 파일에 인쇄됩니다. 2로 설정하면 첫 번째 출력에는 총 음압 레벨 스펙트럼이 관찰자별 시간 단계별로 인쇄되는 두 번째 파일이 수반됩니다. 3으로 설정하면 두 개의 첫 번째 출력 파일에는 소음 메커니즘당 음압 레벨 스펙트럼이 관찰자별 시간 단계별로 인쇄되는 세 번째 파일이 수반됩니다. 4로 설정하면 노드당, 블레이드당, 관찰자당 및 시간 단계당 전체 음압 레벨 값이 포함된 네 번째 파일이 생성됩니다.</p></li>
+<li><p>다음 줄은 <strong>AAOutFile</strong>, 출력을 저장하는 데 사용되는 파일의 루트 이름을 포함합니다. "default"로 설정하면 기본 출력 파일 루트 이름이 사용됩니다. 파일 이름에는 다음을 기준으로 1, 2, 3, 4 플래그가 추가됩니다.
 <strong>NAAOutFile</strong> 옵션.</p></li>
 </ul>
 <p>파일은 END 명령으로 닫혀야 합니다.</p>
@@ -231,8 +226,8 @@ AeroDyn의</strong> 를 사용할 수 있습니다. 기본값으로 설정하면
 </div>
 </div>
 <div class="section" id="boundary-layer-inputs-and-trailing-edge-geometry">
-<span id="aa-sec-blinputs"></span><h2><span class="section-number">4.5.7.2. </span>경계층 입력 및 후행 가장자리 형상<a class="headerlink" href="#boundary-layer-inputs-and-trailing-edge-geometry" title="이 제목의 고유 링크"></a></h2>
-<p>깃발이 <strong>BLMod</strong> 는 2와 동일하게 설정되며 경계층의 사전 표로 작성된 속성이 제공되어야 하며 난류 경계층 - 뒷전 소음 모델에서 사용됩니다. 파일 이름은 익형 극계수가 있는 파일의 입력 중 BL_file 필드에 지정됩니다. 공기역학적 스테이션당 하나의 익형 파일을 지정해야 합니다.</p>
+<span id="aa-sec-blinputs"></span><h2><span class="section-number">4.5.7.2. </span>경계층 입력 및 후행 가장자리 기하학<a class="headerlink" href="#boundary-layer-inputs-and-trailing-edge-geometry" title="이 제목에 대한 영구 링크"></a></h2>
+<p>깃발이 언제 <strong>BLMod</strong> 가 2로 설정되면 경계층의 미리 정리된 속성이 제공되어야 하며 난류 경계층 - 뒷전 소음 모델에서 사용됩니다. 파일 이름은 익형 극계수를 포함한 파일 입력 중 BL_file 필드에 지정됩니다. 공기역학적 스테이션당 하나의 익형 파일을 지정해야 합니다.</p>
 <div class="docutils container" id="aa-tab-aftab">
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>! ------------ AirfoilInfo Input File ------------------------------------------
 <span class="linenos"> 2</span>! AeroElasticSE FAST driver
@@ -249,29 +244,25 @@ AeroDyn의</strong> 를 사용할 수 있습니다. 기본값으로 설정하면
 </pre></div>
 </div>
 </div>
-<p>이 예에서는 파일 이름이 <strong>AF20_BL.txt</strong>에는 지정된 수의 레이놀즈 수인 ReListBL과 지정된 공격 각도 수인 aoaListBL에 대해 표로 작성된 8개의 입력이 포함되어 있습니다. 무차원적으로 정의되고 후연 위와 아래에 있는 에어포일의 흡입 및 압력 측면에 대해 제공되어야 하는 입력은 다음과 같습니다.</p>
+<p>이 예에서는 파일 이름이 <strong>AF20_BL.txt</strong>에는 주어진 레이놀즈 수 ReListBL 및 주어진 공격 각도 수 aoaListBL에 대해 표로 작성된 8개의 입력이 포함되어 있습니다. 무차원적으로 정의되고 후연 위와 아래에 있는 에어포일의 흡입 및 압력 측면에 대해 제공되어야 하는 입력은 다음과 같습니다.</p>
 <ul class="simple">
 <li><p><strong>Ue_Vinf</strong> – 경계층 상단의 유속</p></li>
 <li><p><strong>디스타</strong> – <span class="math notranslate nohighlight">\(\delta^{*}\)</span>, 경계층 변위 두께</p></li>
 <li><p><strong>델타</strong> – <span class="math notranslate nohighlight">\(\delta\)</span>, 공칭 경계층 두께</p></li>
-<li><p><strong>CF</strong> – 마찰 계수.</p></li>
+<li><p><strong>참조</strong> – 마찰 계수.</p></li>
 </ul>
-<p>다음 예에서는 Python 스크립트 덕분에 파일이 생성되었습니다.
-경계층 솔버인 XFoil을 실행하는 <a class="footnote-reference brackets" href="#id3" id="id1">4</a> 입니다. 특히 XFoil은 기본적으로 반환되지 않습니다. <span class="math notranslate nohighlight">\(\delta\)</span>, 그러나 경계층 운동량 두께, <span class="math notranslate nohighlight">\(\theta\)</span>. <span class="math notranslate nohighlight">\(\delta\)</span> 는 다음 식을 사용하여 재구성할 수 있습니다. <span id="id2">[<a class="reference internal" href="refs.html#id5" title="마크 드렐라(Mark Drela)와 마이클 B. 자일스(Michael B. Giles). 천음속 및 낮은 레이놀즈 수 에어포일의 점성-비점성 분석. AIAA 저널, 25(10):1347-1355, 1987. doi:10.2514/3.9789.">aa-DG87</a>]</span>:</p>
+<p>다음 예에서는 Python 스크립트 덕분에 파일이 생성되었습니다. <a class="footnote-reference brackets" href="#id3" id="id1">4</a> 경계층 솔버 XFoil를 실행합니다. 특히 XFoil는 기본적으로 반환하지 않습니다. <span class="math notranslate nohighlight">\(\delta\)</span>, 그러나 경계층 운동량 두께, <span class="math notranslate nohighlight">\(\theta\)</span>. <span class="math notranslate nohighlight">\(\delta\)</span> 다음 표현식을 사용하여 재구성할 수 있습니다. <span id="id2">[<a class="reference internal" href="refs.html#id5" title="마크 드렐라(Mark Drela)와 마이클 B. 자일스(Michael B. Giles). 천음속 및 낮은 레이놀즈 수 에어포일의 점성-비점성 분석. AIAA 저널, 25(10):1347-1355, 1987. doi:10.2514/3.9789.">aa-DG87</a>]</span>:</p>
 <div class="math notranslate nohighlight" id="equation-eq-35">
 <span class="eqno">(4.68)<a class="headerlink" href="#equation-eq-35" title="이 방정식에 대한 영구 링크"></a></span>\[\delta = \theta \bullet \left( 3.15 + \frac{1.72}{H - 1} \right) + \delta^{*}\]</div>
-<p>여기서 <span class="math notranslate nohighlight">\(H\)</span> 는 운동학적 형상 인자이며 XFoil의 표준 출력 중 하나이기도 합니다. 일반적으로 레이놀즈 수와 받음각의 전체 범위에 대해 이러한 값을 얻는 것이 불가능하기 때문에 코드는 마지막으로 사용 가능한 값을 채택하고 경고 화면에 인쇄하도록 설정됩니다.</p>
-<p>깃발이 <strong>BluntMod</strong> 가 1로 설정되면 후행 가장자리의 세부 형상도 범위를 따라 정의되어야 합니다. 두 가지 입력, 즉 각도가 제공되어야 합니다. <span class="math notranslate nohighlight">\(\Psi\)</span> 프로파일의 흡입측과 압력측 사이, 뒷전 지점 직전과 높이,
-후미의 <span class="math notranslate nohighlight">\(h\)</span>. <span class="math notranslate nohighlight">\(\Psi\)</span> 는 각도로 정의되어야 하지만, <span class="math notranslate nohighlight">\(h\)</span> 는 미터 단위입니다. BPM 뒷전 무뚝뚝함 모델은 이 두 매개변수에 매우 민감하지만 실제 블레이드에 대해서는 결정하기가 쉽지 않은 경우가 많습니다.
-<a class="reference internal" href="#aa-fig-geomparamte"><span class="std std-numref">그림 4.26</span></a> 는 두 개의 입력을 보여줍니다.</p>
+<p>여기서 <span class="math notranslate nohighlight">\(H\)</span> XFoil의 표준 출력 중 하나인 운동학적 형상 인자입니다. 일반적으로 레이놀즈 수와 받음각의 전체 범위에 대해 이러한 값을 얻는 것이 불가능하기 때문에 코드는 마지막으로 사용 가능한 값을 채택하고 경고 화면에 인쇄하도록 설정됩니다.</p>
+<p>깃발이 언제 <strong>BluntMod</strong> 가 1로 설정되면 후행 가장자리의 세부 형상도 범위를 따라 정의되어야 합니다. 두 가지 입력, 즉 각도가 제공되어야 합니다. <span class="math notranslate nohighlight">\(\Psi\)</span> 프로파일의 흡입측과 압력측 사이, 뒷전 지점 바로 앞, 그리고 높이, <span class="math notranslate nohighlight">\(h\)</span>, 후미의. <span class="math notranslate nohighlight">\(\Psi\)</span> 도 단위로 정의해야 하지만 <span class="math notranslate nohighlight">\(h\)</span> 미터 단위입니다. BPM 뒷전 무뚝뚝함 모델은 이 두 매개변수에 매우 민감하지만 실제 블레이드에 대해서는 결정하기가 쉽지 않은 경우가 많습니다.
+<a class="reference internal" href="#aa-fig-geomparamte"><span class="std std-numref">그림 4.26</span></a> 두 개의 입력을 보여줍니다.</p>
 <div class="figure align-default" id="aa-fig-geomparamte">
 <a class="reference internal image-reference" href="../../../_images/NoiseN011.png"><img alt="뒷전 무뚝뚝함의 기하학적 매개변수" src="../../../_images/NoiseN011.png" style="width: 100.0%;"></a>
-<p class="caption"><span class="caption-number">그림 4.26 </span><span class="caption-text">기하학적 매개변수
-뒷전 무뚝뚝함의 <span class="math notranslate nohighlight">\(\mathbf{\Psi}\)</span> 및
+<p class="caption"><span class="caption-number">그림 4.26 </span><span class="caption-text">기하학적 매개변수 <span class="math notranslate nohighlight">\(\mathbf{\Psi}\)</span> 및
 <span class="math notranslate nohighlight">\(\mathbf{h}\)</span> 뒷전 두께의</span><a class="headerlink" href="#aa-fig-geomparamte" title="이 이미지에 대한 영구 링크"></a></p>
 </div>
-<p>다음 중 하나의 값 <span class="math notranslate nohighlight">\(\Psi\)</span> 및 다음 중 하나의 값
-파일당 <span class="math notranslate nohighlight">\(h\)</span> 를 정의해야 합니다. 플래그가 다음과 같은 경우에는 이 값이 사용되지 않습니다. <strong>BluntMod</strong> 는 0으로 설정됩니다.</p>
+<p>하나의 값 <span class="math notranslate nohighlight">\(\Psi\)</span> 그리고 하나의 값 <span class="math notranslate nohighlight">\(h\)</span> 파일별로 정의해야 합니다. 플래그가 다음과 같은 경우에는 이 값이 사용되지 않습니다. <strong>BluntMod</strong> 0으로 설정됩니다.</p>
 <div class="docutils container" id="aa-tab-af20-bl">
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span>! Boundary layer characteristics at the trailing edge for the airfoil coordinates of /Users/pbortolo/work/2_openfast/noise/verifyAA/OpenFAST_IEA_LB_RWT/Airfoils/AF20_Coords.txt
 <span class="linenos">  2</span>! Legend: aoa - angle of attack (deg), Re - Reynolds number (-, millions), PS - pressure side, SS - suction side,  Ue_Vinf - edge velocity (-), Dstar - displacement thickness (-), Delta - nominal boundary layer thickness (-) Cf  - friction coefficient (-)
@@ -414,15 +405,13 @@ AeroDyn의</strong> 를 사용할 수 있습니다. 기본값으로 설정하면
 </div>
 </div>
 <div class="section" id="observer-positions">
-<span id="aa-sec-obspos"></span><h2><span class="section-number">4.5.7.3. </span>관찰자 위치<a class="headerlink" href="#observer-positions" title="이 제목의 고유 링크"></a></h2>
-<p>관찰자의 수와 위치는 ObserverLocations 파일에 설정되어 있습니다. <a class="reference internal" href="#aa-sec-maininput"><span class="std std-numref">섹션 4.5.7.1</span></a>. 위치는 타워 베이스에 위치하며 x축이 풍하향, y축이 측면, z축이 수직 위쪽을 가리키는 OpenFAST 전역 관성 프레임 좌표계에서 지정되어야 합니다. 관찰자를 위한 좌표계의 구성은 다음과 같습니다. <a class="reference internal" href="#aa-fig-obsrefsys"><span class="std std-numref">그림 4.27
-관찰자를 위한</span></a>.</p>
+<span id="aa-sec-obspos"></span><h2><span class="section-number">4.5.7.3. </span>관찰자 위치<a class="headerlink" href="#observer-positions" title="이 제목에 대한 영구 링크"></a></h2>
+<p>관찰자의 수와 위치는 ObserverLocations 파일에 설정되어 있습니다. <a class="reference internal" href="#aa-sec-maininput"><span class="std std-numref">섹션 4.5.7.1</span></a>. 위치는 OpenFAST 전역 관성계 좌표계에서 지정되어야 합니다. 이 좌표계는 타워 베이스에 위치하며 x축은 바람 방향, y축은 측면, z축은 수직 위쪽을 향합니다. 관찰자를 위한 좌표계의 구성은 다음과 같습니다. <a class="reference internal" href="#aa-fig-obsrefsys"><span class="std std-numref">그림 4.27</span></a>.</p>
 <div class="figure align-center" id="aa-fig-obsrefsys">
-<a class="reference internal image-reference" href="../../../_images/NoiseN010.png"><img alt="참조 시스템" src="../../../_images/NoiseN010.png" style="width: 40.0%;"></a>
-<p class="caption"><span class="caption-number">그림 4.27
-관찰자를 위한 </span><span class="caption-text">참조 시스템</span><a class="headerlink" href="#aa-fig-obsrefsys" title="이 이미지에 대한 영구 링크"></a></p>
+<a class="reference internal image-reference" href="../../../_images/NoiseN010.png"><img alt="관찰자를 위한 참조 시스템" src="../../../_images/NoiseN010.png" style="width: 40.0%;"></a>
+<p class="caption"><span class="caption-number">그림 4.27 </span><span class="caption-text">관찰자를 위한 참조 시스템</span><a class="headerlink" href="#aa-fig-obsrefsys" title="이 이미지에 대한 영구 링크"></a></p>
 </div>
-<p>국제 에너지 기구 풍력 태스크 37 육상 기반 기준 풍력터빈은 다음과 같습니다. <a class="reference internal" href="03-model-verification.html#tab-ref-turb"><span class="std std-numref">표 4.2</span></a>는 허브 높이가 110미터이고 로터 반경이 65미터이며 국제전기기술위원회(International Electrotechnical Commission) 61400-11 표준을 준수하는 관찰자가 다음 위치에 있습니다.</p>
+<p>국제 에너지기구 풍력 태스크 37 육상 기반 기준 풍력 터빈은 다음과 같습니다. <a class="reference internal" href="03-model-verification.html#tab-ref-turb"><span class="std std-numref">표 4.2</span></a>, 허브 높이가 110미터이고 로터 반경이 65미터이며 국제전기기술위원회(International Electrotechnical Commission) 61400-11 표준을 준수하는 관찰자가 다음 위치에 있습니다.</p>
 <p>x = 175 [m]</p>
 <p>y = 0 [m]</p>
 <p>z = 0 [m].</p>
@@ -448,9 +437,9 @@ AeroDyn의</strong> 를 사용할 수 있습니다. 기본값으로 설정하면
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
-        <a href="04-conclusions.html" class="btn btn-neutral float-left" title="4.5.6. 결론" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
-        <a href="refs.html" class="btn btn-neutral float-right" title="4.5.8. 참고문헌" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
+        <a href="04-conclusions.html" class="btn btn-neutral float-left" title="4.5.6. 결론" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+        <a href="refs.html" class="btn btn-neutral float-right" title="4.5.8. 참고자료" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr>
@@ -460,7 +449,7 @@ AeroDyn의</strong> 를 사용할 수 있습니다. 기본값으로 설정하면
   </div>
 
   다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">주제</a>
     제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
    
 

@@ -20,9 +20,9 @@
         <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="검색" href="../../../search.html">
+    <link rel="search" title="찾다" href="../../../search.html">
     <link rel="next" title="4.4.1. 소개" href="Introduction.html">
-    <link rel="prev" title="4.3.11. 부록" href="../aerodyn/appendix.html"> 
+    <link rel="prev" title="4.3.11. 충수" href="../aerodyn/appendix.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/aerodyn-olaf/index.html"></head>
 
 <body class="wy-body-for-nav"> 
@@ -35,7 +35,7 @@
           
           <a href="../../../index.html" class="icon icon-home">
             OpenFAST
-              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="심벌 마크">
           </a>
               <div class="version">5.0 · 한국어</div>
 <div role="search">
@@ -47,29 +47,29 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">4.4. OLAF</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="Introduction.html">4.4.1. 소개</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Acronyms.html">4.4.2. 기호 목록</a></li>
-<li class="toctree-l3"><a class="reference internal" href="RunningOLAF.html">4.4.3. OLAF와 협력하기</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RunningOLAF.html">4.4.3. OLAF 작업</a></li>
 <li class="toctree-l3"><a class="reference internal" href="InputFiles.html">4.4.4. 입력 파일</a></li>
 <li class="toctree-l3"><a class="reference internal" href="OutputFiles.html">4.4.5. 출력 파일</a></li>
 <li class="toctree-l3"><a class="reference internal" href="OLAFTheory.html">4.4.6. OLAF 이론</a></li>
-<li class="toctree-l3"><a class="reference internal" href="StateSpace.html">4.4.7. 상태공간 표현 및 OpenFAST와의 통합</a></li>
-<li class="toctree-l3"><a class="reference internal" href="FutureWork.html">4.4.8. 향후 개발 계획</a></li>
-<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.4.9. 참고문헌</a></li>
+<li class="toctree-l3"><a class="reference internal" href="StateSpace.html">4.4.7. 상태공간 표현과 OpenFAST 연동</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FutureWork.html">4.4.8. 미래의 일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.4.9. 참고자료</a></li>
 <li class="toctree-l3"><a class="reference internal" href="AppendixA.html">4.4.10. 부록 A: OLAF 기본 입력 파일</a></li>
 <li class="toctree-l3"><a class="reference internal" href="AppendixB.html">4.4.11. 부록 B: 규정된 순환 입력 파일</a></li>
-<li class="toctree-l3"><a class="reference internal" href="AppendixC.html">4.4.12. 부록 C: 출력 채널의 OLAF 목록</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AppendixC.html">4.4.12. 부록 C: OLAF 출력 채널 목록</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력소음</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
@@ -92,16 +92,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -110,11 +110,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">4.4. </span>OLAF 사용자 가이드 및 이론 설명서 (AeroDyn의 자유 와류 후류)</li>
+      <li class="breadcrumb-item active"><span class="section-number">4.4. </span>OLAF 사용자 가이드 및 이론 매뉴얼(AeroDyn의 Free Vortex Wake)</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/aerodyn-olaf/index.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+            <a href="../../../_sources/source/user/aerodyn-olaf/index.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -123,15 +123,15 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="olaf-user-s-guide-and-theory-manual-free-vortex-wake-in-aerodyn">
-<span id="olaf"></span><h1><span class="section-number">4.4. </span>OLAF 사용자 가이드 및 이론 설명서 (AeroDyn의 자유 와류 후류)<a class="headerlink" href="#olaf-user-s-guide-and-theory-manual-free-vortex-wake-in-aerodyn" title="이 제목의 고유 링크"></a></h1>
-<p>이 문서는 OpenFAST의 AeroDyn 모듈에 포함된 OLAF라는 자유 와류 웨이크 모듈에 대한 빠른 참조 가이드를 제공합니다. 일반 사용자가 AeroDyn 및 기타 OpenFAST 모듈의 다른 기능과 함께 사용하도록 고안되었습니다. 설명서는 새 릴리스가 출시될 때마다 업데이트되며 소프트웨어의 개선 또는 수정에 대한 추가 정보를 제공하기 위해 필요에 따라 업데이트됩니다.</p>
-<p>여기에 있는 문서는 K. Shaler, E. Branlard 및 A. Platt의 OLAF 사용자 매뉴얼에서 파생되었습니다. (<a class="reference external" href="https://www.nrel.gov/docs/fy20osti/75959.pdf" target="_blank" rel="noopener noreferrer">https://www.nrel.gov/docs/fy20osti/75959.pdf</a>)</p>
+<span id="olaf"></span><h1><span class="section-number">4.4. </span>OLAF 사용자 가이드 및 이론 매뉴얼(AeroDyn의 Free Vortex Wake)<a class="headerlink" href="#olaf-user-s-guide-and-theory-manual-free-vortex-wake-in-aerodyn" title="이 제목에 대한 영구 링크"></a></h1>
+<p>이 문서는 OpenFAST의 AeroDyn 모듈에 포함된 OLAF라는 자유 와류 후류 모듈에 대한 빠른 참조 가이드를 제공합니다. 일반 사용자가 AeroDyn 및 기타 OpenFAST 모듈의 다른 기능과 결합하여 사용하도록 고안되었습니다. 설명서는 새 릴리스가 출시될 때마다 업데이트되며 소프트웨어의 개선 또는 수정에 대한 추가 정보를 제공하기 위해 필요에 따라 업데이트됩니다.</p>
+<p>여기에 있는 문서는 K. Shaler, E. Branlard 및 A. Platt의 OLAF 사용자 설명서에서 파생되었습니다. (<a class="reference external" href="https://www.nrel.gov/docs/fy20osti/75959.pdf" target="_blank" rel="noopener noreferrer">https://www.nrel.gov/docs/fy20osti/75959.pdf</a>)</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="Introduction.html">4.4.1. 소개</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Acronyms.html">4.4.2. 기호 목록</a></li>
-<li class="toctree-l1"><a class="reference internal" href="RunningOLAF.html">4.4.3. OLAF와 협력하기</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="RunningOLAF.html#running-olaf">4.4.3.1. OLAF 실행 중</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RunningOLAF.html">4.4.3. OLAF 작업</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="RunningOLAF.html#running-olaf">4.4.3.1. OLAF 실행</a></li>
 <li class="toctree-l2"><a class="reference internal" href="RunningOLAF.html#guidelines">4.4.3.2. 지침</a></li>
 </ul>
 </li>
@@ -157,17 +157,17 @@
 <li class="toctree-l2"><a class="reference internal" href="OLAFTheory.html#diffusion">4.4.6.9. 확산</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="StateSpace.html">4.4.7. 상태공간 표현 및 OpenFAST와의 통합</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="StateSpace.html">4.4.7. 상태공간 표현과 OpenFAST 연동</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="StateSpace.html#state-constraint-input-and-output-variables">4.4.7.1. 상태, 제약 조건, 입력 및 출력 변수</a></li>
 <li class="toctree-l2"><a class="reference internal" href="StateSpace.html#state-constraint-and-output-equations">4.4.7.2. 상태, 제약 조건 및 출력 방정식</a></li>
-<li class="toctree-l2"><a class="reference internal" href="StateSpace.html#integration-with-aerodyn">4.4.7.3. AeroDyn과 통합</a></li>
+<li class="toctree-l2"><a class="reference internal" href="StateSpace.html#integration-with-aerodyn">4.4.7.3. AeroDyn와 통합</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="FutureWork.html">4.4.8. 향후 개발 계획</a></li>
-<li class="toctree-l1"><a class="reference internal" href="zrefs.html">4.4.9. 참고문헌</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FutureWork.html">4.4.8. 미래의 일</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zrefs.html">4.4.9. 참고자료</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AppendixA.html">4.4.10. 부록 A: OLAF 기본 입력 파일</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AppendixB.html">4.4.11. 부록 B: 규정된 순환 입력 파일</a></li>
-<li class="toctree-l1"><a class="reference internal" href="AppendixC.html">4.4.12. 부록 C: 출력 채널의 OLAF 목록</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AppendixC.html">4.4.12. 부록 C: OLAF 출력 채널 목록</a></li>
 </ul>
 </div>
 </div>
@@ -175,8 +175,8 @@
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
-        <a href="../aerodyn/appendix.html" class="btn btn-neutral float-left" title="4.3.11. 부록" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
+        <a href="../aerodyn/appendix.html" class="btn btn-neutral float-left" title="4.3.11. 충수" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
         <a href="Introduction.html" class="btn btn-neutral float-right" title="4.4.1. 소개" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -187,7 +187,7 @@
   </div>
 
   다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">주제</a>
     제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
    
 

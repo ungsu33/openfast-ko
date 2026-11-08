@@ -20,7 +20,7 @@
         <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="검색" href="../../../search.html">
+    <link rel="search" title="찾다" href="../../../search.html">
     <link rel="next" title="4.8.3. 입력 파일" href="input_files.html">
     <link rel="prev" title="4.8.1. 소개" href="introduction.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/subdyn/running_sd.html"></head>
@@ -35,7 +35,7 @@
           
           <a href="../../../index.html" class="icon icon-home">
             OpenFAST
-              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="심벌 마크">
           </a>
               <div class="version">5.0 · 한국어</div>
 <div role="search">
@@ -47,15 +47,15 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력소음</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">4.8. SubDyn</a><ul class="current">
@@ -68,14 +68,14 @@
 <li class="toctree-l3"><a class="reference internal" href="input_files.html">4.8.3. 입력 파일</a></li>
 <li class="toctree-l3"><a class="reference internal" href="output_files.html">4.8.4. 출력 파일</a></li>
 <li class="toctree-l3"><a class="reference internal" href="modeling.html">4.8.5. 모델링 시 고려사항</a></li>
-<li class="toctree-l3"><a class="reference internal" href="theory.html">4.8.6. 서브다인 이론</a></li>
-<li class="toctree-l3"><a class="reference internal" href="future_work.html">4.8.7. 알려진 한계와 향후 개발 계획</a></li>
-<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.8.8. 참고문헌</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory.html">4.8.6. SubDyn 이론</a></li>
+<li class="toctree-l3"><a class="reference internal" href="future_work.html">4.8.7. 알려진 제한 사항 및 향후 작업</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.8.8. 참고자료</a></li>
 <li class="toctree-l3"><a class="reference internal" href="appendixA.html">4.8.9. 부록 A. OC4 재킷 입력 파일</a></li>
 <li class="toctree-l3"><a class="reference internal" href="appendixB.html">4.8.10. 부록 B. OC4 재킷 드라이버 파일</a></li>
 <li class="toctree-l3"><a class="reference internal" href="appendixC.html">4.8.11. 부록 C. OC4 재킷 SSI 입력 파일</a></li>
 <li class="toctree-l3"><a class="reference internal" href="appendixD.html">4.8.12. 부록 D. 출력 채널 목록</a></li>
-<li class="toctree-l3"><a class="reference internal" href="appendixE.html">4.8.13. 부록 E. 독립형 SubDyn 컴파일하기</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendixE.html">4.8.13. 부록 E. 독립 실행형 SubDyn 컴파일하기</a></li>
 <li class="toctree-l3"><a class="reference internal" href="appendixF.html">4.8.14. 부록 F. SubDyn의 주요 변경 사항</a></li>
 </ul>
 </li>
@@ -98,16 +98,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -116,12 +116,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.8. </span>SubDyn 사용자 가이드 및 이론 설명서</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.8. </span>SubDyn 사용자 가이드 및 이론 매뉴얼</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.8.2. </span>SubDyn 실행</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/subdyn/running_sd.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+            <a href="../../../_sources/source/user/subdyn/running_sd.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -130,32 +130,31 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="running-subdyn">
-<span id="id1"></span><h1><span class="section-number">4.8.2. </span>SubDyn 실행<a class="headerlink" href="#running-subdyn" title="이 제목의 고유 링크"></a></h1>
-<p>이 섹션에서는 개인용 컴퓨터에서 SubDyn을 얻고 실행하는 방법에 대해 설명합니다. 소프트웨어의 독립 실행형 버전과 FAST 결합 버전이 모두 고려됩니다.</p>
+<span id="id1"></span><h1><span class="section-number">4.8.2. </span>SubDyn 실행<a class="headerlink" href="#running-subdyn" title="이 제목에 대한 영구 링크"></a></h1>
+<p>이 섹션에서는 개인용 컴퓨터에서 SubDyn를 얻고 실행하는 방법에 대해 설명합니다. 소프트웨어의 독립형 버전과 FAST 결합 버전이 모두 고려됩니다.</p>
 <div class="section" id="downloading-the-subdyn-software">
-<h2><span class="section-number">4.8.2.1. </span>SubDyn 소프트웨어 다운로드<a class="headerlink" href="#downloading-the-subdyn-software" title="이 제목의 고유 링크"></a></h2>
-<p>선택할 수 있는 SubDyn 소프트웨어에는 독립형과 FAST 시뮬레이터에 결합되는 두 가지 형태가 있습니다. 사용자가 반드시 두 가지 양식을 모두 필요로 하는 것은 아니지만 처음부터 하위 구조의 모델을 구축하는 경우 독립형 모델에 익숙하고 실행해야 할 가능성이 높습니다. 독립형 버전은 모델 문제 해결에도 유용하며 해상 풍력터빈의 공기-유체-서보-탄성 시뮬레이션 수행에 관심이 있는 사용자에게 도움이 될 수 있습니다.</p>
-<p>사용자는 OpenFAST 설치를 참조하여 SubDyn을 다운로드하고 컴파일할 수 있습니다.</p>
+<h2><span class="section-number">4.8.2.1. </span>SubDyn 소프트웨어 다운로드<a class="headerlink" href="#downloading-the-subdyn-software" title="이 제목에 대한 영구 링크"></a></h2>
+<p>선택할 수 있는 SubDyn 소프트웨어에는 독립형과 FAST 시뮬레이터에 결합되는 두 가지 형태가 있습니다. 사용자가 반드시 두 가지 양식을 모두 필요로 하는 것은 아니지만 처음부터 하위 구조의 모델을 구축하는 경우 독립형 모델에 익숙하고 실행해야 할 가능성이 높습니다. 독립형 버전은 모델 문제 해결에도 유용하며 해상 풍력 터빈의 공기-유체-서보-탄성 시뮬레이션 수행에 관심이 있는 사용자에게 도움이 될 수 있습니다.</p>
+<p>사용자는 OpenFAST 설치를 참조하여 SubDyn를 다운로드하고 컴파일할 수 있습니다.</p>
 </div>
 <div class="section" id="id2">
-<h2><span class="section-number">4.8.2.2. </span>SubDyn 실행<a class="headerlink" href="#id2" title="이 제목의 고유 링크"></a></h2>
+<h2><span class="section-number">4.8.2.2. </span>SubDyn 실행<a class="headerlink" href="#id2" title="이 제목에 대한 영구 링크"></a></h2>
 <div class="section" id="running-the-stand-alone-subdyn-program">
-<h3><span class="section-number">4.8.2.2.1. </span>독립형 SubDyn 프로그램 실행<a class="headerlink" href="#running-the-stand-alone-subdyn-program" title="이 제목의 고유 링크"></a></h3>
-<p>독립형 SubDyn 프로그램, <em>SubDyn_win32.exe</em>는 FAST에 연결하지 않고 사용자 입력 모델의 하위 구조 동적 응답을 시뮬레이션합니다. 결합된 버전과 달리 독립형 소프트웨어는 기본 SubDyn 입력 파일 외에 드라이버 파일을 사용해야 합니다. 이 드라이버 파일은 TP 기준점의 모션을 포함하여 FAST가 일반적으로 SubDyn에 제공하는 입력을 지정합니다. SubDyn 요약 파일과 결과 출력 파일은 독립형 SubDyn을 사용할 때 모두 사용할 수 있습니다(SubDyn 출력 파일에 관한 자세한 내용은 섹션 4 참조).</p>
+<h3><span class="section-number">4.8.2.2.1. </span>독립 실행형 SubDyn 프로그램 실행<a class="headerlink" href="#running-the-stand-alone-subdyn-program" title="이 제목에 대한 영구 링크"></a></h3>
+<p>독립형 SubDyn 프로그램, <em>SubDyn_win32.exe</em>, FAST에 연결하지 않고 사용자 입력 모델의 하위 구조 동적 응답을 시뮬레이션합니다. 결합 버전과 달리 독립형 소프트웨어는 기본 SubDyn 입력 파일 외에 드라이버 파일을 사용해야 합니다. 이 드라이버 파일은 TP 기준점의 동작을 포함하여 일반적으로 FAST에 의해 SubDyn에 제공되는 입력을 지정합니다. 독립 실행형 SubDyn를 사용할 때 SubDyn 요약 파일과 결과 출력 파일을 모두 사용할 수 있습니다(SubDyn 출력 파일에 관한 자세한 내용은 섹션 4 참조).</p>
 <p>다음과 같이 입력하여 DOS 명령 프롬프트에서 독립형 SubDyn 소프트웨어를 실행합니다.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;SubDyn_win32.exe<span class="w"> </span>MyDriverFile.dvr
 </pre></div>
 </div>
-<p>여기서, <em>MyDriverFile.dvr</em> 는 다음에 설명된 대로 SubDyn 드라이버 파일의 이름입니다. <a class="reference internal" href="input_files.html#sd-main-input-file"><span class="std std-numref">섹션 4.8.3.3</span></a>. SubDyn 기본 입력 파일은 섹션에 설명되어 있습니다. <a class="reference internal" href="input_files.html#sd-driver-input-file"><span class="std std-numref">섹션 4.8.3.2
-FAST에 결합된 SubDyn 실행</span></a>.</p>
+<p>어디, <em>MyDriverFile.dvr</em> 에 설명된 대로 SubDyn 드라이버 파일의 이름입니다. <a class="reference internal" href="input_files.html#sd-main-input-file"><span class="std std-numref">섹션 4.8.3.3</span></a>. SubDyn 기본 입력 파일은 섹션에 설명되어 있습니다. <a class="reference internal" href="input_files.html#sd-driver-input-file"><span class="std std-numref">섹션 4.8.3.2</span></a>.</p>
 </div>
 <div class="section" id="running-subdyn-coupled-to-fast">
-<h3><span class="section-number">4.8.2.2.2. </span>FAST와 연성된 SubDyn 실행<a class="headerlink" href="#running-subdyn-coupled-to-fast" title="이 제목의 고유 링크"></a></h3>
-<p>다음과 같이 입력하여 DOS 명령 프롬프트에서 결합된 FAST 소프트웨어를 실행합니다.</p>
+<h3><span class="section-number">4.8.2.2.2. </span>FAST와 연성된 SubDyn 실행<a class="headerlink" href="#running-subdyn-coupled-to-fast" title="이 제목에 대한 영구 링크"></a></h3>
+<p>예를 들어 다음을 입력하여 DOS 명령 프롬프트에서 결합된 FAST 소프트웨어를 실행합니다.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;FAST_Win32.exe<span class="w"> </span>Test21.fst
 </pre></div>
 </div>
-<p>여기서, <em>테스트21.fst</em> 는 기본 FAST 입력 파일의 이름입니다. 이 입력 파일에는 FAST 내에서 SubDyn 기능을 활성화 또는 비활성화하는 기능 스위치와 SubDyn 입력 파일에 대한 해당 참조가 있습니다. 자세한 내용은 FAST와 함께 제공되는 설명서를 참조하십시오.</p>
+<p>어디, <em>Test21.fst</em> 기본 FAST 입력 파일의 이름입니다. 이 입력 파일에는 FAST 내에서 SubDyn 기능을 활성화 또는 비활성화하는 기능 스위치와 SubDyn 입력 파일에 대한 해당 참조가 있습니다. 자세한 내용은 FAST와 함께 제공된 설명서를 참조하십시오.</p>
 </div>
 </div>
 </div>
@@ -163,8 +162,8 @@ FAST에 결합된 SubDyn 실행</span></a>.</p>
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
-        <a href="introduction.html" class="btn btn-neutral float-left" title="4.8.1. 소개" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
+        <a href="introduction.html" class="btn btn-neutral float-left" title="4.8.1. 소개" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
         <a href="input_files.html" class="btn btn-neutral float-right" title="4.8.3. 입력 파일" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -175,7 +174,7 @@ FAST에 결합된 SubDyn 실행</span></a>.</p>
   </div>
 
   다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">주제</a>
     제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
    
 

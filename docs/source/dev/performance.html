@@ -456,9 +456,9 @@ window.addEventListener("load", load);
 window.runMermaid = runMermaid;</script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../genindex.html">
-    <link rel="search" title="검색" href="../../search.html">
+    <link rel="search" title="찾다" href="../../search.html">
     <link rel="next" title="6.1.6.7. 버전 관리" href="versioning.html">
-    <link rel="prev" title="6.1.6.5. OpenFAST 디버깅" href="debugging.html"> 
+    <link rel="prev" title="6.1.6.5. OpenFAST 디버깅 중" href="debugging.html"> 
 <link rel="stylesheet" href="../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/dev/performance.html"></head>
 
 <body class="wy-body-for-nav"> 
@@ -471,7 +471,7 @@ window.runMermaid = runMermaid;</script>
           
           <a href="../../index.html" class="icon icon-home">
             OpenFAST
-              <img src="../../_static/openfastlogo.jpg" class="logo" alt="로고">
+              <img src="../../_static/openfastlogo.jpg" class="logo" alt="심벌 마크">
           </a>
               <div class="version">5.0 · 한국어</div>
 <div role="search">
@@ -483,24 +483,24 @@ window.runMermaid = runMermaid;</script>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. 이 문서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working.html">3. OpenFAST 작업</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../user/index.html">4. 사용자 문서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">6. 개발자 문서</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="index.html#development-philosophy-and-guidelines">6.1. 개발 철학 및 지침</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="index.html#engagement-with-nlr">6.1.1. NLR과의 참여</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#engagement-with-nlr">6.1.1. NLR와의 참여</a></li>
 <li class="toctree-l3"><a class="reference internal" href="index.html#development-plan-implementation-plan">6.1.2. 개발 계획/실행 계획</a></li>
 <li class="toctree-l3"><a class="reference internal" href="index.html#qualities-of-a-good-submission">6.1.3. 좋은 제출의 조건</a></li>
 <li class="toctree-l3"><a class="reference internal" href="index.html#submit-for-review-and-nlr-feedback">6.1.4. 검토 및 NLR 피드백을 위해 제출</a></li>
 <li class="toctree-l3"><a class="reference internal" href="index.html#bug-fixes">6.1.5. 버그 수정</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="index.html#additional-guidance">6.1.6. 추가 지침</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="github_workflow.html">6.1.6.1. GitHub에서 OpenFAST로 작업하기</a></li>
+<li class="toctree-l4"><a class="reference internal" href="github_workflow.html">6.1.6.1. GitHub에서 OpenFAST 작업</a></li>
 <li class="toctree-l4"><a class="reference internal" href="code_style.html">6.1.6.2. 코드 스타일</a></li>
 <li class="toctree-l4"><a class="reference internal" href="build_doc.html">6.1.6.3. 문서 개발</a></li>
 <li class="toctree-l4"><a class="reference internal" href="types_files.html">6.1.6.4. 유형 파일 및 OpenFAST 레지스트리</a></li>
-<li class="toctree-l4"><a class="reference internal" href="debugging.html">6.1.6.5. OpenFAST 디버깅</a></li>
+<li class="toctree-l4"><a class="reference internal" href="debugging.html">6.1.6.5. OpenFAST 디버깅 중</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">6.1.6.6. 성능 프로파일링 및 튜닝</a></li>
 <li class="toctree-l4"><a class="reference internal" href="versioning.html">6.1.6.7. 버전 관리</a></li>
 </ul>
@@ -512,16 +512,16 @@ window.runMermaid = runMermaid;</script>
 <li class="toctree-l2"><a class="reference internal" href="index.html#other-documentation">6.4. 기타 문서</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">7. 라이센스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. 감사의 글</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. 감사의 말씀</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../review.html">문서 상세 리뷰</a></li><li><a href="../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">OpenFAST</a>
       </nav>
@@ -530,11 +530,11 @@ window.runMermaid = runMermaid;</script>
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="집"></a></li>
           <li class="breadcrumb-item"><a href="index.html"><span class="section-number">6. </span>개발자 문서</a></li>
       <li class="breadcrumb-item active"><span class="section-number">6.1.6.6. </span>성능 프로파일링 및 튜닝</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../_sources/source/dev/performance.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+            <a href="../../_sources/source/dev/performance.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -543,30 +543,27 @@ window.runMermaid = runMermaid;</script>
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="performance-profiling-and-tuning">
-<h1><span class="section-number">6.1.6.6. </span>성능 프로파일링 및 튜닝<a class="headerlink" href="#performance-profiling-and-tuning" title="이 제목의 고유 링크"></a></h1>
+<h1><span class="section-number">6.1.6.6. </span>성능 프로파일링 및 튜닝<a class="headerlink" href="#performance-profiling-and-tuning" title="이 제목에 대한 영구 링크"></a></h1>
 <p>OpenFAST 팀의 주요 초점은 계산 비용이 가장 많이 드는 사용 사례에 대한 솔루션 출시 시간 성능을 향상시키는 것을 목표로 OpenFAST 소프트웨어의 성능 프로파일링 및 최적화입니다. 이 프로세스에는 일반적으로 초기 프로파일링 및 핫스팟 분석이 포함되며, 물리 모듈 및 글루 코드에서 최적화 대상으로 지정할 특정 서브루틴을 식별합니다.</p>
-<p>이 작업의 일부는 Intel®의 NLR 지정을 통해 지원되었습니다.
+<p>이 작업의 일부는 인텔®의 NLR 지정을 통해 지원되었습니다.
 <a class="reference external" href="https://software.intel.com/en-us/ipcc" target="_blank" rel="noopener noreferrer">인텔® 병렬 컴퓨팅 센터(IPCC)</a>.</p>
 <p>여기에는 절차, 조사 결과 및 권장 프로그래밍 방법이 나와 있습니다. 이는 작업 문서이며 추가 연구가 완료되면 업데이트될 예정입니다.</p>
 <div class="section" id="high-performance-programming-techniques">
-<h2><span class="section-number">6.1.6.6.1. </span>고성능 프로그래밍 기술<a class="headerlink" href="#high-performance-programming-techniques" title="이 제목의 고유 링크"></a></h2>
-<p>과학 및 엔지니어링 응용 프로그램용으로 설계된 컴파일 언어인 Fortran은 매우 효율적인 코드를 생성하는 데 매우 적합합니다. 그러나 코드를 튜닝하는 과정에서 개발자는 최고의 성능을 생성하기 위해 언어와 사용 가능한 도구(컴파일러, 성능 라이브러리 등)를 이해해야 합니다. 이 섹션에서는 포트란과 인텔® 포트란 컴파일러를 효과적으로 사용하기 위한 프로그래밍 패턴을 식별합니다. 개발자는 또한 다음과 관련된 인텔® 포트란 컴파일러 문서를 참조해야 합니다. <a class="reference external" href="https://software.intel.com/content/www/us/en/develop/documentation/fortran-compiler-oneapi-dev-guide-and-reference/top/optimization-and-programming-guide.html" target="_blank" rel="noopener noreferrer">최적화</a>, 일반적으로, 특히 섹션
+<h2><span class="section-number">6.1.6.6.1. </span>고성능 프로그래밍 기술<a class="headerlink" href="#high-performance-programming-techniques" title="이 제목에 대한 영구 링크"></a></h2>
+<p>과학 및 엔지니어링 응용 프로그램용으로 설계된 컴파일 언어인 Fortran은 매우 효율적인 코드를 생성하는 데 매우 적합합니다. 그러나 코드를 튜닝하는 과정에서 개발자는 최고의 성능을 생성하기 위해 언어와 사용 가능한 도구(컴파일러, 성능 라이브러리 등)를 이해해야 합니다. 이 섹션에서는 포트란과 인텔® 포트란 컴파일러를 효과적으로 사용하기 위한 프로그래밍 패턴을 식별합니다. 개발자는 또한 다음과 관련된 인텔® 포트란 컴파일러 문서를 참조해야 합니다. <a class="reference external" href="https://software.intel.com/content/www/us/en/develop/documentation/fortran-compiler-oneapi-dev-guide-and-reference/top/optimization-and-programming-guide.html" target="_blank" rel="noopener noreferrer">최적화</a>, 일반적으로, 특히 다음 섹션에
 <a class="reference external" href="https://software.intel.com/content/www/us/en/develop/documentation/fortran-compiler-oneapi-dev-guide-and-reference/top/optimization-and-programming-guide/vectorization/automatic-vectorization.html" target="_blank" rel="noopener noreferrer">자동 벡터화</a>
-및 <a class="reference external" href="https://software.intel.com/content/www/us/en/develop/documentation/fortran-compiler-oneapi-dev-guide-and-reference/top/optimization-and-programming-guide/coarrays-1.html" target="_blank" rel="noopener noreferrer">코레이</a>.</p>
+및 <a class="reference external" href="https://software.intel.com/content/www/us/en/develop/documentation/fortran-compiler-oneapi-dev-guide-and-reference/top/optimization-and-programming-guide/coarrays-1.html" target="_blank" rel="noopener noreferrer">공동 배열</a>.</p>
 <div class="section" id="optimization-report">
-<h3><span class="section-number">6.1.6.6.1.1. </span>최적화 보고서<a class="headerlink" href="#optimization-report" title="이 제목의 고유 링크"></a></h3>
+<h3><span class="section-number">6.1.6.6.1.1. </span>최적화 보고서<a class="headerlink" href="#optimization-report" title="이 제목에 대한 영구 링크"></a></h3>
 <p>복잡한 소프트웨어에서 컴파일러 최적화 성능을 평가할 때 타이밍 테스트만으로는 특정 코드 줄을 최적화하는 컴파일러의 능력을 나타내는 좋은 지표가 아닙니다. 컴파일러의 최적화 시도에 대한 하위 수준 정보를 위해 개발자는 최적화 보고서를 생성하여 벡터화, 병렬화, 메모리 및 캐시 사용량, 스레딩 등과 같은 다양한 측정항목에 대한 단계별 보고를 받아야 합니다. 개발자는 Intel® Fortran 컴파일러 문서를 참조해야 합니다. <a class="reference external" href="https://software.intel.com/content/www/us/en/develop/articles/vectorization-and-optimization-reports.html" target="_blank" rel="noopener noreferrer">최적화 보고서</a>.</p>
-<p>Linux 및 macOS의 경우 OpenFAST CMake 구성에는 사용 가능한 최적화 보고서 생성을 위한 컴파일러 플래그가 있지만 <code class="docutils literal notranslate"><span class="pre">set_fast_intel_fortran_posix</span></code> 매크로 <code class="docutils literal notranslate"><span class="pre">openfast/cmake/OpenfastFortranOptions.cmake</span></code>. 주로, <code class="docutils literal notranslate"><span class="pre">qopt-report-phase</span></code> 및 <code class="docutils literal notranslate"><span class="pre">qopt-report</span></code> 플래그를 사용해야 합니다. 최적화 보고서 옵션 보기 <a class="reference external" href="https://software.intel.com/content/www/us/en/develop/documentation/fortran-compiler-developer-guide-and-reference/top/compiler-reference/compiler-options/compiler-option-details/optimization-report-options/qopt-report-qopt-report.html" target="_blank" rel="noopener noreferrer">문서
-추가 플래그 및 구성에 대한 자세한 내용은</a>
-를 참조하세요.</p>
-<p>컴파일러 플래그가 올바르게 구성되면 copmiler는 확장자가 있는 파일을 출력합니다.
-다음과 같은 중간 컴파일 아티팩트와 함께 <code class="docutils literal notranslate"><span class="pre">.optrpt</span></code> 다음과 같은 중간 컴파일 산출물과 함께 <code class="docutils literal notranslate"><span class="pre">.o</span></code> 파일. 컴파일 프로세스에서는 추가 파일이 생성되고 있음을 나타냅니다.</p>
+<p>Linux 및 macOS의 경우 OpenFAST CMake 구성에는 사용 가능한 최적화 보고서 생성을 위한 컴파일러 플래그가 있지만 <code class="docutils literal notranslate"><span class="pre">set_fast_intel_fortran_posix</span></code> 매크로 <code class="docutils literal notranslate"><span class="pre">openfast/cmake/OpenfastFortranOptions.cmake</span></code>. 주로, <code class="docutils literal notranslate"><span class="pre">qopt-report-phase</span></code> 및 <code class="docutils literal notranslate"><span class="pre">qopt-report</span></code> 플래그를 사용해야 합니다. 최적화 보고서 옵션 보기 <a class="reference external" href="https://software.intel.com/content/www/us/en/develop/documentation/fortran-compiler-developer-guide-and-reference/top/compiler-reference/compiler-options/compiler-option-details/optimization-report-options/qopt-report-qopt-report.html" target="_blank" rel="noopener noreferrer">선적 서류 비치</a>
+추가 플래그 및 구성에 대한 자세한 내용은</p>
+<p>컴파일러 플래그가 올바르게 구성되면 컴파일러는 확장자가 있는 파일을 출력합니다. <code class="docutils literal notranslate"><span class="pre">.optrpt</span></code> 다음과 같은 중간 컴파일 산출물과 함께 <code class="docutils literal notranslate"><span class="pre">.o</span></code> 파일. 컴파일 프로세스에서는 추가 파일이 생성되고 있음을 나타냅니다.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ifort</span><span class="p">:</span> <span class="n">remark</span> <span class="c1">#10397: optimization reports are generated in *.optrpt files in the output location</span>
 </pre></div>
 </div>
 <p>그리고 추가 파일은 해당 위치에 있어야 합니다.
-각 컴파일 대상에 대한
-<code class="docutils literal notranslate"><span class="pre">CMakeFiles</span></code> 디렉터리입니다. 예를 들어 OpenFAST의 VersionInfo 모듈에 대한 최적화 보고서는 다음 위치에 있습니다.</p>
+<code class="docutils literal notranslate"><span class="pre">CMakeFiles</span></code> 각 컴파일 대상에 대한 디렉터리입니다. 예를 들어 OpenFAST의 VersionInfo 모듈에 대한 최적화 보고서는 다음 위치에 있습니다.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">ls</span> <span class="o">-</span><span class="n">l</span> <span class="n">openfast</span><span class="o">/</span><span class="n">build</span><span class="o">/</span><span class="n">modules</span><span class="o">/</span><span class="n">version</span><span class="o">/</span><span class="n">CMakeFiles</span><span class="o">/</span><span class="n">versioninfolib</span><span class="o">.</span><span class="n">dir</span><span class="o">/</span><span class="n">src</span><span class="o">/</span>
 <span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--</span>  <span class="mi">2740</span> <span class="n">May</span> <span class="mi">12</span> <span class="mi">23</span><span class="p">:</span><span class="mi">10</span> <span class="n">VersionInfo</span><span class="o">.</span><span class="n">f90</span><span class="o">.</span><span class="n">o</span>
 <span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--</span>     <span class="mi">0</span> <span class="n">May</span> <span class="mi">12</span> <span class="mi">23</span><span class="p">:</span><span class="mi">10</span> <span class="n">VersionInfo</span><span class="o">.</span><span class="n">f90</span><span class="o">.</span><span class="n">o</span><span class="o">.</span><span class="n">provides</span><span class="o">.</span><span class="n">build</span>
@@ -575,8 +572,8 @@ window.runMermaid = runMermaid;</script>
 </div>
 </div>
 <div class="section" id="operator-strength-reduction">
-<h3><span class="section-number">6.1.6.6.1.2. </span>오퍼레이터 힘 감소<a class="headerlink" href="#operator-strength-reduction" title="이 제목의 고유 링크"></a></h3>
-<p>각 수학 연산에는 효과적인 "강도"가 있으며 일부 연산은 원본보다 성능이 더 나은 여러 감소된 강도 연산의 조합으로 동일하게 표시될 수 있습니다. 코드 최적화 단계의 일부로 컴파일러는 수학 연산의 강도를 줄일 수 있는 영역을 식별할 수 있습니다. 컴파일러는 비용이 많이 드는 모든 작업을 최적화할 수 없습니다. 예를 들어, 비용이 많이 드는 수학 연산의 일부가 파생된 데이터 유형에 포함된 변수인 경우는 자주 건너뜁니다. 따라서 비용이 많이 드는 서브루틴을 프로파일링하고 가능한 강도 감소 기회를 검색하는 것이 좋습니다.</p>
+<h3><span class="section-number">6.1.6.6.1.2. </span>오퍼레이터 힘 감소<a class="headerlink" href="#operator-strength-reduction" title="이 제목에 대한 영구 링크"></a></h3>
+<p>각 수학적 연산에는 효과적인 "강도"가 있으며 일부 연산은 원본보다 성능이 더 나은 여러 감소된 강도 연산의 조합으로 동등하게 표현될 수 있습니다. 코드 최적화 단계의 일부로 컴파일러는 수학 연산의 강도를 줄일 수 있는 영역을 식별할 수 있습니다. 컴파일러는 비용이 많이 드는 모든 작업을 최적화할 수 없습니다. 예를 들어, 비용이 많이 드는 수학 연산의 일부가 파생된 데이터 유형에 포함된 변수인 경우는 자주 건너뜁니다. 따라서 비용이 많이 드는 서브루틴을 프로파일링하고 가능한 강도 감소 기회를 검색하는 것이 좋습니다.</p>
 <p>연산자 강도 감소의 구체적인 예는 배열의 여러 요소를 상수로 나누는 것입니다.</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">module_type</span><span class="p">%</span><span class="n">scale_factor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="mf">0.0</span>
 
@@ -587,7 +584,7 @@ window.runMermaid = runMermaid;</script>
 <span class="k">end do</span>
 </pre></div>
 </div>
-<p>이 경우 실수의 곱셈은 실수의 나눗셈보다 비용이 저렴합니다. 배율 인수의 역수가 루프 외부에서 계산되고 루프의 수학적 연산이 곱셈으로 변환되도록 코드를 인수분해할 수 있습니다.</p>
+<p>이 경우 실수를 곱하는 것이 실수를 나누는 것보다 비용이 적게 듭니다. 배율 인수의 역수가 루프 외부에서 계산되고 루프의 수학적 연산이 곱셈으로 변환되도록 코드를 인수분해할 수 있습니다.</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">module_type</span><span class="p">%</span><span class="n">scale_factor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="mf">0.0</span>
 <span class="n">inverse_scale_factor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">module_type</span><span class="p">%</span><span class="n">scale_factor</span>
 
@@ -600,15 +597,15 @@ window.runMermaid = runMermaid;</script>
 </div>
 </div>
 <div class="section" id="id1">
-<h3><span class="section-number">6.1.6.6.1.3. </span>코어레이<a class="headerlink" href="#id1" title="이 제목의 고유 링크"></a></h3>
-<p>Coarrays는 SPMD(Single Program, Multiple Data) 프로그래밍 패러다임에서 배열 작업을 위한 언어 수준 병렬화를 제공하기 위해 2008 표준에서 Fortran 언어에 도입된 기능입니다. 포트란 표준은 병렬화 방법을 컴파일러에 맡기고 인텔® 포트란 컴파일러는 MPI를 사용합니다.</p>
-<p>Coarrays는 프로그램의 여러 복사본에 걸쳐 배열 작업을 분할하는 데 사용됩니다. 복사본을 "이미지"라고 합니다. 각 이미지에는 고유한 지역 변수와 공유 변수인 공동 배열의 일부가 있습니다. 공동배열은 "공동차원"이라고 하는 추가 차원을 갖는 것으로 생각할 수 있습니다. 단일 이미지(일반적으로 1번째 인덱스)가 I/O 및 문제 설정을 제어하고 이미지는 다른 이미지의 메모리에서 읽을 수 있습니다.</p>
-<p>많은 하위 배열에서 슈퍼 배열을 구성하는 것과 같은 대규모 배열 작업의 경우(야코비 행렬 구성과 같이) Fortran 08의 공동 배열 기능은 전체 계산 효율성을 향상시키는 절차를 병렬화할 수 있습니다.</p>
+<h3><span class="section-number">6.1.6.6.1.3. </span>Coarrays<a class="headerlink" href="#id1" title="이 제목에 대한 영구 링크"></a></h3>
+<p>Coarrays는 단일 프로그램, 다중 데이터(SPMD) 프로그래밍 패러다임에서 배열 작업을 위한 언어 수준 병렬화를 제공하기 위해 2008 표준에서 Fortran 언어에 도입된 기능입니다. 포트란 표준은 병렬화 방법을 컴파일러에 맡기고 인텔® 포트란 컴파일러는 MPI를 사용합니다.</p>
+<p>Coarray는 프로그램의 여러 복사본에 걸쳐 배열 작업을 분할하는 데 사용됩니다. 복사본을 "이미지"라고 합니다. 각 이미지에는 고유한 지역 변수와 공유 변수인 공동 배열의 일부가 있습니다. 공동배열은 "공동차원"이라고 하는 추가 차원을 갖는 것으로 생각할 수 있습니다. 단일 이미지(일반적으로 1번째 인덱스)가 I/O 및 문제 설정을 제어하고 이미지는 다른 이미지의 메모리에서 읽을 수 있습니다.</p>
+<p>많은 하위 배열에서 슈퍼 배열을 구성하는 것과 같은 대규모 배열에 대한 작업(야코비 행렬 구성에서와 같이)의 경우 Fortran 08의 공동 배열 기능은 전체 계산 효율성을 향상시키는 절차를 병렬화할 수 있습니다.</p>
 </div>
 <div class="section" id="data-modeling-and-access-rules">
-<h3><span class="section-number">6.1.6.6.1.4. </span>데이터 모델링 및 액세스 규칙<a class="headerlink" href="#data-modeling-and-access-rules" title="이 제목의 고유 링크"></a></h3>
-<p>Fortran은 열 우선 순서로 배열을 나타냅니다. 이는 다차원 배열이 인접한 열 요소와 함께 메모리에 표시된다는 것을 의미합니다. 배열의 특정 요소가 메모리의 특정 위치에 있는 경우 메모리 앞의 한 요소는 해당 열의 해당 요소 위에 있는 요소에 해당합니다.</p>
-<p>단일 명령어를 활용하려면 최신 프로세서의 여러 데이터 기능, 배열 구성 및 액세스가 열 주요 순서로 이루어져야 합니다. 즉, 루프는 가장 왼쪽 인덱스를 가장 빠르게 반복해야 합니다. 슬라이싱은 <code class="docutils literal notranslate"><span class="pre">:</span></code> 는 가능한 경우 가장 왼쪽 인덱스에도 있습니다.</p>
+<h3><span class="section-number">6.1.6.6.1.4. </span>데이터 모델링 및 액세스 규칙<a class="headerlink" href="#data-modeling-and-access-rules" title="이 제목에 대한 영구 링크"></a></h3>
+<p>Fortran은 열 우선 순서로 배열을 나타냅니다. 이는 다차원 배열이 인접한 열 요소와 함께 메모리에 표시된다는 것을 의미합니다. 배열의 특정 요소가 메모리의 한 위치에 있는 경우 메모리 앞의 한 요소는 해당 열의 해당 요소 위에 있는 요소에 해당합니다.</p>
+<p>단일 명령을 활용하려면 현대 프로세서의 다중 데이터 기능, 배열 구성 및 액세스가 열 우선 순서로 이루어져야 합니다. 즉, 루프는 가장 왼쪽 인덱스를 가장 빠르게 반복해야 합니다. 슬라이싱은 <code class="docutils literal notranslate"><span class="pre">:</span></code> 가능하면 가장 왼쪽 색인에도 표시됩니다.</p>
 <p>이를 염두에 두고 데이터는 구조 배열이 아닌 배열 구조로 표현되어야 합니다. 구체적으로 이는 OpenFAST 내의 데이터 유형이 기본 배열을 포함해야 하며 배열은 일반적으로 숫자 유형만 포함해야 함을 의미합니다.</p>
 <p>아래의 짧은 프로그램은 배열 요소와 인접 요소 사이의 메모리 거리를 바이트 단위로 표시합니다.</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">memloc</span>
@@ -665,89 +662,86 @@ window.runMermaid = runMermaid;</script>
 </div>
 </div>
 <div class="section" id="optimization-studies">
-<h2><span class="section-number">6.1.6.6.2. </span>최적화 연구<a class="headerlink" href="#optimization-studies" title="이 제목의 고유 링크"></a></h2>
-<p>이 섹션에서는 OpenFAST의 섹션을 프로파일링하고 Intel® 컴파일러 제품군으로 성능을 향상시키기 위한 구체적인 노력에 대해 설명합니다.</p>
+<h2><span class="section-number">6.1.6.6.2. </span>최적화 연구<a class="headerlink" href="#optimization-studies" title="이 제목에 대한 영구 링크"></a></h2>
+<p>이 섹션에서는 OpenFAST 섹션을 프로파일링하고 인텔® 컴파일러 제품군의 성능을 향상시키기 위한 구체적인 노력에 대해 설명합니다.</p>
 <div class="section" id="beamdyn-performance-profiling-and-optimization-ipcc-year-1-and-2">
-<h3><span class="section-number">6.1.6.6.2.1. </span>BeamDyn 성능 프로파일링 및 최적화(IPCC 1년차 및 2년차)<a class="headerlink" href="#beamdyn-performance-profiling-and-optimization-ipcc-year-1-and-2" title="이 제목의 고유 링크"></a></h3>
-<p>OpenFAST의 성능 개선을 위해 확인된 일반 메커니즘은 다음과 같습니다.</p>
+<h3><span class="section-number">6.1.6.6.2.1. </span>BeamDyn 성능 프로파일링 및 최적화(IPCC 1년차 및 2년차)<a class="headerlink" href="#beamdyn-performance-profiling-and-optimization-ipcc-year-1-and-2" title="이 제목에 대한 영구 링크"></a></h3>
+<p>OpenFAST의 성능 개선을 위해 확인된 일반적인 메커니즘은 다음과 같습니다.</p>
 <ul class="simple">
 <li><p>인텔® 컴파일러 제품군 및 인텔® 수학 커널 라이브러리(인텔® MKL)</p></li>
 <li><p>알고리즘 개선</p></li>
 <li><p>보다 효율적인 캐시 사용을 가능하게 하는 메모리 액세스 최적화</p></li>
-<li><p>SIMD 벡터화를 허용하는 데이터 유형 정렬
-OpenMP를 사용한</p></li>
-<li><p>멀티스레딩</p></li>
+<li><p>SIMD 벡터화를 허용하는 데이터 유형 정렬</p></li>
+<li><p>OpenMP를 사용한 멀티스레딩</p></li>
 </ul>
-<p>이러한 옵션을 통해 앞으로의 경로를 설정하기 위해 OpenFAST는 먼저 Intel® VTune™ 증폭기로 프로파일링되어 시뮬레이션에 소비된 시간을 명확하게 분석했습니다. 그런 다음 인텔® 포트란 컴파일러에서 생성된 최적화 보고서를 분석하여 자동 벡터화되지 않은 영역을 확인했습니다. 마지막으로, Intel® Advisor는 컴파일러가 멀티스레딩을 통해 잠재적으로 개선된 것으로 식별한 코드 영역을 강조하는 데 사용되었습니다.</p>
+<p>이러한 옵션을 사용하여 앞으로 나아갈 길을 설정하기 위해 OpenFAST는 먼저 Intel® VTune™ Amplifier로 프로파일링되어 시뮬레이션에 소비된 시간을 명확하게 분석했습니다. 그런 다음 인텔® 포트란 컴파일러에서 생성된 최적화 보고서를 분석하여 자동 벡터화되지 않은 영역을 확인했습니다. 마지막으로, Intel® Advisor는 컴파일러가 멀티스레딩을 통해 잠재적으로 개선된 것으로 식별한 코드 영역을 강조하는 데 사용되었습니다.</p>
 <p>의미 있고 현실적인 타이밍 벤치마크를 제공하기 위해 두 가지 OpenFAST 테스트 사례가 선택되었습니다. 실제 터빈 및 대기 모델 외에도 이러한 사례는 계산 비용이 많이 들고 성능 개선을 통해 차이를 만들 수 있는 영역을 드러냅니다.</p>
 <p><strong>5MW_Land_BD_DLL_WTurb</strong></p>
-<p>케이스 파일 다운로드 <a class="reference external" href="https://github.com/OpenFAST/r-test/tree/dev/glue-codes/openfast/5MW_Land_BD_DLL_WTurb" target="_blank" rel="noopener noreferrer">여기</a>.</p>
-<p>이 경우에 사용된 물리 모듈은 다음과 같습니다.</p>
+<p>사례 파일 다운로드 <a class="reference external" href="https://github.com/OpenFAST/r-test/tree/dev/glue-codes/openfast/5MW_Land_BD_DLL_WTurb" target="_blank" rel="noopener noreferrer">여기</a>.</p>
+<p>이 경우에 사용되는 물리 모듈은 다음과 같습니다:</p>
 <ul class="simple">
 <li><p>BeamDyn</p></li>
 <li><p>InflowWind</p></li>
-<li><p>에어로다인 15</p></li>
+<li><p>AeroDyn 15</p></li>
 <li><p>ServoDyn</p></li>
 </ul>
-<p>이것은 BeamDyn을 구조 모듈로 사용하는 육상 기반 Jonkman 5-MW(이전의 NREL 5-MW) 터빈 시뮬레이션입니다. 0.001초의 시간 단계 크기로 20초를 시뮬레이션하고 실행됩니다.
-NLR의 이전 Peregrine 슈퍼컴퓨터(은퇴)에 탑재된 <a class="reference external" href="https://my.cdash.org/testDetails.php?test=40171217&amp;build=1649048" target="_blank" rel="noopener noreferrer">3m 55s</a>
-.</p>
+<p>이것은 BeamDyn를 구조 모듈로 사용하는 육상 기반 Jonkman 5-MW(이전의 NREL 5-MW) 터빈 시뮬레이션입니다. 0.001초의 시간 단계 크기로 20초를 시뮬레이션하고 실행됩니다. <a class="reference external" href="https://my.cdash.org/testDetails.php?test=40171217&amp;build=1649048" target="_blank" rel="noopener noreferrer">3m 55s</a>
+NLR의 이전 Peregrine 슈퍼컴퓨터(은퇴).</p>
 <p><strong>5MW_OC4Jckt_DLL_WTurb_WavesIrr_MG성장</strong></p>
-<p>케이스 파일 다운로드 <a class="reference external" href="https://github.com/OpenFAST/r-test/tree/dev/glue-codes/openfast/5MW_OC4Jckt_DLL_WTurb_WavesIrr_MGrowth" target="_blank" rel="noopener noreferrer">여기</a>.</p>
-<p>이것은 HydroDyn 파동 역학 계산에서 발생하는 계산 비용의 대부분을 사용하는 해상 고정 바닥 Jonkman 5-MW(이전의 NREL 5-MW) 터빈 시뮬레이션입니다.</p>
-<p>이 경우에 사용된 물리 모듈은 다음과 같습니다.</p>
+<p>사례 파일 다운로드 <a class="reference external" href="https://github.com/OpenFAST/r-test/tree/dev/glue-codes/openfast/5MW_OC4Jckt_DLL_WTurb_WavesIrr_MGrowth" target="_blank" rel="noopener noreferrer">여기</a>.</p>
+<p>이것은 대부분의 계산 비용이 HydroDyn 파동 역학 계산에서 발생하는 해상 고정 바닥 Jonkman 5-MW(이전의 NREL 5-MW) 터빈 시뮬레이션입니다.</p>
+<p>이 경우에 사용되는 물리 모듈은 다음과 같습니다:</p>
 <ul class="simple">
 <li><p>ElastoDyn</p></li>
 <li><p>InflowWind</p></li>
-<li><p>에어로다인 15</p></li>
+<li><p>AeroDyn 15</p></li>
 <li><p>ServoDyn</p></li>
 <li><p>HydroDyn</p></li>
 <li><p>SubDyn</p></li>
 </ul>
 <p>0.01초의 시간 단계 크기로 60초를 시뮬레이션하고 실행됩니다.
 <a class="reference external" href="https://my.cdash.org/testDetails.php?test=40171219&amp;build=1649048" target="_blank" rel="noopener noreferrer">20m 27s</a>
-.</p>
+NLR의 이전 Peregrine 슈퍼컴퓨터(은퇴).</p>
 <div class="section" id="profiling">
-<h4><span class="section-number">6.1.6.6.2.1.1. </span>프로파일링<a class="headerlink" href="#profiling" title="이 제목의 고유 링크"></a></h4>
-<p>OpenFAST 테스트 사례는 성능 핫스팟을 식별하기 위해 Intel® VTune™ Amplifier로 프로파일링되었습니다. 두 가지 테스트 사례가 OpenFAST 소프트웨어의 차이점 부분을 실행하므로 서로 다른 핫스팟이 식별되었습니다. 모든 경우와 환경 설정에서 CPU 시간의 대부분은
-각 물리 모듈의 솔루션 계산을 조정하는 고급 서브루틴인 <code class="docutils literal notranslate"><span class="pre">fast_solution</span></code> 루프입니다.</p>
+<h4><span class="section-number">6.1.6.6.2.1.1. </span>프로파일링<a class="headerlink" href="#profiling" title="이 제목에 대한 영구 링크"></a></h4>
+<p>OpenFAST 테스트 사례는 성능 핫스팟을 식별하기 위해 Intel® VTune™ Amplifier로 프로파일링되었습니다. 두 가지 테스트 사례가 OpenFAST 소프트웨어의 차이점 부분을 실행하므로 서로 다른 핫스팟이 식별되었습니다. 모든 경우와 환경 설정에서 CPU 시간의 대부분은 <code class="docutils literal notranslate"><span class="pre">fast_solution</span></code> 루프는 각 물리 모듈의 솔루션 계산을 조정하는 고급 서브루틴입니다.</p>
 <div class="section" id="lapack">
-<h5><span class="section-number">6.1.6.6.2.1.1.1. </span>LAPACK<a class="headerlink" href="#lapack" title="이 제목의 고유 링크"></a></h5>
-<p>해외 사례에서는 LAPACK 사용량이 성능부하로 파악됐다. 내에서 <code class="docutils literal notranslate"><span class="pre">fast_solution</span></code> 루프, LAPACK 함수 호출 <code class="docutils literal notranslate"><span class="pre">dgetrs</span></code>
-는 총 CPU 시간의 3.3%를 소비합니다.</p>
+<h5><span class="section-number">6.1.6.6.2.1.1.1. </span>LAPACK<a class="headerlink" href="#lapack" title="이 제목에 대한 영구 링크"></a></h5>
+<p>해외 사례에서는 LAPACK 사용량이 성능 부하로 확인됐다. 내에서 <code class="docutils literal notranslate"><span class="pre">fast_solution</span></code> 루프, LAPACK 함수 호출 <code class="docutils literal notranslate"><span class="pre">dgetrs</span></code>
+전체 CPU 시간의 3.3%를 소비합니다.</p>
 <div class="figure align-center">
 <a class="reference internal image-reference" href="../../_images/offshore_lapack.png"><img alt="../../_images/offshore_lapack.png" src="../../_images/offshore_lapack.png" style="width: 100%;"></a>
 </div>
 </div>
 <div class="section" id="beamdyn">
-<h5><span class="section-number">6.1.6.6.2.1.1.2. </span>BeamDyn<a class="headerlink" href="#beamdyn" title="이 제목의 고유 링크"></a></h5>
-<p>BeamDyn은 충실도가 높은 블레이드 응답 계산을 제공하지만 계산 비용이 많이 드는 모듈입니다. 초기 프로파일링에서는 다음을 강조했습니다.
+<h5><span class="section-number">6.1.6.6.2.1.1.2. </span>BeamDyn<a class="headerlink" href="#beamdyn" title="이 제목에 대한 영구 링크"></a></h5>
+<p>BeamDyn는 충실도가 높은 블레이드 응답 계산을 제공하지만 계산 비용이 많이 드는 모듈입니다. 초기 프로파일링에서는 다음을 강조했습니다.
 <code class="docutils literal notranslate"><span class="pre">bd_elementmatrixga2</span></code> 서브루틴을 핫스팟으로 사용합니다. 그러나 BeamDyn의 성능을 향상시키려는 초기 시도에서는 모듈의 데이터 구조에 대한 알고리즘 개선 및 개선의 필요성이 드러났습니다.</p>
 </div>
 </div>
 <div class="section" id="results">
-<h4><span class="section-number">6.1.6.6.2.1.2. </span>결과<a class="headerlink" href="#results" title="이 제목의 고유 링크"></a></h4>
-<p>작업이 진행 중이지만 OpenFAST의 솔루션 출시 시간 성능이 향상되었으며 성능 잠재력이 더 잘 이해되고 있습니다.</p>
-<p>IPCC 프로젝트 첫해의 주요 결과는 다음과 같습니다.</p>
+<h4><span class="section-number">6.1.6.6.2.1.2. </span>결과<a class="headerlink" href="#results" title="이 제목에 대한 영구 링크"></a></h4>
+<p>작업이 진행 중이지만 OpenFAST 솔루션 출시 시간 성능이 향상되었으며 성능 잠재력이 더 잘 이해되었습니다.</p>
+<p>IPCC 프로젝트 첫 해의 주요 결과는 다음과 같습니다.</p>
 <ul class="simple">
-<li><p>Intel® 컴파일러 및 MKL 라이브러리를 사용하면 GCC 및 LAPACK에 비해 속도가 크게 향상됩니다.</p>
+<li><p>Intel® 컴파일러와 MKL 라이브러리를 사용하면 GCC 및 LAPACK보다 속도가 크게 향상됩니다.</p>
 <ul>
 <li><p>해양 시뮬레이션을 위한 MKL 스레딩을 통해 추가로 상당한 이득을 얻을 수 있습니다.</p></li>
 </ul>
 </li>
-<li><p>해상 풍력터빈 시뮬레이션은 모듈 전반에 걸쳐 로드 밸런싱이 제대로 이루어지지 않았습니다.</p>
+<li><p>해상 풍력 터빈 시뮬레이션은 모듈 전반에 걸쳐 로드 밸런싱이 제대로 이루어지지 않습니다.</p>
 <ul>
 <li><p>육상 기반 터빈 구성의 균형이 더 잘 맞습니다.</p></li>
-<li><p>OpenMP 작업은 더 나은 로드 밸런싱을 달성하기 위해 사용됩니다.</p></li>
+<li><p>더 나은 로드 밸런싱을 달성하기 위해 OpenMP 작업이 사용됩니다.</p></li>
 </ul>
 </li>
 <li><p>OpenMP 모듈 수준 병렬 처리는 다양한 모듈 작업 간의 불균형으로 인해 상당한 속도 향상을 제공하지만 제한적입니다.</p></li>
-<li><p>핵심 알고리즘은 OpenMP 및 SIMD 이점을 활성화하려면 상당한 수정이 필요합니다.</p></li>
+<li><p>OpenMP 및 SIMD 이점을 활성화하려면 핵심 알고리즘에 상당한 수정이 필요합니다.</p></li>
 </ul>
-<p>NLR의 하드웨어에서 최상의 성능을 발휘하도록 Intel® 도구를 조정하고 높은 수준의 멀티스레딩을 추가하면 벤치마크 사례 중 하나에서 솔루션 출시 시간이 최대 3.8배 향상되었습니다.</p>
+<p>NLR 하드웨어에서 최상의 성능을 발휘하도록 Intel® 도구를 조정하고 높은 수준의 멀티스레딩을 추가하면 벤치마크 사례 중 하나에서 솔루션 출시 시간이 최대 3.8배 향상되었습니다.</p>
 <div class="section" id="speedup-intel-compiler-and-mkl">
-<h5><span class="section-number">6.1.6.6.2.1.2.1. </span>속도 향상 - 인텔® 컴파일러 및 MKL<a class="headerlink" href="#speedup-intel-compiler-and-mkl" title="이 제목의 고유 링크"></a></h5>
-<p>표준 인텔® 개발자 도구 기술 스택을 사용하여 GNU 도구에 비해 성능이 향상되었습니다.</p>
+<h5><span class="section-number">6.1.6.6.2.1.2.1. </span>속도 향상 - 인텔® 컴파일러 및 MKL<a class="headerlink" href="#speedup-intel-compiler-and-mkl" title="이 제목에 대한 영구 링크"></a></h5>
+<p>표준 인텔® 개발자 도구 기술 스택을 사용함으로써 GNU 도구에 비해 성능이 향상되었습니다.</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 11%">
@@ -757,7 +751,7 @@ NLR의 이전 Peregrine 슈퍼컴퓨터(은퇴)에 탑재된 <a class="reference
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>컴파일러</p></th>
-<th class="head"><p>수학 라이브러리</p></th>
+<th class="head"><p>수학 도서관</p></th>
 <th class="head"><p>5MW_Land_BD_DLL_WTurb</p></th>
 <th class="head"><p>5MW_OC4Jckt_DLL_WTurb_WavesIrr_MG성장</p></th>
 </tr>
@@ -787,9 +781,9 @@ NLR의 이전 Peregrine 슈퍼컴퓨터(은퇴)에 탑재된 <a class="reference
 </table>
 </div>
 <div class="section" id="speedup-openmp-at-fast-solver">
-<h5><span class="section-number">6.1.6.6.2.1.2.2. </span>속도 향상 - FAST_Solver의 OpenMP<a class="headerlink" href="#speedup-openmp-at-fast-solver" title="이 제목의 고유 링크"></a></h5>
-<p>OpenMP 지시어를 추가하여 성능 개선이 입증되었습니다.
-<code class="docutils literal notranslate"><span class="pre">FAST_Solver</span></code> 모듈. 솔루션 체계의 균형이 잘 잡혀 있지 않지만 메시 매핑 및 계산 루틴을 병렬화하면 다음과 같은 속도가 향상됩니다.</p>
+<h5><span class="section-number">6.1.6.6.2.1.2.2. </span>속도 향상 - FAST_Solver의 OpenMP<a class="headerlink" href="#speedup-openmp-at-fast-solver" title="이 제목에 대한 영구 링크"></a></h5>
+<p>OpenMP 지시문을 추가하여 성능 개선이 입증되었습니다.
+<code class="docutils literal notranslate"><span class="pre">FAST_Solver</span></code> 기준 치수. 솔루션 체계의 균형이 잘 잡혀 있지 않지만 메시 매핑 및 계산 루틴을 병렬화하면 다음과 같은 속도가 향상됩니다.</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 11%">
@@ -799,14 +793,14 @@ NLR의 이전 Peregrine 슈퍼컴퓨터(은퇴)에 탑재된 <a class="reference
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>컴파일러</p></th>
-<th class="head"><p>수학 라이브러리</p></th>
+<th class="head"><p>수학 도서관</p></th>
 <th class="head"><p>5MW_Land_BD_DLL_WTurb</p></th>
 <th class="head"><p>5MW_OC4Jckt_DLL_WTurb_WavesIrr_MG성장</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>인텔® 17</p></td>
-<td><p>MKL - 1스레드</p></td>
+<td><p>MKL - 스레드 1개</p></td>
 <td><p>1073 s (2.1x)</p></td>
 <td><p>100 s (6.7x)</p></td>
 </tr>
@@ -820,7 +814,7 @@ NLR의 이전 Peregrine 슈퍼컴퓨터(은퇴)에 탑재된 <a class="reference
 </div>
 </div>
 <div class="section" id="ongoing-work">
-<h4><span class="section-number">6.1.6.6.2.1.3. </span>진행 중인 작업<a class="headerlink" href="#ongoing-work" title="이 제목의 고유 링크"></a></h4>
+<h4><span class="section-number">6.1.6.6.2.1.3. </span>진행중인 작업<a class="headerlink" href="#ongoing-work" title="이 제목에 대한 영구 링크"></a></h4>
 <p>OpenFAST 성능 개선의 다음 단계는 두 가지 주요 영역에 중점을 두고 있습니다.</p>
 <ol class="arabic simple">
 <li><p>OpenFAST 모듈 및 글루 코드 전반에 걸쳐 이전 작업의 결과 구현</p></li>
@@ -829,21 +823,21 @@ NLR의 이전 Peregrine 슈퍼컴퓨터(은퇴)에 탑재된 <a class="reference
 </div>
 </div>
 <div class="section" id="linearization-routine-profiling">
-<h3><span class="section-number">6.1.6.6.2.2. </span>선형화 루틴 프로파일링<a class="headerlink" href="#linearization-routine-profiling" title="이 제목의 고유 링크"></a></h3>
-<p>의 일부로 <a class="reference external" href="https://arpa-e.energy.gov/technologies/projects/wind-energy-integrated-servo-control-weis-toolset-enable-controls-co-design" target="_blank" rel="noopener noreferrer">ARPA-E WEIS</a>
-프로젝트에서는 성능 및 현재 병목 현상을 특성화하기 위한 노력의 일환으로 OpenFAST 내의 선형화 기능이 프로파일링되었습니다. 이 작업은 주로 FAST Library 내의 선형화 루틴을 대상으로 했습니다. <a class="reference external" href="https://github.com/OpenFAST/openfast/blob/main/modules/openfast-library/src/FAST_Lin.f90" target="_blank" rel="noopener noreferrer">FAST_Lin.f90</a>및 개별 물리 모듈 내에서 야코비안 행렬을 구성하는 루틴. 이러한 루틴을 사용하려면 대규모 행렬을 구성해야 하므로 이는 메모리 액세스 속도가 빠르고 계산 집약적인 프로세스입니다.</p>
+<h3><span class="section-number">6.1.6.6.2.2. </span>Linearization 루틴 프로파일링<a class="headerlink" href="#linearization-routine-profiling" title="이 제목에 대한 영구 링크"></a></h3>
+<p>의 일부로서 <a class="reference external" href="https://arpa-e.energy.gov/technologies/projects/wind-energy-integrated-servo-control-weis-toolset-enable-controls-co-design" target="_blank" rel="noopener noreferrer">ARPA-E WEIS</a>
+프로젝트에서는 성능과 현재 병목 현상을 특성화하기 위한 노력의 일환으로 OpenFAST 내의 선형화 기능이 프로파일링되었습니다. 이 작업은 주로 FAST 라이브러리 내의 선형화 루틴을 대상으로 했습니다. <a class="reference external" href="https://github.com/OpenFAST/openfast/blob/main/modules/openfast-library/src/FAST_Lin.f90" target="_blank" rel="noopener noreferrer">FAST_Lin.f90</a>, 개별 물리 모듈 내에서 야코비 행렬을 구성하는 루틴도 포함됩니다. 이러한 루틴을 사용하려면 대규모 행렬을 구성해야 하므로 이는 메모리 액세스 속도가 빠르고 계산 집약적인 프로세스입니다.</p>
 <p>선형화 알고리즘의 높은 수준의 데이터 흐름
-<code class="docutils literal notranslate"><span class="pre">FAST_Linearize_OP</span></code> 서브루틴은 다음과 같습니다.</p>
+<code class="docutils literal notranslate"><span class="pre">FAST_Linearize_OP</span></code> 서브루틴은 아래와 같습니다.</p>
 <pre class="mermaid">        graph TD;
   D[Construct Module Jacobian]--&gt;A[Calculate Module OP];
   A[Calculate Module OP]--&gt;B[Construct Glue Code Jacobians];
   A[Calculate Module OP]--&gt;C[Construct Glue Code State Matrices];
-    </pre><p>활성화된 각 물리 모듈은 각각의 모듈 수준 행렬을 구성합니다.
-<code class="docutils literal notranslate"><span class="pre">&lt;Module&gt;_Jacobian</span></code> 및 <code class="docutils literal notranslate"><span class="pre">&lt;Module&gt;_GetOP</span></code> 루틴과 이들의 컬렉션은 다음의 전역 행렬로 어셈블됩니다. <code class="docutils literal notranslate"><span class="pre">Glue_Jacobians</span></code> 및 <code class="docutils literal notranslate"><span class="pre">Glue_StateMatrices</span></code>. 총 CPU 시간을 하향식으로 비교하면 <code class="docutils literal notranslate"><span class="pre">FAST_Linearize_OP</span></code>를 보면 글루 코드 상태 행렬의 구성이 가장 비용이 많이 드는 단계라는 것을 알 수 있습니다. HydroDyn Jacobian 계산은 다른 모듈 Jacobian 계산과 비교해도 두드러집니다.</p>
+    </pre><p>활성화된 각 물리 모듈은 각각의 모듈 수준 매트릭스를 구성합니다.
+<code class="docutils literal notranslate"><span class="pre">&lt;Module&gt;_Jacobian</span></code> 및 <code class="docutils literal notranslate"><span class="pre">&lt;Module&gt;_GetOP</span></code> 루틴, 그리고 이들의 컬렉션은 다음과 같은 전역 매트릭스로 조립됩니다. <code class="docutils literal notranslate"><span class="pre">Glue_Jacobians</span></code> 및 <code class="docutils literal notranslate"><span class="pre">Glue_StateMatrices</span></code>. 총 CPU 시간을 하향식으로 비교하면 <code class="docutils literal notranslate"><span class="pre">FAST_Linearize_OP</span></code>, 글루 코드 상태 행렬의 구성이 가장 비용이 많이 드는 단계임을 알 수 있습니다. HydroDyn 야코비 계산은 다른 모듈 야코비 계산과 비교해도 두드러집니다.</p>
 <div class="figure align-center">
 <a class="reference internal image-reference" href="../../_images/TopDown_FAST_LinearizeOP.jpg"><img alt="../../_images/TopDown_FAST_LinearizeOP.jpg" src="../../_images/TopDown_FAST_LinearizeOP.jpg" style="width: 100%;"></a>
 </div>
-<p>야코비 행렬과 상태 행렬의 크기는 입력, 출력 및 연속 상태의 총 개수를 기준으로 결정됩니다. 크기는 다양하지만 이러한 행렬은 일반적으로 각 차원에 수천 개의 요소를 포함하며 대부분 0입니다. 즉, 야코비 행렬과 상태 행렬은 크고 희박합니다. 메모리 할당 및 액세스 오버헤드를 줄이려면 희소 행렬 표현이 권장됩니다.</p>
+<p>야코비 행렬과 상태 행렬은 입력, 출력, 연속 상태의 총 개수를 기준으로 크기가 결정됩니다. 크기는 다양하지만 이러한 행렬은 일반적으로 각 차원에 수천 개의 요소를 포함하며 대부분 0입니다. 즉, 야코비 행렬과 상태 행렬은 크고 희박합니다. 메모리 할당 및 액세스 오버헤드를 줄이려면 희소 행렬 표현이 권장됩니다.</p>
 </div>
 </div>
 </div>
@@ -851,8 +845,8 @@ NLR의 이전 Peregrine 슈퍼컴퓨터(은퇴)에 탑재된 <a class="reference
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
-        <a href="debugging.html" class="btn btn-neutral float-left" title="6.1.6.5. OpenFAST 디버깅" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
+        <a href="debugging.html" class="btn btn-neutral float-left" title="6.1.6.5. OpenFAST 디버깅 중" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
         <a href="versioning.html" class="btn btn-neutral float-right" title="6.1.6.7. 버전 관리" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -863,7 +857,7 @@ NLR의 이전 Peregrine 슈퍼컴퓨터(은퇴)에 탑재된 <a class="reference
   </div>
 
   다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">주제</a>
     제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
    
 

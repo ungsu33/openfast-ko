@@ -2,7 +2,7 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>4.3.9. 꼬리 지느러미 공기역학 이론 — OpenFAST v5.0.0 문서</title>
+  <title>4.3.9. 꼬리 지느러미 공기 역학 이론 — OpenFAST v5.0.0 문서</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css">
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css">
       <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css">
@@ -21,8 +21,8 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="검색" href="../../../search.html">
-    <link rel="next" title="4.3.10. 참고문헌" href="zrefs.html">
+    <link rel="search" title="찾다" href="../../../search.html">
+    <link rel="next" title="4.3.10. 참고자료" href="zrefs.html">
     <link rel="prev" title="4.3.8. 불안정한 공기 역학" href="theory_ua.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/aerodyn/theory_tailfin.html"></head>
 
@@ -36,7 +36,7 @@
           
           <a href="../../../index.html" class="icon icon-home">
             OpenFAST
-              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="심벌 마크">
           </a>
               <div class="version">5.0 · 한국어</div>
 <div role="search">
@@ -48,11 +48,11 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">4.3. AeroDyn</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="introduction.html">4.3.1. 소개</a></li>
@@ -62,19 +62,19 @@
 <li class="toctree-l3"><a class="reference internal" href="modeling.html">4.3.5. 모델링 시 고려사항</a></li>
 <li class="toctree-l3"><a class="reference internal" href="driver.html">4.3.6. AeroDyn 드라이버</a></li>
 <li class="toctree-l3"><a class="reference internal" href="theory.html">4.3.7. AeroDyn 이론</a></li>
-<li class="toctree-l3"><a class="reference internal" href="theory_ua.html">4.3.8. 불안정한 공기 역학</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory_ua.html">4.3.8. 비정상 공력</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">4.3.9. 꼬리지느러미 공기역학 이론</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#notations">4.3.9.1. 표기법</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#polar-based-model">4.3.9.2. 극좌표 기반 모델</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#unsteady-slender-body-model">4.3.9.3. 불안정한 날씬한 몸매 모델</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.3.10. 참고문헌</a></li>
-<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.3.11. 부록</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.3.10. 참고자료</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.3.11. 충수</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력소음</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
@@ -97,16 +97,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -115,12 +115,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.3. </span>AeroDyn 사용자 가이드 및 이론 설명서</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">4.3.9. </span>꼬리 지느러미 공기 역학 이론</li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.3. </span>AeroDyn 사용자 가이드 및 이론 매뉴얼</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.3.9. </span>꼬리지느러미 공기역학 이론</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/aerodyn/theory_tailfin.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+            <a href="../../../_sources/source/user/aerodyn/theory_tailfin.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -129,12 +129,12 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="tail-fin-aerodynamics-theory">
-<span id="tf-aerotheory"></span><h1><span class="section-number">4.3.9. </span>꼬리 지느러미 공기 역학 이론<a class="headerlink" href="#tail-fin-aerodynamics-theory" title="이 제목의 고유 링크"></a></h1>
+<span id="tf-aerotheory"></span><h1><span class="section-number">4.3.9. </span>꼬리지느러미 공기역학 이론<a class="headerlink" href="#tail-fin-aerodynamics-theory" title="이 제목에 대한 영구 링크"></a></h1>
 <div class="section" id="notations">
-<h2><span class="section-number">4.3.9.1. </span>표기법<a class="headerlink" href="#notations" title="이 제목의 고유 링크"></a></h2>
-<p><strong>테일핀 공기역학적 기준점</strong></p>
-<p>꼬리 지느러미 공기 역학적 기준점, <span class="math notranslate nohighlight">\(\boldsymbol{x}_\text{ref}\)</span>는 꼬리날개에 대한 공기역학적 하중이 계산되는 지점입니다. 구조 솔버는 각 시간 단계에서 기준점의 순간 위치, 속도, 가속도를 계산합니다. 타워 상단에 대한 기준점의 초기 위치는 사용자 입력입니다. 일반적인 선택은 핀의 앞쪽 가장자리/정점 또는 받음각이 0인 압력 중심에 가까운 지점입니다. 다른 공기역학적 입력(예: 공기역학적 모멘트 계수)은 기준점 선택과 일치해야 합니다.</p>
-<p><strong>테일핀 좌표계</strong></p>
+<h2><span class="section-number">4.3.9.1. </span>표기법<a class="headerlink" href="#notations" title="이 제목에 대한 영구 링크"></a></h2>
+<p><strong>꼬리 지느러미 공기 역학적 기준점</strong></p>
+<p>꼬리지느러미 공기역학적 기준점, <span class="math notranslate nohighlight">\(\boldsymbol{x}_\text{ref}\)</span>, 은 꼬리날개에 대한 공기역학적 하중이 계산되는 지점입니다. 구조 솔버는 각 시간 단계에서 기준점의 순간 위치, 속도, 가속도를 계산합니다. 타워 상단에 대한 기준점의 초기 위치는 사용자 입력입니다. 일반적인 선택은 핀의 앞쪽 가장자리/정점 또는 받음각이 0인 압력 중심에 가까운 지점입니다. 다른 공기역학적 입력(예: 공기역학적 모멘트 계수)은 기준점 선택과 일치해야 합니다.</p>
+<p><strong>꼬리 지느러미 좌표계</strong></p>
 <p>관성 및 꼬리 지느러미 좌표계는 다음과 같습니다. <a class="reference internal" href="#figtfcoord1"><span class="std std-numref">그림 4.10</span></a>. 관성 좌표계에서 꼬리 지느러미 좌표계로의 변환 행렬은 다음과 같습니다. <span class="math notranslate nohighlight">\(\boldsymbol{R}_\text{tf,i}\)</span>.</p>
 <div class="figure align-default" id="id3">
 <span id="figtfcoord1"></span><a class="reference internal image-reference" href="../../../_images/TailFinCoord.png"><img alt="../../../_images/TailFinCoord.png" src="../../../_images/TailFinCoord.png" style="width: 70%;"></a>
@@ -143,44 +143,39 @@
 <p>참조 방향(구조가 편향되지 않은 경우) 변환 행렬은 다음과 같습니다.</p>
 <div class="math notranslate nohighlight" id="equation-tfrrfiinit">
 <span class="eqno">(4.1)<a class="headerlink" href="#equation-tfrrfiinit" title="이 방정식에 대한 영구 링크"></a></span>\[\boldsymbol{R}_\text{tf,i} = \operatorname{EulerConstruct}(\theta_\text{bank}, \theta_\text{tilt}, \theta_\text{skew})\]</div>
-<p>수직 핀이 있는 일반적인 애플리케이션의 경우 세 각도는 0입니다.</p>
+<p>수직 핀이 있는 일반적인 응용 분야의 경우 세 각도는 0입니다.</p>
 <p><strong>속도</strong></p>
 <p>다음 속도 벡터(전역 좌표의 3D 벡터)가 정의됩니다(참조: <a class="reference internal" href="#figtfcoord1"><span class="std std-numref">그림 4.10</span></a>):</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\boldsymbol{V}_\text{wind}\)</span>: 기준점에서의 방해받지 않는 풍속 벡터</p></li>
-<li><p><span class="math notranslate nohighlight">\(\boldsymbol{V}_\text{dist}\)</span>: 기준점에서의 교란 풍속 벡터(교란 바람에는 타워가 흐름에 미치는 영향이 포함됩니다). AeroDyn에는 계산을 위한 내부 방법이 있습니다. <span class="math notranslate nohighlight">\(\boldsymbol{V}_\text{dist}\)</span> 의 <span class="math notranslate nohighlight">\(\boldsymbol{V}_\text{wind}\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{V}_\text{dist}\)</span>: 기준점에서의 교란 풍속 벡터(교란 바람은 흐름에 대한 타워의 영향을 포함합니다). AeroDyn에는 내부 계산 방법이 있습니다. <span class="math notranslate nohighlight">\(\boldsymbol{V}_\text{dist}\)</span> ~에서 <span class="math notranslate nohighlight">\(\boldsymbol{V}_\text{wind}\)</span>.</p></li>
 <li><p><span class="math notranslate nohighlight">\(\boldsymbol{V}_\text{elast}\)</span>: 기준점에서의 구조적 병진 속도 벡터</p></li>
-<li><p><span class="math notranslate nohighlight">\(\boldsymbol{V}_\text{ind}\)</span>: 기준점 후류로부터 유도된 속도(현재는 0으로 가정)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{V}_\text{ind}\)</span>: 기준점 후류로부터 유도된 속도(현재로서는 0으로 가정)</p></li>
 <li><p><span class="math notranslate nohighlight">\(\boldsymbol{\omega}\)</span>: 핀의 구조적 회전 속도</p></li>
 </ul>
-<p>모든 속도(제외
-AeroDyn에서 내부적으로 계산되는 <span class="math notranslate nohighlight">\(\boldsymbol{V}_\text{ind}\)</span> 및 <span class="math notranslate nohighlight">\(\boldsymbol{V}_\text{dist}\)</span> )는 공기 역학 솔버에 대한 입력으로 제공됩니다. 익형이 받는 상대풍은 다음과 같이 주어진다.</p>
+<p>모든 속도(제외 <span class="math notranslate nohighlight">\(\boldsymbol{V}_\text{ind}\)</span> 및 <span class="math notranslate nohighlight">\(\boldsymbol{V}_\text{dist}\)</span> AeroDyn에 의해 내부적으로 계산된 값)은 공기 역학 솔버에 대한 입력으로 제공됩니다. 익형이 받는 상대풍은 다음과 같이 주어진다.</p>
 <div class="math notranslate nohighlight" id="equation-tfvrel">
 <span class="eqno">(4.2)<a class="headerlink" href="#equation-tfvrel" title="이 방정식에 대한 영구 링크"></a></span>\[\boldsymbol{V}_\text{rel} =
      \boldsymbol{V}_\text{wind}
     -\boldsymbol{V}_\text{elast}
     +\boldsymbol{V}_\text{ind}\]</div>
 <p><strong>공격 각도</strong></p>
-<p>공격 각도는 다음과 같이 정의됩니다.
-그림과 같이 꼬리 지느러미 좌표계의 <span class="math notranslate nohighlight">\(x_\text{tf}-y_\text{tf}\)</span> 평면 <a class="reference internal" href="#figtfcoord2"><span class="std std-numref">그림 4.11</span></a>.</p>
+<p>공격 각도는 다음과 같이 정의됩니다. <span class="math notranslate nohighlight">\(x_\text{tf}-y_\text{tf}\)</span> 그림과 같이 꼬리 지느러미 좌표계의 평면 <a class="reference internal" href="#figtfcoord2"><span class="std std-numref">그림 4.11</span></a>.</p>
 <div class="figure align-default" id="id4">
 <span id="figtfcoord2"></span><a class="reference internal image-reference" href="../../../_images/TailFinAirfoilCoord.png"><img alt="../../../_images/TailFinAirfoilCoord.png" src="../../../_images/TailFinAirfoilCoord.png" style="width: 70%;"></a>
-<p class="caption"><span class="caption-number">그림 4.11 </span><span class="caption-text">꼬리 핀 에어포일 좌표계 및 x-y 평면의 받음각 정의</span><a class="headerlink" href="#id4" title="이 이미지에 대한 영구 링크"></a></p>
+<p class="caption"><span class="caption-number">그림 4.11 </span><span class="caption-text">꼬리날개 익형 좌표계 및 x-y 평면에서의 받음각 정의</span><a class="headerlink" href="#id4" title="이 이미지에 대한 영구 링크"></a></p>
 </div>
-<p>우리는 쓴다 <span class="math notranslate nohighlight">\(V_{\text{rel},\perp}\)</span> 의 투영
-이 비행기의 <span class="math notranslate nohighlight">\(\boldsymbol{V}_\text{rel}\)</span> . 공격 각도는 이 벡터의 구성 요소에 의해 제공됩니다.</p>
+<p>우리는 쓴다 <span class="math notranslate nohighlight">\(V_{\text{rel},\perp}\)</span> 투영 <span class="math notranslate nohighlight">\(\boldsymbol{V}_\text{rel}\)</span> 이 비행기에서. 공격 각도는 이 벡터의 구성 요소에 의해 제공됩니다.</p>
 <div class="math notranslate nohighlight" id="equation-tfalpha">
 <span class="eqno">(4.3)<a class="headerlink" href="#equation-tfalpha" title="이 방정식에 대한 영구 링크"></a></span>\[\alpha = \arctan\frac{V_{\text{rel},y_\text{tf}}}{V_{\text{rel},x_\text{tf}}}\]</div>
-<p>이 구현에서 함수는 <cite>atan2</cite> 는 공격 각도를 계산하는 데 사용됩니다.</p>
-<p><strong>로드</strong></p>
-<p>무차원 계수를 알고 있으면 다음과 같이 투영할 수 있습니다.
-다음과 같이 <span class="math notranslate nohighlight">\(x_\text{tf}-y_\text{tf}\)</span> 평면:
-따라서</p>
+<p>이 구현에서는 함수 <cite>atan2</cite> 공격 각도를 계산하는 데 사용됩니다.</p>
+<p><strong>잔뜩</strong></p>
+<p>무차원 계수를 알고 있는 경우에는 다음과 같이 투영할 수 있습니다. <span class="math notranslate nohighlight">\(x_\text{tf}-y_\text{tf}\)</span> 다음과 같이 비행기:</p>
 <div class="math notranslate nohighlight" id="equation-tfcxcy">
 <span class="eqno">(4.4)<a class="headerlink" href="#equation-tfcxcy" title="이 방정식에 대한 영구 링크"></a></span>\[C_{x_\text{tf}}(\alpha)  = -C_l(\alpha) \sin\alpha + C_d(\alpha)\cos\alpha
 ,\quad
 C_{y_\text{tf}}(\alpha)  =  C_l(\alpha) \cos\alpha + C_d(\alpha)\sin\alpha\]</div>
-<p>및 부하는 다음과 같이 지정됩니다.</p>
+<p>따라서 하중은 다음과 같이 지정됩니다.</p>
 <div class="math notranslate nohighlight" id="equation-tffxfymz">
 <span class="eqno">(4.5)<a class="headerlink" href="#equation-tffxfymz" title="이 방정식에 대한 영구 링크"></a></span>\[f_{x_\text{tf}} = \frac{1}{2}\rho V_{\text{rel},\perp}^2 A  \,C_{x_\text{tf}}(\alpha)
              ,\quad
@@ -205,45 +200,41 @@ m_{z_\text{tf}} = \frac{1}{2}\rho V_{\text{rel},\perp}^2 Ac \, C_m(\alpha)\]</di
  m_{z_\text{tf}}\\
  \end{bmatrix}\end{split}\]</div>
 <p><strong>유도 속도</strong></p>
-<p>기준점의 후류로부터 유도된 속도는 상대풍에 영향을 미치므로 꼬리 지느러미의 공격 각도에 영향을 미칩니다. 이 유도 속도를 계산하기 위해 다양한 모델이 구현됩니다. 첫 번째 근사치로서 이 속도는 0으로 설정될 수 있습니다(입력에 해당). <cite>TFinIndMod=0</cite>):</p>
+<p>기준점에서 후류로부터 유도된 속도는 상대풍에 영향을 미쳐 꼬리 지느러미의 공격 각도에 영향을 미칩니다. 이 유도 속도를 계산하기 위해 다양한 모델이 구현됩니다. 첫 번째 근사치로서 이 속도는 0으로 설정될 수 있습니다(입력에 해당). <cite>TFinIndMod=0</cite>):</p>
 <div class="math notranslate nohighlight" id="equation-tfvindzero">
 <span class="eqno">(4.7)<a class="headerlink" href="#equation-tfvindzero" title="이 방정식에 대한 영구 링크"></a></span>\[\boldsymbol{V}_\text{ind}=0\]</div>
 <p>로터 평균 유도 속도도 추정치로 사용할 수 있습니다(<cite>TFinIndMod=1</cite>). 이는 모든 블레이드와 공기역학적 노드에 걸쳐 유도된 평균 속도로 계산됩니다.</p>
 <div class="math notranslate nohighlight" id="equation-tfvindrtavg">
 <span class="eqno">(4.8)<a class="headerlink" href="#equation-tfvindrtavg" title="이 방정식에 대한 영구 링크"></a></span>\[\boldsymbol{V}_\text{ind}=\frac{1}{n_B n_r}\sum_{i_b=1..n_B} \sum_{i_r=1..n_r}  \boldsymbol{V}_{\text{ind},\text{blade}}[i_b, i_r]\]</div>
-<p>어디에 <span class="math notranslate nohighlight">\(\boldsymbol{V}_{\text{ind},\text{blade}}[i_b, i_r]\)</span> 는 블레이드에 대해 유도된 속도 벡터입니다. <span class="math notranslate nohighlight">\(i_b\)</span> 및 방사형 노드에서 <span class="math notranslate nohighlight">\(i_r\)</span>.</p>
-<p>더 발전된 모델은 후류 경계 외부에 있을 때 유도 속도를 0으로 설정하거나 타워 그림자 같은 후류 모델을 포함할 수 있습니다. 해당 옵션은 아직 사용할 수 없습니다.</p>
+<p>어디 <span class="math notranslate nohighlight">\(\boldsymbol{V}_{\text{ind},\text{blade}}[i_b, i_r]\)</span> 블레이드에 대해 유도된 속도 벡터입니다. <span class="math notranslate nohighlight">\(i_b\)</span> 그리고 방사형 노드에서 <span class="math notranslate nohighlight">\(i_r\)</span>.</p>
+<p>보다 발전된 모델은 후류 경계 외부에 있을 때 유도 속도를 0으로 설정하거나 타워 그림자와 같은 후류 모델을 포함할 수 있습니다. 해당 옵션은 아직 사용할 수 없습니다.</p>
 </div>
 <div class="section" id="polar-based-model">
-<h2><span class="section-number">4.3.9.2. </span>Polar 기반 모델<a class="headerlink" href="#polar-based-model" title="이 제목의 고유 링크"></a></h2>
-<p>극좌표 기반 모델에서는 사용자가 공기역학적 계수를 제공합니다. <span class="math notranslate nohighlight">\(C_l, C_d, C_m\)</span>는 표로 작성된 데이터로서 공격 각도의 기능입니다. 공기역학적 모멘트는 기준점에서 제공되는 것으로 가정됩니다. 일반적인 관행은 극좌표 데이터에 대해 받음각이 0인 압력 중심을 사용하는 것이므로 사용자는 이러한 지점을 핀의 기준점으로 선택하기를 원할 수 있습니다. 표로 작성된 데이터는 다음과 같이 제공된 에어포일 목록의 일부로 제공됩니다. <cite>AF이름
-AeroDyn 입력 파일의</cite> . 사용자는 인덱스만 표시하면 됩니다. <cite>TFinAFIndex</cite> 목록 내에서 <cite>AF이름
-AeroDyn 입력 파일의</cite> 는 꼬리 지느러미에 사용할 극성을 나타냅니다.</p>
+<h2><span class="section-number">4.3.9.2. </span>극좌표 기반 모델<a class="headerlink" href="#polar-based-model" title="이 제목에 대한 영구 링크"></a></h2>
+<p>Polar 기반 모델에서는 사용자가 공기역학적 계수를 제공합니다. <span class="math notranslate nohighlight">\(C_l, C_d, C_m\)</span>, 표로 작성된 데이터로서 공격 각도의 기능. 공기역학적 모멘트는 기준점에서 제공되는 것으로 가정됩니다. 일반적인 관행은 극좌표 데이터에 대해 받음각이 0인 압력 중심을 사용하는 것이므로 사용자는 이러한 지점을 핀의 기준점으로 선택하기를 원할 수 있습니다. 표로 작성된 데이터는 다음과 같이 제공된 에어포일 목록의 일부로 제공됩니다. <cite>AFNames</cite> AeroDyn 입력 파일에서. 사용자는 인덱스만 표시하면 됩니다. <cite>TFinAFIndex</cite> 목록 내에서 <cite>AFNames</cite> 꼬리 지느러미에 사용할 극성을 나타냅니다.</p>
 </div>
 <div class="section" id="unsteady-slender-body-model">
-<h2><span class="section-number">4.3.9.3. </span>불안정한 날씬한 몸매 모델<a class="headerlink" href="#unsteady-slender-body-model" title="이 제목의 고유 링크"></a></h2>
-<p>꼬리 지느러미의 불안정한 공기 역학은 불안정한 슬림 바디 이론을 기반으로 모델링되었습니다. 이론은 높은 요각 효과를 포함하도록 확장되었습니다. <span id="id1">[<a class="reference internal" href="zrefs.html#id14" title="Mohamed M Hammam, David Wood 및 Brent Summerville. 소형 풍력터빈용 꼬리 핀의 요 동작 모델링: 2021년 11월 22일~2024년 5월 21일. 기술 보고서, 국립 재생 에너지 연구소(NREL), Golden, CO(미국), 2023.">ad-HWS23
-불안정한 날씬한 신체 이론 기반 모델에 대한 매개변수를 선택하는 방법에 대한 지침은</a>]</span>. 구현을 단순화하기 위해 꼬리 지느러미의 암 길이가 현보다 훨씬 길고 특성 시간(현/풍속)이 작다고 가정합니다.</p>
-<p>꼬리 지느러미에 가해지는 수직력은 세 가지 기여(잠재적 양력, 와류 양력 및 항력)의 합으로 설명할 수 있으며 분리 기능에 따라 가중치가 부여됩니다. <span class="math notranslate nohighlight">\(x_i\)</span> :</p>
+<h2><span class="section-number">4.3.9.3. </span>불안정한 날씬한 몸매 모델<a class="headerlink" href="#unsteady-slender-body-model" title="이 제목에 대한 영구 링크"></a></h2>
+<p>꼬리 지느러미의 비정상 공기 역학은 비정상 슬렌더 바디 이론(Unsteady Slender Body Theory)을 기반으로 모델링되었습니다. 이론은 높은 요각 효과를 포함하도록 확장되었습니다. <span id="id1">[<a class="reference internal" href="zrefs.html#id14" title="모하메드 M 함맘(Mohamed M Hammam), 데이비드 우드(David Wood), 브렌트 서머빌(Brent Summerville). 소형 풍력 터빈용 꼬리 핀의 요 동작 모델링: 2021년 11월 22일~2024년 5월 21일. 기술 보고서, 국립 재생 에너지 연구소(NREL), Golden, CO(미국), 2023.">ad-HWS23</a>]</span>. 구현을 단순화하기 위해 꼬리 지느러미의 암 길이가 현보다 훨씬 길고 특성 시간(현/풍속)이 작다고 가정합니다.</p>
+<p>꼬리 지느러미에 대한 수직력은 세 가지 기여(잠재적 양력, 와류 양력, 항력)의 합으로 설명할 수 있으며 분리 함수에 따라 가중치가 부여됩니다. <span class="math notranslate nohighlight">\(x_i\)</span> 처럼:</p>
 <div class="math notranslate nohighlight" id="equation-tfusbforce">
 <span class="eqno">(4.9)<a class="headerlink" href="#equation-tfusbforce" title="이 방정식에 대한 영구 링크"></a></span>\[N = \frac{\rho}{2} A_{tf} \bigg(  K_p x_1 V_{\text{rel},x} V_{\text{rel},y} +  \Big[x_2 K_v+(1- x_3)C_{Dc} \Big] V_{\text{rel},y}\big|V_{\text{rel},y}\big|\bigg)\]</div>
-<p>여기서 <span class="math notranslate nohighlight">\(\rho\)</span> 는 공기의 밀도, <span class="math notranslate nohighlight">\(A_{tf}\)</span> 는 꼬리지느러미 부분이고, <span class="math notranslate nohighlight">\(K_p\)</span> 는 잠재적 양력계수이고, <span class="math notranslate nohighlight">\(K_v\)</span> 는 와류 양력 계수이고, <span class="math notranslate nohighlight">\(C_{Dc}\)</span> 는 항력 계수입니다. OpenFAST의 부호 연결은 OpenFAST에서 사용된 것과 약간 다릅니다. <span id="id2">[<a class="reference internal" href="zrefs.html#id14" title="Mohamed M Hammam, David Wood 및 Brent Summerville. 소형 풍력터빈용 꼬리 핀의 요 동작 모델링: 2021년 11월 22일~2024년 5월 21일. 기술 보고서, 국립 재생 에너지 연구소(NREL), Golden, CO(미국), 2023.">ad-HWS23
-불안정한 날씬한 신체 이론 기반 모델에 대한 매개변수를 선택하는 방법에 대한 지침은</a>]</span>. 이는 방정식에 반영됩니다. <a class="reference internal" href="#equation-tfusbforce">(4.9)</a>.</p>
-<p><span class="math notranslate nohighlight">\(x_i\)</span> 는 다음과 같이 준안정 근사법을 사용하여 계산된 분리 함수입니다.</p>
+<p>여기서 <span class="math notranslate nohighlight">\(\rho\)</span> 공기의 밀도이고, <span class="math notranslate nohighlight">\(A_{tf}\)</span> 꼬리지느러미 부분이고, <span class="math notranslate nohighlight">\(K_p\)</span> 잠재적인 양력 계수이고 <span class="math notranslate nohighlight">\(K_v\)</span> 는 와류 양력 계수이고, <span class="math notranslate nohighlight">\(C_{Dc}\)</span> 항력 계수입니다. OpenFAST의 부호 연결은 다음에서 사용된 것과 약간 다릅니다. <span id="id2">[<a class="reference internal" href="zrefs.html#id14" title="모하메드 M 함맘(Mohamed M Hammam), 데이비드 우드(David Wood), 브렌트 서머빌(Brent Summerville). 소형 풍력 터빈용 꼬리 핀의 요 동작 모델링: 2021년 11월 22일~2024년 5월 21일. 기술 보고서, 국립 재생 에너지 연구소(NREL), Golden, CO(미국), 2023.">ad-HWS23</a>]</span>. 이는 방정식에 반영됩니다. <a class="reference internal" href="#equation-tfusbforce">(4.9)</a>.</p>
+<p><span class="math notranslate nohighlight">\(x_i\)</span> 다음과 같이 준안정 근사법을 사용하여 계산된 분리 함수입니다.</p>
 <div class="math notranslate nohighlight" id="equation-tfusbxiequation">
 <span class="eqno">(4.10)<a class="headerlink" href="#equation-tfusbxiequation" title="이 방정식에 대한 영구 링크"></a></span>\[x_i = (1+exp{[\sigma_i (|\gamma_{tf}|-\alpha^*_i)]})^{-1}\]</div>
-<p>여기서 <span class="math notranslate nohighlight">\(\sigma_i\)</span> 는 분리 함수의 붕괴를 특성화하는 경험적 상수입니다. <span class="math notranslate nohighlight">\(\gamma_{tf}\)</span> 는 자유류 바람에 대한 꼬리 지느러미의 요 각도(<span class="math notranslate nohighlight">\(V_{\text{wind}}\)</span>), <span class="math notranslate nohighlight">\(\alpha^*_i\)</span> 는 분리 기능의 특성 각도입니다.
-<span class="math notranslate nohighlight">\(x_i\)</span> 는 0과 1 사이의 값을 가지며 꼬리 지느러미의 수직력에 대한 잠재적 양력, 와류 양력 및 항력의 기여를 활성화하거나 비활성화하는 데 사용됩니다.</p>
-<p>수직항력은 사용자가 정의한 꼬리날개 기준점에 작용하는 것으로 가정하고 이에 따라 수직항력의 모멘트를 계산합니다.</p>
+<p>여기서 <span class="math notranslate nohighlight">\(\sigma_i\)</span> 분리 기능의 붕괴를 특징짓는 경험적 상수입니다. <span class="math notranslate nohighlight">\(\gamma_{tf}\)</span> 는 자유 기류 바람에 대한 꼬리 지느러미의 요 각도입니다(<span class="math notranslate nohighlight">\(V_{\text{wind}}\)</span>), <span class="math notranslate nohighlight">\(\alpha^*_i\)</span> 는 분리 함수의 특성 각도입니다.
+<span class="math notranslate nohighlight">\(x_i\)</span> 0과 1 사이의 값을 가지며 꼬리 지느러미의 수직력에 대한 잠재적 양력, 와류 양력 및 항력의 기여를 활성화하거나 비활성화하는 데 사용됩니다.</p>
+<p>수직력은 사용자가 정의한 꼬리 날개의 기준점에 작용하는 것으로 가정하고 그에 따라 수직력의 모멘트를 계산합니다.</p>
 </div>
 </div>
 
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
-        <a href="theory_ua.html" class="btn btn-neutral float-left" title="4.3.8. 불안정한 공기 역학" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
-        <a href="zrefs.html" class="btn btn-neutral float-right" title="4.3.10. 참고문헌" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
+        <a href="theory_ua.html" class="btn btn-neutral float-left" title="4.3.8. 불안정한 공기 역학" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+        <a href="zrefs.html" class="btn btn-neutral float-right" title="4.3.10. 참고자료" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr>
@@ -253,7 +244,7 @@ AeroDyn 입력 파일의</cite> 는 꼬리 지느러미에 사용할 극성을 �
   </div>
 
   다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">주제</a>
     제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
    
 

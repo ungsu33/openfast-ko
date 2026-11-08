@@ -20,9 +20,9 @@
         <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="검색" href="../../../search.html">
-    <link rel="next" title="7. 라이선스" href="../../license.html">
-    <link rel="prev" title="6.3.1. OpenFAST C++ 애플리케이션 프로그래밍 인터페이스" href="index.html"> 
+    <link rel="search" title="찾다" href="../../../search.html">
+    <link rel="next" title="7. 라이센스" href="../../license.html">
+    <link rel="prev" title="6.3.1. OpenFAST C++ 응용 프로그래밍 인터페이스" href="index.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/dev/cppapi/api.html"></head>
 
 <body class="wy-body-for-nav"> 
@@ -35,7 +35,7 @@
           
           <a href="../../../index.html" class="icon icon-home">
             OpenFAST
-              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="심벌 마크">
           </a>
               <div class="version">5.0 · 한국어</div>
 <div role="search">
@@ -47,20 +47,20 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../user/index.html">4. 사용자 문서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">6. 개발자 문서</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../index.html#development-philosophy-and-guidelines">6.1. 개발 철학 및 지침</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../index.html#api-reference">6.2. API 참조</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#c-api-reference">6.3. C++ API 참조</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="index.html">6.3.1. OpenFAST C++ 애플리케이션 프로그래밍 인터페이스</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">6.3.1. OpenFAST C++ 응용 프로그래밍 인터페이스</a><ul class="current">
 <li class="toctree-l4 current"><a class="reference internal" href="index.html#use-of-c-api-for-actuator-line-simulations">6.3.1.1. 액추에이터 라인 시뮬레이션을 위한 C++ API 사용</a></li>
 <li class="toctree-l4"><a class="reference internal" href="index.html#implementation">6.3.1.2. 구현</a></li>
 <li class="toctree-l4"><a class="reference internal" href="index.html#test-for-mapping-procedure">6.3.1.3. 매핑 절차 테스트</a></li>
-<li class="toctree-l4"><a class="reference internal" href="index.html#references">6.3.1.4. 참고문헌</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#references">6.3.1.4. 참고자료</a></li>
 </ul>
 </li>
 </ul>
@@ -68,16 +68,16 @@
 <li class="toctree-l2"><a class="reference internal" href="../index.html#other-documentation">6.4. 기타 문서</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -86,12 +86,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">6. </span>개발자 문서</a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">6.3.1. </span>OpenFAST C++ 애플리케이션 프로그래밍 인터페이스</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">6.3.1. </span>OpenFAST C++ 응용 프로그래밍 인터페이스</a></li>
       <li class="breadcrumb-item active"><span class="section-number">6.3.1.1.1. </span>C++ API 문서</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/dev/cppapi/api.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+            <a href="../../../_sources/source/dev/cppapi/api.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -100,20 +100,19 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="c-api-documentation">
-<h1><span class="section-number">6.3.1.1.1. </span>C++ API 문서<a class="headerlink" href="#c-api-documentation" title="이 제목의 고유 링크"></a></h1>
+<h1><span class="section-number">6.3.1.1.1. </span>C++ API 문서<a class="headerlink" href="#c-api-documentation" title="이 제목에 대한 영구 링크"></a></h1>
 <div class="section" id="openfast">
-<h2><span class="section-number">6.3.1.1.1.1. </span>OpenFAST<a class="headerlink" href="#openfast" title="이 제목의 고유 링크"></a></h2>
-<p>수정사항: <strong>doxygenclass
-클래스 구조를 렌더링하려면</strong> 가 필요합니다.</p>
+<h2><span class="section-number">6.3.1.1.1.1. </span>OpenFAST<a class="headerlink" href="#openfast" title="이 제목에 대한 영구 링크"></a></h2>
+<p>FIXME: <strong>독산소 클래스</strong> 클래스 구조를 렌더링하는 데 필요합니다.</p>
 </div>
 </div>
 
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
-        <a href="index.html" class="btn btn-neutral float-left" title="6.3.1. OpenFAST C++ 애플리케이션 프로그래밍 인터페이스" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
-        <a href="../../license.html" class="btn btn-neutral float-right" title="7. 라이선스" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
+        <a href="index.html" class="btn btn-neutral float-left" title="6.3.1. OpenFAST C++ 응용 프로그래밍 인터페이스" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+        <a href="../../license.html" class="btn btn-neutral float-right" title="7. 라이센스" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr>
@@ -123,7 +122,7 @@
   </div>
 
   다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">주제</a>
     제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
    
 

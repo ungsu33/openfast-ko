@@ -2,8 +2,9 @@
   "catalogStrings": 15050,
   "translatedOrReviewed": 15050,
   "remaining": [],
-  "method": "Google Translate gtx + manual heading/terminology/fragment overrides; standalone technical identifiers retained",
-  "manualOverrides": 113,
+  "method": "Google Translate gtx independent q parameters + protected technical identifiers + manual heading/terminology/fragment overrides",
+  "manualOverrides": 176,
+  "unresolvedEnglishFallbacks": [],
   "professionalFullTextReview": false,
   "binaryAttachmentsTranslated": false,
   "externalSitesTranslated": false

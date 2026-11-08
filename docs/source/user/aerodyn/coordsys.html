@@ -21,7 +21,7 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="검색" href="../../../search.html">
+    <link rel="search" title="찾다" href="../../../search.html">
     <link rel="next" title="4.3.3. 입력 파일" href="input.html">
     <link rel="prev" title="4.3.1. 소개" href="introduction.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/aerodyn/coordsys.html"></head>
@@ -36,7 +36,7 @@
           
           <a href="../../../index.html" class="icon icon-home">
             OpenFAST
-              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="심벌 마크">
           </a>
               <div class="version">5.0 · 한국어</div>
 <div role="search">
@@ -48,11 +48,11 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">4.3. AeroDyn</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="introduction.html">4.3.1. 소개</a></li>
@@ -74,14 +74,14 @@
 <li class="toctree-l3"><a class="reference internal" href="modeling.html">4.3.5. 모델링 시 고려사항</a></li>
 <li class="toctree-l3"><a class="reference internal" href="driver.html">4.3.6. AeroDyn 드라이버</a></li>
 <li class="toctree-l3"><a class="reference internal" href="theory.html">4.3.7. AeroDyn 이론</a></li>
-<li class="toctree-l3"><a class="reference internal" href="theory_ua.html">4.3.8. 불안정한 공기 역학</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory_ua.html">4.3.8. 비정상 공력</a></li>
 <li class="toctree-l3"><a class="reference internal" href="theory_tailfin.html">4.3.9. 꼬리지느러미 공기역학 이론</a></li>
-<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.3.10. 참고문헌</a></li>
-<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.3.11. 부록</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.3.10. 참고자료</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.3.11. 충수</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력소음</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
@@ -104,16 +104,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -122,12 +122,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.3. </span>AeroDyn 사용자 가이드 및 이론 설명서</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.3. </span>AeroDyn 사용자 가이드 및 이론 매뉴얼</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.3.2. </span>좌표계</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/aerodyn/coordsys.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+            <a href="../../../_sources/source/user/aerodyn/coordsys.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -136,60 +136,54 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="coordinate-systems">
-<span id="ad-coordsys"></span><h1><span class="section-number">4.3.2. </span>좌표계<a class="headerlink" href="#coordinate-systems" title="이 제목의 고유 링크"></a></h1>
-<p>AeroDyn은 내부 계산과 출력에 서로 다른 좌표계를 사용합니다. 출력 채널에는 일반적으로 사용되는 좌표계에 해당하는 문자가 접미사로 붙습니다.</p>
+<span id="ad-coordsys"></span><h1><span class="section-number">4.3.2. </span>좌표계<a class="headerlink" href="#coordinate-systems" title="이 제목에 대한 영구 링크"></a></h1>
+<p>AeroDyn는 내부 계산과 출력에 다른 좌표계를 사용합니다. 출력 채널에는 일반적으로 사용되는 좌표계에 해당하는 문자가 접미사로 붙습니다.</p>
 <ul class="simple">
-<li><p>(i): 관성 시스템</p></li>
+<li><p>(i): 관성계</p></li>
 <li><p>(h): 허브 시스템</p></li>
 <li><p>(p): 극좌표계</p></li>
-<li><p>(l): 로컬-폴라 시스템</p></li>
+<li><p>(l): 국지-극 시스템</p></li>
 <li><p>없음 또는 (w): 레거시 출력 시스템.</p></li>
 <li><p>(n-t): 레거시 익형 시스템.</p></li>
 </ul>
 <p>다양한 시스템이 아래에 설명되어 있습니다.</p>
 <div class="section" id="inertial-system-i">
-<h2><span class="section-number">4.3.2.1. </span>관성 시스템 (i)<a class="headerlink" href="#inertial-system-i" title="이 제목의 고유 링크"></a></h2>
-<p>관성 시스템  <span class="math notranslate nohighlight">\((i)\)</span> 는 OpenFAST에서 사용하는 글로벌 시스템입니다(ElastoDyn 설명서 참조).</p>
+<h2><span class="section-number">4.3.2.1. </span>관성 시스템 (i)<a class="headerlink" href="#inertial-system-i" title="이 제목에 대한 영구 링크"></a></h2>
+<p>관성 시스템  <span class="math notranslate nohighlight">\((i)\)</span> OpenFAST에서 사용하는 전역 시스템입니다(ElastoDyn 설명서 참조).</p>
 </div>
 <div class="section" id="hub-system-h">
-<h2><span class="section-number">4.3.2.2. </span>허브 시스템(h)<a class="headerlink" href="#hub-system-h" title="이 제목의 고유 링크"></a></h2>
-<p>허브 시스템  <span class="math notranslate nohighlight">\((h)\)</span> 는
-샤프트 방위각 위치를 기준으로 한 <span class="math notranslate nohighlight">\(x_h\)</span> 축 <span class="math notranslate nohighlight">\(\psi\)</span> (ElastoDyn 설명서 참조).</p>
+<h2><span class="section-number">4.3.2.2. </span>허브 시스템(h)<a class="headerlink" href="#hub-system-h" title="이 제목에 대한 영구 링크"></a></h2>
+<p>허브 시스템  <span class="math notranslate nohighlight">\((h)\)</span> 따라 회전합니다. <span class="math notranslate nohighlight">\(x_h\)</span> 샤프트 방위각 위치를 기준으로 한 축 <span class="math notranslate nohighlight">\(\psi\)</span> (ElastoDyn 문서 참조)</p>
 </div>
 <div class="section" id="polar-system-p">
-<h2><span class="section-number">4.3.2.3. </span>폴라 시스템(p)<a class="headerlink" href="#polar-system-p" title="이 제목의 고유 링크"></a></h2>
-<p>극좌표계 <span class="math notranslate nohighlight">\((p_k)\)</span> 는 허브 좌표계로 구성됩니다. <span class="math notranslate nohighlight">\((h)\)</span>
-를 회전시켜
-각 블레이드의 방위각 오프셋에 의한 <span class="math notranslate nohighlight">\(x_h\)</span> 축 <span class="math notranslate nohighlight">\(\psi_{0,k}\)</span> (블레이드는 방위각 전체에 고르게 분포되어 있습니다). 간결하게 하기 위해 우리는 이 시스템을 다음과 같이 지칭합니다. <span class="math notranslate nohighlight">\((p)\)</span> 시스템. 칼날 개수가 적혀 있으면 <span class="math notranslate nohighlight">\(n_B\)</span>, 블레이드의 방위각 오프셋 <span class="math notranslate nohighlight">\(k\)</span> 는 다음과 같습니다.</p>
+<h2><span class="section-number">4.3.2.3. </span>극계(p)<a class="headerlink" href="#polar-system-p" title="이 제목에 대한 영구 링크"></a></h2>
+<p>극지 시스템 <span class="math notranslate nohighlight">\((p_k)\)</span> 허브 좌표계로 구성됩니다. <span class="math notranslate nohighlight">\((h)\)</span>
+회전시켜서 <span class="math notranslate nohighlight">\(x_h\)</span> 각 블레이드의 방위각 오프셋에 의한 축 <span class="math notranslate nohighlight">\(\psi_{0,k}\)</span> (블레이드는 방위각 전체에 고르게 분포됩니다.) 간결하게 하기 위해 우리는 이 시스템을 다음과 같이 지칭합니다. <span class="math notranslate nohighlight">\((p)\)</span> 체계. 칼날 개수가 적혀 있으면 <span class="math notranslate nohighlight">\(n_B\)</span>, 블레이드의 방위각 오프셋 <span class="math notranslate nohighlight">\(k\)</span> 이다:</p>
 <div class="math notranslate nohighlight">
 \[\begin{aligned}
    \psi_{0,k} = 2 \pi \frac{k-1}{n_B}
 \end{aligned}\]</div>
-<p>블레이드 1의 경우,
-따라서 <span class="math notranslate nohighlight">\(\psi_{0,1}=0\)</span>, 따라서 <span class="math notranslate nohighlight">\(y_{p,1}=y_h\)</span> 및 <span class="math notranslate nohighlight">\(z_{p,1}=z_h\)</span>.</p>
+<p>블레이드 1의 경우, <span class="math notranslate nohighlight">\(\psi_{0,1}=0\)</span>, 따라서 <span class="math notranslate nohighlight">\(y_{p,1}=y_h\)</span> 및 <span class="math notranslate nohighlight">\(z_{p,1}=z_h\)</span>.</p>
 <p>해당 <span class="math notranslate nohighlight">\(x_{p,k}\)</span> 축은 허브 x축을 따릅니다.</p>
-<p>콘닝이 없을 경우, <span class="math notranslate nohighlight">\(z_{p,k}\)</span> 축은
-블레이드의 <span class="math notranslate nohighlight">\(z_{b,k}\)</span> 축.</p>
+<p>콘닝이 없는 경우, <span class="math notranslate nohighlight">\(z_{p,k}\)</span> 축은 <span class="math notranslate nohighlight">\(z_{b,k}\)</span> 칼날의 축.</p>
 </div>
 <div class="section" id="cone-system-c">
-<h2><span class="section-number">4.3.2.4. </span>콘 시스템(c)<a class="headerlink" href="#cone-system-c" title="이 제목의 고유 링크"></a></h2>
-<p>콘 시스템  <span class="math notranslate nohighlight">\((c)\)</span> 는 극계에서 다음을 중심으로 한 회전에 의해 얻어집니다.
-각 블레이드의 <span class="math notranslate nohighlight">\(y_{p,k}\)</span> 축 <span class="math notranslate nohighlight">\(k\)</span>. 자세한 내용은 ElastoDyn/FAST8 문서를 참조하세요. AeroDyn은 이 시스템을 사용하여 블레이드 피치 각도를 추정합니다( <span class="math notranslate nohighlight">\((c)\)</span> 및 <span class="math notranslate nohighlight">\((b)\)</span> 시스템).</p>
+<h2><span class="section-number">4.3.2.4. </span>콘 시스템(c)<a class="headerlink" href="#cone-system-c" title="이 제목에 대한 영구 링크"></a></h2>
+<p>콘 시스템  <span class="math notranslate nohighlight">\((c)\)</span> 는 극계에 대한 회전에 의해 얻어집니다. <span class="math notranslate nohighlight">\(y_{p,k}\)</span> 각 블레이드의 축 <span class="math notranslate nohighlight">\(k\)</span>. 자세한 내용은 ElastoDyn/FAST8 문서를 참조하세요. AeroDyn는 이 시스템을 사용하여 블레이드 피치 각도를 추정합니다( <span class="math notranslate nohighlight">\((c)\)</span> 및 <span class="math notranslate nohighlight">\((b)\)</span> 시스템).</p>
 </div>
 <div class="section" id="blade-system-b">
-<h2><span class="section-number">4.3.2.5. </span>블레이드 시스템(b)<a class="headerlink" href="#blade-system-b" title="이 제목의 고유 링크"></a></h2>
-<p>블레이드 시스템  <span class="math notranslate nohighlight">\((b)\)</span> 는 콘 시스템에 대한 회전(피칭)에 의해 콘 시스템에서 제외됩니다. <span class="math notranslate nohighlight">\(z_c\)</span> 축. 이는 공기 역학적 중심의 위치, 블레이드의 범위를 따라 블레이드의 국부적 비틀림을 정의하는 데 사용됩니다. 참조 <a class="reference internal" href="input.html#blade-data-input-file"><span class="std std-numref">섹션 4.3.3.19.2</span></a> 및 <a class="reference internal" href="input.html#ad-blade-geom"><span class="std std-numref">그림 4.6</span></a>.</p>
+<h2><span class="section-number">4.3.2.5. </span>블레이드 시스템(b)<a class="headerlink" href="#blade-system-b" title="이 제목에 대한 영구 링크"></a></h2>
+<p>블레이드 시스템  <span class="math notranslate nohighlight">\((b)\)</span> 콘 시스템에 대한 회전(피칭)에 의해 콘 시스템에서 제외됩니다. <span class="math notranslate nohighlight">\(z_c\)</span> 중심선. 이는 공기 역학적 중심의 위치, 블레이드의 범위를 따라 블레이드의 국부적 비틀림을 정의하는 데 사용됩니다. 보다 <a class="reference internal" href="input.html#blade-data-input-file"><span class="std std-numref">섹션 4.3.3.19.2</span></a> 및 <a class="reference internal" href="input.html#ad-blade-geom"><span class="std std-numref">그림 4.6</span></a>.</p>
 </div>
 <div class="section" id="airfoil-system-a">
-<h2><span class="section-number">4.3.2.6. </span>에어포일 시스템(a)<a class="headerlink" href="#airfoil-system-a" title="이 제목의 고유 링크"></a></h2>
+<h2><span class="section-number">4.3.2.6. </span>에어포일 시스템 (a)<a class="headerlink" href="#airfoil-system-a" title="이 제목에 대한 영구 링크"></a></h2>
 <p><strong>현재 사용자는 입력 파일에서 사전 굽힘 방향을 지정하고 이는 에어포일의 방향을 지정하는 데 사용됩니다.</strong> (즉, 축 <span class="math notranslate nohighlight">\(z_a\)</span>). 미래에는 이 방향이 AC 라인에서 자동으로 계산될 수 있습니다.</p>
-<p>에어포일 섹션 시스템
-줄여서 <span class="math notranslate nohighlight">\((a_{_{kj}})\)</span>또는 <span class="math notranslate nohighlight">\((a)\)</span> 는 블레이드 요소 이론(Blade Element Theory)을 적용한 좌표계로, 익형 형상과 극 데이터가 주어지는 곳입니다. 익형 좌표계, <span class="math notranslate nohighlight">\((a_{_{kj}})\)</span> 는 각 블레이드에 대해 정의됩니다. <span class="math notranslate nohighlight">\(k\)</span> 및 각 블레이드 노드 <span class="math notranslate nohighlight">\(j\)</span>. 는 <span class="math notranslate nohighlight">\(y_a\)</span> 축은 에어포일 코드(코드에 접선)를 따라 트레일링 엣지를 향해 있습니다. 는 <span class="math notranslate nohighlight">\(x_a\)</span> 축은 흡입측을 향해 현에 수직입니다(비대칭 에어포일의 경우). 참조 <a class="reference internal" href="#ad-cs-airfoil"><span class="std std-numref">그림 4.2</span></a>.</p>
+<p>에어포일 섹션 시스템 <span class="math notranslate nohighlight">\((a_{_{kj}})\)</span>, 또는 <span class="math notranslate nohighlight">\((a)\)</span> 간단히 말해서 블레이드 요소 이론이 적용되고 익형 형상 및 극 데이터가 제공되는 좌표계입니다. 익형 좌표계, <span class="math notranslate nohighlight">\((a_{_{kj}})\)</span> 각 블레이드에 대해 정의됩니다. <span class="math notranslate nohighlight">\(k\)</span> 그리고 각 블레이드 노드 <span class="math notranslate nohighlight">\(j\)</span>. 그만큼 <span class="math notranslate nohighlight">\(y_a\)</span> 축은 익형 현을 따라(현에 접선 방향으로) 후연 쪽을 향합니다. 그만큼 <span class="math notranslate nohighlight">\(x_a\)</span> 축은 현에 수직이며 흡입측을 향합니다(비대칭 에어포일의 경우). 보다 <a class="reference internal" href="#ad-cs-airfoil"><span class="std std-numref">그림 4.2</span></a>.</p>
 <div class="figure align-center" id="id1">
 <span id="ad-cs-airfoil"></span><a class="reference internal image-reference" href="../../../_images/FASTAirfoilSystem.svg"><img alt="../../../_images/FASTAirfoilSystem.svg" src="../../../_images/FASTAirfoilSystem.svg" width="80%"></a>
 <p class="caption"><span class="caption-number">그림 4.2 </span><span class="caption-text">익형(a) 좌표계.</span><a class="headerlink" href="#id1" title="이 이미지에 대한 영구 링크"></a></p>
 </div>
-<p>해당 <span class="math notranslate nohighlight">\((a)\)</span> 시스템에는 BET(Blade Element Theory)가 적용됩니다: 공격 각도, <span class="math notranslate nohighlight">\(\alpha\)</span>, 리프트, <span class="math notranslate nohighlight">\(L\)</span>및 드래그, <span class="math notranslate nohighlight">\(D\)</span>는 모두 다음에 정의되어 있습니다. <span class="math notranslate nohighlight">\(x_a-y_a\)</span> 비행기. 리프팅 라인 하중은 이 시스템에서 계산됩니다. 이 시스템의 상대풍은 3D 상대풍을 2D 평면에 투영한 것입니다. <span class="math notranslate nohighlight">\((a)\)</span>-시스템, 언급됨 <span class="math notranslate nohighlight">\({}^{\perp_a}\boldsymbol{V}_\text{rel}\)</span> 또는 <span class="math notranslate nohighlight">\(\boldsymbol{V}_\text{rel,a}\)</span>.</p>
+<p>해당 <span class="math notranslate nohighlight">\((a)\)</span> 시스템은 블레이드 요소 이론(BET)이 적용되는 곳입니다: 공격 각도, <span class="math notranslate nohighlight">\(\alpha\)</span>, 리프트, <span class="math notranslate nohighlight">\(L\)</span>, 드래그, <span class="math notranslate nohighlight">\(D\)</span>, 모두 정의되어 있습니다. <span class="math notranslate nohighlight">\(x_a-y_a\)</span> 비행기. 리프팅 라인 하중은 이 시스템에서 계산됩니다. 이 시스템의 상대풍은 3D 상대풍을 2D 평면에 투영한 것입니다. <span class="math notranslate nohighlight">\((a)\)</span>-시스템, 언급됨 <span class="math notranslate nohighlight">\({}^{\perp_a}\boldsymbol{V}_\text{rel}\)</span> 또는 <span class="math notranslate nohighlight">\(\boldsymbol{V}_\text{rel,a}\)</span>.</p>
 <p>익형 시스템에는 다음이 있습니다.</p>
 <div class="math notranslate nohighlight">
 \[\begin{aligned}
@@ -199,7 +193,7 @@
    ,\quad
    C_{m_a} = C_m(\alpha)
   \end{aligned}\]</div>
-<p>및 하중(단위 길이당)은 다음과 같습니다.</p>
+<p>하중(단위 길이당)은 다음과 같습니다.</p>
 <div class="math notranslate nohighlight">
 \[\begin{aligned}
   f_{x_a} = \frac{1}{2}\rho V_{\text{rel},a}^2 c C_{x_a}
@@ -210,28 +204,26 @@
   \end{aligned}\]</div>
 </div>
 <div class="section" id="legacy-n-t-system">
-<h2><span class="section-number">4.3.2.7. </span>레거시(n-t) 시스템<a class="headerlink" href="#legacy-n-t-system" title="이 제목의 고유 링크"></a></h2>
-<p>레거시 AeroDyn 코드 및 문서에서는 <span class="math notranslate nohighlight">\((n-t)\)</span> 시스템이 때때로 사용됩니다. 는 <span class="math notranslate nohighlight">\(n\)</span>-축은 <span class="math notranslate nohighlight">\(x_a\)</span> 축(코드에 수직). 는 <span class="math notranslate nohighlight">\(t\)</span>-축은 <span class="math notranslate nohighlight">\(-y_a\)</span> 축(반대 방향).</p>
+<h2><span class="section-number">4.3.2.7. </span>레거시(n-t) 시스템<a class="headerlink" href="#legacy-n-t-system" title="이 제목에 대한 영구 링크"></a></h2>
+<p>레거시 AeroDyn 코드 및 문서에서는 <span class="math notranslate nohighlight">\((n-t)\)</span> 시스템을 사용하는 경우도 있습니다. 그만큼 <span class="math notranslate nohighlight">\(n\)</span>-축은 <span class="math notranslate nohighlight">\(x_a\)</span> 축(코드에 수직). 그만큼 <span class="math notranslate nohighlight">\(t\)</span>-축은 <span class="math notranslate nohighlight">\(-y_a\)</span> 축(반대 방향).</p>
 </div>
 <div class="section" id="local-polar-system-l">
-<h2><span class="section-number">4.3.2.8. </span>국부 극계(l)<a class="headerlink" href="#local-polar-system-l" title="이 제목의 고유 링크"></a></h2>
-<p><strong>현재 로컬 극좌표계는 출력 목적으로만 사용됩니다. 이는 향후 릴리스의 BEM 구현에 사용될 것입니다.</strong></p>
-<p>로컬 극좌표계
-줄여서 <span class="math notranslate nohighlight">\((l_{_{kj}})\)</span>또는 <span class="math notranslate nohighlight">\((l)\)</span> 는 극좌표계와 유사하지만 <span class="math notranslate nohighlight">\(x_h\)</span> 축, 그런 <span class="math notranslate nohighlight">\(z_{l,kj}\)</span> 축이 노드의 편향된 위치를 통과합니다. <span class="math notranslate nohighlight">\(j\)</span> 블레이드의 <span class="math notranslate nohighlight">\(k\)</span>.</p>
-<p><span class="math notranslate nohighlight">\(x_l\)</span> 는 허브를 따라 있습니다. <span class="math notranslate nohighlight">\(x_h\)</span> 축 및 <span class="math notranslate nohighlight">\(z_l\)</span> 는 샤프트 축에 수직인 평면의 반경 좌표입니다. 좌표계는 다음과 같습니다. <a class="reference internal" href="#ad-cs-localpolar"><span class="std std-numref">그림 4.3</span></a> 는 사전 굴곡만 있는 경우(왼쪽) 및 사전 스윕만 있는 경우(오른쪽)입니다.</p>
+<h2><span class="section-number">4.3.2.8. </span>국부 극계(l)<a class="headerlink" href="#local-polar-system-l" title="이 제목에 대한 영구 링크"></a></h2>
+<p><strong>현재 로컬 극좌표계는 출력 목적으로만 사용됩니다. 향후 릴리스에서는 BEM 구현에 사용될 예정입니다.</strong></p>
+<p>지역 극좌표계 <span class="math notranslate nohighlight">\((l_{_{kj}})\)</span>, 또는 <span class="math notranslate nohighlight">\((l)\)</span> 간단히 말해서 극좌표계와 유사하지만 <span class="math notranslate nohighlight">\(x_h\)</span> 축은 <span class="math notranslate nohighlight">\(z_{l,kj}\)</span> 축은 노드의 편향된 위치를 통과합니다. <span class="math notranslate nohighlight">\(j\)</span> 블레이드의 <span class="math notranslate nohighlight">\(k\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(x_l\)</span> 허브를 따라 있습니다 <span class="math notranslate nohighlight">\(x_h\)</span> 축, 그리고 <span class="math notranslate nohighlight">\(z_l\)</span> 샤프트 축에 수직인 평면의 반경 좌표입니다. 좌표계는 다음과 같습니다. <a class="reference internal" href="#ad-cs-localpolar"><span class="std std-numref">그림 4.3</span></a> 사전 굽힘만 있는 경우(왼쪽) 및 사전 스윕만 있는 경우(오른쪽).</p>
 <div class="figure align-center" id="id2">
 <span id="ad-cs-localpolar"></span><a class="reference internal image-reference" href="../../../_images/FASTLocalPolarSystem.svg"><img alt="../../../_images/FASTLocalPolarSystem.svg" src="../../../_images/FASTLocalPolarSystem.svg" width="70%"></a>
-<p class="caption"><span class="caption-number">그림 4.3 </span><span class="caption-text">극(p) 및 로컬 극(l) 좌표계입니다. 왼쪽: 순수 프리벤드. 오른쪽: 순수 스윕.</span><a class="headerlink" href="#id2" title="이 이미지에 대한 영구 링크"></a></p>
+<p class="caption"><span class="caption-number">그림 4.3 </span><span class="caption-text">극좌표(p) 및 로컬 극좌표(l) 좌표계. 왼쪽: 순수 프리벤드. 오른쪽: 순수 스윕.</span><a class="headerlink" href="#id2" title="이 이미지에 대한 영구 링크"></a></p>
 </div>
-<p>각 블레이드 노드에 대한 로컬 극좌표계는 다음과 같이 정의됩니다. 편향된 블레이드 노드의 위치
-허브 관련 <span class="math notranslate nohighlight">\(A_j\)</span> 허브를 기준으로 <span class="math notranslate nohighlight">\(H\)</span> 는 다음과 같습니다.</p>
+<p>로컬 극좌표계는 각 블레이드 노드에 대해 다음과 같이 정의됩니다. 편향된 블레이드 노드의 위치 <span class="math notranslate nohighlight">\(A_j\)</span> 허브를 기준으로 <span class="math notranslate nohighlight">\(H\)</span> 이다 :</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
 \[\begin{aligned}
    \boldsymbol{r}_{HA_j} = \boldsymbol{r}_{A_j}-\boldsymbol{r}_H
 \end{aligned}\]</div>
 </div></blockquote>
-<p>이 벡터는 다음과 같이 회전자 평면에 투영됩니다.</p>
+<p>이 벡터는 다음과 같이 로터 평면에 투영됩니다.</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
 \[\begin{aligned}
@@ -249,43 +241,40 @@
    \boldsymbol{\hat{y}}_{l} = \boldsymbol{\hat{z}}_h \times \boldsymbol{\hat{x}}_h
  \end{aligned}\]</div>
 </div></blockquote>
-<p>서로 다른 블레이드 노드의 로컬 극좌표계는 블레이드에 대한 방위각 회전과 다릅니다. <span class="math notranslate nohighlight">\(x_h\)</span> 축(및 원점에 대한 번역) <span class="math notranslate nohighlight">\(x_h\)</span>-축(대부분 관련 없음).</p>
+<p>서로 다른 블레이드 노드의 로컬 극좌표계는 블레이드에 대한 방위각 회전과 다릅니다. <span class="math notranslate nohighlight">\(x_h\)</span> 축(및 원점에 대한 번역) <span class="math notranslate nohighlight">\(x_h\)</span>-축은 대부분 관련이 없습니다).</p>
 </div>
 <div class="section" id="legacy-local-output-system-w">
-<h2><span class="section-number">4.3.2.9. </span>레거시 로컬 출력 시스템(w)<a class="headerlink" href="#legacy-local-output-system-w" title="이 제목의 고유 링크"></a></h2>
-<p><strong>좌표계를 정의하는 다른 문자 없이 "x" 또는 "y"로 표시된 AeroDyn 출력은 현재 레거시 출력 시스템에서 제공됩니다.</strong> (예: <span class="math notranslate nohighlight">\(F_x\)</span>, <span class="math notranslate nohighlight">\(V_x\)</span>또는 <span class="math notranslate nohighlight">\(V_{dis,y}\)</span>).</p>
-<p>우리는 쓴다 <span class="math notranslate nohighlight">\((w)\)</span> 는 OpenFAST의 레거시 출력 시스템입니다. 레거시 출력 시스템은 이전에 그림을 사용하여 문서화되었습니다. <a class="reference internal" href="#ad-blade-local-cs"><span class="std std-numref">그림 4.4</span></a>. 그림은 또한 국부 각도와 힘 성분의 방향을 보여줍니다. 이 그림에서, <span class="math notranslate nohighlight">\(x\)</span> 는 다음과 같이 이해되어야 합니다. <span class="math notranslate nohighlight">\(x_w\)</span> 및 <span class="math notranslate nohighlight">\(y\)</span> 로 <span class="math notranslate nohighlight">\(y_w\)</span>. 이 수치는 프리벤드, 프리콘 또는 프리스윕이 없는 경우 대부분 유효합니다.</p>
+<h2><span class="section-number">4.3.2.9. </span>레거시 로컬 출력 시스템(w)<a class="headerlink" href="#legacy-local-output-system-w" title="이 제목에 대한 영구 링크"></a></h2>
+<p><strong>좌표계를 정의하는 다른 문자가 없는 "x" 또는 "y" 레이블이 붙은 AeroDyn의 출력은 현재 레거시 출력 시스템에서 제공됩니다.</strong> (예를 들어 <span class="math notranslate nohighlight">\(F_x\)</span>, <span class="math notranslate nohighlight">\(V_x\)</span>, 또는 <span class="math notranslate nohighlight">\(V_{dis,y}\)</span>).</p>
+<p>우리는 쓴다 <span class="math notranslate nohighlight">\((w)\)</span> OpenFAST의 레거시 출력 시스템. 레거시 출력 시스템은 이전에 그림을 사용하여 문서화되었습니다. <a class="reference internal" href="#ad-blade-local-cs"><span class="std std-numref">그림 4.4</span></a>. 그림은 또한 국부 각도와 힘 성분의 방향을 보여줍니다. 이 그림에서, <span class="math notranslate nohighlight">\(x\)</span> 다음과 같이 이해되어야 한다 <span class="math notranslate nohighlight">\(x_w\)</span> 및 <span class="math notranslate nohighlight">\(y\)</span> ~처럼 <span class="math notranslate nohighlight">\(y_w\)</span>. 이 수치는 프리벤드, 프리콘 또는 프리스윕이 없는 경우 대부분 유효합니다.</p>
 <div class="figure align-center" id="id3">
 <span id="ad-blade-local-cs"></span><a class="reference internal image-reference" href="../../../_images/aerodyn_blade_local_cs.png"><img alt="aerodyn_blade_local_cs.png" src="../../../_images/aerodyn_blade_local_cs.png" style="width: 80%;"></a>
-<p class="caption"><span class="caption-number">그림 4.4 </span><span class="caption-text">AeroDyn 레거시 로컬 출력 좌표계(루트에서 팁 방향) – l: 리프트, d: 드래그, m: 피칭, x: 법선(평면에), y: 접선(평면에), n: 법선(현에), t: 접선(현에)</span><a class="headerlink" href="#id3" title="이 이미지에 대한 영구 링크"></a></p>
+<p class="caption"><span class="caption-number">그림 4.4 </span><span class="caption-text">AeroDyn 레거시 로컬 출력 좌표계(루트에서 팁 방향) – l: 리프트, d: 드래그, m: 피칭, x: 법선(평면에 대해), y: 접선(평면에 대해), n: 법선(현에 대해) 및 t: 접선(현에 대해)</span><a class="headerlink" href="#id3" title="이 이미지에 대한 영구 링크"></a></p>
 </div>
-<p>해당 <span class="math notranslate nohighlight">\((w_{kj})\)</span> 는 각 블레이드에 대해 정의됩니다. <span class="math notranslate nohighlight">\(k\)</span> 및 노드 <span class="math notranslate nohighlight">\(j\)</span>, 작성됨
-간결함을 위한 <span class="math notranslate nohighlight">\((w)\)</span> . 는 <span class="math notranslate nohighlight">\((w)\)</span> 시스템은 에어포일 시스템을 변형한 것으로, 이 시스템은 에어포일 시스템에 대해 회전하지 않습니다. <span class="math notranslate nohighlight">\(x\)</span> (스위프) 또는
-원추형 좌표계와 비교한 <span class="math notranslate nohighlight">\(z\)</span> (피치/트위스트) 축.
-이 시스템의</p>
+<p>해당 <span class="math notranslate nohighlight">\((w_{kj})\)</span> 각 블레이드에 대해 정의됩니다. <span class="math notranslate nohighlight">\(k\)</span> 및 노드 <span class="math notranslate nohighlight">\(j\)</span>, 작성 <span class="math notranslate nohighlight">\((w)\)</span> 간결함을 위해. 그만큼 <span class="math notranslate nohighlight">\((w)\)</span> 시스템은 에어포일 시스템의 변형으로, 이 시스템은 에어포일 시스템을 중심으로 회전하지 않습니다. <span class="math notranslate nohighlight">\(x\)</span> (스윕) 또는 <span class="math notranslate nohighlight">\(z\)</span> (피치/트위스트) 축을 원뿔 좌표계와 비교합니다.</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>해당 <span class="math notranslate nohighlight">\(y_w\)</span>축(평면 내)은 피치 축과 직교하며 사전 스윕 및 평면 내 편향을 무시합니다.</p></li>
-<li><p>해당 <span class="math notranslate nohighlight">\(x_w\)</span>축(평면 밖)은 사전 곡선 및 평면 밖 편향을 포함하여 편향된 블레이드에 수직입니다.</p></li>
-<li><p>해당 <span class="math notranslate nohighlight">\(z_w\)</span>축(방사형)은 사전 곡선 및 평면 외 편향을 포함하여 편향된 블레이드에 접합니다.</p></li>
+<li><p>해당 <span class="math notranslate nohighlight">\(y_w\)</span>이 시스템의 축(평면 내)은 피치 축과 직교하며 사전 스윕 및 평면 내 편향을 무시합니다.</p></li>
+<li><p>해당 <span class="math notranslate nohighlight">\(x_w\)</span>-축(평면 밖)은 사전 곡선 및 평면 밖 편향을 포함하여 편향된 블레이드에 수직입니다.</p></li>
+<li><p>해당 <span class="math notranslate nohighlight">\(z_w\)</span>-축(방사형)은 사전 곡선 및 평면 외 편향을 포함하여 편향된 블레이드에 접합니다.</p></li>
 </ul>
 </div></blockquote>
-<p>AeroDyn에서는 다음과 같이 시스템이 구성되어 있습니다. 첫째, 원뿔 좌표계 <span class="math notranslate nohighlight">\((c)\)</span> (블레이드 루트에 위치, 원추형, 피칭 없음)는 다음 하위 단계 및 행렬을 사용하여 정의됩니다.</p>
+<p>AeroDyn에서는 다음과 같이 시스템이 구성되어 있습니다. 첫째, 원뿔 좌표계 <span class="math notranslate nohighlight">\((c)\)</span> (블레이드 루트에 위치, 원추형이지만 피칭 없음)은 다음 하위 단계 및 행렬을 사용하여 정의됩니다.</p>
 <blockquote>
 <div><ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\boldsymbol{R}_{bi}\)</span>: 관성에서 블레이드 루트까지(블레이드 루트는 <span class="math notranslate nohighlight">\(\theta_p\)</span>).</p></li>
-<li><p><span class="math notranslate nohighlight">\(\boldsymbol{R}_{hi}\)</span>: 관성에서 허브까지.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{R}_{hi}\)</span>: 관성에서 허브로.</p></li>
 <li><p><span class="math notranslate nohighlight">\(\boldsymbol{R}_{bh} = \boldsymbol{R}_{bi} \boldsymbol{R}_{hi}^t=\mathop{\mathrm{Euler}}(\theta_1, \theta_2, -\theta_p)\)</span>: 허브에서 블레이드까지. 세 번째 오일러 각은 다음과 같습니다.
-<span class="math notranslate nohighlight">\(\boldsymbol{R}_{bh}\)</span> 는 피치 각도의 반대입니다
-<span class="math notranslate nohighlight">\(\theta_p\)</span> (풍력터빈은 음의 피치 및 비틀림 규칙을 사용합니다. <span class="math notranslate nohighlight">\(z\)</span> 축). 이 오일러 각도를 0으로 설정하고 첫 번째 두 각도로부터 변환 행렬을 구성하면 다음을 얻을 수 있습니다.</p></li>
+<span class="math notranslate nohighlight">\(\boldsymbol{R}_{bh}\)</span> 피치각의 반대이다
+<span class="math notranslate nohighlight">\(\theta_p\)</span> (풍력 터빈은 음의 피치와 비틀림 규칙을 사용합니다. <span class="math notranslate nohighlight">\(z\)</span> 중심선). 이 오일러 각도를 0으로 설정하고 첫 번째 두 각도로부터 변환 행렬을 구성하면 다음을 얻을 수 있습니다.</p></li>
 <li><p><span class="math notranslate nohighlight">\(\boldsymbol{R}_{ch}=\mathop{\mathrm{Euler}}(\theta_1, \theta_2,0)\)</span>: 허브에서 원추 좌표계까지.</p></li>
-<li><p><span class="math notranslate nohighlight">\(\boldsymbol{R}_{ci}=\boldsymbol{R}_{ch} \boldsymbol{R}_{hi}\)</span>: 관성 좌표계에서 원추 좌표계까지.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{R}_{ci}=\boldsymbol{R}_{ch} \boldsymbol{R}_{hi}\)</span>: 관성 좌표계에서 원뿔 좌표계로.</p></li>
 </ul>
 </div></blockquote>
-<p>그렇다면, <span class="math notranslate nohighlight">\((w)\)</span> 시스템은 각 익형 단면에 대해 정의됩니다.</p>
+<p>그런 다음, <span class="math notranslate nohighlight">\((w)\)</span> 시스템은 각 익형 단면에 대해 정의됩니다.</p>
 <blockquote>
 <div><ul>
-<li><p><span class="math notranslate nohighlight">\(\boldsymbol{R}_{ai}\)</span>: 관성에서 블레이드 에어포일 섹션까지(탄성 운동 포함)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{R}_{ai}\)</span>: 관성에서 블레이드 익형 구간까지(탄성 운동 포함)</p></li>
 <li><p>원추형 시스템에서 블레이드 에어포일 섹션까지:</p>
 <div class="math notranslate nohighlight">
 \[\begin{aligned}
@@ -294,18 +283,18 @@
   \end{aligned}\]</div>
 </li>
 </ul>
-<p>여기서 <span class="math notranslate nohighlight">\({}^w\!\beta\)</span> 에는 완전한 트위스트(공기역학적, 탄성 및 피치)가 포함되어 있으며, <span class="math notranslate nohighlight">\({}^w\!\tau\)</span> 는 발가락 각도입니다(그러나 사용되지는 않음). <span class="math notranslate nohighlight">\({}^w\!\kappa\)</span> 는 캔트 각도입니다(다음으로 저장됨).
-<code class="docutils literal notranslate"><span class="pre">Curve</span></code>). 우리는 위 첨자를 사용합니다 <span class="math notranslate nohighlight">\(w\)</span> 왜냐하면 이 각도는 <span class="math notranslate nohighlight">\((w)\)</span> 시스템.</p>
+<p>여기서 <span class="math notranslate nohighlight">\({}^w\!\beta\)</span> 완전한 트위스트(공기역학적, 탄성 및 피치)를 포함합니다. <span class="math notranslate nohighlight">\({}^w\!\tau\)</span> 발가락 각도가 됩니다(그러나 사용되지는 않음). <span class="math notranslate nohighlight">\({}^w\!\kappa\)</span> 캔트 각도입니다(다음으로 저장됨).
+<code class="docutils literal notranslate"><span class="pre">Curve</span></code>). 우리는 위 첨자를 사용합니다 <span class="math notranslate nohighlight">\(w\)</span> 왜냐하면 이 각도는 <span class="math notranslate nohighlight">\((w)\)</span> 체계.</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\boldsymbol{R}_{wc}=\mathop{\mathrm{Euler}}(0,{}^w\!\kappa,0)\)</span>: 콘 시스템에서 <span class="math notranslate nohighlight">\(w\)</span>-시스템. 는 <span class="math notranslate nohighlight">\((w)\)</span> 시스템은 약 회전만 유지합니다. <span class="math notranslate nohighlight">\(y_c\)</span>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{R}_{wc}=\mathop{\mathrm{Euler}}(0,{}^w\!\kappa,0)\)</span>: 콘 시스템에서 <span class="math notranslate nohighlight">\(w\)</span>-체계. 그만큼 <span class="math notranslate nohighlight">\((w)\)</span> 시스템은 회전만 유지합니다. <span class="math notranslate nohighlight">\(y_c\)</span>
 (<span class="math notranslate nohighlight">\(\approx\)</span>prebend)에 대한 것을 무시합니다.
-<span class="math notranslate nohighlight">\(x\)</span> (스위프) 및 <span class="math notranslate nohighlight">\(z\)</span> (<span class="math notranslate nohighlight">\(\approx\)</span> 트위스트+피치).</p></li>
-<li><p><span class="math notranslate nohighlight">\(\boldsymbol{R}_{wi}=\boldsymbol{R}_{wc}\boldsymbol{R}_{ci}\)</span>: 관성 시스템에서 <span class="math notranslate nohighlight">\(w\)</span>-시스템</p></li>
+<span class="math notranslate nohighlight">\(x\)</span> (스윕) 그리고 <span class="math notranslate nohighlight">\(z\)</span> (<span class="math notranslate nohighlight">\(\approx\)</span> 트위스트+피치).</p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{R}_{wi}=\boldsymbol{R}_{wc}\boldsymbol{R}_{ci}\)</span>: 관성계에서 다음으로 <span class="math notranslate nohighlight">\(w\)</span>-체계</p></li>
 </ul>
 </div></blockquote>
 </div>
 <div class="section" id="tower-system">
-<h2><span class="section-number">4.3.2.10. </span>타워 시스템<a class="headerlink" href="#tower-system" title="이 제목의 고유 링크"></a></h2>
+<h2><span class="section-number">4.3.2.10. </span>타워 시스템<a class="headerlink" href="#tower-system" title="이 제목에 대한 영구 링크"></a></h2>
 <p>로컬 타워 좌표계는 다음과 같습니다. <a class="reference internal" href="input.html#ad-tower-geom"><span class="std std-numref">그림 4.5</span></a>.</p>
 </div>
 </div>
@@ -313,8 +302,8 @@
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
-        <a href="introduction.html" class="btn btn-neutral float-left" title="4.3.1. 소개" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
+        <a href="introduction.html" class="btn btn-neutral float-left" title="4.3.1. 소개" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
         <a href="input.html" class="btn btn-neutral float-right" title="4.3.3. 입력 파일" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -325,7 +314,7 @@
   </div>
 
   다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">주제</a>
     제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
    
 

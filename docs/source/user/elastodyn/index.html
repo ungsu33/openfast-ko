@@ -20,7 +20,7 @@
         <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="검색" href="../../../search.html">
+    <link rel="search" title="찾다" href="../../../search.html">
     <link rel="next" title="4.10.1. 좌표계" href="coordsys.html">
     <link rel="prev" title="4.9.5. 예제 파일" href="../extptfm/appendix.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/elastodyn/index.html"></head>
@@ -35,7 +35,7 @@
           
           <a href="../../../index.html" class="icon icon-home">
             OpenFAST
-              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="심벌 마크">
           </a>
               <div class="version">5.0 · 한국어</div>
 <div role="search">
@@ -47,15 +47,15 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력소음</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
@@ -65,7 +65,7 @@
 <li class="toctree-l3"><a class="reference internal" href="input.html">4.10.2. 입력 파일</a></li>
 <li class="toctree-l3"><a class="reference internal" href="theory.html">4.10.3. ElastoDyn 이론</a></li>
 <li class="toctree-l3"><a class="reference internal" href="theory.html#developer-notes">4.10.4. 개발자 노트</a></li>
-<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.10.5. 참고문헌</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.10.5. 참고자료</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
@@ -85,16 +85,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -103,11 +103,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">4.10. </span>ElastoDyn 사용자 가이드 및 이론 설명서</li>
+      <li class="breadcrumb-item active"><span class="section-number">4.10. </span>ElastoDyn 사용자 가이드 및 이론 매뉴얼</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/elastodyn/index.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+            <a href="../../../_sources/source/user/elastodyn/index.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -116,24 +116,24 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="elastodyn-users-guide-and-theory-manual">
-<span id="ed-intro"></span><h1><span class="section-number">4.10. </span>ElastoDyn 사용자 가이드 및 이론 설명서<a class="headerlink" href="#elastodyn-users-guide-and-theory-manual" title="이 제목의 고유 링크"></a></h1>
+<span id="ed-intro"></span><h1><span class="section-number">4.10. </span>ElastoDyn 사용자 가이드 및 이론 매뉴얼<a class="headerlink" href="#elastodyn-users-guide-and-theory-manual" title="이 제목에 대한 영구 링크"></a></h1>
 <p>이 문서는 ElastoDyn 소프트웨어 프로그램에 대한 빠른 참조 가이드를 제공합니다. 일반 사용자가 다른 OpenFAST 매뉴얼과 함께 사용하도록 고안되었습니다. 설명서는 새 릴리스가 출시될 때마다 업데이트되며 소프트웨어의 개선 또는 수정에 대한 추가 정보를 제공하기 위해 필요에 따라 업데이트됩니다.</p>
-<p>이 모듈에 대한 더 많은 문서는 다음에 나열된 레거시 문서에서 사용할 수 있습니다. <a class="reference internal" href="../general.html#general-reference-docs"><span class="std std-ref">일반 사항</span></a>. 특히 FAST v6 사용자 가이드와 FAST v8 README의 작은 업데이트에서는 이 모듈을 설명하고 OpenFAST에 대한 일반 정보를 포함하고 있습니다.</p>
+<p>이 모듈에 대한 더 많은 문서는 다음에 나열된 레거시 문서에서 사용할 수 있습니다. <a class="reference internal" href="../general.html#general-reference-docs"><span class="std std-ref">일반적인</span></a>. 특히 FAST v6 사용자 가이드와 FAST v8 README의 작은 업데이트에서는 이 모듈을 설명하고 OpenFAST에 대한 일반 정보를 포함합니다.</p>
 <div class="admonition note">
 <p class="admonition-title">참고</p>
 <p>문서를 FAST 8에서 OpenFAST로 마이그레이션하는 중입니다. 참고로, 이전 문서의 다양한 부분이 여기에 제공됩니다. 대부분은 여전히 ​​OpenFAST에 직접 적용 가능하지만 일부는 최신이 아닐 수 있습니다.</p>
 </div>
-<p>다음 문서는 ElastoDyn의 운동 방정식을 자세히 도출한 것입니다. 이러한 문서는 보고서로 편집되지 않았으므로 대부분 방정식이 포함되어 있고 설명 텍스트는 거의 포함되어 있지 않습니다. 운동학 및 역학에 대한 배경 지식이 있는 독자라면 방정식을 이해할 수 있습니다. 문서를 다음 순서로 연구하면 가장 의미가 있습니다.</p>
+<p>다음 문서는 ElastoDyn의 운동 방정식을 자세히 유도한 것입니다. 이러한 문서는 보고서로 편집되지 않았으므로 대부분 방정식이 포함되어 있고 설명 텍스트는 거의 포함되어 있지 않습니다. 운동학 및 역학에 대한 배경 지식이 있는 독자라면 방정식을 이해할 수 있습니다. 문서를 다음 순서로 연구하면 가장 의미가 있습니다.</p>
 <ol class="arabic simple">
 <li><p><a class="reference download internal" download="" href="../../../_downloads/7066c7836c0c2fe5af08ed805812e4e6/FASTDOFs.xls"><code class="xref download docutils literal notranslate"><span class="pre">FASTDOFs.xls</span></code></a>: FAST의 운동 방정식에 사용되는 DOF 인덱스 목록이 포함되어 있습니다.</p></li>
 <li><p><a class="reference download internal" download="" href="../../../_downloads/c9ae932057ea1e64c79154b36d3ab30a/FASTCoordinateSystems.doc"><code class="xref download docutils literal notranslate"><span class="pre">FASTCoordinateSystems.doc</span></code></a>: FAST의 각 좌표계와 관련된 변환 행렬을 문서화합니다. 불행하게도 이 문서에는 이러한 좌표계를 나타내는 그림이 없습니다. 변환 행렬을 통해 시각화할 수 있기를 바랍니다.</p></li>
 <li><p><a class="reference download internal" download="" href="../../../_downloads/f3e5d577025521fd391a02d1d2b2a9e0/FASTKinematics.doc"><code class="xref download docutils literal notranslate"><span class="pre">FASTKinematics.doc</span></code></a>: 시스템의 각 "중요한" 지점의 선형 위치, 속도 및 가속도 벡터를 문서화하고 시스템의 각 "중요한" 참조 프레임의 각속도 및 가속도 벡터를 문서화합니다. 또한 Kane의 역학에 필요한 부분 속도 벡터에 대한 문서도 포함되어 있습니다.</p></li>
 <li><p><a class="reference download internal" download="" href="../../../_downloads/3382933cf98524efcb0670cc9320a898/FASTKinetics.doc"><code class="xref download docutils literal notranslate"><span class="pre">FASTKinetics.doc</span></code></a>: 케인의 동역학을 사용하여 운동 방정식의 유도를 문서화합니다.</p></li>
 <li><p><a class="reference download internal" download="" href="../../../_downloads/374f227e46a9292169bcef67acabe974/FASTLoads.doc"><code class="xref download docutils literal notranslate"><span class="pre">FASTLoads.doc</span></code></a>: 운동 방정식의 항을 사용하여 출력 하중을 계산하는 방법을 문서화합니다.</p></li>
-<li><p><a class="reference download internal" download="" href="../../../_downloads/cb07b8349b11bb9cdcd959c39dfed631/FASTMotions.doc"><code class="xref download docutils literal notranslate"><span class="pre">FASTMotions.doc</span></code></a>: 동작 방정식의 변수를 사용하여 출력 동작을 계산하는 방법을 문서화합니다.</p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/cb07b8349b11bb9cdcd959c39dfed631/FASTMotions.doc"><code class="xref download docutils literal notranslate"><span class="pre">FASTMotions.doc</span></code></a>: 운동 방정식의 변수를 사용하여 출력 운동을 계산하는 방법을 문서화합니다.</p></li>
 <li><p><a class="reference download internal" download="" href="../../../_downloads/8d4b354818700bcbb6c7586f28c482e1/FASTLogicFlow.doc"><code class="xref download docutils literal notranslate"><span class="pre">FASTLogicFlow.doc</span></code></a>: FAST에서 사용하는 서브루틴 이름 목록이 포함되어 있습니다. 이름은 프로그램 내에서 호출되는 순서대로 나열됩니다.</p></li>
 </ol>
-<p>이 논문에 문서화된 방정식에는 방정식을 이해한 후에는 명확해질 수 있는 몇 가지 사소한 오류가 있습니다. 구현된 코드에는 이러한 오류가 없습니다. 이 논문에서는 Fortran 소스 코드와 변수 명명 규칙을 설명하지 않지만 주의 깊게 연구하면 소스 코드 비교가 가능합니다.</p>
+<p>이 논문에 문서화된 방정식에는 방정식을 이해한 후에는 분명해질 수 있는 몇 가지 사소한 오류가 있습니다. 구현된 코드에는 이러한 오류가 없습니다. 이 논문에서는 Fortran 소스 코드와 변수 명명 규칙을 설명하지 않지만 주의 깊게 연구하면 소스 코드 비교가 가능합니다.</p>
 <p>"비공식 FAST 이론 매뉴얼"은 FAST v7의 구조 방정식과 FAST v8 및 OpenFAST의 ElastoDyn 모듈에 적용됩니다.</p>
 <div class="toctree-wrapper compound">
 <ul>
@@ -150,20 +150,20 @@
 <li class="toctree-l3"><a class="reference internal" href="input.html#initial-conditions">4.10.2.2.3. 초기 조건</a></li>
 <li class="toctree-l3"><a class="reference internal" href="input.html#turbine-configuration">4.10.2.2.4. 터빈 구성</a></li>
 <li class="toctree-l3"><a class="reference internal" href="input.html#mass-and-inertia">4.10.2.2.5. 질량과 관성</a></li>
-<li class="toctree-l3"><a class="reference internal" href="input.html#blade">4.10.2.2.6. 블레이드</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input.html#blade">4.10.2.2.6. 잎</a></li>
 <li class="toctree-l3"><a class="reference internal" href="input.html#rotor-teeter">4.10.2.2.7. 로터티터</a></li>
 <li class="toctree-l3"><a class="reference internal" href="input.html#yaw-friction">4.10.2.2.8. 요 마찰</a></li>
 <li class="toctree-l3"><a class="reference internal" href="input.html#drivetrain">4.10.2.2.9. 구동계</a></li>
 <li class="toctree-l3"><a class="reference internal" href="input.html#furling">4.10.2.2.10. 펄링</a></li>
-<li class="toctree-l3"><a class="reference internal" href="input.html#tower">4.10.2.2.11. 타워</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input.html#tower">4.10.2.2.11. 탑</a></li>
 <li class="toctree-l3"><a class="reference internal" href="input.html#outputs">4.10.2.2.12. 출력</a></li>
-<li class="toctree-l3"><a class="reference internal" href="input.html#nodal-outputs">4.10.2.2.13. 노드 출력</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="input.html#nodal-outputs">4.10.2.2.13. 절점 출력</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="input.html#sample-nodal-outputs-section">4.10.2.2.13.1. 샘플 노드 출력 섹션</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="input.html#elastodyn-furl-input-file">4.10.2.3. ElastoDyn furl 입력 파일</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html#elastodyn-furl-input-file">4.10.2.3. ElastoDyn Furl 입력 파일</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="theory.html">4.10.3. ElastoDyn 이론</a><ul>
@@ -175,7 +175,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="theory.html#developer-notes">4.10.4. 개발자 노트</a></li>
-<li class="toctree-l1"><a class="reference internal" href="zrefs.html">4.10.5. 참고문헌</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zrefs.html">4.10.5. 참고자료</a></li>
 </ul>
 </div>
 </div>
@@ -183,8 +183,8 @@
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
-        <a href="../extptfm/appendix.html" class="btn btn-neutral float-left" title="4.9.5. 예제 파일" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
+        <a href="../extptfm/appendix.html" class="btn btn-neutral float-left" title="4.9.5. 예제 파일" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
         <a href="coordsys.html" class="btn btn-neutral float-right" title="4.10.1. 좌표계" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -195,7 +195,7 @@
   </div>
 
   다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">주제</a>
     제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
    
 

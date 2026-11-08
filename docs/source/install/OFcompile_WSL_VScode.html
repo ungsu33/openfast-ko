@@ -2,7 +2,7 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>2.4.4.1. 가이드: WSL 및 VS Code를 사용하여 Windows에서 OpenFAST 설정 — OpenFAST v5.0.0 문서</title>
+  <title>2.4.4.1. 가이드: WSL 및 VS 코드를 사용하여 Windows에서 OpenFAST 설정 — OpenFAST v5.0.0 문서</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css">
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css">
       <link rel="stylesheet" type="text/css" href="../../_static/css/math_eq.css">
@@ -20,9 +20,9 @@
         <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../genindex.html">
-    <link rel="search" title="검색" href="../../search.html">
-    <link rel="next" title="2.8.1. Spack으로 OpenFAST 구축" href="install_spack.html">
-    <link rel="prev" title="2.4.3.1. Visual Studio를 사용하여 Windows에서 OpenFAST 구축" href="install_vs_windows.html"> 
+    <link rel="search" title="찾다" href="../../search.html">
+    <link rel="next" title="2.8.1. Spack으로 OpenFAST 빌드하기" href="install_spack.html">
+    <link rel="prev" title="2.4.3.1. Visual Studio를 사용하여 Windows에서 OpenFAST 빌드" href="install_vs_windows.html"> 
 <link rel="stylesheet" href="../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/install/OFcompile_WSL_VScode.html"></head>
 
 <body class="wy-body-for-nav"> 
@@ -35,7 +35,7 @@
           
           <a href="../../index.html" class="icon icon-home">
             OpenFAST
-              <img src="../../_static/openfastlogo.jpg" class="logo" alt="로고">
+              <img src="../../_static/openfastlogo.jpg" class="logo" alt="심벌 마크">
           </a>
               <div class="version">5.0 · 한국어</div>
 <div role="search">
@@ -47,44 +47,44 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. 이 문서</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">2. OpenFAST 설치</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="index.html#download-binaries">2.1. 바이너리 다운로드</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#running-openfast-with-docker">2.2. 도커를 사용하여 OpenFAST 실행</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#running-openfast-with-docker">2.2. 도커로 OpenFAST 실행</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#install-the-openfast-io-python-wrapper">2.3. 설치하다 <code class="docutils literal notranslate"><span class="pre">openfast_io</span></code> 파이썬 래퍼</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html#compile-from-source">2.4. 소스에서 컴파일</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#compile-from-source">2.4. 소스 코드에서 컴파일</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="index.html#dependencies">2.4.1. 종속성</a></li>
 <li class="toctree-l3"><a class="reference internal" href="index.html#get-the-code">2.4.2. 코드 받기</a></li>
 <li class="toctree-l3"><a class="reference internal" href="index.html#visual-studio-solution-for-windows">2.4.3. Windows용 Visual Studio 솔루션</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="index.html#windows-with-the-linux-subsystem-and-vs-code">2.4.4. Linux 하위 시스템 및 VS 코드가 있는 Windows</a><ul class="current">
-<li class="toctree-l4 current"><a class="current reference internal" href="#">2.4.4.1. 가이드: WSL 및 VS Code를 사용하여 Windows에서 OpenFAST 설정</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">2.4.4.1. 가이드: WSL 및 VS 코드를 사용하여 Windows에서 OpenFAST 설정</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="index.html#understanding-cmake">2.4.5. CMake 이해</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#cmake-with-make-for-linux-macos">2.4.6. Linux/macOS용 Make를 사용한 CMake</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#cmake-with-visual-studio-for-windows">2.4.7. Windows용 Visual Studio를 사용한 CMake</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#cmake-with-make-for-linux-macos">2.4.6. Linux용 Make가 포함된 CMake/macOS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#cmake-with-visual-studio-for-windows">2.4.7. Windows용 Visual Studio를 사용하는 CMake</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#c-api">2.5. C++ API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#fast-farm">2.6. FAST.Farm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#simulink">2.7. Simulink</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#appendix">2.8. 부록</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#appendix">2.8. 충수</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working.html">3. OpenFAST 작업</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../user/index.html">4. 사용자 문서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">7. 라이센스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. 감사의 글</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. 감사의 말씀</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../review.html">문서 상세 리뷰</a></li><li><a href="../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">OpenFAST</a>
       </nav>
@@ -93,11 +93,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="집"></a></li>
           <li class="breadcrumb-item"><a href="index.html"><span class="section-number">2. </span>OpenFAST 설치</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">2.4.4.1. </span>가이드: WSL 및 VS Code를 사용하여 Windows에서 OpenFAST 설정</li>
+      <li class="breadcrumb-item active"><span class="section-number">2.4.4.1. </span>가이드: WSL 및 VS 코드를 사용하여 Windows에서 OpenFAST 설정</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../_sources/source/install/OFcompile_WSL_VScode.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+            <a href="../../_sources/source/install/OFcompile_WSL_VScode.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -106,21 +106,20 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="guide-setting-up-openfast-on-windows-with-wsl-and-vs-code">
-<h1><span class="section-number">2.4.4.1. </span>가이드: WSL 및 VS Code를 사용하여 Windows에서 OpenFAST 설정<a class="headerlink" href="#guide-setting-up-openfast-on-windows-with-wsl-and-vs-code" title="이 제목의 고유 링크"></a></h1>
+<h1><span class="section-number">2.4.4.1. </span>가이드: WSL 및 VS 코드를 사용하여 Windows에서 OpenFAST 설정<a class="headerlink" href="#guide-setting-up-openfast-on-windows-with-wsl-and-vs-code" title="이 제목에 대한 영구 링크"></a></h1>
 <div class="admonition note">
 <p class="admonition-title">참고</p>
-<p>작성자가 작성한 가이드에서 수정됨 <a class="reference external" href="https://github.com/skvibimigger" target="_blank" rel="noopener noreferrer">skvibimigger
-문제 설명의</a> : <a class="reference external" href="https://github.com/OpenFAST/openfast/issues/2904#issuecomment-3056252458" target="_blank" rel="noopener noreferrer">OpenFAST 문제 #2904</a></p>
+<p>작성자가 작성한 가이드에서 수정됨 <a class="reference external" href="https://github.com/skvibimigger" target="_blank" rel="noopener noreferrer">skvibimigger</a> 이슈 댓글에서: <a class="reference external" href="https://github.com/OpenFAST/openfast/issues/2904#issuecomment-3056252458" target="_blank" rel="noopener noreferrer">OpenFAST 문제 #2904</a></p>
 </div>
-<p>이 가이드는 WSL(Linux용 Windows 하위 시스템)을 사용하여 Windows 시스템의 소스에서 OpenFAST를 컴파일하기 위한 포괄적인 단계별 프로세스를 제공합니다. 이 방법은 안정성이 높으며 기본 Windows 컴파일러와 관련된 일반적인 문제를 방지합니다.</p>
+<p>이 가이드는 Linux용 Windows 하위 시스템(WSL)을 사용하여 Windows 시스템의 소스에서 OpenFAST를 컴파일하기 위한 포괄적인 단계별 프로세스를 제공합니다. 이 방법은 안정성이 높으며 기본 Windows 컴파일러와 관련된 일반적인 문제를 방지합니다.</p>
 <div class="section" id="part-1-setting-up-the-linux-environment-wsl">
-<h2><span class="section-number">2.4.4.1.1. </span>1부: Linux 환경 설정(WSL)<a class="headerlink" href="#part-1-setting-up-the-linux-environment-wsl" title="이 제목의 고유 링크"></a></h2>
+<h2><span class="section-number">2.4.4.1.1. </span>1부: Linux 환경 설정(WSL)<a class="headerlink" href="#part-1-setting-up-the-linux-environment-wsl" title="이 제목에 대한 영구 링크"></a></h2>
 <div class="section" id="install-windows-subsystem-for-linux-wsl">
-<h3><span class="section-number">2.4.4.1.1.1. </span>1. Linux용 Windows 하위 시스템(WSL) 설치<a class="headerlink" href="#install-windows-subsystem-for-linux-wsl" title="이 제목의 고유 링크"></a></h3>
-<p>WSL을 사용하면 Windows에서 직접 Linux 배포판을 실행할 수 있습니다.</p>
+<h3><span class="section-number">2.4.4.1.1.1. </span>1. Linux용 Windows 하위 시스템(WSL) 설치<a class="headerlink" href="#install-windows-subsystem-for-linux-wsl" title="이 제목에 대한 영구 링크"></a></h3>
+<p>WSL를 사용하면 Windows에서 직접 Linux 배포판을 실행할 수 있습니다.</p>
 <ul>
-<li><p>Windows PowerShell 또는 명령 프롬프트를 관리자로 엽니다.</p></li>
-<li><p>설치 명령을 실행합니다.</p>
+<li><p>관리자 권한으로 Windows PowerShell 또는 명령 프롬프트를 엽니다.</p></li>
+<li><p>설치 명령을 실행하십시오.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wsl<span class="w"> </span>--install
 </pre></div>
 </div>
@@ -129,7 +128,7 @@
 </ul>
 </div>
 <div class="section" id="install-build-tools-and-dependencies">
-<h3><span class="section-number">2.4.4.1.1.2. </span>2. 빌드 도구 및 종속성 설치<a class="headerlink" href="#install-build-tools-and-dependencies" title="이 제목의 고유 링크"></a></h3>
+<h3><span class="section-number">2.4.4.1.1.2. </span>2. 빌드 도구 및 종속성 설치<a class="headerlink" href="#install-build-tools-and-dependencies" title="이 제목에 대한 영구 링크"></a></h3>
 <p>Ubuntu 터미널이 실행되면 필요한 컴파일러와 라이브러리를 설치해야 합니다.</p>
 <ul>
 <li><p>업데이트 패키지 목록:</p>
@@ -147,10 +146,10 @@
 </pre></div>
 </div>
 </li>
-<li><p>(선택 사항) 설치 설명서 종속성:</p>
+<li><p>(선택 사항) 문서 종속성을 설치합니다.</p>
 <div class="admonition warning">
 <p class="admonition-title">경고</p>
-<p>해당 <code class="docutils literal notranslate"><span class="pre">texlive-full</span></code> 패키지는 수 기가바이트이므로 설치하는 데 오랜 시간이 걸릴 수 있습니다.</p>
+<p>해당 <code class="docutils literal notranslate"><span class="pre">texlive-full</span></code> 패키지는 수 기가바이트이므로 설치하는 데 시간이 오래 걸릴 수 있습니다.</p>
 </div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>graphviz<span class="w"> </span>texlive-full<span class="w"> </span>doxygen
 pip<span class="w"> </span>install<span class="w"> </span>sphinx
@@ -161,19 +160,19 @@ pip<span class="w"> </span>install<span class="w"> </span>sphinx
 </div>
 </div>
 <div class="section" id="part-2-compiling-openfast">
-<h2><span class="section-number">2.4.4.1.2. </span>파트 2: OpenFAST 컴파일<a class="headerlink" href="#part-2-compiling-openfast" title="이 제목의 고유 링크"></a></h2>
+<h2><span class="section-number">2.4.4.1.2. </span>2부: OpenFAST 컴파일하기<a class="headerlink" href="#part-2-compiling-openfast" title="이 제목에 대한 영구 링크"></a></h2>
 <div class="section" id="clone-the-openfast-repository">
-<h3><span class="section-number">2.4.4.1.2.1. </span>1. OpenFAST 리포지토리 복제<a class="headerlink" href="#clone-the-openfast-repository" title="이 제목의 고유 링크"></a></h3>
-<p>주요 소스 코드 다운로드:</p>
+<h3><span class="section-number">2.4.4.1.2.1. </span>1. OpenFAST 저장소 복제<a class="headerlink" href="#clone-the-openfast-repository" title="이 제목에 대한 영구 링크"></a></h3>
+<p>주요 소스 코드를 다운로드하세요:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/OpenFAST/openfast.git
 </pre></div>
 </div>
 </div>
 <div class="section" id="download-the-test-cases-submodule">
-<h3><span class="section-number">2.4.4.1.2.2. </span>2. 테스트 케이스 다운로드(하위 모듈)<a class="headerlink" href="#download-the-test-cases-submodule" title="이 제목의 고유 링크"></a></h3>
+<h3><span class="section-number">2.4.4.1.2.2. </span>2. 테스트 케이스(하위 모듈) 다운로드<a class="headerlink" href="#download-the-test-cases-submodule" title="이 제목에 대한 영구 링크"></a></h3>
 <p>회귀 테스트 파일(r-test)은 별도의 저장소(Git 하위 모듈)에 있으며 명시적으로 다운로드해야 합니다.</p>
 <ul>
-<li><p>로 이동 <code class="docutils literal notranslate"><span class="pre">openfast</span></code> 디렉토리:</p>
+<li><p>다음으로 이동합니다. <code class="docutils literal notranslate"><span class="pre">openfast</span></code> 예배 규칙서:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>openfast
 </pre></div>
 </div>
@@ -187,7 +186,7 @@ git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w
 </ul>
 </div>
 <div class="section" id="build-with-cmake-and-make">
-<h3><span class="section-number">2.4.4.1.2.3. </span>3. CMake로 빌드하고 Make<a class="headerlink" href="#build-with-cmake-and-make" title="이 제목의 고유 링크"></a></h3>
+<h3><span class="section-number">2.4.4.1.2.3. </span>3. CMake로 빌드하고 만들기<a class="headerlink" href="#build-with-cmake-and-make" title="이 제목에 대한 영구 링크"></a></h3>
 <p>CMake를 사용하여 빌드를 구성하고 make를 사용하여 프로젝트를 컴파일합니다.</p>
 <ul>
 <li><p>빌드 디렉터리를 생성하고 해당 디렉터리로 이동합니다.</p>
@@ -207,16 +206,16 @@ git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w
 </div>
 </li>
 </ul>
-<p>이 작업이 오류 없이 완료되면 OpenFAST가 성공적으로 빌드됩니다.</p>
+<p>오류 없이 완료되면 OpenFAST가 성공적으로 빌드됩니다.</p>
 </div>
 </div>
 <div class="section" id="part-3-setting-up-the-python-environment">
-<h2><span class="section-number">2.4.4.1.3. </span>3부: Python 환경 설정<a class="headerlink" href="#part-3-setting-up-the-python-environment" title="이 제목의 고유 링크"></a></h2>
+<h2><span class="section-number">2.4.4.1.3. </span>3부: Python 환경 설정<a class="headerlink" href="#part-3-setting-up-the-python-environment" title="이 제목에 대한 영구 링크"></a></h2>
 <div class="section" id="install-a-compatible-python-version">
-<h3><span class="section-number">2.4.4.1.3.1. </span>1. 호환되는 Python 버전 설치<a class="headerlink" href="#install-a-compatible-python-version" title="이 제목의 고유 링크"></a></h3>
+<h3><span class="section-number">2.4.4.1.3.1. </span>1. 호환되는 Python 버전 설치<a class="headerlink" href="#install-a-compatible-python-version" title="이 제목에 대한 영구 링크"></a></h3>
 <p>새로운 Ubuntu 릴리스의 기본 Python 버전은 일부 패키지에 비해 너무 새로운 버전일 수 있습니다. Python 3.11을 설치합니다.</p>
 <ul>
-<li><p>"deadsnakes" 저장소를 추가합니다.</p>
+<li><p>"deadsnakes" 저장소를 추가합니다:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>add-apt-repository<span class="w"> </span>ppa:deadsnakes/ppa
 </pre></div>
 </div>
@@ -230,10 +229,10 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 </ul>
 </div>
 <div class="section" id="create-and-activate-a-virtual-environment">
-<h3><span class="section-number">2.4.4.1.3.2. </span>2. 가상 환경 생성 및 활성화<a class="headerlink" href="#create-and-activate-a-virtual-environment" title="이 제목의 고유 링크"></a></h3>
-<p>Python 패키지를 위한 독립형 환경을 만듭니다.</p>
+<h3><span class="section-number">2.4.4.1.3.2. </span>2. 가상 환경 생성 및 활성화<a class="headerlink" href="#create-and-activate-a-virtual-environment" title="이 제목에 대한 영구 링크"></a></h3>
+<p>Python 패키지에 대한 독립형 환경을 만듭니다.</p>
 <ul>
-<li><p>홈 디렉토리로 이동합니다:</p>
+<li><p>홈 디렉터리로 이동합니다.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~
 </pre></div>
 </div>
@@ -251,10 +250,9 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 </ul>
 </div>
 <div class="section" id="install-python-packages">
-<h3><span class="section-number">2.4.4.1.3.3. </span>3. Python 패키지 설치<a class="headerlink" href="#install-python-packages" title="이 제목의 고유 링크"></a></h3>
+<h3><span class="section-number">2.4.4.1.3.3. </span>3. Python 패키지 설치<a class="headerlink" href="#install-python-packages" title="이 제목에 대한 영구 링크"></a></h3>
 <ul>
-<li><p>설치
-로컬 소스의 <code class="docutils literal notranslate"><span class="pre">pyOpenFAST</span></code> :</p>
+<li><p>설치하다 <code class="docutils literal notranslate"><span class="pre">pyOpenFAST</span></code> 로컬 소스에서:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/openfast/glue-codes/python/
 pip<span class="w"> </span>install<span class="w"> </span>.
 </pre></div>
@@ -269,13 +267,13 @@ pip<span class="w"> </span>install<span class="w"> </span>.
 </div>
 </div>
 <div class="section" id="part-4-configuring-and-using-vs-code">
-<h2><span class="section-number">2.4.4.1.4. </span>4부: VS Code 구성 및 사용<a class="headerlink" href="#part-4-configuring-and-using-vs-code" title="이 제목의 고유 링크"></a></h2>
+<h2><span class="section-number">2.4.4.1.4. </span>4부: VS 코드 구성 및 사용<a class="headerlink" href="#part-4-configuring-and-using-vs-code" title="이 제목에 대한 영구 링크"></a></h2>
 <div class="section" id="install-vs-code-extensions">
-<h3><span class="section-number">2.4.4.1.4.1. </span>1. VS 코드 확장 설치<a class="headerlink" href="#install-vs-code-extensions" title="이 제목의 고유 링크"></a></h3>
+<h3><span class="section-number">2.4.4.1.4.1. </span>1. VS 코드 확장 설치<a class="headerlink" href="#install-vs-code-extensions" title="이 제목에 대한 영구 링크"></a></h3>
 <ul class="simple">
 <li><p>Windows에서 VS 코드를 엽니다.</p></li>
 <li><p>확장 탭으로 이동합니다.</p></li>
-<li><p>다음 공식 Microsoft 확장을 설치하십시오.</p>
+<li><p>다음 공식 Microsoft 확장을 설치하세요.</p>
 <ul>
 <li><p>WSL</p></li>
 <li><p>주피터</p></li>
@@ -285,24 +283,24 @@ pip<span class="w"> </span>install<span class="w"> </span>.
 </ul>
 </div>
 <div class="section" id="connect-vs-code-to-wsl">
-<h3><span class="section-number">2.4.4.1.4.2. </span>2. VS 코드를 WSL에 연결<a class="headerlink" href="#connect-vs-code-to-wsl" title="이 제목의 고유 링크"></a></h3>
+<h3><span class="section-number">2.4.4.1.4.2. </span>2. VS 코드를 WSL에 연결<a class="headerlink" href="#connect-vs-code-to-wsl" title="이 제목에 대한 영구 링크"></a></h3>
 <ul class="simple">
-<li><p>VS Code 창의 왼쪽 하단에 있는 녹색 &gt;&lt; 버튼을 클릭하세요.</p></li>
+<li><p>VS 코드 창의 왼쪽 하단에 있는 녹색 &gt;&lt; 버튼을 클릭하세요.</p></li>
 <li><p>메뉴에서 "WSL에 연결"을 선택합니다. 창이 다시 로드됩니다.</p></li>
 </ul>
 </div>
 <div class="section" id="create-and-run-a-notebook">
-<h3><span class="section-number">2.4.4.1.4.3. </span>3. 노트북 생성 및 실행<a class="headerlink" href="#create-and-run-a-notebook" title="이 제목의 고유 링크"></a></h3>
+<h3><span class="section-number">2.4.4.1.4.3. </span>3. 노트북 생성 및 실행<a class="headerlink" href="#create-and-run-a-notebook" title="이 제목에 대한 영구 링크"></a></h3>
 <ul class="simple">
-<li><p>연결된 VS Code 창에서 프로젝트 폴더를 엽니다(예: <code class="docutils literal notranslate"><span class="pre">/home/YOUR_USERNAME</span></code>).</p></li>
-<li><p>라는 이름의 새 파일을 생성합니다. <code class="docutils literal notranslate"><span class="pre">simulation.ipynb</span></code>.</p></li>
+<li><p>연결된 VS 코드 창에서 프로젝트 폴더를 엽니다(예: <code class="docutils literal notranslate"><span class="pre">/home/YOUR_USERNAME</span></code>).</p></li>
+<li><p>라는 이름의 새 파일을 만듭니다. <code class="docutils literal notranslate"><span class="pre">simulation.ipynb</span></code>.</p></li>
 <li><p>노트북이 열리면 오른쪽 상단에 있는 “커널 선택”을 클릭하세요.</p></li>
 <li><p>"Python Environments…"를 선택하고 가상 환경과 연결된 커널을 선택합니다. <code class="docutils literal notranslate"><span class="pre">openfast_env</span> <span class="pre">(Python</span> <span class="pre">3.11.x)</span></code>.</p></li>
 </ul>
 </div>
 </div>
 <div class="section" id="part-5-example-test-script">
-<h2><span class="section-number">2.4.4.1.5. </span>파트 5: 예제 테스트 스크립트<a class="headerlink" href="#part-5-example-test-script" title="이 제목의 고유 링크"></a></h2>
+<h2><span class="section-number">2.4.4.1.5. </span>파트 5: 예제 테스트 스크립트<a class="headerlink" href="#part-5-example-test-script" title="이 제목에 대한 영구 링크"></a></h2>
 <p>이 코드를 노트북의 셀에 붙여넣어 테스트 시뮬레이션을 실행하고 결과를 플롯합니다.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the correct class from the correct file</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pyOpenFAST.fast</span><span class="w"> </span><span class="kn">import</span> <span class="n">FastLibAPI</span>
@@ -366,12 +364,11 @@ pip<span class="w"> </span>install<span class="w"> </span>.
 </div>
 </div>
 <div class="section" id="notes">
-<h2><span class="section-number">2.4.4.1.6. </span>노트<a class="headerlink" href="#notes" title="이 제목의 고유 링크"></a></h2>
+<h2><span class="section-number">2.4.4.1.6. </span>메모<a class="headerlink" href="#notes" title="이 제목에 대한 영구 링크"></a></h2>
 <ul class="simple">
-<li><p>교체
-적용 가능한 경우 실제 Linux 사용자 이름으로 <code class="docutils literal notranslate"><span class="pre">YOUR_USERNAME</span></code> 를 사용하세요.</p></li>
+<li><p>바꾸다 <code class="docutils literal notranslate"><span class="pre">YOUR_USERNAME</span></code> 해당되는 경우 실제 Linux 사용자 이름을 사용하세요.</p></li>
 <li><p>런타임 오류를 방지하려면 모든 종속성이 올바르게 설치되었는지 확인하세요.</p></li>
-<li><p>추가 도움말은 다음을 참조하세요. <a class="reference external" href="https://github.com/OpenFAST/openfast" target="_blank" rel="noopener noreferrer">OpenFAST GitHub 저장소</a>.</p></li>
+<li><p>추가 도움이 필요하면 다음을 참조하세요. <a class="reference external" href="https://github.com/OpenFAST/openfast" target="_blank" rel="noopener noreferrer">OpenFAST GitHub 저장소</a>.</p></li>
 </ul>
 </div>
 </div>
@@ -379,9 +376,9 @@ pip<span class="w"> </span>install<span class="w"> </span>.
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
-        <a href="install_vs_windows.html" class="btn btn-neutral float-left" title="2.4.3.1. Visual Studio를 사용하여 Windows에서 OpenFAST 구축" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
-        <a href="install_spack.html" class="btn btn-neutral float-right" title="2.8.1. Spack으로 OpenFAST 구축" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
+        <a href="install_vs_windows.html" class="btn btn-neutral float-left" title="2.4.3.1. Visual Studio를 사용하여 Windows에서 OpenFAST 빌드" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+        <a href="install_spack.html" class="btn btn-neutral float-right" title="2.8.1. Spack으로 OpenFAST 빌드하기" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr>
@@ -391,7 +388,7 @@ pip<span class="w"> </span>install<span class="w"> </span>.
   </div>
 
   다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">주제</a>
     제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
    
 

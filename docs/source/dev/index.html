@@ -456,8 +456,8 @@ window.addEventListener("load", load);
 window.runMermaid = runMermaid;</script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../genindex.html">
-    <link rel="search" title="검색" href="../../search.html">
-    <link rel="next" title="6.1.6.1. GitHub에서 OpenFAST로 작업하기" href="github_workflow.html">
+    <link rel="search" title="찾다" href="../../search.html">
+    <link rel="next" title="6.1.6.1. GitHub에서 OpenFAST 작업" href="github_workflow.html">
     <link rel="prev" title="5.2.5.4.1. Visual Studio 회귀 테스트를 사용하는 Windows" href="../testing/regression_test_windows.html"> 
 <link rel="stylesheet" href="../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/dev/index.html"></head>
 
@@ -471,7 +471,7 @@ window.runMermaid = runMermaid;</script>
           
           <a href="../../index.html" class="icon icon-home">
             OpenFAST
-              <img src="../../_static/openfastlogo.jpg" class="logo" alt="로고">
+              <img src="../../_static/openfastlogo.jpg" class="logo" alt="심벌 마크">
           </a>
               <div class="version">5.0 · 한국어</div>
 <div role="search">
@@ -483,24 +483,24 @@ window.runMermaid = runMermaid;</script>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../this_doc.html">1. 이 문서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working.html">3. OpenFAST 작업</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../user/index.html">4. 사용자 문서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">6. 개발자 문서</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#development-philosophy-and-guidelines">6.1. 개발 철학 및 지침</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#engagement-with-nlr">6.1.1. NLR과의 참여</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#engagement-with-nlr">6.1.1. NLR와의 참여</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#development-plan-implementation-plan">6.1.2. 개발 계획/실행 계획</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#qualities-of-a-good-submission">6.1.3. 좋은 제출의 조건</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#submit-for-review-and-nlr-feedback">6.1.4. 검토 및 NLR 피드백을 위해 제출</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#bug-fixes">6.1.5. 버그 수정</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#additional-guidance">6.1.6. 추가 지침</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="github_workflow.html">6.1.6.1. GitHub에서 OpenFAST로 작업하기</a></li>
+<li class="toctree-l4"><a class="reference internal" href="github_workflow.html">6.1.6.1. GitHub에서 OpenFAST 작업</a></li>
 <li class="toctree-l4"><a class="reference internal" href="code_style.html">6.1.6.2. 코드 스타일</a></li>
 <li class="toctree-l4"><a class="reference internal" href="build_doc.html">6.1.6.3. 문서 개발</a></li>
 <li class="toctree-l4"><a class="reference internal" href="types_files.html">6.1.6.4. 유형 파일 및 OpenFAST 레지스트리</a></li>
-<li class="toctree-l4"><a class="reference internal" href="debugging.html">6.1.6.5. OpenFAST 디버깅</a></li>
+<li class="toctree-l4"><a class="reference internal" href="debugging.html">6.1.6.5. OpenFAST 디버깅 중</a></li>
 <li class="toctree-l4"><a class="reference internal" href="performance.html">6.1.6.6. 성능 프로파일링 및 튜닝</a></li>
 <li class="toctree-l4"><a class="reference internal" href="versioning.html">6.1.6.7. 버전 관리</a></li>
 </ul>
@@ -509,22 +509,22 @@ window.runMermaid = runMermaid;</script>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#api-reference">6.2. API 참조</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#c-api-reference">6.3. C++ API 참조</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cppapi/index.html">6.3.1. OpenFAST C++ 애플리케이션 프로그래밍 인터페이스</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cppapi/index.html">6.3.1. OpenFAST C++ 응용 프로그래밍 인터페이스</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#other-documentation">6.4. 기타 문서</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">7. 라이센스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. 감사의 글</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">9. 감사의 말씀</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../review.html">문서 상세 리뷰</a></li><li><a href="../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">OpenFAST</a>
       </nav>
@@ -533,10 +533,10 @@ window.runMermaid = runMermaid;</script>
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="집"></a></li>
       <li class="breadcrumb-item active"><span class="section-number">6. </span>개발자 문서</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../_sources/source/dev/index.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+            <a href="../../_sources/source/dev/index.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -545,93 +545,88 @@ window.runMermaid = runMermaid;</script>
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="developer-documentation">
-<span id="dev-guide"></span><h1><span class="section-number">6. </span>개발자 문서<a class="headerlink" href="#developer-documentation" title="이 제목의 고유 링크"></a></h1>
-<p><strong>OpenFAST 개발자로서 우리의 목표는 OpenFAST가 잘 테스트되고 문서화되었으며 자립 가능한 소프트웨어를 보장하는 것입니다.</strong> 이를 위해 우리는 기능 추가 및 개선과 함께 문서 및 테스트 범위를 개선하기 위해 지속적으로 노력하고 있습니다. 문서의 이 섹션에서는 외부 개발자가 NLR OpenFAST 팀과 코드 개발 작업을 수행할 수 있도록 확립한 프로세스 및 절차를 간략하게 설명합니다.</p>
-<p>일반적인 OpenFAST 개발에 도움을 주거나 특정 기능에 대한 작업을 수행하려면 먼저 다음 지침에 따라 OpenFAST를 설치하십시오.
-<a class="reference internal" href="../install/index.html"><span class="doc">설치 지침
-귀하의 기계에 대한</span></a> . 다음으로, 다음 테스트 스위트를 실행하여 설치가 유효한지 확인하십시오.
-<a class="reference internal" href="../testing/index.html"><span class="doc">테스트 지침</span></a>. OpenFAST가 컴파일되는 동안 다음을 통해 읽어 보는 것이 좋습니다. <a class="reference internal" href="#development-philosophy"><span class="std std-ref">개발 철학 및 지침</span></a> 섹션을 통해 개별 개발 및 공동 개발을 위한 일반적인 작업 흐름을 이해할 수 있습니다. 마지막으로 반드시 검토해 보세요. <a class="reference internal" href="github_workflow.html"><span class="doc">GitHub 워크플로
-병합이나 코드 충돌을 방지하려면</span></a> 를 사용하세요.</p>
-<p>NLR, 업계 파트너 및 대학 간에 개발이 동시에 진행되면서 NLR은 GitHub를 사용하여 노력을 조정합니다.</p>
+<span id="dev-guide"></span><h1><span class="section-number">6. </span>개발자 문서<a class="headerlink" href="#developer-documentation" title="이 제목에 대한 영구 링크"></a></h1>
+<p><strong>OpenFAST 개발자로서 우리의 목표는 잘 테스트되고 문서화되었으며 자립 가능한 소프트웨어를 보장하는 것입니다.</strong> 이를 위해 우리는 기능 추가 및 개선과 함께 문서화 및 테스트 범위를 개선하기 위해 지속적으로 노력하고 있습니다. 문서의 이 섹션에서는 외부 개발자가 코드 개발 시 NLR OpenFAST 팀과 협력할 수 있도록 확립한 프로세스 및 절차를 간략하게 설명합니다.</p>
+<p>일반적인 OpenFAST 개발에 도움을 주거나 특정 기능에 대한 작업을 하고 싶다면 먼저 다음 지침에 따라 OpenFAST를 설치하세요.
+<a class="reference internal" href="../install/index.html"><span class="doc">설치 지침</span></a> 당신의 기계를 위해. 다음으로, 다음 테스트 스위트를 실행하여 설치가 유효한지 확인하십시오.
+<a class="reference internal" href="../testing/index.html"><span class="doc">테스트 지침</span></a>. OpenFAST가 컴파일되는 동안 다음 내용을 읽어 보시기 바랍니다. <a class="reference internal" href="#development-philosophy"><span class="std std-ref">개발 철학 및 지침</span></a> 섹션에서는 개별 개발 및 공동 개발을 위한 일반적인 작업 흐름을 이해합니다. 마지막으로 반드시 검토해 보세요. <a class="reference internal" href="github_workflow.html"><span class="doc">GitHub 작업 흐름</span></a> 병합 또는 코드 충돌을 방지합니다.</p>
+<p>NLR, 업계 파트너 및 대학 간에 개발이 병행되면서 NLR는 GitHub를 사용하여 다음과 같은 노력을 조정합니다.</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/openfast/openfast/issues" target="_blank" rel="noopener noreferrer">GitHub 문제</a> 는 사용법이나 개발에 관한 질문을 하고, 버그를 보고하고, 코드 개선 사항을 제안하는 곳입니다.</p></li>
+<li><p><a class="reference external" href="https://github.com/openfast/openfast/issues" target="_blank" rel="noopener noreferrer">GitHub 문제</a> 사용법이나 개발에 관한 질문을 하고, 버그를 보고하고, 코드 개선 사항을 제안하는 곳입니다.</p></li>
 <li><p><a class="reference external" href="https://github.com/openfast/openfast/pulls" target="_blank" rel="noopener noreferrer">GitHub 풀 요청</a>
-는 OpenFAST 팀과 협력하여 새 코드를 기본 저장소에 병합할 수 있는 장소입니다.</p></li>
+OpenFAST 팀과 협력하여 새 코드를 기본 저장소에 병합할 수 있는 곳입니다.</p></li>
 </ul>
 <p>OpenFAST에 관한 기타 질문이 있는 경우 다음으로 문의하십시오.
 <a class="reference external" href="mailto:michael.a.sprague%40nrel.gov">마이크 스프래그</a>.</p>
 <div class="admonition tip">
 <p class="admonition-title">팁</p>
-<p>다음 섹션에서는 프로세스를 보다 효율적이고 효과적으로 만드는 작업 흐름 및 개발 팁에 대한 귀중한 지침을 제공합니다.</p>
+<p>다음 섹션에서는 프로세스를 보다 효율적이고 효과적으로 만드는 워크플로 및 개발 팁에 대한 귀중한 지침을 제공합니다.</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="github_workflow.html#github-workflow"><span class="std std-ref">GitHub에서 OpenFAST 작업</span></a></p></li>
 <li><p><a class="reference internal" href="code_style.html#code-style"><span class="std std-ref">코드 스타일</span></a></p></li>
-<li><p><a class="reference internal" href="debugging.html#debugging"><span class="std std-ref">OpenFAST 디버깅</span></a></p></li>
+<li><p><a class="reference internal" href="debugging.html#debugging"><span class="std std-ref">OpenFAST 디버깅 중</span></a></p></li>
 </ul>
 </div>
 <div class="section" id="development-philosophy-and-guidelines">
-<span id="development-philosophy"></span><h2><span class="section-number">6.1. </span>개발 철학 및 지침<a class="headerlink" href="#development-philosophy-and-guidelines" title="이 제목의 고유 링크"></a></h2>
-<p>OpenFAST는 자립형 커뮤니티 개발 소프트웨어로 만들어졌습니다. NLR OpenFAST 팀은 저장소의 문지기 역할을 하는 동시에 커뮤니티가 새로운 아이디어를 공유하고 코드를 기여하도록 적극적으로 권장합니다. 코드 기여에 대한 고려 사항은 여기에 설명되어 있습니다.</p>
+<span id="development-philosophy"></span><h2><span class="section-number">6.1. </span>개발 철학 및 지침<a class="headerlink" href="#development-philosophy-and-guidelines" title="이 제목에 대한 영구 링크"></a></h2>
+<p>OpenFAST는 자립형 커뮤니티 개발 소프트웨어로 만들어졌습니다. NLR OpenFAST 팀이 저장소의 문지기 역할을 하는 동안 우리는 커뮤니티가 새로운 아이디어를 공유하고 코드를 기여하도록 적극적으로 장려합니다. 코드 기여에 대한 고려 사항은 여기에 설명되어 있습니다.</p>
 <div class="section" id="engagement-with-nlr">
-<h3><span class="section-number">6.1.1. </span>NLR 참여<a class="headerlink" href="#engagement-with-nlr" title="이 제목의 고유 링크"></a></h3>
-<p>커뮤니티 코드 기여 프로세스는 NLR OpenFAST 팀과 직접 협력하여 작업 범위를 정의하고 개발 노력을 조정하는 것부터 시작됩니다. 많은 그룹이 OpenFAST를 동시에 작업하기 때문에 이는 특히 중요합니다. 조기에 참여함으로써 모든 개발자는 최신 상태를 유지하고 코드 병합 중에 충돌을 최소화할 수 있습니다. 선호되는 의사소통 방법은 <a class="reference external" href="https://github.com/openfast/openfast/issues" target="_blank" rel="noopener noreferrer">GitHub 문제</a>. 초기 게시물에는 계획된 개발 작업, 영향을 받을 소프트웨어 영역 및 모델 검증 자료에 대한 모든 관련 정보가 포함되어야 합니다. 참조 <a class="reference internal" href="#development-plan"><span class="std std-ref">개발 계획/구현 계획
-계획된 작업 설명에 대한 자세한 내용은</span></a>
-를 참조하세요.</p>
-<p>NLR OpenFAST 팀은 항상 우리의 관심이 가장 많이 필요한 내부 프로젝트를 진행하고 있지만 합리적인 시간 내에 커뮤니티에 참여하고 개발 노력을 지원하기 위해 모든 노력을 기울일 것입니다. 문제를 게시한 후 NLR OpenFAST 팀은 세부 사항을 논의하기 위한 회의 일정을 잡기 위해 연락할 수 있습니다.</p>
+<h3><span class="section-number">6.1.1. </span>NLR와의 참여<a class="headerlink" href="#engagement-with-nlr" title="이 제목에 대한 영구 링크"></a></h3>
+<p>커뮤니티 코드 기여 프로세스는 NLR OpenFAST 팀과 직접 협력하여 작업 범위를 정의하고 개발 노력을 조정하는 것부터 시작됩니다. 많은 그룹이 OpenFAST를 동시에 작업하기 때문에 이는 특히 중요합니다. 조기에 참여함으로써 모든 개발자는 최신 상태를 유지하고 코드 병합 중에 충돌을 최소화할 수 있습니다. 선호되는 의사소통 방법은 <a class="reference external" href="https://github.com/openfast/openfast/issues" target="_blank" rel="noopener noreferrer">GitHub 문제</a>. 초기 게시물에는 계획된 개발 작업, 영향을 받을 소프트웨어 영역 및 모델 검증 자료에 대한 모든 관련 정보가 포함되어야 합니다. 보다 <a class="reference internal" href="#development-plan"><span class="std std-ref">개발 계획/실행 계획</span></a>
+계획된 작업 설명에 대한 자세한 내용은</p>
+<p>NLR OpenFAST 팀은 항상 우리의 관심이 가장 많이 필요한 내부 프로젝트를 진행하고 있지만 합리적인 시간 내에 커뮤니티에 참여하고 개발 노력을 지원하기 위해 모든 노력을 기울일 것입니다. 문제를 게시한 후 NLR OpenFAST 팀에서 연락하여 세부 사항을 논의하기 위한 회의 일정을 잡을 수 있습니다.</p>
 </div>
 <div class="section" id="development-plan-implementation-plan">
-<span id="development-plan"></span><h3><span class="section-number">6.1.2. </span>개발 계획/구현 계획
-계획된 작업 설명에 대한 자세한 내용은<a class="headerlink" href="#development-plan-implementation-plan" title="이 제목의 고유 링크"></a></h3>
-<p>NLR의 중요한 코드 개발 노력은 세부 구현 계획 개발로 시작되며 이러한 계획 중 일부를 참조용으로 다운로드할 수 있습니다.</p>
+<span id="development-plan"></span><h3><span class="section-number">6.1.2. </span>개발 계획/실행 계획<a class="headerlink" href="#development-plan-implementation-plan" title="이 제목에 대한 영구 링크"></a></h3>
+<p>NLR의 중요한 코드 개발 노력은 상세한 구현 계획 개발로 시작되며, 이러한 계획 중 일부를 다운로드하여 참조할 수 있습니다.</p>
 <ul class="simple">
 <li><p><a class="reference download internal" download="" href="../../_downloads/ac04f454598248483d3a339d96dcd4fd/AeroLin_2019-12.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Development</span> <span class="pre">Plan</span> <span class="pre">for</span> <span class="pre">the</span> <span class="pre">Aerodynamic</span> <span class="pre">Linearization</span> <span class="pre">of</span> <span class="pre">OpenFAST</span></code></a></p></li>
 <li><p><a class="reference download internal" download="" href="../../_downloads/c653fb54b5d72da81494fa4851344182/FAST.Farm_Plan_Rev25.doc"><code class="xref download docutils literal notranslate"><span class="pre">FAST.Farm</span> <span class="pre">Development</span> <span class="pre">Plan</span></code></a>.</p></li>
 <li><p><a class="reference download internal" download="" href="../../_downloads/ec7b205d06be5a23fd2d7de23c517805/HydroDyn_2ndOrderForces_Plan.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Implementation</span> <span class="pre">Plan</span> <span class="pre">-</span> <span class="pre">2nd-order</span> <span class="pre">Forces</span> <span class="pre">Within</span> <span class="pre">HydroDyn</span></code></a></p></li>
 <li><p><a class="reference download internal" download="" href="../../_downloads/42a2cfdae2d2df1d36eae686d87eb12d/WAVE2_document.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Implementation</span> <span class="pre">Plan</span> <span class="pre">-</span> <span class="pre">2nd-order</span> <span class="pre">Wave</span> <span class="pre">Kinematics</span> <span class="pre">Within</span> <span class="pre">HydroDyn</span></code></a></p></li>
 </ul>
-<p>OpenFAST의 모듈화 프레임워크 내의 좋은 계획은 OpenFAST에서 사용하는 정의와 명명법을 따릅니다.
+<p>OpenFAST의 모듈화 프레임워크 내의 좋은 계획은 다음에서 사용하는 정의와 명명법을 따릅니다.
 <a class="reference download internal" download="" href="../../_downloads/2a9110b5e2a2b531c7dc05ea1fc86b89/NWTC_Programmers_Handbook.pdf"><code class="xref download docutils literal notranslate"><span class="pre">NWTC</span> <span class="pre">Programmer's</span> <span class="pre">Handbook</span></code></a>. 다음 정보를 전달해야 합니다.</p>
 <ul class="simple">
 <li><p>모듈이 느슨한 결합, 타임 행진을 위한 긴밀한 결합 및/또는 선형화용인지 여부를 명시합니다.</p></li>
 <li><p>모듈의 입력(초기화 포함), 출력(초기화 포함), 상태(연속, 이산 및 제약 조건) 및 단위를 포함한 매개변수를 정의합니다.</p></li>
 <li><p>모듈에 대한 예제 입력 파일을 배치합니다.</p></li>
 <li><p>야코비 행렬(강한 결합 및 선형화용)을 포함한 모듈의 수학적 공식을 프레임워크에 필요한 형식으로 설명합니다.</p></li>
-<li><p>모듈의 입력이 다른 특정 모듈의 출력에서 파생되는 방법을 규정합니다.</p></li>
+<li><p>모듈의 입력이 다른 특정 모듈의 출력에서 ​​파생되는 방법을 규정합니다.</p></li>
 <li><p>잠재적인 수치 문제와 코드에서 이를 방지하는 방법을 식별합니다.</p></li>
 <li><p>어떤 수학 공식이 어떤 서브루틴에 사용되는지 식별하고 솔루션 프로세스에 사용되는 알고리즘을 설명하는 것을 포함하여 의사 코드(실제 코드와 반대)를 사용하여 모듈의 서브루틴을 배치합니다.</p></li>
 </ul>
 <p>이 정보는 소스 코드를 변경하기 전에 계획을 검토하고, 반복하고, 동의하는 것이 더 쉽기 때문에 매우 유용합니다. 또한 구현 계획은 프로그래밍 노력에 큰 도움이 되며 사용자 작성 및 문서 개발을 위한 유용한 시작점이 됩니다.</p>
 </div>
 <div class="section" id="qualities-of-a-good-submission">
-<h3><span class="section-number">6.1.3. </span>좋은 제출의 조건<a class="headerlink" href="#qualities-of-a-good-submission" title="이 제목의 고유 링크"></a></h3>
+<h3><span class="section-number">6.1.3. </span>좋은 제출의 조건<a class="headerlink" href="#qualities-of-a-good-submission" title="이 제목에 대한 영구 링크"></a></h3>
 <p>개발 노력에는 개발 프로세스 전반에 걸쳐 적절한 테스트가 포함되어야 합니다. 가능하다면 새로운 서브루틴에는 단위 수준 테스트가 포함되어야 하며 기존 회귀 테스트는 주기적으로 실행되어 전체 시스템 동작이 의도치 않게 변경되지 않았는지 확인해야 합니다. 새로운 기능의 경우 새 코드를 다루기 위해 추가 회귀 테스트를 추가해야 합니다. 회귀 테스트 결과가 예상대로 변경되면 기준 결과를 로컬에서 업데이트해야 합니다. <a class="reference external" href="https://github.com/openfast/r-test" target="_blank" rel="noopener noreferrer">openfast/r-테스트</a>
-저장소. 는 <a class="reference external" href="https://github.com/openfast/r-test#updating-the-baselines" target="_blank" rel="noopener noreferrer">r-테스트 읽어보기</a>
-에서는 기준선 업데이트와
-이 문서의 <a class="reference internal" href="../testing/index.html#testing"><span class="std std-ref">OpenFAST 테스트</span></a>
-섹션에는 테스트에 대한 추가 세부 정보가 포함되어 있습니다.</p>
+저장소. 그만큼 <a class="reference external" href="https://github.com/openfast/r-test#updating-the-baselines" target="_blank" rel="noopener noreferrer">r-테스트 README</a>
+기준선 업데이트에 대해 설명하고 <a class="reference internal" href="../testing/index.html#testing"><span class="std std-ref">OpenFAST 테스트</span></a>
+이 문서의 섹션에는 테스트에 대한 추가 세부 정보가 포함되어 있습니다.</p>
 <p>새로운 코드는 개발자와 사용자 관점 모두에서 견고성을 고려해야 합니다. 다음은 코드 개발 중에 고려해야 할 몇 가지 질문입니다.</p>
 <ul class="simple">
-<li><p>다른 개발자에게 서브루틴 사용 방법이 명확합니까?</p></li>
-<li><p>새 코드가 명확하고 예측 가능한 동작을 보입니까?</p></li>
-<li><p>다양한 데이터 품질에서 코드가 어떻게 작동합니까?</p></li>
+<li><p>다른 개발자가 서브루틴을 사용하는 방법을 명확하게 알 수 있습니까?</p></li>
+<li><p>새 코드가 명확하고 예측 가능한 동작을 나타냅니까?</p></li>
+<li><p>다양한 품질의 데이터에서 코드는 어떻게 작동합니까?</p></li>
 <li><p>코드가 시뮬레이션 성능에 어떤 영향을 미치나요?</p></li>
 </ul>
-<p>또한 사용자 및 개발자 문서가 새 코드에 포함되어야 합니다. 사용자 문서에는 이론, 모델링 지침, 입력 및 출력에 대한 설명이 포함됩니다. 사용자 문서는 다음에 설명된 온라인 문서의 일부로 포함되어야 합니다. <a class="reference internal" href="build_doc.html#build-doc"><span class="std std-ref">개발 문서</span></a>. 개발자 문서는 일반적으로 소스 코드의 주석에 포함됩니다. 이는 서브루틴 API(입력 및 출력)뿐만 아니라 명확하지 않은 알고리즘이나 코드 줄을 설명해야 합니다. 2년 동안 코드를 다시 볼 수 없다면 코드를 완전히 이해하기 위해 알아야 할 것이 무엇인지 스스로에게 물어보세요.</p>
+<p>또한 사용자 및 개발자 문서가 새 코드에 포함되어야 합니다. 사용자 문서에는 이론, 모델링 지침, 입력 및 출력에 대한 설명이 포함됩니다. 사용자 문서는 다음에 설명된 온라인 문서의 일부로 포함되어야 합니다. <a class="reference internal" href="build_doc.html#build-doc"><span class="std std-ref">문서 개발</span></a>. 개발자 문서는 일반적으로 소스 코드의 주석에 포함됩니다. 여기에는 서브루틴 API(입력 및 출력)뿐만 아니라 명확하지 않은 알고리즘이나 코드 줄도 설명되어야 합니다. 2년 동안 코드를 다시 볼 수 없다면 코드를 완전히 이해하기 위해 알아야 할 것이 무엇인지 스스로에게 물어보세요.</p>
 </div>
 <div class="section" id="submit-for-review-and-nlr-feedback">
-<h3><span class="section-number">6.1.4. </span>검토 및 NLR 피드백을 위해 제출<a class="headerlink" href="#submit-for-review-and-nlr-feedback" title="이 제목의 고유 링크"></a></h3>
-<p>NLR OpenFAST 팀의 검토를 위해 새 코드를 제출할 수 있습니다. <a class="reference external" href="https://github.com/openfast/openfast/pulls" target="_blank" rel="noopener noreferrer">풀 요청</a>
+<h3><span class="section-number">6.1.4. </span>검토 및 NLR 피드백을 위해 제출<a class="headerlink" href="#submit-for-review-and-nlr-feedback" title="이 제목에 대한 영구 링크"></a></h3>
+<p>NLR OpenFAST 팀의 검토를 위해 새 코드를 제출할 수 있습니다. <a class="reference external" href="https://github.com/openfast/openfast/pulls" target="_blank" rel="noopener noreferrer">풀 리퀘스트</a>
 에 설명된 대로 <a class="reference internal" href="github_workflow.html#github-workflow"><span class="std std-ref">GitHub에서 OpenFAST 작업</span></a>. 우리는 코드의 정확성, 유효성, 품질 및 견고성을 검토할 것입니다. 오픈 소스 코드 기여를 검토하는 것은 어려울 수 있으므로 자신의 코드를 검토하고 병합 준비가 되었는지 결정하는 데 도움이 되는 정보가 무엇인지 고려하는 것이 좋습니다.</p>
-<p>검토 프로세스는 단순히 자동화된 테스트가 통과되었는지 확인하는 것으로 시작됩니다. <a class="reference external" href="https://github.com/openfast/openfast/actions" target="_blank" rel="noopener noreferrer">GitHub 작업</a>.
-<strong>검토를 요청하기 전에 모든 자동화된 테스트를 통과했는지 확인하십시오.</strong>
-그 후 프로세스에는 검토자와 제출자 간의 일부 의사소통이 포함되며, 배경이나 검증에 대한 추가 정보를 요청할 수도 있고, 특정 코드 줄에 대한 추가 통찰력을 얻기 위해 풀 요청에 주석을 달 수도 있습니다.</p>
-<p>제출자와 검토자 사이에 합의가 이루어진 후 풀 요청은 대상 브랜치에 병합됩니다(일반적으로
-<cite>개발</cite>) 풀 요청이 종료됩니다. 끝났어요! 이 변경 사항은 다음 OpenFAST 릴리스에 포함될 예정입니다. <cite>개발</cite> 지점이 다음으로 병합되었습니다. <cite>메인</cite>.</p>
+<p>검토 프로세스는 단순히 자동화된 테스트가 통과되었는지 확인하는 것부터 시작됩니다. <a class="reference external" href="https://github.com/openfast/openfast/actions" target="_blank" rel="noopener noreferrer">GitHub 작업</a>.
+<strong>검토를 요청하기 전에 모든 자동화된 테스트를 통과했는지 확인하세요.</strong>
+그 후 프로세스에는 리뷰어와 제출자 간의 일부 의사소통이 포함되며, 배경이나 검증에 대한 추가 정보를 요청할 수도 있고, 특정 코드 줄에 대한 추가 통찰력을 얻기 위해 끌어오기 요청에 댓글을 달 수도 있습니다.</p>
+<p>제출자와 검토자 사이에 합의가 이루어진 후 풀 요청은 대상 브랜치(일반적으로)에 병합됩니다.
+<cite>개발자</cite>) 풀 요청이 종료됩니다. 끝났어요! 이 변경 사항은 OpenFAST의 후속 릴리스에 포함될 예정입니다. <cite>개발자</cite> 지점이 다음으로 병합되었습니다. <cite>기본</cite>.</p>
 </div>
 <div class="section" id="bug-fixes">
-<h3><span class="section-number">6.1.5. </span>버그 수정<a class="headerlink" href="#bug-fixes" title="이 제목의 고유 링크"></a></h3>
-<p>코드에서 버그를 발견한 경우 두 가지를 모두 설명하는 것이 중요합니다. <a class="reference external" href="https://github.com/openfast/openfast/issues" target="_blank" rel="noopener noreferrer">GitHub 문제</a>
-및 최소한의 테스트를 통해. 버그 수정을 커밋하기 전에 버그를 노출하는 새 테스트를 커밋하세요. 이 테스트는 실패해야 합니다. 그런 다음 버그 수정을 커밋하고 테스트가 통과했음을 보여줍니다. git-commit 기록은 다음과 같아야 합니다(아래에서 위로 진행됨).</p>
+<h3><span class="section-number">6.1.5. </span>버그 수정<a class="headerlink" href="#bug-fixes" title="이 제목에 대한 영구 링크"></a></h3>
+<p>코드에서 버그를 발견한 경우 두 가지 모두를 자세히 설명하는 것이 중요합니다. <a class="reference external" href="https://github.com/openfast/openfast/issues" target="_blank" rel="noopener noreferrer">GitHub 문제</a>
+그리고 최소한의 테스트를 통해 버그 수정을 커밋하기 전에 버그를 노출하는 새 테스트를 커밋하세요. 이 테스트는 실패해야 합니다. 그런 다음 버그 수정을 커밋하고 테스트가 통과했음을 보여줍니다. git-commit 기록은 다음과 같아야 합니다(아래에서 위로 진행됨).</p>
 <pre class="mermaid">        gitGraph BT:
 options
 {
@@ -666,19 +661,18 @@ commit "Fix out of bounds error in array"
 checkout dev
 commit "Merge pull request #125"
 merge bugfix
-    </pre><p>참조
-자세한 내용은 <a class="reference internal" href="../testing/index.html#testing"><span class="std std-ref">OpenFAST 테스트</span></a> 및 <a class="reference internal" href="github_workflow.html#github-workflow"><span class="std std-ref">GitHub에서 OpenFAST 작업</span></a> 를 참조하세요.</p>
+    </pre><p>다음을 참조: <a class="reference internal" href="../testing/index.html#testing"><span class="std std-ref">OpenFAST 테스트</span></a> 및 <a class="reference internal" href="github_workflow.html#github-workflow"><span class="std std-ref">GitHub에서 OpenFAST 작업</span></a> 자세한 내용은</p>
 </div>
 <div class="section" id="additional-guidance">
-<h3><span class="section-number">6.1.6. </span>추가 지침<a class="headerlink" href="#additional-guidance" title="이 제목의 고유 링크"></a></h3>
-<p>다음 섹션에서는 소스 코드 개발, NLR OpenFAST 팀 및 기타 커뮤니티 기여자와의 상호 작용, 일반적인 기능 디버깅 및 구축에 대한 확장된 지침을 제공합니다.</p>
+<h3><span class="section-number">6.1.6. </span>추가 지침<a class="headerlink" href="#additional-guidance" title="이 제목에 대한 영구 링크"></a></h3>
+<p>다음 섹션에서는 소스 코드 개발, NLR OpenFAST 팀 및 기타 커뮤니티 기여자와의 상호 작용, 일반적인 기능 디버깅 및 구축에 대한 자세한 지침을 제공합니다.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="github_workflow.html">6.1.6.1. GitHub에서 OpenFAST로 작업하기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="github_workflow.html">6.1.6.1. GitHub에서 OpenFAST 작업</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_style.html">6.1.6.2. 코드 스타일</a></li>
 <li class="toctree-l1"><a class="reference internal" href="build_doc.html">6.1.6.3. 문서 개발</a></li>
 <li class="toctree-l1"><a class="reference internal" href="types_files.html">6.1.6.4. 유형 파일 및 OpenFAST 레지스트리</a></li>
-<li class="toctree-l1"><a class="reference internal" href="debugging.html">6.1.6.5. OpenFAST 디버깅</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debugging.html">6.1.6.5. OpenFAST 디버깅 중</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performance.html">6.1.6.6. 성능 프로파일링 및 튜닝</a></li>
 <li class="toctree-l1"><a class="reference internal" href="versioning.html">6.1.6.7. 버전 관리</a></li>
 </ul>
@@ -686,7 +680,7 @@ merge bugfix
 </div>
 </div>
 <div class="section" id="api-reference">
-<h2><span class="section-number">6.2. </span>API 참조<a class="headerlink" href="#api-reference" title="이 제목의 고유 링크"></a></h2>
+<h2><span class="section-number">6.2. </span>API 참조<a class="headerlink" href="#api-reference" title="이 제목에 대한 영구 링크"></a></h2>
 <p>소스 코드 전체의 일부 서브루틴과 파생 유형에는 Doxygen으로 컴파일된 소스 내 문서가 있습니다. 문서의 이 부분은 항상 개발 중이지만 기존 API 참조는 다음 페이지에서 찾을 수 있습니다.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://openfast.readthedocs.io/en/main/html/index.html" target="_blank" rel="noopener noreferrer">메인 페이지</a></p></li>
@@ -695,26 +689,26 @@ merge bugfix
 </ul>
 </div>
 <div class="section" id="c-api-reference">
-<h2><span class="section-number">6.3. </span>C++ API 참조<a class="headerlink" href="#c-api-reference" title="이 제목의 고유 링크"></a></h2>
+<h2><span class="section-number">6.3. </span>C++ API 참조<a class="headerlink" href="#c-api-reference" title="이 제목에 대한 영구 링크"></a></h2>
 <p>C++ API 문서를 사용할 수 있습니다.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="cppapi/index.html">6.3.1. OpenFAST C++ 애플리케이션 프로그래밍 인터페이스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cppapi/index.html">6.3.1. OpenFAST C++ 응용 프로그래밍 인터페이스</a></li>
 </ul>
 </div>
 </div>
 <div class="section" id="other-documentation">
-<h2><span class="section-number">6.4. </span>기타 문서<a class="headerlink" href="#other-documentation" title="이 제목의 고유 링크"></a></h2>
+<h2><span class="section-number">6.4. </span>기타 문서<a class="headerlink" href="#other-documentation" title="이 제목에 대한 영구 링크"></a></h2>
 <p>솔버와 수학에 대한 더 깊은 이해를 원하는 개발자에게 유용할 수 있는 추가 문서가 있습니다.</p>
 <ul class="simple">
 <li><dl class="simple">
-<dt><a class="reference download internal" download="" href="../../_downloads/2a9110b5e2a2b531c7dc05ea1fc86b89/NWTC_Programmers_Handbook.pdf"><code class="xref download docutils literal notranslate"><span class="pre">NWTC</span> <span class="pre">Programmer's</span> <span class="pre">Handbook</span></code></a></dt><dd><p>이는 FAST 8의 프로그래밍 지침 개요입니다. OpenFAST에서 일부 구문과 사소한 세부 정보가 변경되었지만 이 가이드의 대부분은 여전히 ​​관련이 있습니다.</p>
+<dt><a class="reference download internal" download="" href="../../_downloads/2a9110b5e2a2b531c7dc05ea1fc86b89/NWTC_Programmers_Handbook.pdf"><code class="xref download docutils literal notranslate"><span class="pre">NWTC</span> <span class="pre">Programmer's</span> <span class="pre">Handbook</span></code></a></dt><dd><p>이것은 FAST 8의 프로그래밍 지침 개요입니다. OpenFAST에서 일부 구문과 사소한 세부 사항이 변경되었지만 이 지침의 대부분은 여전히 ​​관련이 있습니다.</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple">
-<dt><a class="reference download internal" download="" href="../../_downloads/3f19498a5dc774461e022b671ff01ec6/OutListParameters.xlsx"><code class="xref download docutils literal notranslate"><span class="pre">OutListParameters.xlsx</span></code></a></dt><dd><p>이 Excel 파일에는 각 모듈의 전체 출력 목록이 포함되어 있습니다. 각 모듈의 출력 채널 목록 처리를 위한 Fortran 코드를 생성하는 데 사용됩니다(이 코드는 일반적으로 _IO.f90 파일에 있음). 다음에서 사용할 수 있는 MATLAB 스크립트
-<a class="reference external" href="https://github.com/OpenFAST/matlab-toolbox" target="_blank" rel="noopener noreferrer">matlab 도구 상자</a> 저장소 <em>유틸리티/GetOutListParameters.m</em>.</p>
+<dt><a class="reference download internal" download="" href="../../_downloads/3f19498a5dc774461e022b671ff01ec6/OutListParameters.xlsx"><code class="xref download docutils literal notranslate"><span class="pre">OutListParameters.xlsx</span></code></a></dt><dd><p>이 Excel 파일에는 각 모듈의 전체 출력 목록이 포함되어 있습니다. 각 모듈의 출력 채널 목록 처리를 위한 Fortran 코드를 생성하는 데 사용됩니다(이 코드는 일반적으로 _IO.f90 파일에 있음). MATLAB 스크립트는 다음에서 사용할 수 있습니다.
+<a class="reference external" href="https://github.com/OpenFAST/matlab-toolbox" target="_blank" rel="noopener noreferrer">MATLAB 도구 상자</a> 저장소 <em>유틸리티/GetOutListParameters.m</em>.</p>
 </dd>
 </dl>
 </li>
@@ -725,9 +719,9 @@ merge bugfix
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
-        <a href="../testing/regression_test_windows.html" class="btn btn-neutral float-left" title="5.2.5.4.1. Visual Studio 회귀 테스트를 사용하는 Windows" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
-        <a href="github_workflow.html" class="btn btn-neutral float-right" title="6.1.6.1. GitHub에서 OpenFAST로 작업하기" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
+        <a href="../testing/regression_test_windows.html" class="btn btn-neutral float-left" title="5.2.5.4.1. Visual Studio 회귀 테스트를 사용하는 Windows" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+        <a href="github_workflow.html" class="btn btn-neutral float-right" title="6.1.6.1. GitHub에서 OpenFAST 작업" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr>
@@ -737,7 +731,7 @@ merge bugfix
   </div>
 
   다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">주제</a>
     제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
    
 

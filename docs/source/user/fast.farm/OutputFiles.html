@@ -2,7 +2,7 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>4.19.5. 출력 파일 - OpenFAST v5.0.0 문서</title>
+  <title>4.19.5. 출력 파일 — OpenFAST v5.0.0 문서</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css">
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css">
       <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css">
@@ -21,7 +21,7 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="검색" href="../../../search.html">
+    <link rel="search" title="찾다" href="../../../search.html">
     <link rel="next" title="4.19.6. 모델링 지침" href="ModelGuidance.html">
     <link rel="prev" title="4.19.4. 입력 파일" href="InputFiles.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/fast.farm/OutputFiles.html"></head>
@@ -36,7 +36,7 @@
           
           <a href="../../../index.html" class="icon icon-home">
             OpenFAST
-              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="심벌 마크">
           </a>
               <div class="version">5.0 · 한국어</div>
 <div role="search">
@@ -48,15 +48,15 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력소음</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
@@ -76,7 +76,7 @@
 <li class="toctree-l3"><a class="reference internal" href="RunningFFarm.html">4.19.3. FAST.Farm 실행</a></li>
 <li class="toctree-l3"><a class="reference internal" href="InputFiles.html">4.19.4. 입력 파일</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">4.19.5. 출력 파일</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#echo-file">4.19.5.1. 에코 파일</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#echo-file">4.19.5.1. Echo 파일</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#summary-file">4.19.5.2. 요약 파일</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#visualization-output-files">4.19.5.3. 시각화 출력 파일</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#wake-dynamics-plane-files">4.19.5.4. 웨이크 역학 평면 파일</a></li>
@@ -85,9 +85,9 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="ModelGuidance.html">4.19.6. 모델링 지침</a></li>
-<li class="toctree-l3"><a class="reference internal" href="FFarmTheory.html">4.19.7. FAST.팜 이론</a></li>
-<li class="toctree-l3"><a class="reference internal" href="FutureWork.html">4.19.8. 향후 개발 계획</a></li>
-<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.19.9. 참고문헌</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FFarmTheory.html">4.19.7. FAST.농장 이론</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FutureWork.html">4.19.8. 미래의 일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.19.9. 참고자료</a></li>
 <li class="toctree-l3"><a class="reference internal" href="AppendixA.html">4.19.10. FAST.Farm 기본 입력 파일</a></li>
 <li class="toctree-l3"><a class="reference internal" href="AppendixB.html">4.19.11. 주변 바람 파일</a></li>
 <li class="toctree-l3"><a class="reference internal" href="AppendixC.html">4.19.12. 출력 채널 목록</a></li>
@@ -101,16 +101,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -119,12 +119,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.19. </span>FAST.Farm 사용자 가이드 및 이론 설명서</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.19. </span>FAST.Farm 사용자 가이드 및 이론 매뉴얼</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.19.5. </span>출력 파일</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/fast.farm/OutputFiles.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+            <a href="../../../_sources/source/user/fast.farm/OutputFiles.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -133,72 +133,62 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="output-files">
-<span id="ff-output"></span><h1><span class="section-number">4.19.5. </span>출력 파일<a class="headerlink" href="#output-files" title="이 제목의 고유 링크"></a></h1>
+<span id="ff-output"></span><h1><span class="section-number">4.19.5. </span>출력 파일<a class="headerlink" href="#output-files" title="이 제목에 대한 영구 링크"></a></h1>
 <p>FAST.Farm은 에코 파일, 요약 파일, 시각화 출력 파일, 시계열 결과 파일, OpenFAST 관련 파일 등 5가지 유형의 출력 파일을 생성합니다. 다음 섹션에서는 이러한 파일의 목적과 내용을 자세히 설명합니다.</p>
 <div class="section" id="echo-file">
-<h2><span class="section-number">4.19.5.1. </span>에코 파일<a class="headerlink" href="#echo-file" title="이 제목의 고유 링크"></a></h2>
-<p>경우 <strong>에코</strong> = FAST.Farm 기본 입력 파일에서 TRUE이면 파일 내용이 명명 규칙 &lt;을 사용하여 파일에 반영됩니다.<em>RootName.ech</em>, 여기서 &lt;<em>RootName</em>&gt;는 다음에 정의되어 있습니다.
-<a class="reference internal" href="InputFiles.html#ff-ambwindvtk"><span class="std std-numref">섹션 4.19.4.3</span></a>. 에코 파일은 기본 입력 파일을 디버깅하는 데 유용합니다. FAST.Farm이 기본 입력 파일을 구문 분석하는 동안 오류가 발생하면 에코 파일의 내용이 잘립니다. 오류는 일반적으로 마지막으로 성공적으로 에코된 줄 다음 줄에 해당합니다.</p>
+<h2><span class="section-number">4.19.5.1. </span>Echo 파일<a class="headerlink" href="#echo-file" title="이 제목에 대한 영구 링크"></a></h2>
+<p>다음의 경우 <strong>Echo</strong> = FAST.Farm 기본 입력 파일의 TRUE, 파일 내용은 명명 규칙 &lt;을 사용하여 파일에 반영됩니다.<em>RootName.ech</em>, 여기서 &lt;<em>RootName</em>&gt;에 정의된 대로입니다.
+<a class="reference internal" href="InputFiles.html#ff-ambwindvtk"><span class="std std-numref">섹션 4.19.4.3</span></a>. 에코 파일은 기본 입력 파일을 디버깅하는 데 유용합니다. 기본 입력 파일을 구문 분석하는 동안 FAST.Farm에서 오류가 발생하면 에코 파일의 내용이 잘립니다. 오류는 일반적으로 마지막으로 성공적으로 에코된 줄 다음 줄에 해당합니다.</p>
 </div>
 <div class="section" id="summary-file">
-<span id="ff-output-sum"></span><h2><span class="section-number">4.19.5.2. </span>요약 파일<a class="headerlink" href="#summary-file" title="이 제목의 고유 링크"></a></h2>
-<p>경우 <strong>SumPrint</strong> = FAST.Farm 기본 입력 파일에서 TRUE이면 FAST.Farm은 &lt;라는 명명 규칙을 사용하여 요약 파일을 생성합니다.<em>RootName.sum</em>&gt;. 이 파일에는 풍력터빈 위치 및 OpenFAST 기본 입력 파일을 포함하여 풍력 발전 단지 모델에 대한 주요 정보가 요약되어 있습니다. 웨이크 역학 유한차분 그리드 및 매개변수; 다양한 모델 구성요소의 시간 단계; 그리고 선택된 출력의 이름 단위와 순서.</p>
+<span id="ff-output-sum"></span><h2><span class="section-number">4.19.5.2. </span>요약 파일<a class="headerlink" href="#summary-file" title="이 제목에 대한 영구 링크"></a></h2>
+<p>다음의 경우 <strong>SumPrint</strong> = FAST.Farm 기본 입력 파일의 TRUE, FAST.Farm은 &lt;라는 명명 규칙을 사용하여 요약 파일을 생성합니다.<em>RootName.sum</em>&gt;. 이 파일에는 풍력 터빈 위치 및 OpenFAST 기본 입력 파일을 포함하여 풍력 발전소 모델에 대한 주요 정보가 요약되어 있습니다. 웨이크 역학 유한차분 그리드 및 매개변수; 다양한 모델 구성요소의 시간 단계; 그리고 선택된 출력의 이름 단위와 순서.</p>
 </div>
 <div class="section" id="visualization-output-files">
-<span id="ff-output-vis"></span><h2><span class="section-number">4.19.5.3. </span>시각화 출력 파일<a class="headerlink" href="#visualization-output-files" title="이 제목의 고유 링크"></a></h2>
-<p>경우 <strong>WrDisWind</strong> = FAST.Farm 기본 입력 파일에서 TRUE인 FAST.Farm은 전체 3D 저해상도 및 고해상도 교란 바람 데이터 출력 파일(예: 시각화를 위해 풍력 발전 단지 전체의 주변 바람 및 후류 상호 작용)을 생성합니다. 이러한 출력 파일의 VTK 데이터 형식 및 공간 해상도(그리드 포인트 수, 원점 및 간격)는 FAST.Farm 시뮬레이션에서 사용되는 해당 저해상도 및 고해상도 주변 바람 데이터와 일치합니다. VTK 파일은 다음과 같은 디렉터리에 기록됩니다. <em>vtk_ff</em> 입니다. 이러한 출력 파일의 명명 규칙은 다음과 같습니다.
-<em>&lt;루트 이름&gt;.Low.Dis.&lt;n</em><sub>낮음</sub><em>&gt;.vtk</em> 및
-<em>&lt;루트 이름&gt;.HighT&lt;n</em><sub>t</sub><em>&gt;.Dis.&lt;n</em><sub>높음</sub><em>&gt;.vtk</em> 저해상도 및 고해상도 교란 풍속 데이터 파일에 대해 각각 적용되며, 여기서 <em>&lt;n</em><sub>t</sub><em>&gt;</em>, <em>&lt;n</em><sub>낮음</sub><em>&gt;</em>및
-이 플래그 값 아래에
-<em>&lt;n</em><sub>높음</sub> 는 다음에 정의되어 있습니다.
-<a class="reference internal" href="InputFiles.html#ff-ambwindvtk"><span class="std std-numref">섹션 4.19.4.3</span></a>, 앞에 0이 붙습니다.</p>
+<span id="ff-output-vis"></span><h2><span class="section-number">4.19.5.3. </span>시각화 출력 파일<a class="headerlink" href="#visualization-output-files" title="이 제목에 대한 영구 링크"></a></h2>
+<p>다음의 경우 <strong>WrDisWind</strong> = FAST.Farm 기본 입력 파일의 TRUE인 FAST.Farm은 전체 3D 저해상도 및 고해상도 교란 바람 데이터 출력 파일, 즉 시각화를 위해 풍력 단지 전체에 걸쳐 주변 바람 및 후류 상호 작용을 생성합니다. 이러한 출력 파일의 VTK 데이터 형식 및 공간 해상도(그리드 포인트 수, 원점 및 간격)는 FAST.Farm 시뮬레이션에서 사용되는 해당 저해상도 및 고해상도 주변 바람 데이터와 일치합니다. VTK 파일은 다음 디렉터리에 기록됩니다. <em>vtk_ff</em> FAST.Farm 기본 파일이 저장되는 위치입니다. 이러한 출력 파일의 명명 규칙은 다음과 같습니다.
+<em>&lt;RootName&gt;.낮음.Dis.&lt;n</em><sub>낮은</sub><em>&gt;.vtk</em> 및
+<em>&lt;RootName&gt;.HighT&lt;n</em><sub>t</sub><em>&gt;.디스.&lt;n</em><sub>높은</sub><em>&gt;.vtk</em> 저해상도 및 고해상도 교란 풍속 데이터 파일에 대해 각각 적용되며, 여기서 <em>&lt;n</em><sub>t</sub><em>&gt;</em>, <em>&lt;n</em><sub>낮은</sub><em>&gt;</em>, 및
+<em>&lt;n</em><sub>높은</sub> 에 정의된 바와 같습니다
+<a class="reference internal" href="InputFiles.html#ff-ambwindvtk"><span class="std std-numref">섹션 4.19.4.3</span></a>, 그러나 앞에 0이 붙습니다.</p>
 <ul class="simple">
-<li><p>마찬가지로, 만약 <strong>NOutDisWindXY</strong>, <strong>NOutDisWindYZ</strong>또는
-<strong>NOutDisWindXZ</strong> 는 FAST.Farm 기본 입력 파일에서 0보다 크게 설정되어 있으며, FAST.Farm은 전체 저해상도 도메인의 2D 슬라이스인 저해상도 교란 바람 데이터(후류 포함) 출력 파일을 생성합니다. 2D 슬라이스는 평행합니다.
-전역 관성 프레임 좌표계의 <em>X-Y</em>,
-<em>Y-Z</em>및/또는 <em>X-Z</em> 평면. VTK 파일은 다음과 같은 디렉터리에 기록됩니다.
-<em>vtk_ff</em> 입니다. 이러한 출력 파일의 명명 규칙은 다음과 같습니다.
-<em>&lt;루트 이름&gt;.Low.DisXY&lt;n</em><sub>출력</sub><em>&gt;.&lt;n</em><sub>낮음</sub><em>&gt;.vtk</em>,
-<em>&lt;루트 이름&gt;.Low.DisYZ&lt;n</em><sub>출력</sub><em>&gt;.&lt;n</em><sub>낮음</sub><em>&gt;.vtk</em>및
-이 플래그 값 아래에</p></li>
-<li><p><em>&lt;루트 이름&gt;.Low.DisXZ&lt;n</em><sub>출력</sub><em>&gt;.&lt;n</em><sub>낮음</sub><em>&gt;.vtk</em>
-용
-각각 <em>X-Y</em>, <em>Y-Z</em>및
-이 플래그 값 아래에 <em>X-Z</em> 슬라이스, 여기서
-<em>&lt;n</em><sub>출력</sub><em>&gt;</em> 는 다음에 정의되어 있습니다.
-<a class="reference internal" href="InputFiles.html#ff-ambwindvtk"><span class="std std-numref">섹션 4.19.4.3</span></a>, 앞에 0이 붙습니다.</p></li>
+<li><p>마찬가지로 만약에 <strong>NOutDisWindXY</strong>, <strong>NOutDisWindYZ</strong>, 또는
+<strong>NOutDisWindXZ</strong> FAST.Farm 기본 입력 파일에서 0보다 큰 값으로 설정되면 FAST.Farm은 전체 저해상도 영역의 2D 슬라이스인 저해상도 교란 바람 데이터(후류 포함) 출력 파일을 생성합니다. 2D 슬라이스는 평행합니다. <em>X-Y</em>,
+<em>Y-Z</em>및/또는 <em>X-Z</em> 전역 관성계 좌표계의 평면. VTK 파일은 다음 디렉터리에 기록됩니다.
+<em>vtk_ff</em> FAST.Farm 기본 파일이 저장되는 위치입니다. 이러한 출력 파일의 명명 규칙은 다음과 같습니다.
+<em>&lt;RootName&gt;.낮음.DisXY&lt;n</em><sub>밖으로</sub><em>&gt;.&lt;n</em><sub>낮은</sub><em>&gt;.vtk</em>,
+<em>&lt;RootName&gt;.낮음.DisYZ&lt;n</em><sub>밖으로</sub><em>&gt;.&lt;n</em><sub>낮은</sub><em>&gt;.vtk</em>, 및</p></li>
+<li><p><em>&lt;RootName&gt;.낮음.DisXZ&lt;n</em><sub>밖으로</sub><em>&gt;.&lt;n</em><sub>낮은</sub><em>&gt;.vtk</em>
+에 대한 <em>X-Y</em>, <em>Y-Z</em>, 및 <em>X-Z</em> 각각 슬라이스
+<em>&lt;n</em><sub>밖으로</sub><em>&gt;</em> 에 정의된 바와 같다
+<a class="reference internal" href="InputFiles.html#ff-ambwindvtk"><span class="std std-numref">섹션 4.19.4.3</span></a>, 그러나 앞에 0이 붙습니다.</p></li>
 </ul>
-<p>모든 교란된 바람 데이터 파일의 시간 단계(프레임 속도의 역수)는 입력 매개변수에 의해 설정됩니다.
-FAST.Farm 기본 입력 파일의 <strong>WrDisDT</strong> . 전체 고해상도 교란 바람 데이터 출력 파일은 다음의 프레임 속도로 출력되지 않습니다. <span class="math notranslate nohighlight">\(1/\)</span><strong>DT_High</strong>, 그러나 출력은 <strong>WrDisDT</strong> 초.</p>
-<p>각 시각화 출력 파일은 충실도가 높은 전구체 시뮬레이션을 위한 주변 바람 데이터 파일에 사용되는 것과 동일한 VTK 형식을 따릅니다. 참조
-파일 형식에 대한 자세한 내용은
-<a class="reference internal" href="InputFiles.html#ff-ambwindifw"><span class="std std-numref">섹션 4.19.4.4
-이 파일의 내용에 대한 자세한 내용은</span></a> 를 참조하세요.</p>
-<p>주변 바람과 후류 상호 작용을 시각화하면 결과를 해석하고 문제를 디버깅하는 데 유용할 수 있습니다. 그러나 FAST.Farm은 다음과 같은 경우 출력 옵션당 많은 파일을 생성합니다. <strong>WrDisWind</strong> = TRUE 및/또는 다음 경우 <strong>NOutDisWindXY</strong>, <strong>NOutDisWindYZ</strong>및/또는 <strong>NOutDisWindXZ</strong> 는 0보다 크게 설정되었습니다. 이 파일 생성으로 인해 FAST.Farm 속도가 느려지고 특히 전체 저해상도 및 고해상도 교란 바람 데이터 파일을 생성할 때 많은 디스크 공간을 차지하게 됩니다. 따라서 FAST.Farm 시뮬레이션을 많이 실행할 때는 시각화를 비활성화하는 것이 좋습니다.</p>
+<p>방해받는 모든 바람 데이터 파일의 시간 단계(프레임 속도의 역수)는 입력 매개변수에 의해 설정됩니다. <strong>WrDisDT</strong> FAST.Farm 기본 입력 파일에 있습니다. 전체 고해상도 교란 바람 데이터 출력 파일은 다음의 프레임 속도로 출력되지 않습니다. <span class="math notranslate nohighlight">\(1/\)</span><strong>DT_High</strong>, 그러나 출력은 다음 주기마다 출력됩니다. <strong>WrDisDT</strong> 초.</p>
+<p>각 시각화 출력 파일은 충실도가 높은 전구체 시뮬레이션을 위한 주변 바람 데이터 파일에 사용되는 것과 동일한 VTK 형식을 따릅니다. 보다
+<a class="reference internal" href="InputFiles.html#ff-ambwindifw"><span class="std std-numref">섹션 4.19.4.4</span></a> 파일 형식에 대한 자세한 내용은</p>
+<p>주변 바람과 후류 상호 작용을 시각화하는 것은 결과를 해석하고 문제를 디버깅하는 데 유용할 수 있습니다. 그러나 FAST.Farm은 다음과 같은 경우 출력 옵션당 많은 파일을 생성합니다. <strong>WrDisWind</strong> = TRUE 및/또는 언제 <strong>NOutDisWindXY</strong>, <strong>NOutDisWindYZ</strong>및/또는 <strong>NOutDisWindXZ</strong> 0보다 크게 설정되었습니다. 이 파일 생성으로 인해 FAST.Farm 속도가 느려지고 특히 전체 저해상도 및 고해상도 교란 바람 데이터 파일을 생성할 때 많은 디스크 공간을 차지합니다. 따라서 많은 FAST.Farm 시뮬레이션을 실행할 때는 시각화를 비활성화하는 것이 좋습니다.</p>
 </div>
 <div class="section" id="wake-dynamics-plane-files">
-<span id="ff-output-planes"></span><h2><span class="section-number">4.19.5.4. </span>웨이크 역학 평면 파일<a class="headerlink" href="#wake-dynamics-plane-files" title="이 제목의 고유 링크"></a></h2>
-<p>옵션 설정
-기본 FAST.Farm 입력 파일에서 <strong>OutAllPlanes</strong> 를 true로 설정하면 Wake Dynamics 모듈의 웨이크 평면이 기록됩니다. 이 옵션을 사용하려면 디스크에 집중적으로 써야 하며 시뮬레이션 속도가 크게 느려집니다. 웨이크 플레인은 폴더에 VTK 형식으로 기록됩니다. <cite>vtk_ff_planes</cite> . VTK 파일은 각 평면, 시간 단계 및 터빈에 대해 작성됩니다. 작성되는 비행기의 수는 각각 증가합니다. <strong>DT_Low</strong> 시간 단계, 전체 평면 수까지 <strong>Num_Planes</strong> 에 도달했습니다. 평면의 좌표는 구불구불한 참조 프레임(전역 좌표가 아님)에 있으며 데카르트 좌표를 사용합니다. 다음 필드는 항상 기록됩니다: 후류 부족 속도(구불구불한 프레임에서), 주변, 전단 및 총 와류 점도의 x,y,z 구성요소. 언제 <strong>Mod_Wake=1`</strong> (극 후류), 필드는 극에서 직교로 변환됩니다. 다음과 같은 경우 추가 속도 그라데이션이 VTK 파일에 제공됩니다. <strong>Mod_Wake/=1`</strong>.</p>
+<span id="ff-output-planes"></span><h2><span class="section-number">4.19.5.4. </span>웨이크 역학 평면 파일<a class="headerlink" href="#wake-dynamics-plane-files" title="이 제목에 대한 영구 링크"></a></h2>
+<p>옵션 설정 <strong>OutAllPlanes</strong> 기본 FAST.Farm 입력 파일에서 true로 설정하면 Wake Dynamics 모듈의 깨우기 평면이 기록됩니다. 이 옵션을 사용하려면 디스크에 집중적으로 써야 하며 시뮬레이션 속도가 크게 느려집니다. 웨이크 플레인은 폴더에 VTK 형식으로 기록됩니다. <cite>vtk_ff_planes</cite> 시뮬레이션 디렉토리의 루트에 있습니다. VTK 파일은 각 평면, 시간 단계 및 터빈에 대해 작성됩니다. 작성되는 비행기의 수는 각각 증가합니다. <strong>DT_Low</strong> 전체 평면 수까지의 시간 단계 <strong>Num_Planes</strong> 도달했습니다. 평면의 좌표는 구불구불한 참조 프레임(전역 좌표가 아님)에 있으며 데카르트 좌표를 사용합니다. 다음 필드는 항상 기록됩니다: 후류 부족 속도(구불구불한 프레임에서), 주변, 전단 및 총 와류 점도의 x,y,z 구성요소. 언제 <strong>Mod_Wake=1`</strong> (극 후류), 필드는 극에서 데카르트로 변환됩니다. 다음과 같은 경우 VTK 파일에 추가 속도 구배가 제공됩니다. <strong>Mod_Wake/=1`</strong>.</p>
 </div>
 <div class="section" id="time-series-results-file">
-<span id="ff-output-time"></span><h2><span class="section-number">4.19.5.5. </span>시계열 결과 파일<a class="headerlink" href="#time-series-results-file" title="이 제목의 고유 링크"></a></h2>
-<p>FAST.Farm 시계열 결과는 &lt; 명명 규칙을 사용하여 ASCII 텍스트 기반 파일에 기록됩니다.<em>RootName.out</em>. 결과는 표 형식으로 되어 있으며, 각 열은 데이터 채널이고 첫 번째 열은 항상 시뮬레이션 시간입니다. 각 행은 시뮬레이션 출력 시간 단계에 해당합니다. 데이터 채널은 <strong>OutList</strong>
-섹션의 <em>OUTPUT</em> 섹션. FAST.Farm 생성 파일의 열 형식은 다음을 사용하여 지정됩니다.
-FAST.Farm 기본 입력 파일의
-<strong>OutFmt</strong> 매개변수입니다.</p>
+<span id="ff-output-time"></span><h2><span class="section-number">4.19.5.5. </span>시계열 결과 파일<a class="headerlink" href="#time-series-results-file" title="이 제목에 대한 영구 링크"></a></h2>
+<p>FAST.Farm 시계열 결과는 명명 규칙 &lt;을 사용하여 ASCII 텍스트 기반 파일에 기록됩니다.<em>RootName.out</em>. 결과는 표 형식으로 되어 있으며, 각 열은 데이터 채널이고 첫 번째 열은 항상 시뮬레이션 시간입니다. 각 행은 시뮬레이션 출력 시간 단계에 해당합니다. 데이터 채널은 <strong>OutList</strong>
+섹션 <em>OUTPUT</em> FAST.Farm 기본 입력 파일의 섹션. FAST.Farm 생성 파일의 열 형식은 다음을 사용하여 지정됩니다.
+<strong>OutFmt</strong> FAST.Farm 기본 입력 파일의 매개변수입니다.</p>
 </div>
 <div class="section" id="openfast-output-files">
-<h2><span class="section-number">4.19.5.6. </span>OpenFAST 출력 파일<a class="headerlink" href="#openfast-output-files" title="이 제목의 고유 링크"></a></h2>
-<p>FAST.Farm에서 생성된 출력 파일 외에도 각 풍력터빈의 OpenFAST 모델도 출력 파일을 생성할 수 있습니다. OpenFAST가 생성할 수 있는 다양한 출력 파일(OpenFAST 입력 파일 내에 지정된 드라이버/글루 코드 및 모듈 수준 모두에서)은 OpenFAST 설명서에 설명되어 있으며 요약(<em>.sum</em>) 파일, 시계열 결과(ASCI <em>.out</em> 또는 바이너리 <em>.outb</em>) 파일, 시각화(<em>.vtk</em>) 파일 등. FAST.Farm 시뮬레이션은 이와 동일한 파일을 생성하지만 경로/루트 이름은 다음으로 변경됩니다. <em>&lt;WT_FASTInFile의 루트 이름&gt;.T&lt;n</em><sub>t</sub><em>&gt;</em>.</p>
+<h2><span class="section-number">4.19.5.6. </span>OpenFAST 출력 파일<a class="headerlink" href="#openfast-output-files" title="이 제목에 대한 영구 링크"></a></h2>
+<p>FAST.Farm에서 생성된 출력 파일 외에도 각 풍력 터빈의 OpenFAST 모델도 출력 파일을 생성할 수 있습니다. OpenFAST가 생성할 수 있는 다양한 출력 파일(OpenFAST 입력 파일 내에 지정된 드라이버/글루 코드 및 모듈 수준 모두에서)은 OpenFAST 문서에 설명되어 있으며 요약(<em>.합집합</em>) 파일, 시계열 결과(ASCI <em>.밖으로</em> 또는 바이너리 <em>.outb</em>) 파일, 시각화(<em>.vtk</em>) 파일 등. FAST.Farm 시뮬레이션은 이와 동일한 파일을 생성하지만 경로/루트 이름은 다음으로 변경됩니다. <em>&lt;WT_FASTInFile의 RootName&gt;.T&lt;n</em><sub>t</sub><em>&gt;</em>.</p>
 </div>
 </div>
 
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
-        <a href="InputFiles.html" class="btn btn-neutral float-left" title="4.19.4. 입력 파일" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
+        <a href="InputFiles.html" class="btn btn-neutral float-left" title="4.19.4. 입력 파일" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
         <a href="ModelGuidance.html" class="btn btn-neutral float-right" title="4.19.6. 모델링 지침" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -209,7 +199,7 @@ FAST.Farm 기본 입력 파일의
   </div>
 
   다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">주제</a>
     제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
    
 

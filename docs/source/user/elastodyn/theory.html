@@ -21,8 +21,8 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="검색" href="../../../search.html">
-    <link rel="next" title="4.10.5. 참고문헌" href="zrefs.html">
+    <link rel="search" title="찾다" href="../../../search.html">
+    <link rel="next" title="4.10.5. 참고자료" href="zrefs.html">
     <link rel="prev" title="4.10.2. 입력 파일" href="input.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/elastodyn/theory.html"></head>
 
@@ -36,7 +36,7 @@
           
           <a href="../../../index.html" class="icon icon-home">
             OpenFAST
-              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="심벌 마크">
           </a>
               <div class="version">5.0 · 한국어</div>
 <div role="search">
@@ -48,15 +48,15 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력소음</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
@@ -73,7 +73,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#developer-notes">4.10.4. 개발자 노트</a></li>
-<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.10.5. 참고문헌</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.10.5. 참고자료</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../hydrodyn/index.html">4.11. HydroDyn</a></li>
@@ -93,16 +93,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -111,12 +111,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.10. </span>ElastoDyn 사용자 가이드 및 이론 설명서</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.10. </span>ElastoDyn 사용자 가이드 및 이론 매뉴얼</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.10.3. </span>ElastoDyn 이론</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/elastodyn/theory.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+            <a href="../../../_sources/source/user/elastodyn/theory.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -125,10 +125,10 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="elastodyn-theory">
-<span id="ed-theory"></span><h1><span class="section-number">4.10.3. </span>ElastoDyn 이론<a class="headerlink" href="#elastodyn-theory" title="이 제목의 고유 링크"></a></h1>
+<span id="ed-theory"></span><h1><span class="section-number">4.10.3. </span>ElastoDyn 이론<a class="headerlink" href="#elastodyn-theory" title="이 제목에 대한 영구 링크"></a></h1>
 <p>이 문서는 작업이 진행 중이며 매우 불완전합니다. 이 문서는 ElastoDyn의 테일 펄 및 로터 펄 부분에 대한 일부 코드 변경 사항을 문서화하기 위해 시작되었습니다. 에서 제공되는 다양한 리소스를 참조하세요. <a class="reference internal" href="index.html#ed-intro"><span class="std std-numref">섹션 4.10</span></a> 추가 서류의 경우.</p>
 <div class="section" id="notations">
-<h2><span class="section-number">4.10.3.1. </span>표기법<a class="headerlink" href="#notations" title="이 제목의 고유 링크"></a></h2>
+<h2><span class="section-number">4.10.3.1. </span>표기법<a class="headerlink" href="#notations" title="이 제목에 대한 영구 링크"></a></h2>
 <p><strong>전철기</strong></p>
 <p>다음(일부) 점 목록은 ElastoDyn에 의해 정의됩니다.</p>
 <ul class="simple">
@@ -139,7 +139,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">J</span></code>: 꼬리지느러미의 질량중심</p></li>
 </ul>
 <p><strong>시체</strong></p>
-<p>ElastoDyn에 의해 정의된 본체의 다음 (일부) 목록은 다음과 같습니다.</p>
+<p>다음(일부) 본체 목록은 ElastoDyn에 의해 정의됩니다.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">E</span></code>: 지구/관성 프레임</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">X</span></code>: 플랫폼 본체</p></li>
@@ -148,8 +148,8 @@
 </ul>
 </div>
 <div class="section" id="kinematics">
-<h2><span class="section-number">4.10.3.2. </span>운동학<a class="headerlink" href="#kinematics" title="이 제목의 고유 링크"></a></h2>
-<p>ElastoDyn은 플랫폼 기준점을 기준으로 구조물의 주요 지점의 위치, 속도, 가속도를 계산합니다. <cite>Z</cite> 그리고 구조 위로 올라갑니다.</p>
+<h2><span class="section-number">4.10.3.2. </span>운동학<a class="headerlink" href="#kinematics" title="이 제목에 대한 영구 링크"></a></h2>
+<p>ElastoDyn는 플랫폼 기준점에서 시작하여 구조물의 주요 지점의 위치, 속도 및 가속도를 계산합니다. <cite>Z</cite> 그리고 구조 위로 올라갑니다.</p>
 <p>데이터 구조에서 다양한 위치 벡터를 사용할 수 있습니다. <code class="docutils literal notranslate"><span class="pre">RtHSdat</span></code>. 예를 들어, 점 J의 전역 위치는 다음과 같이 지정됩니다.</p>
 <div class="math notranslate nohighlight" id="equation-tfpointjpos">
 <span class="eqno">(4.187)<a class="headerlink" href="#equation-tfpointjpos" title="이 방정식에 대한 영구 링크"></a></span>\[\boldsymbol{r}_J =  \boldsymbol{r}_Z +  \boldsymbol{r}_{ZO} +  \boldsymbol{r}_{OW} +  \boldsymbol{r}_{WJ}\]</div>
@@ -169,21 +169,21 @@
 <div class="math notranslate nohighlight" id="equation-tfpointjvel">
 <span class="eqno">(4.190)<a class="headerlink" href="#equation-tfpointjvel" title="이 방정식에 대한 영구 링크"></a></span>\[\boldsymbol{v}_J = \sum_{j} \frac{\partial v_J}{\partial \dot{q}_j} \dot{q}_j\]</div>
 <p>야코비안이 있는 곳 <span class="math notranslate nohighlight">\(\frac{\partial v_J}{\partial \dot{q}_j}\)</span> 에 저장되어 있습니다 <code class="docutils literal notranslate"><span class="pre">RtHSdat%PLinVelEJ(:,0)</span></code></p>
-<p>병진 가속도는 자유도의 첫 번째 및 두 번째 도함수로부터 기여도의 합으로 계산됩니다. 예를 들어, 점의 가속도 <cite>J</cite> 는 다음과 같이 계산됩니다.</p>
+<p>병진 가속도는 자유도의 1차 및 2차 도함수로부터 기여도의 합으로 계산됩니다. 예를 들어, 점의 가속도 <cite>J</cite> 다음과 같이 계산됩니다.</p>
 <div class="math notranslate nohighlight" id="equation-tfpointjang">
 <span class="eqno">(4.191)<a class="headerlink" href="#equation-tfpointjang" title="이 방정식에 대한 영구 링크"></a></span>\[ \begin{align}\begin{aligned}\boldsymbol{\tilde{a}}_J &amp;= \sum_{j\in PA} \frac{\partial a_J}{\partial \dot{q}_j} \dot{q}_j\\\boldsymbol{a}_J &amp;= \boldsymbol{\tilde{a}}_J + \sum_{j\in PA} \frac{\partial v_J}{\partial \dot{q}_j} \ddot{q}_j\end{aligned}\end{align} \]</div>
 <p>여기서  <span class="math notranslate nohighlight">\(\frac{\partial a_J}{\partial \dot{q}_j}\)</span> 에 저장되어 있습니다 <code class="docutils literal notranslate"><span class="pre">RtHSdat%PLinVelEJ(:,1)</span></code></p>
 <p>각가속도에는 현재 문서화되지 않은 유사한 계산이 필요합니다.</p>
 </div>
 <div class="section" id="rotor-and-tail-furl">
-<span id="ed-rtfrl-theory"></span><h2><span class="section-number">4.10.3.3. </span>로터 및 테일 펄<a class="headerlink" href="#rotor-and-tail-furl" title="이 제목의 고유 링크"></a></h2>
-<p>사용자는 업 및 다운 스톱 스프링, 업 및 다운 스톱 댐퍼와 함께 선형 스프링 및 댐퍼 모델을 선택할 수 있습니다.</p>
+<span id="ed-rtfrl-theory"></span><h2><span class="section-number">4.10.3.3. </span>로터와 테일 펄<a class="headerlink" href="#rotor-and-tail-furl" title="이 제목에 대한 영구 링크"></a></h2>
+<p>사용자는 상하 정지 스프링, 상하 정지 댐퍼와 함께 선형 스프링 및 댐퍼 모델을 선택할 수 있습니다.</p>
 <p>선형 스프링과 댐퍼에서 적용되는 토크는 다음과 같습니다.</p>
 <div class="math notranslate nohighlight" id="equation-tflintorque">
 <span class="eqno">(4.192)<a class="headerlink" href="#equation-tflintorque" title="이 방정식에 대한 영구 링크"></a></span>\[Q_\text{lin} = - k \theta  - d \dot{\theta}\]</div>
-<p>여기서 <span class="math notranslate nohighlight">\(\theta\)</span> 는 자유도(로터 또는 테일 펄)이며,
-<span class="math notranslate nohighlight">\(k\)</span> 는 선형 스프링 상수(<code class="docutils literal notranslate"><span class="pre">RFrlSpr</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">TFrlSpr</span></code>)
-<span class="math notranslate nohighlight">\(d\)</span> 는 선형 감쇠 상수(<code class="docutils literal notranslate"><span class="pre">RFrlDmp</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">TFrlDmp</span></code>).</p>
+<p>여기서 <span class="math notranslate nohighlight">\(\theta\)</span> 는 자유도(로터 또는 꼬리 털)입니다.
+<span class="math notranslate nohighlight">\(k\)</span> 선형 스프링 상수(<code class="docutils literal notranslate"><span class="pre">RFrlSpr</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">TFrlSpr</span></code>)
+<span class="math notranslate nohighlight">\(d\)</span> 선형 감쇠 상수(<code class="docutils literal notranslate"><span class="pre">RFrlDmp</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">TFrlDmp</span></code>).</p>
 <p>업/다운 스톱 스프링 토크는 다음과 같이 정의됩니다.</p>
 <div class="math notranslate nohighlight" id="equation-tfstoptorquespring">
 <span class="eqno">(4.193)<a class="headerlink" href="#equation-tfstoptorquespring" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}Q_\text{stop, spr} = \begin{cases}
@@ -192,82 +192,73 @@
      0 ,&amp;\text{otherwise}
      \end{cases}\end{split}\]</div>
 <p>여기서
-<span class="math notranslate nohighlight">\(k_{US}\)</span> 는 업스톱 스프링 상수(<code class="docutils literal notranslate"><span class="pre">RFrlUSSpr</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">TFrlUSSpr</span></code>),
-<span class="math notranslate nohighlight">\(\theta_{k_{US}}\)</span> 는 업스톱 스프링 각도(<code class="docutils literal notranslate"><span class="pre">RFrlUSSP</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">TFrlUSSP</span></code>) 및 유사한 표기법이 다운 스톱 스프링에 사용됩니다.</p>
-<p>업/다운 정지 댐핑 토크는 다음과 같이 정의됩니다.
-유사한 주석이 사용되는</p>
+<span class="math notranslate nohighlight">\(k_{US}\)</span> 업스톱 스프링 상수(<code class="docutils literal notranslate"><span class="pre">RFrlUSSpr</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">TFrlUSSpr</span></code>),
+<span class="math notranslate nohighlight">\(\theta_{k_{US}}\)</span> 업스톱 스프링 각도(<code class="docutils literal notranslate"><span class="pre">RFrlUSSP</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">TFrlUSSP</span></code>) 및 유사한 표기법이 다운 스톱 스프링에 사용됩니다.</p>
+<p>업/다운 정지 댐핑 토크는 다음과 같이 정의됩니다.</p>
 <div class="math notranslate nohighlight" id="equation-tfstoptorquedamp">
 <span class="eqno">(4.194)<a class="headerlink" href="#equation-tfstoptorquedamp" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}Q_\text{stop, dmp} = \begin{cases}
    - d_{US} \dot{\theta},&amp;\text{if } \theta&gt;\theta_{d_{US}}  \\
    - d_{DS} \dot{\theta},&amp;\text{if } \theta&lt;\theta_{d_{DS}}  \\
      0 ,&amp;\text{otherwise}
      \end{cases}\end{split}\]</div>
-<p>. 주어진 자유도에서의 총 모멘트는 다음과 같습니다.</p>
+<p>유사한 주석이 사용되는 경우. 주어진 자유도에서의 총 모멘트는 다음과 같습니다.</p>
 <div class="math notranslate nohighlight" id="equation-tftottorque">
 <span class="eqno">(4.195)<a class="headerlink" href="#equation-tftottorque" title="이 방정식에 대한 영구 링크"></a></span>\[Q = Q_\text{lin} + Q_\text{stop,spr} + Q_\text{stop,dmp}\]</div>
 </div>
 <div class="section" id="yaw-friction-model">
-<span id="ed-yawfriction-theory"></span><h2><span class="section-number">4.10.3.4. </span>요 마찰 모델<a class="headerlink" href="#yaw-friction-model" title="이 제목의 고유 링크"></a></h2>
+<span id="ed-yawfriction-theory"></span><h2><span class="section-number">4.10.3.4. </span>요 마찰 모델<a class="headerlink" href="#yaw-friction-model" title="이 제목에 대한 영구 링크"></a></h2>
 <p>요 마찰 모델은 쿨롱 점성 접근 방식을 기반으로 ElastoDyn에서 구현됩니다. 요율에 따른 요 마찰 모멘트(<span class="math notranslate nohighlight">\(\omega\)</span>)는 아래에 나와 있습니다. <a class="reference internal" href="#figyawfriction"><span class="std std-numref">그림 4.49</span></a></p>
 <div class="figure align-default" id="id2">
 <span id="figyawfriction"></span><a class="reference internal image-reference" href="../../../_images/YawFrictionModel.jpg"><img alt="../../../_images/YawFrictionModel.jpg" src="../../../_images/YawFrictionModel.jpg" style="width: 60%;"></a>
 <p class="caption"><span class="caption-number">그림 4.49 </span><span class="caption-text">요 마찰 모델</span><a class="headerlink" href="#id2" title="이 이미지에 대한 영구 링크"></a></p>
 </div>
-<p>언제 <code class="docutils literal notranslate"><span class="pre">YawFrctMod</span></code> = 1, 최대 정적 또는 동적 쿨롱 마찰은 요 베어링의 외부 하중에 의존하지 않습니다. 요 마찰 토크 <span class="math notranslate nohighlight">\(M_f\)</span> 는 다음과 같이 계산할 수 있습니다. 만약에 <span class="math notranslate nohighlight">\(\omega\neq0\)</span>, 다음과 같은 동적 마찰이 있습니다.</p>
+<p>다음의 경우 <code class="docutils literal notranslate"><span class="pre">YawFrctMod</span></code> = 1, 최대 정적 또는 동적 쿨롱 마찰은 요 베어링의 외부 하중에 의존하지 않습니다. 요 마찰 토크 <span class="math notranslate nohighlight">\(M_f\)</span> 다음과 같이 계산할 수 있습니다. 만약에 <span class="math notranslate nohighlight">\(\omega\neq0\)</span>, 우리는 다음과 같은 형태의 동적 마찰을 가집니다.</p>
 <div class="math notranslate nohighlight">
 \[M_f = -(\mu_d\bar{D})\cdot\textrm{sign}(\omega) - M_{f,vis},\]</div>
-<p>여기서 <span class="math notranslate nohighlight">\(\bar{D}\)</span> 는 유효 요 베어링 직경이며 <span class="math notranslate nohighlight">\(\mu_d\)</span> 는 동적 쿨롱 마찰 계수입니다. 그들의 제품, <span class="math notranslate nohighlight">\(\mu_d\bar{D}\)</span>는 다음을 통해 입력 파일에 지정됩니다. <code class="docutils literal notranslate"><span class="pre">M_CD</span></code>. 오른쪽의 첫 번째 항은 동적 쿨롱 마찰입니다. 점성 마찰, <span class="math notranslate nohighlight">\(M_{f,vis}\)</span>형식은 다음과 같습니다.</p>
+<p>여기서 <span class="math notranslate nohighlight">\(\bar{D}\)</span> 유효 요 베어링 직경이고 <span class="math notranslate nohighlight">\(\mu_d\)</span> 동적 쿨롱 마찰 계수입니다. 그들의 제품, <span class="math notranslate nohighlight">\(\mu_d\bar{D}\)</span>는 다음을 통해 입력 파일에 지정됩니다. <code class="docutils literal notranslate"><span class="pre">M_CD</span></code>. 오른쪽의 첫 번째 항은 동적 쿨롱 마찰입니다. 점성 마찰, <span class="math notranslate nohighlight">\(M_{f,vis}\)</span>, 형식입니다</p>
 <div class="math notranslate nohighlight">
 \[M_{f,vis} = \sigma_v\omega + \sigma_{v2}\omega\left|\omega\right|\qquad\qquad\text{if}~\left|\omega\right|\ge\omega_c,\]</div>
 <p>또는</p>
 <div class="math notranslate nohighlight">
 \[M_{f,vis} = (\sigma_v + \sigma_{v2}\omega_c)\omega\qquad\qquad\text{if}~\left|\omega\right|\le\omega_c,\]</div>
-<p>여기서 <span class="math notranslate nohighlight">\(\sigma_v\)</span> 및 <span class="math notranslate nohighlight">\(\sigma_{v2}\)</span> 는 선형 및 2차 점성 마찰 계수이며 <span class="math notranslate nohighlight">\(\omega_c\)</span> 는 점성 마찰이 선형화되는 컷오프 요율입니다. 설정 <span class="math notranslate nohighlight">\(\omega_c=0\)</span> 는 점성 마찰의 선형화를 비활성화합니다.</p>
-<p>경우 <span class="math notranslate nohighlight">\(\omega=0\)</span> 및 <span class="math notranslate nohighlight">\(\dot{\omega}\neq 0\)</span>, 우리는 다음과 같은 약간 수정된 동적 쿨롱 마찰을 가집니다.</p>
+<p>여기서 <span class="math notranslate nohighlight">\(\sigma_v\)</span> 및 <span class="math notranslate nohighlight">\(\sigma_{v2}\)</span> 선형 및 2차 점성 마찰 계수는 다음과 같습니다. <span class="math notranslate nohighlight">\(\omega_c\)</span> 점성 마찰이 선형화되는 컷오프 요율입니다. 환경 <span class="math notranslate nohighlight">\(\omega_c=0\)</span> 점성 마찰의 선형화를 비활성화합니다.</p>
+<p>다음의 경우 <span class="math notranslate nohighlight">\(\omega=0\)</span> 및 <span class="math notranslate nohighlight">\(\dot{\omega}\neq 0\)</span>, 우리는 다음과 같은 약간 수정된 동적 쿨롱 마찰을 가집니다.</p>
 <div class="math notranslate nohighlight">
 \[M_f = -\textrm{min}\!\left(\mu_d\bar{D},\left|M_z\right|\right)\cdot\textrm{sign}(M_z),\]</div>
-<p>여기서 <span class="math notranslate nohighlight">\(M_z\)</span> 는 외부 요 토크입니다. 만약에 <span class="math notranslate nohighlight">\(\omega=0\)</span> 및 <span class="math notranslate nohighlight">\(\dot{\omega}=0\)</span>, 다음과 같은 정적 쿨롱 마찰이 있습니다.</p>
+<p>여기서 <span class="math notranslate nohighlight">\(M_z\)</span> 외부 요 토크입니다. 만약에 <span class="math notranslate nohighlight">\(\omega=0\)</span> 및 <span class="math notranslate nohighlight">\(\dot{\omega}=0\)</span>, 우리는 다음과 같은 형태의 정적 쿨롱 마찰을 가집니다.</p>
 <div class="math notranslate nohighlight">
 \[M_f = -\textrm{min}\!\left(\mu_s\bar{D},\left|M_z\right|\right)\cdot\textrm{sign}(M_z),\]</div>
-<p>여기서 <span class="math notranslate nohighlight">\(\mu_s\)</span> 는 정적 쿨롱 마찰 계수입니다. 제품 <span class="math notranslate nohighlight">\(\mu_s\bar{D}\)</span> 는 다음을 통해 입력 파일에 지정됩니다. <code class="docutils literal notranslate"><span class="pre">M_CSmax</span></code>.</p>
-<p>언제 <code class="docutils literal notranslate"><span class="pre">YawFrctMod</span></code> = 2, 최대 정적 또는 동적 쿨롱 마찰은 요 베어링의 외부 하중에 따라 달라지며, <span class="math notranslate nohighlight">\(\left|F_z\right|\)</span>, 베어링 축방향 하중의 크기 <span class="math notranslate nohighlight">\(F_z&lt;0\)</span>, 베어링 전단력 크기로부터, <span class="math notranslate nohighlight">\(\sqrt{F_x^2+F_y^2}\)</span>, 베어링 굽힘 모멘트 크기로부터, <span class="math notranslate nohighlight">\(\sqrt{M_x^2+M_y^2}\)</span>. 만약에 <span class="math notranslate nohighlight">\(\omega\neq0\)</span>, 다음과 같은 동적 마찰이 있습니다.</p>
+<p>여기서 <span class="math notranslate nohighlight">\(\mu_s\)</span> 정적 쿨롱 마찰 계수입니다. 제품 <span class="math notranslate nohighlight">\(\mu_s\bar{D}\)</span> 다음을 통해 입력 파일에 지정됩니다. <code class="docutils literal notranslate"><span class="pre">M_CSmax</span></code>.</p>
+<p>다음의 경우 <code class="docutils literal notranslate"><span class="pre">YawFrctMod</span></code> = 2, 최대 정적 또는 동적 쿨롱 마찰은 요 베어링의 외부 하중에 따라 달라지며, <span class="math notranslate nohighlight">\(\left|F_z\right|\)</span>, 베어링 축방향 하중의 크기, <span class="math notranslate nohighlight">\(F_z&lt;0\)</span>, 베어링 전단력 크기로부터, <span class="math notranslate nohighlight">\(\sqrt{F_x^2+F_y^2}\)</span>, 그리고 베어링 굽힘 모멘트 크기로부터, <span class="math notranslate nohighlight">\(\sqrt{M_x^2+M_y^2}\)</span>. 만약에 <span class="math notranslate nohighlight">\(\omega\neq0\)</span>, 우리는 다음과 같은 형태의 동적 마찰을 가집니다.</p>
 <div class="math notranslate nohighlight">
 \[M_f = \left(\mu_d\bar{D}\cdot\textrm{min}\!\left(0,F_z\right)-\mu_{df}\bar{D}\sqrt{F_x^2+F_y^2}-\mu_{dm}\sqrt{M_x^2+M_y^2}\right)\cdot\textrm{sign}(\omega) - M_{f,vis},\]</div>
-<p>여기서 <span class="math notranslate nohighlight">\(M_{f,vis}\)</span> 는 다음과 같은 방식으로 정의됩니다. <code class="docutils literal notranslate"><span class="pre">YawFrctMod</span></code> = 1. 제품 <span class="math notranslate nohighlight">\(\mu_{df}\bar{D}\)</span> 및 <span class="math notranslate nohighlight">\(\mu_{dm}\)</span> 는 다음을 통해 입력 파일에 지정됩니다. <code class="docutils literal notranslate"><span class="pre">M_FCD</span></code> 및 <code class="docutils literal notranslate"><span class="pre">M_MCD</span></code>각각. 만약에 <span class="math notranslate nohighlight">\(\omega=0\)</span> 및 <span class="math notranslate nohighlight">\(\dot{\omega}\neq 0\)</span>, 우리는 다음과 같은 수정된 동적 쿨롱 마찰을 가집니다.
-제품이 있는</p>
+<p>여기서 <span class="math notranslate nohighlight">\(M_{f,vis}\)</span> 때와 같은 방식으로 정의됩니다. <code class="docutils literal notranslate"><span class="pre">YawFrctMod</span></code> = 1. 제품 <span class="math notranslate nohighlight">\(\mu_{df}\bar{D}\)</span> 및 <span class="math notranslate nohighlight">\(\mu_{dm}\)</span> 다음을 통해 입력 파일에 지정됩니다. <code class="docutils literal notranslate"><span class="pre">M_FCD</span></code> 및 <code class="docutils literal notranslate"><span class="pre">M_MCD</span></code>, 각각. 만약에 <span class="math notranslate nohighlight">\(\omega=0\)</span> 및 <span class="math notranslate nohighlight">\(\dot{\omega}\neq 0\)</span>, 우리는 다음과 같은 수정된 동적 쿨롱 마찰을 가집니다.</p>
 <div class="math notranslate nohighlight">
 \[M_f = -\textrm{min}\!\left(\mu_d\bar{D}\left|\textrm{min}(0,F_z)\right| + \mu_{df}\bar{D}\sqrt{F_x^2+F_y^2} + \mu_{dm}\sqrt{M_x^2+M_y^2},\left|M_z\right|\right)\cdot\textrm{sign}(M_z).\]</div>
-<p>경우 <span class="math notranslate nohighlight">\(\omega=0\)</span> 및 <span class="math notranslate nohighlight">\(\dot{\omega}=0\)</span>, 다음과 같은 정적 쿨롱 마찰이 있습니다.</p>
+<p>다음의 경우 <span class="math notranslate nohighlight">\(\omega=0\)</span> 및 <span class="math notranslate nohighlight">\(\dot{\omega}=0\)</span>, 우리는 다음과 같은 형태의 정적 쿨롱 마찰을 가집니다.</p>
 <div class="math notranslate nohighlight">
 \[M_f = -\textrm{min}\!\left(\mu_s\bar{D}\left|\textrm{min}(0,F_z)\right| + \mu_{sf}\bar{D}\sqrt{F_x^2+F_y^2} + \mu_{sm}\sqrt{M_x^2+M_y^2},\left|M_z\right|\right)\cdot\textrm{sign}(M_z),\]</div>
-<p>여기서 곱은 <span class="math notranslate nohighlight">\(\mu_{sf}\bar{D}\)</span> 및 <span class="math notranslate nohighlight">\(\mu_{sm}\)</span> 는 다음을 통해 입력 파일에 지정됩니다. <code class="docutils literal notranslate"><span class="pre">M_FCSmax</span></code> 및 <code class="docutils literal notranslate"><span class="pre">M_MCSmax</span></code>각각.</p>
-<p>정적 '스틱션'(정적 기여도가 동적 쿨롱 마찰을 초과하는 경우)은 현재 시간 단계에서 요 회전 속도와 가속도가 모두 0인 경우에만 적용됩니다. 회전 가속도가 null이 아닌 경우 마찰의 정적 부분이 생략됩니다. 이는 동적 의미에서 0 속도를 통과할 때 '따뜻한' 관절이 끈적임을 느끼지 않을 수 있다는 사실을 설명하기 위한 것입니다. <span id="id1">[<a class="reference internal" href="zrefs.html#id2" title="Mohamed M Hammam, David Wood 및 Brent Summerville. 소형 풍력터빈용 꼬리 핀의 요 동작 모델링: 2021년 11월 22일~2024년 5월 21일. 기술 보고서, 국립 재생 에너지 연구소(NREL), Golden, CO(미국), 2023.">ed-HWS23</a>]</span>. 언제 <span class="math notranslate nohighlight">\(\omega=0\)</span>, 요 베어링 정적 또는 동적 마찰은 마찰 저항이 외부 적용 모멘트에 반대되도록 공식화되며, <span class="math notranslate nohighlight">\(M_z\)</span>, 그것을 극복하지 않고.</p>
+<p>여기서 곱은 <span class="math notranslate nohighlight">\(\mu_{sf}\bar{D}\)</span> 및 <span class="math notranslate nohighlight">\(\mu_{sm}\)</span> 다음을 통해 입력 파일에 지정됩니다. <code class="docutils literal notranslate"><span class="pre">M_FCSmax</span></code> 및 <code class="docutils literal notranslate"><span class="pre">M_MCSmax</span></code>, 각각.</p>
+<p>정적 '정지'(정적 기여가 동적 쿨롱 마찰을 초과하는 경우)는 현재 시간 단계에서 요 회전 속도와 가속도가 모두 0인 경우에만 적용됩니다. 회전 가속도가 null이 아닌 경우 마찰의 정적 부분이 생략됩니다. 이는 동적 의미에서 0 속도를 통과할 때 '따뜻한' 관절이 끈적임을 느끼지 않을 수 있다는 사실을 설명하기 위한 것입니다. <span id="id1">[<a class="reference internal" href="zrefs.html#id2" title="모하메드 M 함맘(Mohamed M Hammam), 데이비드 우드(David Wood), 브렌트 서머빌(Brent Summerville). 소형 풍력 터빈용 꼬리 핀의 요 동작 모델링: 2021년 11월 22일~2024년 5월 21일. 기술 보고서, 국립 재생 에너지 연구소(NREL), Golden, CO(미국), 2023.">ed-HWS23</a>]</span>. 언제 <span class="math notranslate nohighlight">\(\omega=0\)</span>, 요 베어링 정적 또는 동적 마찰은 마찰 저항이 외부 적용 모멘트에 반대되도록 공식화됩니다. <span class="math notranslate nohighlight">\(M_z\)</span>, 그것을 극복하지 못한 채.</p>
 </div>
 <div class="section" id="blade-pitch-dynamics">
-<h2><span class="section-number">4.10.3.5. </span>블레이드 피치 역학<a class="headerlink" href="#blade-pitch-dynamics" title="이 제목의 고유 링크"></a></h2>
-<p>OpenFAST v5 이전에는 블레이드 피치 각도가 ServoDyn의 피치 명령에 따라 고정되거나 규정되었습니다. ServoDyn 피치 명령에 따라 피치 각도가 잠재적으로 변경됨에도 불구하고 블레이드 루트 피치 속도와 가속도는 항상 0이었습니다. 블레이드가 ElastoDyn에서 모델링된 경우 블레이드 피치 관성으로 인한 피치 모멘트도 없었습니다. BeamDyn을 사용하여 블레이드를 모델링한 경우 블레이드 루트 노드만 피치 속도와 가속도가 0이었습니다. 루트 노드를 따르는 나머지 블레이드의 피치 관성과 비틀림은 여전히 ​​고려되어 블레이드 피치 역학을 부분적으로 포착했습니다.</p>
-<p>OpenFAST v5에서는 새로운 블레이드 피치 자유도, <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code>는 ElastoDyn에 도입되었습니다. 설정으로 <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> 를 true로 설정하면 이제 ElastoDyn에서 블레이드 피칭을 동적으로 시뮬레이션할 수 있습니다. 이 기능을 사용하려면 사용자는 새로운 기능을 통해 피치 축에 대한 피치 액츄에이터/베어링의 관성 모멘트를 제공해야 합니다. <code class="docutils literal notranslate"><span class="pre">PBrIner(I)</span></code> 입력이 ElastoDyn 입력 파일에 추가되었습니다. 블레이드가 BeamDyn 대신 ElastoDyn에서도 모델링된 경우 피치 축을 중심으로 편향되지 않은 블레이드의 총 관성 모멘트도 새로운 시스템을 통해 제공되어야 합니다. <code class="docutils literal notranslate"><span class="pre">BlPIner(I)</span></code> 입력. ElastoDyn은 블레이드 비틀림을 모델링하지 않기 때문에 분산된 블레이드 피치 관성을 지정할 필요가 없습니다. 또한 시뮬레이션 중 유효 블레이드 피치 관성 모멘트는 다음보다 높을 수 있습니다.
-블레이드 굽힘으로 인한 추가 기여로 인해 <code class="docutils literal notranslate"><span class="pre">BlPIner(I)</span></code> . ElastoDyn을 사용하여 블레이드를 모델링할 때, <code class="docutils literal notranslate"><span class="pre">PBrIner(I)</span></code> 및 <code class="docutils literal notranslate"><span class="pre">BlPIner(I)</span></code> 는 운동 방정식에 필요한 총 피치 관성 모멘트를 얻기 위해 간단히 추가됩니다. 시뮬레이션 결과는 다음의 합과 동일합니다. <code class="docutils literal notranslate"><span class="pre">PBrIner(I)</span></code> 및 <code class="docutils literal notranslate"><span class="pre">BlPIner(I)</span></code> 는 변경되지 않았습니다. BeamDyn을 사용하여 블레이드를 모델링할 때, <code class="docutils literal notranslate"><span class="pre">BlPIner(I)</span></code> 는 블레이드를 따른 피치 관성 모멘트의 분포가 블레이드 비틀림을 모델링하는 BeamDyn에서 고려되기 때문에 무시됩니다. 그러나 여전히 현실적인 가치를 갖는 것이 필요하다.
-ElastoDyn의 <code class="docutils literal notranslate"><span class="pre">PBrIner(I)</span></code> . 설정 <code class="docutils literal notranslate"><span class="pre">PBrIner(I)</span></code> 를 0으로 설정하거나 0에 가깝게 설정하면 ElastoDyn에서 수치 문제가 발생합니다.</p>
-<p>언제 <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> 는 사실입니다. 블레이드 루트 피치 각도는 규정되는 대신 동적으로 해결됩니다. 이 경우, 피치 액츄에이터 토크는 각 블레이드에 대해 ServoDyn에 의해 다음과 같이 계산됩니다.</p>
+<h2><span class="section-number">4.10.3.5. </span>블레이드 피치 역학<a class="headerlink" href="#blade-pitch-dynamics" title="이 제목에 대한 영구 링크"></a></h2>
+<p>OpenFAST v5 이전에는 블레이드 피치 각도가 ServoDyn의 피치 명령에 따라 고정되거나 규정되었습니다. ServoDyn 피치 명령에 따라 피치 각도가 잠재적으로 변경됨에도 불구하고 블레이드 루트 피치 속도와 가속도는 항상 0이었습니다. 블레이드가 ElastoDyn로 ​​모델링된 경우 블레이드 피치 관성으로 인한 피치 모멘트도 없었습니다. BeamDyn를 사용하여 블레이드를 모델링한 경우 블레이드 루트 노드만 피치 속도와 가속도가 0이었습니다. 루트 노드를 따르는 나머지 블레이드의 피치 관성과 비틀림은 여전히 ​​고려되어 블레이드 피치 역학을 부분적으로 포착했습니다.</p>
+<p>OpenFAST v5에서는 새로운 블레이드 피치 자유도, <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code>, ElastoDyn에 도입되었습니다. 설정으로 <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> 사실, 이제 ElastoDyn에서 블레이드 피칭을 동적으로 시뮬레이션할 수 있습니다. 이 기능을 사용하려면 사용자는 새로운 기능을 통해 피치 축에 대한 피치 액츄에이터/베어링의 관성 모멘트를 제공해야 합니다. <code class="docutils literal notranslate"><span class="pre">PBrIner(I)</span></code> ElastoDyn 입력 파일에 입력이 추가되었습니다. 블레이드가 BeamDyn 대신 ElastoDyn로 모델링된 경우 피치 축을 중심으로 편향되지 않은 블레이드의 총 관성 모멘트도 새를 통해 제공되어야 합니다. <code class="docutils literal notranslate"><span class="pre">BlPIner(I)</span></code> 입력. ElastoDyn는 블레이드 비틀림을 모델링하지 않기 때문에 분산된 블레이드 피치 관성을 지정할 필요가 없습니다. 또한 시뮬레이션 중 유효 블레이드 피치 관성 모멘트는 다음보다 높을 수 있습니다. <code class="docutils literal notranslate"><span class="pre">BlPIner(I)</span></code> 블레이드 굽힘으로 인한 추가 기여로 인해. ElastoDyn를 사용하여 블레이드를 모델링할 때, <code class="docutils literal notranslate"><span class="pre">PBrIner(I)</span></code> 및 <code class="docutils literal notranslate"><span class="pre">BlPIner(I)</span></code> 운동 방정식에 필요한 총 피치 관성 모멘트를 얻기 위해 단순히 함께 추가됩니다. 시뮬레이션 결과는 다음의 합과 동일합니다. <code class="docutils literal notranslate"><span class="pre">PBrIner(I)</span></code> 및 <code class="docutils literal notranslate"><span class="pre">BlPIner(I)</span></code> 변함없이 유지됩니다. BeamDyn를 사용하여 블레이드를 모델링할 때, <code class="docutils literal notranslate"><span class="pre">BlPIner(I)</span></code> 블레이드를 따른 피치 관성 모멘트의 분포는 블레이드 비틀림을 모델링하는 BeamDyn에서 고려되기 때문에 무시됩니다. 그러나 여전히 현실적인 가치를 갖는 것이 필요하다. <code class="docutils literal notranslate"><span class="pre">PBrIner(I)</span></code> ElastoDyn에서. 환경 <code class="docutils literal notranslate"><span class="pre">PBrIner(I)</span></code> 0 또는 0에 가까워지면 ElastoDyn에서 수치 문제가 발생합니다.</p>
+<p>다음의 경우 <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> 사실이라면 블레이드 루트 피치 각도는 규정되는 대신 동적으로 해결됩니다. 이 경우 피치 액츄에이터 토크는 각 블레이드에 대해 ServoDyn에 의해 다음과 같이 계산됩니다.</p>
 <p><code class="docutils literal notranslate"><span class="pre">BlPitchMom</span> <span class="pre">=</span> <span class="pre">-</span> <span class="pre">PitSpr</span>&nbsp; <span class="pre">*</span> <span class="pre">(</span> <span class="pre">BlPitch</span> <span class="pre">-</span> <span class="pre">BlPitchCom</span> <span class="pre">)</span> <span class="pre">-</span> <span class="pre">PitDamp</span> <span class="pre">*</span> <span class="pre">(</span> <span class="pre">BlPRate</span> <span class="pre">-</span> <span class="pre">BlPRateCom</span> <span class="pre">)</span></code></p>
-<p>피치 액츄에이터 강성/스프링 상수 <code class="docutils literal notranslate"><span class="pre">PitSpr</span></code> 및 댐핑
-각 블레이드에 대한 <code class="docutils literal notranslate"><span class="pre">PitDamp</span></code> 는 모두 ServoDyn 입력 파일에 정의되어 있습니다. 이 액츄에이터 토크는 블레이드의 루트에 적용됩니다. 동일하지만 반대되는 토크가 로터 허브에 적용됩니다. 피치 명령 <code class="docutils literal notranslate"><span class="pre">BlPitchCom</span></code> 및 피치 속도 명령 <code class="docutils literal notranslate"><span class="pre">BlPRateCom</span></code> 는 다음과 같은 경우 ElastoDyn에서 직접 사용되지 않습니다. <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> 는 사실입니다. (ServoDyn은 여부에 관계없이 피치 액츄에이터 토크를 계산하고 출력합니다. <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> 는 ElastoDyn에서 true 또는 false입니다. 그러나 후자의 경우에는 단순히 액츄에이터 토크가 사용되지 않습니다.)</p>
-<p>ServoDyn에서 활성 블레이드 피치 제어가 켜져 있을 때, <code class="docutils literal notranslate"><span class="pre">BlPitchCom</span></code> 는 터빈 컨트롤러에 의해 계산됩니다. 활성 블레이드 피치 제어가 꺼진 경우(<code class="docutils literal notranslate"><span class="pre">PCMode=0</span></code> 또는 도중 <code class="docutils literal notranslate"><span class="pre">t&lt;TPCOn</span></code> 때 <code class="docutils literal notranslate"><span class="pre">PCMode&gt;0</span></code>), <code class="docutils literal notranslate"><span class="pre">BlPitchCom</span></code> 는 중립 블레이드 피치 위치에 의해 제공됩니다.
-ServoDyn 입력 파일의 <code class="docutils literal notranslate"><span class="pre">PitNeut(I)</span></code> . 마지막으로, 피치 기동 중에, <code class="docutils literal notranslate"><span class="pre">BlPitchCom</span></code> 는 다음과 같이 주어진 일정한 속도로 최종 피치 위치에 접근합니다. <code class="docutils literal notranslate"><span class="pre">PitManRat(I)</span></code> .</p>
-<p>피치 위치 명령 외에도 피치 속도 명령 <code class="docutils literal notranslate"><span class="pre">BlPRateCom</span></code> 도 ServoDyn에 추가되었습니다. 현재, <code class="docutils literal notranslate"><span class="pre">BlPRateCom</span></code> 는 DLL 컨트롤러(<code class="docutils literal notranslate"><span class="pre">PCMode=5</span></code>) 또는 오버라이드 피치 조작 중. 정상 작동 중에 피치 속도 명령은 두 연속 컨트롤러 단계의 피치 설정점을 기반으로 유한 차분을 사용하여 추정됩니다. 피치 조작 중에 피치 속도 명령은 간단히 다음과 같이 설정됩니다.
-최종 피치 위치에 도달할 때까지 ServoDyn 입력 파일의 <code class="docutils literal notranslate"><span class="pre">PitManRat(I)</span></code> .
-다음의 경우 <code class="docutils literal notranslate"><span class="pre">BlPRateCom</span></code> 는 0입니다. <code class="docutils literal notranslate"><span class="pre">PCMode</span></code> 는 0, 3, 4 또는 피치 조작이 완료된 후입니다.</p>
-<p>언제 <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> 는 ElastoDyn에서 true이며 다음 ServoDyn 설정이 권장됩니다.</p>
+<p>피치 액츄에이터 강성/스프링 상수 <code class="docutils literal notranslate"><span class="pre">PitSpr</span></code> 그리고 댐핑 <code class="docutils literal notranslate"><span class="pre">PitDamp</span></code> 각 블레이드에 대한 두 가지 모두 ServoDyn 입력 파일에 정의되어 있습니다. 이 액츄에이터 토크는 블레이드의 루트에 적용됩니다. 동일하지만 반대되는 토크가 로터 허브에 적용됩니다. 피치 명령 <code class="docutils literal notranslate"><span class="pre">BlPitchCom</span></code> 및 피치 속도 명령 <code class="docutils literal notranslate"><span class="pre">BlPRateCom</span></code> 다음과 같은 경우에는 ElastoDyn에서 직접 사용되지 않습니다. <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> 사실이다. (ServoDyn는 여부에 관계없이 피치 액츄에이터 토크를 계산하고 출력합니다. <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> ElastoDyn에서는 참 또는 거짓입니다. 그러나 후자의 경우에는 단순히 액츄에이터 토크가 사용되지 않습니다.)</p>
+<p>ServoDyn에서 활성 블레이드 피치 제어가 켜져 있을 때, <code class="docutils literal notranslate"><span class="pre">BlPitchCom</span></code> 터빈 컨트롤러에 의해 계산됩니다. 활성 블레이드 피치 제어가 꺼진 경우(<code class="docutils literal notranslate"><span class="pre">PCMode=0</span></code> 또는 그 동안 <code class="docutils literal notranslate"><span class="pre">t&lt;TPCOn</span></code> 언제 <code class="docutils literal notranslate"><span class="pre">PCMode&gt;0</span></code>), <code class="docutils literal notranslate"><span class="pre">BlPitchCom</span></code> 중립 블레이드 피치 위치에 의해 제공됩니다 <code class="docutils literal notranslate"><span class="pre">PitNeut(I)</span></code> ServoDyn 입력 파일에서. 마지막으로, 피치 기동 중에, <code class="docutils literal notranslate"><span class="pre">BlPitchCom</span></code> 다음과 같이 주어진 일정한 속도로 최종 피치 위치에 접근합니다. <code class="docutils literal notranslate"><span class="pre">PitManRat(I)</span></code> ServoDyn 입력 파일에서.</p>
+<p>피치 위치 명령 외에도 피치 속도 명령 <code class="docutils literal notranslate"><span class="pre">BlPRateCom</span></code> ServoDyn에도 추가됩니다. 현재, <code class="docutils literal notranslate"><span class="pre">BlPRateCom</span></code> DLL 컨트롤러에서만 사용할 수 있습니다(<code class="docutils literal notranslate"><span class="pre">PCMode=5</span></code>) 또는 오버라이드 피치 기동 중. 정상 작동 중에 피치 속도 명령은 두 연속 컨트롤러 단계의 피치 설정점을 기반으로 유한 차분을 사용하여 추정됩니다. 피치 조작 중에 피치 속도 명령은 간단히 다음과 같이 설정됩니다. <code class="docutils literal notranslate"><span class="pre">PitManRat(I)</span></code> 최종 피치 위치에 도달할 때까지 ServoDyn 입력 파일에 저장합니다. <code class="docutils literal notranslate"><span class="pre">BlPRateCom</span></code> 0일 때 <code class="docutils literal notranslate"><span class="pre">PCMode</span></code> 0, 3, 4 또는 피치 조작이 완료된 후입니다.</p>
+<p>다음의 경우 <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> ElastoDyn에서 true인 경우 다음 ServoDyn 설정이 권장됩니다.</p>
 <ul class="simple">
-<li><p>DLL 컨트롤러를 사용하는 경우(<code class="docutils literal notranslate"><span class="pre">PCMode=5</span></code>), 설정
-피치 속도 명령의 불연속성을 피하기 위해 <code class="docutils literal notranslate"><span class="pre">BPCutoff</span></code> 를 적절한 값(터빈에 따라 1Hz 정도)으로 설정합니다. 이는 액추에이터 토크의 큰 변동을 줄이는 데 도움이 될 수 있습니다. 피치 명령과 피치 속도 명령 모두에 동일한 저역 통과 필터가 적용됩니다.</p></li>
-<li><p>유한 차분을 사용하여 추정된 피치 속도 명령과의 일관성을 위해 다음을 설정하십시오. <code class="docutils literal notranslate"><span class="pre">DLL_Ramp</span></code> 를 true로 설정합니다. 이는 다음과 같은 경우 액추에이터 순간의 작은 지터를 줄일 수 있습니다. <code class="docutils literal notranslate"><span class="pre">DLL_DT</span></code> 는 시뮬레이션 시간 간격보다 큽니다.</p></li>
-<li><p>마지막으로, 합리적인 시간 상수(1/4초 정도)와 감쇠비(약 0.7)를 얻으려면 피치 액추에이터 강성과 감쇠를 적절하게 설정해야 합니다. 더 높음 <code class="docutils literal notranslate"><span class="pre">PitSpr(I)</span></code> 및 <code class="docutils literal notranslate"><span class="pre">PitDamp(I)</span></code> 는 수치적 안정성을 위해 더 작은 시간 단계가 필요합니다. 주어진 감쇠 기간을 달성하려면 <code class="docutils literal notranslate"><span class="pre">Td</span></code> 및 감쇠비 <code class="docutils literal notranslate"><span class="pre">zeta</span></code>, 다음 방정식을 사용하여 초기 추정치를 얻을 수 있습니다. <code class="docutils literal notranslate"><span class="pre">PitSpr(I)</span></code> 및 <code class="docutils literal notranslate"><span class="pre">PitDamp(I)</span></code>:</p></li>
+<li><p>DLL 컨트롤러를 사용하는 경우(<code class="docutils literal notranslate"><span class="pre">PCMode=5</span></code>), 세트 <code class="docutils literal notranslate"><span class="pre">BPCutoff</span></code> 피치 속도 명령의 불연속성을 피하기 위해 적절한 값(터빈에 따라 1Hz 정도)으로 설정합니다. 이는 액추에이터 토크의 큰 변동을 줄이는 데 도움이 될 수 있습니다. 피치 명령과 피치 속도 명령 모두에 동일한 저역 통과 필터가 적용됩니다.</p></li>
+<li><p>유한 차분을 사용하여 추정된 피치 속도 명령과의 일관성을 위해 다음을 설정하십시오. <code class="docutils literal notranslate"><span class="pre">DLL_Ramp</span></code> 사실로. 이는 다음과 같은 경우 액추에이터 순간의 작은 지터를 줄일 수 있습니다. <code class="docutils literal notranslate"><span class="pre">DLL_DT</span></code> 시뮬레이션 시간 단계보다 큽니다.</p></li>
+<li><p>마지막으로, 합리적인 시간 상수(1/4초 정도)와 감쇠비(약 0.7)를 얻으려면 피치 액츄에이터 강성과 감쇠를 적절하게 설정해야 합니다. 더 높은 <code class="docutils literal notranslate"><span class="pre">PitSpr(I)</span></code> 및 <code class="docutils literal notranslate"><span class="pre">PitDamp(I)</span></code> 수치적 안정성을 위해서는 더 작은 시간 단계가 필요합니다. 주어진 감쇠 기간을 달성하려면 <code class="docutils literal notranslate"><span class="pre">Td</span></code> 감쇠비 <code class="docutils literal notranslate"><span class="pre">zeta</span></code>, 다음 방정식을 사용하여 초기 추정치를 얻을 수 있습니다. <code class="docutils literal notranslate"><span class="pre">PitSpr(I)</span></code> 및 <code class="docutils literal notranslate"><span class="pre">PitDamp(I)</span></code>:</p></li>
 </ul>
 <p><code class="docutils literal notranslate"><span class="pre">PitSpr</span>&nbsp; <span class="pre">=</span> <span class="pre">4</span> <span class="pre">*</span> <span class="pre">pi^2</span> <span class="pre">*</span> <span class="pre">(</span> <span class="pre">PBrIner</span> <span class="pre">+</span> <span class="pre">BlPIner</span> <span class="pre">)</span> <span class="pre">/</span> <span class="pre">(</span> <span class="pre">Td^2</span> <span class="pre">*</span> <span class="pre">(</span> <span class="pre">1</span> <span class="pre">-</span> <span class="pre">zeta^2</span> <span class="pre">)</span> <span class="pre">)</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">PitDamp</span> <span class="pre">=</span> <span class="pre">2</span> <span class="pre">*</span> <span class="pre">zeta</span> <span class="pre">*</span> <span class="pre">sqrt(</span> <span class="pre">PitSpr</span> <span class="pre">*</span> <span class="pre">(</span> <span class="pre">PBrIner</span> <span class="pre">+</span> <span class="pre">BlPIner</span> <span class="pre">)</span> <span class="pre">)</span></code></p>
-<p>언제 <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> 가 true이면 ElastoDyn의 다음과 같은 새로운 출력 채널을 사용할 수 있습니다.</p>
+<p>다음의 경우 <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> true이면 ElastoDyn에서 다음과 같은 새로운 출력 채널을 사용할 수 있습니다.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">BldPRate1</span></code> - 블레이드 1 피치 속도(deg/s)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">BldPRate2</span></code> - 블레이드 2 피치 속도(deg/s)</p></li>
@@ -276,36 +267,30 @@ ServoDyn 입력 파일의 <code class="docutils literal notranslate"><span class
 <li><p><code class="docutils literal notranslate"><span class="pre">BldPAcc2</span></code> - 블레이드 2 피치 가속도(deg/s^2)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">BldPAcc3</span></code> - 블레이드 3 피치 가속도(deg/s^2)</p></li>
 </ul>
-<p>이 출력 채널은 다음 경우에만 유효합니다. <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> 는 페더링된 위치에 대한 양수 값에 대해 참입니다.</p>
-<p>경우 <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> 는 ElastoDyn에서 false입니다. OpenFAST는 ServoDyn이 비활성화된 경우 ElastoDyn에 정의된 초기 위치에 고정되거나 ServoDyn의 피치 명령으로 설정된 블레이드 루트 피치 각도를 사용하여 이전과 같이 작동합니다. 설정 <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> 를 false로 설정한다고 해서 블레이드 피치 각도가 일정하다는 의미는 아닙니다.
-ElastoDyn 입력 파일의 <code class="docutils literal notranslate"><span class="pre">PBrIner(I)</span></code> 및 <code class="docutils literal notranslate"><span class="pre">BlPIner(I)</span></code> 는 다음 경우 모두 무시됩니다. <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> 는 거짓입니다. ServoDyn의 피치 액츄에이터 토크도 ElastoDyn에서 무시됩니다. 마지막으로 ElastoDyn에 지정된 초기 블레이드 피치 위치는 다음으로 대체됩니다.
-ServoDyn이 활성화되었지만 활성 블레이드 피치 제어가 꺼져 있는 경우 ServoDyn의 <code class="docutils literal notranslate"><span class="pre">PitNeut(I)</span></code> (<code class="docutils literal notranslate"><span class="pre">PCMode=0</span></code> 또는 도중 <code class="docutils literal notranslate"><span class="pre">t&lt;TPCOn</span></code> 때 <code class="docutils literal notranslate"><span class="pre">PCMode&gt;0</span></code>).</p>
+<p>이러한 출력 채널은 다음 경우에만 유효합니다. <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> 깃털 위치에 대한 양수 값의 경우에 해당됩니다.</p>
+<p>다음의 경우 <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> ElastoDyn에서 false인 경우 OpenFAST는 ServoDyn가 비활성화된 경우 ElastoDyn에 정의된 초기 위치로 고정되거나 ServoDyn의 피치 명령으로 설정된 블레이드 루트 피치 각도를 사용하여 이전과 같이 작동합니다. 환경 <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> 거짓이라고 해서 블레이드 피치 각도가 일정하다는 의미는 아닙니다. <code class="docutils literal notranslate"><span class="pre">PBrIner(I)</span></code> 및 <code class="docutils literal notranslate"><span class="pre">BlPIner(I)</span></code> ElastoDyn 입력 파일의 경우 둘 다 무시됩니다. <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> 거짓입니다. ServoDyn의 피치 액추에이터 토크는 ElastoDyn에서도 무시됩니다. 마지막으로 ElastoDyn에 지정된 초기 블레이드 피치 위치는 다음으로 대체됩니다. <code class="docutils literal notranslate"><span class="pre">PitNeut(I)</span></code> ServoDyn에서 ServoDyn가 활성화되었지만 활성 블레이드 피치 제어가 꺼진 경우(<code class="docutils literal notranslate"><span class="pre">PCMode=0</span></code> 또는 그 동안 <code class="docutils literal notranslate"><span class="pre">t&lt;TPCOn</span></code> 언제 <code class="docutils literal notranslate"><span class="pre">PCMode&gt;0</span></code>).</p>
 <p><strong>이용안내</strong></p>
-<p>활성화 효과
-블레이드 루트 하중에 대한 <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> 는 블레이드가 ElastoDyn에서 모델링될 때 더 중요한 경향이 있습니다. 그렇지 않으면 ElastoDyn이 블레이드 피치 관성을 완전히 무시하기 때문입니다. BeamDyn에서 블레이드를 모델링할 때 블레이드 피치 관성(루트 노드 제외)과 블레이드 비틀림이 항상 고려되기 때문에 효과가 덜 중요한 경향이 있습니다. 이 경우 활성화
-ElastoDyn의 <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> 를 사용하면 루트 노드의 피치 관성을 포함하여 전체 블레이드의 피치 관성이 동역학에 포함될 수 있습니다.</p>
-<p>또한, <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> 는 블레이드 피칭에서 갑작스러운 시작이나 정지 후에 더 중요한 경향이 있습니다. 예를 들어, 이는 블레이드 피치 각도가 포화될 때(피치 명령이 위에서 제안한 대로 저역 통과 필터링되지 않은 경우) 정상 작동 중에 또는 블레이드가 페더링 위치로 빠르게 피치하고 정지해야 하는 비상 종료 중에 발생할 수 있습니다. 이러한 상황에서는 <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> 를 사용하면 OpenFAST가 블레이드가 ElastoDyn에서 모델링된 경우 놓칠 수 있는 블레이드 루트의 큰 피치 모멘트를 캡처할 수 있습니다. 또는 블레이드가 BeamDyn에서 모델링된 경우 블레이드 루트에서 불연속적인 피치 속도를 방지하고 충동적인 시작 또는 급정지 직후 루트 모멘트의 큰 변동을 완화하는 데 도움이 될 수 있습니다.</p>
+<p>활성화의 효과 <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> 블레이드 루트 하중에 대한 영향은 블레이드가 ElastoDyn로 모델링될 때 더 중요한 경향이 있습니다. 그렇지 않으면 ElastoDyn가 블레이드 피치 관성을 완전히 무시하기 때문입니다. 블레이드가 BeamDyn에서 모델링되면 블레이드 피치 관성(루트 노드 제외)과 블레이드 비틀림이 항상 고려되기 때문에 효과가 덜 중요한 경향이 있습니다. 이 경우 활성화 <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> ElastoDyn에서는 루트 노드의 피치 관성을 포함하여 전체 블레이드의 피치 관성이 역학에 포함될 수 있습니다.</p>
+<p>게다가, <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> 블레이드 피칭에서 갑작스런 시작이나 정지 후에 더 중요한 경향이 있습니다. 예를 들어, 이는 블레이드 피치 각도가 포화될 때(피치 명령이 위에서 제안한 대로 저역 통과 필터링되지 않은 경우) 정상 작동 중에 또는 블레이드가 페더링 위치로 빠르게 피치하고 정지해야 하는 비상 종료 중에 발생할 수 있습니다. 이러한 상황에서는 <code class="docutils literal notranslate"><span class="pre">PitchDOF</span></code> OpenFAST는 블레이드가 ElastoDyn에서 모델링된 경우 놓칠 수 있는 블레이드 루트의 큰 피치 모멘트를 캡처할 수 있습니다. 또는 블레이드가 BeamDyn로 ​​모델링된 경우 블레이드 루트에서 불연속적인 피치 속도를 방지하고 충동적인 시작 또는 급정지 직후 루트 모멘트의 큰 변동을 완화하는 데 도움이 될 수 있습니다.</p>
 </div>
 </div>
 <div class="section" id="developer-notes">
-<span id="ed-dev-notes"></span><h1><span class="section-number">4.10.4. </span>개발자 노트<a class="headerlink" href="#developer-notes" title="이 제목의 고유 링크"></a></h1>
+<span id="ed-dev-notes"></span><h1><span class="section-number">4.10.4. </span>개발자 노트<a class="headerlink" href="#developer-notes" title="이 제목에 대한 영구 링크"></a></h1>
 <p><strong>내부 좌표계</strong></p>
-<p>ElastoDyn의 다양한 좌표계는 변수에 저장됩니다. <code class="docutils literal notranslate"><span class="pre">CoordSys</span></code>. ElastoDyn이 내부적으로 사용하는 좌표계는 OpenFAST 입력/출력 좌표계와는 다른 규칙을 사용합니다.</p>
-<p>예를 들어 나셀 좌표계의 경우 단위 축이 표시됩니다.
-OpenFAST의 <span class="math notranslate nohighlight">\(x_n,y_n,z_n\)</span> 및
-ElastoDyn의 <span class="math notranslate nohighlight">\(d_1,d_2,d_3\)</span> 에는 다음 변환이 적용됩니다.
+<p>ElastoDyn의 다양한 좌표계는 변수에 저장됩니다. <code class="docutils literal notranslate"><span class="pre">CoordSys</span></code>. ElastoDyn에서 내부적으로 사용되는 좌표계는 OpenFAST 입력/출력 좌표계와 다른 규칙을 사용합니다.</p>
+<p>예를 들어, 나셀 좌표계의 경우 단위 축이 표시됩니다. <span class="math notranslate nohighlight">\(x_n,y_n,z_n\)</span> OpenFAST에서, 그리고 <span class="math notranslate nohighlight">\(d_1,d_2,d_3\)</span> ElastoDyn에서는 다음 변환이 적용됩니다.
 <span class="math notranslate nohighlight">\(d_1 = x_n\)</span>,
 <span class="math notranslate nohighlight">\(d_2 =z_n\)</span> 및
 <span class="math notranslate nohighlight">\(d_3 =-y_n\)</span>.</p>
-<p>다음(일부) 좌표계 목록은 ElastoDyn에 의해 내부적으로 정의됩니다.</p>
+<p>다음 (일부) 좌표계 목록은 ElastoDyn에 의해 내부적으로 정의됩니다.</p>
 <ul class="simple">
-<li><p><cite>z</cite> : 관성 좌표계</p></li>
+<li><p><cite>z</cite> : 관성좌표계</p></li>
 <li><p><cite>a</cite> : 타워베이스 좌표계</p></li>
 <li><p><cite>t</cite> : 타워-노드 좌표계(노드당 하나)</p></li>
 <li><p><cite>d</cite> : 나셀 좌표계</p></li>
-<li><p><cite>c</cite> : 샤프트 기울어진 좌표계</p></li>
+<li><p><cite>c</cite> : 축 기울어진 좌표계</p></li>
 <li><p><cite>RF</cite> : 로터 펄 좌표계</p></li>
-<li><p><cite>TF</cite> : 꼬리 털 좌표계</p></li>
+<li><p><cite>tf</cite> : 꼬리털 좌표계</p></li>
 <li><p><cite>g</cite> : 허브 좌표계</p></li>
 </ul>
 </div>
@@ -313,9 +298,9 @@ ElastoDyn의 <span class="math notranslate nohighlight">\(d_1,d_2,d_3\)</span> �
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
-        <a href="input.html" class="btn btn-neutral float-left" title="4.10.2. 입력 파일" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
-        <a href="zrefs.html" class="btn btn-neutral float-right" title="4.10.5. 참고문헌" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
+        <a href="input.html" class="btn btn-neutral float-left" title="4.10.2. 입력 파일" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+        <a href="zrefs.html" class="btn btn-neutral float-right" title="4.10.5. 참고자료" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr>
@@ -325,7 +310,7 @@ ElastoDyn의 <span class="math notranslate nohighlight">\(d_1,d_2,d_3\)</span> �
   </div>
 
   다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">주제</a>
     제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
    
 

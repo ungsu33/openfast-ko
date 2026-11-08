@@ -2,7 +2,7 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>4.12.1. 입력 파일 - OpenFAST v5.0.0 문서</title>
+  <title>4.12.1. 입력 파일 — OpenFAST v5.0.0 문서</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css">
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css">
       <link rel="stylesheet" type="text/css" href="../../../_static/css/math_eq.css">
@@ -21,9 +21,9 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="검색" href="../../../search.html">
+    <link rel="search" title="찾다" href="../../../search.html">
     <link rel="next" title="4.12.2. 출력 파일" href="output_files.html">
-    <link rel="prev" title="4.12. SeaState 사용자 가이드 및 이론 설명서" href="index.html"> 
+    <link rel="prev" title="4.12. SeaState 사용자 가이드 및 이론 매뉴얼" href="index.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/seastate/input_files.html"></head>
 
 <body class="wy-body-for-nav"> 
@@ -36,7 +36,7 @@
           
           <a href="../../../index.html" class="icon icon-home">
             OpenFAST
-              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="심벌 마크">
           </a>
               <div class="version">5.0 · 한국어</div>
 <div role="search">
@@ -48,15 +48,15 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력소음</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../beamdyn/index.html">4.7. BeamDyn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
@@ -71,7 +71,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="output_files.html">4.12.2. 출력 파일</a></li>
-<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.12.3. 부록 A: SeaState 기본 입력 파일 예</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.12.3. 부록 A: SeaState 기본 입력 파일의 예</a></li>
 <li class="toctree-l3"><a class="reference internal" href="appendix.html#appendix-b-example-seastate-driver-input-file">4.12.4. 부록 B: SeaState 드라이버 입력 파일의 예</a></li>
 <li class="toctree-l3"><a class="reference internal" href="appendix.html#appendix-c-list-of-output-channels">4.12.5. 부록 C. 출력 채널 목록</a></li>
 </ul>
@@ -91,16 +91,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -109,12 +109,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.12. </span>SeaState 사용자 가이드 및 이론 설명서</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.12. </span>SeaState 사용자 가이드 및 이론 매뉴얼</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.12.1. </span>입력 파일</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/seastate/input_files.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+            <a href="../../../_sources/source/user/seastate/input_files.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -123,76 +123,70 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="input-files">
-<h1><span class="section-number">4.12.1. </span>입력 파일<a class="headerlink" href="#input-files" title="이 제목의 고유 링크"></a></h1>
-<p>사용자는 기본 SeaState 입력 파일을 통해 바다 상태 모델 매개변수를 구성합니다. 독립형 모드에서 사용하는 경우 추가 드라이버 입력 파일이 필요합니다. 이 드라이버 파일은 OpenFAST가 SeaState에 일반적으로 제공하는 초기화 입력을 지정합니다.</p>
-<p>행 수가 지정된 테이블을 제외하고 입력 파일에서 행을 추가하거나 제거해서는 안됩니다.</p>
+<h1><span class="section-number">4.12.1. </span>입력 파일<a class="headerlink" href="#input-files" title="이 제목에 대한 영구 링크"></a></h1>
+<p>사용자는 기본 SeaState 입력 파일을 통해 해상 상태 모델 매개변수를 구성합니다. 독립형 모드에서 사용하는 경우 추가 드라이버 입력 파일이 필요합니다. 이 드라이버 파일은 일반적으로 OpenFAST가 SeaState에 제공하는 초기화 입력을 지정합니다.</p>
+<p>행 수가 지정된 테이블을 제외하고는 입력 파일에서 행을 추가하거나 제거해서는 안 됩니다.</p>
 <div class="section" id="units">
-<h2><span class="section-number">4.12.1.1. </span>장치<a class="headerlink" href="#units" title="이 제목의 고유 링크"></a></h2>
+<h2><span class="section-number">4.12.1.1. </span>단위<a class="headerlink" href="#units" title="이 제목에 대한 영구 링크"></a></h2>
 <p>SeaState는 SI 시스템(kg, m, s)을 사용합니다.</p>
 </div>
 <div class="section" id="seastate-driver-input-file">
-<span id="sea-driver-input"></span><h2><span class="section-number">4.12.1.2. </span>SeaState 드라이버 입력 파일<a class="headerlink" href="#seastate-driver-input-file" title="이 제목의 고유 링크"></a></h2>
-<p>드라이버 입력 파일은 SeaState의 독립 실행형 버전에만 필요하며 일반적으로 OpenFAST에서 생성된 입력을 포함합니다. 분리된 모델의 경우 해상 상태를 제어하는 ​​것이 필요합니다. SeaState 드라이버 입력 파일의 예가 부록 B에 나와 있습니다.</p>
-<p>설정
-AeroDyn이 AeroDyn 기본, 에어포일 및 블레이드 입력 파일의 내용을 에코하도록 하려면 <strong>에코</strong> 플래그를 TRUE로 설정하세요.
-<code class="docutils literal notranslate"><span class="pre">SeaStateDriver</span></code> 는 드라이버 입력 파일의 내용을 에코합니다(드라이버 파일의 오류를 디버깅하는 데 유용함). 에코 파일의 명명 규칙은 다음과 같습니다. <code class="docutils literal notranslate"><span class="pre">OutRootName.dvr.ech</span></code>. <strong>OutRootName</strong> 는 드라이버 입력 파일의 SEASTATE 섹션에 지정되어 있습니다. 다음을 사용하여 중력 상수를 설정합니다. <strong>중력</strong> 매개변수. SeaState에서는 크기를 예상하므로 SI 단위에서는 9.80665로 설정됩니다. <span class="math notranslate nohighlight">\(\frac{m}{s^{2}}\)</span>.
-<strong>WtrDens</strong> 는 물 밀도를 지정하며 0보다 크거나 같은 값이어야 합니다. 바닷물의 일반적인 값은 약 1025kg/m입니다.<sup>3</sup>. <strong>WtrDpth</strong> 는 MSL을 기준으로 수심(평평한 해저의 깊이)을 지정하며 0보다 큰 값이어야 합니다. <strong>MSL2SWL</strong> 는 MSL과 SWL 사이의 오프셋이며, SWL이 MSL보다 높으면 양수입니다. <strong>SeaStateInputFile</strong> 는 기본 SeaState 입력 파일의 파일 이름입니다. 이 이름은 따옴표로 묶어야 하며 절대 경로 또는 상대 경로를 포함할 수 있습니다.</p>
-<p><strong>WrWvKinMod</strong> 는 SeaState 드라이버의 파동 운동학 출력을 제어합니다. 0으로 설정하면 파동 운동학의 드라이버 출력이 억제됩니다. 드라이버는 전역 원점(0,0)에서 파고 시계열을 별도의 출력으로 출력합니다.
-<em>.Elev</em> 파일의 경우 <strong>WrWvKinMod</strong> = 1. 이 파일은 유효한 파일로도 사용됩니다.
-<strong>WvKinFile</strong> 용 <strong>WaveMod</strong> = 5(외부 생성 파고 시계열). 만약에 <strong>WrWvKinMod</strong> = 2, SeaState는 확장자가 있는 8개 출력 파일의 모든 파동 그리드 지점에서 전체 파동 운동학(속도, 가속도, 동적 압력 및 파고 고도)을 출력합니다.
-<em>.Vxi</em>, <em>.Vyi</em>, <em>.Vzi</em>, <em>.Axi</em>, <em>.Ayi</em>, <em>.Azi</em>, <em>.DynP</em>및
-이 플래그 값 아래에 <em>.Elev</em>. 속도 및 가속도 출력은 모두 지구에 고정된 전역 좌표계에 있습니다. 이 파일은 다음과 같이 유효합니다. <strong>WvKinFile</strong> 용 <strong>WaveMod</strong> = 6(외부에서 생성된 전체 파동 운동학 시계열)이며 사용자가 자신의 입력 파일을 작성하려는 경우 템플릿으로 사용할 수 있습니다. <strong>WaveMod</strong> = 6.
-<strong>NSteps</strong> 는 시뮬레이션 시간 단계 수를 지정합니다. <strong>TimeInterval</strong>
-는 단계 사이의 시간을 지정합니다. <strong>WaveElevSeriesFlag</strong> 를 TRUE로 설정하여 확장자를 가진 파일을 출력할 수 있습니다. <em>.WaveElev.out
-시각화 목적을 위해 각 시간 단계의 파고 필드를 포함하는</em>. FALSE로 설정하면 이 출력이 억제됩니다. 그리드 포인트는
+<span id="sea-driver-input"></span><h2><span class="section-number">4.12.1.2. </span>SeaState 드라이버 입력 파일<a class="headerlink" href="#seastate-driver-input-file" title="이 제목에 대한 영구 링크"></a></h2>
+<p>드라이버 입력 파일은 SeaState의 독립형 버전에만 필요하며 일반적으로 OpenFAST에서 생성된 입력을 포함합니다. 분리된 모델의 경우 해상 상태를 제어하는 ​​것이 필요합니다. SeaState 드라이버 입력 파일의 예는 부록 B에 나와 있습니다.</p>
+<p>다음을 설정합니다: <strong>Echo</strong> 원하는 경우 이 파일의 플래그를 TRUE로 지정하세요.
+<code class="docutils literal notranslate"><span class="pre">SeaStateDriver</span></code> 드라이버 입력 파일의 내용을 에코합니다(드라이버 파일의 오류를 디버깅하는 데 유용함). 에코 파일의 명명 규칙은 다음과 같습니다. <code class="docutils literal notranslate"><span class="pre">OutRootName.dvr.ech</span></code>. <strong>OutRootName</strong> 드라이버 입력 파일의 SEASTATE 섹션에 지정됩니다. 다음을 사용하여 중력 상수를 설정합니다. <strong>Gravity</strong> 매개변수. SeaState는 크기를 예상하므로 SI 단위에서는 9.80665로 설정됩니다. <span class="math notranslate nohighlight">\(\frac{m}{s^{2}}\)</span>.
+<strong>WtrDens</strong> 물의 밀도를 지정하며 0보다 크거나 같은 값이어야 합니다. 바닷물의 일반적인 값은 약 1025kg/m입니다.<sup>3</sup>. <strong>WtrDpth</strong> MSL를 기준으로 수심(평평한 해저의 깊이)을 지정하며 0보다 큰 값이어야 합니다. <strong>MSL2SWL</strong> MSL와 SWL 사이의 오프셋이며, SWL가 MSL보다 높으면 양수입니다. <strong>SeaStateInputFile</strong> 기본 SeaState 입력 파일의 파일 이름입니다. 이 이름은 따옴표로 묶어야 하며 절대 경로 또는 상대 경로를 포함할 수 있습니다.</p>
+<p><strong>WrWvKinMod</strong> SeaState 드라이버의 파동 운동학 출력을 제어합니다. 0으로 설정하면 파동 운동학의 드라이버 출력이 억제됩니다. 드라이버는 전역 원점(0,0)에서 파고 시계열을 별도의 출력으로 출력합니다.
+<em>.Elev</em> 다음과 같은 경우 파일을 제출하세요. <strong>WrWvKinMod</strong> = 1. 이 파일은 유효한 파일로도 사용됩니다.
+<strong>WvKinFile</strong> 대해 <strong>WaveMod</strong> = 기본 SeaState 입력 파일의 5(외부 생성 파고 시계열). 만약에 <strong>WrWvKinMod</strong> = 2, SeaState는 확장자가 있는 8개 출력 파일의 모든 파동 그리드 지점에서 전체 파동 운동학(속도, 가속도, 동적 압력 및 파고 고도)을 출력합니다.
+<em>.Vxi</em>, <em>.Vyi</em>, <em>.Vzi</em>, <em>.Axi</em>, <em>.아이</em>, <em>.Azi</em>, <em>.DynP</em>, 및 <em>.Elev</em>. 속도 및 가속도 출력은 모두 지구에 고정된 전역 좌표계에 있습니다. 이 파일은 다음과 같이 유효합니다. <strong>WvKinFile</strong> 대해 <strong>WaveMod</strong> = 6(외부에서 생성된 전체 파동 운동학 시계열)이며 사용자가 자신의 입력 파일을 작성하려는 경우 템플릿으로 사용할 수 있습니다. <strong>WaveMod</strong> = 6.
+<strong>NSteps</strong> 시뮬레이션 시간 단계 수를 지정합니다. <strong>TimeInterval</strong>
+단계 사이의 시간을 지정합니다. <strong>WaveElevSeriesFlag</strong> 확장자를 가진 파일을 출력하려면 TRUE로 설정할 수 있습니다. <em>.WaveElev.out</em>여기에는 시각화 목적을 위해 각 시간 단계의 파고 필드가 포함되어 있습니다. FALSE로 설정하면 이 출력이 억제됩니다. 그리드 포인트는
 <strong>WrWvKinMod</strong> = 2 및 <strong>WaveElevSeriesFlag</strong> = TRUE는 둘 다 아래 설명된 기본 SeaState 입력 파일의 SPATIAL DISCRETIZATION 섹션에 의해 제어됩니다.</p>
 </div>
 <div class="section" id="seastate-primary-input-file">
-<span id="sea-primary-input"></span><h2><span class="section-number">4.12.1.3. </span>SeaState 기본 입력 파일<a class="headerlink" href="#seastate-primary-input-file" title="이 제목의 고유 링크"></a></h2>
+<span id="sea-primary-input"></span><h2><span class="section-number">4.12.1.3. </span>SeaState 기본 입력 파일<a class="headerlink" href="#seastate-primary-input-file" title="이 제목에 대한 영구 링크"></a></h2>
 <p>SeaState 기본 입력 파일의 예가 부록 A에 나와 있습니다.</p>
 <div class="section" id="environmental-conditions">
-<h3><span class="section-number">4.12.1.3.1. </span>환경 조건<a class="headerlink" href="#environmental-conditions" title="이 제목의 고유 링크"></a></h3>
-<p>환경 조건은 이제 드라이버 입력 파일에 지정되지만 레거시 호환성을 위해 기본 입력 파일에 남아 있습니다. 드라이버 입력 파일에 지정된 값을 전달하려면 DEFAULT 키워드를 사용하세요. 그렇지 않으면 기본 입력 파일에 제공된 값이 드라이버 입력 파일에 제공된 값을 덮어씁니다. <strong>WtrDens</strong> 는 물의 밀도를 지정하며 0보다 크거나 같은 값이어야 합니다. 바닷물의 일반적인 값은 약 1025kg/m입니다.<sup>3</sup>. <strong>WtrDpth</strong> 는 기준 MSL을 기준으로 수심(평평한 해저의 깊이)을 지정하며 0보다 큰 값이어야 합니다. <strong>MSL2SWL</strong> 는 MSL과 SWL 사이의 오프셋이며 SWL이 MSL보다 높을 때 양수입니다. 이 매개변수는 하부 구조 형상 정보를 변경하지 않고도 조수 또는 폭풍 해일 해수면 변화의 영향을 시뮬레이션할 때 유용합니다. 이 매개변수는 다음에서 사용되지 않습니다.
-<strong>WaveMod</strong> = 6이고 전위 흐름 모델을 사용하는 경우 0으로 설정해야 합니다(<strong>PotMod</strong> = 1 또는 2) HydroDyn에서.</p>
+<h3><span class="section-number">4.12.1.3.1. </span>환경 조건<a class="headerlink" href="#environmental-conditions" title="이 제목에 대한 영구 링크"></a></h3>
+<p>환경 조건은 이제 드라이버 입력 파일에 지정되지만 레거시 호환성을 위해 기본 입력 파일에 남아 있습니다. 드라이버 입력 파일에 지정된 값을 전달하려면 키워드 DEFAULT를 사용하십시오. 그렇지 않으면 기본 입력 파일에 제공된 값이 드라이버 입력 파일에 제공된 값을 덮어씁니다. <strong>WtrDens</strong> 물의 밀도를 지정하며 0보다 크거나 같은 값이어야 합니다. 바닷물의 일반적인 값은 약 1025kg/m입니다.<sup>3</sup>. <strong>WtrDpth</strong> MSL 참조를 기준으로 수심(평평한 해저의 깊이)을 지정하며 0보다 큰 값이어야 합니다. <strong>MSL2SWL</strong> MSL와 SWL 사이의 오프셋이며, SWL가 MSL보다 높을 때 양수입니다. 이 매개변수는 하부 구조 형상 정보를 변경하지 않고도 조수 또는 폭풍 해일 해수면 변화의 영향을 시뮬레이션할 때 유용합니다. 이 매개변수는 다음에서 사용되지 않습니다.
+<strong>WaveMod</strong> = 6이고 포텐셜 유동 모델을 사용하는 경우 0으로 설정해야 합니다(<strong>PotMod</strong> = 1 또는 2) HydroDyn.</p>
 </div>
 <div class="section" id="spatial-discretization">
-<h3><span class="section-number">4.12.1.3.2. </span>공간 이산화<a class="headerlink" href="#spatial-discretization" title="이 제목의 고유 링크"></a></h3>
-<p>SPATIAL DISCRETIZATION 섹션은 웨이브 그리드 생성을 제어합니다. 이 파동 그리드는 주로 HydroDyn에서 사용되지만 OpenFAST의 다른 모듈에서도 물 속의 구조물에 대한 유체 역학 및 정수압 하중을 계산하는 데 사용됩니다. 파도 그리드는 HydroDyn의 스트립 이론 멤버가 하중을 평가할 때 구조물의 순간 변위 위치에서 파도 운동학과 동적 압력을 사용할 수 있도록 추가되었습니다. 또한 높은 바람 추력으로 인한 것과 같은 수평면의 큰 표류 운동을 기반으로 HydroDyn의 전위 흐름 파동을 수정할 수 있습니다.</p>
-<p>이전 버전의 OpenFAST에서는 스트립 이론 부재에 대한 전위 흐름 파동 여기 및 파동장이 변위되지 않은 위치의 구조로 미리 계산되었습니다. 이 작동 모드는 OpenFAST에 더 이상 존재하지 않으며, 사용자가 HydroDyn에서 스트립 이론 및/또는 전위 흐름 유체 역학 하중을 평가할 때 구조 변위를 고려하지 않기로 선택한 경우에도 파동 그리드를 항상 정의해야 합니다.</p>
-<p>현재 SeaState 파도 그리드는 항상 전역 원점의 중심에 있고 대칭을 기준으로 합니다. <em>XZ</em>-평면 및 <em>YZ</em>-평면.</p>
-<p><strong>X_HalfWidth</strong> 는 전역에서 웨이브 그리드의 절반 너비(m 단위)를 설정합니다. <em>X</em>-방향, 웨이브 그리드가 다음 영역을 포함하도록 -<strong>X_HalfWidth</strong> ≤ <em>X</em> ≤ +<strong>X_HalfWidth</strong>. <strong>X_HalfWidth</strong> 는 0보다 커야 합니다.</p>
-<p><strong>Y_HalfWidth</strong> 는 전역에서 웨이브 그리드의 절반 너비(m 단위)를 설정합니다. <em>Y</em>-방향, 웨이브 그리드가 다음 영역을 포함하도록 -<strong>Y_HalfWidth</strong> ≤ <em>Y</em> ≤ +<strong>Y_HalfWidth</strong>. <strong>Y_HalfWidth</strong> 는 0보다 커야 합니다.</p>
-<p><strong>Z_Depth</strong> 는 웨이브 그리드가 다음 영역을 덮도록 웨이브 그리드의 깊이(m)를 설정합니다.<strong>MSL2SWL</strong> − <strong>Z_Depth</strong>) ≤ <em>Z</em> ≤ <strong>MSL2SWL</strong>. <strong>Z_Depth</strong> 는 0보다 크고 다음보다 작거나 같아야 합니다. <strong>MSL2SWL</strong> + <strong>WtrDpth</strong>. 설정 <strong>Z_Depth</strong> 를 DEFAULT로 설정하면 해당 값이 자동으로 다음으로 설정됩니다. <strong>MSL2SWL</strong> + <strong>WtrDpth</strong>.</p>
-<p><strong>NX</strong> 는 균일하게 분포된 그리드 포인트의 수를 설정합니다. <em>X</em>- 원점을 포함하여 도메인의 절반에 대한 방향입니다. 따라서 그리드 포인트의 총 개수는 <em>X</em>-방향은 2와 같습니다.<strong>NX</strong>−1. <strong>NX</strong> 는 2보다 크거나 같아야 합니다.</p>
-<p><strong>NY</strong> 는 균일하게 분포된 그리드 포인트의 수를 설정합니다. <em>Y</em>- 원점을 포함하여 도메인의 절반에 대한 방향입니다. 따라서 그리드 포인트의 총 개수는 <em>Y</em>-방향은 2와 같습니다.<strong>NY</strong>−1. <strong>NY</strong> 는 2보다 크거나 같아야 합니다.</p>
-<p><strong>NZ</strong> 는 수직의 그리드 포인트 수를 설정합니다. <em>Z</em>-방향 <em>Z</em> = (<strong>MSL2SWL</strong> − <strong>Z_Depth</strong>) ~ <em>Z</em> = <strong>MSL2SWL</strong>. 그리드 포인트의 분포 <em>Z</em>-방향이 균일하지 않습니다. 대신 코사인 분포를 따릅니다. <em>Z</em>[<em>n</em>] = <strong>Z_Depth</strong>(cos(<em>n</em>·d<em>θ</em>)–1), 여기서 <em>n</em> = 0,1,…,<strong>NZ</strong>-1 및 d<em>θ</em> = <em>π</em>/(2(<strong>NZ</strong>-1)). 이 분포는 자유 표면 근처에 더 많은 그리드 포인트를 배치합니다. <strong>NZ</strong> 는 2보다 크거나 같아야 합니다.</p>
-<p>웨이브 그리드를 설정할 때, 시뮬레이션 중에 HydroDyn에서 정의된 구조의 어떤 부분도 웨이브 그리드 밖으로 이동하지 않도록 웨이브 그리드가 세 방향 모두에서 충분히 큰지 확인해야 합니다. 동시에 그리드는 관심 있는 가장 짧은 파동을 해결할 수 있을 만큼 충분히 미세해야 합니다.</p>
-<p>OpenFAST는 시뮬레이션 시작 시 파동장 속도, 가속도, 동적 압력 및 파고를 미리 계산하고 저장합니다. 웨이브 그리드를 생성하고 유지하는 것은 긴 시뮬레이션의 경우 메모리 집약적일 수 있습니다. 사용자는 메모리 사용량을 줄이기 위해 웨이브 그리드를 필요한 것보다 더 크거나 더 미세하게 설정하지 않아야 합니다. 감소 <strong>WaveTMax</strong> 또는 증가 <strong>WaveDT</strong> (아래 WAVES 섹션 참조)도 메모리 사용량을 줄입니다. 긴 볏파(방향성 확산 없음)의 경우 <em>X</em>-방향(또는 <em>Y</em>-방향), <strong>NY</strong> (또는 <strong>NX</strong>)는 메모리 절약을 위해 최소 허용 값인 2로 줄일 수 있습니다.</p>
+<h3><span class="section-number">4.12.1.3.2. </span>공간 이산화<a class="headerlink" href="#spatial-discretization" title="이 제목에 대한 영구 링크"></a></h3>
+<p>SPATIAL DISCRETIZATION 섹션은 웨이브 그리드 생성을 제어합니다. 이 파동 그리드는 주로 HydroDyn에서 사용되지만 OpenFAST의 다른 모듈에서도 수중 구조물에 대한 유체 역학 및 정수압 하중을 계산하는 데 사용됩니다. HydroDyn의 띠 이론 부재가 하중을 평가할 때 구조물의 순간 변위 위치에서 파동 운동학과 동적 압력을 사용할 수 있도록 파동 그리드가 추가되었습니다. 또한 높은 바람 추력으로 인한 것과 같은 수평면의 큰 표류 운동을 기반으로 HydroDyn의 포텐셜 유동 파동을 보정할 수 있습니다.</p>
+<p>OpenFAST의 이전 버전에서는 스트립 이론 부재에 대한 포텐셜 유동 파동 여기 및 파동장이 변위되지 않은 위치의 구조로 미리 계산되었습니다. 이 작동 모드는 더 이상 OpenFAST에 존재하지 않으며 사용자가 HydroDyn에서 스트립 이론 및/또는 포텐셜 유동 유체 역학 하중을 평가할 때 구조 변위를 고려하지 않기로 선택한 경우에도 파동 그리드를 항상 정의해야 합니다.</p>
+<p>현재 SeaState 웨이브 그리드는 항상 전역 원점의 중심에 있고 대칭을 기준으로 합니다. <em>XZ</em>-비행기와 <em>YZ</em>-비행기.</p>
+<p><strong>X_HalfWidth</strong> 전역에서 웨이브 그리드의 절반 너비를 설정합니다(m 단위). <em>X</em>- 웨이브 그리드가 다음 영역을 덮는 방향<strong>X_HalfWidth</strong> ≤ <em>X</em> ≤ +<strong>X_HalfWidth</strong>. <strong>X_HalfWidth</strong> 0보다 커야 합니다.</p>
+<p><strong>Y_HalfWidth</strong> 전역에서 웨이브 그리드의 절반 너비를 설정합니다(m 단위). <em>Y</em>- 웨이브 그리드가 다음 영역을 덮는 방향<strong>Y_HalfWidth</strong> ≤ <em>Y</em> ≤ +<strong>Y_HalfWidth</strong>. <strong>Y_HalfWidth</strong> 0보다 커야 합니다.</p>
+<p><strong>Z_Depth</strong> 파도 그리드가 다음 영역을 덮도록 파도 그리드의 깊이(m)를 설정합니다.<strong>MSL2SWL</strong> − <strong>Z_Depth</strong>) ≤ <em>Z</em> ≤ <strong>MSL2SWL</strong>. <strong>Z_Depth</strong> 0보다 크고 다음보다 작거나 같아야 합니다. <strong>MSL2SWL</strong> + <strong>WtrDpth</strong>. 환경 <strong>Z_Depth</strong> DEFAULT로 자동으로 값을 다음으로 설정합니다. <strong>MSL2SWL</strong> + <strong>WtrDpth</strong>.</p>
+<p><strong>NX</strong> 균일하게 분포된 그리드 점의 수를 설정합니다. <em>X</em>-원점을 포함하여 도메인의 절반에 걸친 방향. 따라서 그리드 포인트의 총 개수는 <em>X</em>-방향은 2와 같습니다.<strong>NX</strong>−1. <strong>NX</strong> 2보다 크거나 같아야 합니다.</p>
+<p><strong>NY</strong> 균일하게 분포된 그리드 점의 수를 설정합니다. <em>Y</em>-원점을 포함하여 도메인의 절반에 걸친 방향. 따라서 그리드 포인트의 총 개수는 <em>Y</em>-방향은 2와 같습니다.<strong>NY</strong>−1. <strong>NY</strong> 2보다 크거나 같아야 합니다.</p>
+<p><strong>NZ</strong> 수직의 그리드 포인트 수를 설정합니다. <em>Z</em>-에서 방향 <em>Z</em> = (<strong>MSL2SWL</strong> − <strong>Z_Depth</strong>) 에게 <em>Z</em> = <strong>MSL2SWL</strong>. 그리드 포인트의 분포 <em>Z</em>-방향이 일정하지 않습니다. 대신 코사인 분포를 따릅니다. <em>Z</em>[<em>n</em>] = <strong>Z_Depth</strong>(코사인(<em>n</em>·d<em>θ</em>)–1), 여기서 <em>n</em> = 0,1,…,<strong>NZ</strong>-1과 d<em>θ</em> = <em>π</em>/(2(<strong>NZ</strong>-1)). 이 분포는 자유 표면 근처에 더 많은 그리드 포인트를 배치합니다. <strong>NZ</strong> 2보다 크거나 같아야 합니다.</p>
+<p>웨이브 그리드를 설정할 때 웨이브 그리드가 세 방향 모두에서 충분히 큰지 확인하여 시뮬레이션 중에 HydroDyn에 정의된 구조의 일부가 웨이브 그리드 밖으로 이동하지 않도록 해야 합니다. 동시에 그리드는 관심 있는 가장 짧은 파동을 해결할 수 있을 만큼 충분히 미세해야 합니다.</p>
+<p>OpenFAST는 시뮬레이션 시작 시 파동장 속도, 가속도, 동적 압력 및 파고를 미리 계산하고 저장합니다. 웨이브 그리드를 생성하고 유지하는 것은 긴 시뮬레이션의 경우 메모리 집약적일 수 있습니다. 사용자는 메모리 사용량을 줄이기 위해 웨이브 그리드를 필요한 것보다 더 크거나 더 미세하게 설정하지 않아야 합니다. 감소 <strong>WaveTMax</strong> 또는 증가 <strong>WaveDT</strong> (아래 WAVES 섹션 참조) 메모리 사용량도 줄어듭니다. 긴 볏파(방향성 확산 없음)의 경우 <em>X</em>-방향(또는 <em>Y</em>-방향), <strong>NY</strong> (또는 <strong>NX</strong>)는 메모리 절약을 위해 최소 허용 값인 2로 줄일 수 있습니다.</p>
 </div>
 <div class="section" id="waves">
-<h3><span class="section-number">4.12.1.3.3. </span>웨이브<a class="headerlink" href="#waves" title="이 제목의 고유 링크"></a></h3>
-<p>입력 파일의 WAVES 섹션은 HydroDyn의 스트립 이론 및 전위 흐름 모델링에서 사용되는 1차 파동의 내부 생성 또는 외부에서 생성된 파동의 사용을 제어합니다. 이 섹션의 파동 스펙트럼 설정은 1차 파동 주파수 구성요소에만 적용됩니다. 2차 항이 선택적으로 활성화된 경우 - 다음을 참조하세요.
-<a class="reference internal" href="#sea-2nd-order-waves-input"><span class="std std-ref">2차 파동
-SeaState 모듈의</span></a> 및 <a class="reference internal" href="../hydrodyn/input_files.html#hd-2nd-order-floating-platform-forces-input"><span class="std std-ref">2차 부유 플랫폼 힘
-아래</span></a>
-섹션 - 2차 항은 1차 파동 성분 진폭을 사용하여 계산되며 추가 에너지가 파동 스펙트럼에 추가됩니다(차이 및 주파수 합산).</p>
-<p><strong>WaveMod</strong> 는 입사파 운동학 모델을 지정합니다. 옵션은 다음과 같습니다:</p>
+<h3><span class="section-number">4.12.1.3.3. </span>파도<a class="headerlink" href="#waves" title="이 제목에 대한 영구 링크"></a></h3>
+<p>입력 파일의 WAVES 섹션은 HydroDyn의 스트립 이론 및 포텐셜 유동 모델링에서 사용되는 1차 파동의 내부 생성 또는 외부에서 생성된 파동의 사용을 제어합니다. 이 섹션의 파동 스펙트럼 설정은 1차 파동 주파수 구성요소에만 적용됩니다. 2차 항이 선택적으로 활성화된 경우 - 다음을 참조하세요.
+<a class="reference internal" href="#sea-2nd-order-waves-input"><span class="std std-ref">2차 파동</span></a> 및 <a class="reference internal" href="../hydrodyn/input_files.html#hd-2nd-order-floating-platform-forces-input"><span class="std std-ref">2차 부유식 플랫폼 힘</span></a>
+아래 섹션 - 2차 항은 1차 파동 성분 진폭을 사용하여 계산되며 추가 에너지가 파동 스펙트럼에 추가됩니다(차 및 주파수 합산).</p>
+<p><strong>WaveMod</strong> 입사파 운동학 모델을 지정합니다. 옵션은 다음과 같습니다:</p>
 <ul class="simple">
 <li><p>0: 없음 = 정수</p></li>
 <li><p>1: 규칙적인(주기적인) 파동</p></li>
-<li><p>1P#: 사용자가 지정한 위상을 갖는 정규(주기)파, 예를 들어 20˚ 위상을 갖는 정규파의 경우 1P20.0(P#이 없으면 위상은 다음에 따라 무작위로 지정됩니다. <strong>WaveSeed</strong>); 0˚ 위상은 피크에서 시작하여 시간이 지남에 따라 감소하는 코사인 함수를 나타냅니다.</p></li>
+<li><p>1P#: 사용자가 지정한 위상을 갖는 정규(주기)파, 예를 들어 20˚ 위상을 갖는 정규파의 경우 1P20.0(P#이 없으면 위상은 다음에 따라 무작위로 지정됩니다.) <strong>WaveSeed</strong>); 0˚ 위상은 피크에서 시작하여 시간이 지남에 따라 감소하는 코사인 함수를 나타냅니다.</p></li>
 <li><p>2: JONSWAP 또는 Pierson-Moskowitz 주파수 스펙트럼을 기반으로 하는 불규칙(확률적) 파동</p></li>
 <li><p>3: 백색잡음 주파수 스펙트럼을 기반으로 한 불규칙(확률적) 파동</p></li>
-<li><p>4: 루틴의 사용자 정의 주파수 스펙트럼을 기반으로 하는 불규칙(확률적) 파동 <em>UserWaveSpctrm()</em>; SeaState 독립 실행형 프로그램 또는 OpenFAST를 다시 컴파일해야 합니다.</p></li>
+<li><p>4: 루틴에서 사용자가 정의한 주파수 스펙트럼을 기반으로 하는 불규칙(확률적) 파동 <em>UserWaveSpctrm()</em>; SeaState 독립 실행형 프로그램 또는 OpenFAST를 다시 컴파일해야 합니다.</p></li>
 <li><p>5: 외부에서 생성된 파고 시계열</p></li>
 <li><p>6: 외부에서 생성된 전체 파동 운동학 시계열</p></li>
-<li><p>7: 사용자 정의 파동 주파수 구성요소</p></li>
+<li><p>7: 사용자 정의 파동 주파수 구성 요소</p></li>
 </ul>
-<p>옵션 4에는 다음이 필요합니다. <em>UserWaveSpctrm()</em> 서브루틴
-<em>파도.f90</em> 소스 파일은 사용자가 구현해야 하며 독립형 SeaState 프로그램 또는 OpenFAST를 다시 컴파일해야 합니다. 옵션 5를 사용하면 외부에서 생성된 파고 시계열을 사용할 수 있으며, 이로부터 전위 흐름 솔루션의 유체역학적 부하 또는 스트립 이론 솔루션에 사용되는 파동 운동학이 내부적으로 파생됩니다. 옵션 6을 사용하면 스트립 이론 솔루션(그러나 전위 흐름 솔루션은 아님)과 함께 사용하기 위해 외부에서 생성된 전체 파동 운동학을 사용할 수 있습니다. 옵션 7을 사용하면 사용자가 파동 주파수 구성 요소(진폭/파도 높이, 위상 및 방향)를 지정할 수 있습니다. 옵션 5, 6, 7을 사용하면 외부에서 생성된 웨이브 데이터가 입력 파일을 통해 제공되며, 모두 루트 이름은 다음과 같습니다.
-아래 <strong>WvKinFile</strong> 매개변수.</p>
-<p><strong>WaveStMod</strong> 는 스트립 이론의 유체 역학 및 정수압 하중(파도 경사 기여 포함)을 HydroDyn의 순간 입사파 자유 표면까지 평가할 수 있는 파동 신장 공식을 설정합니다. 현재 수직 스트레칭(옵션 1), 외삽 스트레칭(옵션 2) 및 휠러 스트레칭(옵션 3)의 세 가지 다른 웨이브 스트레칭 공식이 구현됩니다. 세 가지 웨이브 스트레칭 모델 중 하나를 사용하면 HydroDyn은 0이 아닌 파도 기울기의 기여도를 포함하여 순간 자유 표면까지 스트립 이론 부재의 비선형 정수압 하중을 계산하게 됩니다. 설정 <strong>WaveStMod</strong> 를 0으로 설정하면 웨이브 스트레칭이 비활성화되고 스트립 이론 유체역학 및 정수압 하중은 항상 SWL까지 평가됩니다. 외삽 스트레칭(<strong>WaveStMod</strong> = 2) 다음 경우에는 지원되지 않습니다. <strong>WaveMod</strong> = 6(외부에서 생성된 전체 파동 운동학 시계열).</p>
-<p><strong>WvCrntMod</strong> 는 결합된 파도와 전류 조건의 모델링을 제어합니다. 다음 효과를 사용하여 0, 1 또는 2로 설정할 수 있습니다.</p>
+<p>옵션 4에서는 다음이 필요합니다. <em>UserWaveSpctrm()</em> 서브루틴
+<em>파도.f90</em> 소스 파일은 사용자가 구현해야 하며 독립 실행형 SeaState 프로그램 또는 OpenFAST를 다시 컴파일해야 합니다. 옵션 5를 사용하면 외부에서 생성된 파고 시계열을 사용할 수 있으며, 이로부터 포텐셜 유동 솔루션의 유체역학적 부하 또는 스트립 이론 솔루션에 사용되는 파동 운동학이 내부적으로 파생됩니다. 옵션 6을 사용하면 스트립 이론 솔루션(그러나 포텐셜 유동 솔루션은 아님)과 함께 사용하기 위해 외부에서 생성된 전체 파동 운동학을 사용할 수 있습니다. 옵션 7을 사용하면 사용자가 파동 주파수 구성 요소(진폭/파도 높이, 위상 및 방향)를 지정할 수 있습니다. 옵션 5, 6, 7을 사용하면 외부에서 생성된 웨이브 데이터가 입력 파일을 통해 제공되며, 모두 루트 이름은 다음과 같습니다. <strong>WvKinFile</strong> 아래 매개변수.</p>
+<p><strong>WaveStMod</strong> HydroDyn의 순간 입사파 자유 표면까지 스트립 이론 유체 역학 및 정수압 하중(파도 경사 기여 포함)을 평가할 수 있는 파동 신장 공식을 설정합니다. 현재 수직 스트레칭(옵션 1), 외삽 스트레칭(옵션 2) 및 휠러 스트레칭(옵션 3)의 세 가지 다른 웨이브 스트레칭 공식이 구현됩니다. 세 가지 웨이브 스트레칭 모델 중 하나를 사용하면 HydroDyn가 0이 아닌 파도 기울기의 기여도를 포함하여 순간 자유 표면까지 스트립 이론 부재의 비선형 정수압 하중을 계산하게 됩니다. 환경 <strong>WaveStMod</strong> 0으로 설정하면 웨이브 스트레칭이 비활성화되고 스트립 이론의 유체 역학 및 정수압 하중은 항상 SWL까지 평가됩니다. 외삽 스트레칭(<strong>WaveStMod</strong> = 2) 다음의 경우는 지원되지 않습니다. <strong>WaveMod</strong> = 6(외부에서 생성된 전체 파동 운동학 시계열).</p>
+<p><strong>WvCrntMod</strong> 결합된 파도와 현재 조건의 모델링을 제어합니다. 다음 효과를 사용하여 0, 1 또는 2로 설정할 수 있습니다.</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 7%">
@@ -208,14 +202,14 @@ SeaState 모듈의</span></a> 및 <a class="reference internal" href="../hydrody
 <td><p>현재 속도와 가속도가 파도의 속도와 가속도에 추가되는 단순 중첩입니다. 전류는 파도에 직접적인 영향을 미치지 않습니다. 이 옵션은 이전 버전의 OpenFAST 동작을 재현합니다.</p></td>
 </tr>
 <tr class="row-odd"><td><p>1</p></td>
-<td><p>전류에 대해 보정된 파동 분산 관계를 풀어 파동에 도플러 효과를 포함시킵니다. 입력 파동 스펙트럼/시계열은 해류가 있는 지역에서 직접 측정된 것으로 가정되며 SeaState에 의해 수정되지 않습니다. 도플러 효과를 위해 파장이 보정됩니다.</p></td>
+<td><p>전류에 대해 보정된 파동 분산 관계를 풀어 파동에 도플러 효과를 포함시킵니다. 입력 파동 스펙트럼/시계열은 전류가 흐르는 지역에서 직접 측정된 것으로 가정되며 SeaState에 의해 수정되지 않습니다. 도플러 효과를 위해 파장이 보정됩니다.</p></td>
 </tr>
 <tr class="row-even"><td><p>2</p></td>
-<td><p>파동-전류 상호 작용을 위한 도플러 효과 및 파동 진폭/스펙트럼 스케일링을 모두 사용하여 파동과 전류 간의 완전한 상호 작용. 입력 파동 스펙트럼/시계열은 전류가 없는 지역에서 측정된 것으로 가정하고 전류 속도/방향을 기준으로 재조정됩니다.</p></td>
+<td><p>파동-전류 상호 작용을 위한 도플러 효과와 파동 진폭/스펙트럼 스케일링을 모두 사용하여 파동과 전류 사이의 완전한 상호 작용. 입력 파동 스펙트럼/시계열은 전류가 없는 지역에서 측정된 것으로 가정하고 전류 속도/방향을 기준으로 재조정됩니다.</p></td>
 </tr>
 </tbody>
 </table>
-<p>설정 <strong>WvCrntMod</strong> 를 1과 2로 설정하면 허용되는 파동과 전류에 추가 제한이 적용됩니다.</p>
+<p>환경 <strong>WvCrntMod</strong> 1과 2에는 허용되는 파도와 전류에 대한 추가 제한이 적용됩니다.</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 9%">
@@ -223,7 +217,7 @@ SeaState 모듈의</span></a> 및 <a class="reference internal" href="../hydrody
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p><strong>WvCrntMod</strong> 값</p></th>
-<th class="head"><p>제한 사항</p></th>
+<th class="head"><p>제한</p></th>
 </tr>
 </thead>
 <tbody>
@@ -238,118 +232,99 @@ SeaState 모듈의</span></a> 및 <a class="reference internal" href="../hydrody
 </tr>
 </tbody>
 </table>
-<p>엄밀히 말하면 옵션 1과 2의 <strong>WvCrntMod</strong> 는 균일한 전류에만 유효합니다. 그러나 전단 전류는 허용되며, 파도와 관련된 깊이까지 표면 근처의 전류 프로파일이 합리적으로 균일한지 확인하는 것은 사용자의 몫입니다. SeaState는 파도에 대한 전류의 영향을 계산할 때 단순히 정수위에서 현재 속도를 취합니다. 개선된 파류 모델링은 해양 유체 역학 터빈을 시뮬레이션할 때 SeaState 전류 또는 InflowWind의 동적 전류와 함께 사용할 수 있습니다. 후자의 경우 파동-전류 상호작용은 정수면에서의 시간 평균 유속을 기반으로 합니다. 해당되는 경우
-InflowWind의 <strong>WindType</strong> , 사용자는 InflowWind의 유동장 그리드가 정수 수준에 도달하는지 확인해야 합니다. <strong>WvCrntMod</strong> 는 다음과 같은 경우에는 효과가 없습니다. <strong>WaveMod</strong> = 0 또는 6, 또는 SeaState(<strong>CurrMod</strong> = 0) 또는 해양 유체 동력학 터빈을 시뮬레이션하는 경우 InflowWind입니다.</p>
-<p><strong>WaveTMax</strong> 는 입사 파동 운동학 시계열의 길이를 설정하지만 내부 파동 시계열이 파생되는 역 FFT에 사용되는 주파수 단계도 결정합니다(<em>Δω</em> =
-2<em>π</em>/<strong>WaveTMax</strong>). 언제 <strong>WaveMod</strong> = 7(사용자 정의 파동 주파수 구성 요소), 사용자가 지정한 모든 주파수 구성 요소는 정수 배수여야 합니다.
-허용되는 최저 주파수가 다음과 같은 <em>Δω</em> 허용되는 최저 주파수는 다음과 같으며 <em>Δω</em>. 만약에 <strong>WaveTMax</strong> 는 총 시뮬레이션 시간보다 짧으며 SeaState는 다음과 같은 주기를 갖는 반복 파동 운동학을 구현합니다. <strong>WaveTMax</strong>; <strong>WaveTMax</strong> 는 다음과 같은 경우 총 시뮬레이션 시간보다 짧아서는 안 됩니다. <strong>WaveMod</strong> = 5. <strong>WaveDT</strong> 는 파동 운동학 시계열의 시간 간격을 결정하지만 역 FFT의 최대 주파수도 결정합니다(<em>ω</em><sub>최대</sub> = <em>π</em>/<strong>WaveDT</strong>). 언제 <strong>WaveMod</strong> = 7,
-<strong>WaveDT</strong> 는 사용되지 않으며, 적절한 시간 간격은 사용자가 정의한 주파수 구성 요소를 기반으로 내부적으로 결정됩니다. 불규칙한 바다 상태를 모델링할 때 다음을 권장합니다. <strong>WaveTMax</strong> 는 최소 1시간(3600초)으로 설정되어야 합니다. <strong>WaveDT</strong> 는 파동 스펙트럼 및 파동 운동학의 충분한 분해능을 보장하기 위해 0.1~1.0초 범위의 값이어야 합니다. SeaState가 OpenFAST와 결합되면, <strong>WaveDT</strong> 는 OpenFAST의 글루 코드 시간 단계와 독립적으로 임의로 지정될 수 있습니다(파동 운동학은 필요에 따라 시간에 맞춰 보간됩니다).
-<strong>WaveDT</strong> 는 다음 경우 OpenFAST의 글루 코드 시간 단계와 동일해야 합니다. <strong>WaveMod</strong> =
-6. <strong>WaveTMax</strong> 및 <strong>WaveDT</strong> 는 SeaState 웨이브 그리드에서 사용하는 메모리 양에도 영향을 미칩니다. 더 짧은 <strong>WaveTMax</strong> 이상 <strong>WaveDT</strong> 는 메모리 사용량을 줄입니다.</p>
-<p>내부 발생파의 경우 규칙파의 파고(최고점에서 골까지, 진폭의 2배)와 불규칙파의 유효파고를 다음과 같이 설정합니다. <strong>WaveHs</strong> (다음 경우에만 사용됨) <strong>WaveMod</strong> = 1, 2 또는 3). 규칙파의 파주기와 불규칙파의 피크-스펙트럼 파주기는 다음과 같이 제어됩니다. <strong>WaveTp</strong> 매개변수(다음 경우에만 사용됨) <strong>WaveMod</strong> = 1 또는 2). <strong>WavePkShp</strong> 는 JONSWAP 불규칙파 스펙트럼의 피크 모양 매개변수입니다(다음 경우에만 사용됨). <strong>WaveMod</strong>
-= 2). 세트 <strong>WavePkShp</strong> 를 DEFAULT로 설정하여 피크 스펙트럼 주기와 유효 파고를 기반으로 파생된 IEC 61400-3 부록 B에서 권장되는 값을 얻습니다[IEC, 2009]. 세트
-Pierson-Moskowitz 스펙트럼의 경우 <strong>WavePkShp</strong> 를 1.0으로 설정합니다.</p>
-<p><strong>WvLowCOff</strong> 및 <strong>WvHiCOff</strong> 는 1차 파동 스펙트럼의 하한 및 상한 차단 주파수(rad/s 단위)를 제어합니다. 1차 파동 성분 진폭은 각각 이러한 차단 주파수 아래와 위에서 0으로 설정됩니다. <strong>WvLowCOff</strong> 는 계산 비용을 최소화하기 위해 1차 파동 스펙트럼의 낮은 에너지 한계보다 낮게 설정할 수 있습니다. 적절한 상위 차단 주파수 설정(<strong>WvHiCOff</strong>)는 또한 계산 비용을 최소화하며, 파괴파 한계에 접근할 때 비물리적 효과를 방지하고 스트립 이론 솔루션을 사용할 때 고주파수(즉, 짧은 파장)에서 비물리적 파력을 방지하는 데 중요합니다. <strong>WvLowCOff</strong> 및
-<strong>WvHiCOff</strong> 는 다음과 같은 경우에는 사용되지 않습니다. <strong>WaveMod</strong> = 0, 1 또는 6.</p>
-<p><strong>WaveDir</strong> (다음과 같은 경우에는 사용되지 않음) <strong>WaveMod</strong> = 0 또는 6)은 평균 파동 전파 방향(도)이고 범위(-180,180] 내에 있어야 합니다. 방향이 0이면 양의 X축 방향의 파동 전파에 해당하고 방향이 90이면 양의 Y축 방향의 파동 전파에 해당합니다. <strong>WaveDirMod</strong> 는 파동 방향 확산 모델을 지정합니다(다음 경우에만 사용됨). <strong>WaveMod</strong> = 2, 3 또는 4). 설정 <strong>WaveDirMod</strong> 를 0으로 설정하면 방향성 확산이 비활성화되어 긴 볏(평면 진행형) 해상 상태가 전파됩니다. <strong>WaveDir</strong> 방향. 설정 <strong>WaveDirMod</strong> ~ 1을 사용하면 평균 전파 방향이 다음과 같은 짧은 볏 바다 상태의 모델링이 가능합니다. <strong>WaveDir</strong>, 일반적으로 사용되는 코사인 확산 함수(COS:sup:<cite>2S</cite>) 확산 계수를 기반으로 방향성 확산 스펙트럼을 정의합니다(<em>S</em>)를 통해 정의됨 <strong>WaveDirSpread</strong>. 파동 방향 확산 스펙트럼은 다음을 사용하여 동일 에너지 방법으로 이산화됩니다. <strong>WaveNDir</strong> 수입니다. <strong>WaveNDir</strong> 는 1(1, 3 또는 5…)보다 크거나 같은 홀수 값의 정수이지만 SeaState는 지정된 값을 약간 증가시킬 수 있습니다. <strong>WaveNDir</strong> 는 각 방향 빈 내에 동일한 수의 파동 구성 요소가 있는지 확인합니다. 설정 <strong>WaveNDir</strong> = 1은 설정과 동일합니다. <strong>WaveDirMod</strong> = 0. 방향 확산 범위(도)는 다음을 통해 정의됩니다.
-<strong>WaveDirSpread</strong>. 동일 에너지 방법은 방향성 확산 스펙트럼이 주파수 스펙트럼과 확산 함수의 곱이라고 가정합니다. <em>S</em>(<em>ω</em>,<em>β</em>) = <em>S</em>(<em>ω</em>)<em>D</em>(<em>β</em>). 2차 차주파수 전위 흐름 부하에 대한 Newman의 근사를 사용하는 경우 방향 확산이 허용되지 않습니다.</p>
-<p><strong>WaveSeed(1)</strong> 및 <strong>WavedSeed(2)</strong> (다음과 같은 경우에는 사용되지 않음) <strong>WaveMod</strong> = 0, 5 또는 1)은 결합되어 파동 주파수 및 방향 스펙트럼에서 내부 파동 운동학을 파생시키는 데 필요한 내부 의사 난수 생성기(pRNG)에 대한 초기 시드(시작점)를 결정합니다. 둘 다 숫자 값인 경우 Fortran 고유 pRNG가 사용됩니다. 만약에 <strong>WaveSeed(2)</strong>
-는 문자열 "RANLUX"이며 NWTC 라이브러리에 포함된 대체 pRNG가 사용되며 <strong>WaveSeed(1)</strong> 가 씨앗입니다. 주어진 경계 조건(상당한 파고, 피크 스펙트럼 기간 등)에 대해 서로 다른 시간 영역 구현을 실행하려면 시뮬레이션 간에 하나 또는 두 개의 시드를 모두 변경해야 합니다. 파동 스펙트럼의 각 파동 주파수 및 방향 구성 요소의 위상은 항상 균일한 분포를 기반으로 하지만(1P#을 사용하는 경우 제외) <strong>WaveMod</strong>
-옵션), 파동 주파수 스펙트럼의 진폭은 설정을 통해 정규 분포에 따라 무작위화될 수도 있습니다. <strong>WaveNDAmp</strong> 를 TRUE로 설정합니다. 설정 <strong>WaveNDAmp</strong> 를 FALSE로 설정하면 파동 주파수 스펙트럼의 진폭이 항상 목표 스펙트럼과 일치함을 의미합니다.
-<strong>WaveNDAmp</strong> 는 다음과 같은 경우에만 사용됩니다. <strong>WaveMod</strong> = 2, 3 또는 4.</p>
-<p>외부에서 생성된 웨이브 데이터를 사용하는 경우(<strong>WaveMod</strong> = 5, 6 또는 7), 입력 매개변수 <strong>WvKinFile</strong> 는 다음과 같은 경우 확장자 없이 입력 파일의 루트 이름으로 설정되어야 합니다. <strong>WaveMod</strong> = 5 또는 6 또는 확장자가 있는 전체 파일 이름 <strong>WaveMod</strong> = 7.</p>
-<p>외부에서 생성된 파고 시계열 사용(<strong>WaveMod</strong> = 5)에는 확장자가 있는 텍스트 형식의 입력 데이터 파일이 필요합니다. <em>.Elev</em>
-에는 두 개의 데이터 열이 포함되어 있습니다. 첫 번째는 시간(0에서 시작)(초 단위)이고 두 번째 열은 공백으로 구분된 (0,0)(m 단위)의 파고입니다. 헤더 라인(숫자로 시작하지 않는 것으로 식별됨)은 무시됩니다. 시계열은 최소한 <strong>WaveTMax</strong> 길이는 총 시뮬레이션 시간보다 작지 않으며 시간 단계는 일치해야 합니다. <strong>WaveDT</strong>. 지정된 파고 시계열은 1차 및 긴 정점으로 가정되지만 물리적 정확성은 확인되지 않습니다. 2차 항이 선택적으로 활성화된 경우 - 2를 참조하세요.
-아래<sup>ND</sup>-ORDER WAVES 섹션 - 2차 항은 제공된 파고 시계열에서 파생된 파동 성분 진폭을 사용하여 계산되며 추가 에너지가 파동 스펙트럼에 추가됩니다(차이 및 주파수 합산).</p>
-<p>외부에서 생성된 전체 파동 운동학 사용(<strong>WaveMod</strong> = 6) 8개의 텍스트 형식 입력 데이터 파일이 필요하며 모두 헤더가 없습니다. 확장자가 있는 파일 7개 <em>.Vxi</em>, <em>.Vyi</em>, <em>.Vzi</em>, <em>.Axi</em>, <em>.Ayi</em>,
-<em>.Azi</em>및
-이 플래그 값 아래에 <em>.DynP</em> 는 다음과 같습니다. <em>X</em>, <em>Y</em>및
-이 플래그 값 아래에 <em>Z</em> 속도(m/s 단위) 및 가속도(m/s 단위)<sup>2</sup>) 전역 관성계 좌표계 및 동적 압력(Pa 단위) 시계열. 각 파일에는 13개의 헤더라인이 있어야 하며 SeaState에서는 이 헤더라인을 건너뛰고 그 뒤에 정확히 <strong>WaveTMax</strong>/<strong>WaveDT</strong> 행 및 <em>N</em>
-공백으로 구분된 열, 여기서 <em>N</em> 는 SeaState 웨이브 그리드 포인트의 총 개수입니다(SeaState 요약 파일에 기록된 포인트와 정확히 일치함). 노드는 증가하는 순서로 정렬됩니다. <em>X</em>-먼저 위치를 지정한 후 증가시킵니다. <em>Y</em>- 위치, 마지막으로 증가 <em>Z</em>- 위치(SeaState 요약 파일에 표시됨) 첫 번째 노드는 (-<strong>X_HalfWidth</strong>,-<strong>Y_HalfWidth</strong>,<strong>MSL2SWL</strong>-<strong>Z_Dpth</strong>). 파일에는 시간이 없지만 0에서 다음으로 가는 것으로 가정됩니다. <strong>WaveTMax</strong>
-단계의 <strong>WaveDT</strong>. 확장자가 있는 여덟 번째 파일 <em>.Elev</em>는 파고 시계열(m 단위)을 포함합니다. 이 파일에는 정확히 <strong>WaveTMax</strong>/<strong>WaveDT</strong> 행과 수평면에 있는 그리드 노드 수만큼의 공백으로 구분된 열입니다. 노드는 증가하는 순서로 정렬됩니다. <em>X</em>- 먼저 위치를 지정한 후 증가
-<em>Y</em>-위치. 첫 번째 노드는 (-<strong>X_HalfWidth</strong>,-<strong>Y_HalfWidth</strong>). 이 기능을 사용하려면 SeaState의 각 시간 간격과 그리드 지점에서 파동 운동학 데이터를 생성하는 것이 사용자의 부담입니다. SeaState는 파도 그리드를 채울 때 데이터를 보간하지 않습니다. 이러한 입력 파일에서 파일의 숫자 값(0 포함)은 유효한 데이터로 간주됩니다(0은 0m, 0m/s, 0m/s에 해당함).<sup>2</sup>또는 0Pa); 숫자가 아닌 문자열은 0으로 변환됩니다. 이러한 파일의 데이터는 처리(필터링 등)되거나 물리적 정확성이 확인되지 않습니다. 외부에서 생성된 전체 파동 운동학(<strong>WaveMod</strong> = 6)은 전위 흐름 솔루션과 함께 사용할 수 없으며 외삽 스트레칭이 아닌 수직 및 휠러 웨이브 스트레칭만 허용됩니다. 사용자는 내부 파동 생성 모델 중 하나를 사용하여 SeaState 독립 실행형 드라이버 프로그램을 실행할 수 있습니다. <strong>WaveMod</strong> = 2, <strong>WrWvKinMod</strong> = 2 드라이버 입력에 대한 유효한 입력 파일 세트를 생성합니다. <strong>WaveMod</strong> = 6(템플릿).</p>
-<p>사용자 정의 파동 주파수 구성 요소 사용(<strong>WaveMod</strong> = 7)에는 확장자가 있는 텍스트 형식의 입력 데이터 파일이 필요합니다. <em>.Comp
-4개의 데이터 열을 포함하는</em> . 첫 번째 열에는 파동 구성요소의 각주파수(rad/s)가 포함되고, 두 번째 열은 구성요소의 최고점에서 최저점까지의 파고(m)이며, 세 번째 열은 다음 규칙을 따르는 구성요소의 파향입니다.
-위의 <strong>WaveDir</strong> (deg)이고 마지막 열은 주파수 성분의 파동 위상(deg)입니다. 0의 위상은 다음 위치에서 전역 원점의 파동 정점에 해당합니다. <em>t</em> = 0. 4개의 열은 공백으로 구분됩니다. 헤더 라인(숫자로 시작하지 않는 것으로 식별됨)은 무시됩니다. 유효한 입력 파일은 다음 요구 사항을 충족해야 합니다.</p>
+<p>엄밀히 말하면 옵션 1과 2는 <strong>WvCrntMod</strong> 균일한 전류에만 유효합니다. 그러나 전단 전류는 허용되며, 파도와 관련된 깊이까지 표면 근처의 전류 프로파일이 합리적으로 균일한지 확인하는 것은 사용자의 몫입니다. SeaState는 파도에 대한 전류의 영향을 계산할 때 단순히 정수위에서 현재 속도를 취합니다. 향상된 파동 모델링은 해양 유체 역학 터빈을 시뮬레이션할 때 SeaState 전류 또는 InflowWind의 동적 전류와 함께 사용할 수 있습니다. 후자의 경우 파동-전류 상호작용은 정수위에서의 시간 평균 유속을 기반으로 합니다. 해당되는 경우 <strong>WindType</strong> InflowWind에서 사용자는 InflowWind의 유동장 그리드가 정수 수준에 도달하는지 확인해야 합니다. <strong>WvCrntMod</strong> 때 효과가 없습니다 <strong>WaveMod</strong> = 0 또는 6, 또는 SeaState(<strong>CurrMod</strong> = 0) 또는 해양 유체 동력학 터빈을 시뮬레이션하는 경우 InflowWind입니다.</p>
+<p><strong>WaveTMax</strong> 입사 파동 운동학 시계열의 길이를 설정하지만 내부 파동 시계열이 파생되는 역 FFT에 사용되는 주파수 단계도 결정합니다(<em>Δω</em> =
+2<em>π</em>/<strong>WaveTMax</strong>). 언제 <strong>WaveMod</strong> = 7(사용자 정의 파동 주파수 구성 요소), 사용자가 지정한 모든 주파수 구성 요소는 정수 배수여야 합니다. <em>Δω</em> 허용되는 최저 주파수는 다음과 같으며 <em>Δω</em>. 만약에 <strong>WaveTMax</strong> 전체 시뮬레이션 시간보다 짧은 경우 SeaState는 다음과 같은 주기를 갖는 반복 파동 운동학을 구현합니다. <strong>WaveTMax</strong>; <strong>WaveTMax</strong> 다음의 경우 총 시뮬레이션 시간보다 짧아서는 안 됩니다. <strong>WaveMod</strong> = 5. <strong>WaveDT</strong> 파동 운동학 시계열의 시간 단계를 결정하지만 역 FFT(<em>ω</em><sub>최대</sub> = <em>π</em>/<strong>WaveDT</strong>). 언제 <strong>WaveMod</strong> = 7,
+<strong>WaveDT</strong> 사용되지 않으며, 적절한 시간 간격은 사용자가 정의한 주파수 구성 요소를 기반으로 내부적으로 결정됩니다. 불규칙한 바다 상태를 모델링할 때 다음을 권장합니다. <strong>WaveTMax</strong> 최소 1시간(3600초)으로 설정해야 합니다. <strong>WaveDT</strong> 파동 스펙트럼과 파동 운동학의 충분한 분해능을 보장하려면 0.1~1.0s 범위의 값이어야 합니다. SeaState가 OpenFAST에 결합되면, <strong>WaveDT</strong> OpenFAST의 글루 코드 시간 간격과 별도로 임의로 지정될 수 있습니다(파동 운동학은 필요에 따라 시간에 맞춰 보간됩니다).
+<strong>WaveDT</strong> 다음과 같은 경우 OpenFAST의 글루 코드 시간 단계와 같아야 합니다. <strong>WaveMod</strong> =
+6. <strong>WaveTMax</strong> 및 <strong>WaveDT</strong> SeaState 웨이브 그리드가 사용하는 메모리 양에도 영향을 미칩니다. 더 짧은 <strong>WaveTMax</strong> 그리고 더 길다 <strong>WaveDT</strong> 메모리 사용을 줄입니다.</p>
+<p>내부 발생파의 경우 규칙파의 파고(최고에서 골까지, 진폭의 2배)와 불규칙파의 유효파고는 다음과 같이 설정됩니다. <strong>WaveHs</strong> (다음 경우에만 사용됩니다. <strong>WaveMod</strong> = 1, 2 또는 3). 규칙파의 파주기와 불규칙파의 피크-스펙트럼 파주기는 다음과 같이 제어됩니다. <strong>WaveTp</strong> 매개변수(다음 경우에만 사용됨) <strong>WaveMod</strong> = 1 또는 2). <strong>WavePkShp</strong> JONSWAP 불규칙파 스펙트럼의 피크 모양 매개변수입니다. <strong>WaveMod</strong>
+= 2). 세트 <strong>WavePkShp</strong> IEC 61400-3 Annex B에서 권장되는 값을 얻으려면 DEFAULT를 사용하세요. 이는 피크 스펙트럼 주기와 유효 파고를 기반으로 도출됩니다[IEC, 2009]. 세트 <strong>WavePkShp</strong> Pierson-Moskowitz 스펙트럼의 경우 1.0으로 변경됩니다.</p>
+<p><strong>WvLowCOff</strong> 및 <strong>WvHiCOff</strong> 1차 파동 스펙트럼의 하한 및 상한 차단 주파수(rad/s 단위)를 제어합니다. 1차 파동 성분 진폭은 각각 이러한 차단 주파수 아래와 위에서 0으로 설정됩니다. <strong>WvLowCOff</strong> 계산 비용을 최소화하기 위해 1차 파동 스펙트럼의 낮은 에너지 한계보다 낮게 설정될 수 있습니다. 적절한 상위 차단 주파수 설정(<strong>WvHiCOff</strong>)은 또한 계산 비용을 최소화하고 파괴파 한계에 접근할 때 비물리적 효과를 방지하고 스트립 이론 솔루션을 사용할 때 고주파수(즉, 짧은 파장)에서 비물리적 파력을 피하는 데 중요합니다. <strong>WvLowCOff</strong> 및
+<strong>WvHiCOff</strong> 다음과 같은 경우에는 사용되지 않습니다. <strong>WaveMod</strong> = 0, 1 또는 6.</p>
+<p><strong>WaveDir</strong> (다음에는 사용하지 않음 <strong>WaveMod</strong> = 0 또는 6)은 평균 파동 전파 방향(도)이고 범위(-180,180] 내에 있어야 합니다. 방향이 0이면 양의 X축 방향의 파동 전파에 해당하고, 방향이 90은 양의 Y축 방향의 파동 전파에 해당합니다. <strong>WaveDirMod</strong> 파동 방향 확산 모델을 지정합니다(다음 경우에만 사용됨). <strong>WaveMod</strong> = 2, 3, 4). 환경 <strong>WaveDirMod</strong> 0으로 설정하면 방향성 확산이 비활성화되어 긴 볏(평면 진행형) 바다 상태가 전파됩니다. <strong>WaveDir</strong> 방향. 환경 <strong>WaveDirMod</strong> 1로 평균 전파 방향을 사용하여 짧은 볏 바다 상태의 모델링을 가능하게 합니다. <strong>WaveDir</strong>, 일반적으로 사용되는 코사인 확산 함수(COS:sup:<cite>2S</cite>) 확산 계수를 기반으로 방향성 확산 스펙트럼을 정의합니다(<em>S</em>)를 통해 정의됨 <strong>WaveDirSpread</strong>. 파동 방향 확산 스펙트럼은 다음을 사용하여 동일 에너지 방법으로 이산화됩니다. <strong>WaveNDir</strong> 동일한 에너지 저장소의 수. <strong>WaveNDir</strong> 은 1(1, 3 또는 5…)보다 크거나 같은 홀수 값의 정수이지만 SeaState는 지정된 값을 약간 증가시킬 수 있습니다. <strong>WaveNDir</strong> 각 방향 상자 내에 동일한 수의 파동 구성 요소가 있는지 확인합니다. 환경 <strong>WaveNDir</strong> = 1은 설정과 동일합니다. <strong>WaveDirMod</strong> = 0. 방향 확산 범위(도)는 다음을 통해 정의됩니다.
+<strong>WaveDirSpread</strong>. 동일 에너지 방법은 방향성 확산 스펙트럼이 주파수 스펙트럼과 확산 함수의 곱이라고 가정합니다. <em>S</em>(<em>ω</em>,<em>β</em>) = <em>S</em>(<em>ω</em>)<em>D</em>(<em>β</em>). 2차 차주파수 포텐셜 유동 부하에 대한 Newman의 근사를 사용하는 경우 방향 확산이 허용되지 않습니다.</p>
+<p><strong>WaveSeed(1)</strong> 및 <strong>WavedSeed(2)</strong> (다음에는 사용하지 않음 <strong>WaveMod</strong> = 0, 5 또는 1)을 결합하면 파동 주파수 및 방향 스펙트럼에서 내부 파동 운동학을 도출하는 데 필요한 내부 의사 난수 생성기(pRNG)에 대한 초기 시드(시작점)가 결정됩니다. 둘 다 숫자 값인 경우 Fortran 내장 pRNG가 사용됩니다. 만약에 <strong>WaveSeed(2)</strong>
+문자열 "RANLUX"입니다. NWTC 라이브러리에 포함된 대체 pRNG가 사용되며 값은 <strong>WaveSeed(1)</strong> 씨앗입니다. 주어진 경계 조건(상당한 파고, 피크 스펙트럼 기간 등)에 대해 서로 다른 시간 영역 구현을 실행하려면 시뮬레이션 간에 하나 또는 두 개의 시드를 모두 변경해야 합니다. 파동 스펙트럼의 각 파동 주파수 및 방향 구성 요소의 위상은 항상 균일한 분포를 기반으로 하지만(1P#을 사용하는 경우 제외) <strong>WaveMod</strong>
+옵션), 파동 주파수 스펙트럼의 진폭은 설정을 통해 정규 분포를 따라 무작위화될 수도 있습니다. <strong>WaveNDAmp</strong> TRUE로. 환경 <strong>WaveNDAmp</strong> FALSE는 파동 주파수 스펙트럼의 진폭이 항상 목표 스펙트럼과 일치함을 의미합니다.
+<strong>WaveNDAmp</strong> 와 함께만 사용됩니다 <strong>WaveMod</strong> = 2, 3, 4.</p>
+<p>외부에서 생성된 파동 데이터를 사용하는 경우(<strong>WaveMod</strong> = 5, 6 또는 7), 입력 매개변수 <strong>WvKinFile</strong> 확장자가 없는 입력 파일의 루트 이름으로 설정해야 합니다. <strong>WaveMod</strong> = 5 또는 6 또는 확장자가 있는 전체 파일 이름 <strong>WaveMod</strong> = 7.</p>
+<p>외부에서 생성된 파고 시계열 사용(<strong>WaveMod</strong> = 5) 확장자를 가진 텍스트 형식의 입력 데이터 파일이 필요합니다. <em>.Elev</em>
+두 개의 데이터 열을 포함합니다. 첫 번째는 시간(0에서 시작)(초 단위)이고 두 번째 열은 공백으로 구분된 (0,0)(m 단위)의 파도 고도입니다. 헤더 라인(숫자로 시작하지 않는 것으로 식별됨)은 무시됩니다. 시계열은 최소한 <strong>WaveTMax</strong> 길이는 총 시뮬레이션 시간 이상이고 시간 단계는 일치해야 합니다. <strong>WaveDT</strong>. 지정된 파고 시계열은 1차 및 긴 정점으로 가정되지만 물리적 정확성은 확인되지 않습니다. 2차 항이 선택적으로 활성화된 경우 - 2를 참조하세요.<sup>ND</sup>-ORDER WAVES 섹션 아래 - 2차 항은 제공된 파고 시계열에서 파생된 파동 성분 진폭을 사용하여 계산되며 추가 에너지가 파동 스펙트럼에 추가됩니다(차이 및 주파수 합산).</p>
+<p>외부에서 생성된 완전한 파동 운동학 사용(<strong>WaveMod</strong> = 6)에는 모두 헤더가 없는 8개의 텍스트 형식 입력 데이터 파일이 필요합니다. 확장자가 있는 파일 7개 <em>.Vxi</em>, <em>.Vyi</em>, <em>.Vzi</em>, <em>.Axi</em>, <em>.아이</em>,
+<em>.Azi</em>, 및 <em>.DynP</em> 에 해당 <em>X</em>, <em>Y</em>, 및 <em>Z</em> 속도(m/s 단위) 및 가속도(m/s 단위)<sup>2</sup>) 전역 관성계 좌표계 및 동적 압력(Pa 단위) 시계열. 이러한 각 파일에는 13개의 헤더라인이 있어야 하며 SeaState로 건너뛰고 그 뒤에 정확히 옵니다. <strong>WaveTMax</strong>/<strong>WaveDT</strong> 행과 <em>N</em>
+공백으로 구분된 열, 여기서 <em>N</em> SeaState 웨이브 그리드 포인트의 총 개수입니다(SeaState 요약 파일에 기록된 포인트와 정확히 일치함). 노드는 증가하는 순서로 정렬됩니다. <em>X</em>- 위치를 먼저 지정한 다음 증가시킵니다. <em>Y</em>-위치를 지정하고 마지막으로 증가시킵니다. <em>Z</em>- 위치(SeaState 요약 파일에 표시됨) 첫 번째 노드는 (-<strong>X_HalfWidth</strong>,-<strong>Y_HalfWidth</strong>,<strong>MSL2SWL</strong>-<strong>Z_Dpth</strong>). 파일에는 시간이 없지만 0에서 다음으로 가는 것으로 가정됩니다. <strong>WaveTMax</strong>
+단계적으로 <strong>WaveDT</strong>. 확장자가 있는 여덟 번째 파일 <em>.Elev</em>, 파고 시계열(m 단위)을 포함합니다. 이 파일에는 정확히 <strong>WaveTMax</strong>/<strong>WaveDT</strong> 수평면에 있는 그리드 노드 수만큼의 행과 공백으로 구분된 열 수입니다. 노드는 증가하는 순서로 정렬됩니다. <em>X</em>- 위치를 먼저 지정한 다음 증가시킵니다.
+<em>Y</em>-위치. 첫 번째 노드는 (-<strong>X_HalfWidth</strong>,-<strong>Y_HalfWidth</strong>). 이 기능을 사용하려면 SeaState의 각 시간 간격과 그리드 포인트에서 파동 운동학 데이터를 생성하는 것이 사용자의 부담입니다. SeaState는 웨이브 그리드를 채울 때 데이터를 보간하지 않습니다. 이러한 입력 파일에서 파일의 숫자 값(0 포함)은 유효한 데이터로 간주됩니다(0은 0m, 0m/s, 0m/s에 해당함).<sup>2</sup>또는 0Pa); 숫자가 아닌 문자열은 0으로 변환됩니다. 이러한 파일의 데이터는 처리(필터링 등)되거나 물리적 정확성이 확인되지 않습니다. 외부에서 생성된 전체 파동 운동학(<strong>WaveMod</strong> = 6)은 포텐셜 유동 솔루션과 함께 사용할 수 없으며 수직 및 휠러 파동 스트레칭만 허용되며 외삽 스트레칭은 허용되지 않습니다. 사용자는 내부 웨이브 생성 모델 중 하나를 사용하여 SeaState 독립형 드라이버 프로그램을 실행할 수 있습니다. <strong>WaveMod</strong> = 2, <strong>WrWvKinMod</strong> = 2를 드라이버 입력에 입력하여 유효한 입력 파일 세트를 생성합니다. <strong>WaveMod</strong> = 6을 템플릿으로 사용합니다.</p>
+<p>사용자 정의 파동 주파수 구성요소 사용(<strong>WaveMod</strong> = 7) 확장자를 가진 텍스트 형식의 입력 데이터 파일이 필요합니다. <em>.Comp</em> 4개의 데이터 열을 포함합니다. 첫 번째 열에는 파동 구성요소의 각주파수(rad/s)가 포함되고, 두 번째 열은 구성요소의 최고점에서 최저점까지의 파고(m)이며, 세 번째 열은 다음 규칙을 따르는 구성요소의 파향입니다. <strong>WaveDir</strong> 위(deg)이고 마지막 열은 주파수 성분의 파동 위상(deg)입니다. 0의 위상은 다음 위치에서 전역 원점의 파동 정점에 해당합니다. <em>t</em> = 0. 4개의 열은 공백으로 구분됩니다. 헤더 라인(숫자로 시작하지 않는 것으로 식별됨)은 무시됩니다. 유효한 입력 파일은 다음 요구 사항을 충족해야 합니다.</p>
 <ul class="simple">
-<li><p>모든 주파수 항목은 주파수 단계의 정수 배수여야 합니다. <em>Δω</em> = 2π/<strong>WaveTMax</strong>. 상대 공차 10<sup>-3</sup> 는 입력 주파수에서 일부 잘림 오류를 허용하도록 시행됩니다. 사용자는 입력 주파수와 <strong>WaveTMax</strong> 에는 이 요구 사항을 충족하기에 충분한 유효 숫자가 포함되어 있습니다. 허용되는 가장 낮은 파동 각주파수는 다음과 같습니다. <em>Δω</em>.</p></li>
+<li><p>모든 주파수 항목은 주파수 단계의 정수배여야 합니다. <em>Δω</em> = 2π/<strong>WaveTMax</strong>. 상대 공차 10<sup>-3</sup> 입력 빈도에서 일부 잘림 오류를 허용하도록 시행됩니다. 사용자는 입력 주파수와 <strong>WaveTMax</strong> 이 요구 사항을 충족하기에 충분한 유효 숫자를 포함해야 합니다. 허용되는 가장 낮은 파동 각주파수는 다음과 같습니다. <em>Δω</em>.</p></li>
 <li><p>주파수 성분의 파고가 0인 경우 입력 파일에서 생략할 수 있습니다.</p></li>
-<li><p>입력 파일에 나열된 주파수 구성 요소는 특정 순서일 필요가 없습니다.</p></li>
-<li><p>각 주파수에는 항목이 하나만 있을 수 있습니다. 예를 들어, 방향은 다르지만 주파수는 동일한 두 개의 파동 구성요소를 갖는 것은 허용되지 않습니다.</p></li>
+<li><p>입력 파일에 나열된 주파수 구성요소는 특정 순서일 필요가 없습니다.</p></li>
+<li><p>각 주파수에는 하나의 항목만 있을 수 있습니다. 예를 들어, 방향은 다르지만 주파수는 동일한 두 개의 파동 구성요소를 갖는 것은 허용되지 않습니다.</p></li>
 </ul>
-<p>지정된 파동 성분은 1차 및 긴 파상으로 간주되지만 물리적 정확성은 확인되지 않습니다. 2차 항이 선택적으로 활성화된 경우 - 2를 참조하세요.
-아래<sup>ND</sup>-ORDER WAVES 섹션 - 2차 항은 지정된 파동 구성 요소를 사용하여 계산되며 추가 에너지가 파동 스펙트럼에 추가됩니다(차 및 주파수 합).</p>
+<p>지정된 파동 성분은 1차 및 긴 파상으로 간주되지만 물리적 정확성은 확인되지 않습니다. 2차 항이 선택적으로 활성화된 경우 - 2를 참조하세요.<sup>ND</sup>-ORDER WAVES 섹션 아래 - 2차 항은 지정된 파동 구성 요소를 사용하여 계산되며 추가 에너지가 파동 스펙트럼에 추가됩니다(차 및 주파수 합산).</p>
 </div>
 <div class="section" id="nd-order-waves">
-<span id="sea-2nd-order-waves-input"></span><h3><span class="section-number">4.12.1.3.4. </span>2<sup>nd</sup>-주문 파동<a class="headerlink" href="#nd-order-waves" title="이 제목의 고유 링크"></a></h3>
-<p>더 2<sup>ND</sup>-ORDER WAVES 섹션(다음 경우에는 사용되지 않음)
-입력 파일의 <strong>WaveMod</strong> = 0 또는 6)을 사용하면 스트립 이론 솔루션에서 사용하는 파동 운동학에 2차 기여를 추가하는 옵션을 사용할 수 있습니다. 2차 항이 선택적으로 활성화되면 2차 항은 1차 파동 성분 진폭을 사용하여 계산되고 추가 에너지가 파동 스펙트럼에 추가됩니다(차이 및 주파수 합산). 위 WAVES 섹션의 1차 항을 포함하지 않으면 2차 항을 계산할 수 없습니다. 2차 항을 활성화하면 실제 표면파의 비선형성 중 일부를 캡처할 수 있어 더 많은 계산 노력(주로 SeaState 초기화 시)을 희생하면서 바다 상태 및 관련 파도 하중을 보다 정확하게 모델링할 수 있습니다.</p>
-<p>이 섹션의 차단 주파수는 SeaState의 2차 파동 운동학(HydroDyn의 스트립 이론 하중에 사용됨)과 <strong>2차 전위 흐름 부하
-HydroDyn의</strong> 에서는 2차 항 자체가 별도로 활성화됩니다. 스트립 이론에서 사용되는 2차 파동 운동학은 이 섹션에서 활성화되고 전위 흐름 이론의 2차 회절 하중은 다음에서 활성화됩니다.
-기본 HydroDyn 입력 파일의 <a class="reference internal" href="../hydrodyn/input_files.html#hd-2nd-order-floating-platform-forces-input"><span class="std std-ref">2차 부유 플랫폼 힘
-아래</span></a> 섹션. SeaState의 파도 고도 출력에는 이 섹션에서 2차 파도 운동학이 활성화된 경우 2차 기여만 포함됩니다.</p>
-<p>스트립 이론 솔루션에서 2차 파동 운동학을 사용하려면 다음을 설정하십시오.
-<strong>WvDiffQTF</strong> 및/또는
-전역 관성 프레임 좌표계의 <strong>WvSumQTF</strong> 를 TRUE로 설정합니다. 언제 <strong>WvDiffQTF</strong> 가 TRUE로 설정되면 전체 차주파수 QTF를 사용하여 계산된 2차 차주파수 항이 파동 운동학에 통합됩니다. 언제
-<strong>WvSumQTF</strong> 가 TRUE로 설정되면 전체 합 주파수 QTF를 사용하여 계산된 2차 합 주파수 항이 파동 운동학에 통합됩니다. 전체 차 및 합 주파수 파동 운동학 QTF는 Stokes 2차 이론을 불규칙한 다방향 파동으로 확장하는 [Sharma and Dean, 1981]에 따라 분석적으로 구현됩니다. FALSE 설정은 스트립 이론 솔루션의 파동 운동학에 대한 2차 기여를 무시합니다.</p>
-<p><strong>WvLowCOffD</strong> 및 <strong>WvHiCOffD</strong> 는 2차 차이 주파수 항의 하한 및 상한 차단 주파수(rad/s)를 제어합니다. 2차 차분 주파수 항은 각각 이러한 차단 주파수 아래와 위의 0으로 설정됩니다. 컷오프는 차이 주파수로 이어지는 두 개의 개별 1차 주파수 구성 요소가 아닌 물리적 차이 주파수에 직접 적용됩니다. HydroDyn에서 2차 전위 흐름 하중을 활성화할 때 설정은 다음과 같습니다. <strong>WvLowCOffD</strong> = 0을 사용하는 것이 좋습니다(2차 파동 운동학에는 0이 아닌 평균이 없음). <strong>WvHiCOffD</strong> 는 1차 파동 스펙트럼의 피크 스펙트럼 주파수보다 높게 설정할 필요가 없습니다(<em>ω</em><sub>p</sub> = 2<em>π</em>/<strong>WaveTp</strong>) 계산 비용을 최소화합니다.</p>
-<p>마찬가지로, <strong>WvLowCOffS</strong> 및 <strong>WvHiCOffS</strong> 는 2차 합 주파수 항의 하한 및 상한 차단 주파수(rad/s 단위)를 제어합니다. 2차 합 주파수 항은 각각 이러한 차단 주파수 아래와 위의 0으로 설정됩니다. 컷오프는 합 주파수로 이어지는 두 개의 개별 1차 주파수 구성 요소가 아닌 물리적 합 주파수에 직접 적용됩니다. <strong>WvLowCOffS</strong> 는 1차 파동 스펙트럼의 피크 스펙트럼 주파수보다 낮게 설정할 필요가 없습니다(<em>ω</em><sub>p</sub> = 2<em>π</em>/<strong>WaveTp</strong>) 계산 비용을 최소화합니다. 적절한 상위 차단 주파수 설정(<strong>WvHiCOffS</strong>)는 또한 계산 비용을 최소화하고 (1) 2차 합산의 수렴을 보장하고, (2) 파동 골의 비물리적 "범프"를 방지하고, (3) 파괴파 한계에 접근할 때 비물리적 효과를 방지하고, (4) 띠 이론 솔루션을 사용할 때 고주파수(즉, 짧은 파장)에서 비물리적 파력을 방지하는 데 중요합니다.</p>
-<p>2차 항은 1차 파동 성분 진폭을 사용하여 계산되므로 2차 차단 주파수(<strong>WvLowCOffD</strong>, <strong>WvHiCOffD</strong>, <strong>WvLowCOffS</strong>및
-이 플래그 값 아래에 <strong>WvHiCOffS</strong>)는 1차 차단 주파수(<strong>WvLowCOff</strong> 및 <strong>WvHiCOff</strong>) WAVES 섹션에서. 그러나 2차 차단 주파수는 1차 효과에서만 파생되는 2차 차주파수 전위 흐름 하중에 대한 Newman의 근사치에서는 사용되지 않습니다.</p>
+<span id="sea-2nd-order-waves-input"></span><h3><span class="section-number">4.12.1.3.4. </span>2<sup>nd</sup>-오더 웨이브<a class="headerlink" href="#nd-order-waves" title="이 제목에 대한 영구 링크"></a></h3>
+<p>2<sup>ND</sup>-ORDER WAVES 섹션(다음과 같은 경우에는 사용되지 않음) <strong>WaveMod</strong> = 0 또는 6) 입력 파일의 스트립 이론 솔루션에서 사용되는 파동 운동학에 2차 기여를 추가하는 옵션을 허용합니다. 2차 항이 선택적으로 활성화되면 2차 항은 1차 파동 성분 진폭을 사용하여 계산되고 추가 에너지가 파동 스펙트럼에 추가됩니다(차이 및 주파수 합산). 위 WAVES 섹션의 1차 항을 포함하지 않으면 2차 항을 계산할 수 없습니다. 2차 항을 활성화하면 실제 표면파의 비선형성 중 일부를 캡처할 수 있어 더 많은 계산 노력(주로 SeaState 초기화에서)을 희생하여 바다 상태 및 관련 파도 하중을 보다 정확하게 모델링할 수 있습니다.</p>
+<p>이 섹션의 차단 주파수는 SeaState(HydroDyn의 스트립 이론 부하에 사용됨)의 2차 파동 운동학과 <strong>2차 포텐셜 유동 하중</strong> HydroDyn에서는 2차 항 자체가 별도로 활성화됩니다. 스트립 이론에서 사용되는 2차 파동 운동학은 이 섹션에서 활성화되고 포텐셜 유동 이론의 2차 회절 하중은 다음에서 활성화됩니다. <a class="reference internal" href="../hydrodyn/input_files.html#hd-2nd-order-floating-platform-forces-input"><span class="std std-ref">2차 부유식 플랫폼 힘</span></a> 기본 HydroDyn 입력 파일의 섹션. SeaState의 파고 출력에는 이 섹션에서 2차 파동 운동학이 활성화된 경우 2차 기여만 포함됩니다.</p>
+<p>띠이론 해법에서 2차 파동 운동학을 사용하려면 다음을 설정하십시오.
+<strong>WvDiffQTF</strong> 및/또는 <strong>WvSumQTF</strong> TRUE로. 언제 <strong>WvDiffQTF</strong> 가 TRUE로 설정되고, 전체 차 주파수 QTF를 사용하여 계산된 2차 차 주파수 항이 파동 운동학에 통합됩니다. 언제
+<strong>WvSumQTF</strong> 전체 합 주파수 QTF를 사용하여 계산된 2차 합 주파수 항이 TRUE로 설정되어 파동 운동학에 통합됩니다. 전체 차 및 합 주파수 파동 운동학 QTFs는 Stokes 2차 이론을 불규칙한 다방향 파동으로 확장하는 [Sharma and Dean, 1981]에 따라 분석적으로 구현됩니다. FALSE 설정은 스트립 이론 솔루션의 파동 운동학에 대한 2차 기여를 무시합니다.</p>
+<p><strong>WvLowCOffD</strong> 및 <strong>WvHiCOffD</strong> 2차 차이 주파수 항의 하한 및 상한 차단 주파수(rad/s 단위)를 제어합니다. 2차 차분 주파수 항은 각각 이러한 차단 주파수 아래와 위의 0으로 설정됩니다. 컷오프는 차이 주파수로 이어지는 두 개의 개별 1차 주파수 구성 요소가 아닌 물리적 차이 주파수에 직접 적용됩니다. HydroDyn에서 2차 포텐셜 유동 부하를 활성화할 때 설정은 다음과 같습니다. <strong>WvLowCOffD</strong> 평균 드리프트 항을 제거하지 않으려면 = 0을 사용하는 것이 좋습니다(2차 파동 운동학에는 0이 아닌 평균이 없음). <strong>WvHiCOffD</strong> 1차 파동 스펙트럼의 피크 스펙트럼 주파수보다 높게 설정할 필요는 없습니다(<em>ω</em><sub>p</sub> = 2<em>π</em>/<strong>WaveTp</strong>) 계산 비용을 최소화합니다.</p>
+<p>비슷하게, <strong>WvLowCOffS</strong> 및 <strong>WvHiCOffS</strong> 2차 합 주파수 항의 하한 및 상한 차단 주파수(rad/s 단위)를 제어합니다. 2차 합 주파수 항은 각각 이러한 차단 주파수 아래와 위의 0으로 설정됩니다. 컷오프는 합 주파수로 이어지는 두 개의 개별 1차 주파수 구성 요소가 아닌 물리적 합 주파수에 직접 적용됩니다. <strong>WvLowCOffS</strong> 1차 파동 스펙트럼의 피크 스펙트럼 주파수보다 낮게 설정할 필요는 없습니다(<em>ω</em><sub>p</sub> = 2<em>π</em>/<strong>WaveTp</strong>) 계산 비용을 최소화합니다. 적절한 상위 차단 주파수 설정(<strong>WvHiCOffS</strong>)은 또한 계산 비용을 최소화하고 (1) 2차 합산의 수렴을 보장하고, (2) 파동 골의 비물리적 "범프"를 방지하고, (3) 파쇄 한계에 접근할 때 비물리적 효과를 방지하고, (4) 띠 이론 솔루션을 사용할 때 고주파수(즉, 짧은 파장)에서 비물리적 파력을 피하는 데 중요합니다.</p>
+<p>2차 항은 1차 파동 성분 진폭을 사용하여 계산되므로 2차 차단 주파수(<strong>WvLowCOffD</strong>, <strong>WvHiCOffD</strong>, <strong>WvLowCOffS</strong>, 및 <strong>WvHiCOffS</strong>)는 1차 차단 주파수(<strong>WvLowCOff</strong> 및 <strong>WvHiCOff</strong>) WAVES 섹션에서. 그러나 2차 차단 주파수는 1차 효과에서만 파생되는 2차 차주파수 포텐셜 유동 하중에 대한 Newman의 근사치에서는 사용되지 않습니다.</p>
 </div>
 <div class="section" id="constrained-wave">
-<h3><span class="section-number">4.12.1.3.5. </span>제한된 파<a class="headerlink" href="#constrained-wave" title="이 제목의 고유 링크"></a></h3>
-<p>해당 <strong>제한된 파</strong> 섹션을 사용하면 사용자가 JONSWAP 확률파에 큰 파동 문장을 규정하고 삽입할 수 있습니다(<strong>WaveMod</strong> = 2), Taylor, Jonathan 및 Harland(1997)의 제한된 NewWave 방법을 따릅니다.</p>
-<p><strong>ConstWaveMod</strong> 는 내장파가 없는 경우 0으로, SWL에서 규정된 마루 고도가 있는 내장파의 경우 1, 규정된 최고-골 파고가 있는 내장파의 경우 2로 설정할 수 있습니다.</p>
-<p><strong>CrestHmax</strong> (m)는 다음과 같은 경우 SWL의 마루 고도의 두 배입니다. <strong>ConstWaveMod</strong> = 1 또는 다음과 같은 경우 최고점에서 최저점까지의 파고 <strong>ConstWaveMod</strong> = 2. <strong>CrestHmax</strong>
-는 다음보다 커야 합니다. <strong>WaveHs</strong>.</p>
-<p><strong>CrestTime</strong> 는 시뮬레이션 시작부터 사용자가 규정한 파고가 발생하는 시간(초)입니다.</p>
-<p><strong>CrestXi</strong> 는 <em>X</em>- 전역 참조 프레임에 포함된 파동 정점의 위치(m)입니다.</p>
-<p><strong>CrestYi</strong> 는 <em>Y</em>- 전역 참조 프레임에 포함된 파동 정점의 위치(m)입니다.</p>
-<p>제한된 파는 다음과만 호환됩니다. <strong>WaveMod</strong> = 2(JONSWAP 파동 스펙트럼). 만약에 <strong>WaveMod</strong> 가 다른 값으로 설정되면 입력 파일의 이 섹션이 무시됩니다.</p>
-<p>2차 파동 성분이 없는 경우 마루 고도 또는 마루 높이가 사용자 입력과 일치합니다.
-정확히는 <strong>CrestHmax</strong> 입니다. 다음 중 하나를 설정하여 2차 파동 성분이 포함된 경우 <strong>WvDiffQTF</strong> 또는 <strong>WvSumQTF</strong> 를 TRUE로 설정하면 결과 마루 표고 또는 마루 높이가 다음에서 벗어날 수 있습니다. <strong>CrestHmax</strong>.</p>
+<h3><span class="section-number">4.12.1.3.5. </span>제한된 파동<a class="headerlink" href="#constrained-wave" title="이 제목에 대한 영구 링크"></a></h3>
+<p>해당 <strong>CONSTRAINED WAVE</strong> 섹션을 통해 사용자는 JONSWAP 확률론적 파동(<strong>WaveMod</strong> = 2), Taylor, Jonathan, Harland(1997)의 제한된 NewWave 방법을 따릅니다.</p>
+<p><strong>ConstWaveMod</strong> 내장파가 없는 경우 0으로, SWL에서 규정된 마루 높이가 있는 내장파의 경우 1, 규정된 마루에서 골까지의 파고가 있는 내장파의 경우 2로 설정할 수 있습니다.</p>
+<p><strong>CrestHmax</strong> (m 단위)는 다음과 같은 경우 SWL로부터 마루 고도의 두 배입니다. <strong>ConstWaveMod</strong> = 1 또는 다음과 같은 경우 최고점에서 최저점까지의 파고 <strong>ConstWaveMod</strong> = 2. <strong>CrestHmax</strong>
+보다 커야합니다 <strong>WaveHs</strong>.</p>
+<p><strong>CrestTime</strong> 사용자가 지정한 파동 정점이 발생하는 시뮬레이션 시작부터의 시간(초)입니다.</p>
+<p><strong>CrestXi</strong> 은 <em>X</em>-전역 기준계에 내장된 파동 정점의 위치(m).</p>
+<p><strong>CrestYi</strong> 은 <em>Y</em>-전역 기준계에 내장된 파동 정점의 위치(m).</p>
+<p>제한된 파동은 다음과만 호환됩니다. <strong>WaveMod</strong> = 2 (JONSWAP 파 스펙트럼). 만약에 <strong>WaveMod</strong> 다른 값으로 설정되면 입력 파일의 이 섹션이 무시됩니다.</p>
+<p>2차 파동 구성 요소가 없는 경우 마루 고도 또는 마루 높이가 사용자 입력과 일치합니다. <strong>CrestHmax</strong> 정확히. 다음 중 하나를 설정하여 2차 파동 성분이 포함된 경우 <strong>WvDiffQTF</strong> 또는 <strong>WvSumQTF</strong> TRUE로 결과적인 마루 표고 또는 마루 높이는 다음에서 벗어날 수 있습니다. <strong>CrestHmax</strong>.</p>
 </div>
 <div class="section" id="current">
-<h3><span class="section-number">4.12.1.3.6. </span>전류<a class="headerlink" href="#current" title="이 제목의 고유 링크"></a></h3>
+<h3><span class="section-number">4.12.1.3.6. </span>현재의<a class="headerlink" href="#current" title="이 제목에 대한 영구 링크"></a></h3>
 <p>설정을 통해 현재 모델로 인한 유속을 포함할 수 있습니다.
-<strong>CurrMod</strong> = 1. 만약 <strong>CurrMod</strong> 가 0으로 설정되면 시뮬레이션에 전류가 포함되지 않습니다. <strong>CurrMod</strong> = 2에는 다음이 필요합니다. <em>UserCurrent()</em>
-서브루틴 <em>전류.f90</em> 소스 파일은 사용자가 구현해야 하며 독립형 SeaState 프로그램이나 OpenFAST를 다시 컴파일해야 합니다. 전류는 HydroDyn의 띠 이론 부재의 점성 항력 항(분산 및 집중 모두)을 통해 꾸준한 유체역학적 하중을 유도합니다. 전류는 전위 흐름 솔루션에서 사용되지 않습니다. <strong>WaveMod</strong> = 6.</p>
+<strong>CurrMod</strong> = 1. 만약 <strong>CurrMod</strong> 0으로 설정되면 시뮬레이션에 전류가 포함되지 않습니다. <strong>CurrMod</strong> = 2는 다음을 요구합니다. <em>UserCurrent()</em>
+서브루틴 <em>전류.f90</em> 소스 파일은 사용자가 구현해야 하며 독립 실행형 SeaState 프로그램 또는 OpenFAST를 다시 컴파일해야 합니다. 전류는 HydroDyn의 띠 이론 구성원의 점성 항력 항(분산 및 덩어리 모두)을 통해 꾸준한 유체역학적 하중을 유도합니다. 전류는 포텐셜 유동 솔루션에서 사용되지 않습니다. <strong>WaveMod</strong> = 6.</p>
 <p>SeaState의 표준 현재 모델에는 그림과 같이 표면 근처, 표면 아래 및 깊이 독립적이라는 세 가지 하위 모델이 포함되어 있습니다.
 <a class="reference internal" href="#sea-fig-current-sub-model"><span class="std std-numref">그림 4.50</span></a>. 세 가지 전류는 모두 파동 입자 운동학 속도와 함께 벡터 합산됩니다.</p>
 <div class="figure align-center" id="sea-fig-current-sub-model">
 <img alt="../../../_images/current_sub_models.jpg" src="../../../_images/current_sub_models.jpg">
 <p class="caption"><span class="caption-number">그림 4.50 </span><span class="caption-text">표준 전류 하위 모델</span><a class="headerlink" href="#sea-fig-current-sub-model" title="이 이미지에 대한 영구 링크"></a></p>
 </div>
-<p>지하 전류 모델은 멱함수 법칙을 따릅니다.</p>
+<p>지하 전류 모델은 거듭제곱 법칙을 따릅니다.</p>
 <div class="math notranslate nohighlight" id="equation-subsurfacepowerlaw">
 <span class="eqno">(4.199)<a class="headerlink" href="#equation-subsurfacepowerlaw" title="이 방정식에 대한 영구 링크"></a></span>\[U_{SS}(Z) = U_{0_{SS}} \left( \frac{Z+d}{d} \right)^{ \frac{1}{7} }\]</div>
-<p>여기서 <span class="math notranslate nohighlight">\(Z\)</span> 는 SWL 아래의 로컬 깊이(음수 하향)입니다. <span class="math notranslate nohighlight">\(d\)</span> 는 수심입니다(동일) <strong>WtrDpth</strong> + <strong>MSL2SWL</strong>) 및 <span class="math notranslate nohighlight">\(U_{0_{SS}}\)</span> 는 SWL의 현재 속도입니다. <strong>CurrSSV0</strong>. 지하 전류의 방향은 다음을 사용하여 정의됩니다. <strong>CurrSSDir</strong> 는 다음과 같은 규칙을 따릅니다. <strong>WaveDir</strong>.</p>
+<p>여기서 <span class="math notranslate nohighlight">\(Z\)</span> SWL 아래의 로컬 깊이(음수 하향)입니다. <span class="math notranslate nohighlight">\(d\)</span> 물 깊이입니다 (동일 <strong>WtrDpth</strong> + <strong>MSL2SWL</strong>), 그리고 <span class="math notranslate nohighlight">\(U_{0_{SS}}\)</span> 는 SWL에서의 현재 속도이며, <strong>CurrSSV0</strong>. 지하 전류의 방향은 다음을 사용하여 정의됩니다. <strong>CurrSSDir</strong> 다음과 같은 규칙을 따릅니다. <strong>WaveDir</strong>.</p>
 <p>표면 근처 전류 모델은 다음과 같은 기준 깊이까지 선형 관계를 따릅니다.</p>
 <div class="math notranslate nohighlight" id="equation-nearsurfacepowerlaw">
 <span class="eqno">(4.200)<a class="headerlink" href="#equation-nearsurfacepowerlaw" title="이 방정식에 대한 영구 링크"></a></span>\[U_{NS}(Z) = U_{0_{NS}} \left( \frac{Z+h_{ref}}{h_{ref}} \right), Z\in[-h_{ref},0]\]</div>
 <p>그렇지 않으면,</p>
 <div class="math notranslate nohighlight" id="equation-nearsurfacedeep">
 <span class="eqno">(4.201)<a class="headerlink" href="#equation-nearsurfacedeep" title="이 방정식에 대한 영구 링크"></a></span>\[U_{NS}(Z) = 0\]</div>
-<p>여기서 <span class="math notranslate nohighlight">\(h_{ref}\)</span> 는 다음에 해당하는 참조 깊이입니다. <strong>CurrNSRef</strong> 이며 양수 값이어야 합니다. <span class="math notranslate nohighlight">\(U_{0_{NS}}\)</span> 는 SWL의 현재 속도입니다.
+<p>여기서 <span class="math notranslate nohighlight">\(h_{ref}\)</span> 는 다음에 해당하는 참조 깊이입니다. <strong>CurrNSRef</strong> 그리고 긍정적인 가치를 가지고 있어야 합니다. <span class="math notranslate nohighlight">\(U_{0_{NS}}\)</span> 는 SWL에서의 현재 속도이며,
 <strong>CurrNSV0</strong>. 표면 근처 전류의 방향은 다음을 사용하여 정의됩니다.
-<strong>CurrNSDir</strong>, 다음과 동일한 규칙을 따릅니다. <strong>WaveDir</strong>.</p>
-<p>깊이와 무관한 전류 속도는 어디에서나 동일합니다. <strong>CurrDIV</strong>. 이 흐름에는 진행 방향이 있습니다. <strong>CurrDIDir</strong>, 다음과 동일한 규칙을 따릅니다. <strong>WaveDir</strong>.</p>
+<strong>CurrNSDir</strong>, 다음과 같은 규칙을 따릅니다. <strong>WaveDir</strong>.</p>
+<p>모든 곳에서 깊이와 무관한 전류 속도는 다음과 같습니다. <strong>CurrDIV</strong>. 이 흐름에는 진행 방향이 있습니다. <strong>CurrDIDir</strong>, 다음과 같은 규칙을 따릅니다. <strong>WaveDir</strong>.</p>
 </div>
 <div class="section" id="maccamy-fuchs-diffraction-model">
-<h3><span class="section-number">4.12.1.3.7. </span>MacCamy-Fuchs 회절 모델<a class="headerlink" href="#maccamy-fuchs-diffraction-model" title="이 제목의 고유 링크"></a></h3>
-<p>HydroDyn은 이제 스트립 이론 구성원을 위한 MacCamy-Fuchs 파동 회절 솔루션을 지원합니다. 이 옵션은 파장이 부재 직경과 비슷하거나 작을 때 스트립 이론의 파동을 감쇠시켜 더 높은 주파수에서 보다 현실적인 부하를 제공합니다. 메모리 사용을 제한하기 위해 현재 OpenFAST 구현에서는 MacCamy-Fuchs 회절 솔루션을 사용하는 HydroDyn의 모든 스트립 이론 구성원이 다음과 같이 주어진 기준 직경의 +/-10% 이내의 직경을 가져야 합니다.
-여기 <strong>MCFD</strong> 가 있습니다. MacCamy-Fuchs 회절 용액이 HydroDyn에서 사용되지 않는 경우
-메모리 사용과 SeaState 초기화 시간을 줄이기 위해 <strong>MCFD</strong> 를 0보다 작거나 같은 숫자로 바꿉니다.</p>
+<h3><span class="section-number">4.12.1.3.7. </span>MacCamy-Fuchs 회절 모델<a class="headerlink" href="#maccamy-fuchs-diffraction-model" title="이 제목에 대한 영구 링크"></a></h3>
+<p>HydroDyn는 이제 스트립 이론 구성원을 위한 MacCamy-Fuchs 파동 회절 솔루션을 지원합니다. 이 옵션은 파장이 부재 직경과 비슷하거나 작을 때 스트립 이론의 파동을 감쇠시켜 더 높은 주파수에서 보다 현실적인 부하를 제공합니다. 메모리 사용을 제한하기 위해 현재 OpenFAST 구현에서는 MacCamy-Fuchs 회절 솔루션을 사용하는 HydroDyn의 모든 스트립 이론 구성원이 다음과 같이 주어진 기준 직경의 +/-10% 이내의 직경을 가져야 합니다. <strong>MCFD</strong> 여기. MacCamy-Fuchs 회절 용액이 HydroDyn에서 사용되지 않는 경우, <strong>MCFD</strong> 메모리 사용 및 SeaState 초기화 시간을 줄이기 위해 0보다 작거나 같은 숫자로 설정합니다.</p>
 </div>
 <div class="section" id="output-channels">
-<h3><span class="section-number">4.12.1.3.8. </span>출력 채널<a class="headerlink" href="#output-channels" title="이 제목의 고유 링크"></a></h3>
-<p>이 섹션은 SeaState에서 생성된 출력 수량을 제어합니다. 하나 이상의 출력 매개변수 이름을 포함하는 따옴표 붙은 문자열을 포함하는 하나 이상의 행을 입력하십시오. 쉼표, 세미콜론, 공백 및/또는 탭의 조합으로 출력 매개변수 이름을 구분합니다. 매개변수 이름 앞에 빼기 기호, "-", 밑줄, "_" 또는 문자 "m" 또는 "M"을 붙인 경우 SeaState는 데이터를 쓰기 전에 해당 채널의 값에 -1을 곱합니다. 매개변수는 반드시 입력 파일에 나열된 순서대로 작성되지는 않습니다. SeaState를 사용하면 여러 줄을 사용하여 목록을 의미 있는 그룹으로 나누고 줄을 더 짧게 만들 수 있습니다. 모든 행에서 닫는 따옴표 뒤에 설명을 입력할 수 있습니다. 줄 시작 부분이나 줄 시작 부분에 있는 따옴표 붙은 문자열의 시작 부분에 "END"라는 문자열이 포함된 줄을 입력하면 SeaState가 더 많은 채널 이름 줄에 대한 검색을 중단하게 됩니다. SeaState가 알 수 없거나 유효하지 않은 채널 이름을 발견하면 사용자에게 경고하지만 의심되는 채널을 출력 파일에서 제거합니다. 가능한 출력 매개변수의 전체 목록은 부록 C를 참조하십시오.</p>
-<p>최대 9개의 파고 출력을 생성할 수 있습니다. <strong>NWaveElev</strong>
-는 숫자(0에서 9 사이)와 공백으로 구분된 목록을 결정합니다. <strong>WaveElevxi</strong> 및 <strong>WaveElevyi</strong> 는 이들의 위치를 결정합니다 <strong>NWaveElev</strong> 전역 관성 프레임 좌표계의 점 수입니다.</p>
-<p>또한 공간에서 최대 9개 위치를 지정하여 파동 운동학(유체 속도 및 가속도) 및 동적 압력을 출력할 수 있습니다. <strong>NWaveKin</strong>
-는 숫자(0에서 9 사이)와 공백으로 구분된 목록을 결정합니다. <strong>WaveKinxi</strong>, <strong>WaveKinyi</strong>및
-이 플래그 값 아래에 <strong>WaveKinzi</strong> 는 이들의 위치를 결정합니다 <strong>NWaveKin</strong> 전역 관성 프레임 좌표계의 점 수입니다. 웨이브 스트레칭 모델 중 하나를 선택하면 해당 효과가 웨이브 운동학 및 동적 압력 출력에 반영됩니다. 예를 들어, SWL 아래 지점은 파도 골짜기로 인해 일시적으로 물 밖으로 나온 경우 모두 0으로 보고됩니다. 마찬가지로, SWL 위의 지점은 파도 마루로 인해 순간적으로 물 속에 있는 경우 선택된 파도 스트레칭 모델에 따라 파도 운동학 및 동적 압력을 보고합니다. 물 밖의 모든 지점은 물에 다시 들어갈 때까지 모든 파동 운동학 및 동적 압력 출력에서 ​​0을 보고합니다.</p>
+<h3><span class="section-number">4.12.1.3.8. </span>출력 채널<a class="headerlink" href="#output-channels" title="이 제목에 대한 영구 링크"></a></h3>
+<p>이 섹션에서는 SeaState에 의해 생성된 출력 수량을 제어합니다. 하나 이상의 출력 매개변수 이름을 포함하는 따옴표 붙은 문자열을 포함하는 하나 이상의 행을 입력하십시오. 쉼표, 세미콜론, 공백 및/또는 탭의 조합으로 출력 매개변수 이름을 구분합니다. 매개변수 이름 앞에 빼기 기호, "-", 밑줄, "_" 또는 문자 "m" 또는 "M"을 붙이면 SeaState는 데이터를 쓰기 전에 해당 채널의 값에 -1을 곱합니다. 매개변수는 반드시 입력 파일에 나열된 순서대로 작성되지는 않습니다. SeaState를 사용하면 여러 줄을 사용하여 목록을 의미 있는 그룹으로 나누고 줄을 더 짧게 만들 수 있습니다. 모든 행에서 닫는 따옴표 뒤에 설명을 입력할 수 있습니다. 줄 시작 부분이나 줄 시작 부분에 있는 따옴표 붙은 문자열의 시작 부분에 "END"라는 문자열이 포함된 줄을 입력하면 SeaState가 더 많은 채널 이름 줄 검색을 중단하게 됩니다. SeaState가 알 수 없거나 유효하지 않은 채널 이름을 발견하면 사용자에게 경고하지만 출력 파일에서 의심스러운 채널을 제거합니다. 가능한 출력 매개변수의 전체 목록은 부록 C를 참조하십시오.</p>
+<p>최대 9개의 파도 고도 출력을 생성할 수 있습니다. <strong>NWaveElev</strong>
+숫자(0에서 9 사이)와 공백으로 구분된 목록을 결정합니다. <strong>WaveElevxi</strong> 및 <strong>WaveElevyi</strong> 이들의 위치를 ​​결정 <strong>NWaveElev</strong> 전역 관성계 좌표계의 점 수.</p>
+<p>또한 공간에서 최대 9개의 위치를 ​​지정하여 파동 운동학(유체 속도 및 가속도) 및 동적 압력을 출력할 수 있습니다. <strong>NWaveKin</strong>
+숫자(0에서 9 사이)와 공백으로 구분된 목록을 결정합니다. <strong>WaveKinxi</strong>, <strong>WaveKinyi</strong>, 및 <strong>WaveKinzi</strong> 이들의 위치를 ​​결정 <strong>NWaveKin</strong> 전역 관성계 좌표계의 점 수. 웨이브 스트레칭 모델 중 하나를 선택하면 해당 효과가 웨이브 운동학 및 동적 압력 출력에 반영됩니다. 예를 들어, SWL 아래 지점은 파도 골짜기로 인해 일시적으로 물 밖으로 나온 경우 모두 0으로 보고됩니다. 마찬가지로, SWL 위의 지점은 파도 마루로 인해 순간적으로 물 속에 있을 경우 선택한 파도 스트레칭 모델에 따라 파도 운동학 및 동적 압력을 보고합니다. 물 밖의 모든 지점은 물에 다시 들어갈 때까지 모든 파동 운동학 및 동적 압력 출력에서 ​​0을 보고합니다.</p>
 </div>
 </div>
 </div>
@@ -357,8 +332,8 @@ HydroDyn의</strong> 에서는 2차 항 자체가 별도로 활성화됩니다. 
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
-        <a href="index.html" class="btn btn-neutral float-left" title="4.12. SeaState 사용자 가이드 및 이론 설명서" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
+        <a href="index.html" class="btn btn-neutral float-left" title="4.12. SeaState 사용자 가이드 및 이론 매뉴얼" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
         <a href="output_files.html" class="btn btn-neutral float-right" title="4.12.2. 출력 파일" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -369,7 +344,7 @@ HydroDyn의</strong> 에서는 2차 항 자체가 별도로 활성화됩니다. 
   </div>
 
   다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">주제</a>
     제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
    
 

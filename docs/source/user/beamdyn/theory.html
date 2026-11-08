@@ -21,8 +21,8 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="검색" href="../../../search.html">
-    <link rel="next" title="4.7.6. 향후 개발 계획" href="future_work.html">
+    <link rel="search" title="찾다" href="../../../search.html">
+    <link rel="next" title="4.7.6. 미래의 일" href="future_work.html">
     <link rel="prev" title="4.7.4. 출력 파일" href="output_files.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/beamdyn/theory.html"></head>
 
@@ -36,7 +36,7 @@
           
           <a href="../../../index.html" class="icon icon-home">
             OpenFAST
-              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="심벌 마크">
           </a>
               <div class="version">5.0 · 한국어</div>
 <div role="search">
@@ -48,15 +48,15 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력소음</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">4.7. BeamDyn</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="introduction.html">4.7.1. 소개</a></li>
@@ -68,16 +68,16 @@
 <li class="toctree-l4"><a class="reference internal" href="#geometrically-exact-beam-theory">4.7.5.2. 기하학적으로 정확한 빔 이론</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#numerical-implementation-with-legendre-spectral-finite-elements">4.7.5.3. Legendre 스펙트럼 유한 요소를 사용한 수치 구현</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#wiener-milenkovic-rotation-parameter">4.7.5.4. Wiener-Milenković 회전 매개변수</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#linearization-process">4.7.5.5. 선형화 과정</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#damping-forces-and-linearization">4.7.5.6. 감쇠력 및 선형화</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#linearization-process">4.7.5.5. Linearization 프로세스</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#damping-forces-and-linearization">4.7.5.6. 감쇠력 및 Linearization</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#convergence-criterion-and-generalized-alpha-time-integrator">4.7.5.7. 수렴기준과 일반화-<span class="math notranslate nohighlight">\(\alpha\)</span> 시간 적분기</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#calculation-of-reaction-loads">4.7.5.8. 반응 하중 계산</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#calculation-of-blade-loads">4.7.5.9. 블레이드 하중 계산</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="future_work.html">4.7.6. 향후 개발 계획</a></li>
-<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.7.7. 참고문헌</a></li>
-<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.7.8. 부록</a></li>
+<li class="toctree-l3"><a class="reference internal" href="future_work.html">4.7.6. 미래의 일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.7.7. 참고자료</a></li>
+<li class="toctree-l3"><a class="reference internal" href="appendix.html">4.7.8. 충수</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../subdyn/index.html">4.8. SubDyn</a></li>
@@ -100,16 +100,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -118,12 +118,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.7. </span>BeamDyn 사용자 가이드 및 이론 설명서</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.7. </span>BeamDyn 사용자 가이드 및 이론 매뉴얼</a></li>
       <li class="breadcrumb-item active"><span class="section-number">4.7.5. </span>BeamDyn 이론</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/beamdyn/theory.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+            <a href="../../../_sources/source/user/beamdyn/theory.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -132,41 +132,36 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="beamdyn-theory">
-<span id="id1"></span><h1><span class="section-number">4.7.5. </span>BeamDyn 이론<a class="headerlink" href="#beamdyn-theory" title="이 제목의 고유 링크"></a></h1>
-<p>이 섹션에서는 BeamDyn 모듈의 기본 이론에 중점을 둡니다. 이론적 기초, 수치 도구 및 구현 시 일부 특수 처리 방법이 소개됩니다. 이론과 수치 도구를 자세히 설명하는 참고 자료가 각 섹션에 제공됩니다.</p>
+<span id="id1"></span><h1><span class="section-number">4.7.5. </span>BeamDyn 이론<a class="headerlink" href="#beamdyn-theory" title="이 제목에 대한 영구 링크"></a></h1>
+<p>이 섹션에서는 BeamDyn 모듈 뒤에 있는 이론에 중점을 둡니다. 이론적 기초, 수치 도구 및 구현 시 일부 특수 처리 방법이 소개됩니다. 이론과 수치 도구를 자세히 설명하는 참고 자료가 각 섹션에 제공됩니다.</p>
 <p>이 장에서는 행렬 표기법을 사용하여 벡터 또는 벡터와 유사한 양을 나타냅니다. 예를 들어 밑줄은 벡터를 나타냅니다.
-<span class="math notranslate nohighlight">\(\underline{u}\)</span>, 위쪽 막대는 단위 벡터를 나타냅니다. <span class="math notranslate nohighlight">\(\bar{n}\)</span>, 이중 밑줄은 텐서를 나타냅니다.
+<span class="math notranslate nohighlight">\(\underline{u}\)</span>, 오버 바는 단위 벡터를 나타냅니다. <span class="math notranslate nohighlight">\(\bar{n}\)</span>, 이중 밑줄은 텐서를 나타냅니다.
 <span class="math notranslate nohighlight">\(\underline{\underline{\Delta}}\)</span>. 때때로 밑줄은 해당 행렬의 차원만을 나타냅니다.</p>
 <div class="section" id="coordinate-systems">
-<h2><span class="section-number">4.7.5.1. </span>좌표계<a class="headerlink" href="#coordinate-systems" title="이 제목의 고유 링크"></a></h2>
-<p><a class="reference internal" href="input_files.html#blade-geometry"><span class="std std-numref">그림 4.32</span></a> (에서 <a class="reference internal" href="input_files.html#bd-input-files"><span class="std std-numref">섹션 4.7.3</span></a>) 및
-<a class="reference internal" href="#bd-frame"><span class="std std-numref">그림 4.33</span></a> 는 BeamDyn에서 사용되는 좌표계를 보여줍니다.</p>
+<h2><span class="section-number">4.7.5.1. </span>좌표계<a class="headerlink" href="#coordinate-systems" title="이 제목에 대한 영구 링크"></a></h2>
+<p><a class="reference internal" href="input_files.html#blade-geometry"><span class="std std-numref">그림 4.32</span></a> (안에 <a class="reference internal" href="input_files.html#bd-input-files"><span class="std std-numref">섹션 4.7.3</span></a>) 그리고
+<a class="reference internal" href="#bd-frame"><span class="std std-numref">그림 4.33</span></a> BeamDyn에서 사용되는 좌표계를 보여줍니다.</p>
 <div class="figure align-center" id="id13">
 <span id="bd-frame"></span><a class="reference internal image-reference" href="../../../_images/bd_frame.png"><img alt="../../../_images/bd_frame.png" src="../../../_images/bd_frame.png" style="width: 100%;"></a>
-<p class="caption"><span class="caption-number">그림 4.33 </span><span class="caption-text">BeamDyn의 전역, 블레이드 참조 및 내부 좌표계. 삽화: Al Hicks, NLR.</span><a class="headerlink" href="#id13" title="이 이미지에 대한 영구 링크"></a></p>
+<p class="caption"><span class="caption-number">그림 4.33 </span><span class="caption-text">BeamDyn의 전역, 블레이드 참조 및 내부 좌표계. 그림: 알 힉스(Al Hicks), NLR.</span><a class="headerlink" href="#id13" title="이 이미지에 대한 영구 링크"></a></p>
 </div>
 <div class="section" id="global-coordinate-system">
-<h3><span class="section-number">4.7.5.1.1. </span>지구 좌표계<a class="headerlink" href="#global-coordinate-system" title="이 제목의 고유 링크"></a></h3>
-<p>전역 좌표계는 다음과 같이 표시됩니다. <code class="docutils literal notranslate"><span class="pre">X</span></code>, <code class="docutils literal notranslate"><span class="pre">Y</span></code>및
-이 플래그 값 아래에 <code class="docutils literal notranslate"><span class="pre">Z</span></code>
-인 <a class="reference internal" href="#bd-frame"><span class="std std-numref">그림 4.33</span></a>. 이것은 관성 프레임이며 FAST에서는 일반적으로 그림과 같이 타워 바닥에 원점이 배치됩니다.</p>
+<h3><span class="section-number">4.7.5.1.1. </span>전역 좌표계<a class="headerlink" href="#global-coordinate-system" title="이 제목에 대한 영구 링크"></a></h3>
+<p>전역 좌표계는 다음과 같이 표시됩니다. <code class="docutils literal notranslate"><span class="pre">X</span></code>, <code class="docutils literal notranslate"><span class="pre">Y</span></code>, 및 <code class="docutils literal notranslate"><span class="pre">Z</span></code>
+에서 <a class="reference internal" href="#bd-frame"><span class="std std-numref">그림 4.33</span></a>. 이것은 관성 프레임이며 FAST에서는 그 원점이 일반적으로 그림과 같이 타워 바닥에 배치됩니다.</p>
 </div>
 <div class="section" id="bd-coordinate-system">
-<h3><span class="section-number">4.7.5.1.2. </span>BD 좌표계<a class="headerlink" href="#bd-coordinate-system" title="이 제목의 고유 링크"></a></h3>
-<p>BD 좌표계는 다음과 같이 표시됩니다.
-각각 <span class="math notranslate nohighlight">\(x_1\)</span>, <span class="math notranslate nohighlight">\(x_2\)</span>및
-이 플래그 값 아래에
-<span class="math notranslate nohighlight">\(x_3\)</span> 다음에서 각각 <a class="reference internal" href="#bd-frame"><span class="std std-numref">그림 4.33</span></a>. BeamDyn 내부에서 사용되는 관성 프레임(즉, 로터와 함께 회전하지 않음)으로 블레이드 루트 포인트의 초기 위치에 원점이 위치합니다.</p>
+<h3><span class="section-number">4.7.5.1.2. </span>BD 좌표계<a class="headerlink" href="#bd-coordinate-system" title="이 제목에 대한 영구 링크"></a></h3>
+<p>BD 좌표계는 다음과 같이 표시됩니다. <span class="math notranslate nohighlight">\(x_1\)</span>, <span class="math notranslate nohighlight">\(x_2\)</span>, 및
+<span class="math notranslate nohighlight">\(x_3\)</span> 다음에서 각각 <a class="reference internal" href="#bd-frame"><span class="std std-numref">그림 4.33</span></a>. BeamDyn 내부에서 사용되는 관성계(즉, 로터와 함께 회전하지 않음)로 블레이드 루트점의 초기 위치에 원점이 위치한다.</p>
 </div>
 <div class="section" id="blade-reference-coordinate-system">
-<h3><span class="section-number">4.7.5.1.3. </span>블레이드 기준 좌표계<a class="headerlink" href="#blade-reference-coordinate-system" title="이 제목의 고유 링크"></a></h3>
+<h3><span class="section-number">4.7.5.1.3. </span>블레이드 기준 좌표계<a class="headerlink" href="#blade-reference-coordinate-system" title="이 제목에 대한 영구 링크"></a></h3>
 <p>블레이드 기준 좌표계는 다음과 같이 표시됩니다.
-초기화 시
-<span class="math notranslate nohighlight">\(X_{rt}\)</span>, <span class="math notranslate nohighlight">\(Y_{rt}\)</span>및
-이 플래그 값 아래에
-<span class="math notranslate nohighlight">\(Z_{rt}\)</span> 인 <a class="reference internal" href="#bd-frame"><span class="std std-numref">그림 4.33</span></a> (<span class="math notranslate nohighlight">\(t = 0\)</span>). 블레이드 기준 좌표계는 블레이드 루트에 부착되어 블레이드와 함께 회전하는 부동 프레임입니다. 그 원점은 블레이드 루트에 있고 IEC 표준을 따르는 축 방향, 즉 <span class="math notranslate nohighlight">\(Z_r\)</span> 는 블레이드 축을 따라 뿌리부터 끝까지 가리키고 있습니다. <span class="math notranslate nohighlight">\(Y_r\)</span> 는 명목상 블레이드의 뒷전을 향하고 비틀림이 없는 블레이드 스테이션의 코드 라인과 평행합니다. 그리고 <span class="math notranslate nohighlight">\(X_r\)</span> 는
-<span class="math notranslate nohighlight">\(Y_r\)</span> 및 <span class="math notranslate nohighlight">\(Z_r\)</span> 축은 오른쪽 좌표계를 형성합니다(명목적으로 바람이 불어오는 방향을 가리킴). 아래 첨자로 표시된 초기 블레이드 기준 좌표계에 주목합니다.
-<span class="math notranslate nohighlight">\(r0\)</span>는 BeamDyn에서 내부적으로 사용되고 이전 섹션에서 소개된 BD 좌표계와 일치합니다. 초기 블레이드 기준 좌표계와 BD 좌표계 사이의 축 컨벤션 관계는 다음에서 찾을 수 있습니다. <a class="reference internal" href="#iecbd"><span class="std std-numref">표 4.3</span></a>.</p>
+<span class="math notranslate nohighlight">\(X_{rt}\)</span>, <span class="math notranslate nohighlight">\(Y_{rt}\)</span>, 및
+<span class="math notranslate nohighlight">\(Z_{rt}\)</span> 에서 <a class="reference internal" href="#bd-frame"><span class="std std-numref">그림 4.33</span></a> 초기화 시(<span class="math notranslate nohighlight">\(t = 0\)</span>). 블레이드 기준 좌표계는 블레이드 루트에 부착되어 블레이드와 함께 회전하는 부동 프레임입니다. 그 원점은 블레이드 루트에 있고 IEC 표준을 따르는 축 방향입니다. 즉, <span class="math notranslate nohighlight">\(Z_r\)</span> 뿌리부터 끝까지 칼날 축을 따라 가리키고 있습니다. <span class="math notranslate nohighlight">\(Y_r\)</span> 명목상 블레이드의 뒷전을 향하고 비틀림이 없는 블레이드 위치의 코드선과 평행합니다. 그리고 <span class="math notranslate nohighlight">\(X_r\)</span> 는 와 직교한다
+<span class="math notranslate nohighlight">\(Y_r\)</span> 및 <span class="math notranslate nohighlight">\(Z_r\)</span> 축은 오른쪽 좌표계를 형성합니다(명목상 바람이 불어오는 방향을 가리킴). 아래 첨자로 표시된 초기 블레이드 기준 좌표계에 주목합니다.
+<span class="math notranslate nohighlight">\(r0\)</span>는 BeamDyn에서 내부적으로 사용되고 이전 섹션에서 소개된 BD 좌표계와 일치합니다. 초기 블레이드 기준 좌표계와 BD 좌표계 사이의 축 규칙 관계는 다음에서 찾을 수 있습니다. <a class="reference internal" href="#iecbd"><span class="std std-numref">표 4.3</span></a>.</p>
 <span id="iecbd"></span><table class="docutils align-default" id="id14">
 <caption><span class="caption-number">표 4.3 </span><span class="caption-text">블레이드 좌표계와 BD 좌표계 간의 변환.</span><a class="headerlink" href="#id14" title="이 테이블에 대한 영구 링크"></a></caption>
 <colgroup>
@@ -190,22 +185,22 @@
 </table>
 </div>
 <div class="section" id="local-blade-coordinate-system">
-<h3><span class="section-number">4.7.5.1.4. </span>로컬 블레이드 좌표계<a class="headerlink" href="#local-blade-coordinate-system" title="이 제목의 고유 링크"></a></h3>
-<p>로컬 블레이드 좌표계는 일부 입력 및 출력 수량(예: 단면 질량 및 강성 행렬, 단면력 및 모멘트 결과)에 사용됩니다. 이 좌표계는 블레이드 기준 좌표계와 다릅니다. <span class="math notranslate nohighlight">\(Z_l\)</span> 축은 블레이드가 편향될 때 항상 블레이드 축에 접합니다. 아래첨자에 주목하세요 <span class="math notranslate nohighlight">\(l\)</span> 는 로컬 블레이드 좌표계를 나타냅니다.</p>
+<h3><span class="section-number">4.7.5.1.4. </span>블레이드 국부 좌표계<a class="headerlink" href="#local-blade-coordinate-system" title="이 제목에 대한 영구 링크"></a></h3>
+<p>로컬 블레이드 좌표계는 단면 질량 및 강성 행렬, 단면 힘 및 모멘트 결과와 같은 일부 입력 및 출력 수량에 사용됩니다. 이 좌표계는 블레이드 기준 좌표계와 다릅니다. <span class="math notranslate nohighlight">\(Z_l\)</span> 블레이드가 편향될 때 축은 항상 블레이드 축에 접합니다. 아래첨자에 주목하세요 <span class="math notranslate nohighlight">\(l\)</span> 로컬 블레이드 좌표계를 나타냅니다.</p>
 </div>
 </div>
 <div class="section" id="geometrically-exact-beam-theory">
-<h2><span class="section-number">4.7.5.2. </span>기하학적으로 정확한 빔 이론<a class="headerlink" href="#geometrically-exact-beam-theory" title="이 제목의 고유 링크"></a></h2>
-<p>BeamDyn의 이론적 기초는 기하학적으로 정확한 빔 이론입니다. 이 이론은 초기에 구부러지고 비틀어지며 큰 변위와 회전을 받는 빔의 기능을 특징으로 합니다. 적절한 2차원(2D) 단면 분석과 함께 확장, 굽힘, 전단 및 비틀림을 포함한 6개 DOF 간의 결합 효과도 GEBT를 통해 포착할 수 있습니다. "기하학적으로 정확하다"는 용어는 방정식을 공식화할 때 초기 형상과 변형 형상을 모두 포함하는 형상에 대한 근사치가 없다는 사실을 의미합니다. <span id="id2">[<a class="reference internal" href="zrefs.html#id2" title="듀이 H. 호지스. 비선형 복합 빔 이론. AIAA, 2006.">Hod06</a>]</span>.</p>
-<p>기하학적으로 정확한 빔 이론에 대한 지배 운동 방정식은 다음과 같이 쓸 수 있습니다. <span id="id3">[<a class="reference internal" href="zrefs.html#id3" title="O. A. Bauchau. 유연한 다물체 역학. 스프링거, 2010. doi:10.1007/978-94-007-0335-3.">바우10</a>]</span></p>
+<h2><span class="section-number">4.7.5.2. </span>기하학적으로 정확한 빔 이론<a class="headerlink" href="#geometrically-exact-beam-theory" title="이 제목에 대한 영구 링크"></a></h2>
+<p>BeamDyn의 이론적 기초는 기하학적으로 정확한 빔 이론입니다. 이 이론은 초기에 구부러지고 비틀어지며 큰 변위와 회전을 받는 빔의 기능을 특징으로 합니다. 적절한 2차원(2D) 단면 분석과 함께 확장, 굽힘, 전단 및 비틀림을 포함하여 6개 DOFs 간의 결합 효과도 GEBT로 ​​포착할 수 있습니다. "기하학적으로 정확하다"는 용어는 방정식을 공식화할 때 초기 형상과 변형 형상을 모두 포함하는 형상에 대한 근사치가 없다는 사실을 의미합니다. <span id="id2">[<a class="reference internal" href="zrefs.html#id2" title="듀이 H. 호지스. 비선형 복합 빔 이론. AIAA, 2006.">Hod06</a>]</span>.</p>
+<p>기하학적으로 정확한 빔 이론에 대한 지배 운동 방정식은 다음과 같이 쓸 수 있습니다. <span id="id3">[<a class="reference internal" href="zrefs.html#id3" title="O. A. 바우샤우. 유연한 다물체 역학. 스프링거, 2010. doi:10.1007/978-94-007-0335-3.">Bau10</a>]</span></p>
 <div class="math notranslate nohighlight" id="equation-governgebt-1-2">
 <span class="eqno">(4.77)<a class="headerlink" href="#equation-governgebt-1-2" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}\dot{\underline{h}} - \underline{F}^\prime &amp;= \underline{f} \\
 \dot{\underline{g}} + \dot{\tilde{u}} \underline{h} - \underline{M}^\prime + (\tilde{x}_0^\prime + \tilde{u}^\prime)^T \underline{F} &amp;= \underline{m}\end{split}\]</div>
-<p>여기서 <span class="math notranslate nohighlight">\({\underline{h}}\)</span> 및 <span class="math notranslate nohighlight">\({\underline{g}}\)</span> 는 각각 관성 좌표계에서 해석된 선형 및 각도 운동량입니다. <span class="math notranslate nohighlight">\({\underline{F}}\)</span> 및 <span class="math notranslate nohighlight">\({\underline{M}}\)</span> 는 각각 보의 단면력과 모멘트 합력입니다.
-<span class="math notranslate nohighlight">\({\underline{u}}\)</span> 는 기준선에 있는 점의 1차원(1D) 변위입니다. <span class="math notranslate nohighlight">\({\underline{x}}_0\)</span> 는 빔의 기준선을 따른 점의 위치 벡터입니다. 그리고
-<span class="math notranslate nohighlight">\({\underline{f}}\)</span> 및 <span class="math notranslate nohighlight">\({\underline{m}}\)</span> 는 빔 구조에 적용되는 분산 힘과 모멘트입니다. 표기법
-<span class="math notranslate nohighlight">\((\bullet)^\prime\)</span> 는 빔 축에 대한 미분을 나타냅니다. <span class="math notranslate nohighlight">\(x_1\)</span> 및 <span class="math notranslate nohighlight">\(\dot{(\bullet)}\)</span> 는 시간에 대한 미분을 나타냅니다. 물결표 연산자 <span class="math notranslate nohighlight">\(({\widetilde{\bullet}})\)</span>
-는 주어진 벡터에 해당하는 비대칭 대칭 텐서를 정의합니다. 문헌에서는 이를 "교차곱 행렬"이라고도 합니다. 예를 들어,</p>
+<p>여기서 <span class="math notranslate nohighlight">\({\underline{h}}\)</span> 및 <span class="math notranslate nohighlight">\({\underline{g}}\)</span> 관성 좌표계에서 각각 해결된 선형 및 각도 운동량입니다. <span class="math notranslate nohighlight">\({\underline{F}}\)</span> 및 <span class="math notranslate nohighlight">\({\underline{M}}\)</span> 는 각각 빔의 단면력과 모멘트 결과입니다.
+<span class="math notranslate nohighlight">\({\underline{u}}\)</span> 기준선 위 점의 1차원(1D) 변위입니다. <span class="math notranslate nohighlight">\({\underline{x}}_0\)</span> 는 빔의 기준선을 따른 점의 위치 벡터입니다. 그리고
+<span class="math notranslate nohighlight">\({\underline{f}}\)</span> 및 <span class="math notranslate nohighlight">\({\underline{m}}\)</span> 빔 구조에 적용되는 분산 힘과 모멘트입니다. 표기법
+<span class="math notranslate nohighlight">\((\bullet)^\prime\)</span> 빔 축에 대한 미분을 나타냅니다. <span class="math notranslate nohighlight">\(x_1\)</span> 및 <span class="math notranslate nohighlight">\(\dot{(\bullet)}\)</span> 시간에 대한 미분을 나타냅니다. 물결표 연산자 <span class="math notranslate nohighlight">\(({\widetilde{\bullet}})\)</span>
+주어진 벡터에 해당하는 비대칭 대칭 텐서를 정의합니다. 문헌에서는 이를 "교차곱 행렬"이라고도 합니다. 예를 들어,</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}{\widetilde{n}} =
              \begin{bmatrix}
@@ -213,7 +208,7 @@
              n_3 &amp; 0 &amp; -n_1 \\
              -n_2 &amp; n_1 &amp; 0\\
              \end{bmatrix}\end{split}\]</div>
-<p>구성 방정식은 속도를 운동량에 연관시키고 1D 변형 측정을 단면 결과에 연관시킵니다.</p>
+<p>구성 방정식은 속도를 운동량에 관련시키고 1D 변형 측정값을 단면 결과에 관련시킵니다.</p>
 <div class="math notranslate nohighlight" id="equation-constitutivemass-stiff">
 <span class="eqno">(4.78)<a class="headerlink" href="#equation-constitutivemass-stiff" title="이 방정식에 대한 영구 링크"></a></span>\[ \begin{align}\begin{aligned}\begin{split}\begin{Bmatrix}
 \underline{h} \\
@@ -233,11 +228,10 @@
 <p>여기서 <span class="math notranslate nohighlight">\(\underline{\underline{\mathcal{M}}}\)</span> 및
 <span class="math notranslate nohighlight">\(\underline{\underline{\mathcal{C}}}\)</span> 는 <span class="math notranslate nohighlight">\(6 \times 6\)</span>
 단면 질량 및 강성 행렬(실제로는 텐서가 아님) <span class="math notranslate nohighlight">\(\underline{\epsilon}\)</span> 및
-<span class="math notranslate nohighlight">\(\underline{\kappa}\)</span> 는 각각 1D 변형률과 곡률입니다. 그리고, <span class="math notranslate nohighlight">\(\underline{\omega}\)</span> 는 회전 텐서에 의해 정의되는 각속도 벡터입니다.
-<span class="math notranslate nohighlight">\(\underline{\underline{R}}\)</span> 로 <span class="math notranslate nohighlight">\(\underline{\omega} =
-axial(\dot{\underline{\underline{R}}}~\underline{\underline{R}}^T)\)</span>. 축 벡터
-2차 텐서와 연결된 <span class="math notranslate nohighlight">\({\underline{a}}\)</span> 2계 텐서에 대응하는 <span class="math notranslate nohighlight">\({\underline{\underline{A}}}\)</span> 가 표시됩니다
-<span class="math notranslate nohighlight">\({\underline{a}}=axial({\underline{\underline{A}}})\)</span> 및 해당 구성 요소는 다음과 같이 정의됩니다.</p>
+<span class="math notranslate nohighlight">\(\underline{\kappa}\)</span> 각각 1D 변형률과 곡률입니다. 그리고, <span class="math notranslate nohighlight">\(\underline{\omega}\)</span> 회전 텐서에 의해 정의된 각속도 벡터입니다.
+<span class="math notranslate nohighlight">\(\underline{\underline{R}}\)</span> ~처럼 <span class="math notranslate nohighlight">\(\underline{\omega} =
+axial(\dot{\underline{\underline{R}}}~\underline{\underline{R}}^T)\)</span>. 축 벡터 <span class="math notranslate nohighlight">\({\underline{a}}\)</span> 2계 텐서에 대응하는 <span class="math notranslate nohighlight">\({\underline{\underline{A}}}\)</span> 표시된다
+<span class="math notranslate nohighlight">\({\underline{a}}=axial({\underline{\underline{A}}})\)</span> 그 구성 요소는 다음과 같이 정의됩니다.</p>
 <div class="math notranslate nohighlight" id="equation-axial">
 <span class="eqno">(4.79)<a class="headerlink" href="#equation-axial" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}{\underline{a}} = axial({\underline{\underline{A}}})=\begin{Bmatrix}
 a_1 \\
@@ -250,7 +244,7 @@ A_{32}-A_{23} \\
 A_{13}-A_{31} \\
 A_{21}-A_{12}
 \end{Bmatrix}\end{split}\]</div>
-<p>1D 변형률 측정은 다음과 같이 정의됩니다.</p>
+<p>1D 변형 측정값은 다음과 같이 정의됩니다.</p>
 <div class="math notranslate nohighlight" id="equation-1dstrain">
 <span class="eqno">(4.80)<a class="headerlink" href="#equation-1dstrain" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}\begin{Bmatrix}
    {\underline{\epsilon}} \\
@@ -261,46 +255,43 @@ A_{21}-A_{12}
         {\underline{x}}^\prime_0 + {\underline{u}}^\prime - ({\underline{\underline{R}}} ~{\underline{\underline{R}}}_0) \bar{\imath}_1 \\
         {\underline{k}}
 \end{Bmatrix}\end{split}\]</div>
-<p>여기서 <span class="math notranslate nohighlight">\({\underline{k}} = axial [({\underline{\underline{R R_0}}})^\prime ({\underline{\underline{R R_0}}})^T]\)</span> 는 관성 기준으로 해석된 단면 곡률 벡터입니다. <span class="math notranslate nohighlight">\({\underline{\underline{R}}}_0\)</span> 는 초기 회전 텐서입니다. 그리고 <span class="math notranslate nohighlight">\(\bar{\imath}_1\)</span> 는 다음과 같은 단위 벡터입니다.
-관성 기준으로 <span class="math notranslate nohighlight">\(x_1\)</span> 방향. 운동 방정식 Eq를 포함한 세 가지 방정식 세트.&nbsp;<a class="reference internal" href="#equation-governgebt-1-2">(4.77)</a>, 구성방정식 Eq. <a class="reference internal" href="#equation-constitutivemass-stiff">(4.78)</a>, 운동 방정식 Eq.&nbsp;<a class="reference internal" href="#equation-1dstrain">(4.80)</a>는 빔 탄성 문제에 대한 완전한 수학적 설명을 제공합니다.
-Legendre 스펙트럼 유한 요소를 사용한</p>
+<p>여기서 <span class="math notranslate nohighlight">\({\underline{k}} = axial [({\underline{\underline{R R_0}}})^\prime ({\underline{\underline{R R_0}}})^T]\)</span> 는 관성 기준으로 해석된 단면 곡률 벡터입니다. <span class="math notranslate nohighlight">\({\underline{\underline{R}}}_0\)</span> 초기 회전 텐서입니다. 그리고 <span class="math notranslate nohighlight">\(\bar{\imath}_1\)</span> 는 단위 벡터이다 <span class="math notranslate nohighlight">\(x_1\)</span> 관성 기준의 방향. 운동 방정식 Eq를 포함한 세 가지 방정식 세트.&nbsp;<a class="reference internal" href="#equation-governgebt-1-2">(4.77)</a>, 구성 방정식 Eq. <a class="reference internal" href="#equation-constitutivemass-stiff">(4.78)</a>, 운동 방정식 Eq.&nbsp;<a class="reference internal" href="#equation-1dstrain">(4.80)</a>, 빔 탄성 문제에 대한 완전한 수학적 설명을 제공합니다.</p>
 </div>
 <div class="section" id="numerical-implementation-with-legendre-spectral-finite-elements">
-<span id="num-imp"></span><h2><span class="section-number">4.7.5.3. </span>수치 구현<a class="headerlink" href="#numerical-implementation-with-legendre-spectral-finite-elements" title="이 제목의 고유 링크"></a></h2>
-<p>변위 기반 유한 요소 구현의 경우 각 노드에는 6개의 자유도(3개의 변위 구성요소와 3개의 회전 구성요소)가 있습니다. 여기서 우리는 <span class="math notranslate nohighlight">\({\underline{q}}\)</span> 는 요소 변위 배열을 다음과 같이 나타냅니다. <span class="math notranslate nohighlight">\(\underline{q}=\left[
+<span id="num-imp"></span><h2><span class="section-number">4.7.5.3. </span>Legendre 스펙트럼 유한 요소를 사용한 수치 구현<a class="headerlink" href="#numerical-implementation-with-legendre-spectral-finite-elements" title="이 제목에 대한 영구 링크"></a></h2>
+<p>변위 기반 유한 요소 구현의 경우 각 노드에는 6개의 자유도(3개의 변위 구성요소와 3개의 회전 구성요소)가 있습니다. 여기서 우리는 <span class="math notranslate nohighlight">\({\underline{q}}\)</span> 요소 변위 배열을 다음과 같이 나타냅니다. <span class="math notranslate nohighlight">\(\underline{q}=\left[
 \underline{u}^T~~\underline{c}^T\right]\)</span> 여기서 <span class="math notranslate nohighlight">\({\underline{u}}\)</span>
-는 변위이고 <span class="math notranslate nohighlight">\({\underline{c}}\)</span> 는 회전 매개변수 벡터입니다. 따라서 가속도 배열은 다음과 같이 정의될 수 있습니다.
+변위이고 <span class="math notranslate nohighlight">\({\underline{c}}\)</span> 회전 매개변수 벡터입니다. 따라서 가속도 배열은 다음과 같이 정의될 수 있습니다.
 <span class="math notranslate nohighlight">\(\underline{a}=\left[ \ddot{\underline{u}}^T~~ \dot{\underline{\omega}}^T \right]\)</span>. 비선형 유한 요소 해석의 경우 변위, 속도 및 가속도의 이산화 및 증분 형태는 다음과 같이 작성됩니다.</p>
 <div class="math notranslate nohighlight" id="equation-discretized">
 <span class="eqno">(4.81)<a class="headerlink" href="#equation-discretized" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}\underline{q} (x_1) &amp;= \underline{\underline{N}} ~\hat{\underline{q}}~~~~\Delta \underline{q}^T = \left[ \Delta \underline{u}^T~~\Delta \underline{c}^T \right] \\
 \underline{v}(x_1) &amp;= \underline{\underline{N}}~\hat{\underline{v}}~~~~\Delta \underline{v}^T = \left[\Delta \underline{\dot{u}}^T~~\Delta \underline{\omega}^T \right] \\
 \underline{a}(x_1) &amp;= \underline{\underline{N}}~ \hat{\underline{a}}~~~~\Delta \underline{a}^T = \left[ \Delta \ddot{\underline{u}}^T~~\Delta \dot{\underline{\omega}}^T \right]\end{split}\]</div>
-<p>여기서 <span class="math notranslate nohighlight">\({\underline{\underline{N}}}\)</span> 는 형상 함수 행렬이고 <span class="math notranslate nohighlight">\((\hat{\cdot})\)</span> 는 노드 값의 열 행렬을 나타냅니다.</p>
+<p>여기서 <span class="math notranslate nohighlight">\({\underline{\underline{N}}}\)</span> 모양 함수 행렬이고 <span class="math notranslate nohighlight">\((\hat{\cdot})\)</span> 노드 값의 열 행렬을 나타냅니다.</p>
 <p>요소의 변위 필드는 다음과 같이 근사화됩니다.</p>
 <div class="math notranslate nohighlight" id="equation-interpolatedisp">
 <span class="eqno">(4.82)<a class="headerlink" href="#equation-interpolatedisp" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}{\underline{u}}(\xi) &amp;=  h^k(\xi) {\underline{\hat{u}}}^k \\
 {\underline{u}}^\prime(\xi) &amp;=  h^{k\prime}(\xi) {\underline{\hat{u}}}^k\end{split}\]</div>
-<p>여기서 <span class="math notranslate nohighlight">\(h^k(\xi)\)</span>, 형상 함수 행렬의 구성요소
-<span class="math notranslate nohighlight">\({\underline{\underline{N}}}\)</span>는 <span class="math notranslate nohighlight">\(p^{th}\)</span>- 노드의 차수 다항식 라그랑주 보간 형상 함수 <span class="math notranslate nohighlight">\(k\)</span>,
-<span class="math notranslate nohighlight">\(k=\{1,2,...,p+1\}\)</span>, <span class="math notranslate nohighlight">\({\underline{\hat{u}}}^k\)</span> 는
-<span class="math notranslate nohighlight">\(k^{th}\)</span> 노드 값 및 <span class="math notranslate nohighlight">\(\xi \in \left[-1,1\right]\)</span> 는 요소 자연좌표입니다. 그러나 에서 논의한 바와 같이
+<p>여기서 <span class="math notranslate nohighlight">\(h^k(\xi)\)</span>, 모양 함수 행렬의 구성요소
+<span class="math notranslate nohighlight">\({\underline{\underline{N}}}\)</span>, 는 <span class="math notranslate nohighlight">\(p^{th}\)</span>- 노드의 다항식 라그랑주 보간 형상 함수 순서 <span class="math notranslate nohighlight">\(k\)</span>,
+<span class="math notranslate nohighlight">\(k=\{1,2,...,p+1\}\)</span>, <span class="math notranslate nohighlight">\({\underline{\hat{u}}}^k\)</span> 은
+<span class="math notranslate nohighlight">\(k^{th}\)</span> 노드 값 및 <span class="math notranslate nohighlight">\(\xi \in \left[-1,1\right]\)</span> 요소 자연 좌표입니다. 그러나 에서 논의한 바와 같이
 <span id="id4">[<a class="reference internal" href="zrefs.html#id4" title="O.A. Bauchau, A. Epple 및 S.D. 허. 유연한 다물체 동역학 시뮬레이션에서 유한 회전 보간. 기계 공학 협회 간행물, 파트 K: 다물체 역학 저널, 222:353-366, 2008.">BEH08</a>]</span>, 3D 회전 필드는 단순히 다음과 같은 형태의 변위 필드로 보간될 수 없습니다.</p>
 <div class="math notranslate nohighlight" id="equation-interpolaterot">
 <span class="eqno">(4.83)<a class="headerlink" href="#equation-interpolaterot" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}{\underline{c}}(\xi) &amp;= h^k(\xi) {\underline{\hat{c}}}^k \\
 {\underline{c}}^\prime(\xi) &amp;= h^{k \prime}(\xi) {\underline{\hat{c}}}^k\end{split}\]</div>
-<p>여기서 <span class="math notranslate nohighlight">\({\underline{c}}\)</span> 는 요소의 회전 필드이고
+<p>여기서 <span class="math notranslate nohighlight">\({\underline{c}}\)</span> 요소의 회전 필드이고
 <span class="math notranslate nohighlight">\({\underline{\hat{c}}}^k\)</span> 는 노드 값입니다. <span class="math notranslate nohighlight">\(k^{th}\)</span>
-노드, 세 가지 이유:</p>
+노드는 세 가지 이유 때문에:</p>
 <ol class="arabic simple">
-<li><p>회전은 선형 공간을 형성하지 않으므로 추가하기보다는 "구성"해야 합니다.</p></li>
-<li><p>벡터 회전 매개변수에 존재하는 특이점을 제거하려면 크기 조정 작업이 필요합니다.</p></li>
-<li><p>회전 필드에는 객관성이 부족합니다. 이는 다음과 같이 정의됩니다. <span id="id5">[<a class="reference internal" href="zrefs.html#id5" title="G. Jelenić 및 M. A. Crisfield. 기하학적으로 정확한 3D 빔 이론: 정역학 및 동역학을 위한 변형률 불변 유한 요소 구현. 응용 기계 및 공학의 컴퓨터 방법, 171:141-171, 1999.">JelenicC99</a>]</span>는 강체 운동 추가에 대한 보간을 통해 계산된 변형 측정값의 불변성을 나타냅니다.</p></li>
+<li><p>회전은 선형 공간을 형성하지 않으므로 추가되기보다는 "구성"되어야 합니다.</p></li>
+<li><p>벡터 회전 매개변수에 존재하는 특이성을 제거하려면 크기 조정 작업이 필요합니다.</p></li>
+<li><p>회전 필드에는 다음과 같이 정의된 객관성이 부족합니다. <span id="id5">[<a class="reference internal" href="zrefs.html#id5" title="G. Jelenić 및 M. A. Crisfield. 기하학적으로 정확한 3D 빔 이론: 정역학 및 동역학을 위한 변형률 불변 유한 요소 구현. 응용 기계 및 공학의 컴퓨터 방법, 171:141-171, 1999.">JelenicC99</a>]</span>는 강체 운동 추가에 대한 보간법을 통해 계산된 변형률 측정값의 불변성을 나타냅니다.</p></li>
 </ol>
-<p>따라서 우리는 제안된 보다 강력한 보간 접근법을 채택합니다.
-유한 회전을 처리하는 <span id="id6">[<a class="reference internal" href="zrefs.html#id5" title="G. Jelenić 및 M. A. Crisfield. 기하학적으로 정확한 3D 빔 이론: 정역학 및 동역학을 위한 변형률 불변 유한 요소 구현. 응용 기계 및 공학의 컴퓨터 방법, 171:141-171, 1999.">JelenicC99</a>]</span> . 우리의 접근 방식은 다음과 같습니다</p>
+<p>따라서 우리는 제안된 보다 강력한 보간 접근법을 채택합니다. <span id="id6">[<a class="reference internal" href="zrefs.html#id5" title="G. Jelenić 및 M. A. Crisfield. 기하학적으로 정확한 3D 빔 이론: 정역학 및 동역학을 위한 변형률 불변 유한 요소 구현. 응용 기계 및 공학의 컴퓨터 방법, 171:141-171, 1999.">JelenicC99</a>]</span> 유한 회전을 처리합니다. 우리의 접근 방식은 다음과 같습니다</p>
 <dl>
-<dt>1단계:</dt><dd><p>절점 상대 회전을 계산합니다.
-<span class="math notranslate nohighlight">\({\underline{\hat{r}}}^k\)</span>, 기준 회전을 제거하여,
+<dt>1단계:</dt><dd><p>노드 상대 회전을 계산합니다.
+<span class="math notranslate nohighlight">\({\underline{\hat{r}}}^k\)</span>, 기준 회전을 제거하여
 <span class="math notranslate nohighlight">\({\underline{\hat{c}}}^1\)</span>, 각 노드의 유한 회전으로부터,
 <span class="math notranslate nohighlight">\({\underline{\hat{r}}}^k = ({\underline{\hat{c}}}^{1-}) \oplus
 {\underline{\hat{c}}}^k\)</span>. 마이너스 기호가 표시되어 있습니다.
@@ -310,7 +301,7 @@ Legendre 스펙트럼 유한 요소를 사용한</p>
 <dt>2단계:</dt><dd><p>상대 회전 필드를 보간합니다.
 <span class="math notranslate nohighlight">\({\underline{r}}(\xi) = h^k(\xi) {\underline{\hat{r}}}^k\)</span> 및
 <span class="math notranslate nohighlight">\({\underline{r}}^\prime(\xi) = h^{k \prime}(\xi) {\underline{\hat{r}}}^k\)</span>. 곡률 필드 찾기
-<span class="math notranslate nohighlight">\({\underline{\kappa}}(\xi) = {\underline{\underline{R}}}({\underline{\hat{c}}}^1) {\underline{\underline{H}}}({\underline{r}}) {\underline{r}}^\prime\)</span>, 여기서 <span class="math notranslate nohighlight">\({\underline{\underline{H}}}\)</span> 는 곡률 벡터와 관련된 탄젠트 텐서입니다. <span class="math notranslate nohighlight">\({\underline{k}}\)</span> 및 회전 벡터 <span class="math notranslate nohighlight">\({\underline{c}}\)</span> 로</p>
+<span class="math notranslate nohighlight">\({\underline{\kappa}}(\xi) = {\underline{\underline{R}}}({\underline{\hat{c}}}^1) {\underline{\underline{H}}}({\underline{r}}) {\underline{r}}^\prime\)</span>, 어디 <span class="math notranslate nohighlight">\({\underline{\underline{H}}}\)</span> 곡률 벡터와 관련된 접선 텐서입니다. <span class="math notranslate nohighlight">\({\underline{k}}\)</span> 및 회전 벡터 <span class="math notranslate nohighlight">\({\underline{c}}\)</span> ~처럼</p>
 <div class="math notranslate nohighlight" id="equation-tensor">
 <span class="eqno">(4.84)<a class="headerlink" href="#equation-tensor" title="이 방정식에 대한 영구 링크"></a></span>\[    {\underline{k}} = {\underline{\underline{H}}}~ {\underline{c}}^\prime\]</div>
 </dd>
@@ -318,37 +309,35 @@ Legendre 스펙트럼 유한 요소를 사용한</p>
 <span class="math notranslate nohighlight">\({\underline{c}}(\xi) = {\underline{\hat{c}}}^1 \oplus {\underline{r}}(\xi)\)</span>.</p>
 </dd>
 </dl>
-<p>상대 회전 필드는 요소의 모든 노드에 대해 계산될 수 있습니다. 편의상 노드 1을 참조 노드로 선택합니다. LSFE 접근 방식에서는 모양 함수(즉, <span class="math notranslate nohighlight">\({\underline{\underline{N}}}\)</span>)은 <span class="math notranslate nohighlight">\(p^{th}\)</span>- 노드가 위치하는 라그랑주 보간 순서 <span class="math notranslate nohighlight">\(p+1\)</span>
-Gauss-Lobatto-Legendre(GLL) 포인트 <span class="math notranslate nohighlight">\([-1,1]\)</span> 요소 자연좌표영역. <a class="reference internal" href="#n4-lsfe"><span class="std std-numref">그림 4.34</span></a> 는 4차 및 8차 요소에 대한 대표적인 LSFE 기본 기능을 보여줍니다. 노드는 요소 끝점 근처에 클러스터되어 있습니다. LSFE 및 해당 응용 프로그램에 대한 자세한 내용은 참고 자료에서 확인할 수 있습니다.&nbsp;<span id="id7">[<a class="reference internal" href="zrefs.html#id15" title="A. T. 파테라. 유체 역학을 위한 스펙트럼 요소 방법: 채널 확장의 층류. 전산물리학 저널, 54:468-488, 1984.">Pat84</a>, <a class="reference internal" href="zrefs.html#id16" title="E. M. Ronquist 및 A. T. Patera. 스테판 문제에 대한 Legendre 스펙트럼 요소 방법. 공학의 수치적 방법에 관한 국제 저널, 24:2273–2299, 1987.">RP87</a>, <a class="reference internal" href="zrefs.html#id17" title="M. A. Sprague 및 T. L. Geers. 캐비테이션이 발생하는 음향 유체에 대한 스펙트럼 요소 및 필드 분리. 전산물리학 저널, 184:149-162, 2003.">SG03</a>, <a class="reference internal" href="zrefs.html#id18" title="M. A. Sprague 및 T. L. Geers. 일시적인 유체-구조 상호작용에서 캐비테이션을 모델링하기 위한 스펙트럼 요소 방법. 공학의 수치적 방법에 관한 국제 저널, 60:2467-2499, 2004.">SG04</a>]</span>.</p>
+<p>상대 회전 필드는 요소의 모든 노드에 대해 계산될 수 있습니다. 편의상 노드 1을 참조 노드로 선택합니다. LSFE 접근 방식에서는 모양 함수(즉, <span class="math notranslate nohighlight">\({\underline{\underline{N}}}\)</span>) 이다 <span class="math notranslate nohighlight">\(p^{th}\)</span>- 노드가 위치하는 라그랑주 보간 순서 <span class="math notranslate nohighlight">\(p+1\)</span>
+Gauss-Lobatto-Legendre(GLL) 점 <span class="math notranslate nohighlight">\([-1,1]\)</span> 요소 자연좌표영역. <a class="reference internal" href="#n4-lsfe"><span class="std std-numref">그림 4.34</span></a> 4차 및 8차 요소에 대한 대표적인 LSFE 기본 함수를 보여줍니다. 노드는 요소 끝점 근처에 클러스터되어 있습니다. LSFE 및 해당 애플리케이션에 대한 자세한 내용은 참고 자료에서 확인할 수 있습니다.&nbsp;<span id="id7">[<a class="reference internal" href="zrefs.html#id15" title="A.T. 파테라. 유체 역학을 위한 스펙트럼 요소 방법: 채널 확장의 층류. 전산물리학 저널, 54:468-488, 1984.">Pat84</a>, <a class="reference internal" href="zrefs.html#id16" title="E. M. 론퀴스트(E. M. Ronquist)와 A. T. 파테라(A. T. Patera). 스테판 문제에 대한 Legendre 스펙트럼 요소 방법. 공학의 수치적 방법에 관한 국제 저널, 24:2273–2299, 1987.">RP87</a>, <a class="reference internal" href="zrefs.html#id17" title="M. A. 스프라그(M. A. Sprague)와 T. L. 기어스(T. L. Geers). 캐비테이션이 발생하는 음향 유체에 대한 스펙트럼 요소 및 필드 분리. 전산물리학 저널, 184:149-162, 2003.">SG03</a>, <a class="reference internal" href="zrefs.html#id18" title="M. A. 스프라그(M. A. Sprague)와 T. L. 기어스(T. L. Geers). 일시적인 유체-구조 상호작용에서 캐비테이션을 모델링하기 위한 스펙트럼 요소 방법. 공학의 수치적 방법에 관한 국제 저널, 60:2467-2499, 2004.">SG04</a>]</span>.</p>
 <div class="figure align-center" id="id15">
 <span id="n4-lsfe"></span><a class="reference internal image-reference" href="../../../_images/n4.png"><img alt="../../../_images/n4.png" src="../../../_images/n4.png" style="width: 47%;"></a>
-<p class="caption"><span class="caption-number">그림 4.34 </span><span class="caption-text">대표 <span class="math notranslate nohighlight">\(p+1\)</span> 라그랑주 보간 형상은 노드가 Gauss-Lobatto-Legendre 점에 위치하는 4차 LSFE에 대한 요소 자연 좌표에서 기능합니다.</span><a class="headerlink" href="#id15" title="이 이미지에 대한 영구 링크"></a></p>
+<p class="caption"><span class="caption-number">그림 4.34 </span><span class="caption-text">대표 <span class="math notranslate nohighlight">\(p+1\)</span> 라그랑주 보간 형상은 노드가 Gauss-Lobatto-Legendre 점에 위치하는 4차 LSFEs에 대한 요소 자연 좌표에서 기능합니다.</span><a class="headerlink" href="#id15" title="이 이미지에 대한 영구 링크"></a></p>
 </div>
 <div class="figure align-center" id="id16">
 <span id="n8-lsfe"></span><a class="reference internal image-reference" href="../../../_images/n8.png"><img alt="../../../_images/n8.png" src="../../../_images/n8.png" style="width: 47%;"></a>
-<p class="caption"><span class="caption-number">그림 4.35 </span><span class="caption-text">대표 <span class="math notranslate nohighlight">\(p+1\)</span> 라그랑주 보간 형상은 노드가 Gauss-Lobatto-Legendre 점에 위치하는 8차 LSFE에 대한 요소 자연 좌표에서 기능합니다.</span><a class="headerlink" href="#id16" title="이 이미지에 대한 영구 링크"></a></p>
+<p class="caption"><span class="caption-number">그림 4.35 </span><span class="caption-text">대표 <span class="math notranslate nohighlight">\(p+1\)</span> 라그랑주 보간 형상은 노드가 Gauss-Lobatto-Legendre 점에 위치하는 8차 LSFEs에 대한 요소 자연 좌표에서 기능합니다.</span><a class="headerlink" href="#id16" title="이 이미지에 대한 영구 링크"></a></p>
 </div>
 </div>
 <div class="section" id="wiener-milenkovic-rotation-parameter">
-<h2><span class="section-number">4.7.5.4. </span>Wiener-Milenković 회전 매개변수<a class="headerlink" href="#wiener-milenkovic-rotation-parameter" title="이 제목의 고유 링크"></a></h2>
-<p>BeamDyn에서 3D 회전은 다음 방정식에 정의된 Wiener-Milenković 매개변수로 표현됩니다.</p>
+<h2><span class="section-number">4.7.5.4. </span>Wiener-Milenković 회전 매개변수<a class="headerlink" href="#wiener-milenkovic-rotation-parameter" title="이 제목에 대한 영구 링크"></a></h2>
+<p>BeamDyn에서 3D 회전은 다음 방정식에 정의된 Wiener-Milenković 매개변수로 표시됩니다.</p>
 <div class="math notranslate nohighlight" id="equation-wmparameter">
 <span class="eqno">(4.85)<a class="headerlink" href="#equation-wmparameter" title="이 방정식에 대한 영구 링크"></a></span>\[{\underline{c}} = 4 \tan\left(\frac{\phi}{4} \right) \bar{n}\]</div>
-<p>여기서 <span class="math notranslate nohighlight">\(\phi\)</span> 는 회전 각도이고 <span class="math notranslate nohighlight">\(\bar{n}\)</span> 는 회전축의 단위 벡터입니다. 이 매개변수의 유효한 범위는 다음과 같습니다. <span class="math notranslate nohighlight">\(|\phi| &lt; 2 \pi\)</span>. 정수배에 존재하는 특이점 <span class="math notranslate nohighlight">\(\pm 2 \pi\)</span> 는 재조정 작업을 통해 제거할 수 있습니다. <span class="math notranslate nohighlight">\(\pi\)</span> :</p>
+<p>여기서 <span class="math notranslate nohighlight">\(\phi\)</span> 회전 각도이고 <span class="math notranslate nohighlight">\(\bar{n}\)</span> 회전축의 단위 벡터입니다. 이 매개변수의 유효한 범위는 다음과 같습니다. <span class="math notranslate nohighlight">\(|\phi| &lt; 2 \pi\)</span>. 정수배에 존재하는 특이점 <span class="math notranslate nohighlight">\(\pm 2 \pi\)</span> 크기 조정 작업을 통해 제거할 수 있습니다. <span class="math notranslate nohighlight">\(\pi\)</span> 처럼:</p>
 <div class="math notranslate nohighlight" id="equation-rescaledwm">
 <span class="eqno">(4.86)<a class="headerlink" href="#equation-rescaledwm" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}{\underline{r}} = \begin{cases}
 4(q_0{\underline{p}} + p_0 {\underline{q}} + \tilde{p} {\underline{q}} ) / (\Delta_1 + \Delta_2), &amp; \text{if } \Delta_2 \geq 0 \\
 -4(q_0{\underline{p}} + p_0 {\underline{q}} + \tilde{p} {\underline{q}} ) / (\Delta_1 - \Delta_2), &amp; \text{if } \Delta_2 &lt; 0
 \end{cases}\end{split}\]</div>
-<p>여기서 <span class="math notranslate nohighlight">\({\underline{p}}\)</span>, <span class="math notranslate nohighlight">\({\underline{q}}\)</span>및
-이 플래그 값 아래에
-<span class="math notranslate nohighlight">\({\underline{r}}\)</span> 는 다음과 같은 세 개의 유한 회전의 벡터 매개변수화입니다.
+<p>여기서 <span class="math notranslate nohighlight">\({\underline{p}}\)</span>, <span class="math notranslate nohighlight">\({\underline{q}}\)</span>, 및
+<span class="math notranslate nohighlight">\({\underline{r}}\)</span> 다음과 같은 세 개의 유한 회전의 벡터 매개변수화입니다.
 <span class="math notranslate nohighlight">\({\underline{\underline{R}}}({\underline{r}}) = {\underline{\underline{R}}}({\underline{p}}) {\underline{\underline{R}}}({\underline{q}})\)</span>,
 <span class="math notranslate nohighlight">\(p_0 = 2 - {\underline{p}}^T {\underline{p}}/8\)</span>,
 <span class="math notranslate nohighlight">\(q_0 = 2 - {\underline{q}}^T {\underline{q}}/8\)</span>,
-<span class="math notranslate nohighlight">\(\Delta_1 = (4-p_0)(4-q_0)\)</span>및
-이 플래그 값 아래에
-<span class="math notranslate nohighlight">\(\Delta_2 = p_0 q_0 - {\underline{p}}^T {\underline{q}}\)</span>. 크기 조정 작업으로 인해 보간된 회전 필드의 불연속성이 발생할 수 있다는 점에 유의하세요. 따라서 보다 강력한 보간 알고리즘이 섹션에 도입되었습니다.&nbsp;<a class="reference internal" href="#num-imp"><span class="std std-ref">수치 구현</span></a> 여기서 크기 조정에 독립적인 상대 회전 필드가 보간됩니다.</p>
+<span class="math notranslate nohighlight">\(\Delta_1 = (4-p_0)(4-q_0)\)</span>, 및
+<span class="math notranslate nohighlight">\(\Delta_2 = p_0 q_0 - {\underline{p}}^T {\underline{q}}\)</span>. 크기 조정 작업으로 인해 보간된 회전 필드의 불연속성이 발생할 수 있다는 점에 유의하세요. 따라서 보다 강력한 보간 알고리즘이 섹션에 도입되었습니다.&nbsp;<a class="reference internal" href="#num-imp"><span class="std std-ref">Legendre 스펙트럼 유한 요소를 사용한 수치 구현</span></a> 여기서 크기 조정에 독립적인 상대 회전 필드가 보간됩니다.</p>
 <p>Wiener-Milenković 매개변수로 표현된 회전 텐서는 다음과 같습니다.</p>
 <div class="math notranslate nohighlight" id="equation-eqn-rottensorwm">
 <span class="eqno">(4.87)<a class="headerlink" href="#equation-eqn-rottensorwm" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}{\underline{\underline{R}}} ({\underline{c}}) = \frac{1}{(4-c_0)^2}
@@ -357,35 +346,32 @@ c_0^2 + c_1^2 - c_2^2 - c_3^2 &amp; 2(c_1 c_2 - c_0 c_3) &amp; 2(c_1 c_3 + c_0 c
 2(c_1 c_2 + c_0 c_3) &amp; c_0^2 - c_1^2 + c_2^2 - c_3^2 &amp; 2(c_2 c_3 - c_0 c_1) \\
 2(c_1 c_3 - c_0 c_2)  &amp; 2(c_2 c_3 + c_0 c_1) &amp; c_0^2 - c_1^2 - c_2^2 + c_3^2 \\
 \end{bmatrix}\end{split}\]</div>
-<p>여기서 <span class="math notranslate nohighlight">\({\underline{c}} = \left[ c_1~~c_2~~c_3\right]^T\)</span> 는 Wiener-Milenković 매개변수이고
+<p>여기서 <span class="math notranslate nohighlight">\({\underline{c}} = \left[ c_1~~c_2~~c_3\right]^T\)</span> Wiener-Milenković 매개변수이고
 <span class="math notranslate nohighlight">\(c_0 = 2 - \frac{1}{8}{\underline{c}}^T {\underline{c}}\)</span>. 회전 텐서와 방향 코사인 행렬(DCM) 사이의 관계는 다음과 같습니다.</p>
 <div class="math notranslate nohighlight" id="equation-rt2dcm">
 <span class="eqno">(4.88)<a class="headerlink" href="#equation-rt2dcm" title="이 방정식에 대한 영구 링크"></a></span>\[{\underline{\underline{R}}} = ({\underline{\underline{DCM}}})^T\]</div>
-<p>관심 있는 사용자는 다음을 참고하세요.
-회전 매개변수 및 GEBT를 사용한 구현에 대한 자세한 내용은 <span id="id8">[<a class="reference internal" href="zrefs.html#id4" title="O.A. Bauchau, A. Epple 및 S.D. 허. 유연한 다물체 동역학 시뮬레이션에서 유한 회전 보간. 기계 공학 협회 간행물, 파트 K: 다물체 역학 저널, 222:353-366, 2008.">BEH08</a>]</span>
-및 <span id="id9">[<a class="reference internal" href="zrefs.html#id6" title="Q. Wang, W. Yu 및 M.A. Sprague. wiener-milenković 매개변수를 사용한 합성보의 보석학적 비선형 분석. 제54회 구조, 구조 역학 및 재료 컨퍼런스 진행 중. 2013년 4월 매사추세츠 주 보스턴.">WYS13</a>]</span> 를 참조하세요.</p>
+<p>관심있는 사용자는 참고하세요 <span id="id8">[<a class="reference internal" href="zrefs.html#id4" title="O.A. Bauchau, A. Epple 및 S.D. 허. 유연한 다물체 동역학 시뮬레이션에서 유한 회전 보간. 기계 공학 협회 간행물, 파트 K: 다물체 역학 저널, 222:353-366, 2008.">BEH08</a>]</span>
+및 <span id="id9">[<a class="reference internal" href="zrefs.html#id6" title="Q. Wang, W. Yu 및 M.A. Sprague. wiener-milenković 매개변수를 사용한 합성보의 보석학적 비선형 분석. 제54회 구조, 구조 역학 및 재료 회의 진행 중. 2013년 4월 매사추세츠 주 보스턴.">WYS13</a>]</span> 회전 매개변수와 GEBT를 사용한 구현에 대한 자세한 내용을 확인하세요.</p>
 </div>
 <div class="section" id="linearization-process">
-<h2><span class="section-number">4.7.5.5. </span>선형화 프로세스<a class="headerlink" href="#linearization-process" title="이 제목의 고유 링크"></a></h2>
+<h2><span class="section-number">4.7.5.5. </span>Linearization 프로세스<a class="headerlink" href="#linearization-process" title="이 제목에 대한 영구 링크"></a></h2>
 <p>이전 섹션에서 소개한 비선형 지배 방정식은 선형화 과정이 필요한 Newton-Raphson 방법으로 해결됩니다. 지배 방정식의 각 항의 선형화가 이 섹션에 나와 있습니다.</p>
-<p>에 따르면 <span id="id10">[<a class="reference internal" href="zrefs.html#id3" title="O. A. Bauchau. 유연한 다물체 역학. 스프링거, 2010. doi:10.1007/978-94-007-0335-3.">바우10</a>]</span>, Eq.의 선형 지배 방정식.&nbsp; <a class="reference internal" href="#equation-governgebt-1-2">(4.77)</a> 의 형태는 다음과 같습니다.</p>
+<p>에 따르면 <span id="id10">[<a class="reference internal" href="zrefs.html#id3" title="O. A. 바우샤우. 유연한 다물체 역학. 스프링거, 2010. doi:10.1007/978-94-007-0335-3.">Bau10</a>]</span>, Eq.의 선형 지배 방정식.&nbsp; <a class="reference internal" href="#equation-governgebt-1-2">(4.77)</a> 의 형태로 되어있습니다</p>
 <div class="math notranslate nohighlight" id="equation-linearizedeqn">
 <span class="eqno">(4.89)<a class="headerlink" href="#equation-linearizedeqn" title="이 방정식에 대한 영구 링크"></a></span>\[\hat{\underline{\underline{M}}} \Delta \hat{\underline{a}} +\hat{\underline{\underline{G}}} \Delta \hat{\underline{v}}+ \hat{\underline{\underline{K}}} \Delta \hat{\underline{q}} = \hat{\underline{F}}^{ext} - \hat{\underline{F}}\]</div>
 <p>여기서 <span class="math notranslate nohighlight">\(\hat{{\underline{\underline{M}}}}\)</span>,
-<span class="math notranslate nohighlight">\(\hat{{\underline{\underline{G}}}}\)</span>및
-이 플래그 값 아래에
+<span class="math notranslate nohighlight">\(\hat{{\underline{\underline{G}}}}\)</span>, 및
 <span class="math notranslate nohighlight">\(\hat{{\underline{\underline{K}}}}\)</span> 는 각각 원소 질량, 자이로스코프 및 강성 행렬입니다.
 <span class="math notranslate nohighlight">\(\hat{{\underline{F}}}\)</span> 및 <span class="math notranslate nohighlight">\(\hat{{\underline{F}}}^{ext}\)</span>
-는 각각 요소력과 외부에서 적용되는 하중입니다. 길이 요소에 대해 정의됩니다. <span class="math notranslate nohighlight">\(l\)</span> 함께
-다음과 같이 <span class="math notranslate nohighlight">\(x_1\)</span> 다음과 같이</p>
+각각 요소력과 외부에서 가해지는 하중입니다. 길이 요소에 대해 정의됩니다. <span class="math notranslate nohighlight">\(l\)</span> ~을 따라 <span class="math notranslate nohighlight">\(x_1\)</span> 다음과 같이</p>
 <div class="math notranslate nohighlight" id="equation-hatmgkffext">
 <span class="eqno">(4.90)<a class="headerlink" href="#equation-hatmgkffext" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}\hat{{\underline{\underline{M}}}}&amp;= \int_0^l \underline{\underline{N}}^T \mathcal{\underline{\underline{M}}} ~\underline{\underline{N}} dx_1 \\
 \hat{{\underline{\underline{G}}}} &amp;= \int_0^l {\underline{\underline{N}}}^T {\underline{\underline{\mathcal{G}}}}^I~{\underline{\underline{N}}} dx_1\\
 \hat{{\underline{\underline{K}}}}&amp;=\int_0^l \left[ {\underline{\underline{N}}}^T ({\underline{\underline{\mathcal{K}}}}^I + \mathcal{{\underline{\underline{Q}}}})~ {\underline{\underline{N}}} + {\underline{\underline{N}}}^T \mathcal{{\underline{\underline{P}}}}~ {\underline{\underline{N}}}^\prime + {\underline{\underline{N}}}^{\prime T} \mathcal{{\underline{\underline{C}}}}~ {\underline{\underline{N}}}^\prime + {\underline{\underline{N}}}^{\prime T} \mathcal{{\underline{\underline{O}}}}~ {\underline{\underline{N}}} \right] d x_1 \\
 \hat{{\underline{F}}} &amp;= \int_0^l ({\underline{\underline{N}}}^T {\underline{\mathcal{F}}}^I + {\underline{\underline{N}}}^T \mathcal{{\underline{F}}}^D + {\underline{\underline{N}}}^{\prime T} \mathcal{{\underline{F}}}^C)dx_1 \\
 \hat{{\underline{F}}}^{ext}&amp; = \int_0^l {\underline{\underline{N}}}^T \mathcal{{\underline{F}}}^{ext} dx_1\end{split}\]</div>
-<p>여기서 <span class="math notranslate nohighlight">\(\mathcal{{\underline{F}}}^{ext}\)</span> 는 적용된 하중 벡터입니다. Eqs의 새로운 행렬 표기법.&nbsp;<a class="reference internal" href="#equation-hatmgkffext">(4.90)</a> 에 대해 간략하게 소개합니다. <span class="math notranslate nohighlight">\(\mathcal{{\underline{F}}}^C\)</span> 및
-<span class="math notranslate nohighlight">\(\mathcal{{\underline{F}}}^D\)</span> 는 Eq.에서 얻은 탄성력입니다.&nbsp;<a class="reference internal" href="#equation-governgebt-1-2">(4.77)</a> 로</p>
+<p>여기서 <span class="math notranslate nohighlight">\(\mathcal{{\underline{F}}}^{ext}\)</span> 적용된 하중 벡터입니다. Eqs의 새로운 행렬 표기법.&nbsp;<a class="reference internal" href="#equation-hatmgkffext">(4.90)</a> 여기까지 간략하게 소개합니다. <span class="math notranslate nohighlight">\(\mathcal{{\underline{F}}}^C\)</span> 및
+<span class="math notranslate nohighlight">\(\mathcal{{\underline{F}}}^D\)</span> Eq.에서 얻은 탄성력입니다.&nbsp;<a class="reference internal" href="#equation-governgebt-1-2">(4.77)</a> ~처럼</p>
 <div class="math notranslate nohighlight" id="equation-fcd">
 <span class="eqno">(4.91)<a class="headerlink" href="#equation-fcd" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}\mathcal{{\underline{F}}}^C &amp;= \begin{Bmatrix}
     {\underline{F}} \\
@@ -400,14 +386,12 @@ c_0^2 + c_1^2 - c_2^2 - c_3^2 &amp; 2(c_1 c_2 - c_0 c_3) &amp; 2(c_1 c_3 + c_0 c
 \end{bmatrix}
 \mathcal{{\underline{F}}}^C \equiv {\underline{\underline{\Upsilon}}}~ \mathcal{{\underline{F}}}^C\end{split}\]</div>
 <p>여기서 <span class="math notranslate nohighlight">\(\underline{\underline{0}}\)</span> 는 <span class="math notranslate nohighlight">\(3 \times 3\)</span>
-널 매트릭스. 는
-Eqs의 <span class="math notranslate nohighlight">\({\underline{\underline{\mathcal{G}}}}^I\)</span>,
+널 행렬. 그만큼 <span class="math notranslate nohighlight">\({\underline{\underline{\mathcal{G}}}}^I\)</span>,
 <span class="math notranslate nohighlight">\({\underline{\underline{\mathcal{K}}}}^I\)</span>,
 <span class="math notranslate nohighlight">\(\mathcal{{\underline{\underline{O}}}}\)</span>,
 <span class="math notranslate nohighlight">\(\mathcal{{\underline{\underline{P}}}}\)</span>,
-<span class="math notranslate nohighlight">\(\mathcal{{\underline{\underline{Q}}}}\)</span>및
-이 플래그 값 아래에
-<span class="math notranslate nohighlight">\({\underline{\mathcal{F}}}^I\)</span> .&nbsp;<a class="reference internal" href="#equation-hatmgkffext">(4.90)</a>&nbsp; 는 다음과 같이 정의됩니다.</p>
+<span class="math notranslate nohighlight">\(\mathcal{{\underline{\underline{Q}}}}\)</span>, 및
+<span class="math notranslate nohighlight">\({\underline{\mathcal{F}}}^I\)</span> 방정식에서.&nbsp;<a class="reference internal" href="#equation-hatmgkffext">(4.90)</a>&nbsp; 다음과 같이 정의됩니다.</p>
 <div class="math notranslate nohighlight" id="equation-mathcalgkopfi">
 <span class="eqno">(4.92)<a class="headerlink" href="#equation-mathcalgkopfi" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}{\underline{\underline{\mathcal{G}}}}^I &amp;= \begin{bmatrix}
 {\underline{\underline{0}}} &amp; (\widetilde{\tilde{\omega} m {\underline{\eta}}})^T+\tilde{\omega} m \tilde{\eta}^T  \\
@@ -430,8 +414,8 @@ Eqs의 <span class="math notranslate nohighlight">\({\underline{\underline{\math
 m \ddot{{\underline{u}}} + (\dot{\tilde{\omega}} + \tilde{\omega} \tilde{\omega})m {\underline{\eta}} \\
 m \tilde{\eta} \ddot{{\underline{u}}} +{\underline{\underline{\varrho}}}\dot{{\underline{\omega}}}+\tilde{\omega}{\underline{\underline{\varrho}}}{\underline{\omega}}
 \end{Bmatrix}\end{split}\]</div>
-<p>여기서 <span class="math notranslate nohighlight">\(m\)</span> 는 단위 길이당 질량 밀도이고,
-<span class="math notranslate nohighlight">\({\underline{\eta}}\)</span> 는 단면 질량중심의 위치이고, <span class="math notranslate nohighlight">\({\underline{\underline{\varrho}}}\)</span> 는 관성 모멘트 텐서이며, 위 식을 단순화하기 위해 다음과 같은 표기법을 도입했습니다.</p>
+<p>여기서 <span class="math notranslate nohighlight">\(m\)</span> 단위 길이당 질량 밀도,
+<span class="math notranslate nohighlight">\({\underline{\eta}}\)</span> 는 단면 질량 중심의 위치이고, <span class="math notranslate nohighlight">\({\underline{\underline{\varrho}}}\)</span> 는 관성 모멘트 텐서이며, 위 식을 단순화하기 위해 다음 표기법이 도입되었습니다.</p>
 <div class="math notranslate nohighlight" id="equation-e1-partc">
 <span class="eqno">(4.93)<a class="headerlink" href="#equation-e1-partc" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}{\underline{E}}_1 &amp;= {\underline{x}}_0^\prime + {\underline{u}}^\prime \\
 {\underline{\underline{\mathcal{C}}}} &amp;= \begin{bmatrix}
@@ -440,15 +424,15 @@ m \tilde{\eta} \ddot{{\underline{u}}} +{\underline{\underline{\varrho}}}\dot{{\u
 \end{bmatrix}\end{split}\]</div>
 </div>
 <div class="section" id="damping-forces-and-linearization">
-<h2><span class="section-number">4.7.5.6. </span>감쇠력 및 선형화<a class="headerlink" href="#damping-forces-and-linearization" title="이 제목의 고유 링크"></a></h2>
+<h2><span class="section-number">4.7.5.6. </span>감쇠력 및 Linearization<a class="headerlink" href="#damping-forces-and-linearization" title="이 제목에 대한 영구 링크"></a></h2>
 <p>구조적 감쇠 효과를 설명하기 위해 점성 감쇠 모델이 BeamDyn에 구현되었습니다. 감쇠력은 다음과 같이 정의됩니다.</p>
 <div class="math notranslate nohighlight" id="equation-damping">
 <span class="eqno">(4.94)<a class="headerlink" href="#equation-damping" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}{\underline{f}}_d = {\underline{\underline{\mu}}}~ {\underline{\underline{\mathcal{C}}}} \begin{Bmatrix}
 \dot{\epsilon} \\
 \dot{\kappa}
 \end{Bmatrix}\end{split}\]</div>
-<p>여기서 <span class="math notranslate nohighlight">\({\underline{\underline{\mu}}}\)</span> 는 사용자 정의 감쇠 계수 대각 행렬입니다. 감쇠력은 다음과 같이 두 개의 개별 부분으로 다시 구성될 수 있습니다. <span class="math notranslate nohighlight">\({\underline{\mathcal{F}}}^C\)</span> 및
-<span class="math notranslate nohighlight">\({\underline{\mathcal{F}}}^D\)</span> 의 탄성력은 다음과 같습니다.</p>
+<p>여기서 <span class="math notranslate nohighlight">\({\underline{\underline{\mu}}}\)</span> 사용자 정의 감쇠 계수 대각 행렬입니다. 감쇠력은 다음과 같이 두 개의 개별 부분으로 다시 구성될 수 있습니다. <span class="math notranslate nohighlight">\({\underline{\mathcal{F}}}^C\)</span> 및
+<span class="math notranslate nohighlight">\({\underline{\mathcal{F}}}^D\)</span> 다음과 같이 탄성력에 있어서</p>
 <div class="math notranslate nohighlight" id="equation-dampingforce-1-2">
 <span class="eqno">(4.95)<a class="headerlink" href="#equation-dampingforce-1-2" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}{\underline{\mathcal{F}}}^C_d &amp;= \begin{Bmatrix}
 {\underline{F}}_d \\
@@ -486,7 +470,7 @@ m \tilde{\eta} \ddot{{\underline{u}}} +{\underline{\underline{\varrho}}}\dot{{\u
 \Delta {\underline{\dot{u}}}^\prime \\
 \Delta {\underline{\omega}}^\prime
 \end{Bmatrix}\end{split}\]</div>
-<p>여기서 새로 도입된 행렬은 다음과 같이 정의됩니다.</p>
+<p>새로 도입된 행렬은 다음과 같이 정의됩니다.</p>
 <div class="math notranslate nohighlight" id="equation-dampingsd-od-gd-pd-qd-xd-yd">
 <span class="eqno">(4.97)<a class="headerlink" href="#equation-dampingsd-od-gd-pd-qd-xd-yd" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}{\underline{\underline{\mathcal{S}}}}_d &amp;=
 {\underline{\underline{\mu}}} {\underline{\underline{\mathcal{C}}}} \begin{bmatrix}
@@ -524,59 +508,52 @@ m \tilde{\eta} \ddot{{\underline{u}}} +{\underline{\underline{\varrho}}}\dot{{\u
   \tilde{E}_1^T {\underline{\underline{\mu}}} {\underline{\underline{C}}}_{11} &amp;   \tilde{E}_1^T {\underline{\underline{\mu}}} {\underline{\underline{C}}}_{12}
 \end{bmatrix} \\\end{split}\]</div>
 <p>여기서 <span class="math notranslate nohighlight">\({\underline{\underline{O}}}_{12}\)</span> 및
-<span class="math notranslate nohighlight">\({\underline{\underline{G}}}_{12}\)</span> 는 <span class="math notranslate nohighlight">\(3 \times 3\)</span> 하위 행렬
-식의 <span class="math notranslate nohighlight">\(\mathcal{{\underline{\underline{O}}}}\)</span> 및
-<span class="math notranslate nohighlight">\(\mathcal{{\underline{\underline{G}}}}\)</span> 로
-<span class="math notranslate nohighlight">\({\underline{\underline{C}}}_{12}\)</span> .&nbsp;<a class="reference internal" href="#equation-e1-partc">(4.93)</a>. 모달 감쇠 ————-</p>
-<p>위에서 설명한 강성 비례 점성 감쇠 외에도 BeamDyn은 모달 감쇠도 지원합니다. 이는 현재 OpenFAST와의 긴밀한 결합에서 실행되는 경우에만 지원됩니다. 모달 댐핑을 선택한 경우(<code class="docutils literal notranslate"><span class="pre">damp_flag</span> <span class="pre">=</span> <span class="pre">2</span></code>), BeamDyn은 블레이드의 고유 진동수와 모드 형상을 계산하고 모달 좌표에 감쇠를 적용합니다.</p>
-<p>모달 감쇠 접근법은 감쇠 행렬을 구성합니다.
-사용자 지정 모달 감쇠비를 기반으로 하는 <span class="math notranslate nohighlight">\({\underline{\underline{C}}}_{modal}\)</span>
-모드용 <span class="math notranslate nohighlight">\(\zeta_i\)</span> 모드에 대해 <span class="math notranslate nohighlight">\(i = 1, 2, \ldots, n_{modes}\)</span>. 사용자가 지정한 값을 지나 <span class="math notranslate nohighlight">\(n_{modes}\)</span>, BeamDyn 할당
-모달 고유 진동수에 비례하여 증가하고 마지막 규정과 일치하는 <span class="math notranslate nohighlight">\(\zeta_i\)</span> 모드 고유진동수에 비례하여 증가하고 마지막 지정값과 일치하도록 <span class="math notranslate nohighlight">\(\zeta_i\)</span> 값. 모달 감쇠 행렬은 모달 속성으로 정의됩니다.</p>
+<span class="math notranslate nohighlight">\({\underline{\underline{G}}}_{12}\)</span> 는 <span class="math notranslate nohighlight">\(3 \times 3\)</span> 하위 행렬 <span class="math notranslate nohighlight">\(\mathcal{{\underline{\underline{O}}}}\)</span> 및
+<span class="math notranslate nohighlight">\(\mathcal{{\underline{\underline{G}}}}\)</span> ~처럼
+<span class="math notranslate nohighlight">\({\underline{\underline{C}}}_{12}\)</span> 방정식에서.&nbsp;<a class="reference internal" href="#equation-e1-partc">(4.93)</a>. 모달 감쇠 ————-</p>
+<p>위에서 설명한 강성 비례 점성 감쇠 외에도 BeamDyn는 모드 감쇠도 지원합니다. 이는 현재 OpenFAST와의 긴밀한 결합에서 실행되는 경우에만 지원됩니다. 모달 댐핑을 선택한 경우(<code class="docutils literal notranslate"><span class="pre">damp_flag</span> <span class="pre">=</span> <span class="pre">2</span></code>), BeamDyn는 블레이드의 고유 진동수와 모드 형상을 계산하고 모달 좌표에 감쇠를 적용합니다.</p>
+<p>모달 감쇠 접근법은 감쇠 행렬을 구성합니다. <span class="math notranslate nohighlight">\({\underline{\underline{C}}}_{modal}\)</span>
+사용자가 지정한 모달 감쇠비 기준 <span class="math notranslate nohighlight">\(\zeta_i\)</span> 모드에 대해 <span class="math notranslate nohighlight">\(i = 1, 2, \ldots, n_{modes}\)</span>. 사용자가 지정한 값을 지나 <span class="math notranslate nohighlight">\(n_{modes}\)</span>, BeamDyn는 할당합니다 <span class="math notranslate nohighlight">\(\zeta_i\)</span> 모드 고유진동수에 비례하여 증가하고 마지막 지정값과 일치하도록 <span class="math notranslate nohighlight">\(\zeta_i\)</span> 값. 모달 감쇠 행렬은 모달 속성으로 정의됩니다.</p>
 <div class="math notranslate nohighlight" id="equation-modaldamping">
 <span class="eqno">(4.98)<a class="headerlink" href="#equation-modaldamping" title="이 방정식에 대한 영구 링크"></a></span>\[{\underline{\underline{C}}}_{modal} = {\underline{\underline{\Phi}}}^{-T} {\underline{\underline{Z}}} {\underline{\underline{\Phi}}}^{-1}
 = {\underline{\underline{M}}} {\underline{\underline{\Phi}}} {\underline{\underline{Z}}} {\underline{\underline{\Phi}}}^T {\underline{\underline{M}}}\]</div>
-<p>여기서 <span class="math notranslate nohighlight">\(\underline{\underline{Z}}\)</span> 는 대각 항목이 있는 대각 행렬입니다. <span class="math notranslate nohighlight">\(i\)</span> 같음
-고유 주파수(rad/s)에 대한
+<p>여기서 <span class="math notranslate nohighlight">\(\underline{\underline{Z}}\)</span> 대각 항목이 있는 대각 행렬입니다. <span class="math notranslate nohighlight">\(i\)</span> 같음
 <span class="math notranslate nohighlight">\(2 \omega_i \zeta_i\)</span> 고유 각진동수(rad/s)가 다음일 때 <span class="math notranslate nohighlight">\(\omega_i\)</span>. 추가적으로, <span class="math notranslate nohighlight">\(\underline{\underline{\Phi}}\)</span> 는 질량 정규화된 모드 형상(각각 열)의 행렬입니다.
-<span class="math notranslate nohighlight">\(\underline{\underline{M}}\)</span> 는 준정적 초기화 후의 질량 행렬입니다.</p>
-<p>각 시간 단계에서 노드 속도 벡터는 루트의 강체 모션을 빼서 계산됩니다. 이 속도 벡터는 초기화된 빔과 정렬되도록 각 노드에서 회전됩니다. 노드의 감쇠력은 단순히 감쇠 행렬과 속도 벡터의 곱입니다. 그런 다음 이러한 힘은 속도 회전의 역수를 사용하여 전역 좌표로 다시 회전됩니다. 추가 회전은 루트 프레임에 감쇠 행렬을 고정하는 것보다 더 나은 모달 감쇠 결과를 제공하는 것으로 보입니다.</p>
+<span class="math notranslate nohighlight">\(\underline{\underline{M}}\)</span> 준정적 초기화 후의 질량 행렬입니다.</p>
+<p>각 시간 단계에서 루트의 강체 모션을 빼는 절점 속도 벡터가 계산됩니다. 이 속도 벡터는 초기화된 빔과 정렬되도록 각 노드에서 회전됩니다. 노드의 감쇠력은 단순히 감쇠 행렬과 속도 벡터의 곱입니다. 그런 다음 이러한 힘은 속도 회전의 역수를 사용하여 전역 좌표로 다시 회전됩니다. 추가 회전은 루트 프레임에 감쇠 행렬을 고정하는 것보다 더 나은 모달 감쇠 결과를 제공하는 것으로 보입니다.</p>
 <p>모달 감쇠는 사용자 모드별 감쇠 수준 제어를 제공하여 실험이나 이론적 감쇠 예측과 더 잘 일치합니다. 또한, 모달 감쇠는 주파수에 비례하여 증가할 필요가 없습니다(강성 비례 감쇠로 규정됨). 오히려 일부 실험과 모델 예측에서 관찰된 것처럼 주파수 전반에 걸쳐 보다 일정한 감쇠 인자를 사용할 수 있습니다.</p>
 </div>
 <div class="section" id="convergence-criterion-and-generalized-alpha-time-integrator">
-<span id="convergence-criterion"></span><h2><span class="section-number">4.7.5.7. </span>수렴 기준 및 일반화-<span class="math notranslate nohighlight">\(\alpha\)</span> 시간 적분기<a class="headerlink" href="#convergence-criterion-and-generalized-alpha-time-integrator" title="이 제목의 고유 링크"></a></h2>
-<p>Eqs의 비선형 방정식 시스템.&nbsp;<a class="reference internal" href="#equation-governgebt-1-2">(4.77)</a> 는 ​​방정식의 선형화된 형식을 사용하여 Newton-Raphson 방법을 사용하여 해결됩니다.&nbsp;<a class="reference internal" href="#equation-linearizedeqn">(4.89)</a>. 현재 구현에서는 에너지와 같은 중지 기준이 선택되었으며 이는 다음과 같이 계산됩니다.</p>
+<span id="convergence-criterion"></span><h2><span class="section-number">4.7.5.7. </span>수렴기준과 일반화-<span class="math notranslate nohighlight">\(\alpha\)</span> 시간 적분기<a class="headerlink" href="#convergence-criterion-and-generalized-alpha-time-integrator" title="이 제목에 대한 영구 링크"></a></h2>
+<p>Eqs의 비선형 방정식 시스템.&nbsp;<a class="reference internal" href="#equation-governgebt-1-2">(4.77)</a> 방정식의 선형화된 형식을 사용하여 Newton-Raphson 방법을 사용하여 해결됩니다.&nbsp;<a class="reference internal" href="#equation-linearizedeqn">(4.89)</a>. 현재 구현에서는 에너지와 같은 중지 기준이 선택되었으며 이는 다음과 같이 계산됩니다.</p>
 <div class="math notranslate nohighlight" id="equation-stoppingcriterion">
 <span class="eqno">(4.99)<a class="headerlink" href="#equation-stoppingcriterion" title="이 방정식에 대한 영구 링크"></a></span>\[| \Delta \mathbf{U}^{(i)T} \left( {^{t+\Delta t}} \mathbf{R} -  {^{t+\Delta t}} \mathbf{F}^{(i-1)}  \right) | \leq | \epsilon_E \left( \Delta \mathbf{U}^{(1)T} \left( {^{t+\Delta t}} \mathbf{R} - {^t}\mathbf{F} \right) \right) |\]</div>
-<p>여기서 <span class="math notranslate nohighlight">\(|\cdot|\)</span> 는 절대값을 나타내며,
-<span class="math notranslate nohighlight">\(\Delta \mathbf{U}\)</span> 는 증분 변위 벡터이고,
-<span class="math notranslate nohighlight">\(\mathbf{R}\)</span> 는 외부에서 적용된 절점 하중의 벡터이며, <span class="math notranslate nohighlight">\(\mathbf{F}\)</span> 는 내부 요소 응력에 해당하는 절점 힘의 벡터입니다. <span class="math notranslate nohighlight">\(\epsilon_E\)</span>
-는 사용자 정의 에너지 허용 오차입니다. 변수 왼쪽 위 첨자는 시간 단계 수(동적 분석에서)를 나타내고, 오른쪽 위 첨자는 Newton-Raphson 반복 수를 나타냅니다. 가 지적한 바와 같이 <span id="id11">[<a class="reference internal" href="zrefs.html#id19" title="K. J. Bathe 및 A. P. Cimento. 비선형 유한 요소 방정식의 해를 구하는 몇 가지 실제 절차. 응용 기계 및 공학의 컴퓨터 방법, 22:59–85, 1980. http://web.mit.edu/kjb/www/Publications_Prior_to_1998/Some_Practical_Procedures_for_the_Solution_of_Nonlinear_Finite_Element_Equations.pdf. 도이:10.1016/0045-7825(80)90051-1.">BC80</a>]</span>, 이 기준은 변위와 힘이 모두 평형 값에 가까워졌을 때의 척도를 제공합니다.</p>
-<p>시간 통합은 일반화된 다음을 사용하여 수행됩니다.
-무조건적으로 안정적인(선형 시스템의 경우) 2차 정확한 알고리즘인 BeamDyn의<span class="math notranslate nohighlight">\(\alpha\)</span>
-구성표입니다. 이 방식을 사용하면 사용자는 고주파수 수치 소산을 도입하는 통합 매개변수를 선택할 수 있습니다. 수치 소산량은 무한대에서 사용자가 지정한 스펙트럼 반경에 의해 제어됩니다. <span class="math notranslate nohighlight">\(\rho_{\infty}\)</span>. 일반화에 관한 자세한 내용은 다음과 같습니다.<span class="math notranslate nohighlight">\(\alpha\)</span>
-방법은 다음에서 찾을 수 있습니다. <span id="id12">[<a class="reference internal" href="zrefs.html#id3" title="O. A. Bauchau. 유연한 다물체 역학. 스프링거, 2010. doi:10.1007/978-94-007-0335-3.">바우10</a>, <a class="reference internal" href="zrefs.html#id20" title="J. Chung 및 G. M. Hulbert. 수치 소산이 개선된 구조 역학을 위한 시간 통합 알고리즘: 일반화된 α 방법. 응용역학 저널, 60:371–375, 1993. doi:10.1115/1.2900803.">CH93</a>]</span>.</p>
+<p>여기서 <span class="math notranslate nohighlight">\(|\cdot|\)</span> 절대값을 나타내고,
+<span class="math notranslate nohighlight">\(\Delta \mathbf{U}\)</span> 증분 변위 벡터입니다.
+<span class="math notranslate nohighlight">\(\mathbf{R}\)</span> 는 외부에서 적용된 절점 하중의 벡터입니다. <span class="math notranslate nohighlight">\(\mathbf{F}\)</span> 내부 요소 응력에 해당하는 절점 힘의 벡터입니다. <span class="math notranslate nohighlight">\(\epsilon_E\)</span>
+사용자 정의 에너지 허용 오차입니다. 변수 왼쪽 위 첨자는 시간 단계 수(동적 분석에서)를 나타내고, 오른쪽 위 첨자는 Newton-Raphson 반복 수를 나타냅니다. 가 지적한 바와 같이 <span id="id11">[<a class="reference internal" href="zrefs.html#id19" title="K. J. Bathe 및 A. P. Cimento. 비선형 유한 요소 방정식의 해를 구하는 몇 가지 실제 절차. 응용 기계 및 공학의 컴퓨터 방법, 22:59–85, 1980. http://web.mit.edu/kjb/www/Publications_Prior_to_1998/Some_Practical_Procedures_for_the_Solution_of_Nonlinear_Finite_Element_Equations.pdf. 도이:10.1016/0045-7825(80)90051-1.">BC80</a>]</span>, 이 기준은 변위와 힘이 모두 평형 값에 가까워졌을 때의 척도를 제공합니다.</p>
+<p>시간 통합은 일반화된 다음을 사용하여 수행됩니다.<span class="math notranslate nohighlight">\(\alpha\)</span>
+무조건적으로 안정적인(선형 시스템의 경우) 2차 정확한 알고리즘인 BeamDyn의 구성표입니다. 이 방식을 사용하면 사용자는 고주파수 수치 소산을 도입하는 통합 매개변수를 선택할 수 있습니다. 수치 소산량은 무한대에서 사용자가 지정한 스펙트럼 반경에 의해 제어됩니다. <span class="math notranslate nohighlight">\(\rho_{\infty}\)</span>. 일반화에 관한 자세한 내용은 다음과 같습니다.<span class="math notranslate nohighlight">\(\alpha\)</span>
+방법은 에서 찾을 수 있습니다. <span id="id12">[<a class="reference internal" href="zrefs.html#id3" title="O. A. 바우샤우. 유연한 다물체 역학. 스프링거, 2010. doi:10.1007/978-94-007-0335-3.">Bau10</a>, <a class="reference internal" href="zrefs.html#id20" title="J. Chung과 G. M. Hulbert. 수치 소산이 개선된 구조 역학을 위한 시간 통합 알고리즘: 일반화된 α 방법. 응용역학 저널, 60:371–375, 1993. doi:10.1115/1.2900803.">CH93</a>]</span>.</p>
 </div>
 <div class="section" id="calculation-of-reaction-loads">
-<h2><span class="section-number">4.7.5.8. </span>반력 하중 계산<a class="headerlink" href="#calculation-of-reaction-loads" title="이 제목의 고유 링크"></a></h2>
-<p>변위 및 회전, 병진 및 각속도, 병진 및 각가속도를 포함한 풍력터빈 블레이드의 루트 모션은 드라이버(독립 실행형 모드) 또는 FAST 글루 코드(FAST 결합 모드)에 의해 BeamDyn에 대한 입력으로 지정되므로 루트의 반력은 지배 방정식의 동일성을 충족해야 합니다. 루트의 반력 하중은 전체 터빈 해석에서 블레이드에서 허브로 전달되는 하중이기도 합니다.</p>
-<p>Eq.의 지배 방정식. <a class="reference internal" href="#equation-governgebt-1-2">(4.77)</a> 는 컴팩트한 형태로 재주조 가능
-섹션 [sec:LinearProcess]에 정의된 모든 벡터를 사용하는</p>
+<h2><span class="section-number">4.7.5.8. </span>반응 하중 계산<a class="headerlink" href="#calculation-of-reaction-loads" title="이 제목에 대한 영구 링크"></a></h2>
+<p>변위 및 회전, 병진 및 각속도, 병진 및 각가속도를 포함한 풍력 터빈 블레이드의 루트 모션은 드라이버(독립 실행형 모드) 또는 FAST 글루 코드(FAST 결합 모드)에 의해 BeamDyn에 대한 입력으로 지정되므로 루트에서의 반력은 지배 방정식의 동일성을 충족하는 데 필요합니다. 루트의 반력 하중은 전체 터빈 해석에서 블레이드에서 허브로 전달되는 하중이기도 합니다.</p>
+<p>Eq.의 지배 방정식. <a class="reference internal" href="#equation-governgebt-1-2">(4.77)</a> 컴팩트한 형태로 다시 주조할 수 있습니다.</p>
 <div class="math notranslate nohighlight" id="equation-compactgovern">
 <span class="eqno">(4.100)<a class="headerlink" href="#equation-compactgovern" title="이 방정식에 대한 영구 링크"></a></span>\[{\underline{\mathcal{F}}}^I - {\underline{\mathcal{F}}}^{C\prime} + {\underline{\mathcal{F}}}^D = {\underline{\mathcal{F}}}^{ext}\]</div>
-<p>. 블레이드 루트에서 지배 방정식은 다음과 같이 수정됩니다.</p>
+<p>섹션 [sec:LinearProcess]에 정의된 모든 벡터를 사용합니다. 블레이드 루트에서 지배 방정식은 다음과 같이 수정됩니다.</p>
 <div class="math notranslate nohighlight" id="equation-compactgovernroot">
 <span class="eqno">(4.101)<a class="headerlink" href="#equation-compactgovernroot" title="이 방정식에 대한 영구 링크"></a></span>\[{\underline{\mathcal{F}}}^I - {\underline{\mathcal{F}}}^{C\prime} + {\underline{\mathcal{F}}}^D = {\underline{\mathcal{F}}}^{ext}+{\underline{\mathcal{F}}}^R\]</div>
 <p>여기서 <span class="math notranslate nohighlight">\({\underline{\mathcal{F}}}^R = \left[ {\underline{F}}^R~~~{\underline{M}}^R\right]^T\)</span>
-는 반력 벡터이며 Eq.
-이 시점에서 모션 필드가 알려져 있다는 점을 고려하면 <a class="reference internal" href="#equation-compactgovernroot">(4.101)</a> 입니다.</p>
+는 반력 벡터이며 Eq.에서 풀 수 있습니다. <a class="reference internal" href="#equation-compactgovernroot">(4.101)</a> 이 시점에서 모션 필드가 알려져 있다는 점을 고려하면.</p>
 </div>
 <div class="section" id="calculation-of-blade-loads">
-<h2><span class="section-number">4.7.5.9. </span>블레이드 부하 계산<a class="headerlink" href="#calculation-of-blade-loads" title="이 제목의 고유 링크"></a></h2>
-<p>BeamDyn은 블레이드 축을 따라 각 유한 요소 노드의 블레이드 하중도 계산할 수 있습니다. Eq.의 지배 방정식. <a class="reference internal" href="#equation-compactgovern">(4.100)</a> 는 다음과 같이 재구성됩니다.</p>
+<h2><span class="section-number">4.7.5.9. </span>블레이드 하중 계산<a class="headerlink" href="#calculation-of-blade-loads" title="이 제목에 대한 영구 링크"></a></h2>
+<p>BeamDyn는 블레이드 축을 따라 각 유한 요소 노드의 블레이드 하중도 계산할 수 있습니다. Eq.의 지배 방정식. <a class="reference internal" href="#equation-compactgovern">(4.100)</a> 다음과 같이 재구성됩니다.</p>
 <div class="math notranslate nohighlight" id="equation-governbf">
 <span class="eqno">(4.102)<a class="headerlink" href="#equation-governbf" title="이 방정식에 대한 영구 링크"></a></span>\[{\underline{\mathcal{F}}}^A + {\underline{\mathcal{F}}}^V - {\underline{\mathcal{F}}}^{C\prime} + {\underline{\mathcal{F}}}^D = {\underline{\mathcal{F}}}^{ext}\]</div>
-<p>여기서 관성력 벡터는 <span class="math notranslate nohighlight">\({\underline{\mathcal{F}}}^I\)</span> 는 다음과 같이 분할됩니다. <span class="math notranslate nohighlight">\({\underline{\mathcal{F}}}^A\)</span> 및 <span class="math notranslate nohighlight">\({\underline{\mathcal{F}}}^V\)</span>:</p>
+<p>여기서 관성력 벡터는 <span class="math notranslate nohighlight">\({\underline{\mathcal{F}}}^I\)</span> 으로 나누어진다 <span class="math notranslate nohighlight">\({\underline{\mathcal{F}}}^A\)</span> 및 <span class="math notranslate nohighlight">\({\underline{\mathcal{F}}}^V\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-mathcalfa-fv">
 <span class="eqno">(4.103)<a class="headerlink" href="#equation-mathcalfa-fv" title="이 방정식에 대한 영구 링크"></a></span>\[\begin{split}{\underline{\mathcal{F}}}^A &amp;= \begin{Bmatrix}
 m \ddot{{\underline{u}}} + \dot{\tilde{\omega}}m {\underline{\eta}}\\
@@ -591,17 +568,17 @@ m \tilde{\eta} \ddot{{\underline{u}}} + {\underline{\underline{\rho}}} \dot{{\un
 <span class="eqno">(4.104)<a class="headerlink" href="#equation-bladeforce" title="이 방정식에 대한 영구 링크"></a></span>\[{\underline{\mathcal{F}}}^{BF} \equiv {\underline{\mathcal{F}}}^V - {\underline{\mathcal{F}}}^{C\prime} + {\underline{\mathcal{F}}}^D\]</div>
 <p>해석에서 구조적 감쇠를 고려하면
 <span class="math notranslate nohighlight">\({\underline{\mathcal{F}}}^{C}_d\)</span> 및
-<span class="math notranslate nohighlight">\({\underline{\mathcal{F}}}^D_d\)</span> 는 내부 탄성력에 통합되어 있으며, <span class="math notranslate nohighlight">\({\underline{\mathcal{F}}}^C\)</span> 및
-<span class="math notranslate nohighlight">\({\underline{\mathcal{F}}}^D\)</span>, 계산용.</p>
+<span class="math notranslate nohighlight">\({\underline{\mathcal{F}}}^D_d\)</span> 내부 탄성력에 통합되어, <span class="math notranslate nohighlight">\({\underline{\mathcal{F}}}^C\)</span> 및
+<span class="math notranslate nohighlight">\({\underline{\mathcal{F}}}^D\)</span>, 계산을 위해.</p>
 </div>
 </div>
 
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
-        <a href="output_files.html" class="btn btn-neutral float-left" title="4.7.4. 출력 파일" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
-        <a href="future_work.html" class="btn btn-neutral float-right" title="4.7.6. 향후 개발 계획" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
+        <a href="output_files.html" class="btn btn-neutral float-left" title="4.7.4. 출력 파일" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+        <a href="future_work.html" class="btn btn-neutral float-right" title="4.7.6. 미래의 일" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr>
@@ -611,7 +588,7 @@ m \tilde{\eta} \ddot{{\underline{u}}} + {\underline{\underline{\rho}}} \dot{{\un
   </div>
 
   다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">주제</a>
     제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
    
 

@@ -21,9 +21,9 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="색인" href="../../../genindex.html">
-    <link rel="search" title="검색" href="../../../search.html">
-    <link rel="next" title="4.8. SubDyn 사용자 가이드 및 이론 설명서" href="../subdyn/index.html">
-    <link rel="prev" title="4.7.7. 참고문헌" href="zrefs.html"> 
+    <link rel="search" title="찾다" href="../../../search.html">
+    <link rel="next" title="4.8. SubDyn 사용자 가이드 및 이론 매뉴얼" href="../subdyn/index.html">
+    <link rel="prev" title="4.7.7. 참고자료" href="zrefs.html"> 
 <link rel="stylesheet" href="../../../_static/ko.css"><link rel="canonical" href="https://ungsu33.github.io/openfast-ko/source/user/beamdyn/appendix.html"></head>
 
 <body class="wy-body-for-nav"> 
@@ -36,7 +36,7 @@
           
           <a href="../../../index.html" class="icon icon-home">
             OpenFAST
-              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="로고">
+              <img src="../../../_static/openfastlogo.jpg" class="logo" alt="심벌 마크">
           </a>
               <div class="version">5.0 · 한국어</div>
 <div role="search">
@@ -48,15 +48,15 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="탐색 메뉴">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서에 대하여</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../this_doc.html">1. 이 문서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">2. OpenFAST 설치</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 사용하기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working.html">3. OpenFAST 작업</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 사용자 문서</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반적인 고려 사항</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general.html">4.1. 일반 고려사항</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../glue-code/index.html">4.2. 글루 코드</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodyn/index.html">4.3. AeroDyn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodyn-olaf/index.html">4.4. OLAF</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력음향학</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aerodyn-aeroacoustics/index.html">4.5. 공력소음</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aerodisk/index.html">4.6. AeroDisk</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">4.7. BeamDyn</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="introduction.html">4.7.1. 소개</a></li>
@@ -64,9 +64,9 @@
 <li class="toctree-l3"><a class="reference internal" href="input_files.html">4.7.3. 입력 파일</a></li>
 <li class="toctree-l3"><a class="reference internal" href="output_files.html">4.7.4. 출력 파일</a></li>
 <li class="toctree-l3"><a class="reference internal" href="theory.html">4.7.5. BeamDyn 이론</a></li>
-<li class="toctree-l3"><a class="reference internal" href="future_work.html">4.7.6. 향후 개발 계획</a></li>
-<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.7.7. 참고문헌</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">4.7.8. 부록</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="future_work.html">4.7.6. 미래의 일</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zrefs.html">4.7.7. 참고자료</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.7.8. 충수</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#beamdyn-input-files">4.7.8.1. BeamDyn 입력 파일</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#beamdyn-list-of-output-channels">4.7.8.2. BeamDyn 출력 채널 목록</a></li>
 </ul>
@@ -93,16 +93,16 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../testing/index.html">5. OpenFAST 테스트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">6. 개발자 문서</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이선스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">7. 라이센스</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help.html">8. 도움 받기</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 글</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements.html">9. 감사의 말씀</a></li>
 </ul>
 
         <ul class="ko-tools"><li><a href="../../../review.html">문서 상세 리뷰</a></li><li><a href="../../../coverage.html">전체 문서·번역 범위</a></li><li><a href="https://github.com/ungsu33/openfast-ko" target="_blank" rel="noopener noreferrer">GitHub 소스</a></li></ul></div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 탐색 메뉴">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="모바일 내비게이션 메뉴">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">OpenFAST</a>
       </nav>
@@ -111,12 +111,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="페이지 탐색">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="홈"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="집"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>사용자 문서</a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.7. </span>BeamDyn 사용자 가이드 및 이론 설명서</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">4.7.8. </span>부록</li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.7. </span>BeamDyn 사용자 가이드 및 이론 매뉴얼</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.7.8. </span>충수</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/source/user/beamdyn/appendix.rst.txt" rel="nofollow"> 페이지 원문 소스 보기</a>
+            <a href="../../../_sources/source/user/beamdyn/appendix.rst.txt" rel="nofollow"> 페이지 소스 보기</a>
       </li>
   </ul>
   <hr>
@@ -125,13 +125,13 @@
            <div itemprop="articleBody">
              
   <style> .red {color:#ff0000} </style><div class="section" id="appendix">
-<span id="bd-appendix"></span><h1><span class="section-number">4.7.8. </span>부록<a class="headerlink" href="#appendix" title="이 제목의 고유 링크"></a></h1>
+<span id="bd-appendix"></span><h1><span class="section-number">4.7.8. </span>충수<a class="headerlink" href="#appendix" title="이 제목에 대한 영구 링크"></a></h1>
 <div class="section" id="beamdyn-input-files">
-<span id="bd-input-files"></span><h2><span class="section-number">4.7.8.1. </span>BeamDyn 입력 파일<a class="headerlink" href="#beamdyn-input-files" title="이 제목의 고유 링크"></a></h2>
-<p>이 부록에서는 BeamDyn 입력 파일 구조를 설명하고 NREL 5MW 기준 풍력터빈에 대한 예를 제공합니다.</p>
+<span id="bd-input-files"></span><h2><span class="section-number">4.7.8.1. </span>BeamDyn 입력 파일<a class="headerlink" href="#beamdyn-input-files" title="이 제목에 대한 영구 링크"></a></h2>
+<p>이 부록에서는 BeamDyn 입력 파일 구조를 설명하고 NREL 5MW 기준 풍력 터빈에 대한 예를 제공합니다.</p>
 <p>OpenFAST+BeamDyn 및 독립형 BeamDyn(정적 및 동적) 시뮬레이션에는 모두 두 개의 파일이 필요합니다.</p>
 <p>1) BeamDyn 기본 입력 파일
-<a class="reference download internal" download="" href="../../../_downloads/c0c6cfb19db7865ebd055267d5ed4f96/bd_primary_nrel_5mw.inp"><code class="xref download docutils literal notranslate"><span class="pre">(NREL</span> <span class="pre">5MW</span> <span class="pre">static</span> <span class="pre">example)</span></code></a>: 이 파일에는 수치해 매개변수(예: 수치 감쇠, 직교 규칙)에 대한 정보와 "부재" 및 "핵심 지점"을 통한 빔 기준선의 기하학적 정의가 포함되어 있습니다. 이 파일은 "블레이드 입력 파일"도 지정합니다.</p>
+<a class="reference download internal" download="" href="../../../_downloads/c0c6cfb19db7865ebd055267d5ed4f96/bd_primary_nrel_5mw.inp"><code class="xref download docutils literal notranslate"><span class="pre">(NREL</span> <span class="pre">5MW</span> <span class="pre">static</span> <span class="pre">example)</span></code></a>: 이 파일에는 수치 해 매개변수(예: 수치 감쇠, 구적법 규칙)에 대한 정보와 "부재" 및 "핵심 지점"을 통한 빔 기준선의 기하학적 정의가 포함되어 있습니다. 이 파일은 "블레이드 입력 파일"도 지정합니다.</p>
 <ol class="arabic simple" start="2">
 <li><p>BeamDyn 블레이드 입력 파일 <a class="reference download internal" download="" href="../../../_downloads/00e23250171d6a724b3a0c085d0aadf9/nrel_5mw_blade.inp"><code class="xref download docutils literal notranslate"><span class="pre">(NREL</span> <span class="pre">5MW</span> <span class="pre">example)</span></code></a>: 이 파일은 블레이드를 따라 다양한 스테이션에서 블레이드 단면 속성을 지정합니다. 파일에는 각 스테이션의 강성과 질량 행렬은 물론 감쇠 매개변수도 포함됩니다. 예제 파일에서는 강성 비례 감쇠(damp_flag = 1)를 사용합니다. 모달 감쇠(damp_flag = 2)의 경우 n_modes 매개변수는 0이 아닌 값으로 설정되어야 하며 그 뒤에 임계 감쇠 비율로 표시되는 해당 모달 감쇠비(제타 값)가 와야 합니다.</p></li>
 </ol>
@@ -140,16 +140,15 @@
 <p>3b) 정적 시뮬레이션용 BeamDyn 드라이버 <a class="reference download internal" download="" href="../../../_downloads/aa3597f4170e4bb5f82a171a1ec4c55a/bd_driver_static_nrel_5mw.inp"><code class="xref download docutils literal notranslate"><span class="pre">(NREL</span> <span class="pre">5MW</span> <span class="pre">example)</span></code></a>: 위와 동일하지만 정적 분석용입니다.</p>
 </div>
 <div class="section" id="beamdyn-list-of-output-channels">
-<span id="app-output-channel"></span><h2><span class="section-number">4.7.8.2. </span>BeamDyn 출력 채널 목록<a class="headerlink" href="#beamdyn-list-of-output-channels" title="이 제목의 고유 링크"></a></h2>
-<p>이것은 BeamDyn 모듈에 대해 가능한 모든 출력 매개변수의 목록입니다. 이름은 의미별로 그룹화되어 있지만 사용자가 적합하다고 판단하는 대로 BeamDyn 기본 입력 파일의 OUTPUTS 섹션에서 순서를 지정할 수 있습니다. 엔<span class="math notranslate nohighlight">\(\beta\)</span>, 출력 노드를 나타냅니다.
-블레이드의 <span class="math notranslate nohighlight">\(\beta\)</span>, 여기서
-<span class="math notranslate nohighlight">\(\beta\)</span> 는 항목에 해당하는 [1,9] 범위의 숫자입니다.
-<span class="math notranslate nohighlight">\(\beta\)</span> 의 <code class="docutils literal notranslate"><span class="pre">OutNd</span></code> 목록. FAST와 결합하면 "<span class="math notranslate nohighlight">\(B\alpha\)</span>”는 각 출력 이름 앞에 붙습니다. <span class="math notranslate nohighlight">\(\alpha\)</span>
-는 블레이드 번호에 해당하는 [1,3] 범위의 숫자입니다. 출력은 다음 세 가지 좌표계 중 하나로 표현됩니다.</p>
+<span id="app-output-channel"></span><h2><span class="section-number">4.7.8.2. </span>BeamDyn 출력 채널 목록<a class="headerlink" href="#beamdyn-list-of-output-channels" title="이 제목에 대한 영구 링크"></a></h2>
+<p>이것은 BeamDyn 모듈에 대해 가능한 모든 출력 매개변수의 목록입니다. 이름은 의미별로 그룹화되어 있지만 사용자가 적합하다고 생각하는 대로 BeamDyn 기본 입력 파일의 OUTPUTS 섹션에서 순서를 지정할 수 있습니다. N<span class="math notranslate nohighlight">\(\beta\)</span>, 출력 노드를 나타냅니다. <span class="math notranslate nohighlight">\(\beta\)</span>, 어디
+<span class="math notranslate nohighlight">\(\beta\)</span> 항목에 해당하는 [1,9] 범위의 숫자입니다.
+<span class="math notranslate nohighlight">\(\beta\)</span> 다음 내의 <code class="docutils literal notranslate"><span class="pre">OutNd</span></code> 목록. FAST에 연결되면 “<span class="math notranslate nohighlight">\(B\alpha\)</span>"는 각 출력 이름 앞에 붙습니다. 여기서 <span class="math notranslate nohighlight">\(\alpha\)</span>
+블레이드 번호에 해당하는 [1,3] 범위의 숫자입니다. 출력은 다음 세 가지 좌표계 중 하나로 표현됩니다.</p>
 <ul class="simple">
-<li><p><strong>r</strong>: 이동 빔의 루트에 고정된 부동 참조 좌표계; 블레이드용 FAST와 결합되면 이는 IEC 블레이드(b) 좌표계와 동일합니다.</p></li>
-<li><p><strong>l</strong>: 편향된 빔에 국한된 부동 좌표계.</p></li>
-<li><p><strong>g</strong>: 전역 관성 프레임 좌표계; FAST와 결합하면 이는 FAST의 전역 관성계(i) 좌표계와 동일합니다.</p></li>
+<li><p><strong>r</strong>: 이동 빔의 루트에 고정된 부동 기준 좌표계; 블레이드의 경우 FAST에 결합되면 이는 IEC 블레이드(b) 좌표계와 동일합니다.</p></li>
+<li><p><strong>l</strong>: 편향된 빔에 국한된 부동 좌표계입니다.</p></li>
+<li><p><strong>g</strong>: 전체 관성계 좌표계; FAST와 결합하면 이는 FAST의 전역 관성계(i) 좌표계와 동일합니다.</p></li>
 </ul>
 <div class="figure align-center" id="id1">
 <span id="bd-output-channel"></span><a class="reference internal image-reference" href="../../../_images/bd_output_channel.png"><img alt="../../../_images/bd_output_channel.png" src="../../../_images/bd_output_channel.png" style="width: 500px;"></a>
@@ -158,14 +157,14 @@
 <div class="admonition note">
 <p class="admonition-title">참고</p>
 <p><strong>새로운 출력 채널(v5.0 이상):</strong></p>
-<p>BeamDyn에는 이제 루트 노드에 매핑된 적용된 하중에 대한 추가 출력 채널이 포함됩니다. 이러한 채널은 루트 좌표계(r)와 전역 관성계(g)로 표현되는 블레이드 루트에서 해석된 총 적용 하중(분산 및 점 하중 모두)을 제공합니다.</p>
+<p>이제 BeamDyn에는 루트 노드에 매핑된 적용된 하중에 대한 추가 출력 채널이 포함됩니다. 이러한 채널은 루트 좌표계(r)와 전역 관성계(g)로 표현되는 블레이드 루트에서 해석된 총 적용 하중(분산 및 점 하중 모두)을 제공합니다.</p>
 <ul class="simple">
-<li><p><strong>RootAppliedFxr, RootAppliedFyr, RootAppliedFzr</strong>: r-프레임에 적용된 힘 구성요소</p></li>
-<li><p><strong>RootAppliedMxr, RootAppliedMyr, RootAppliedMzr</strong>: R 프레임에 모멘트 성분 적용</p></li>
-<li><p><strong>RootAppliedFxg, RootAppliedFyg, RootAppliedFzg</strong>: g-프레임에 적용된 힘 구성요소</p></li>
-<li><p><strong>RootAppliedMxg, RootAppliedMyg, RootAppliedMzg</strong>: g-프레임에 모멘트 성분 적용</p></li>
+<li><p><strong>RootAppliedFxr, RootAppliedFyr, RootAppliedFzr</strong>: r-프레임에 적용된 힘 성분</p></li>
+<li><p><strong>RootAppliedMxr, RootAppliedMyr, RootAppliedMzr</strong>: R-프레임에 모멘트 성분을 적용</p></li>
+<li><p><strong>RootAppliedFxg, RootAppliedFyg, RootAppliedFzg</strong>: g-프레임에 적용된 힘 성분</p></li>
+<li><p><strong>RootAppliedMxg, RootAppliedMyg, RootAppliedMzg</strong>: g-frame에 모멘트 성분을 적용</p></li>
 </ul>
-<p>이러한 출력은 특히 하중 불균형을 진단하거나 힘 분포를 검증할 때 블레이드에 작용하는 전체 공기 역학 및 기타 외부 하중을 이해하는 데 유용합니다.</p>
+<p>이러한 출력은 특히 하중 불균형을 진단하거나 힘 분포를 검증할 때 블레이드에 작용하는 총 공기 역학 및 기타 외부 하중을 이해하는 데 유용합니다.</p>
 </div>
 </div>
 </div>
@@ -173,9 +172,9 @@
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="하단 탐색">
-        <a href="zrefs.html" class="btn btn-neutral float-left" title="4.7.7. 참고문헌" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전</a>
-        <a href="../subdyn/index.html" class="btn btn-neutral float-right" title="4.8. SubDyn 사용자 가이드 및 이론 설명서" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="보행인">
+        <a href="zrefs.html" class="btn btn-neutral float-left" title="4.7.7. 참고자료" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 이전의</a>
+        <a href="../subdyn/index.html" class="btn btn-neutral float-right" title="4.8. SubDyn 사용자 가이드 및 이론 매뉴얼" accesskey="n" rel="next">다음 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr>
@@ -185,7 +184,7 @@
   </div>
 
   다음을 사용해 제작: <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener noreferrer">Sphinx</a> 적용 테마:
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">테마</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme" target="_blank" rel="noopener noreferrer">주제</a>
     제공: <a href="https://readthedocs.org" target="_blank" rel="noopener noreferrer">Read the Docs</a>.
    
 
