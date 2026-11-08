@@ -11,7 +11,8 @@
     "repository": "https://github.com/ungsu33/openfast-ko",
     "branch": "main",
     "pages": "https://ungsu33.github.io/openfast-ko/",
-    "contentCommit": "ba1573c07dd8cbe75897c1a220bf8411b41b4e8a"
+    "contentCommit": "da4163e676f7168bb2fcecd64f32dbfe0d790597",
+    "verifiedDeploymentRun": "https://github.com/ungsu33/openfast-ko/actions/runs/42478101392"
   },
   "validation": {
     "indexedDocuments": 158,
@@ -23,14 +24,20 @@
     "localLinksChecked": 13733,
     "assetHashesChecked": 338,
     "koreanSearchTest": {
+      "host": "Google Sites embedded document",
       "query": "선형화",
-      "results": 35
+      "results": 34
     },
     "mathJaxBrowserCheck": {
       "renderedElements": 220,
       "errors": 0
     },
-    "freshCheckoutRebuild": "passed after excluding added review HTML from restored upstream cache"
+    "freshCheckoutRebuild": "passed after excluding added review HTML from restored upstream cache",
+    "englishSearchTest": {
+      "host": "Google Sites embedded document",
+      "query": "HydroDyn",
+      "results": 37
+    }
   },
   "limits": [
     "Unofficial machine translation with selected manual corrections; no professional full-text certification",

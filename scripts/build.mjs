@@ -77,7 +77,8 @@ for(const file of files.filter(p=>p.endsWith('.html'))){
     body.html('<h1>문서 검색</h1><p>전체 한국어 문서의 제목과 본문을 검색합니다. 한국어·영문 모듈 이름과 입력 변수 이름을 사용할 수 있습니다.</p><form id="ko-search"><label for="ko-query">검색어</label><div class="ko-search-row"><input id="ko-query" name="q" type="search" placeholder="예: HydroDyn, 선형화, 시간 간격" required><button type="submit">검색</button></div></form><p id="ko-search-status" role="status" aria-live="polite"></p><ol id="ko-search-results" class="search"></ol>');
     $('body').append(`<script src="${rootLink('_static/ko-search.js')}" defer></script>`);
   }else if(!['genindex.html'].includes(rel)){
-    search.push({path:rel,title:body.find('h1').first().text().replace(//g,'').trim()||$('title').text(),text:normalize(body.text())});
+    const searchBody=body.clone();searchBody.find('style,script,.headerlink').remove();
+    search.push({path:rel,title:body.find('h1').first().text().replace(//g,'').trim()||$('title').text(),text:normalize(searchBody.text())});
   }
   await fs.writeFile(path.join(OUT,rel),$.html());counts.pages++;
 }
